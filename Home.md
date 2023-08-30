@@ -1,3 +1,7 @@
+# WIKI IN WORK IN PROGRESS TO IMPROVE LAYOUT.
+## THE CURRENT README IS UP-TO-DATE
+
+
  
 ## ![#f03c15](https://github.com/moggieuk/Happy-Hare/blob/main/doc/f03c15.png) ![#c5f015](https://github.com/moggieuk/Happy-Hare/blob/main/doc/c5f015.png) ![#1589F0](https://github.com/moggieuk/Happy-Hare/blob/main/doc/1589F0.png) Major features:
 <ul>
