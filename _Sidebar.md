@@ -118,7 +118,11 @@
 
 - [Configuration Reference](#)
 - [Command Reference](Command-Reference)
-- [Klipper Printer Variables](#)
+ - [Operation](#)
+ - [Calibration](#)
+ - [Testing](#)
+ - [Macros](#)
+- [Klipper Printer Variables](Printer-Variables)
 
 </details>
 
