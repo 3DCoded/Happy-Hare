@@ -28,7 +28,8 @@
 
 <details open><summary><b>&nbsp;3. Essential Configuration</b></summary>
 
-- [Hardware](hardware_config)
+- [Hardware](Hardware-Configuration)
+- [Movement and Homing](Movement-and-Homing)
 - [Software](#)
   - [Logging](#)
   - [Etc](#)
