@@ -120,6 +120,6 @@
 
 </details>
 
-- [Troubleshooting](#)
-- [FAQ](#)
+[Troubleshooting](#)<br>
+[FAQ](#)
 
