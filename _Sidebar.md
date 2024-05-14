@@ -28,7 +28,8 @@
 
 <details open><summary><b>&nbsp;3. Essential Configuration</b></summary>
 
-- [Essential Configuration](#)
+- [Hardware](https://github.com/moggieuk/Happy-Hare/wiki/hardware-config)
+- [Software](#)
   - [Logging](#)
   - [Etc](#)
 
@@ -36,7 +37,7 @@
 
 <details open><summary><b>&nbsp;4. Calibration</b></summary>
 
-- [Calibration](https://github.com/moggieuk/Happy-Hare/wiki/calibration)
+- [Calibration](/wiki/calibration)
    - [Selector Offsets](https://github.com/moggieuk/Happy-Hare/wiki/calibration#step-1-calibrate-selector-offsets)
    - [Servo](https://github.com/moggieuk/Happy-Hare/wiki/calibration#step-2-calibrate-your-servo)
    - [Gear Stepper](https://github.com/moggieuk/Happy-Hare/wiki/calibration#step-3-calibrate-your-gear-stepper)
