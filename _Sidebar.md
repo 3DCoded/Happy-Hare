@@ -30,7 +30,7 @@
 
 - [Hardware Configuration](Hardware-Configuration)
 - [Movement and Homing](Movement-and-Homing)
-- [Software (mmu_parameters.cfg)](Configuration)
+- [Software (mmu_parameters.cfg)](Happy-Hare-Parameters)
   - [Logging](#)
   - [Etc](#)
 
