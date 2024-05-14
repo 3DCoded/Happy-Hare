@@ -36,14 +36,14 @@
 
 <details open><summary><b>&nbsp;4. Calibration</b></summary>
 
-- [Calibration](#)
-   - [Selector Offsets](#)
-   - [Servo](#)
-   - [Gear Stepper](#)
-   - [Encoder](#)
-   - [Bowden Length](#)
-   - [Gates](#)
-   - [Calibration Command Reference](#)
+- [Calibration](/wiki/calibration.md)
+   - [Selector Offsets](/wiki/calibration.md#step-1-calibrate-selector-offsets)
+   - [Servo](/wiki/calibration.md#step-2-calibrate-your-servo)
+   - [Gear Stepper](/wiki/calibration.md#step-3-calibrate-your-gear-stepper)
+   - [Encoder](/wiki/calibration.md#step-4-calibrate-your-encoder)
+   - [Bowden Length](/wiki/calibration.md#step-5-calibrate-bowden-length)
+   - [Gates](/wiki/calibration.md#optional-step-6-calibrating-gates)
+   - [Calibration Command Reference](/wiki/calibration.md#---calibration-command-reference)
 
 </details>
 
