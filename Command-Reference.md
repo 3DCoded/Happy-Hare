@@ -136,7 +136,9 @@ Happy Hare MMU commands: (use MMU_HELP MACROS=1 TESTING=1 STEPS=1 for full comma
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) User defined/configurable macros (defined in mmu_software.cfg)
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Macros
+
+### User defined/configurable macros (defined in mmu_software.cfg)
 
   | Macro | Description | Supplied Parameters |
   | ----- | ----------- | ------------------- |
@@ -145,17 +147,13 @@ Happy Hare MMU commands: (use MMU_HELP MACROS=1 TESTING=1 STEPS=1 for full comma
   | `_MMU_POST_UNLOAD` | Called after unload is complete and filament is parked at the gate | |
   | `_MMU_PRE_LOAD` | Called prior to the loading of a new filament | |
   | `_MMU_POST_LOAD` | Called subsequent to loading new filament | |
-
   | `_MMU_FORM_TIP` | Called to create tip on filament (when not under the control of the slicer). You tune this macro by modifying the defaults to the parameters | |
   | `_MMU_CUT_TIP` | Called to create tip by cutting the filament. You tune this macro by modifying the defaults to the parameters | |
-
   | `_MMU_ACTION_CHANGED` | Callback that is called everytime the `printer.ercf.action` is updated. Great for contolling LED lights, etc | |
   | `_MMU_PRINT_STATE_CHANGED` | Callback when the print job state changes and `printer.ercf.print_state` is updated. Great for contolling LED lights, etc | |
   | `_MMU_GATE_MAP_CHANGED` | Called when gate map is updated. Useful for updating LED lights, etc | |
-
   | `_MMU_LOAD_SEQUENCE` | Advanced: Called when MMU is asked to load filament | `FILAMENT_POS` `LENGTH` `FULL` `HOME_EXTRUDER` `SKIP_EXTRUDER` `EXTRUDER_ONLY` |
   | `_MMU_UNLOAD_SEQUENCE` | Advanced: Called when MMU is asked to unload filament | `FILAMENT_POS` `LENGTH` `EXTRUDER_ONLY` `PARK_POS` |
-
   | `_MMU_INITIALIZE` | Call when starting print to setup MMU | `INITIAL_TOOL`, `REFERENCED_TOOLS`, `TOOL_COLORS`, `TOOL_TEMPS`, `TOOL_MATERIALS` (see slicer setup guide) |
   | `_MMU_LOAD_INITIAL_TOOL` | Helper to load initial tool if not paused | |
   | `_MMU_FINALIZE` | Call when ending print to finalize MMU | `EJECT=[0\|1]` Override the macro setting for final unloading of filament (see slicer setup guide) |
@@ -164,7 +162,7 @@ Happy Hare MMU commands: (use MMU_HELP MACROS=1 TESTING=1 STEPS=1 for full comma
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Internal macros for custom composition of load/unload sequences
+### Internal macros for custom composition of load/unload sequences
 
   | Macro | Description | Parameters |
   | ----- | ----------- | ---------- |
@@ -181,10 +179,3 @@ Happy Hare MMU commands: (use MMU_HELP MACROS=1 TESTING=1 STEPS=1 for full comma
 
 > [!NOTE]  
 > *Working reference PAUSE / RESUME / CANCEL_PRINT macros are defined in `client_macros.cfg` and can be used/modified if you don't already have your own*
-
-<br>
-  
-    (\_/)
-    ( *,*)
-    (")_(") MMU Ready
-  
