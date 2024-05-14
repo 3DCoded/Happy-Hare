@@ -15,9 +15,10 @@ process_pairs() {
 }
 
 cat <<EOF | process_pairs
-doc/toolchange/ doc/toolchage_movement/
-doc/slicer/ doc/slicer_setup/
+/doc/resources/ resources/
 EOF
+#doc/toolchange/ doc/toolchage_movement/
+#doc/slicer/ doc/slicer_setup/
 #doc/c5f015.png doc/resources/c5f015.png
 #doc/1589F0.png doc/resources/1589F0.png
 #EOF

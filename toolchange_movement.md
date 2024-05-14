@@ -16,7 +16,7 @@ The tool change movement options in the guide assume you have configured key too
 
 <br>
 
-## ![#f03c15](/doc/resources/f03c15.png) ![#c5f015](/doc/resources/c5f015.png) ![#1589F0](/doc/resources/1589F0.png) Role of the Slicer
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Role of the Slicer
 
 The most important part of MMU printing is understanding how to configure your slicer for "single extruder multi material".  Because each slicer is different this is beyond the scope this documentation.  That said, the common slicers: Prusaslicer, Superslicer and Orcaslicer all have similar interfaces and there are a couple of settings you need to be aware of in deciding between what is performed by Happy Hare (the MMU "firmware") and the slicer.
 
@@ -56,7 +56,7 @@ To switch to a custom purge system you need only to untoggle the `enable wipetow
 
 <br>
 
-## ![#f03c15](/doc/resources/f03c15.png) ![#c5f015](/doc/resources/c5f015.png) ![#1589F0](/doc/resources/1589F0.png) Role of Happy Hare
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Role of Happy Hare
 
 Happy Hare controls all of the setup, customization and control of your MMU. It allows your to change tools outside of a print as well as controlling the toolchange and movement inside of a print when the `Tx` toolchange command is issued.  The tip forming logic is the only duplicative component with the slicer and thus you need to decided on always allow the firmware to do it (recommended) or split duties: firmware out of print, slicer while printing. The `force_form_tip_standalone` is an important setting that switches between these options (together with correct slicer configuration).
 
@@ -64,7 +64,7 @@ The rest of this guide describes the toolhead movement possibilities that occurs
 
 <br>
 
-## ![#f03c15](/doc/resources/f03c15.png) ![#c5f015](/doc/resources/c5f015.png) ![#1589F0](/doc/resources/1589F0.png) Tip Cutting Options
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Tip Cutting Options
 Firstly, although the default way to form tips is through calculated filament movement, there is an easier way -- just cut it off! There are supported ways to do this at the MMU (through piggybacking on the `_MMU_POST_UNLOAD` callback) the more typical way is with a filament cutter at the toolhead.  This it usually some form of blade that is operated via a dedicated servo mechanism or simply the movement of the toolhead itself and pressing against a pin (optionally itself activated by a servo).
 
 To set this up you need to edit three modular configuraton files: `mmu_parameters.cfg` (the primary setup), `mmu_cut_tip.cfg` (contains the tip cutting macro) and `mmu_sequence.cfg` (contains the default toolhead movement options)
@@ -83,7 +83,7 @@ To set this up you need to edit three modular configuraton files: `mmu_parameter
 - Neutral: Possibility of oozing (blobs) on the wipertower. Not really a big problem unless they are large and this is where the slicer designers assume the toolhead will be positioned
 <img src="/doc/toolchage_movement/cutter_wipe_tower.png" width="900" alt="Cutting and Parking on Wipetower">
 
-#### Option 4: Cutting tip and, custom purge with no wipe tower <img src="/doc/resources/cool.png" width="40">
+#### Option 4: Cutting tip and, custom purge with no wipe tower <img src="resources/cool.png" width="40">
 - Pro: You get your full buildplate to work with because wipe tower is disabled
 - Con: You will need to implement your own purging routine.  This could just be a purge into a large bin followed by nozzle cleaning or, more likely, some form of pellet forming and cleaning.
 - Neutral: This is perhaps the coolest option!
@@ -91,7 +91,7 @@ To set this up you need to edit three modular configuraton files: `mmu_parameter
 
 <br>
 
-## ![#f03c15](/doc/resources/f03c15.png) ![#c5f015](/doc/resources/c5f015.png) ![#1589F0](/doc/resources/1589F0.png) Tip Forming Options
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Tip Forming Options
 
 #### Option 5: Forming tip by Happy Hare and parking in a designated park area (often over purge bucket) while making the tool change.
 - Pro: Allows of addition of brush cleaning move after the new filament is loaded before returning to wipe tower
@@ -110,7 +110,7 @@ To set this up you need to edit three modular configuraton files: `mmu_parameter
 
 ### Printing without wipetower
 
-#### Option 8: Forming tip by Happy Hare, custom purge with no wipe tower <img src="/doc/resources/cool.png" width="40">
+#### Option 8: Forming tip by Happy Hare, custom purge with no wipe tower <img src="resources/cool.png" width="40">
 - Pro: You get your full buildplate to work with because wipe tower is disabled
 - Con: You will need to implement your own purging routine.  This could just be a purge into a large bin followed by nozzle cleaning or, more likely, some form of pellet forming and cleaning.
 - Neutral: This is perhaps the coolest option!
@@ -118,7 +118,7 @@ To set this up you need to edit three modular configuraton files: `mmu_parameter
 
 <br>
 
-## ![#f03c15](/doc/resources/f03c15.png) ![#c5f015](/doc/resources/c5f015.png) ![#1589F0](/doc/resources/1589F0.png) Return To Print Movement
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Return To Print Movement
 How the toolhead returns to the print has three options contolled by the `variable_restore_xy_pos` variable in `mmu_macro_vars.cfg`:
 
 ### "last"
@@ -150,7 +150,7 @@ You can see this is a variation on "last" but will prevent print marking. Of cou
 
 <br>
 
-## ![#f03c15](/doc/resources/f03c15.png) ![#c5f015](/doc/resources/c5f015.png) ![#1589F0](/doc/resources/1589F0.png) Z-Hop Moves
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Z-Hop Moves
 It's worth noting and to aid debugging that there are three possible origins for z-hop moves during a toolchange:
 - The first is input by the slicer which often have a "z-hop on toolchange option". With the settings described above that should be disabled though.
 - The second is by Happy Hare: during a print, HH will immediately lift the toolhead away from the print on toolchange and on error if `z_hop_height_toolchange` is non-zero in `mmu_parameters.cfg`. This move only occurs when in a print and is designed to prevent any chance of a blob forming on your part.  The z-hop move is the first move and occurs before any movement in the horizontal plane.
