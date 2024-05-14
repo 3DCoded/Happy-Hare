@@ -70,7 +70,7 @@
 
 <sub><i>YOU CAN NOW PRINT!</i></sub>
 
-<details><summary><b>&nbsp;7. Optional Feature Setup</b></summary>
+<details open><summary><b>&nbsp;7. Optional Feature Setup</b></summary>
 
 - [Gcode Preprocessing](#)
 - [LED Support](#)
@@ -78,7 +78,7 @@
 
 </details>
 
-<details><summary><b>&nbsp;8. Optional Feature Setup</b></summary>
+<details open><summary><b>&nbsp;8. Optional Feature Setup</b></summary>
 
 - [EREC Filament Cutter](#)
 - [Blobifier Purging](#)
@@ -86,7 +86,7 @@
 
 </details>
 
-<details><summary><b>&nbsp;9. Advanced Configuration</b></summary>
+<details open><summary><b>&nbsp;9. Advanced Configuration</b></summary>
 
 - [Config Files](#)
   - [mmu.cfg](#)
@@ -98,7 +98,7 @@
 
 </details>
 
-<details><summary><b>10. Advanced Concepts</b></summary>
+<details open><summary><b>10. Advanced Concepts</b></summary>
 
 - [State Persistence](#)
 - [Statistics and Counters](#)
