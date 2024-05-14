@@ -28,9 +28,9 @@
 
 <details open><summary><b>&nbsp;3. Essential Configuration</b></summary>
 
-- [Hardware](Hardware-Configuration)
+- [Hardware Configuration](Hardware-Configuration)
 - [Movement and Homing](Movement-and-Homing)
-- [Software](#)
+- [Software (mmu_parameters.cfg)](Configuration)
   - [Logging](#)
   - [Etc](#)
 
@@ -117,7 +117,7 @@
 <details open><summary><b>11. Quick References</b></summary>
 
 - [Configuration Reference](#)
-- [Command Reference](#)
+- [Command Reference](Command-Reference)
 - [Klipper Printer Variables](#)
 
 </details>

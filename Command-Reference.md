@@ -1,5 +1,3 @@
-# Happy Hare - Command Reference
-
 Firstly you can get a quick reminder of commands using the `MMU_HELP` command from the console:
 
   > MMU_HELP
