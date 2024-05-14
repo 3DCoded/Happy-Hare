@@ -1,4 +1,3 @@
-
 <p align="center">
   <img src="https://github.com/moggieuk/Happy-Hare/blob/main/doc/resources/happy_hare_logo.jpg" alt='Happy Hare KlipperScreen' width='30%'>
   <h1 align="center">Happy Hare</h1>
@@ -1290,4 +1289,3 @@ Detail change log can be found [here](/doc/change_log.md)
     (")_(") Happy Hare Ready
 
 <br>
-
