@@ -112,7 +112,7 @@
 - [Synchronized Gear/Extruder](#)
   - [Sync Feedback Sensors](#)
 
-<details><summary><b>11. Quick References</b></summary>
+<details open><summary><b>11. Quick References</b></summary>
 
 - [Configuration Reference](#)
 - [Command Reference](#)
