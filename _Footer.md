@@ -1,4 +1,5 @@
-
-> (\_/)<br>
-> ( *,*)<br>
-> (")_(") Happy Hare Ready
+```yml
+  (\_/)
+  ( *,*)
+  (")_(") Happy Hare Ready
+```
