@@ -57,7 +57,7 @@
 
 </details>
 
-<sub><i><b>YOU ARE READY TO PLAY WITH MMU NOW</b></i></sub><hr>
+<sub><i><b>YOU ARE READY TO PLAY WITH MMU NOW</b></i></sub>
 
 <details open><summary><b>&nbsp;6. Slicer-MMU Setup</b></summary>
 
