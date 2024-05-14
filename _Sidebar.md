@@ -1,4 +1,5 @@
 <details open><summary><b>&nbsp;1. Introduction</b></summary>
+
 - [Introduction](#)
 - [Documentation](#)
    - [How To Get Help](#)
@@ -7,9 +8,11 @@
 - [Conceptual MMU](#)
    - [Sensors-Explained](#)
    - [Encoder](#)
+
 </details>
 
 <details open><summary><b>&nbsp;2. Installation</b></summary>
+
  - [Installation](#)
    - [Creating-Base-Klipper-Config](#)
    - [Config-Overview](#)
@@ -20,11 +23,16 @@
    - [ERCF v2.0](#)
    - [Tradrack](#)
    - [Other](#)
+
 </details>
 
 <details open><summary><b>&nbsp;3. Essential Configuration</b></summary>
+
 [Essential-Configuration](#)
 
+</details>
+
+<!--
 04-Calibration/
 [Calibration.md
     + Selector-Offsets
@@ -107,3 +115,4 @@
   - [Command PROBE\_Z\_ACCURACY](https://github.com/protoloft/klipper_z_calibration/wiki/How-To-Use-It#command-probe_z_accuracy)
   - [Command CALCULATE\_SWITCH\_OFFSET](https://github.com/protoloft/klipper_z_calibration/wiki/How-To-Use-It#command-calculate_switch_offset)
 - [Ooze Mitigation](https://github.com/protoloft/klipper_z_calibration/wiki/Ooze-Mitigation)
+-->
