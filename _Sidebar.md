@@ -105,9 +105,10 @@
 - [Tool to Gate Map]
 - [Gate Map]
 - [Slicer Tool Map]
-- [Filament-Bypass]
-- [Clog-Detection]
-- [Endless-Spool]
+- [Filament Bypass]
+- [Clog Detection]
+- [Endless Spool]
+- [Consuption Counters](Statistics-and-Consumption-Counters#---consumption-counters)
 - [Synchronized Gear/Extruder]
   - [Sync Feedback Sensors]
 
