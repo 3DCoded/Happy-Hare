@@ -5,9 +5,7 @@
   - [How To Get Help]
   - [Organization]
   - [Common-Terms]
-- [Conceptual MMU]
-  - [Sensors-Explained]
-  - [Encoder]
+- [Conceptual MMU](Conceptual-MMU)
 
 </details>
 

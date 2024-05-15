@@ -1,10 +1,6 @@
-# Conceptional MMU Designs and how Happy Hare manages them
-
 Basic MMU types supported by Happy Hare and the function of sensors.
 
-<br>
-
-## ![#f03c15](/doc/f03c15.png) ![#c5f015](/doc/c5f015.png) ![#1589F0](/doc/1589F0.png) Type-A
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Type-A
 
 <img src="Conceptual-MMU/typeA_mmu.png" width="700" alt="Type A MMU">
 
@@ -37,7 +33,6 @@ Note shown in the diagram there are several "virtual sensors" that are implement
 - If an encoder is available, Happy Hare can sense the lack of movement as another way to sense hitting the extruder entrance, again acting as a reference homing point. Endstop is named `collision`
 - If TMC stallguard is configured on the extruder stepper (yes, that's possible with Happy Hare), then an Endstop named `mmu_ext_touch` is available.
 
-
 **Pre-gate Sensor**
 Pre-gate sensors sit just prior to the entry of the filament into the MMU.  They could physically be part of the MMU or mounted to the buffer system.  They have a few functions:
 - If the MMU is idle and a filament is inserted and triggers a pre-gate sensor, the selector will move to that gate and preload the filament and correctly park in the gate
@@ -53,11 +48,11 @@ For completeness, endstops are created on the selector. Typically there are two 
 <br>
 
 Complete set of default Happy Hare endstops and filament sensors:<br>
-<img src="/doc/filament_sensors.jpg" width="300" alt="Filament Sensors"> <img src="/doc/endstops.jpg" width="300" alt="Endstops">
+<img src="resources/filament_sensors.jpg" width="300" alt="Filament Sensors"> <img src="resources/endstops.jpg" width="300" alt="Endstops">
 
 <br>
 
-## ![#f03c15](/doc/f03c15.png) ![#c5f015](/doc/c5f015.png) ![#1589F0](/doc/1589F0.png) Type-B
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Type-B
 
 <img src="Conceptual-MMU/typeB_mmu.png" width="700" alt="Type B MMU">
 
@@ -65,11 +60,11 @@ The type has been popularized by Bambu Labs and their AMS system. Each gate has 
 
 _Current State: Currently support is coded but multiple filament driver steppers have not been tested_
 
-<!--<img src="Conceptual-MMU/default_kms.png" width="300" alt="Default KMS Design">-->
+<img src="Conceptual-MMU/default_kms.png" width="300" alt="Default KMS Design">
 
 <br>
 
-## ![#f03c15](/doc/f03c15.png) ![#c5f015](/doc/c5f015.png) ![#1589F0](/doc/1589F0.png) Type-C
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Type-C
 
 <img src="Conceptual-MMU/typeC_mmu.png" width="700" alt="Type C MMU">
 
