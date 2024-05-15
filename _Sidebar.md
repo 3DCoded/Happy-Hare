@@ -1,28 +1,28 @@
 <details open><summary><b>&nbsp;1. Introduction</b></summary>
 
-- [Introduction](#)
-- [Documentation](#)
-  - [How To Get Help](#)
-  - [Organization](#)
-  - [Common-Terms](#)
-- [Conceptual MMU](#)
-  - [Sensors-Explained](#)
-  - [Encoder](#)
+- [Introduction]
+- [Documentation]
+  - [How To Get Help]
+  - [Organization]
+  - [Common-Terms]
+- [Conceptual MMU]
+  - [Sensors-Explained]
+  - [Encoder]
 
 </details>
 
 <details open><summary><b>&nbsp;2. Installation</b></summary>
 
-- [Happy Hare Install](#)
-  - [Creating-Base-Klipper-Config](#)
-  - [Config-Overview](#)
-  - [Upgrading](#)
-- [Optional Pause/Resume Macros](#)
-- [Special Vendor Notes](#)
-  - [ERCF v1.1](#)
-  - [ERCF v2.0](#)
-  - [Tradrack](#)
-  - [Other](#)
+- [Happy Hare Install]
+  - [Creating-Base-Klipper-Config]
+  - [Config-Overview]
+  - [Upgrading]
+- [Optional Pause/Resume Macros]
+- [Special Vendor Notes]
+  - [ERCF v1.1]
+  - [ERCF v2.0]
+  - [Tradrack]
+  - [Other]
 
 </details>
 
@@ -31,8 +31,8 @@
 - [Hardware Configuration](Hardware-Configuration)
 - [Movement and Homing](Movement-and-Homing)
 - [Software (mmu_parameters.cfg)](Happy-Hare-Parameters)
-  - [Logging](#)
-  - [Etc](#)
+  - [Logging]
+  - [Etc]
 
 </details>
 
@@ -51,11 +51,11 @@
 
 <details open><summary><b>&nbsp;5. Basic Operation</b></summary>
 
-- [Console](#)
-- [KlipperScreen Happy Hare Edition](#)
-- [Understanding Loading/Unloading](#)
-- [Recovering MMU State](#)
-- [Debugging](#)
+- [Console]
+- [KlipperScreen Happy Hare Edition]
+- [Understanding Loading/Unloading]
+- [Recovering MMU State]
+- [Debugging]
 
 </details>
 
@@ -63,10 +63,10 @@
 
 <details open><summary><b>&nbsp;6. Slicer-MMU Setup</b></summary>
 
-- [Slicer Configuration](#)
-- [Tip Forming and Purging](#)
-- [Tip Cutting](#)
-- [Toolchange Toolhead Movement](#)
+- [Slicer Configuration]
+- [Tip Forming and Purging]
+- [Tip Cutting]
+- [Toolchange Toolhead Movement]
 
 </details>
 
@@ -82,45 +82,45 @@
 
 <details open><summary><b>&nbsp;8. Optional Feature Setup</b></summary>
 
-- [EREC Filament Cutter](#)
-- [Blobifier Purging](#)
-- [Filamentalist Rewinder](#)
+- [EREC Filament Cutter]
+- [Blobifier Purging]
+- [Filamentalist Rewinder]
 
 </details>
 
 <details open><summary><b>&nbsp;9. Advanced Configuration</b></summary>
 
-- [Config Files](#)
-  - [mmu.cfg](#)
-  - [mmu_hardware.cfg](#)
-  - [mmu_parameters.cfg](#)
-  - [mmu_macro_vars.cfg](#)
-- [Macro-Customization](#)
-  - [State Machine](#)
+- [Config Files]
+  - [mmu.cfg]
+  - [mmu_hardware.cfg]
+  - [mmu_parameters.cfg]
+  - [mmu_macro_vars.cfg]
+- [Macro-Customization]
+  - [State Machine]
 
 </details>
 
 <details open><summary><b>10. Advanced Concepts</b></summary>
 
-- [State Persistence](#)
-- [Statistics and Counters](#)
-  - [Gate Statistics](#)
-- [Tool to Gate Map](#)
-- [Gate Map](#)
-- [Slicer Tool Map](#)
-- [Filament-Bypass](#)
-- [Clog-Detection](#)
-- [Endless-Spool](#)
-- [Synchronized Gear/Extruder](#)
-  - [Sync Feedback Sensors](#)
+- [State Persistence]
+- [Statistics and Counters]
+  - [Gate Statistics]
+- [Tool to Gate Map]
+- [Gate Map]
+- [Slicer Tool Map]
+- [Filament-Bypass]
+- [Clog-Detection]
+- [Endless-Spool]
+- [Synchronized Gear/Extruder]
+  - [Sync Feedback Sensors]
 
 <details open><summary><b>11. Quick References</b></summary>
 
-- [Configuration Reference](#)
+- [Configuration Reference]
 - [Command Reference](Command-Reference)
-  - [Operation](#)
-  - [Calibration](#)
-  - [Testing](#)
+  - [Operation]
+  - [Calibration]
+  - [Testing]
   - [Macros](Command-Reference#macros)
 - [Klipper Printer Variables](Printer-Variables)
 
