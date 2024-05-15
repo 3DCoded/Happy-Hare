@@ -76,7 +76,7 @@ If you use my enhanced [KlipperScreen-Happy Hare Edition](https://github.com/mog
 <br>
 
 ### Auto-setting with RFID reader
-So you have fitted all you spools with a fancy RIFD tags and built a nifty RFID onto your printer or MMU, perhaps are already using [nfc2klipper](https://github.com/bofh69/nfc2klipper") to be able to read that info into klipper. How do you automatically use that with Happy Hare?  Here is how...
+So you have fitted all you spools with a fancy RIFD tags and built a nifty RFID onto your printer or MMU, perhaps are already using [nfc2klipper](https://github.com/bofh69/nfc2klipper) to be able to read that info into klipper. How do you automatically use that with Happy Hare?  Here is how...
 
 Because it isn't practical to build a RFID into every gate, the workflow supported by Happy Hare is this:
 - Offer up spool to reader

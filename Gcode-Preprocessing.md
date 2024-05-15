@@ -1,3 +1,6 @@
+- [Supported Placeholders](#---supported-placeholders)
+  - [!referenced_tools!](#auto-setting-with-rfid-reader)
+
 Happy Hare now provides a moonraker gcode preprocesser that parses uploaded gcode files prior to storage and can insert useful metadata that can then be passed into your `START_PRINT` macro to provide useful functionality.
 
 This support is added to Moonraker configuration during installation but can be added manually by inserting the following lines into your `moonraker.conf` file and restarting Moonraker. Setting `enable_file_preprocessor: False` will disable this functionality.
