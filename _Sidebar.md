@@ -51,7 +51,7 @@
 
 - [Console]
 - [KlipperScreen Happy Hare Edition]
-- [Understanding Loading/Unloading]
+- [Understanding Loading/Unloading](Understanding-Operation)
 - [Recovering MMU State]
 - [Debugging]
 
@@ -61,10 +61,10 @@
 
 <details open><summary><b>&nbsp;6. Slicer-MMU Setup</b></summary>
 
-- [Slicer Configuration]
-- [Tip Forming and Purging]
-- [Tip Cutting]
-- [Toolchange Toolhead Movement]
+- [Slicer Setup](Slicer-Setup)
+- [Tip Forming and Purging](Tip-Forming-and-Purging)
+  - [Tip Cutting]
+- [Toolchange Toolhead Movement](Toolchange-Movement)
 
 </details>
 
@@ -101,8 +101,8 @@
 <details open><summary><b>10. Advanced Concepts</b></summary>
 
 - [State Persistence]
-- [Statistics and Counters]
-  - [Gate Statistics]
+- [Statistics and Counters](Statistics-and-Consumption-Counters)
+  - [Monitoring Consumables](Statistics-and-Consumption-Counters#---consumption-counters)
 - [Tool to Gate Map]
 - [Gate Map]
 - [Slicer Tool Map]
@@ -116,10 +116,10 @@
 
 - [Configuration Reference]
 - [Command Reference](Command-Reference)
-  - [Operation]
-  - [Calibration]
-  - [Testing]
-  - [Macros](Command-Reference#macros)
+  - [Operation](Command-Reference#---basic-mmu-functionality)
+  - [Calibration](Command-Reference#---calibration)
+  - [Testing](Command-Reference#---testing)
+  - [Macros](Command-Reference#---macros)
 - [Klipper Printer Variables](Printer-Variables)
 
 </details>

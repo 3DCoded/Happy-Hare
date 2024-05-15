@@ -1,4 +1,3 @@
-# MMU Print Statistics and Consumption Counting
 - [Swap Timings](#---swap-timings)<br>
 - [Gate Statistics](#---gate-statistics)<br>
 - [Consumption Counters](#---consumption-counters)<br>

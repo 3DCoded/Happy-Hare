@@ -1,3 +1,10 @@
+- [Klipper Config](Hardware-Configuration#step-1-validate-your-hardware-configuration)
+- [Endstops](Hardware-Configuration#step-2-check-endstops--optional-sensors)
+- [Motor Movement](Hardware-Configuration#step-3-check-motor-movement-and-direction)
+- [Encoder](Hardware-Configuration#step-4-check-encoder-if-fitted)
+- [Other Sensors](Hardware-Configuration#step-5-check-other-sensors-if-fitted)
+- [Servo](Hardware-Configuration#step-6-check-servo)
+
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Hardware configuration (mmu_hardware.cfg explained)
 
 This will vary slightly depending on your particular brand of MMU but the steps are essentially the same with some being dependent on hardware configuration.
