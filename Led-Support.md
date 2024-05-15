@@ -1,7 +1,9 @@
+<sub>
 - [Wiring](#---wiring)<br>
 - [Hardware Config](#---hardware-config)<br>
 - [Controlling LED Effects](#---controlling-led-effects)<br>
 - [Summary of Default Effects](#---summary-of-default-effects)<br>
+</sub>
 
 Happy Hare now can drive LEDs (NeoPixel/WS2812) on your MMU to provide both functional feedback as well as to add a little bling to your machine.  Typically you would connect a string of neopixels (either descrete components or an LED strip, or combination of both if compatible contollers) to the neopixel output on the MCU that drives your MMU although this can be changed.
 
