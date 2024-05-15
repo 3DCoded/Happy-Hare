@@ -1,4 +1,3 @@
-# Happy Hare - LED ("bling") Support
 - [Wiring](#---wiring)<br>
 - [Hardware Config](#---hardware-config)<br>
 - [Controlling LED Effects](#---controlling-led-effects)<br>
@@ -8,7 +7,7 @@ Happy Hare now can drive LEDs (NeoPixel/WS2812) on your MMU to provide both func
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Wiring
 
-<p align=center><img src="/doc/leds/led_connection.jpg" alt='LED Connection' width='80%'></p>
+<p align=center><img src="Led-Support/led_connection.jpg" alt='LED Connection' width='80%'></p>
 
 LED strips can be formed but soldering together individual neopixels or using pre-made strips.  You can also mix the two but if the "RGBW" order is different you must specify `color_order` as a list with the correct spec for each LED.  There is a lot of flexibility in how the LEDs are connected - segments can even be joined in parallel to drive two LED's for the same index number.  The only important concept is that each segment in the strip that represents the MMU gates must be contiguous (ascending or decending), but the order of segments is unimportant (see config examples below)
 
@@ -63,7 +62,7 @@ status_index:
 frame_rate: 24
 ```
 Some examples of how to set these values can be seen in this illustration (ERCFv2 MMU example):
-<p align=center><img src="/doc/leds/led_configuration.png" alt='LED Configuration' width='100%'></p>
+<p align=center><img src="Led-Support/led_configuration.png" alt='LED Configuration' width='100%'></p>
 
 > [!NOTE]  
 > All the default LED effects are defined in the read-only `mmu_leds.cfg`.  You can create your own but be careful and note the `[mmu_led_effect]` definition - this is a wrapper around `[led_effect]` that will create the effect on the specified LED range (segment) but also duplicate the effect on each LED individually.  This is especially useful on the MMU where you want per-gate effects.
