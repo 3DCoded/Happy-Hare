@@ -4,7 +4,7 @@ This is a sequential walkthrough of the main configuration files for Happy Hare.
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) MMU Vendor, Type & Size
 
-The first section specifies the type of MMU and is used by Happy Hare to adjust (primarily CAD) options. It is documented in the main [README.md](/README.md)
+The first section specifies the type of MMU and is used by Happy Hare to adjust (primarily CAD) options. It is documented [here](TODO)
 
 > [!IMPORTANT]  
 > These three settings must be set. If "Other" is specified you will also need to specify cad dimensions [here](https://github.com/moggieuk/Happy-Hare?tab=readme-ov-file#1-important-mmu-vendor--version-specification)
@@ -75,7 +75,7 @@ servo_active_down: 0			# CAUTION: 1=Force servo to stay active when down, 0=Rele
 servo_buzz_gear_on_down: 1              # Whether to "buzz" the gear stepper on down to aid engagement
 ```
 > [!TIP]  
-> As of HHv2.4 the servo calibration can be performed without updating these values and klipper restarts.  The procedure is documented in the [calibration](/doc/calibration.md) doc, but briefly `MMU_SERVO SAVE=1 POS=[up|down|move]` can be used to persist position after setting correct angle with `MMU_SERVO ANGLE=..`
+> As of HHv2.4 the servo calibration can be performed without updating these values and klipper restarts.  The procedure is documented in the [calibration](MMU-Calibration) doc, but briefly `MMU_SERVO SAVE=1 POS=[up|down|move]` can be used to persist position after setting correct angle with `MMU_SERVO ANGLE=..`
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Logging
 
@@ -235,7 +235,7 @@ extruder_force_homing: 0
 > [!IMPORTANT]  
 > This section controls the module responsible for loading filament into and unloading from the extruder/toolhead and thus is probably one of the most important sections to get right. These settings ineract with each other so you should not guess, instead refer to the picture before and make sure you set accordingly.
 
-  <img src="extruder_dimensions.png" alt='Extruder Dimensions' width='60%'>
+  <img src="Happy-Hare-Parameters/extruder_dimensions.png" alt='Extruder Dimensions' width='60%'>
 
 Consult this illustration of a typical toolhead or table of popular configurations to determine these dimensions. `toolhead_extruder_to_nozzle` must always be set accurately. It is a fixed distance based on your extruder and hotend and should not be tuned (use `toolhead_ooze_reduction` to tune out oozing of filament after the load). If you have a toolhead sensor then you also need to specify `toolhead_sensor_to_nozzle`. In practive this is often best performed by placing a fragment of filament at the extruder gears and "extruding" 1mm at a time until the toolhead sensor triggers. If you have a pre-extruder or "entry" sensor then you must also specify the distance from when this sensor triggers to the extruder (gears) entrance. The `toolhead_homing_max` determines the maximum distance from the extruder entrance to advance filament to home to the toolhead sensor - make sure this is a little larger than actually required to compensation for previous inaccuracies that may have occured. To further increase reliability, when unloading the `toolhead_unload_safety margin` is added to every theoretical move distance. Typically 5mm-10mm is sufficient. The starting value for `toolhead_ooze_reduction` shoud be `0` but as you tune printing you may increase it to reduce total loading distance to reduce blobs on the purge tower.
 
@@ -323,7 +323,7 @@ toolhead_move_error_tolerance: 60       # ADVANCED default is probably ok
 
 TODO...
 
-Some more details on slicer setup can be found [here](/doc/toolchange_movement.md#---role-of-the-slicer)
+Some more details on slicer setup can be found [here](Toolchange-Movement#---role-of-the-slicer)
 
 ``` yml
 # Tip forming -------------------------------------------------------------------------------------------------------------
@@ -463,7 +463,7 @@ gcode_unload_sequence: 0        # VERY ADVANCED: Gcode unloading sequence, 1=ena
 
 This section contains a list of overrides for macros that Happy Hare calls internally. You can replace these with macros of your own names and is preferred to editing the shipped defaults. The reason is that the defaults may be overwritten on updates to Happy Hare. You can also use the Klipper convention of `rename_existing` but be sure to include in your own `.cfg` file.
 
-All of the load/unload sequence macros are well explained [here](/doc/macro_customization.md). It is unlikely that you would want to change the `pause_macro` which is called on MMU error, but some community cited reasons include:
+All of the load/unload sequence macros are well explained [here](Macro-Customization.md). It is unlikely that you would want to change the `pause_macro` which is called on MMU error, but some community cited reasons include:
 * You are using a sparse purge tower and you want Happy Hare errors to park above your purge tower as to not hit any models that are between your tower and normal pause location
 * You want to additionally call a macro that sends a push notification on filament swap error
 * You want to set additional static arguments to either the default pause macro or your own macro
