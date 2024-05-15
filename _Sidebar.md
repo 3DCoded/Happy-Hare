@@ -39,13 +39,13 @@
 <details open><summary><b>&nbsp;4. Calibration</b></summary>
 
 - [Calibration](MMU-Calibration)
-   - [Selector Offsets](https://github.com/moggieuk/Happy-Hare/wiki/calibration#step-1-calibrate-selector-offsets)
-   - [Servo](https://github.com/moggieuk/Happy-Hare/wiki/calibration#step-2-calibrate-your-servo)
-   - [Gear Stepper](https://github.com/moggieuk/Happy-Hare/wiki/calibration#step-3-calibrate-your-gear-stepper)
-   - [Encoder](https://github.com/moggieuk/Happy-Hare/wiki/calibration#step-4-calibrate-your-encoder)
-   - [Bowden Length](https://github.com/moggieuk/Happy-Hare/wiki/calibration#step-5-calibrate-bowden-length)
-   - [Gates](https://github.com/moggieuk/Happy-Hare/wiki/calibration#optional-step-6-calibrating-gates)
-   - [Calibration Command Reference](https://github.com/moggieuk/Happy-Hare/wiki/calibration#---calibration-command-reference)
+   - [Selector Offsets](MMU-Calibration#step-1-calibrate-selector-offsets)
+   - [Servo](MMU-Calibration#step-2-calibrate-your-servo)
+   - [Gear Stepper](MMU-Calibration#step-3-calibrate-your-gear-stepper)
+   - [Encoder]()
+   - [Bowden Length]()
+   - [Gates]()
+   - [Calibration Command Reference]()
 
 </details>
 
