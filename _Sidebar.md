@@ -125,4 +125,4 @@
 
 [**12. Troubleshooting**](Troubleshooting-and-Common-Issues)<br>
 [**13. Change Log**](Change-Log)<br>
-[**14. FAQ**]
+[**14. FAQ**](FAQ)<br>
