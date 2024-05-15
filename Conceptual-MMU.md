@@ -60,7 +60,8 @@ The type has been popularized by Bambu Labs and their AMS system. Each gate has 
 
 _Current State: Currently support is coded but multiple filament driver steppers have not been tested_
 
-<img src="Conceptual-MMU/default_kms.png" width="300" alt="Default KMS Design">
+### Examples:
+<img src="Conceptual-MMU/default_kms.png" width="400" alt="Default KMS Design">
 
 <br>
 
