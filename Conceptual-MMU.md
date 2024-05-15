@@ -1,3 +1,8 @@
+- [Type A](#---type-a)
+  - [Supported Sensors](#---supported-sensors)
+- [Type B](#---type-b)
+- [Type C](#---type-c)
+
 Basic MMU types supported by Happy Hare and the function of sensors.
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Type-A
@@ -13,7 +18,7 @@ Many of the sensors in this design are optional, each providing additional capab
 
 <br>
 
-### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Sensors explained
+### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Supported Sensors
 
 **Gate Sensor**
 This is a filament switch fitted on the exit of the MMU. It is "shared" in that it is used to provide a homing point for all filaments close to the MMU after they have been selected and are being driven by the filament drive or gear stepper.  The gate sensor can trigger filament runout logic and thus initiate the "EndlessSpool" feature which allows continous printing form an alternative set of spools which are automatically mapped to the original tool number.  The gate filament runout sensor is named `mmu_gate`
