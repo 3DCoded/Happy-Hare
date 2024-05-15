@@ -15,13 +15,10 @@ process_pairs() {
 }
 
 cat <<EOF | process_pairs
-/doc/resources/ resources/
+/doc/f03c15.png resources/f03c15.png
+/doc/c5f015.png resources/c5f015.png
+/doc/1589F0.png resources/1589F0.png
 EOF
-#doc/toolchange/ doc/toolchage_movement/
-#doc/slicer/ doc/slicer_setup/
-#doc/c5f015.png doc/resources/c5f015.png
-#doc/1589F0.png doc/resources/1589F0.png
-#EOF
 
 #find . -name "*.md" -print | while read line
 #do
