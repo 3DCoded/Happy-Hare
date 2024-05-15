@@ -2,7 +2,7 @@ Basic MMU types supported by Happy Hare and the function of sensors.
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Type-A
 
-<img src="Conceptual-MMU/typeA_mmu.png" width="700" alt="Type A MMU">
+<img src="Conceptual-MMU/typeA_mmu.png" width="800" alt="Type A MMU">
 
 This is the most common type of MMU used today. The advantage is that it allows for a large number of gates (available filaments) at a low cost because it leverages only two steppers and a servo to complete the selection process. Examples of this design include Voron ERCF and Annex Tradrack.
 
@@ -50,11 +50,11 @@ For completeness, endstops are created on the selector. Typically there are two 
 Complete set of default Happy Hare endstops and filament sensors:<br>
 <img src="resources/filament_sensors.jpg" width="300" alt="Filament Sensors"> <img src="resources/endstops.jpg" width="300" alt="Endstops">
 
-<br>
+<br>&nbsp;
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Type-B
 
-<img src="Conceptual-MMU/typeB_mmu.png" width="700" alt="Type B MMU">
+<img src="Conceptual-MMU/typeB_mmu.png" width="800" alt="Type B MMU">
 
 The type has been popularized by Bambu Labs and their AMS system. Each gate has a dedicated stepper for loading and unloading and it leverages a filament "combiner" rather than a selector in the Type-A design.  The advantage is in effeciency. The disadvantage is that it is generally limited to a small number of gates. _[Technically these units can be cascaded to provide a greater number of gates but the control logic both firmware and electronics quickly become too complex and costly]_
 
@@ -63,10 +63,10 @@ _Current State: Currently support is coded but multiple filament driver steppers
 ### Examples:
 <img src="Conceptual-MMU/default_kms.png" width="400" alt="Default KMS Design">
 
-<br>
+<br>&nbsp;
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Type-C
 
-<img src="Conceptual-MMU/typeC_mmu.png" width="700" alt="Type C MMU">
+<img src="Conceptual-MMU/typeC_mmu.png" width="800" alt="Type C MMU">
 
 The type is more theoretical at this point - I'm not aware of any designs that take this approach.  It would eliminate the gate limitations of a filament "combiner" to allow for large gate arrays and thus simplify the controlling logic. It still suffers from the need for a large number of stepper motors.
