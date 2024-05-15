@@ -5,7 +5,7 @@ If you have found this page you are probably experiencing a startup message simi
 Looks like you upgraded (v2.2 -> v2.3)?
 Happy Hare minor version has changed which requires you to re-run
 './install.sh' to update configuration files and klipper modules.
-More details: https://github.com/moggieuk/Happy-Hare/doc/upgrade.md
+More details: https://github.com/moggieuk/Happy-Hare/wiki/Upgrade-Notice
 ```
 
 Happy Hare version as seen in Mainsail & Fluidd UI's is in the form: `Major`.`Minor`.`Point`-`Patch`. The meaning of each number is as follows:
@@ -28,5 +28,5 @@ Once run klipper should startup without the upgrade warning.
 > HH v2.3 requires Klipper 0.12.0 or greater -- Klipper made a breaking change and v2.3 addresses that but is not backward compatable with older versions of klipper
 
 ### Detailed Change Log
-Can be found [here](/doc/change_log.md)
+Can be found [here](Change-Log)
 

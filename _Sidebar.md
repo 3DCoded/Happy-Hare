@@ -50,7 +50,7 @@
 
 - [Console]
 - [KlipperScreen Happy Hare Edition]
-- [Understanding Loading/Unloading](Understanding-Operation)
+- [Understanding Operation](Understanding-Operation)
 - [Recovering MMU State]
 - [Debugging]
 
