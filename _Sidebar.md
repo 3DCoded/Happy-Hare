@@ -123,6 +123,6 @@
 
 </details>
 
-[**12. Troubleshooting**](#)<br>
+[**12. Troubleshooting**](Troubleshooting-and-Common-Issues)<br>
 [**13. FAQ**](#)
 
