@@ -1,5 +1,8 @@
 - [Supported Placeholders](#---supported-placeholders)
-  - [!referenced_tools!](#auto-setting-with-rfid-reader)
+  - [!referenced_tools!](#placeholder-referenced_tools)
+  - [!colors!](#placeholder-colors)
+  - [!temperatures!](#placeholder-temperatures)
+  - [!purge_volumes!](#placeholder-purge_volumes)
 
 Happy Hare now provides a moonraker gcode preprocesser that parses uploaded gcode files prior to storage and can insert useful metadata that can then be passed into your `START_PRINT` macro to provide useful functionality.
 
