@@ -124,5 +124,6 @@
 </details>
 
 [**12. Troubleshooting**](Troubleshooting-and-Common-Issues)<br>
-[**13. FAQ**](#)
+[**13. Change Log**](Change-Log)<br>
+[**14. FAQ**](#)
 
