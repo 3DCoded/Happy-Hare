@@ -3,18 +3,28 @@ Got problems? Here are some common solutions.
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Klipper Issues
 
 ### <p align="left"><img src="resources/carrot.png" alt="" width="23" height="21" />Timer too close
+This error typically occurs when the host sends a message to the MCU, scheduling an event at a time that is in the past. Reasons High system load of the host High disk activity of the host Swapping due to low free memory Disk errors / dying SD card Unstable voltage Other hardware hogging the USB bus or other system resources Running in a Virtual Machine USB, UART or CANBUS wiring faults leading to extremely delayed messages ElectroMagnetic Interference (EMI) affecting proper signal. Remember that the host (rPi) only needs to experience a tiny period of high load so watching an average load meter doesn't tell the whole story. Also, as we drive additional functionality on our ptiners we are natually getting closer to this annoying error condition. That said it can be avoided with these tips:
 
-This is generally from having the gear stepper microsteps set too high. It should match up with the extruder, in ideal circumstances. 16 microsteps is plenty for the extruder and gear. If you still get `Timer Too Close` errors, try setting your gear stepper to 8 microsteps.
+- Avoid overly high microsteps on steppers, especially on extruder and MMU gear steppers
+- Ensure rPi doesn't run too hot because if it reaches certain thresholds (starting a 60 degrees), it will automatically throttle performance, so consider adding a fan hat to keep it frosty
+- A known communication delay has been found in some of the latest operating systems that can result in a message from a mcu being delayed beyond the limits set in Klipper. This is especially true when performing a homing move - something that Happy Hare does a lot. You have to manually patch klipper by editing `~/klipper/klippy/mcu.py` and changing:
+`TRSYNC_TIMEOUT = 0.025`
+to
+`TRSYNC_TIMEOUT = 0.05`
+(Until klipper incorporates a way to make this perminent you will need to make this change after a major klipper update)
 
-Github user Dendrowen (our beloved Blobifier dev) also provided these steps ([from discord](https://discord.com/channels/460117602945990666/909743915475816458/1222875626231566396)):
+Github user Dendrowen (our beloved Blobifier dev) offers this additonal general advice ([from discord](https://discord.com/channels/460117602945990666/909743915475816458/1222875626231566396)):
 - Decrease load (webcams, plugins, etc..)
 - Check load: https://www.klipper3d.org/Debugging.html#generating-load-graphs
 - Check wiring
-- Replace rPi
 - Increase Pi voltage to 5.1V
-- Replace SD card  
+- Replace SD card - a slow write
+- Upgrade rPi
 
-Another issue that seems to crop up is the temperature of the rpi. If it gets too hot, it will automatically throttle performance, so consider adding a fan hat to keep it frosty.
+### <p align="left"><img src="resources/carrot.png" alt="" width="23" height="21" />Klipper internal "Step Compress" error
+This can occur when syncing the gear and extruder steppers (they are always synced through part of the extruder loading process even if you are not printing with them synced).  It occurs when there is too big a mismatch in the movement of a single step on the gear and the extruder - a small movement can issue "step instructions" to one stepper but not the other.  This is easily avoided by changing the microstep setting on either the gear or extruder.  Often the extruder is set with too high a microstep setting when really no higher than 32 is necessary with common gear ratios. If the extruder is set to 32, try increasing the MM gear stepper to 16, 32, ...
+
+<br>
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Slicer Errors
 
@@ -29,6 +39,8 @@ Add in a placeholder filament so the number of tools and filaments matches the n
 <p align="center">
     <img src="Troubleshooting-and-Common-Issues/purge_volume_error2.png" alt="" width="419" height="153" />
 </p>
+
+<br>
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) BTT MMB Issues
 
