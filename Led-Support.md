@@ -145,5 +145,3 @@ The default effects, which are both functional as well as adding a little color,
 > - These are built-in functional "effects":
 >   - **filament_color** - displays the static color of the filament defined for the gate from MMU_GATE_MAP (specifically `printer.mmu.gate_color_rgb`). Requires you to setup color either directly or via Spoolman.
 >   - **gate_status** - dispays the status for the gate (printer.mmu.get_status): **red** if empty, **green** if loaded, **orange** if unknown
-
-

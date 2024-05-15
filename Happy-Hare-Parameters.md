@@ -463,7 +463,7 @@ gcode_unload_sequence: 0        # VERY ADVANCED: Gcode unloading sequence, 1=ena
 
 This section contains a list of overrides for macros that Happy Hare calls internally. You can replace these with macros of your own names and is preferred to editing the shipped defaults. The reason is that the defaults may be overwritten on updates to Happy Hare. You can also use the Klipper convention of `rename_existing` but be sure to include in your own `.cfg` file.
 
-All of the load/unload sequence macros are well explained [here](Macro-Customization.md). It is unlikely that you would want to change the `pause_macro` which is called on MMU error, but some community cited reasons include:
+All of the load/unload sequence macros are well explained [here](Macro-Customization). It is unlikely that you would want to change the `pause_macro` which is called on MMU error, but some community cited reasons include:
 * You are using a sparse purge tower and you want Happy Hare errors to park above your purge tower as to not hit any models that are between your tower and normal pause location
 * You want to additionally call a macro that sends a push notification on filament swap error
 * You want to set additional static arguments to either the default pause macro or your own macro

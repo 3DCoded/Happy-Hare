@@ -157,4 +157,3 @@ Gate #6(?) -> T6, Status: Unknown, Material: PETG, Color: ffffff, SpoolID: 7
 Gate #7( ) -> T7, Status: Empty, Material: ABS, Color: back, SpoolID: 8
 Gate #8(*) -> T8, Status: Available, Material: ABS, Color: black, SpoolID: 9
 ```
-

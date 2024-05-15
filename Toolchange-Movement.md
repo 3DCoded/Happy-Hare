@@ -1,18 +1,18 @@
 # Tool Changing
-- [Turning off slicer tip forming](#turning-off-slicer-tip-forming)<br>
-- [Turning off slicer wipetower](#turning-off-slicer-wipetower)<br>
-  - [Tip cutting options](#---tip-cutting-options)<br>
-  - [Tip forming options](#---tip-forming-options)<br>
-  - [Printing without wipetower](#printing-without-wipetower)<br>
-- [Returning to print movement](#---return-to-print-movement)<br>
-- [Z-hop moves](#---z-hop-moves)<br>
+- [Turning off slicer tip forming](#turning-off-slicer-tip-forming)
+- [Turning off slicer wipetower](#turning-off-slicer-wipetower)
+  - [Tip cutting options](#---tip-cutting-options)
+  - [Tip forming options](#---tip-forming-options)
+  - [Printing without wipetower](#printing-without-wipetower)
+- [Returning to print movement](#---return-to-print-movement)
+- [Z-hop moves](#---z-hop-moves)
   - [Sequential printing](#sequential-printing)
 
 <br>
 
 The tool change movement options in the guide assume you have configured key toolhead locations (if applicable to your setup) by editing the `mmu_macro_vars.cfg` file:
 
-<img src="/doc/toolchage_movement/toolhead_locations.png" width="900" alt="Toolhead Locations">
+<img src="Toolchange-Movement/toolhead_locations.png" width="900" alt="Toolhead Locations">
 
 <br>
 
@@ -30,23 +30,23 @@ The first place is a setting like this on the `printer settings` tab.  This disa
 > [!NOTE]  
 > Whilst it is logical to zero all these settings out, Prusaslicer (v2.5) at least has bug that will insert illegal `G1 F0` commands if all the fields are exactly 0.  Instead use a tiny value for the cooling tube length.
 
-<img src="/doc/toolchage_movement/printer_settings.png" width="500" alt="Slicer printer settings">
+<img src="Toolchange-Movement/printer_settings.png" width="500" alt="Slicer printer settings">
 
 Working in conjunction with the above and found on the `filament settings` tab is this area where you should zero out all all movement speeds and distances.  Leave only the timing inputs that you can tune once you know the average loading and unloading time for your particular MMU.
 
-<img src="/doc/toolchage_movement/filament_settings.png" width="680" alt="Slicer filament settings">
+<img src="Toolchange-Movement/filament_settings.png" width="680" alt="Slicer filament settings">
 
 The next setting must be configure on each of your extruders.  This turns off an initial retraction and subsequent extrude that will leave blobs on your wipetower.  The reason to turn this off is that Happy Hare will correctly load the filament exatly to the nozzle and additonal extrusion will cause a blob.
 
-<img src="/doc/toolchage_movement/printer_settings_extruder.png" width="500" alt="Slicer printer settings per extruder">
+<img src="Toolchange-Movement/printer_settings_extruder.png" width="500" alt="Slicer printer settings per extruder">
 
 Unless you have a sepcialized purge system (documented later) you will want the slicer to manage a wipe tower used to purge out the remains of the previous filament.  To do this, make sure this option is enabled (it usually is by default):
 
-<img src="/doc/toolchage_movement/print_settings.png" width="500" alt="Slicer print settings">
+<img src="Toolchange-Movement/print_settings.png" width="500" alt="Slicer print settings">
 
 > [!NOTE]  
 > If you use SuperSlicer, be sure to turn off Skinnydip:
-> <br><img src="/doc/toolchage_movement/skinny_dip.png" width="500" alt="Skinnydip disabling"><br>
+> <br><img src="Toolchange-Movement/skinny_dip.png" width="500" alt="Skinnydip disabling"><br>
 > It's probably also a good idea to zero out the distances below.
 > Doing this prevents Superslicer from pushing out a blob of filament before cutting the tip.
 
@@ -72,22 +72,22 @@ To set this up you need to edit three modular configuraton files: `mmu_parameter
 #### Option 1: Cutting tip and parking at the cutter while making the tool change
 - Pro: Minimizes movement
 - Con: Possibility of oozing in a undesirable part of the build plate
-<img src="/doc/toolchage_movement/cutter_cutter.png" width="900" alt="Cutting and Parking at Cutter">
+<img src="Toolchange-Movement/cutter_cutter.png" width="900" alt="Cutting and Parking at Cutter">
 
 #### Option 2: Cutting tip and parking in a designated park area (often over purge bucket) while making the tool change.
 - Pro: Allows of addition of brush cleaning move after the new filament is loaded before returning to wipe tower
-<img src="/doc/toolchage_movement/cutter_park_area.png" width="900" alt="Cutting and Parking at Purge">
+<img src="Toolchange-Movement/cutter_park_area.png" width="900" alt="Cutting and Parking at Purge">
 
 #### Option 3: Cutting tip and parking at the wipetower
 - Pro: Minimizes movement
 - Neutral: Possibility of oozing (blobs) on the wipertower. Not really a big problem unless they are large and this is where the slicer designers assume the toolhead will be positioned
-<img src="/doc/toolchage_movement/cutter_wipe_tower.png" width="900" alt="Cutting and Parking on Wipetower">
+<img src="Toolchange-Movement/cutter_wipe_tower.png" width="900" alt="Cutting and Parking on Wipetower">
 
 #### Option 4: Cutting tip and, custom purge with no wipe tower <img src="resources/cool.png" width="40">
 - Pro: You get your full buildplate to work with because wipe tower is disabled
 - Con: You will need to implement your own purging routine.  This could just be a purge into a large bin followed by nozzle cleaning or, more likely, some form of pellet forming and cleaning.
 - Neutral: This is perhaps the coolest option!
-<img src="/doc/toolchage_movement/cutter_custom_purge_hh.png" width="900" alt="Cutting and No Wipetower">
+<img src="Toolchange-Movement/cutter_custom_purge_hh.png" width="900" alt="Cutting and No Wipetower">
 
 <br>
 
@@ -95,18 +95,18 @@ To set this up you need to edit three modular configuraton files: `mmu_parameter
 
 #### Option 5: Forming tip by Happy Hare and parking in a designated park area (often over purge bucket) while making the tool change.
 - Pro: Allows of addition of brush cleaning move after the new filament is loaded before returning to wipe tower
-<img src="/doc/toolchage_movement/forming_park_area_hh.png" width="900" alt="Tip Forming by HH at Park Area">
+<img src="Toolchange-Movement/forming_park_area_hh.png" width="900" alt="Tip Forming by HH at Park Area">
 
 #### Option 6: Forming tip by Happy Hare and parking at the wipetower
 - Pro: Minimizes movement
 - Neutral: Possibility of oozing (blobs) on the wipertower. Not really a big problem unless they are large and this is where the slicer designers assume the toolhead will be positioned
-<img src="/doc/toolchage_movement/forming_wipe_tower_hh.png" width="900" alt="Tip Forming by HH at Wipetower">
+<img src="Toolchange-Movement/forming_wipe_tower_hh.png" width="900" alt="Tip Forming by HH at Wipetower">
 
 #### Option 7: Forming tip by slicer and parking at the wipetower
 - Neutral: Possibility of oozing (blobs) on the wipertower. Not really a big problem unless they are large and this is where the slicer designers assume the toolhead will be positioned
 - Con: You will also need to tune tip forming in the slicer and manage all the settings that were zeroed out above.
 - Con: Movement during a toolchange will also be different in a print verses out of a print
-<img src="/doc/toolchage_movement/forming_wipe_tower_slicer.png" width="900" alt="Tip Forming by Slicer at Wipetower">
+<img src="Toolchange-Movement/forming_wipe_tower_slicer.png" width="900" alt="Tip Forming by Slicer at Wipetower">
 
 ### Printing without wipetower
 
@@ -114,7 +114,7 @@ To set this up you need to edit three modular configuraton files: `mmu_parameter
 - Pro: You get your full buildplate to work with because wipe tower is disabled
 - Con: You will need to implement your own purging routine.  This could just be a purge into a large bin followed by nozzle cleaning or, more likely, some form of pellet forming and cleaning.
 - Neutral: This is perhaps the coolest option!
-<img src="/doc/toolchage_movement/forming_custom_purge_hh.png" width="900" alt="Tip Forming by HH No Wipetower">
+<img src="Toolchange-Movement/forming_custom_purge_hh.png" width="900" alt="Tip Forming by HH No Wipetower">
 
 <br>
 
@@ -157,10 +157,10 @@ It's worth noting and to aid debugging that there are three possible origins for
 - Finally, the movement macro defined in `mmu_sequence.cfg` can optionally define a Z-hop move. This lifting move, if configured (`variable_enable_park` and `variable_park_z_hop`) will always happen both in and out of a print. Out of a print and for convenience it will be automatically skipped if the z-axis has not been homed.
 
 This illustrations visualize and explain the toolhead movements in the vertical plane:
-<img src="/doc/toolchage_movement/toolchange_z_hop.png" width="100%" alt="Toolchange Z-hop">
+<img src="Toolchange-Movement/toolchange_z_hop.png" width="100%" alt="Toolchange Z-hop">
 
 The primary configuration options that effect z-height are described here:
-<img src="/doc/toolchage_movement/toolchange_z_hop_config.png" width="100%" alt="Toolchange Z-hop Config">
+<img src="Toolchange-Movement/toolchange_z_hop_config.png" width="100%" alt="Toolchange Z-hop Config">
 
 Personally I find it useful to set z-hop to 0.8mm in Happy Hare, disable in the slicer and 0mm in the parking (`mmu_macro_vars.cfg`) macro since out of a print I'm not worried about hitting objects or possible blobs.
 
@@ -179,6 +179,5 @@ That's it.  This is harmless with normal printing but when printing sequentially
 <br>
 
 ### More slicer setup help:
-[Slicer Setup](/doc/slicer_setup.md)<br>
-[Tip Forming and Purging](/doc/tip_forming_and_purging.md)<br>
-
+[Slicer Setup](Slicer-Setup)
+[Tip Forming and Purging](Tip-Forming-and-Purging)

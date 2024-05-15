@@ -111,7 +111,7 @@ This release centralizes macro configuration and extends will a lot more pre-pac
 - Macro config moved into a unified `mmu_macro_vars.cfg`.
 - Default macros have become read-only with a formal way to add custom extensions
 - New recommended "print_start" and end integration
-  - See https://github.com/moggieuk/Happy-Hare/blob/main/doc/slicer_setup.md
+  - See https://github.com/moggieuk/Happy-Hare/wiki/Slicer-Setup
 - New `MMU_SLICER_TOOLS_MAP` command that is used by the "print_start" and for easy integration of non-wipetower purge options like the excellent "Blobifier"
 E.g.
 ```

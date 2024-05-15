@@ -1,6 +1,6 @@
-- [Swap Timings](#---swap-timings)<br>
-- [Gate Statistics](#---gate-statistics)<br>
-- [Consumption Counters](#---consumption-counters)<br>
+- [Swap Timings](#---swap-timings)
+- [Gate Statistics](#---gate-statistics)
+- [Consumption Counters](#---consumption-counters)
 
 Happy Hare records tool change statistics including things like the number of swaps, the number of errors/pauses as well as detailed timing for each step of the process. These statistics are independently recorded for the current print as well as all time totals (since last reset). In addition there is a simple "consumption counting" framework that can be used to remind you to change consumables like filament cutting blade or servo arm. It can even pause the print if critical counts are hit.
 
@@ -25,7 +25,7 @@ Statics can be viewed at anytime with the `MMU_STATS` command:
 Number of swaps since last incident: 105 (Record: 1111)
 ```
 
-This example is taken during a print and you can see the timing of each phase of the tool change process. These phases match the "sequence macros" described [here](/doc/macro_customization.md) and can be useful for debugging and optimization. The total time the MMU is in a paused (error) state is also tracked together will a "fun" metric of how many tool changes since the last incident including your record!
+This example is taken during a print and you can see the timing of each phase of the tool change process. These phases match the "sequence macros" described [here](Macro-Customization) and can be useful for debugging and optimization. The total time the MMU is in a paused (error) state is also tracked together will a "fun" metric of how many tool changes since the last incident including your record!
 
 You can customize which rows and columns are displayed via configuration in `mmu_parameters.cfg`.  This allows you to shrink the size of the table and can be useful to ensure it fits on say a KlipperScreen popup:
 
@@ -64,7 +64,7 @@ Happy Hare also records information about the quality of operation of each gate.
 > MMU_STATS DETAIL=1
 
 Because that is a lot of information, it is heuristically summarised as an assement with fun ways to visualize:
-<img src="/doc/stats/gate_statistics.png" width="70%"><br>
+<img src="Statistics-and-Consumption-Counters/gate_statistics.png" width="70%"><br>
 Visualization is controlled by this setting in `mmu_parameters.cfg`:
 ```yml
 # How you'd want to see the state of the gates and how they're performing
@@ -123,4 +123,3 @@ Counters are persisted until explicitly deleted. To delete:
 
 > [!NOTE]  
 > Happy Hare will likely be adding preset counters (depending MMU type and options) in the future
-

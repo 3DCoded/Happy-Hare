@@ -116,4 +116,3 @@ This placeholder is substituted with a comma separated list of filament temperat
 
 ### Placeholder: `!purge_volumes!`
 This placeholder is substituted with a comma separated list of NxN purge volumes (see [Purging](Tip-Forming-and-Purging)) used when changing from tool X to tool Y
-

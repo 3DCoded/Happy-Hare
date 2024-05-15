@@ -29,4 +29,3 @@ Once run klipper should startup without the upgrade warning.
 
 ### Detailed Change Log
 Can be found [here](Change-Log)
-
