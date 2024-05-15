@@ -5,7 +5,8 @@
   - [How To Get Help]
   - [Organization]
   - [Common-Terms]
-- [Conceptual MMU](Conceptual-MMU)
+- [Conceptual MMUs](Conceptual-MMU)
+  - [Supported Sensors](Conceptual-MMU#---supported-sensors)
 
 </details>
 
