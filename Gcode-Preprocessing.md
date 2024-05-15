@@ -1,4 +1,3 @@
-# G-Code Preprocessing
 Happy Hare now provides a moonraker gcode preprocesser that parses uploaded gcode files prior to storage and can insert useful metadata that can then be passed into your `START_PRINT` macro to provide useful functionality.
 
 This support is added to Moonraker configuration during installation but can be added manually by inserting the following lines into your `moonraker.conf` file and restarting Moonraker. Setting `enable_file_preprocessor: False` will disable this functionality.
@@ -101,14 +100,14 @@ To see the colors displayed you need to enable LED support and use the `filament
 MMU_LED EXIT_EFFECT=filament_color STATUS_EFFECT=filament_color
 ```
 
-Note that this is used as an example only because the default [recommended](/doc/slicer_setup.md) `MMU_START_SETUP` macro will store the slicer colors in the "slicer tool map" and the slicer defined colors can simply be displayed by setting the led effect to `slicer_color` :-)  But using the above as a guide you can do other creative things with slicer defined colors.
+Note that this is used as an example only because the default [recommended](Slicer-Setup) `MMU_START_SETUP` macro will store the slicer colors in the "slicer tool map" and the slicer defined colors can simply be displayed by setting the led effect to `slicer_color` :-)  But using the above as a guide you can do other creative things with slicer defined colors.
 
 > [!NOTE]  
-> Filament colors are available in RGB float from to directly drive other leds by accessing the printer variables: `printer.mmu.gate_color_rbg` (filament colors in the gate map) and `printer.mmu.slicer_color_rgb` (filament colors defined by slicer).  These contains a list of truples contains the 0-1.0 value for each of the R,G,B pixels.  See led doc for more details.
+> Filament colors are available in RGB float from to directly drive other leds by accessing the printer variables: `printer.mmu.gate_color_rbg` (filament colors in the gate map) and `printer.mmu.slicer_color_rgb` (filament colors defined by slicer).  These contains a list of truples contains the 0-1.0 value for each of the R,G,B pixels.  See [led doc](Led-Support) for more details.
 
 ### Placeholder: !temperatures!
 This placeholder is substituted with a comma separated list of filament temperatures as defined in the slicer.
 
 ### Placeholder: !purge_volumes!
-This placeholder is substituted with a comma separated list of NxN purge volumes used when changing from tool X to tool Y
+This placeholder is substituted with a comma separated list of NxN purge volumes (see [Purging](Tip-Forming-and-Purging)) used when changing from tool X to tool Y
 

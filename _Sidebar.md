@@ -74,9 +74,9 @@
 
 <details open><summary><b>&nbsp;7. Optional Feature Setup</b></summary>
 
-- [Gcode Preprocessing](#)
-- [LED Support](#)
-- [Spoolan Support](#)
+- [Gcode Preprocessing](Gcode-Preprocessing)
+- [LED Support](Led-Support)
+- [Spoolman Support](Spoolman-Support)
 
 </details>
 

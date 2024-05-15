@@ -1,7 +1,6 @@
-# Spoolman Support
-- [Configuration](#---configuration)<br>
-- [Gate Map and Spool ID](#---gate-map-and-spool-id)<br>
-  - [Auto-setting with RFID reader](#auto-setting-with-rfid-reader)<br>
+- [Configuration](#---configuration)
+- [Gate Map and Spool ID](#---gate-map-and-spool-id)
+  - [Auto-setting with RFID reader](#auto-setting-with-rfid-reader)
 
 Spoolman has become a popular way to manage a large collection of print spools. It is a database that you host somewhere (commonly on same rpi as your printer) that can be accessed through a web UI and web based remote procedure calls. Other than providing spool management it does two additional things:
 - Tracks filament usage
@@ -56,23 +55,23 @@ MMU_GATE_MAP GATE=0 SPOOLID=5
 ```
 A `SpoolID` of `-1` can be used to unset the spool ID and other attributes can be set manually as in `MMU_GATE_MAP GATE=0 SPOOLID=-1 COLOR=red MATERIAL=PLA`
 
-See the [command reference](/doc/command_reference.md) for a complete list of command arguments.
+See the [command reference](Command-Reference) for a complete list of command arguments.
 
 > [!NOTE]  
 > If you see a command similar to this appear on the console during boot, don't worry. It is the startup sync of gate map with spoolman at work. It doesn't always appears because the sync can occur before the console is ready but seeing it occassionaly is confirmation that everything is connected
 > 
-> <img src="/doc/spoolman_support/spoolman_update.png" width="70%">
+> <img src="Spoolman-Support/spoolman_update.png" width="70%">
 
 <br>
 
 ### Changing SpoolID on Toolchange
 Once configured Happy Hare will, on a change of tool, let spoolman know (via moonraker) to deactivate the previous spool and activate the new one. You will see this occur in a UI like mainsail:
 
-<img src="/doc/spoolman_support/spoolman_mainsail.png" width="50%">
+<img src="Spoolman-Support/spoolman_mainsail.png" width="50%">
 
 If you use my enhanced [KlipperScreen-Happy Hare Edition](https://github.com/moggieuk/KlipperScreen-Happy-Hare-Edition) there are also screens to visualize the gate map with spoolman setup as well as to edit the spoolID:
 
-<img src="/doc/spoolman_support/spoolman_ks.png" width="50%">
+<img src="Spoolman-Support/spoolman_ks.png" width="50%">
 
 <br>
 
@@ -98,4 +97,3 @@ pending_spool_id_timeout: 20            # Seconds after which this pending spool
 
 > [!NOTE]  
 > In the future Happy Hare may include direct RFID reader support but at present you need to program the calling of `MMU_GATE_MAP NEXT_SPOOLID=..`
-

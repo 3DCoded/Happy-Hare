@@ -1,10 +1,9 @@
-# Tip Forming and Purging
-- [Tuning Filament Tips](#---tuning-filament-tips)<br>
-  - [Tuning Happy Hare Cut Tip Macro](#tuning-happy-hare-_mmu_cut_tip-macro)<br>
-- [Purge Volumes](#---purge-volumes)<br>
-  - [Tuning `toolhead_ooze_reduction`](#tuning-toolhead_ooze_reduction)<br>
-- [No Wipe Tower Option](#---no-wipe-tower-option)<br>
-- [More Slicer Setup Help](#more-slicer-setup-help)<br>
+- [Tuning Filament Tips](#---tuning-filament-tips)
+  - [Tuning Happy Hare Cut Tip Macro](#tuning-happy-hare-_mmu_cut_tip-macro)
+- [Purge Volumes](#---purge-volumes)
+  - [Tuning `toolhead_ooze_reduction`](#tuning-toolhead_ooze_reduction)
+- [No Wipe Tower Option](#---no-wipe-tower-option)
+- [Related Docs](#related-docs)
 
 There are two parts to an MMU toolchange that are critical to get set up correctly: tip forming and purging. Tip forming is optional if you go the extra step and configure a filament cutting option, but even if you do, it is advisible to have the ability to create decent tips for times when you are not using the cutter or want to fallback to the "traditional" method. Purging is the process of removing reminants of the old filament (and color) so that your print has clean color changes with sharp edges. Let's look at setting up those two cababilities.
 
@@ -12,20 +11,20 @@ There are two parts to an MMU toolchange that are critical to get set up correct
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Tuning Filament Tips
 
-<img align="right" src="/doc/tip_forming_and_purging/good_tips.png" width="150" alt="Good Tips">
+<img align="right" src="Tip-Forming-and-Purging/good_tips.png" width="150" alt="Good Tips">
 The shape of filament tips is of crucial importance for a reliable system. The filament tips need to look like tiny spears, free of any blobs or long hairs. Here are some proper tips that won’t cause any issue:
   
 ### Prusa Defaults
 A very solid base for filament profile multimaterial section is to use the default filament Prusa MMU profiles. To do that, add an Prusa printer + MMU from the system presets printers, and then select the MMU printer (NOT the Single one). From there, you’ll be able to access the list of filament system presets built for MultiMaterial (they have the @MMU tag in their name, only use those).
 
 <p align="left">
-  <img src="/doc/tip_forming_and_purging/prusa_starting_point.png" width="60%" alt="Good Starting Point">
+  <img src="Tip-Forming-and-Purging/prusa_starting_point.png" width="60%" alt="Good Starting Point">
 </p>
 
 Use the filament type of your choice (ABS, PETG, PLA etc.) and use their Multimaterial section settings (Filament Settings) as the basi for your own filaments profiles.
 
 <p align="center">
-  <img src="/doc/tip_forming_and_purging/prusa_tip_params.png" width="40%" alt="Example Tip Params">
+  <img src="Tip-Forming-and-Purging/prusa_tip_params.png" width="40%" alt="Example Tip Params">
 </p>
 
 Also, even if not using the slicer tip forming and ONLY using Happy Hare tip forming, you might still want to consult the Prusa Slicer / Super Slicer  reference as a starting point for `_MMU_FORM_TIP` macro variables since they mimick the behavior of these slicers.
@@ -76,14 +75,14 @@ Although we are initially talking about how the slicer can create the purge volu
 This option allows you to define the total purge volume for each tool by defining the unloaded and loaded values. For instance, swapping from Tool 0 to Tool 1, the purge volume used will be the sum of the Tool 0 unloaded and the Tool 1 loaded.
 
 <p align="center">
-  <img src="/doc/tip_forming_and_purging/manual_purging_volumes.png" width="50%" alt="Manual Purging Volumes">
+  <img src="Tip-Forming-and-Purging/manual_purging_volumes.png" width="50%" alt="Manual Purging Volumes">
 </p>
 
 ### Matrix Purging Volume Definition
 Clicking on the Show advanced settings in the manual purging volume panel will pop the purging matrix. With this, you can define every single transition precisely, from whatever tool to whatever tool you have. As you can see, when you have a lot of tools you’ll have to track a lot of transitions, which can be painful.
 
 <p align="center">
-  <img src="/doc/tip_forming_and_purging/matrix_purging_volumes.png" width="50%" alt="Matrix Purging Volumes">
+  <img src="Tip-Forming-and-Purging/matrix_purging_volumes.png" width="50%" alt="Matrix Purging Volumes">
 </p>
 
 ### Advanced Purge Volume Algorithm
@@ -92,7 +91,7 @@ If you enable the Advanced wiping volume option in the Printer settings, Single 
 ### Purging on the Wipe Tower
 Normally the purging logic is performed by the slicer and written into the g-code. The purged filament will be deposited onto the wipe tower (that is why `enable wipe tower` must be checked to access the purge matrix and then disabled if you want to use the volumes but not the wipe tower. 
 
-Even with purge volumes setup correctly the configuration of your toolhead parameters also come into play.  Let's assume that you have correctly defined your toolhead geometry [here](/doc/configuration.md#---toolhead-loading--unloading) noting that these settings are based on the CAD of your toolhead and are not designed to be tunables. Ok, with that said it is still necessary to fine tune the purging process and altough the toolhead dimensions will effect this, the correct parameter to tune is `toolhead_ooze_reduction` defined in `mmu_parameters.cfg`. This controls a "delta" in the theoretical loading distance. Typically this would be 0 or a small positive value to reduce the load distance so that the extruder doesn't prematurely extrude plastic. 
+Even with purge volumes setup correctly the configuration of your toolhead parameters also come into play.  Let's assume that you have correctly defined your toolhead geometry [here](Configuration#---toolhead-loading--unloading) noting that these settings are based on the CAD of your toolhead and are not designed to be tunables. Ok, with that said it is still necessary to fine tune the purging process and altough the toolhead dimensions will effect this, the correct parameter to tune is `toolhead_ooze_reduction` defined in `mmu_parameters.cfg`. This controls a "delta" in the theoretical loading distance. Typically this would be 0 or a small positive value to reduce the load distance so that the extruder doesn't prematurely extrude plastic. 
 
 <br>
 
@@ -106,15 +105,15 @@ MMU_TEST_CONFIG toolhead_ooze_reduction=N
 ```
 Just don't forget to persist the final result in `mmu_parameters.cfg` when the print is done.
 
-<img src="/doc/tip_forming_and_purging/toolhead_ooze_reduction.png" width="60%" alt="TODO"><br>
+<img src="Tip-Forming-and-Purging/toolhead_ooze_reduction.png" width="60%" alt="ooze reduction"><br>
 
 <br>
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) No Wipe Tower Option
 
-The wipe tower is a great solution for handling the purge necessary when changing tools (Prusa Slicer also has an experiemental "purge to infil" to minimize waste) but it has the downside of taking up a large portion of the build plate. To avoid this an add-on purging system can be used during the toolchange allowing the wipe tower to be disabled! A great example of such a system is [Blobifier](https://github.com/Dendrowen/Blobifier/blob/main/Config/blobifier.cfg) by Sjon Huisman. In fact the additional macro to drive Blobifier is supplied in the Happy Hare "config/mmu/addons/" directory. It can be added to Happy Hare with a single line addition in `mmu_macros_vars.cfg`.
+The wipe tower is a great solution for handling the purge necessary when changing tools (Prusa Slicer also has an experiemental "purge to infil" to minimize waste) but it has the downside of taking up a large portion of the build plate. To avoid this an add-on purging system can be used during the toolchange allowing the wipe tower to be disabled! A great example of such a system is [Blobifier](https://github.com/moggieuk/Happy-Hare/tree/main/config/addons#---blobifier) by Sjon Huisman. In fact the additional macro to drive Blobifier is supplied in the Happy Hare "config/mmu/addons/" directory. It can be added to Happy Hare with a single line addition in `mmu_macros_vars.cfg`.
 
-Setting up a purge system is beyond the scope of this page but such a system will require purging volumes discussed above. These purge volumes can be automatically [pre-processed](/doc/gcode_preprocessing.md) from the g-code and stored by Happy Hare for the duration of the print. This information is made available to your macros through printer variables, e.g. `printer.mmu.slicer_tool_map`.  The other way to setup purge volumes is via the `MMU_SLICER_TOOL_MAP` command. All three of these commands would estabish the simple 9-tool matrix shown in the illustration above from Prusa Slicer. Read more about this command [here](/doc/slicer_setup.md) and [here](/doc/command_reference.md)
+Setting up a purge system is beyond the scope of this page but such a system will require purging volumes discussed above. These purge volumes can be automatically [pre-processed](Gcode-Preprocessing) from the g-code and stored by Happy Hare for the duration of the print. This information is made available to your macros through printer variables, e.g. `printer.mmu.slicer_tool_map`.  The other way to setup purge volumes is via the `MMU_SLICER_TOOL_MAP` command. All three of these commands would estabish the simple 9-tool matrix shown in the illustration above from Prusa Slicer. Read more about this command [here](Slicer-Setup) and [here](Command-Reference)
 ```yml
 MMU_SLICER_TOOL_MAP PURGE_VOLUMES=70
 MMU_SLICER_TOOL_MAP PURGE_VOLUMES=70,70,70,70,70,70,70,70,70 "list of 9 elements"
@@ -140,7 +139,7 @@ T8   140  140  140  140  140  140  140  140   -
 
 <br>
 
-### More slicer setup help:
-[Slicer Setup](/doc/slicer_setup.md)<br>
-[Toolchange Movement](/doc/toolchange_movement.md)<br>
+### Related docs
+- [Slicer Setup](Slicer-Setup)
+- [Toolchange Movement](Toolchange-Movement)
 
