@@ -11,7 +11,9 @@ This is the most common type of MMU used today. The advantage is that it allows 
 
 Many of the sensors in this design are optional, each providing additional capabilities and benefits, but generally any design needs a way to establish a "homing point" near to the gate (for parking filament) and another near or in the extruder (for verification and acurate loading to the nozzle).
 
-### Sensors explained:
+<br>
+
+### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Sensors explained
 
 **Gate Sensor**
 This is a filament switch fitted on the exit of the MMU. It is "shared" in that it is used to provide a homing point for all filaments close to the MMU after they have been selected and are being driven by the filament drive or gear stepper.  The gate sensor can trigger filament runout logic and thus initiate the "EndlessSpool" feature which allows continous printing form an alternative set of spools which are automatically mapped to the original tool number.  The gate filament runout sensor is named `mmu_gate`
@@ -48,7 +50,7 @@ For completeness, endstops are created on the selector. Typically there are two 
 <br>
 
 Complete set of default Happy Hare endstops and filament sensors:<br>
-<img src="resources/filament_sensors.jpg" width="300" alt="Filament Sensors"> <img src="resources/endstops.jpg" width="300" alt="Endstops">
+<img src="resources/filament_sensors.jpg" width="350" alt="Filament Sensors"> <img src="resources/endstops.jpg" width="350" alt="Endstops">
 
 <br>&nbsp;
 
