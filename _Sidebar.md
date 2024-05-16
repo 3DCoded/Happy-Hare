@@ -108,8 +108,8 @@
 - [Slicer Tool Map]
 - [Filament Bypass]
 - [Runout/Clog Detection](Clog-Runout-EndlessSpool)
-  - [Endless Spool](Clog-Runout-EndlessSpool#--endlessspool)
-  - [Flowrate Monitoring](Clog-Runout-EndlessSpool--flowrate-monitoring)
+  - [Endless Spool](Clog-Runout-EndlessSpool#---endlessspool)
+  - [Flowrate Monitoring](Clog-Runout-EndlessSpool#---flowrate-monitoring)
 - [Consuption Counters](Statistics-and-Consumption-Counters#---consumption-counters)
 - [Synchronized Gear/Extruder]
   - [Sync Feedback Sensors]
