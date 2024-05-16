@@ -36,13 +36,13 @@
 <details open><summary><b>&nbsp;4. Calibration</b></summary>
 
 - [MMU Calibration](MMU-Calibration)
-   - [Selector Offsets](MMU-Calibration#---step-1-calibrate-selector-offsets)
-   - [Servo](MMU-Calibration#---step-2-calibrate-your-servo)
-   - [Gear Stepper](MMU-Calibration#---step-3-calibrate-your-gear-stepper)
-   - [Encoder](MMU-Calibration#---step-4-calibrate-your-encoder-if-fitted)
-   - [Bowden Length](MMU-Calibration#---step-5-calibrate-bowden-length)
-   - [Gates](MMU-Calibration#---step-6-calibrating-individual-gates)
-   - [Calibration Command Reference](MMU-Calibration#---calibration-command-reference)
+  - [Selector Offsets](MMU-Calibration#---step-1-calibrate-selector-offsets)
+  - [Servo](MMU-Calibration#---step-2-calibrate-your-servo)
+  - [Gear Stepper](MMU-Calibration#---step-3-calibrate-your-gear-stepper)
+  - [Encoder](MMU-Calibration#---step-4-calibrate-your-encoder-if-fitted)
+  - [Bowden Length](MMU-Calibration#---step-5-calibrate-bowden-length)
+  - [Gates](MMU-Calibration#---step-6-calibrating-individual-gates)
+  - [Calibration Command Reference](MMU-Calibration#---calibration-command-reference)
 
 </details>
 
@@ -107,7 +107,7 @@
   - [Gate Map](Tool-and-Gate-Maps#---gate-map)
   - [Tool to Gate Map](Tool-and-Gate-Maps#---tool-to-gate-ttg-mapping)
   - [Slicer Tool Map](Tool-and-Gate-Maps#---slicer-tool-map)
-- [Filament Bypass]
+- [Filament Bypass](Filament-Bypass)
 - [Runout/Clog Detection](Clog-Runout-EndlessSpool)
   - [Endless Spool](Clog-Runout-EndlessSpool#---endlessspool)
   - [Flowrate Monitoring](Clog-Runout-EndlessSpool#---flowrate-monitoring)
