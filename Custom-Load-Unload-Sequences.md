@@ -1,7 +1,7 @@
 Happy Hare provides built in functionality for filament loading and unloading customized through `mmu_parameters.cfg`. In advanced circumstances and to support esoteric MMU designs it is possible to override the default behavior with user-supplied macros. By default these macros are not called, however, if `gcode_load_sequence: 1` or `gcode_unload_sequence: 1` are enabled they will be.  The two default macros in `mmu_sequence.cfg` (copied here) will/should provide exactly the same logic as the internal logic using a set of provided "modular" loading/unloading functions. They are a good starting point to copy for your own experiments.
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) _MMU_LOAD_SEQUENCE & _MMU_UNLOAD_SEQUENCE
-** Defined in `mmu_sequence.cfg`
+**Defined in `mmu_sequence.cfg`**
 
 > [!WARNING]  
 > This is EXPERIMENTAL functionality and as such is subject to change (with only a mild apology :-)
