@@ -103,9 +103,10 @@
 - [State Persistence]
 - [Statistics and Counters](Statistics-and-Consumption-Counters)
   - [Monitoring Consumables](Statistics-and-Consumption-Counters#---consumption-counters)
-- [Tool to Gate Map]
-- [Gate Map]
-- [Slicer Tool Map]
+- [Tool and Gate Maps](Tool-and-Gate-Maps)
+  - [Gate Map](Tool-and-Gate-Maps#---gate-map)
+  - [Tool to Gate Map](Tool-and-Gate-Maps#---tool-to-gate-ttg-mapping)
+  - [Slicer Tool Map](Tool-and-Gate-Maps#---slicer-tool-map)
 - [Filament Bypass]
 - [Runout/Clog Detection](Clog-Runout-EndlessSpool)
   - [Endless Spool](Clog-Runout-EndlessSpool#---endlessspool)
