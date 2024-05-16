@@ -161,7 +161,7 @@ Leveraging the basic callbacks is usually sufficent for customization, however i
 gcode_load_sequence: 1
 gcode_unload_sequence: 1
 ```
-This is quite advanced and you will need to understand the Happy Hare state machine before embarking on changes. Read [Custom Load/Unload Macros](Custom-Load-Unload-Macros) for more details.
+This is quite advanced and you will need to understand the Happy Hare state machine before embarking on changes. Read [Custom Load/Unload Sequences](Custom-Load-Unload-Sequences) for more details.
 
 <p>
 

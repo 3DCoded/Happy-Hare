@@ -94,7 +94,7 @@
   - [mmu_macro_vars.cfg]
 - [Macro-Customization](Macro-Customization)
   - [Print Job State Machine](Print-Job-State-Machine)
-  - [Custom Load/Unload Macros](Custom-Load-Unload-Sequences)
+  - [Custom Load/Unload Sequences](Custom-Load-Unload-Sequences)
 
 </details>
 
