@@ -7,11 +7,13 @@ All of the default handlers and examples are defined in either `mmu_software.cfg
 >
 > You can also use the klipper mechanism of renaming macros, replacing with your own of the original name and still calling the reference ones here from your custom macro to maintain functionality.
 
-<br>
-
 Here are all the callout macros together with details of where to find them:
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) _MMU_ACTION_CHANGED (mmu_software.cfg)
+<br>
+
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) _MMU_ACTION_CHANGED
+**Defined in `mmu_software.cfg`**
+
 Most of the time Happy Hare will be in the `Idle` state but it starts to perform a new action this macro is called.  The action string is passed as a `ACTION` parameter to the macro but can also be read with the printer variable `printer.mmu.action`. The previous action is passed in as `OLD_ACTION`
 
 Possible action strings are:
@@ -55,7 +57,9 @@ gcode:
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) _MMU_PRINT_STATE_CHANGED (mmu_software.cfg)
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) _MMU_PRINT_STATE_CHANGED
+**Defined in `mmu_software.cfg`**
+
 Happy Hare implements a state machine tracking the prgoress of a print. It is difference from the klipper `print_stats` because it is specific to MMU state during a print. Full details can be found [here](/https://github.com/moggieuk/Happy-Hare/tree/development?tab=readme-ov-file#13-job-state-transistions-and-print-startend-handlingdoc/TODO).  Every time a state changes this macro will be called. Then new state will be passed with the `STATE` parameter and the previous state as `OLD_STATE`. The state can also be read with the printer variable `printer.mmu.print_state`
 
 Possible state strings are:
@@ -99,7 +103,9 @@ gcode:
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) _MMU_GATE_MAP_CHANGED (mmu_software.cfg)
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) _MMU_GATE_MAP_CHANGED
+**Defined in `mmu_software.cfg`**
+
 Happy Hare maintains a map of all the filaments in the MMU including material type, color, etc.  When this map changes this macro is called. The `GATE` parameter will either represent a specific gate that has been updated or `-1` meaning that mutliple gates are updated. The actual gate map infomation can be read through printer variables `printer.mmu.gate_color`, `printer.mmu.gate_material`, etc..
 
 Here is the start of the reference macro packaged in `mmu_software.cfg` used to drive LED effects:
@@ -122,7 +128,9 @@ gcode:
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Unloading / Loading "Sequence" Macros (mmu_sequence.cfg)
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Unloading / Loading "Sequence" Macros
+**Defined in `mmu_sequence.cfg`**
+
 This set of macros are called during filament loading or unloading. They can be used for the insertion of logic specific to your printer setup. The ordering of these macros is as follows (if any are not defined they are skipped):
 
 ```yml
@@ -197,7 +205,9 @@ Logic here can perform extra purging operations, pause for ooze and then wipe no
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) _MMU_FORM_TIP (form_tip.cfg)
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) _MMU_FORM_TIP
+**Defined in `form_tip.cfg`**
+
 This is probably the most important aspect of getting a reliable MMU after basic calibration is complete. There is plenty written about tip forming and lots of advice in the forums.  What is important to understand here is that this macro mimicks the tip forming logic from SuperSlicer (almost identical to PrusaSlicer). Read SuperSlicer documentation for hints. That said, here are a few things you should know:
 
 * This macro will always be used when not printing, but you can elect to use it instead of your slicers logic by:</li>
@@ -243,7 +253,9 @@ variable_parking_distance: 35          # Final filament parking position after f
 variable_final_eject: 0                # default 0, enable during standalone tuning process to eject the filament
 ```
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) _MMU_CUT_TIP (cut_tip.cfg)
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) _MMU_CUT_TIP
+**Defined in `cut_tip.cfg`**
+
 To elminate the need to spend time tuning the tip forming procedure (you never wanted to understand fluid dynamics, right?!) you can opt to cut filament at the toolhead. The filametrix cutter bundled with ERCFv2 is an example of this. Note that Happy Hare can only have one tip creation macro defined. You can switch from the default tip forming to this tip cutting macro by setting `form_tip_macro: _MMU_CUT_TIP` in `mmu_parameters.cfg` to point to this macro instead.
 
 Here are the default values for tip cutting with explanation:
