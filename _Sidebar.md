@@ -107,8 +107,9 @@
 - [Gate Map]
 - [Slicer Tool Map]
 - [Filament Bypass]
-- [Clog Detection]
-- [Endless Spool]
+- [Runout/Clog Detection](Clog-Runout-EndlessSpool)
+  - [Endless Spool](Clog-Runout-EndlessSpool#--endlessspool)
+  - [Flowrate Monitoring](Clog-Runout-EndlessSpool--flowrate-monitoring)
 - [Consuption Counters](Statistics-and-Consumption-Counters#---consumption-counters)
 - [Synchronized Gear/Extruder]
   - [Sync Feedback Sensors]
