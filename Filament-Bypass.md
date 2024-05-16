@@ -20,7 +20,7 @@ The position of the bypass will be measures and stored in `mmu_vars.cfg` as `mmu
 
 Once configured you can select the bypass position one of these commands:
 
-> MMU_SELECT BYPASS=1
+> MMU_SELECT BYPASS=1<br>
 > MMU_SELECT_BYPASS
 
 Once selected you would insert the filament through the bypass all the way up to the extruder entrance. Then you can use Happy Hare to load to the nozzle:
