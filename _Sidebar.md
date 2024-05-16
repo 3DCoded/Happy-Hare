@@ -112,8 +112,8 @@
   - [Endless Spool](Clog-Runout-EndlessSpool#---endlessspool)
   - [Flowrate Monitoring](Clog-Runout-EndlessSpool#---flowrate-monitoring)
 - [Consuption Counters](Statistics-and-Consumption-Counters#---consumption-counters)
-- [Synchronized Gear/Extruder]
-  - [Sync Feedback Sensors]
+- [Synchronized Gear/Extruder](Synchronized-Gear-Extruder)
+  - [Sync Feedback Sensors](Synchronized-Gear-Extruder#---sync-feedback-sensor-options
 
 <details open><summary><b>11. Quick References</b></summary>
 
