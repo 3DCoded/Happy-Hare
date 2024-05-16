@@ -119,10 +119,6 @@
 
 - [Configuration Reference]
 - [Command Reference](Command-Reference)
-  - [Operation](Command-Reference#---basic-mmu-functionality)
-  - [Calibration](Command-Reference#---calibration)
-  - [Testing](Command-Reference#---testing)
-  - [Macros](Command-Reference#---macros)
 - [Klipper Printer Variables](Printer-Variables)
 
 </details>
