@@ -48,7 +48,7 @@ Multiple gates can be specified for bulk updates. A very useful command is this,
 
 One potentially interesting built-in functionality is the exposing of filament color and RGB values suitable for directly driving LEDs.  The `gate_color_rgb` printer value will convert any color format (string name or hex spec) into truples like this: `(0.5, 0.0, 0.0)`.  You can use this to drive LED's with the Klipper led control in your macros similar to this because "bling" is important!
 
-Here is a snippet of a macro for reference:
+Here is an example snippet of a macro controlling LED's for reference:
 ```
     {% set gate_color_rgb = printer['mmu']['gate_color_rgb'] %}
     {% set rgb = gate_color_rgb[GATE] %}

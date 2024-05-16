@@ -100,7 +100,7 @@
 
 <details open><summary><b>10. Advanced Concepts</b></summary>
 
-- [State Persistence]
+- [State Persistence](State-Persistence)
 - [Statistics and Counters](Statistics-and-Consumption-Counters)
   - [Monitoring Consumables](Statistics-and-Consumption-Counters#---consumption-counters)
 - [Tool and Gate Maps](Tool-and-Gate-Maps)
