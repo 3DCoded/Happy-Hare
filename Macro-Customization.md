@@ -1,4 +1,5 @@
 # Happy Hare Macro Customization (including Filament Loading and Unloading)
+
 Happy Hare provides many "callback macros" that, if they exist, will be called at specific times.  They are designed for you to be able to extend the base functionality and to implement additional operations.  For example, if you want to control your printers LED's based on the action Happy Hare is performing you would modify `_MMU_ACTION_CHANGED`.
 
 All of the default handlers and examples are defined in either `mmu_software.cfg`, `mmu_sequence.cfg`, `mmu_form_tip.cfg` or `mmu_cut_tip.cfg` and serve as a starting point for modification.

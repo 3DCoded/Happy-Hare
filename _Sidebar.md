@@ -92,7 +92,7 @@
   - [mmu_hardware.cfg]
   - [mmu_parameters.cfg]
   - [mmu_macro_vars.cfg]
-- [Macro-Customization]
+- [Macro-Customization](Macro-Customization)
   - [Print Job State Machine](Print-Job-State-Machine)
 
 </details>
