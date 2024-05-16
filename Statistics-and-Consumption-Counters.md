@@ -77,6 +77,7 @@ console_gate_stat: emoticon
 > [!NOTE]  
 > - The purpose of this this is to draw your attention to a gate that might be misbehaving. This might be due to poor calibration, slippage caused but too much friction to moving too fast. You will have to deep dive to find the source but the comparison with other gates is useful
 > - Don't be obsessed with always wanting a perfect score. The summary will slowly trend back to good after a problem is addressed - you don't need to reset
+> - The `mmu.log` will record the verbose information even if you opt to just display the summary in the console
 
 <br>
 

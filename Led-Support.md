@@ -5,6 +5,8 @@
 
 Happy Hare now can drive LEDs (NeoPixel/WS2812) on your MMU to provide both functional feedback as well as to add a little bling to your machine.  Typically you would connect a string of neopixels (either descrete components or an LED strip, or combination of both if compatible contollers) to the neopixel output on the MCU that drives your MMU although this can be changed.
 
+The setup for LED's is contained at the bottom of the `mmu_hardware.cfg` file and requires the installation of [LED Effects for Klipper](https://github.com/julianschill/klipper-led_effect).
+
 <br>
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Wiring
