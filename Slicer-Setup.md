@@ -1,4 +1,3 @@
-# Slicer Setup
 - [Start G-Code](#---start-g-code)
 - [End G-Code](#---end-g-code)
 - [Toolchange G-Code](#---tool-change-g-code)

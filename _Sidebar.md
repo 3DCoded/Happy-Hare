@@ -112,7 +112,7 @@
 
 <details open><summary><b>11. Quick References</b></summary>
 
-- [Configuration Reference]
+- [Configuration Reference](Configuration-Reference)
   - [mmu.cfg](Configuring-mmu.cfg)
   - [mmu_hardware.cfg](Configuring-mmu_hardware.cfg)
   - [mmu_parameters.cfg](Configuring-mmu_parameters.cfg)
