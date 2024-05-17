@@ -13,15 +13,11 @@
 <details open><summary><b>&nbsp;2. Installation</b></summary>
 
 - [Happy Hare Install](Installation)
-  - [Creating-Base-Klipper-Config]
-  - [Config-Overview]
-  - [Upgrading]
-- [Optional Pause/Resume Macros]
-- [Special Vendor Notes]
-  - [ERCF v1.1]
-  - [ERCF v2.0]
-  - [Tradrack]
-  - [Other]
+  - [Creating Base Klipper Config](Installation#---creating-base-klipper-config)
+  - [Pause/Resume/Cancel_Print Macros](Installation#---pauseresumecancel_print-macros)
+  - [Upgrading](Installation#---upgrading)
+  - [Config Overview](Installation#---config-overview)
+  - [MMU Vendor Notes](Installation#---mmu-vendor-notes)
 
 </details>
 
@@ -91,11 +87,6 @@
 
 <details open><summary><b>&nbsp;9. Advanced Configuration</b></summary>
 
-- [Config Files]
-  - [mmu.cfg]
-  - [mmu_hardware.cfg]
-  - [mmu_parameters.cfg]
-  - [mmu_macro_vars.cfg]
 - [Macro-Customization](Macro-Customization)
   - [Print Job State Machine](Print-Job-State-Machine)
   - [Custom Load/Unload Sequences](Custom-Load-Unload-Sequences)
@@ -122,6 +113,10 @@
 <details open><summary><b>11. Quick References</b></summary>
 
 - [Configuration Reference]
+  - [mmu.cfg](Configuring-mmu.cfg)
+  - [mmu_hardware.cfg](Configuring-mmu_hardware.cfg)
+  - [mmu_parameters.cfg](Configuring-mmu_parameters.cfg)
+  - [mmu_macro_vars.cfg](Configuring-mmu_macro_vars.cfg)
 - [Command Reference](Command-Reference)
 - [Klipper Printer Variables](Printer-Variables)
 
@@ -130,3 +125,4 @@
 [**12. Troubleshooting**](Troubleshooting-and-Common-Issues)<br>
 [**13. Change Log**](Change-Log)<br>
 [**14. FAQ**](FAQ)<br>
+[**15. Change Log**](Change-Log)<br>

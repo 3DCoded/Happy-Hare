@@ -1,4 +1,8 @@
 - [Creating Base Klipper Config](Installation#---creating-base-klipper-config)
+- [Pause/Resume/Cancel_Print Macros](Installation#---pauseresumecancel_print-macros)
+- [Upgrading](Installation#---upgrading)
+- [Config Overview](Installation#---config-overview)
+- [MMU Vendor Notes](Installation#---mmu-vendor-notes)
 
 Happy Hare consists of a set of Klipper "extra" modules, a moonraker "component" and a set of macros and configuration files. To install you must first clone from Github and then install using the supplied install script. This install will both setup a base set of klipper configuration files as well as creating the symlinks necessary to link the cloned files into your Klipper/Moonraker installation.
 
@@ -88,3 +92,9 @@ cd ~/Happy-Hare
 
 > [!IMPORTANT]  
 > If you have Klipper installed in a non-default location (i.e. you used the `-c`,`-k` or `-r` flags) you will need to add these flags again to the above, otherwise the upgrade will look in the default location and likely not find/upgrade what you expect.
+
+<br>
+
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Config Overview
+
+TODO
