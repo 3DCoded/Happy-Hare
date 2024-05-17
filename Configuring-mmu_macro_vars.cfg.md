@@ -34,14 +34,14 @@ This section controls the behavior of the start up and finalization of a print t
 
 `variable_eject_tool` tells Happy Hare whether or not to eject the filament back to the buffer at the end of the print. If set to `False` the filament will remain loaded. This one is up to your preference. Usually `True`.
 
-`variable_reset_ttg` tells Happy Hare whether to reset the tool to gate map at the end of the print. Typically, the tool to gate map is not changed unless you switch filament colors or change the endless spool settings. Leaving this one `False` will save you from having to redo the tool to gate map on every print.  See [MMU_GATE_MAP](variable_user_pre_initialize_extension) for explaination on how to map the gates. Usually `False`.
+`variable_reset_ttg` tells Happy Hare whether to reset the tool to gate map at the end of the print. Typically, the tool to gate map is not changed unless you switch filament colors or change the endless spool settings. Leaving this one `False` will save you from having to redo the tool to gate map on every print.  See [Gate Map](Tool-and-Gate-Maps#---gate-map) for explaination on how to map the gates. Usually `False`.
 
 `variable_dump_stats` Tells Happy hare to display a popup on KlipperScreen and output in the console of the stats at the end of the print. It will look something like this:
 <p align=center><img src="Configuring-mmu_macro_vars/mmu_statistics.png"></p>
 
 That last part, `Record: 56` is good for bragging rights on Discord. Beware though, at the time of this writing, people are saying 1100+ swaps without issue! Amazing!
 
-For more detailed info [see this document.](https://github.com/moggieuk/Happy-Hare/blob/main/doc/stats.md)
+For more detailed info [Statistics and Consumption Counters](Statistics-and-Consumption-Counters).
 
 <br>
 
@@ -138,7 +138,7 @@ Print > Purge Position > Filament Cut Position > Purge Position > Park position 
 With it disabled the sequence will look like:  
 Print > Purge Position > Filament Cut Position > Park position > Swap filament > Purge position > Purge > Print  
  
-`variable_blade_pos` This is the distance from the internal nozzle tip to the filament cutting blade. Happy Hare uses this to determine how much filament is left in the hot end after the cutting procedure. This distance can be measured in CAD, [retrieved from the list Happy Hare has](https://github.com/moggieuk/Happy-Hare/blob/main/doc/configuration.md), or measured directly.  
+`variable_blade_pos` This is the distance from the internal nozzle tip to the filament cutting blade. Happy Hare uses this to determine how much filament is left in the hot end after the cutting procedure. This distance can be measured in CAD, [retrieved from the list Happy Hare has](Happy-Hare-Parameters#---toolhead-loading--unloading), or measured directly.  
 
 To measure directly, it is suggested to install a new, never used, nozzle in your hot end. Then, with  the hot end cold, insert filament until it bottoms out on the inside of the nozzle. Lightly depress the filament cutting arm (enough to mark the filament, don't cut it completely) then take the piece of filament out and measure the distance from the tip of the filament to the mark left by the blade. That will get you very close to the correct result. 
 
