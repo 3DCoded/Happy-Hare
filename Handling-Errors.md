@@ -30,10 +30,6 @@ When the print pauses Happy Hare a few things happen:
 
 The `timeout_pause` config variable overrides the default klipper idle_timeout as is applied during the paused state. This allow the bed heater to remain on for a longer period and prevents the steppers from de-energising and loosing position. Similarly the `disable_heater` config controls how long the extruder is kept heated. Typically the extruder can be allowed to cool after a few minutes but you want to make sure the bed remains hot long enough for you to notice the pause.
 
-Note that you can mimick a pause behavior for testing with this command:
-
-> MMU_PAUSE FORCE_IN_PRINT=1
-
 The best way to describe the workflow is as follows:
 
 ```mermaid
@@ -56,6 +52,10 @@ The best way to describe the workflow is as follows:
 - When the problem is fixed decide if `MMU_RECOVER` or similar is necessary. Generally this won't be necessary.
 - If you decide to abort the print you can with the usual `CANCEL_PRINT` command
 - Resume printing with the `RESUME` command
+
+> [!NOTE]  
+> You can mimick a pause behavior for testing with this command:<br>
+> > MMU_PAUSE FORCE_IN_PRINT=1
 
 <br>
 
