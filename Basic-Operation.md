@@ -1,12 +1,12 @@
-- [Console]
-- [Logging]
-- [KlipperScreen Happy Hare Edition]
-- [Understanding Operation](Understanding-Operation)
-- [Recovering MMU State]
+- [Console and Logging](Basic-Operation#---console-and-logging)
+- [KlipperScreen](Basic-Operation#---klipperscreen-happy-hare)
+- [Filament Loading and Unloading](Basic-Operation#---filament-loading-and-unloading-sequences)
+- [Debugging Problems](Basic-Operation#---debugging-problems)
 
 <br>
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Console and Logging
+
 Happy Hare controls the MMU mainly through Klipper command extensions but a few are implemented as macros. You can manage these commands buy typing then directly into a console like Mainsail or Fluidd or you can create macro buttons for easier operation. For the easiest control take a look at the [KlippeScreen Happy Hare Edition](---klipperscreen-happy-hare) - it really does make operation a pleasure.
 
 > [!NOTE]  
@@ -25,7 +25,7 @@ The `mmu.log` logfile will be placed in the same directory as other Klipper log 
 
 <br>
 
-## ![#f03c15](/doc/resources/f03c15.png) ![#c5f015](/doc/resources/c5f015.png) ![#1589F0](/doc/resources/1589F0.png) KlipperScreen Happy Hare
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) KlipperScreen Happy Hare
 
 <img src="resources/mmu_main_printing.png" width="500" alt="KlipperScreen">
 
@@ -35,48 +35,7 @@ Be sure to follow the install directions carefully and read the [panel-by-panel]
 
 <br>
 
-
-### 8. Recovering MMU state:
-
-Happy Hare is a state machine. That means it keeps track of the state of the MMU. It uses knowledge of this state to determine how to handle a particular situation. For example, if you ask it to unload filament... Is the filament in the toolhead, is it in the bowden, or is there no filament present? If uses this information to make the correct decisions on what to do next. Occasionally, through print error or manual intervention the state may become stale and it is necessary to re-sync with Happy Hare.
-
-<details>
-<summary><sub>🔹 Read more how to recover MMU state...</sub></summary><br>
- 
-At some point when a problem occurs during a multi-color print your MMU will pause with an error.  Generally the user would then fix the issue and then resume print with `RESUME`.   While fixing the problem you may find it useful to issue MMU commands to move the filament around or change gate. If you do this the MMU will "know" the correct state when resuming a print and everything will be copacetic. However, if you manually move the filament you are able to tell MMU the correct state with the `MMU_RECOVER` command.  This command is also useful when first turning on an MMU with filament already loaded.  Instead of MMU having to unload and reload to figure out the state you can simple tell it!
-<br>
-
-Here are some examples:
-<br>
-
-```
-MMU_RECOVER - attempt to automatically recover the filament state.  The tool or gate selection will not be changed.
-MMU_RECOVER TOOL=0 - tell MMU that T0 is selected but automatically look at filament location
-MMU_RECOVER TOOL=5 LOADED=1 - tell Happy Hare that T5 is loaded and ready to print
-MMU_RECOVER TOOL=1 GATE=2 LOADED=0 - tell Happy Hare that T1 is being serviced by gate #2 and the filament is Unloaded
-```
-> [!NOTE]  
-> The default automatic recovery will avoid some expensive/invasive testing that can detect conditions that would not normally be discovered (like filament trapped in extruder but not registering on toolhead sensor). Use can add the `MMU_RECOVER STRICT=1` parameter to force these extra tests or by configuring `strict_filament_recover: 1` in `mmu_parameters.cfg`. The reason this isn't the default behavior is that it could result in the extruder heating up unexpectedly.
-
-</details>
-
-### 15. Debugging
-
-There is a lot that can go wrong with an MMU and initial setup can be frustrating.  It is really important to tackle one problem at a time. Never move on and think the problem will go away - that is very unlikely.  You have all the tools you need to diagnose issues:
-
-<ul>
-<li>This doc. Read it all, especially the section describing the load sequence. Understand conceptually what Happy Hare is trying to do.
-<li>'mmu.log'.  This, by default, will log at the TRACE (3) level which will provide quite detailed description of what the firmware is doing. Review it when strange things happen.
-<li> 'MMU_TEST_CONFIG log_level=2'.  This can be a useful tool. Running this on startup will temporarily turn the console verbosity level to `DEBUG`. This will provide a richer running commentary of issues you might encounter.
-<li>Check slicer settings. Happy Hare has only limited visibility into what the slicer is doing - if it, for example, ejects filament from the extruder when Happy Hare expects the filament to still be in the extruder, it will result in an error. Understand this interaction.
-</ul>
-
-Good luck.  I'm starting to compile an [FAQ](doc/FAQ.md).
-
-
-
-
-## ![#f03c15](/doc/resources/f03c15.png) ![#c5f015](/doc/resources/c5f015.png) ![#1589F0](/doc/resources/1589F0.png) Filament loading and unloading sequences
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Filament Loading and Unloading sequences
 
 Happy Hare provides built-in loading and unloading sequences that have many options controlled by settings in `mmu_parameters.cfg`. These are grouped into "modular phases" that control each step of the process and vary slightly based on the capabilities of your particular MMU. Normally this provides sufficient flexibility of control. However, for advanced situations, you are able to elect to control the sequences via gcode macros. This capability is discussed later in the [gcode guide](/doc/macro_customization.md).
 
@@ -94,9 +53,6 @@ MMU load successful
 Loaded 780.3mm of filament (encoder measured 783.6mm)
 ```
 
-<details>
-<summary><sub>🔹 Learn more about loading sequence</sub></summary>
-<br>
 The "visual log" (set at level 2) above shows individual steps of a typical loading process for MMU with optional toolhead sensor. Here is an explanation of steps with `mmu_parameter.cfg` options:
 
 1\. Starting with filament unloaded and sitting in the gate for tool 2
@@ -165,8 +121,6 @@ Unloading filament...
 Unloaded 781.8mm of filament (encoder measured 784.7mm)
 ```
 
-<details>
-<summary><sub>🔹 Learn more about unloading sequence</sub></summary>
 <br>
 The "visual log" (set at level 2) above shows individual steps of a typical unloading process for MMU with optional toolhead sensor. Here is an explanation of steps with `mmu_parameter.cfg` options:
 
@@ -207,4 +161,20 @@ See comments in `mmu_parameters.cfg` or speeds section under the load sequence f
 > [!NOTE]  
 > Happy Hare allows for easy change of loading/unloading sequence even during a print! If you have a toolhead sensor, it can interesting, for example, to switch between extruder homing and toolhead sensor homing. Each you intend to do this make sure you set both `toolhead_extruder_to_nozzle` and `toolhead_sensor_to_nozzle` distances. As an example, in my setup of Revo & Clockwork 2, the distances are 72mm or 62mm respectively. The difference in these two distances is also used in the logic for exiting the extruder to make exit fast and noise free.
 
-</details>
+<br>
+
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Debugging Problems
+
+There is a lot that can go wrong with an MMU and initial setup can be frustrating.  It is really important to tackle one problem at a time. Never move on and think the problem will go away - that is very unlikely.  You have all the tools you need to diagnose issues:
+
+<ul>
+<li>This doc. Read it all, especially the section describing the load sequence. Understand conceptually what Happy Hare is trying to do.
+<li>'mmu.log'.  This, by default, will log at the TRACE (3) level which will provide quite detailed description of what the firmware is doing. Review it when strange things happen.
+<li> 'MMU_TEST_CONFIG log_level=2'.  This can be a useful tool. Running this on startup will temporarily turn the console verbosity level to `DEBUG`. This will provide a richer running commentary of issues you might encounter.
+<li>Check slicer settings. Happy Hare has only limited visibility into what the slicer is doing - if it, for example, ejects filament from the extruder when Happy Hare expects the filament to still be in the extruder, it will result in an error. Understand this interaction.
+</ul>
+
+Good luck.  I'm starting to compile an [FAQ](doc/FAQ.md).
+
+<br>
+

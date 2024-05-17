@@ -46,14 +46,16 @@
 
 </details>
 
-<details open><summary><b>&nbsp;5. Basic Operation</b></summary>
+<details open><summary><b>&nbsp;5. Operation</b></summary>
 
-- [Console](Basic-Operation)
-- [KlipperScreen Happy Hare Edition]
+- [Basic Operation](Basic-Operation)
+  - [Console and Logging](Basic-Operation#---console-and-logging)
+  - [KlipperScreen](Basic-Operation#---klipperscreen-happy-hare)
+  - [Filament Loading and Unloading](Basic-Operation#---filament-loading-and-unloading-sequences)  
+  - [Debugging Problems](Basic-Operation#---debugging-problems)
 - [Understanding Operation](Understanding-Operation)
 - [Handling Errors](Handling-Errors)
   - [Recovering MMU State](Handling-Errors#---state-recovery)
-- [Debugging]
 
 </details>
 
