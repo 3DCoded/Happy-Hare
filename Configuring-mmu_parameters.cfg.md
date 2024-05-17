@@ -41,7 +41,7 @@ The following is a basic description of the main types of MMU supported by Happy
 - Prusa
 -- Coming soon (use Other for now).
 - Other
--- Generic setup that will require further customization of 'cad' parameters. See the main configuration document](https://github.com/moggieuk/Happy-Hare/tree/main/doc/configuration.md) and the section at the end of the configuration file for more help.
+-- Generic setup that will require further customization of 'cad' parameters. See the [CAD Dimensions](#---other-mmu-cad-dimensions) section for more help.
 
 `mmu_vendor` This is where you'll put your MMU vendor. ERCF, Tradrack, Other.  
 
@@ -126,7 +126,7 @@ Here is where you'll define the MMU movement speeds, accelerations, and distance
 Let's discuss the differences between the MMU and the printer. The MMU has very long moves compared to the printer. Loading a bowden tube takes single moves in several hundred millimeters if not more than a meter. The typical print move is less than a milimeter. This basically boils down to missing a step on a print move usually is imperceptible or a very mild layer shift. One step in a typical printer move is about 0.2mm. If the printer stalls for one step, you likely won't hear it and only see the result as a minor layer issue. If you've heard a printer stall, it rattles like a diesel engine. This results in large layer shifts because the printer looses steps on several dozen moves, resulting in the bap-bap-bap-bap sound. Now, on the MMU, where one move is very long in comparison, if it looses steps, the sound is more like a high pitched whistle while the motor armature can't synch up with the pulsing magnetic field. Usually this looks like the motor starting to move, then stopping and whistling during the main part of the move, then trying to "catch up" as the controller decelerates the pulses. So, if you hear that long whistle move, that's the MMU gear stepper loosing steps on a single move. Time to adjust your speeds and accelerations.
 
 Long moves are generally faster than small moves and are used for the bulk of bowden movements. There are two fast  load speeds depending on whether MMU thinks it is pulling from the buffer or from the spool. This can be determined by `MMU_STATUS` and checking for `B` or `S` in the gate output adjacent to the `Avail:` label. `B` denoting that Happy Hare thinks the filament is buffered, and `S` denoting that Happy Hare thinks the buffer is used up and pulling from the spool, through the buffer:
-<p align=center><img src="Configuring-mmu_parameters/status_log.png" alt=""/></p>  
+<p align=center><img src="Configuring-mmu_parameters/status_log.png" alt=""></p>
 
 Lower speeds and accelerations are helpful when pulling from the spool because more force is required to overcome friction. Lower speeds and accelerations prevent losing steps. 100mm/s should be relatively quiet with a NEMA14 motor, but slower is quieter.
 
@@ -497,4 +497,4 @@ Normally all these settings are set based on your choice of 'mmu_vendor' and 'mm
 
 Whew. That was a lot. Like...A LOT. So much to learn here. Don't worry, the more you use the MMU, the mor familiar with these parameters and how they interact with each other you'll become.
 
-<p align="center"><img src="all_good.gif"/></p>
+<p align="center"><img src="resources/all_good.gif"></p>
