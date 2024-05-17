@@ -35,7 +35,7 @@
 
 <details open><summary><b>&nbsp;4. Calibration</b></summary>
 
-- [MMU Calibration](MMU-Calibration)<!--
+- [MMU Calibration](MMU-Calibration) <!--
   - [Selector Offsets](MMU-Calibration#---step-1-calibrate-selector-offsets)
   - [Servo](MMU-Calibration#---step-2-calibrate-your-servo)
   - [Gear Stepper](MMU-Calibration#---step-3-calibrate-your-gear-stepper)
