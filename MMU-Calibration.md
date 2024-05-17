@@ -1,4 +1,15 @@
-This discussion assumes that you have setup and debugged your hardware configuration.  A detailed discusion can be found under [Hardware Configuration](Hardware-Configuration).
+This discussion assumes that you have setup and debugged your hardware configuration. A detailed discusion can be found under [Hardware Configuration](Hardware-Configuration).
+
+- [Calibration Steps](MMU-Calibration#---calibration-steps)
+- [Selector Offsets](MMU-Calibration#---step-1-calibrate-selector-offsets)
+- [Servo](MMU-Calibration#---step-2-calibrate-your-servo)
+- [Gear Stepper](MMU-Calibration#---step-3-calibrate-your-gear-stepper)
+- [Encoder](MMU-Calibration#---step-4-calibrate-your-encoder-if-fitted)
+- [Bowden Length](MMU-Calibration#---step-5-calibrate-bowden-length)
+- [Gates](MMU-Calibration#---step-6-calibrating-individual-gates)
+- [Calibration Commands](Command-Reference#---calibration)
+
+<br>
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Calibration Steps
 
@@ -191,16 +202,3 @@ You will see an output similar to:
 
 > [!IMPORTANT]  
 > All of the calibration steps can be run in a "check/test" mode.  Simply add `SAVE=0` to the command and the calibration will be run but the results will not be saved.  This is very useful for verification.<br>Finally, remember that the results from all the calibration is stored in `mmu_vars.cfg` so you can also view/edit that file directly.
-
-<br>
-
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Calibration Command Reference
-
-  | Command | Description | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Parameters&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
-  | ------- | ----------- | ---------- |
-  | `MMU_SERVO` | Set the servo to specified postion or a sepcific angle for testing. Will also report position when run without parameters | `POS=[up\|down\|move]` Move servo to predetermined position <br>`ANGLE=..` Move servo to specified angle <br>`SAVE=1` Specifed with the POS= parameter will cause Happy Hare to store the current servo angle for the specified position. This is written to `mmu_vars.cfg` |
-  | `MMU_CALIBRATE_SELECTOR` | Calibration of the selector gate positions. By default will automatically calibrate every gate.  ERCF v1.1 users must specify the bypass block position if fitted.  If GATE to BYPASS option is sepcifed this will update the calibrate for a single gate | `GATE=[0..n]` The individual gate position to calibrate <br> `BYPASS=[0\|1]` Calibrate the bypass position <br>`BYPASS_BLOCK=..` Optional (v1.1 only). Which bearing block contains the bypass where the first one is numbered 0 <br>`SAVE=[0\|1]` (default 1)  Whether to save the result |
-  | `MMU_CALIBRATE_GEAR` | Calibration rourine for the the gear stepper rotational distance | `LENGTH=..` length to test over (default 100mm) <br>`MEASURED=..` User measured distance <br>`SAVE=[0\|1]` (default 1) Whether to save the result |
-  | `MMU_CALIBRATE_ENCODER` | Calibration routine for MMU encoder | LENGTH=.. Distance (mm) to measure over. Longer is better, defaults to 500mm <br>`REPEATS=..` Number of times to average over <br>`SPEED=..` Speed of gear motor move. Defaults to long move speed <br>`ACCEL=..` Accel of gear motor move. Defaults to motor setting in ercf_hardware.cfg <br>`MINSPEED=..` & `MAXSPEED=..` If specified the speed is increased over each iteration between these speeds (only for experimentation) <br>`SAVE=[0\|1]` (default 1)  Whether to save the result |
-  | `MMU_CALIBRATE_BOWDEN` | Measure the calibration length of the bowden tube used for fast load movement. This will be performed on gate #0 | `BOWDEN_LENGTH=..` The approximate length of the bowden tube but NOT longer than the real measurement. 50mm less that real is a good starting point <br>`HOMING_MAX=..` (default 100) The distance after the sepcified BOWDEN_LENGTH to search of the extruder entrance <br>`REPEATS=..` (default 3) Number of times to average measurement over <br>`SAVE=[0\|1]` (default 1)  Whether to save the result |
-  | `MMU_CALIBRATE_GATES` | Optional calibration for loading of a sepcifed gate or all gates. This is calculated as a ratio of gate #0 and thus this is usually the last calibration step | `GATE=[0..n]` The individual gate position to calibrate <br>`ALL[0\|1]` Calibrate all gates 1..n sequentially (filament must be available in each gate) <br>`LENGTH=..` Distance (mm) to measure over. Longer is better, defaults to 400mm <br>`REPEATS=..` Number of times to average over <br>`SAVE=[0\|1]` (default 1)  Whether to save the result |
