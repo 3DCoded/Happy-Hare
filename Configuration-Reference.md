@@ -38,20 +38,37 @@ mmu/
 ```
 
 This makes the minimal include into your printer.cfg easy and guarantees the correct load order!
-```yml
-[include mmu/base/*.cfg]
-```
+> [include mmu/base/*.cfg]
 
 If you are using optional modules they should appear after the above, for example:
-```yml
-[include mmu/base/*.cfg]
-[include mmu/optional/menu.cfg]
-[include mmu/optional/blobifier*.cfg]
-```
+> [include mmu/base/*.cfg]
+> [include mmu/optional/menu.cfg]
+> [include mmu/optional/blobifier*.cfg]
 
 > [!IMPORTANT]  
 > Some of the configuration files are marked as `READ-ONLY`. These are not designed to be edited by the user - if you desired to change the behavior outside of the built-in extensibility you should copy the logic into macros of your own name and set the options in `mmu_parameters.cfg` to point to them instead.<br>
 > The remainder of the `cfg` files are designed to be edited to allow for configuration and customization.
+
+  | File | Description | Read-Only |
+  | ---- | ----------- | --------- |
+  | `mmu_vars.cfg` | Used to persist state and certain dynamic configuration. | **Read-Only** |
+  | `mmu.cfg` | Configuration for control board (mcu) device location and aliases for control board pins. |
+  | `mmu_hardware.cfg` | User adjustable hardware based parameters are stored. |
+  | `mmu_parameters.cfg` | Main configuration parameters for the Klipper module. |
+  | `mmu_macro_vars.cfg` | Modular config file that controls the operation of all the supplied macros. |
+  | `mmu_software.cfg` | Contains core macros leveraged by Happy Hare. | **Read-Only** |
+  | `mmu_sequence.cfg` | Core macros for customization of loading and unload sequences. | **Read-Only** |
+  | `mmu_leds.cfg` | Core macros for controlling LEDs. | **Read-Only** |
+  | `mmu_form_tip.cfg` | Default macros for tip forming logic. | **Read-Only** |
+  | `mmu_cut_tip.cfg` | Default macros toolhead based filament cutting logic. | **Read-Only** |
+  | `mmu_state.cfg` | Default macros for handling state changes. | **Read-Only** |
+  | `mmu_menu.cfg` | Optional config for adding MMU functions to 12864 style displays. | **Read-Only** |
+  | `mmu_ercf_compat.cfg` | Optional config to retain only ERCF sytle command sytax. **DEPRECATED** | **Read-Only** |
+  | `client_macros.cfg` | Recommended but still optional set of PAUSE/RESUME/CANCEL_PRINT macros. | **Read-Only** |
+  | `blobifier_hw.cfg` | Contains h/w setup options for Blobifier. |
+  | `blobifier.cfg` | Default macros for controlling Blobifier blob purging mechanism. | **Read-Only** |
+  | `mmu_erec_cutter_hw.cfg` | Contains h/w setup options for EREC filament cutter. |
+  | `mmu_erec_cutter.cfg` | Default macros for controlling ERCF filament cutter. | **Read-Only** |
 
 `mmu_vars.cfg` Used to persist state and certain dynamic configuration. **Read-Only**
 
