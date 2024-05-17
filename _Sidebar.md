@@ -48,7 +48,7 @@
 
 <details open><summary><b>&nbsp;5. Basic Operation</b></summary>
 
-- [Console]
+- [Console](Basic-Operation)
 - [KlipperScreen Happy Hare Edition]
 - [Understanding Operation](Understanding-Operation)
 - [Handling Errors](Handling-Errors)

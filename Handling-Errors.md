@@ -61,7 +61,9 @@ The best way to describe the workflow is as follows:
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) State Recovery
 
-If you fix a problem using Happy Hare command or operations you can ignore this section, but if you are fixing completely manually, Happy Hare may not know the current state of the MMU (see [Macro Based Sequences](Custom-Load-Unload-Sequences#---_mmu_load_sequence--_mmu_unload_sequence) for all the gory detail) and this can lead to it failing to resume (just results in another error).
+Happy Hare is a state machine (see [Macro Based Sequences](Custom-Load-Unload-Sequences#---_mmu_load_sequence--_mmu_unload_sequence) for all the gory details). That means it keeps track of the state of the MMU. It uses knowledge of this state to determine how to handle a particular situation. For example, if you ask it to unload filament... Is the filament in the toolhead, is it in the bowden, or is there no filament present? If uses this information to make the correct decisions on what to do next. Occasionally, through print error or manual intervention the state may become stale and it is necessary to re-sync with Happy Hare.
+
+If you fix a problem using Happy Hare command or operations you probably don't need to do any recovery, but if you are fixing completely manually you might have too else it may fail to resume (just results in another error).
 
 You can decide if recovery is necessary by using the [MMU_STATUS](Understanding-Operation) command and validating the MMU state by interpreting the status display:
 
@@ -76,10 +78,17 @@ You can decide if recovery is necessary by using the [MMU_STATUS](Understanding-
 If you need to recover there is a simple command that will do this automatically the majority of the time:
 
 > MMU_RECOVER
+Here the tool or gate selection will not be changed, only the filament position reset
 
-By default this causes Happy Hare to run some tests (like reading sensors and wiggling the filament) to try to assertain the correct state, for example, to confirm the position of the filament. But you can also force it by specifying additional options. E.g.
-
+By default this causes Happy Hare to run some tests (like reading sensors and wiggling the filament) to try to assertain the correct state, for example, to confirm the position of the filament. But you can also force it by specifying additional options. Here are some examples:
+> MMU_RECOVER TOOL=0
+Tell MMU that T0 is selected but automatically look at filament location
+> MMU_RECOVER TOOL=5 LOADED=1
+Tell Happy Hare that T5 is loaded and ready to print
+> MMU_RECOVER TOOL=1 GATE=2 LOADED=0
+Tell Happy Hare that T1 is being serviced by gate #2 and the filament is Unloaded
 > MMU_RECOVER TOOL=1 GATE=1 LOADED=1
+Tell Happy Hare that T1 is being serviced by gate #2 and the filament is Unloaded
 
 This will ensure that Happy Hare understands that tool 1 is selected on gate 1 and the filament is loaded in the extruder. See the [Command Reference](Command-Reference) for more details.
 
@@ -87,6 +96,7 @@ One other operation that may be useful during recovery is updating the Gate map 
 
 > [!NOTE]  
 > Remember this is optional and ONLY needed if you may have confused the MMU state. I.e. if you left everything where the MMU expects it there is no need to run and indeed if you use MMU commands then the state will be correct and there is never a need to run. However, this can be useful to force Happy Hare to run its own checks to, for example, confirm the position of the filament.
+> The default automatic recovery will avoid some expensive/invasive testing that can detect conditions that would not normally be discovered (like filament trapped in extruder but not registering on toolhead sensor). Use can add the `MMU_RECOVER STRICT=1` parameter to force these extra tests or by configuring `strict_filament_recover: 1` in `mmu_parameters.cfg`. The reason this isn't the default behavior is that it could result in the extruder heating up unexpectedly.
 
 <br>
 
