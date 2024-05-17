@@ -27,7 +27,7 @@ Just a note that macro configuration is discussed in [Configuring mmu_macro_vars
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) MMU Vendor, Type & Size
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) MMU Vendor, Type and Size
 
 `happy_hare_version` just helps the developers keep track of which version you're using and provides some error checking.  
 
@@ -179,7 +179,7 @@ Selector touch (stallguard) allows touch movement which can detect a blocked fil
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Gate Loading & Unloading
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Gate Loading and Unloading
 
 These settings control loading and unloading filament at the gate. The primary options are an end stop switch at the gate (TradRack) or an encoder (ERCF).  You can have a gate sensor for loading and parking and still use the encoder for other move verification.  
 The `encoder` method, due to the nature of its operation will overshoot a little. This is not a problem in practice because the overshoot will simply be compensated for in the subsequent fast bowden move.
@@ -200,7 +200,7 @@ The `encoder` method, due to the nature of its operation will overshoot a little
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Bowden Loading & Unloading
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Bowden Loading and Unloading
 
 In addition to different bowden loading speeds for buffer and non-buffered filament, detecting missed steps caused by "jerking" on a heavy spool is possible. If bowden correction is enabled the driver with "believe" the encoder reading and make correction moves bringing the filament within the `bowden_allowable_load_delta` of the end bowden position. This does require a reliable encoder and is not recommended for very high speed loading, >350mm/s.
 
@@ -236,7 +236,7 @@ Note: `extruder_homing_endstop` will be ignored if a toolhead sensor is availabl
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Toolhead Loading & Unloading
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Toolhead Loading and Unloading
 
 It is possible to define highly customized loading and unloading sequences, however, unless you have a specialized setup it is probably easier to opt for the built-in toolhead loading and unloading sequence which already offers a high degree of customization. If you need even more control then edit the `_MMU_LOAD_SEQUENCE` and `_MMU_UNLOAD_SEQUENCE` macros in `mmu_sequence.cfg` - but be careful!
 
