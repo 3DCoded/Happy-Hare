@@ -33,7 +33,7 @@ Also, even if not using the slicer tip forming and ONLY using Happy Hare tip for
 <br>
 
 ### Tuning Happy Hare `_MMU_CUT_TIP` Macro
-Happy Hare has a default macro to form tips. It uses a similar approach to Super Slicer / Prusa Slicer and thus the leanings from one can be applied to the other. The macro is defined in `mmu_form_tip.cfg` but the configuration variables are in `mmu_macro_vars.cfg` under the "_MMU_FORM_TIP_VARS" section. Tuning tips is a pain (hence the advent of filament cutting) but it can be made easier by following this procedure:
+Happy Hare has a default macro to form tips. It uses a similar approach to Super Slicer / Prusa Slicer and thus the leanings from one can be applied to the other. The macro is defined in `mmu_form_tip.cfg` but the configuration variables are in `mmu_macro_vars.cfg` under the "\_MMU\_FORM\_TIP\_VARS" section. Tuning tips is a pain (hence the advent of filament cutting) but it can be made easier by following this procedure:
 - Remove the bowden tube from your toolhead so you can freely pass in filament
 - Cut a 400mm piece of filament you are trying to tune
 - Set you extruder temperature
