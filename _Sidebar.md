@@ -12,7 +12,7 @@
 
 <details open><summary><b>&nbsp;2. Installation</b></summary>
 
-- [Happy Hare Install]
+- [Happy Hare Install](Installation)
   - [Creating-Base-Klipper-Config]
   - [Config-Overview]
   - [Upgrading]
