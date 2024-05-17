@@ -51,7 +51,8 @@
 - [Console]
 - [KlipperScreen Happy Hare Edition]
 - [Understanding Operation](Understanding-Operation)
-- [Recovering MMU State]
+- [Handling Errors](Handling-Errors)
+  - [Recovering MMU State](Handling-Errors#---state-recovery)
 - [Debugging]
 
 </details>
