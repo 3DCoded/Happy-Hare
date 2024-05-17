@@ -51,6 +51,7 @@
 - [Basic Operation](Basic-Operation)
   - [Console and Logging](Basic-Operation#---console-and-logging)
   - [KlipperScreen](Basic-Operation#---klipperscreen-happy-hare)
+  - [Getting Started](Basic-Operation#---getting-started)
   - [Filament Loading and Unloading](Basic-Operation#---filament-loading-and-unloading-sequences)  
   - [Debugging Problems](Basic-Operation#---debugging-problems)
 - [Understanding Operation](Understanding-Operation)

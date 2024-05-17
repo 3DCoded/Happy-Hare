@@ -1,5 +1,6 @@
 - [Console and Logging](Basic-Operation#---console-and-logging)
 - [KlipperScreen](Basic-Operation#---klipperscreen-happy-hare)
+- [Getting Started](Basic-Operation#---getting-started)
 - [Filament Loading and Unloading](Basic-Operation#---filament-loading-and-unloading-sequences)
 - [Debugging Problems](Basic-Operation#---debugging-problems)
 
@@ -32,6 +33,22 @@ The `mmu.log` logfile will be placed in the same directory as other Klipper log 
 Even if not a KlipperScreen user yet you might be interested in my fork of KlipperScreen [Github link](https://github.com/moggieuk/KlipperScreen-Happy-Hare-Edition) simply to control your MMU. It makes using your MMU the way it should be. Dare I say as easy at Bambu Labs ;-) I run mine with a standalone Raspberry Pi attached to my buffer array and can control multiple MMU's with it.
 
 Be sure to follow the install directions carefully and read the [panel-by-panel](https://github.com/moggieuk/KlipperScreen-Happy-Hare-Edition/blob/master/docs/MMU.md) documentation :tada:
+
+<br>
+
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Getting Started
+
+TODO
+<!--
+There are a couple of commands (`MMU_PRELOAD` and `MMU_CHECK_GATE`) that are useful to ensure MMU readiness prior to printing.
+
+The `MMU_PRELOAD` is an aid to loading filament into the MMU.  The command works a bit like the Prusa's functionality and spins gear with servo depressed until filament is fed in.  It then parks the filament nicely. This is the recommended way to load filament into your MMU and ensures that filament is not under/over inserted potentially preventing pickup or blocking the gate.<br>
+
+Similarly the `MMU_CHECK_GATE` command will run through all the gates (or the one specified), checks that filament is loaded, correctly parks and updates the "gate status" map so the MMU knows which gates have filament available.<br>
+
+> [!NOTE]
+> The `MMU_CHECK_GATE` command has a special option that is designed to be called from your `PRINT_START` macro. When called as in this example: `MMU_CHECK_GATE TOOLS=0,3,5`. Happy Hare will validate that tools 0, 3 & 5 are ready to go else generate an error prior to starting the print. This is a really useful pre-print check! See [Gcode Preprocessing](/doc/gcode_preprocessing.md) for more details.
+-->
 
 <br>
 
@@ -173,4 +190,3 @@ There is a lot that can go wrong with an MMU and initial setup can be frustratin
 </ul>
 
 Good luck!
-

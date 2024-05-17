@@ -1,21 +1,22 @@
-The Happy Hare Klipper and Moonraker extensions must frst be cloned from Github and then installed into an existing Klipper installation using the supplied the install script. Once installed it will be added to Moonraker update-manager to easy updates like other Klipper plugins:
+- [Creating Base Klipper Config](Installation#---creating-base-klipper-config)
+
+Happy Hare consists of a set of Klipper "extra" modules, a moonraker "component" and a set of macros and configuration files. To install you must first clone from Github and then install using the supplied install script. This install will both setup a base set of klipper configuration files as well as creating the symlinks necessary to link the cloned files into your Klipper/Moonraker installation.
+
+Once installed it will be added to Moonraker update-manager for easy updates like other Klipper plugins.
 
 ```yml
 cd ~
 git clone https://github.com/moggieuk/Happy-Hare.git
-cd Happy-Hare
 ```
 
 <br>
  
-## ![#f03c15](/doc/resources/f03c15.png) ![#c5f015](/doc/resources/c5f015.png) ![#1589F0](/doc/resources/1589F0.png) Creating Base Klipper Config
-The module can be installed into an existing Klipper installation with the install script. Once installed it will be added to Moonraker update-manager to easy updates like other Klipper plugins:
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Creating Base Klipper Config
+
+The install does not ship a set of template config files, instead you can create your starting templates by running the installer in interactive mode. This will ask questions that will be used to generate and install the template config:
 
 ```
-cd ~
-git clone https://github.com/moggieuk/Happy-Hare.git
-cd Happy-Hare
-
+cd ~/Happy-Hare
 ./install.sh -i
 ```
 
@@ -55,14 +56,11 @@ Usage: ./install.sh [-k <klipper_home_dir>] [-c <klipper_config_dir>] [-m <moonr
 > TCRT 5000 encoders on ERCFv1.1 can be problematic. A new backward compatible alternative "Binky" is available and is strongly recommended (standard in ERCFv2). If you insist on fighting with the original encoder be sure to read my [notes on Encoder problems](/doc/ercf_encoder_v11.md) - the better the encoder the better this software will work for MMU's with encoders.
 > Hall effect toolhead sensors can be problematic in a heated chamber because their characteristics change with temperature. Microswitch versions are preferred.
 
+<br>
 
-
-### 7. Pause / Resume / Cancel_print macros:
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Pause/Resume/Cancel_Print Macros
 
 Regardless of whether you use your own PAUSE / RESUME / CANCEL_PRINT macros or use the ones provided in `client_macros.cfg`, Happy Hare will automatically wrap anything defined so that it can inject the necessary steps to control the MMU.
-
-<details>
-<summary><sub>🔹 Read more about what Happy Hare adds to these macros...</sub></summary><br>
 
 During a print, if Happy Hare detects a problem, it will record the print position, safely lift the nozzle up to `z_hop_height_error` at `z_hop_speed` (to prevent a blob). It will then call the user's PAUSE macro (which can be the example one supplied in `mmu_software.cfg`). As can be seen with the provided examples it is expected that pause will save it's starting position (GCODE_SAVE_STATE) and move the toolhead to a park area, often above a purge bucket, at fast speed.<br>
 
@@ -72,22 +70,21 @@ The user's RESUME macro may do some purging or nozzle cleaning but is expected t
 
 Happy Hare will always return the toolhead to the correct position, but if you leave it in your park area will will move it back very slowly. You can to follow the above sequence to make this operation fast to prevent oozing from leaking on your print.
 
-</details>
+<br>
 
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Upgrading
 
+Happy Hare is always being improved. You can update in the same way as you update Klipper through the update-manager facility in Moonraker. Sometimes an update includes a major change and simply upgrading through update manager is not sufficent. When this occurs you should see an error message directing you to the [Upgrade Notice](Upgrade-Notice) page (read that now because it explains major/minor/point release conventions).
 
-### 11. Useful pre-print functionality
+Alternatively you can periodically run the following. Note that you **must not add the `-i` option to update**. This will pull the very latest code from Github and upgrade any necessary configuration files. This is also a good option to run if you suspect you have broken something or you have upgraded Klipper and it has removed the Happy Hare modules (possible because these are extensions that Klipper doesn't know about):
 
-There are a couple of commands (`MMU_PRELOAD` and `MMU_CHECK_GATE`) that are useful to ensure MMU readiness prior to printing.
+```yml
+cd ~/Happy-Hare
+./install.sh
+```
 
-<details>
-<summary><sub>🔹 Read more on pre-print readiness...</sub></summary><br>
+> [!TIP]  
+> Don't be shy about runnning this. If there is nothing to update the script will do nothing.
 
-The `MMU_PRELOAD` is an aid to loading filament into the MMU.  The command works a bit like the Prusa's functionality and spins gear with servo depressed until filament is fed in.  It then parks the filament nicely. This is the recommended way to load filament into your MMU and ensures that filament is not under/over inserted potentially preventing pickup or blocking the gate.<br>
-
-Similarly the `MMU_CHECK_GATE` command will run through all the gates (or the one specified), checks that filament is loaded, correctly parks and updates the "gate status" map so the MMU knows which gates have filament available.<br>
-
-> [!NOTE]
-> The `MMU_CHECK_GATE` command has a special option that is designed to be called from your `PRINT_START` macro. When called as in this example: `MMU_CHECK_GATE TOOLS=0,3,5`. Happy Hare will validate that tools 0, 3 & 5 are ready to go else generate an error prior to starting the print. This is a really useful pre-print check! See [Gcode Preprocessing](/doc/gcode_preprocessing.md) for more details.
-
-</details>
+> [!IMPORTANT]  
+> If you have Klipper installed in a non-default location (i.e. you used the `-c`,`-k` or `-r` flags) you will need to add these flags again to the above, otherwise the upgrade will look in the default location and likely not find/upgrade what you expect.
