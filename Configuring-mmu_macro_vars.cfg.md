@@ -1,13 +1,13 @@
 This is where you'll likely spend most of your time tuning the MMU. The bulk of what the MMU does is controlled here. So, grab a cup of coffee, get ready, and let's dive in!
 
-- [save\_variables](#---save-variables)
-- [\_MMU\_SOFTWARE\_VARS](#---mmu-software-vars)
-- [\_MMU\_STATE\_VARS](#---mmu-state-vars)
-- [\_MMU\_LED\_VARS](#---mmu-led-vars)
-- [\_MMU\_SEQUENCE\_VARS](#---mmu-sequence-vars)
-- [\_MMU\_CUT\_TIP\_VARS](#---mmu-cut-tip-vars)
-- [\_MMU\_FORM\_TIP\_VARS](#---mmu-form-tip-vars)
-- [\_MMU\_CLIENT\_VARS](#---mmu-client-vars)
+- [save\_variables](#---save_variables)
+- [\_MMU\_SOFTWARE\_VARS](#---_mmu_software_vars)
+- [\_MMU\_STATE\_VARS](#---_mmu_state_vars)
+- [\_MMU\_LED\_VARS](#---_mmu-led_vars)
+- [\_MMU\_SEQUENCE\_VARS](#---_mmu_sequence_vars)
+- [\_MMU\_CUT\_TIP\_VARS](#---_mmu_cut_tip_vars)
+- [\_MMU\_FORM\_TIP\_VARS](#---_mmu_form_tip_vars)
+- [\_MMU\_CLIENT\_VARS](#---_mmu_client_vars)
 
 <br>
 
