@@ -7,7 +7,7 @@
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Console and Logging
 
-Happy Hare controls the MMU mainly through Klipper command extensions but a few are implemented as macros. You can manage these commands buy typing then directly into a console like Mainsail or Fluidd or you can create macro buttons for easier operation. For the easiest control take a look at the [KlippeScreen Happy Hare Edition](---klipperscreen-happy-hare) - it really does make operation a pleasure.
+Happy Hare controls the MMU mainly through Klipper command extensions but a few are implemented as macros. You can manage these commands buy typing then directly into a console like Mainsail or Fluidd or you can create macro buttons for easier operation. For the easiest control take a look at the [KlippeScreen Happy Hare Edition](#---klipperscreen-happy-hare) - it really does make operation a pleasure.
 
 > [!NOTE]  
 > A Mainsail module is also under development!
@@ -91,10 +91,8 @@ Of the three methods, and for reasons discussed later in transition move, a tool
 **5\. Final Move to Nozzle:** Filament is moved the remaining distance to the meltzone. This distance is defined by `toolhead_extruder_to_nozzle` (extruder homing) or `toolhead_sensor_to_nozzle` (toolhead sensor homing). The extruder-only or synchronized gear and extruder movement is controlled with the `toolhead_sync_load` parameter.
 
 > [!NOTE]  
-> If an encoder is available (ERCF) sanity checks checking for movement will monitor the loading process and issue errors (and lock the MMU) if things aren't copacetic. The final check which verifies that filament has reached the nozzle has been known to fail on some toolhead designs with short final movement. This error can be turned into a non-fatal warning by setting `toolhead_ignore_load_error`
-
-> [!NOTE]  
-> It is expected that Encoder readings will differ slightly from the actual stepper movement. This is due to a number of valid reasons including calibration accuracy and slippage. It should not be a cause for concern unless the difference is excessive (>5% of movement)
+> - If an encoder is available (ERCF) sanity checks checking for movement will monitor the loading process and issue errors (and lock the MMU) if things aren't copacetic. The final check which verifies that filament has reached the nozzle has been known to fail on some toolhead designs with short final movement. This error can be turned into a non-fatal warning by setting `toolhead_ignore_load_error`
+> - It is expected that Encoder readings will differ slightly from the actual stepper movement. This is due to a number of valid reasons including calibration accuracy and slippage. It should not be a cause for concern unless the difference is excessive (>5% of movement)
 
 #### Speeds:
 
@@ -165,16 +163,14 @@ See comments in `mmu_parameters.cfg` or speeds section under the load sequence f
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Debugging Problems
 
-There is a lot that can go wrong with an MMU and initial setup can be frustrating.  It is really important to tackle one problem at a time. Never move on and think the problem will go away - that is very unlikely.  You have all the tools you need to diagnose issues:
+There is a lot that can go wrong with an MMU and initial setup can be frustrating. It is really important to tackle one problem at a time. Never move on and think the problem will go away - that is very unlikely. You have all the tools you need to diagnose issues:
 
 <ul>
-<li>This doc. Read it all, especially the section describing the load sequence. Understand conceptually what Happy Hare is trying to do.
+<li>This wiki. Read it all. I recommend a first pass all the way through to understand the scope and then methodically as you setup your MMU. Make sure you understand conceptually what Happy Hare is trying to do.
 <li>'mmu.log'.  This, by default, will log at the TRACE (3) level which will provide quite detailed description of what the firmware is doing. Review it when strange things happen.
 <li> 'MMU_TEST_CONFIG log_level=2'.  This can be a useful tool. Running this on startup will temporarily turn the console verbosity level to `DEBUG`. This will provide a richer running commentary of issues you might encounter.
 <li>Check slicer settings. Happy Hare has only limited visibility into what the slicer is doing - if it, for example, ejects filament from the extruder when Happy Hare expects the filament to still be in the extruder, it will result in an error. Understand this interaction.
 </ul>
 
-Good luck.  I'm starting to compile an [FAQ](doc/FAQ.md).
-
-<br>
+Good luck!
 
