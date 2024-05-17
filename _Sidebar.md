@@ -56,7 +56,7 @@
 
 </details>
 
-<sub><i><b>~~YOUR MMU IS READY TO PLAY WITH~~</b></i></sub>
+<sub><i><b>--YOUR MMU IS READY TO PLAY WITH--</b></i></sub>
 
 <details open><summary><b>&nbsp;6. Slicer-MMU Setup</b></summary>
 
@@ -67,7 +67,7 @@
 
 </details>
 
-<sub><i><b>~~NOW YOU ARE READY TO PRINT!~~</b></i></sub>
+<sub><i><b>--NOW YOU ARE READY TO PRINT!--</b></i></sub>
 
 <details open><summary><b>&nbsp;7. Optional Feature Setup</b></summary>
 
@@ -81,7 +81,6 @@
 
 - [EREC Filament Cutter]
 - [Blobifier Purging]
-- [Filamentalist Rewinder]
 
 </details>
 
