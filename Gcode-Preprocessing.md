@@ -1,3 +1,4 @@
+#### Page Sections:
 - [Supported Placeholders](#---supported-placeholders)
   - [!referenced_tools!](#placeholder-referenced_tools)
   - [!colors!](#placeholder-colors)

@@ -1,4 +1,3 @@
-
 Let's go ahead and start with walking through `mmu.cfg`. This file contains the mmu control board device location and aliases for control board pins. If you did the interactive install with one of the supported boards, this should be mostly configured for you.
 
 If you have a custom setup, enter your pins here. Don't add pin modifiers such as `!` or `^` here. Just the pin name.

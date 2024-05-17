@@ -1,3 +1,4 @@
+#### Page Sections:
 - [Console and Logging](Basic-Operation#---console-and-logging)
 - [KlipperScreen](Basic-Operation#---klipperscreen-happy-hare)
 - [Getting Started](Basic-Operation#---getting-started)

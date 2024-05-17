@@ -1,3 +1,4 @@
+#### Page Sections:
 - [Type A](#---type-a)
   - [Supported Sensors](#---supported-sensors)
 - [Type B](#---type-b)

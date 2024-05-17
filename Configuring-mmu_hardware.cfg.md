@@ -1,11 +1,12 @@
-This is where all the user adjustable hardware based parameters are stored. Things that relate to the actual physical parts of the MMU unit.  
-
+#### Page Sections:
 - [Gear Stepper Setup](#---gear-stepper-setup)
 - [Selector Stepper Setup](#---selector-stepper-setup)
 - [Servo Setup](#---servo-setup)
 - [Encoder Setup](#---encoder-setup)
 - [Filament Sensor Setup](#---filament-sensor-setup)
 - [LED Setup](#---led-or-neopixel-setup)
+
+This is where all the user adjustable hardware based parameters are stored. Things that relate to the actual physical parts of the MMU unit.  
 
 <br>
 

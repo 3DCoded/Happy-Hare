@@ -1,7 +1,8 @@
-Happy Hare provides built in functionality for filament loading and unloading customized through `mmu_parameters.cfg`. In advanced circumstances and to support esoteric MMU designs it is possible to override the default behavior with user-supplied macros. By default these macros are not called, however, if `gcode_load_sequence: 1` or `gcode_unload_sequence: 1` are enabled they will be.  The two default macros in `mmu_sequence.cfg` (copied here) will/should provide exactly the same logic as the internal logic using a set of provided "modular" loading/unloading functions. They are a good starting point to copy for your own experiments.
-
+#### Page Sections:
 - [Macro Based Sequences](Custom-Load-Unload-Sequences#---_mmu_load_sequence--_mmu_unload_sequence)
 - [Available Macro "step" Functions](Custom-Load-Unload-Sequences#---internal-step-macro-reference)
+
+Happy Hare provides built in functionality for filament loading and unloading customized through `mmu_parameters.cfg`. In advanced circumstances and to support esoteric MMU designs it is possible to override the default behavior with user-supplied macros. By default these macros are not called, however, if `gcode_load_sequence: 1` or `gcode_unload_sequence: 1` are enabled they will be.  The two default macros in `mmu_sequence.cfg` (copied here) will/should provide exactly the same logic as the internal logic using a set of provided "modular" loading/unloading functions. They are a good starting point to copy for your own experiments.
 
 <br>
 

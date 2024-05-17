@@ -1,3 +1,4 @@
+#### Page Sections:
 - [Creating Base Klipper Config](Installation#---creating-base-klipper-config)
 - [Pause/Resume/Cancel_Print Macros](Installation#---pauseresumecancel_print-macros)
 - [Upgrading](Installation#---upgrading)

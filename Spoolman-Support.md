@@ -1,3 +1,4 @@
+#### Page Sections:
 - [Configuration](#---configuration)
 - [Gate Map and Spool ID](#---gate-map-and-spool-id)
   - [Auto-setting with RFID reader](#auto-setting-with-rfid-reader)

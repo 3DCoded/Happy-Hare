@@ -1,3 +1,4 @@
+#### Page Sections:
 - [Wiring](#---wiring)
 - [Hardware Config](#---hardware-config)
 - [Controlling LED Effects](#---controlling-led-effects)

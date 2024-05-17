@@ -1,10 +1,9 @@
+#### Page Sections:
+- [Gate Map](#---gate-map) - The filaments currently loaded in the MMU
+- [Tool to Gate Map](#---tool-to-gate-ttg-mapping) - The mapping of `Tx` tool numbers to gates
+- [Slicer Tool Map](#---slicer-tool-map) - What the slicer defines for each tool of the current print
+
 Happy Hare maintains a set of "maps" (exposed by printer variables) that are used to keep track of filaments:
-- [Gate Map](#---gate-map)
-  - The filaments currently loaded in the MMU
-- [Tool to Gate Map](#---tool-to-gate-ttg-mapping)
-  - The mapping of `Tx` tool numbers to gates
-- [Slicer Tool Map](#---slicer-tool-map)
-  - What the slicer defines for each tool of the current print
 
 <br>
 

@@ -1,10 +1,4 @@
-This file contains the Happy Hare main configuration parameters for the Klipper module. Here is where we'll setup and adjust the hardware configuration of your particular MMU, the various parameters that control the hardware and lots of other neat stuff. Let's dig in.
-
-Just a note that macro configuration is discussed in [Configuring mmu_macro_vars.cfg](Configuring-mmu_macro_vars.cfg).
-
-> [!Note]  
-> Most of these settings will be set up when running the Happy Hare install script (`./install.sh -i`). Most likely, you'll just need to tweak these settings.
-
+#### Page Sections:
 - [MMU Vendor, Type and Size](#---mmu-vendor-type-and-size)
 - [Hardware Limits](#---hardware-limits)
 - [Servo Configuration](#---selector-servo)
@@ -23,6 +17,13 @@ Just a note that macro configuration is discussed in [Configuring mmu_macro_vars
 - [Macro Naming](#---macro-naming)
 - [Statically defined "reset" defaults](#---statically-defined-reset-defaults)
 - ["Other" MMU CAD Dimensions](#---other-mmu-cad-dimensions)
+
+This file contains the Happy Hare main configuration parameters for the Klipper module. Here is where we'll setup and adjust the hardware configuration of your particular MMU, the various parameters that control the hardware and lots of other neat stuff. Let's dig in.
+
+Just a note that macro configuration is discussed in [Configuring mmu_macro_vars.cfg](Configuring-mmu_macro_vars.cfg).
+
+> [!Note]  
+> Most of these settings will be set up when running the Happy Hare install script (`./install.sh -i`). Most likely, you'll just need to tweak these settings.
 
 <br>
 

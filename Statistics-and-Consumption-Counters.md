@@ -1,3 +1,4 @@
+#### Page Sections:
 - [Swap Timings](#---swap-timings)
 - [Gate Statistics](#---gate-statistics)
 - [Consumption Counters](#---consumption-counters)

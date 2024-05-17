@@ -1,4 +1,4 @@
-# Tool Changing
+#### Page Sections:
 - [Turning off slicer tip forming](#turning-off-slicer-tip-forming)
 - [Turning off slicer wipetower](#turning-off-slicer-wipetower)
   - [Tip cutting options](#---tip-cutting-options)

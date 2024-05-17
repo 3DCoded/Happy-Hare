@@ -1,6 +1,4 @@
-This is where you'll likely spend most of your time tuning the MMU. The bulk of what the MMU does is controlled here. So, grab a cup of coffee, get ready, and let's dive in!
-
-#### Page Index
+#### Page Sections:
 - [save\_variables](#---save_variables)
 - [\_MMU\_SOFTWARE\_VARS](#---_mmu_software_vars)
 - [\_MMU\_STATE\_VARS](#---_mmu_state_vars)
@@ -9,6 +7,8 @@ This is where you'll likely spend most of your time tuning the MMU. The bulk of 
 - [\_MMU\_CUT\_TIP\_VARS](#---_mmu_cut_tip_vars)
 - [\_MMU\_FORM\_TIP\_VARS](#---_mmu_form_tip_vars)
 - [\_MMU\_CLIENT\_VARS](#---_mmu_client_vars)
+
+This is where you'll likely spend most of your time tuning the MMU. The bulk of what the MMU does is controlled here. So, grab a cup of coffee, get ready, and let's dive in!
 
 <br>
 

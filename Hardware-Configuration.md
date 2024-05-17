@@ -1,3 +1,4 @@
+#### Page Sections:
 - [Klipper Config](Hardware-Configuration#step-1-validate-your-hardware-configuration)
 - [Endstops](Hardware-Configuration#step-2-check-endstops--optional-sensors)
 - [Motor Movement](Hardware-Configuration#step-3-check-motor-movement-and-direction)
