@@ -4,6 +4,7 @@
 - [mmu_macro_vars.cfg](Configuring-mmu_macro_vars.cfg)
 
 <br>
+
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Location of Configuration Files
 
 The Klipper configuration files for Happy Hare are modular and can be found in this layout in the Klipper config directory (typically `~printer_data/config/`:
@@ -40,9 +41,9 @@ This makes the minimal include into your printer.cfg easy and guarantees the cor
 > [include mmu/base/*.cfg]
 
 If you are using optional modules they should appear after the above, for example:
-> [include mmu/base/*.cfg]
-> [include mmu/optional/menu.cfg]
-> [include mmu/optional/blobifier*.cfg]
+> [include mmu/base/\*.cfg]<br>
+> [include mmu/optional/menu.cfg]<br>
+> [include mmu/optional/blobifier*.cfg]<br>
 
 > [!IMPORTANT]  
 > Some of the configuration files are marked as `READ-ONLY`. These are not designed to be edited by the user - if you desired to change the behavior outside of the built-in extensibility you should copy the logic into macros of your own name and set the options in `mmu_parameters.cfg` to point to them instead.<br>
