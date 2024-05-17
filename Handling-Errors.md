@@ -47,13 +47,33 @@ The best way to describe the workflow is as follows:
     Fix_Problem --> MMU_RECOVER
     MMU_RECOVER --> RESUME
     RESUME --> Printing
+    CANCEL_PRINT --> Print_Cancelled
 ```
+
+### Explanation:
+- While the MMU is paused you can fix the problem either by careful manual manipulation or by running `MMU_*` commands.
+- If the extruder has dropped temperature or it is about to it is a good idea to run `MMU_UNLOCK` first and to wait for the extruder to get back to temperature
+- When the problem is fixed decide if `MMU_RECOVER` or similar is necessary. Generally this won't be necessary.
+- If you decide to abort the print you can with the usual `CANCEL_PRINT` command
+- Resume printing with the `RESUME` command
 
 <br>
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) State Recovery
 
-If you fix a problem using Happy Hare command or operations you can ignore this section, but if you are fixing completely manually, Happy Hare may not know the current state of the MMU (see [Macro Based Sequences](Custom-Load-Unload-Sequences#---_mmu_load_sequence--_mmu_unload_sequence) for all the gory detail) and this can lead to it failing to resume (just results in another error). Thankfully there is a command that will do this automatically the majority of the time:
+If you fix a problem using Happy Hare command or operations you can ignore this section, but if you are fixing completely manually, Happy Hare may not know the current state of the MMU (see [Macro Based Sequences](Custom-Load-Unload-Sequences#---_mmu_load_sequence--_mmu_unload_sequence) for all the gory detail) and this can lead to it failing to resume (just results in another error).
+
+You can decide if recovery is necessary by using the [MMU_STATUS](Understanding-Operation) command and validating the MMU state by interpreting the status display:
+
+```
+2:18 AM Gates: |#0 |#1 |#2 |#3 |#4 |#5 |#6 |#7 |#8 |
+        Tools: |T0 |T1 |T2 |T3 |T4 |T5 |T6 |T7 |T8 |
+        Avail: | B | B | B | ? | . | ? | S | ? | B |
+        Selct: --------| * |------------------------ T4
+2:18 AM MMU [T2] >>> [En] >>>>>>> [Ex] >> [Ts] >> [Nz] LOADED (@0.0 mm)
+```
+
+If you need to recover there is a simple command that will do this automatically the majority of the time:
 
 > MMU_RECOVER
 
