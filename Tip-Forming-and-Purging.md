@@ -14,19 +14,17 @@ There are two parts to an MMU toolchange that are critical to get set up correct
 
 <img align="right" src="Tip-Forming-and-Purging/good_tips.png" width="150" alt="Good Tips">
 The shape of filament tips is of crucial importance for a reliable system. The filament tips need to look like tiny spears, free of any blobs or long hairs. Here are some proper tips that won’t cause any issue:
-  
+
+<br>
+
 ### Prusa Defaults
 A very solid base for filament profile multimaterial section is to use the default filament Prusa MMU profiles. To do that, add an Prusa printer + MMU from the system presets printers, and then select the MMU printer (NOT the Single one). From there, you’ll be able to access the list of filament system presets built for MultiMaterial (they have the @MMU tag in their name, only use those).
 
-<p align="left">
-  <img src="Tip-Forming-and-Purging/prusa_starting_point.png" width="60%" alt="Good Starting Point">
-</p>
+<p align="center"><img src="Tip-Forming-and-Purging/prusa_starting_point.png" width="60%" alt="Good Starting Point"></p>
 
 Use the filament type of your choice (ABS, PETG, PLA etc.) and use their Multimaterial section settings (Filament Settings) as the basi for your own filaments profiles.
 
-<p align="center">
-  <img src="Tip-Forming-and-Purging/prusa_tip_params.png" width="40%" alt="Example Tip Params">
-</p>
+<p align="center"><img src="Tip-Forming-and-Purging/prusa_tip_params.png" width="40%" alt="Example Tip Params"></p>
 
 Also, even if not using the slicer tip forming and ONLY using Happy Hare tip forming, you might still want to consult the Prusa Slicer / Super Slicer  reference as a starting point for `_MMU_FORM_TIP` macro variables since they mimick the behavior of these slicers.
 
