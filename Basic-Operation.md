@@ -154,7 +154,7 @@ The "visual log" (set at level 2) above shows individual steps of a typical unlo
 
 #### Unload Speeds:
 
-See comments in `mmu_parameters.cfg` or speeds section under the load sequence for more details, but parameters that effect unload speeds.
+See comments in `mmu_parameters.cfg` for parameters that effect unload speeds.
 
 > [!NOTE]  
 > Happy Hare allows for easy change of loading/unloading sequence even during a print! If you have a toolhead sensor, it can interesting, for example, to switch between extruder homing and toolhead sensor homing. Each you intend to do this make sure you set both `toolhead_extruder_to_nozzle` and `toolhead_sensor_to_nozzle` distances. As an example, in my setup of Revo & Clockwork 2, the distances are 72mm or 62mm respectively. The difference in these two distances is also used in the logic for exiting the extruder to make exit fast and noise free.
