@@ -42,8 +42,7 @@
   - [Gear Stepper](MMU-Calibration#---step-3-calibrate-your-gear-stepper)
   - [Encoder](MMU-Calibration#---step-4-calibrate-your-encoder-if-fitted)
   - [Bowden Length](MMU-Calibration#---step-5-calibrate-bowden-length)
-  - [Gates](MMU-Calibration#---step-6-calibrating-individual-gates)
--->
+  - [Gates](MMU-Calibration#---step-6-calibrating-individual-gates) -->
 - [Calibration Commands](Command-Reference#---calibration)
 
 </details>
