@@ -33,7 +33,7 @@
 
 </details>
 
-<details><summary><b>&nbsp;4. Calibration</b></summary>
+<details open><summary><b>&nbsp;4. Calibration</b></summary>
 
 - [MMU Calibration](MMU-Calibration)
   - [Selector Offsets](MMU-Calibration#---step-1-calibrate-selector-offsets)

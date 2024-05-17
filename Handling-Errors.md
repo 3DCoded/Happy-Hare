@@ -30,38 +30,17 @@ When the print pauses Happy Hare a few things happen:
 
 The `timeout_pause` config variable overrides the default klipper idle_timeout as is applied during the paused state. This allow the bed heater to remain on for a longer period and prevents the steppers from de-energising and loosing position. Similarly the `disable_heater` config controls how long the extruder is kept heated. Typically the extruder can be allowed to cool after a few minutes but you want to make sure the bed remains hot long enough for you to notice the pause.
 
-
-
-<br>
-
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) State Recovery
-
-We all hope that printing is straightforward, and everything works to plan. Unfortunately that is not always the case with an MMU and it may need manual intervention to complete a successful print and specifically how you use `MMU_RECOVER`, etc.
-
-<br>
-
-Although error conditions are inevitable, that isn't to say fairly reliable operation isn't possible - I've had many multi-thousand swap prints complete without incident. Here is what you need to know when something goes wrong.
-
-When Happy Hare detects something has gone wrong, like a filament not being correctly loaded or perhaps a suspected clog, it will pause the print and ready the printer for fixing. You can test this condition by running:
+Note that you can mimick a pause behavior for testing with this command:
 
 > MMU_PAUSE FORCE_IN_PRINT=1
 
-
-To proceed you need to address the specific issue. You can move the filament by hand or use basic MMU commands. Once you think you have things corrected you may (optionally) need to run:
-
-> MMU_RECOVER
-
-This is optional and ONLY needed if you may have confused the MMU state. I.e. if you left everything where the MMU expects it there is no need to run and indeed if you use MMU commands then the state will be correct and there is never a need to run. However, this can be useful to force Happy Hare to run its own checks to, for example, confirm the position of the filament. By default, this command will automatically fix essential state, but you can also force it by specifying additional options. E.g. `MMU_RECOVER TOOL=1 GATE=1 LOADED=1`. See the [Command Reference](/doc/command_ref.md) for more details.
-
-When you ready to continue with the print:
-
-> RESUME
-
-This will not only run your own print resume logic, but it will reset the heater timeout clocks and restore the z-hop move to put the printhead back on the print at the correct position.
+The best way to describe the workflow is as follows:
 
 ```mermaid
     graph TD;
     Printing --> Paused_Error
+    Paused_Error --> MMU_UNLOCK
+    MMU_UNLOCK --> Fix_Problem
     Paused_Error --> Fix_Problem
     Fix_Problem --> RESUME
     Fix_Problem --> MMU_RECOVER
@@ -70,3 +49,31 @@ This will not only run your own print resume logic, but it will reset the heater
     RESUME --> Printing
 ```
 
+<br>
+
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) State Recovery
+
+If you fix a problem using Happy Hare command or operations you can ignore this section, but if you are fixing completely manually, Happy Hare may not know the current state of the MMU (see [Macro Based Sequences](Custom-Load-Unload-Sequences#---_mmu_load_sequence--_mmu_unload_sequence) for all the gory detail) and this can lead to it failing to resume (just results in another error). Thankfully there is a command that will do this automatically the majority of the time:
+
+> MMU_RECOVER
+
+By default this causes Happy Hare to run some tests (like reading sensors and wiggling the filament) to try to assertain the correct state, for example, to confirm the position of the filament. But you can also force it by specifying additional options. E.g.
+
+> MMU_RECOVER TOOL=1 GATE=1 LOADED=1
+
+This will ensure that Happy Hare understands that tool 1 is selected on gate 1 and the filament is loaded in the extruder. See the [Command Reference](Command-Reference) for more details.
+
+One other operation that may be useful during recovery is updating the Gate map and Tool-to-Gate map. For example, correcting the tool to gate mapping or noting availabily of filament in a gate after loading new filament. The need for this depends a lot of configuration and sensor options - e.g. pre-gate sensors will automatically set filament availability. Read [Tool and Gate Maps](Tool-and-Gate-Maps) for a better understanding of the sate contained ini these maps.
+
+> [!NOTE]  
+> Remember this is optional and ONLY needed if you may have confused the MMU state. I.e. if you left everything where the MMU expects it there is no need to run and indeed if you use MMU commands then the state will be correct and there is never a need to run. However, this can be useful to force Happy Hare to run its own checks to, for example, confirm the position of the filament.
+
+<br>
+
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Resuming a print
+
+Once you have addressed the issue, optionally correctly MMU state you are ready to resume printing:
+
+> RESUME
+
+This will not only run your own print resume logic, but it will reset the heater timeout clocks and restore the z-hop move to put the printhead back on the print at the correct position.

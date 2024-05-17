@@ -1,5 +1,8 @@
 Happy Hare provides built in functionality for filament loading and unloading customized through `mmu_parameters.cfg`. In advanced circumstances and to support esoteric MMU designs it is possible to override the default behavior with user-supplied macros. By default these macros are not called, however, if `gcode_load_sequence: 1` or `gcode_unload_sequence: 1` are enabled they will be.  The two default macros in `mmu_sequence.cfg` (copied here) will/should provide exactly the same logic as the internal logic using a set of provided "modular" loading/unloading functions. They are a good starting point to copy for your own experiments.
 
+- [Macro Based Sequences](Custom-Load-Unload-Sequences#---_mmu_load_sequence--_mmu_unload_sequence)
+- [Available Macro "step" Functions](Custom-Load-Unload-Sequences#---internal-step-macro-reference)
+
 <br>
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) _MMU_LOAD_SEQUENCE & _MMU_UNLOAD_SEQUENCE
@@ -8,7 +11,7 @@ Happy Hare provides built in functionality for filament loading and unloading cu
 > [!WARNING]  
 > This is EXPERIMENTAL functionality and as such is subject to change (with only a mild apology :-)
 
-`mmu_sequence.cfg` contains futher examples for alternative MMU setups, but before experimenting it is essential to understand the state machine for filament position.  These states are as follows and the loading/unloading sequence must be capable of completing the load/unload sequence for any starting state.<br>
+`mmu_sequence.cfg` contains futher examples for alternative MMU setups, but before experimenting it is essential to understand the state machine for filament position.  These states are as follows and the loading/unloading sequence must be capable of completing the load/unload sequence for any starting state.
 
 ```mermaid
 graph TD;
@@ -27,7 +30,7 @@ graph TD;
     IN_EXTRUDER --> LOADED
 ```
 
-In additon to these states the macros are passed some additional information and hints about the context.  An important one is `FILAMENT_POS` which represents the position of the filament in mm either from "point 0" in the gate (load direction) or from the nozzle (unload direction).  Here are the default macros with additional information:<br>
+In additon to these states the macros are passed some additional information and hints about the context.  An important one is `FILAMENT_POS` which represents the position of the filament in mm either from "point 0" in the gate (load direction) or from the nozzle (unload direction).  Here are the default macros with additional information:
 
 
 ```yml
