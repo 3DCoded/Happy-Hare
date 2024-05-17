@@ -140,10 +140,10 @@ This section allows you to configure neopixel chains in the MMU.
 
 Review the main [Led-Support](Led-Support) for more details - there are lots of pictures and detailed info there.
 
-That pretty much sums up `mmu_hardware.cfg`.
-
 ---
 
+That pretty much sums up `mmu_hardware.cfg`.
+
 <p align="center">
- <img src="https://c.tenor.com/dJD2iLU0qGEAAAAC/high-five-top-gun.gif" alt="" width="244" height="146" />
+ <img src="resources/high-five-top-gun.gif" alt="High Five" width="244" height="146" />
 </p>
