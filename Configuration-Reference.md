@@ -38,12 +38,12 @@ mmu/
 ```
 
 This makes the minimal include into your printer.cfg easy and guarantees the correct load order!
-> [include mmu/base/*.cfg]
+> [include mmu/base/\*.cfg]
 
 If you are using optional modules they should appear after the above, for example:
 > [include mmu/base/\*.cfg]<br>
 > [include mmu/optional/menu.cfg]<br>
-> [include mmu/optional/blobifier*.cfg]<br>
+> [include mmu/optional/blobifier\*.cfg]<br>
 
 > [!IMPORTANT]  
 > Some of the configuration files are marked as `READ-ONLY`. These are not designed to be edited by the user - if you desired to change the behavior outside of the built-in extensibility you should copy the logic into macros of your own name and set the options in `mmu_parameters.cfg` to point to them instead.<br>
