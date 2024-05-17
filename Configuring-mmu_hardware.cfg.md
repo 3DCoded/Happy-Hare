@@ -140,6 +140,8 @@ This section allows you to configure neopixel chains in the MMU.
 
 Review the main [Led-Support](Led-Support) for more details - there are lots of pictures and detailed info there.
 
+<br>
+
 ---
 
 That pretty much sums up `mmu_hardware.cfg`.

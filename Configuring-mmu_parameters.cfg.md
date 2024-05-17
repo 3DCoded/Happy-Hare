@@ -17,7 +17,7 @@ Just a note that macro configuration is discussed in [Configuring mmu_macro_vars
 - [Tip Forming and Cutting](#---tip-forming-and-cutting)
 - [Gear/Extruder Synchronization](#---gearextruder-synchronization)
 - [Filament Management Options](#---filament-management-options)
-- [State Persistence](#---state-persistence-aka-turn-on-behavior)
+- [State Persistence aka Turn on Behavior](#---state-persistence-aka-turn-on-behavior)
 - [Cosmetic Options](#---cosmetic-options)
 - [Miscellaneous](#---miscellaneous)
 - [Macro Naming](#---macro-naming)
@@ -492,6 +492,8 @@ Normally all these settings are set based on your choice of 'mmu_vendor' and 'mm
 `cad_selector_tolerance` is the allowed extra selector movement.
 
 `encoder_default_resolution`is the approximate resolution in millimeters of a single encoder "count".  This is not used for measurement and is overwritten in the encoder calibration process.
+
+<br>
 
 ---
 

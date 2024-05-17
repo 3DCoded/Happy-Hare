@@ -26,7 +26,7 @@ This section controls the behavior of the start up and finalization of a print t
 `variable_reset_ttg` tells Happy Hare whether to reset the tool to gate map at the end of the print. Typically, the tool to gate map is not changed unless you switch filament colors or change the endless spool settings. Leaving this one `False` will save you from having to redo the tool to gate map on every print.  See [MMU_GATE_MAP](variable_user_pre_initialize_extension) for explaination on how to map the gates. Usually `False`.
 
 `variable_dump_stats` Tells Happy hare to display a popup on KlipperScreen and output in the console of the stats at the end of the print. It will look something like this:
-<p align=center><img src=https://github.com/IRTrail/Happy-Hare/assets/53546870/d67cca72-0755-4ed0-8466-9df2c0cd442c /></p>
+<p align=center><img src="resources/perfect.png"></p>
 
 That last part, `Record: 56` is good for bragging rights on Discord. Beware though, at the time of this writing, people are saying 1100+ swaps without issue! Amazing!
 
@@ -260,8 +260,10 @@ gcode: MMU_CHANGE_TOOL TOOL=6
 gcode: MMU_CHANGE_TOOL TOOL=7
 ```  
 
+<br>
+
+---
+
 That about sums it up. That's a lot to take in, so take your time and drink lots of coffee. You'll get there in time!
 
-<p align="center">
-<img src=https://c.tenor.com/SRXVjEfik0EAAAAM/goodmorning-coffeetime.gif />
-</p>
+<p align="center"><img src="resources/coffee_time.gif"></p>
