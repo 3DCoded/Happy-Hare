@@ -1,14 +1,25 @@
-
-# mmu_macro_vars.cfg  
 This is where you'll likely spend most of your time tuning the MMU. The bulk of what the MMU does is controlled here. So, grab a cup of coffee, get ready, and let's dive in!
 
----
-## save_variables
+- [save\_variables](#---save-variables)
+- [\_MMU\_SOFTWARE\_VARS](#---mmu-software-vars)
+- [\_MMU\_STATE\_VARS](#---mmu-state-vars)
+- [\_MMU\_LED\_VARS](#---mmu-led-vars)
+- [\_MMU\_SEQUENCE\_VARS](#---mmu-sequence-vars)
+- [\_MMU\_CUT\_TIP\_VARS](#---mmu-cut-tip-vars)
+- [\_MMU\_FORM\_TIP\_VARS](#---mmu-form-tip-vars)
+- [\_MMU\_CLIENT\_VARS](#---mmu-client-vars)
+
+<br>
+
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) save\_variables
+
 `filename: /home/pi/printer_data/config/mmu/mmu_vars.cfg`
 This is where Happy Hare saves all the variables and status information (remember, it's a state machine) for the operation of the MMU. You'll likely keep the default unless you have a super modified klipper install, in which case you probably have that all figured out anyway.
 
----
-## _MMU_SOFTWARE_VARS
+<br>
+
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) \_MMU\_SOFTWARE\_VARS
+
 This section controls the behavior of the start up and finalization of a print through Happy Hare. In [this document](https://github.com/moggieuk/Happy-Hare/blob/main/doc/slicer_setup.md), the operation and setup of the proper macro calls are explained in great detail. Since setting up the slicer is outside the scope of this document, be sure to read up there and get a good understanding of things before you edit this section.
 
 `variable_user_pre_initialize_extension`  This is called by `_MMU_START_SETUP` assuming you use the recommended Happy Hare start macros. You can use this extension to do a conditional home, set the printer LED status, or to put the printer into a certain state at the initiation of the print.
@@ -31,10 +42,11 @@ This section controls the behavior of the start up and finalization of a print t
 That last part, `Record: 56` is good for bragging rights on Discord. Beware though, at the time of this writing, people are saying 1100+ swaps without issue! Amazing!
 
 For more detailed info [see this document.](https://github.com/moggieuk/Happy-Hare/blob/main/doc/stats.md)
-Usually `True`.
 
----
-## _MMU_STATE_VARS
+<br>
+
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) \_MMU\_STATE\_VARS
+
 This section allows you to extend the functionality of Happy Hare with custom commands made after an action is performed, the state of the MMU has changed, or the gate map has changed. A good explaination of what all this means is [here.](https://github.com/moggieuk/Happy-Hare/blob/main/doc/macro_customization.md)
 
 `variable_user_action_changed_extension` runs a command or macro after Happy Hare executes an action.
@@ -47,8 +59,10 @@ As an example, if you have the [Klipper LED Effect module](https://github.com/ju
 `variable_user_action_changed_extension: STATUS_FLASH3`
 (Don't do this unless you want anyone watching to have a siezure though. Just saying.)
 
----
-## _MMU_LED_VARS
+<br>
+
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) \_MMU\_LED\_VARS
+
 This section controls the MMU LEDs. This does not affect any of the printer LEDs controlled by the Klipper LED Effect module](https://github.com/julianschill/klipper-led_effect)
 
 `variable_led_enable` allows Happy Hare to use the MMU leds. `True` if you have LEDs on the MMU.
@@ -69,8 +83,10 @@ This section controls the MMU LEDs. This does not affect any of the printer LEDs
 
 `variable_empty_light` defines the color used for an empty gate.
 
----
-## _MMU_SEQUENCE_VARS
+<br>
+
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) \_MMU\_SEQUENCE\_VARS
+
 These control the movement of the toolhead during a tool change.  
 If `enable_park` is `False` all movement during a tool change is disabled during a print except when handling a filament runout where `enable_runout_park` controls parking. This allows for parking the toolhead only for filament runout handling or excludes parking the toolhead due to filament runout.  
 Parking the tool head when not printing is controlled by `enable_standalone_park`.  
@@ -109,8 +125,10 @@ The following are similar to `_MMU_STATE_VARS` and allow user customization base
 `variable_user_post_load_extension` runs a command or macro after Happy Hare executes post-load logic. This would be a good place to add a nozzle brushing macro, but, just be sure the tool head doesn't crash into the print when running.  
 I.e. `variable_user_post_load_extension: CLEAN_NOZZLE`
 
----
-## _MMU_CUT_TIP_VARS
+<br>
+
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) \_MMU\_CUT\_TIP\_VARS
+
 These are all the variables which control the tip cutting procedure. There's quite a few, but most of them are pretty self-explanatory.
 
 `variable_restore_position` When set to `True` the toolhead will return to the initial position it was at before the cut tip procedure started. This is typically at the purge location. If turned off, it will move to the next position after completing the tip cut.  
@@ -167,7 +185,10 @@ Here's the basic algorithm for filament cutting:
 
 `variable_gantry_servo_up_angle` is the retracted position of the depressor pin servo.
 
-## _MMU_FORM_TIP_VARS
+<br>
+
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) \_MMU\_FORM\_TIP\_VARS
+
 These are all the parameters which control Happy Hare's implementation of tip forming. Most of these are similar to the parameters which most slicers use for tip forming. Indeed, it is up to you to determine whether to use Happy Hare or the slicer for tip forming. However, Happy Hare is set up to be convenient and more centralized than using slicer settings.  
 
 `variable_ramming_volume` is the amount of filament in mm^3 which is rammed into the nozzle to cool the melt pool enough to form a tip.  
@@ -222,7 +243,10 @@ RapidoHF: 22
 
 `variable_extruder_eject_speed` is the speed used to move the filament to  `variable_parking_distance`.
 
-## _MMU_CLIENT_VARS
+<br>
+
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) \_MMU\_CLIENT\_VARS
+
 These are variables used in general print and MMU moves.  
 
 `variable_retract` is the distance Happy Hare retracts when it (or you) initiates a pause.  
