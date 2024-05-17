@@ -4,7 +4,7 @@
 - [Purge Volumes](#---purge-volumes)
   - [Tuning `toolhead_ooze_reduction`](#tuning-toolhead_ooze_reduction)
 - [No Wipe Tower Option](#---no-wipe-tower-option)
-- [Related Docs](#related-docs)
+- [Tip Cutting](#---tip-cutting)
 
 There are two parts to an MMU toolchange that are critical to get set up correctly: tip forming and purging. Tip forming is optional if you go the extra step and configure a filament cutting option, but even if you do, it is advisible to have the ability to create decent tips for times when you are not using the cutter or want to fallback to the "traditional" method. Purging is the process of removing reminants of the old filament (and color) so that your print has clean color changes with sharp edges. Let's look at setting up those two cababilities.
 
@@ -30,8 +30,8 @@ Also, even if not using the slicer tip forming and ONLY using Happy Hare tip for
 
 <br>
 
-### Tuning Happy Hare `_MMU_CUT_TIP` Macro
-Happy Hare has a default macro to form tips. It uses a similar approach to Super Slicer / Prusa Slicer and thus the leanings from one can be applied to the other. The macro is defined in `mmu_form_tip.cfg` but the configuration variables are in `mmu_macro_vars.cfg` under the "\_MMU\_FORM\_TIP\_VARS" section. Tuning tips is a pain (hence the advent of filament cutting) but it can be made easier by following this procedure:
+### Tuning Happy Hare `_MMU_FORM_TIP` Macro
+Happy Hare has a default macro to form tips. It uses a similar approach to Super Slicer / Prusa Slicer and thus the leanings from one can be applied to the other. The macro is defined in `mmu_form_tip.cfg` but the configuration variables are in `mmu_macro_vars.cfg` under the `_MMU_FORM_TIP_VARS` section. Tuning tips is a pain (hence the advent of filament cutting) but it can be made easier by following this procedure:
 - Remove the bowden tube from your toolhead so you can freely pass in filament
 - Cut a 400mm piece of filament you are trying to tune
 - Set you extruder temperature
@@ -104,7 +104,7 @@ MMU_TEST_CONFIG toolhead_ooze_reduction=N
 ```
 Just don't forget to persist the final result in `mmu_parameters.cfg` when the print is done.
 
-<img src="Tip-Forming-and-Purging/toolhead_ooze_reduction.png" width="60%" alt="ooze reduction"><br>
+<p align="center"><img src="Tip-Forming-and-Purging/toolhead_ooze_reduction.png" width="60%" alt="ooze reduction"></p>
 
 <br>
 
@@ -135,6 +135,12 @@ T8   140  140  140  140  140  140  140  140   -
 
 > [!NOTE]
 > The CNC world and Happy Hare use tool names that are zero-based. Thus T0 is the first tool. Some slicers prefer to start with tool T1(!) Unfortunately this can lead to confusion but since the actual gcode will always contain `T0` that is the preferred numbering convention. Sorry Prusa.
+
+<br>
+
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Tip Cutting
+
+TODO
 
 <br>
 

@@ -11,7 +11,7 @@ Here are all the callout macros together with details of where to find them:
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) _MMU_ACTION_CHANGED
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) \_MMU\_ACTION\_CHANGED
 **Defined in `mmu_software.cfg`**
 
 Most of the time Happy Hare will be in the `Idle` state but it starts to perform a new action this macro is called.  The action string is passed as a `ACTION` parameter to the macro but can also be read with the printer variable `printer.mmu.action`. The previous action is passed in as `OLD_ACTION`
@@ -57,10 +57,10 @@ gcode:
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) _MMU_PRINT_STATE_CHANGED
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) \_MMU\_PRINT\_STATE\_CHANGED
 **Defined in `mmu_software.cfg`**
 
-Happy Hare implements a state machine tracking the prgoress of a print. It is difference from the klipper `print_stats` because it is specific to MMU state during a print. Full details can be found [here](/https://github.com/moggieuk/Happy-Hare/tree/development?tab=readme-ov-file#13-job-state-transistions-and-print-startend-handlingdoc/TODO).  Every time a state changes this macro will be called. Then new state will be passed with the `STATE` parameter and the previous state as `OLD_STATE`. The state can also be read with the printer variable `printer.mmu.print_state`
+Happy Hare implements a state machine tracking the prgoress of a print. It is difference from the klipper `print_stats` because it is specific to MMU state during a print. Full details can be found [here](Print-Job-State-Machine#---job-state-transitions).  Every time a state changes this macro will be called. Then new state will be passed with the `STATE` parameter and the previous state as `OLD_STATE`. The state can also be read with the printer variable `printer.mmu.print_state`
 
 Possible state strings are:
 
@@ -103,7 +103,7 @@ gcode:
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) _MMU_GATE_MAP_CHANGED
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) \_MMU\_GATE\_MAP\_CHANGED
 **Defined in `mmu_software.cfg`**
 
 Happy Hare maintains a map of all the filaments in the MMU including material type, color, etc.  When this map changes this macro is called. The `GATE` parameter will either represent a specific gate that has been updated or `-1` meaning that mutliple gates are updated. The actual gate map infomation can be read through printer variables `printer.mmu.gate_color`, `printer.mmu.gate_material`, etc..
@@ -185,27 +185,27 @@ variable_park_after_form_tip: 0         # Set to 1 if tip cutting at toolhead to
 
 Here are some examples of logic that might be put in these macros:
 
-#### _MMU_PRE_UNLOAD (mmu_sequence.cfg)
+#### \_MMU\_PRE\_UNLOAD (mmu\_sequence.cfg)
 Logic here would typically move the toolhead to a safe spot like over the purge bucket
 
-#### _MMU_POST_FORM_TIP (mmu_sequence.cfg)
+#### \_MMU\_POST\_FORM\_TIP (mmu\_sequence.cfg)
 Optional this logic would do the same this as `_MMU_PRE_UNLOAD` in the case of a tip cutting movement
 
-#### _MMU_POST_UNLOAD (mmu_sequence.cfg)
+#### \_MMU\_POST\_UNLOAD (mmu\_sequence.cfg)
 Logic here can be used to implement tip cutting and cleanup at the MMU gate
 
-#### _MMU_PRE_LOAD (mmu_sequence.cfg)
+#### \_MMU\_PRE\_LOAD (mmu\_sequence.cfg)
 This is a great spot to add logic to take time lapse photography (although it can also be done elsewhere)
 
-#### _MMU_POST_LOAD (mmu_sequence.cfg)
+#### \_MMU\_POST\_LOAD (mmu\_sequence.cfg)
 Logic here can perform extra purging operations, pause for ooze and then wipe nozzle before returning to the original position recorded in either the `_MMU_PRE_UNLOAD` or `_MMU_POST_FORM_TIP` macros
 
 > [!NOTE]  
-> Although Happy Hare has defensive logic to always return the toolhead to the correct position it may do this slowly because it is only anticipating a z_hop movement. A common problem is that the `_MMU_POST_LOAD` does not restore the X/Y toolhead position correctly leading to this strange slow movement.
+> Although Happy Hare has defensive logic to always return the toolhead to the correct position it may do this slowly because it is only anticipating a z\_hop movement. A common problem is that the `_MMU_POST_LOAD` does not restore the X/Y toolhead position correctly leading to this strange slow movement.
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) _MMU_FORM_TIP
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) \_MMU\_FORM\_TIP
 **Defined in `form_tip.cfg`**
 
 This is probably the most important aspect of getting a reliable MMU after basic calibration is complete. There is plenty written about tip forming and lots of advice in the forums.  What is important to understand here is that this macro mimicks the tip forming logic from SuperSlicer (almost identical to PrusaSlicer). Read SuperSlicer documentation for hints. That said, here are a few things you should know:
@@ -215,7 +215,7 @@ This is probably the most important aspect of getting a reliable MMU after basic
   - Setting the `variable_standalone: 1` in the `T0` macro</li>
 * When tuning if is useful to pull the bowden from your extruder, load filament with the `MMU_LOAD EXTRUDER_ONLY=1` command, then call `MMU_FORM_TIP` command (and not the macro directly) or better still `MMU_EJECT EXTRUDER_ONLY=1`</li>
   - The benefit of calling as desribed is the additional TMC current control and pressure advance restoration will occur so it exactly mimicks what will occur when called automatically later</li>
-  - If calling `MMU_FORM_TIP` you will want to set `variable_final_eject: 1` so that the filament is fully ejected for inspection (MMU_EJECT will automatically do this and therefore is recommended)
+  - If calling `MMU_FORM_TIP` you will want to set `variable_final_eject: 1` so that the filament is fully ejected for inspection (MMU\_EJECT will automatically do this and therefore is recommended)
   - Calling with `MMU_EJECT EXTRUDER_ONLY=1` will also report on the final parking position of the filament</li>
 * Before you start tweaking, make sure the settings accurately represent the geometry of your extruder. The defaults are for my Voron Clockwork 2 extruder with Voron Revo hotend with 0.4mm tip</li>
 * Lastely there is a setting called `parking_distance` which, if set, will determine the final resting place measured from the nozzle. This should be a postive number!</li>
@@ -253,7 +253,7 @@ variable_parking_distance: 35          # Final filament parking position after f
 variable_final_eject: 0                # default 0, enable during standalone tuning process to eject the filament
 ```
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) _MMU_CUT_TIP
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) \_MMU\_CUT\_TIP
 **Defined in `cut_tip.cfg`**
 
 To elminate the need to spend time tuning the tip forming procedure (you never wanted to understand fluid dynamics, right?!) you can opt to cut filament at the toolhead. The filametrix cutter bundled with ERCFv2 is an example of this. Note that Happy Hare can only have one tip creation macro defined. You can switch from the default tip forming to this tip cutting macro by setting `form_tip_macro: _MMU_CUT_TIP` in `mmu_parameters.cfg` to point to this macro instead.

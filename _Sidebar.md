@@ -56,18 +56,18 @@
 
 </details>
 
-<sub><i><b>--YOUR MMU IS READY TO PLAY WITH--</b></i></sub>
+<sub><i><b>~~YOUR MMU IS READY TO PLAY WITH~~</b></i></sub>
 
 <details open><summary><b>&nbsp;6. Slicer-MMU Setup</b></summary>
 
 - [Slicer Setup](Slicer-Setup)
 - [Tip Forming and Purging](Tip-Forming-and-Purging)
-  - [Tip Cutting]
+  - [Tip Cutting](Tip-Forming-and-Purging#---tip-cutting)
 - [Toolchange Toolhead Movement](Toolchange-Movement)
 
 </details>
 
-<sub><i><b>--NOW YOU ARE READY TO PRINT!--</b></i></sub>
+<sub><i><b>~~NOW YOU ARE READY TO PRINT!~~</b></i></sub>
 
 <details open><summary><b>&nbsp;7. Optional Feature Setup</b></summary>
 
