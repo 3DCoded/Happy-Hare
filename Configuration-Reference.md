@@ -18,23 +18,23 @@ mmu/
     mmu_hardware.cfg
     mmu_parameters.cfg
     mmu_macro_vars.cfg
-    mmu_software.cfg        READ-ONLY
-    mmu_sequence.cfg        READ-ONLY
-    mmu_leds.cfg            READ-ONLY
-    mmu_form_tip.cfg        READ-ONLY
-    mmu_cut_tip.cfg         READ-ONLY
-    mmu_state.cfg           READ-ONLY
+    mmu_software.cfg        # READ-ONLY
+    mmu_sequence.cfg        # READ-ONLY
+    mmu_leds.cfg            # READ-ONLY
+    mmu_form_tip.cfg        # READ-ONLY
+    mmu_cut_tip.cfg         # READ-ONLY
+    mmu_state.cfg           # READ-ONLY
 
   optional/
-    mmu_menu.cfg            READ-ONLY
-    mmu_ercf_compat.cfg     READ-ONLY
-    client_macros.cfg       READ-ONLY
+    mmu_menu.cfg            # READ-ONLY
+    mmu_ercf_compat.cfg     # READ-ONLY
+    client_macros.cfg       # READ-ONLY
 
   addons/
     blobifier_hw.cfg
-    blobifier.cfg           READ-ONLY
+    blobifier.cfg           # READ-ONLY
     mmu_erec_cutter_hw.cfg
-    mmu_erec_cutter.cfg     READ-ONLY
+    mmu_erec_cutter.cfg     # READ-ONLY
 ```
 
 This makes the minimal include into your printer.cfg easy and guarantees the correct load order!
@@ -53,7 +53,7 @@ If you are using optional modules they should appear after the above, for exampl
 > Some of the configuration files are marked as `READ-ONLY`. These are not designed to be edited by the user - if you desired to change the behavior outside of the built-in extensibility you should copy the logic into macros of your own name and set the options in `mmu_parameters.cfg` to point to them instead.<br>
 > The remainder of the `cfg` files are designed to be edited to allow for configuration and customization.
 
-`mmu_vars.cfg' Used to persist state and certain dynamic configuration. **Read-Only**
+`mmu_vars.cfg` Used to persist state and certain dynamic configuration. **Read-Only**
 
 `mmu.cfg` Configuration for control board (mcu) device location and aliases for control board pins.
 
@@ -65,7 +65,7 @@ If you are using optional modules they should appear after the above, for exampl
 
 `mmu_software.cfg` Contains core macros leveraged by Happy Hare. **Read-Only**
 
-`mmu_sequence.cfg`` Core macros for customization of loading and unload sequences. **Read-Only**
+`mmu_sequence.cfg` Core macros for customization of loading and unload sequences. **Read-Only**
 
 `mmu_leds.cfg` Core macros for controlling LEDs. **Read-Only**
 
@@ -89,4 +89,4 @@ If you are using optional modules they should appear after the above, for exampl
 
 `mmu_erec_cutter.cfg` Default macros for controlling ERCF filament cutter. **Read-Only**
 
-Now that you understand the layout and purpose of each file, you can follow the links at the top of this wiki for detailed guides on each config file.
+Now that you understand the layout and purpose of each file, you can follow the links at the top of this wiki for detailed guides on each config file...
