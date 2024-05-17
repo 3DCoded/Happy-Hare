@@ -29,7 +29,7 @@ The `mmu.log` logfile will be placed in the same directory as other Klipper log 
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) KlipperScreen Happy Hare
 
-<img src="resources/mmu_main_printing.png" width="500" alt="KlipperScreen">
+<p align="center"><img src="resources/mmu_main_printing.png" width="500" alt="KlipperScreen"></p>
 
 Even if not a KlipperScreen user yet you might be interested in my fork of KlipperScreen [Github link](https://github.com/moggieuk/KlipperScreen-Happy-Hare-Edition) simply to control your MMU. It makes using your MMU the way it should be. Dare I say as easy at Bambu Labs ;-) I run mine with a standalone Raspberry Pi attached to my buffer array and can control multiple MMU's with it.
 
