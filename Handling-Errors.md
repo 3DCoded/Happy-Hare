@@ -37,14 +37,32 @@ Note that you can mimick a pause behavior for testing with this command:
 The best way to describe the workflow is as follows:
 
 ```mermaid
+    stateDiagram-v2
+    Printing --> Paused_Error
+    Paused_Error --> Unlocked: MMU_UNLOCK
+    Unlocked --> Unlocked: MMU_RECOVER
+    Unlocked --> Printing: RESUME
+    Paused_Error --> Printing: RESUME
+```
+
+#    initialized --> started: (print_start)
+#    note left of initialized: reset
+#    standby --> started: (print_start)
+#    note left of standby: idle_timeout
+#    ready --> started: (print_start)
+#    started --> printing
+#    printing --> complete: (print_complete))
+#    printing --> error: (print_error)
+
+```mermaid
     graph TD;
     Printing --> Paused_Error
     Paused_Error --> MMU_UNLOCK
     MMU_UNLOCK --> Fix_Problem
     Paused_Error --> Fix_Problem
+    Fix_Problem --> CANCEL_PRINT
     Fix_Problem --> RESUME
     Fix_Problem --> MMU_RECOVER
-    Fix_Problem --> CANCEL_PRINT
     MMU_RECOVER --> RESUME
     RESUME --> Printing
 ```
