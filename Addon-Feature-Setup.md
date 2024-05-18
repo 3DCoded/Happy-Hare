@@ -41,5 +41,3 @@ https://github.com/Dendrowen/Blobifier
 1. Edit `blobifier.cfg` and `blobifier_hw.cfg` to work with your setup
 1. Set `variable_user_post_load_extension : "BLOBIFIER"` in `mmu_macro_vars.cfg`
 1. Optionally set `variable_user_pre_unload_extension : "BLOBIFIER_PARK"` in `mmu_macro_vars.cfg` to park the nozzle on the tray during a swap
-
-<hr>
