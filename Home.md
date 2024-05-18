@@ -1,7 +1,6 @@
-# Under Construction
+# Under Construction - For now use the docs in the main repo...
+(or at least don't complain about the Wiki!)
 
----
-For now use the docs in the main repo...
 ---
 
 <br>
