@@ -10,7 +10,7 @@ This is a new section that is under construction.
 ### Invalid speed in 'G1 F-2147483648' (or similar)
 This is a divide by zero bug in popular slicers like superslicer, meaning somewhere you have two inverse settings that together equal zero and superslicer. It occurs when you try to completely turn of slicer tip forming. The workaround is to set the offending value to a near-zero number. E.g.
 
-<img src="error_2147483648.jpg" width=50%>
+<img src="FAQ/error_2147483648.jpg" width=50%>
 
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Loading Problems
