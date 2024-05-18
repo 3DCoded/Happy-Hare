@@ -8,17 +8,17 @@ If you have a custom setup, enter your pins here. Don't add pin modifiers such a
 
 This is where you're going to place your device location. If you have a usb connected MMU control board like the EZBRD, you'll enter something like:  
 
-![image](resources/serial_mcu.png)
+![image](Configuring-mmu/serial_mcu.png)
 
 It's important to include `/dev/serial/by-id/` because Klipper and Linux need the full path name to make the connection. One way to find this info is with the new Mainsail `DEVICES` button. It's in the top right of the screen when editing a config file.
 
-![image](resources/mainsail_save_config.png)
+![image](Configuring-mmu/mainsail_save_config.png)
 
 Otherwise, you'll need to ssh into the rpi and do a `ls /dev/serial/by-id/` to find your serial device (usually connected to the rpi with a USB cable). This is very similar to how you connected your main MCU to klipper in `printer.cfg`.  
 
 If you use CANBUS, then you'll enter your CANBUS UUID in the same location, but the line will look something like this:  
 
-![image](resources/canbus_mcu.png)
+![image](Configuring-mmu/canbus_mcu.png)
 
 We're not going to go into retrieving the UUID, but [Esoterical has a good guide](https://canbus.esoterical.online/) if you need help. The Mainsail button will try to find the CANBUS UUID, but it doesn't work if Klipper is already flashed to it.
 
@@ -26,4 +26,4 @@ That's pretty much it for setting up the MMU control board. Simple, right? (Ok, 
 
 ---
 
-<p align="center"><img src="resources/raise_glass.gif" alt="" width="220" height="220" /></p>
+<p align="center"><img src="Configuring-mmu/raise_glass.gif" alt="" width="220" height="220" /></p>
