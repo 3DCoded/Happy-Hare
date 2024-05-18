@@ -56,7 +56,7 @@ For completeness, endstops are created on the selector. Typically there are two 
 <br>
 
 Complete set of default Happy Hare endstops and filament sensors:<br>
-<img src="Conceptual-MMU/filament_sensors.jpg" width="350" alt="Filament Sensors"> <img src="resources/endstops.jpg" width="350" alt="Endstops">
+<img src="Conceptual-MMU/filament_sensors.jpg" width="350" alt="Filament Sensors"> <img src="Conceptual-MMU/endstops.jpg" width="350" alt="Endstops">
 
 <br>&nbsp;
 
