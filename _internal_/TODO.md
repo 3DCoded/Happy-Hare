@@ -1,4 +1,4 @@
-Scratch pad TODO list
+## Scratch pad TODO list
 1. DONE - Rewrite automated bowden calibration
 2. DONE - Finish homing measurement for non-homing extruder
 3. DONE - Pass params to RESUME
@@ -36,11 +36,12 @@ Every update of pigment to gate map would recalc matrix and present as printer v
 ```
 ---
 
-DONE - If EndlessSpool enabled and initial tool is empty, auto map to next gate
-
-DONE - Check comments on tool_tip_macro.  Example:
+22. DONE - If EndlessSpool enabled and initial tool is empty, auto map to next gate
+23. DONE - Check comments on tool_tip_macro.  Example:
+```
 variable_cooling_tube_position should have the comment: Measured from Nozzle to Top of Heater Block
 variable_cooling_tube_length should have the comment: Measured from Top of Heater Block to Top of Heatsink
+```
 
 ### Reference Markdown
 
