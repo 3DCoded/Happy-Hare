@@ -1,9 +1,10 @@
 # Under Construction
 
+---
 For now use the docs in the main repo...
+---
 
----
----
+<br>
 
 # Happy Hare Wiki
 <p align="center"><img src="resources/happy_hare_logo.jpg" alt='Happy Hare' width='30%'></p>

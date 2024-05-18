@@ -1,11 +1,11 @@
 <details open><summary><b>&nbsp;1. Introduction</b></summary>
 
-- [Documentation](_Home)
-  - [How to get help](_Home#---how-to-get-help)
-  - [Organization](_Home#---organization)
-  - [Common Terms and Abbreviations](_Home#---common-terms-and-abbreviations)
-  - [Happy Hare General Questions](_Home#---happy-hare-general-questions)
-  - [Setup and Installation Pages](_Home#---setup-and-installation-pages)
+- [Documentation](Home)
+  - [How to get help](Home#---how-to-get-help)
+  - [Organization](Home#---organization)
+  - [Common Terms and Abbreviations](Home#---common-terms-and-abbreviations)
+  - [Happy Hare General Questions](Home#---happy-hare-general-questions)
+  - [Setup and Installation Pages](Home#---setup-and-installation-pages)
 - [Conceptual MMUs](Conceptual-MMU)
   - [Supported Sensors](Conceptual-MMU#---supported-sensors)
 
