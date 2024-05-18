@@ -78,13 +78,6 @@
 
 </details>
 
-<details open><summary><b>&nbsp;8. Optional Feature Setup</b></summary>
-
-- [EREC Filament Cutter]
-- [Blobifier Purging]
-
-</details>
-
 <details open><summary><b>&nbsp;8. Advanced Configuration</b></summary>
 
 - [Macro-Customization](Macro-Customization)
