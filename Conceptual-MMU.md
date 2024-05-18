@@ -1,8 +1,8 @@
 #### Page Sections:
-- [Type A](#---type-a)
+- [Type A](#---type-a) - Single Driver with Filament Selector
   - [Supported Sensors](#---supported-sensors)
-- [Type B](#---type-b)
-- [Type C](#---type-c)
+- [Type B](#---type-b) - Multiple Drivers with Filament Combiner
+- [Type C](#---type-c) - Multiple Drivers with Filament Selector
 
 Basic MMU types supported by Happy Hare and the function of sensors.
 
