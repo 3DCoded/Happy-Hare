@@ -1,4 +1,3 @@
-# Happy Hare - FAQ
 This is a new section that is under construction.
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Hardware
