@@ -74,6 +74,7 @@
 - [Gcode Preprocessing](Gcode-Preprocessing)
 - [LED Support](Led-Support)
 - [Spoolman Support](Spoolman-Support)
+- [Third Party Addon Features](Addon-Feature-Setup)
 
 </details>
 
@@ -84,7 +85,7 @@
 
 </details>
 
-<details open><summary><b>&nbsp;9. Advanced Configuration</b></summary>
+<details open><summary><b>&nbsp;8. Advanced Configuration</b></summary>
 
 - [Macro-Customization](Macro-Customization)
   - [Print Job State Machine](Print-Job-State-Machine)
@@ -92,7 +93,7 @@
 
 </details>
 
-<details open><summary><b>10. Advanced Concepts</b></summary>
+<details open><summary><b>&nbsp;9. Advanced Concepts</b></summary>
 
 - [State Persistence](State-Persistence)
 - [Statistics and Counters](Statistics-and-Consumption-Counters)
@@ -109,7 +110,7 @@
 - [Synchronized Gear/Extruder](Synchronized-Gear-Extruder)
   - [Sync Feedback Sensors](Synchronized-Gear-Extruder#---sync-feedback-sensor-options)
 
-<details open><summary><b>11. Quick References</b></summary>
+<details open><summary><b>10. Quick References</b></summary>
 
 - [Configuration Reference](Configuration-Reference)
   - [mmu.cfg](Configuring-mmu.cfg)
@@ -121,7 +122,7 @@
 
 </details>
 
-[**12. Troubleshooting**](Troubleshooting-and-Common-Issues)<br>
-[**13. Change Log**](Change-Log)<br>
-[**14. FAQ**](FAQ)<br>
-[**15. Change Log**](Change-Log)<br>
+[**11. Troubleshooting**](Troubleshooting-and-Common-Issues)<br>
+[**12. Change Log**](Change-Log)<br>
+[**13. FAQ**](FAQ)<br>
+[**14. Change Log**](Change-Log)<br>
