@@ -500,4 +500,4 @@ Normally all these settings are set based on your choice of 'mmu_vendor' and 'mm
 
 Whew. That was a lot. Like...A LOT. So much to learn here. Don't worry, the more you use the MMU, the mor familiar with these parameters and how they interact with each other you'll become.
 
-<p align="center"><img src="resources/all_good.gif"></p>
+<p align="center"><img src="Configuring-mmu_parameters/all_good.gif"></p>

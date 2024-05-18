@@ -148,5 +148,5 @@ Review the main [Led-Support](Led-Support) for more details - there are lots of 
 That pretty much sums up `mmu_hardware.cfg`.
 
 <p align="center">
- <img src="resources/high-five-top-gun.gif" alt="High Five" width="244" height="146" />
+ <img src="Configuring-mmu_hardware/high-five-top-gun.gif" alt="High Five" width="244" height="146" />
 </p>
