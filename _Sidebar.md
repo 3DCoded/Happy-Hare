@@ -117,6 +117,5 @@
 </details>
 
 [**11. Troubleshooting**](Troubleshooting-and-Common-Issues)<br>
-[**12. Change Log**](Change-Log)<br>
-[**13. FAQ**](FAQ)<br>
-[**14. Change Log**](Change-Log)<br>
+[**12. FAQ**](FAQ)<br>
+[**13. Change Log**](Change-Log)<br>
