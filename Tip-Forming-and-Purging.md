@@ -140,7 +140,32 @@ T8   140  140  140  140  140  140  140  140   -
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Tip Cutting
 
-TODO
+Tuning a tip forming macro is time consuming and very frustrating, mainly because filament type and temperature have a configurable effect meaning its hard to find the sweet spot. You can, however, do away with tip forming altogether and cut the end of the filament instead.
+
+- Advantages:
+  - Guarantees clean tips without hairs for reliable filament loading
+  - No need to beat your head against the wall tuning tip forming
+  - Works with all filament types
+- Disadvantages:
+  - Additional hardware
+  - Blade is a consumable that will need to be replaced 
+  - Wastes a little more filament and time when purging (if cutter is in toolhead)
+
+Whilst it is possible to added a cutter at the MMU (see [EREC](Addon-Feature-Setup#---erec-filament-cutter)), tip cutting is generally achieved by a toolhead mounted cutter. Usually the cutter is activated by moving the toolhead to a specific position which has a depressor or a servo retractable arm which pushes on the activation mechanism of the toolhead cutter as the toolhead moves into the cutting position.
+
+### Turning on Tip Cutting
+Tip cutting is activated by changing `form_tip_macro` to `_MMU_CUT_TIP` in `mmu_parameters.cfg` telling Happy Hare to use the tip cutting routine instead of the tip forming routine.
+
+### The Tip Cutting Routine
+Tip cutting is activated when Happy Hare sees a tool change command in the g-code. When this happens, happy hare starts by moving the toolhead to the prime tower location (or other specified location), then preparing the toolhead for cutting.<br>
+The toolhead is prepared with a few cooling moves, then positions the filament to the cutting position. The cooling moves help keep the cut tip from jamming up while the filament swap happens.<br>
+The filament is then moved to the cutting position (inside the toolhead, the toolhead doesn't move during this operation), which is tuned by the user to cut the filament using the minimum necessary amount of filament behind while still having a good tip.<br>
+Then, the toolhead is moved to the cutting staging position. This is a position just outside the cut position which is a safe location from which to start the cut move.<br>
+Next the toolhead makes a slow approach to the depressor, then a quick move to cut the filament, a quick retract move, then a slow move back to the staging position.<br>
+Finally, Happy Hare unloads the filament, loads the new filament, then purges, and resumes printing.
+
+### Tuning Tip cutting
+The bulk of tip cutting, and indeed, the only user editable parameters, is in `mmu_macro_vars.cfg`. There are several parameters which need attention, but this isn't overwhelming. Just take it step by step, as laid out in the config file. For detailed explanation of all the parameters read [Configuring mmu_macro_vars.cfg](Configuring-mmu_macro_vars.cfg#---_mmu_cut_tip_vars).
 
 <br>
 
