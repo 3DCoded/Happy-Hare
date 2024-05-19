@@ -14,11 +14,11 @@
 <details open><summary><b>&nbsp;2. Installation</b></summary>
 
 - [Happy Hare Install](Installation)
+  - [Cloning Happy Hare Repo](Installation#---cloning-happy-hare-repo)
+  - [Running Installer](Installation#---running-installer)
   - [Creating Base Klipper Config](Installation#---creating-base-klipper-config)
   - [Pause/Resume/Cancel_Print Macros](Installation#---pauseresumecancel_print-macros)
   - [Upgrading](Installation#---upgrading)
-  - [Config Overview](Installation#---config-overview)
-  - [MMU Vendor Notes](Installation#---mmu-vendor-notes)
 
 </details>
 
