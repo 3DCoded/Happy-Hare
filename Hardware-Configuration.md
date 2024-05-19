@@ -193,3 +193,10 @@ You can also try:
 MMU_SERVO POS=down
 MMU_SERVO POS=up
 ```
+
+<br>
+
+### More essential config setup:
+[Movement and Homing](Toolchange-Movement)
+[Happy Hare Parameters](Happy-Hare-Parameters)
+[Macro Configuration](Macro-Configuration)

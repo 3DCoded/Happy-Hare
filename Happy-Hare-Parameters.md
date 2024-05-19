@@ -586,3 +586,10 @@ When `mmu_vendor` and `mmu_version` are set, Happy Hare will use the correct CAD
 #
 #encoder_default_resolution: 0.676	# Approximate resolution(mm) of a single encoder "count". Not used for measurement
 ```
+
+<br>
+
+### More essential config setup:
+[Hardware Configuration](Hardware-Configuration)
+[Movement and Homing](Movement-and-Homing)
+[Macro Configuration](Macro-Configuration)

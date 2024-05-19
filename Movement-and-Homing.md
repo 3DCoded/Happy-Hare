@@ -73,5 +73,11 @@ For quick reference here are the two test MMU move commands:
 
 ### What's the point?
 Hopefully you can see some of the coordinated movements that are possible that are highly useful for an MMU setup.  For example, I'm current loading filament with an incredibly fast bowden load using the gear stepper followed by a synchronized homing move of the extruder and gear, homing to the nozzle using `mmu_ext_touch` (stallguard) endstop. It requires zero knowledge of extruder dimensions and no physical switches! It also has lots of uses for custom setups with filmament cutters or other purging mechanisms.
-
 Altough this advanced functionality is already being used internally in Happy Hare. You will need to use the manual gcode commands or customize the loading and unloading gcode sequences with the provided `_MMU_STEP_MOVE` and `_MMU_STEP_HOMING_MOVE` to do highly imaginatively things - let me know how you get on.
+
+<br>
+
+### More essential config setup:
+[Hardware Configuration](Hardware-Configuration)
+[Happy Hare Parameters](Happy-Hare-Parameters)
+[Macro Configuration](Macro-Configuration)
