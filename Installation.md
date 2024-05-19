@@ -32,7 +32,7 @@ ssh pi@192.168.0.256
 ```  
 (You'll need to change the ip address.)  
 
-<p align="center"><img src="Installation/powershell.png"></p>
+<p align="left"><img src="Installation/powershell.png" width="80%"></p>
 
 From there, you're going to clone Happy Hare software to your rpi:  
 
@@ -52,7 +52,7 @@ cd Happy-Hare
 ```
 
 Here is a picture of the previous steps successfully performed:
-<p align="center"><img src="Installation/console_cloning.png"></p>
+<p align="left"><img src="Installation/console_cloning.png"></p>
 
 <br>
  
@@ -127,56 +127,56 @@ Choose from the list. The options will from here out based on what you choose:
     - Custom setup
     - Just basic files you can edit yourself later.  
 
-<p align="center"><img src="Installation/installer_questions.png"></p>
+<p align="left"><img src="Installation/installer_questions.png"></p>
 
 For this example, we're just going to run through a ERCF V2.O install, as that is the most popular option at the time of this writing.  
 
 ### 2. Number of Gates
 Happy Hare installer then asks for the number of gates.  
 
-<p align="center"><img src="Installation/questions_gates.png"></p>
+<p align="left"><img src="Installation/questions_gates.png"></p>
 
 Enter the correct number of gates for your ERCF.  
 
 #### 3. Control Board
 Select the type of control board you have installed.  
 
-<p align="center"><img src="Installation/questions_mcu.png"></p>
+<p align="left"><img src="Installation/questions_mcu.png"></p>
 
 #### 4. Control Board Address
 Happy Hare will then attempt to figure out where your control board is. So far, this doesn't work for CANBUS boards.  
 
-<p align="center"><img src="Installation/questions_mcu_address.png"></p>
+<p align="left"><img src="Installation/questions_mcu_address.png"></p>
 
-#### 5.  Selector Touch Operation
+#### 5. Selector Touch Operation
 Decide whether or not to enable Selector Touch operation. This can help with recovery of an error, but is also a bit difficult to get set up properly. It's better to say "no" and get it working after you're more familiar with the ERCF and Happy Hare.  
 
-<p align="center"><img src="Installation/questions_touch.png"></p>
+<p align="left"><img src="Installation/questions_touch.png"></p>
 
 #### 6. LED Options
 If you have neopixels installed on your ERCF, enable them here.  
 
-<p align="center"><img src="Installation/questions_led.png"></p>
+<p align="left"><img src="Installation/questions_led.png"></p>
 
 #### 7. Servo Options
 Select your servo option from the list.
 
-<p align="center"><img src="Installation/questions_servo.png"></p>
+<p align="left"><img src="Installation/questions_servo.png"></p>
 
-#### 8.  Clog detection
+#### 8. Clog detection
 If you have a reliable encoder, it's probably best to enable clog detection and set it to automatic. This acts like a smart filament sensor and will pause the print if something goes bad with the filament feed.  
 
-<p align="center"><img src="Installation/questions_clog.png"></p>
+<p align="left"><img src="Installation/questions_clog.png"></p>
 
 #### 9. EndlessSpool
 Happy Hare has the capability to map multiple gates to one tool. This allows for "endless spool" operation. When one spool runs out, if you have the same material and color mapped to another gate, it will automatically switch to the other gate and resume printing. If you have an encoder and gate switches, this option is recommended for long prints.
 
-<p align="center"><img src="Installation/questions_endless.png"></p>
+<p align="left"><img src="Installation/questions_endless.png"></p>
 
 #### 10. Final step
 The last step asks to add the `[include mmu*]` lines to your printer.cfg. **On initial setup it is recommended to select yes.** In the image below, it was set to "no" because Happy Hare is already installed and wasn't needed.  
 
-<p align="center"><img src="Installation/questions_include.png"></p>
+<p align="left"><img src="Installation/questions_include.png"></p>
 
 From here, Happy Hare will install itself with the options you've selected. You should have a nice little report that Happy Hare is ready:  
 
@@ -191,7 +191,9 @@ Now, you have Happy Hare installed on your rpi. Feels good, doesn't it?
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Pause/Resume/Cancel\_Print Macros
 
-It is recommended that you use the PAUSE/RESUME/CANCEL\_PRINT macros aka "client macros" that are supplied with Happy Hare at least when setting up. The reason is that they are reasonably full featured and integrate with the "sequence" macros you will learn about later that control toolhead movement during a toolchange. 
+It is recommended that you use the PAUSE/RESUME/CANCEL\_PRINT macros aka "client macros" that are supplied with Happy Hare at least when setting up. The reason is that they are reasonably full featured and integrate with the "sequence" macros you will learn about later that control toolhead movement during a toolchange. These macros can be used by ensuring that this appears in your `printer.cfg` config after the `[include mmu/base/*.cfg]`:
+
+> [include mmu/optional/client\_macros.cfg]
 
 Regardless of whether you use your own or use the ones provided in `client_macros.cfg`, Happy Hare will automatically wrap anything defined so that it can inject the essential steps to control the MMU.
 

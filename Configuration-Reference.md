@@ -43,6 +43,7 @@ This makes the minimal include into your printer.cfg easy and guarantees the cor
 
 If you are using optional modules they should appear after the above, for example:
 > [include mmu/base/\*.cfg]<br>
+> [include mmu/optional/client\_macros.cfg]<br>
 > [include mmu/optional/menu.cfg]<br>
 > [include mmu/optional/blobifier\*.cfg]<br>
 
