@@ -182,7 +182,7 @@ From here, Happy Hare will install itself with the options you've selected. You 
 
 <p align="center"><img src="Installation/happy_hare_ready.png"></p>
 
-Once this has been run sucessfully you will have outline configuration files installed. Happy Hare creates a hierachy of files in the klipper config directory. To review the layout and purpose of each of these files read [Configuration Reference](Configuration-Reference#---location-of-configuration-files)
+Once this has been run sucessfully you will have outline configuration files installed. Happy Hare creates a hierachy of files in the klipper config directory. To review the layout and purpose of each of these files read [Configuration Reference](Configuration-Reference)
 
 Now, you have Happy Hare installed on your rpi. Feels good, doesn't it?  
 <p align="center"><img src="Installation/happy_cat.gif"></p>

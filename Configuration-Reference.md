@@ -1,4 +1,4 @@
-#### Page Sections:
+#### Specfic Config References:
 - [mmu.cfg](Configuring-mmu.cfg)
 - [mmu_hardware.cfg](Configuring-mmu_hardware.cfg)
 - [mmu_parameters.cfg](Configuring-mmu_parameters.cfg)
@@ -53,8 +53,8 @@ If you are using optional modules they should appear after the above, for exampl
 
   | File | Description | Edit? |
   | ---- | ----------- | ----- |
-  | `mmu_vars.cfg` | Used to persist state and certain dynamic configuration. | |
-  | `mmu.cfg` | Configuration for control board (mcu) device location and aliases for control board pins. | Yes |
+  | `mmu_vars.cfg` | Used to persist state and certain dynamic configuration. | _(yes)_ |
+  | `mmu.cfg` | Configuration for control board (mcu) device location and aliases for control board pins. | [Yes](Configuring-mmu.cfg) |
   | `mmu_hardware.cfg` | User adjustable hardware based parameters are stored. | Yes |
   | `mmu_parameters.cfg` | Main configuration parameters for the Klipper module. | Yes |
   | `mmu_macro_vars.cfg` | Modular config file that controls the operation of all the supplied macros. | Yes |
