@@ -67,7 +67,7 @@ cd ~/Happy-Hare
 ./install.sh -i
 ```
 
-The `-i` option will bring up an interactive installer to aid setting some confusing parameters. For popular external mcu boards it will also configure all the pins for you. If run without with the `-i` flag it defaults to updating the current installation which is sometimes necessary for significant version updates (see [here](Update-Notice)). Note that if an existing install is found it will never be overwritten, it will be moved to a numbered backup folder with a `<file>.<date>` extension and current configuration defaults carried over. If you still choose not to install the new `mmu*.cfg` files automatically you can copy the templates and fill in all the tokens and blank parameters by hand. Frankly it is much easier to run through an initial install and use the generated config files as a starting point.
+The `-i` option will bring up an interactive installer to aid setting some confusing parameters. For popular external mcu boards it will also configure all the pins for you. If run without with the `-i` flag it defaults to updating the current installation which is sometimes necessary for significant version updates (see [here](Upgrade-Notice)). Note that if an existing install is found it will never be overwritten, it will be moved to a numbered backup folder with a `<file>.<date>` extension and current configuration defaults carried over. If you still choose not to install the new `mmu*.cfg` files automatically you can copy the templates and fill in all the tokens and blank parameters by hand. Frankly it is much easier to run through an initial install and use the generated config files as a starting point.
 <br>
 
 Note that the installer will look for Klipper install and config in standard locations. If you have customized locations or multiple Klipper instances on the same rpi, or the installer fails to find Klipper you can use the `-k` and `-c` flags to override the Klipper home directory and Klipper config directory respectively. Also, if installing on Repetier-Server add the `-r` option. E.g.
@@ -90,12 +90,16 @@ If you have multiple Klipper instances installed with for example Kiauh. You can
 > If you are concerned about running `install.sh -i` then run like this: `install.sh -i -c /tmp -k /tmp` This will build the `*.cfg` files for you but put then in /tmp rather than overwriting your active configuration. You can then refer to them, pulling out the bits you need to augment your existing install or simply see what answers to the various questions will do...
 
 ```
-Usage: ./install.sh [-k <klipper_home_dir>] [-c <klipper_config_dir>] [-m <moonraker_home_dir>] [-b <branch>] [-r <Repetier-Server stub>] [-i] [-d] [-z]
+Usage: ./install.sh [-a <kiauh_alternate_klipper>] [-k <klipper_home_dir>] [-c <klipper_config_dir>] [-m <moonraker_home_dir>] [-b <branch>] [-r <repetier_server stub>] [-i] [-d] [-z]
 
 -i for interactive install
 -d for uninstall
+-b to switch to specified feature branch (sticky)
 -z skip github check (nullifies -b <branch>)
 -r specify Repetier-Server <stub> to override printer.cfg and klipper.service names
+-a <name> to specify alternative klipper-service-name when installed with Kiauh.
+-c <dir> to specify location of non-default klipper config directory
+-k <dir> to specify location of non-default klipper home directory
 (no flags for safe re-install / upgrade)
 ```
 
@@ -180,7 +184,7 @@ The last step asks to add the `[include mmu*]` lines to your printer.cfg. **On i
 
 From here, Happy Hare will install itself with the options you've selected. You should have a nice little report that Happy Hare is ready:  
 
-<p align="center"><img src="Installation/happy_hare_ready.png"></p>
+<p align="left"><img src="Installation/happy_hare_ready.png"></p>
 
 Once this has been run sucessfully you will have outline configuration files installed. Happy Hare creates a hierachy of files in the klipper config directory. To review the layout and purpose of each of these files read [Configuration Reference](Configuration-Reference)
 
