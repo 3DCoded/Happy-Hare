@@ -39,7 +39,7 @@ Be sure to follow the install directions carefully and read the [panel-by-panel]
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Getting Started
 
-TODO
+*TODO - Talk about mmu_preload, and check_gate, standalone load and upload. Perhaps `mmu_test_config` for how to experiement without updatig config files...*
 <!--
 There are a couple of commands (`MMU_PRELOAD` and `MMU_CHECK_GATE`) that are useful to ensure MMU readiness prior to printing.
 
@@ -55,6 +55,7 @@ Similarly the `MMU_CHECK_GATE` command will run through all the gates (or the on
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Filament Loading and Unloading sequences
 
+*TODO - Update this section it is dated. `MMU_STATUS` will now describe the sequence based on configuration*<br>
 Happy Hare provides built-in loading and unloading sequences that have many options controlled by settings in `mmu_parameters.cfg`. These are grouped into "modular phases" that control each step of the process and vary slightly based on the capabilities of your particular MMU. Normally this provides sufficient flexibility of control. However, for advanced situations, you are able to elect to control the sequences via gcode macros. This capability is discussed later in the [gcode guide](/doc/macro_customization.md).
 
 ### Understanding the load sequence:

@@ -1,3 +1,4 @@
+*TODO - Remove config file layout and link to outline page*
 #### Page Sections:
 - [Klipper Config](Hardware-Configuration#step-1-validate-your-hardware-configuration)
 - [Endstops](Hardware-Configuration#step-2-check-endstops--optional-sensors)
@@ -10,33 +11,11 @@
 
 This will vary slightly depending on your particular brand of MMU but the steps are essentially the same with some being dependent on hardware configuration.
 
-## Step 1. Validate your hardware configuration
-
-### Location of configuration files
-The Klipper configuration files for Happy Hare are modular and can be found in this layout in the Klipper config directory:
-
-```yml
-mmu/
-  base/
-    mmu.cfg
-    mmu_cut_tip.cfg
-    mmu_form_tip.cfg
-    mmu_hardware.cfg
-    mmu_software.cfg
-    mmu_sequence.cfg
-    mmu_parameters.cfg
-
-  optional/
-    mmu_menu.cfg
-    mmu_ercf_compat.cfg
-    client_macros.cfg
-
-  mmu_vars.cfg
-```
-
-This makes the minimal include into your printer.cfg easy: `[include mmu/base/*.cfg]`.  That will also ensure the correct load order!
+The Klipper configuration files for Happy Hare are modular and where to find them is discussed in the [Configuration Reference](Configuration-Reference). Also be sure to consult the [Configuring mmu\_hardware.cfg](Configuring-mmu_hardware.cfg) page for details about each and every parameter.
 
 <br>
+
+## Step 1. Validate you hardware configuration
 
 ### a) MCU and Pin Validation (mmu.cfg)
 The `mmu.cfg` file is part of the hardware configuration but defines aliases for all of the pins used in `mmu_hardware.cfg`. The benefit of this is that configuration frameworks like [Klippain](https://github.com/Frix-x/klippain) can more easily incorporate. It is also in keeping with an organized modular layout.
@@ -46,9 +25,10 @@ The `mmu.cfg` file is part of the hardware configuration but defines aliases for
 ### b) Hardware Configuration (mmu_hardware.cfg):
 This can be daunting but the interactive installer will make the process easier for common mcu's designed for a MMU (e.g. ERCF EASY-BRD, Burrows ERB, etc) and perform most of the setup for you. A few tweaks remain and include the setting of endstop options, optional extruder "touch" homing as the usual pin invert checking, etc.
 
-Endstop setup and options can be [found here](#---endstops-and-mmu-movement)
+Endstop setup and options can be found in [Movement and Homing](Movement and Homing)
 
 Note that all sensors can be setup with a simple section in `mmu_hardware.cfg`. This ensures things are setup correctly and only requires you to supply the pins. There is no need to comment out if not used, you can leave the pin empty or reference an empty alias. In those cases the sensor will be ignored
+
 ```yml
 # FILAMENT SENSORS ---------------------------------------------------------------------------------------------------------
 # Define the pins for optional sensors in the filament path. All but the pre-gate sensors will be automatically setup as
@@ -83,6 +63,7 @@ sync_feedback_compression_pin:
 
 ### c) Variables file (mmu_vars.cfg):
 This is the file where Happy Hare stores all calibration settings and state. It is pointed to by this section at the top of `mmu_software.cfg`:
+
 ```
 [save_variables]
 filename: /home/pi/printer_data/config/mmu/mmu_vars.cfg
@@ -96,6 +77,7 @@ If all other pin's and setup look correct *RESTART KLIPPER* and proceed to step 
 
 ## Step 2. Check endstops & Optional sensors
 Verify that the necessary endstops are working and the polarity is correct. The recommended procedure is:
+
 ```yml
 MMU_MOTORS_OFF
   # remove filament from ERCF and extruder, move selector to center of travel
@@ -103,6 +85,7 @@ QUERY_ENDSTOPS
   # or use the visual query in Mainsail or Fluuid
 ```
 Validate that you can see:
+
 ```yml
 mmu_sel_home:open (Essential)
 toolhead:open (Optional if you have a toolhead sensor)

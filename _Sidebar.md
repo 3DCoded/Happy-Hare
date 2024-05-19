@@ -26,7 +26,8 @@
 
 - [Hardware Configuration](Hardware-Configuration)
 - [Movement and Homing](Movement-and-Homing)
-- [Software (mmu_parameters.cfg)](Happy-Hare-Parameters)
+- [Happy Hare Parameters](Happy-Hare-Parameters)
+- [Macro Configuration]
 
 </details>
 

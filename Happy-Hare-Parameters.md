@@ -1,10 +1,15 @@
+*TODO - Move some of this content into the `mmu_parametes.cfg` Reference page. Give only an outline here.*<br>
+*TODO - Talk and `MMU_TEST_CONFIG`*
+
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Configuration Guide (mmu_parameters.cfg)
 
 This is a sequential walkthrough of the main configuration files for Happy Hare. You should have tertiary understanding and awareness of all the settings but some are essential.  Those are labeled with "IMPORTANT" and you must setup for your MMU setup.
 
+The Klipper configuration files for Happy Hare are modular and where to find them is discussed in the [Configuration Reference](Configuration-Reference). Also be sure to consult the [Configuring mmu\_parameters.cfg](Configuring-mmu_parameters.cfg) page for details about each and every parameter.
+
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) MMU Vendor, Type & Size
 
-The first section specifies the type of MMU and is used by Happy Hare to adjust (primarily CAD) options. It is documented [here](TODO)
+The first section specifies the type of MMU and is used by Happy Hare to adjust (primarily CAD) options. It is documented [here](Configuring-mmu_parameters.cfg#---mmu-vendor-type-and-size) and [here](Configuring-mmu_parameters.cfg#---other-mmu-cad-dimensions).
 
 > [!IMPORTANT]  
 > These three settings must be set. If "Other" is specified you will also need to specify cad dimensions [here](https://github.com/moggieuk/Happy-Hare?tab=readme-ov-file#1-important-mmu-vendor--version-specification)
@@ -283,7 +288,7 @@ Consult this illustration of a typical toolhead or table of popular configuratio
 ** These settings assume you have turned off all the slicer settings like toolchange retraction!<br>
 _(please submit your verified additions to build out this table)_
 
-Read about the loading and unloading sequences [here](https://github.com/moggieuk/Happy-Hare#---filament-loading-and-unloading-sequences).
+Read about the loading and unloading sequences [here](Basic-Operation#---filament-loading-and-unloading-sequences) and in [Understanding Operation](Understanding-Operation).
 
 > [!TIP]  
 > Once Happy Hare is loaded you can use `MMU_STATUS SHOWCONFIG=1` to describe in english what you have configured for loading and unloading sequences. After changing a config value (see how to use `MMU_TEST_CONFIG` for runtime changes) you can run again to see the impact of the change. Note that this also works for dynamic changes to sensors: e.g. if you disable your toolhead sensor via Mainsail, you will be able to see the fallback approach that Happy Hare is configured to do
@@ -371,7 +376,7 @@ slicer_tip_park_pos: 0                   # This specifies the position of filame
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Gear/Extruder Synchronization
 
-Happy Hare has the ability to synchronize various motors during printing operation and this section controls those options. Make sure you have [understand the caution](https://github.com/moggieuk/Happy-Hare#4-synchronized-gearextruder-motors) needed when `sync_to_extruder: 1` is enabled.
+Happy Hare has the ability to synchronize various motors during printing operation and this section controls those options. Make sure you have [understood the caution](Synchronized-Gear-Extruder) needed when `sync_to_extruder: 1` is enabled.
 
 ```yml
 # Synchronized gear/extruder movement --------------------------------------------------------------------------------------
@@ -419,13 +424,13 @@ enable_spoolman: 0                      # 0 = disable spoolman support,  1 = ena
 > [!NOTE]  
 > Default EndlessSpool groups can be pre-configured by setting the `endless_spool_groups` parameter to an array specifying the group for each gate. See the doc towards the end of this page for more details
 
-Clog detection and EndlessSpool feature is well documented [here](https://github.com/moggieuk/Happy-Hare#5-clogrunout-detection-endlessspool-and-flowrate-monitoring).
+Clog detection and EndlessSpool feature is well documented [here](Clog-Runout-EndlessSpool).
 
 <br>
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) State Persistence
 
-State persisence is a powerful feature of Happy Hare and is documented [here](https://github.com/moggieuk/Happy-Hare#2-state-and-persistence). I highly recommend level `4` as soon as you understand how it works.
+State persisence is a powerful feature of Happy Hare and is documented [here](State-Persistence). I highly recommend level `4` as soon as you understand how it works.
 
 ```yml
 # Turn on behavior -------------------------------------------------------------------------------------------------------
@@ -515,7 +520,7 @@ load_sequence_macro: _MMU_LOAD_SEQUENCE         # VERY ADVANCED: Optionally call
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Statically defined "reset" defaults
 
-This final section is commented out because it is not generally needed. It retains abilities that existed in earlier versions of Happy Hare which may still be useful in some specific cases.  Normally when reset Happy Hare will default to empty or simple values for these settings. However, you can define the default here so that after a MMU reset has been performed they will be the starting values perhaps saving some additional configuration. E.g. if you always have specific filament spools loaded on a particular gate (I always have ABS black on gate #8 for example) you can define that here by setting the starting `gate_material` and `gate_color` arrays. Read [here](https://github.com/moggieuk/Happy-Hare#3-tool-to-gate-ttg-mapping) and [here](https://github.com/moggieuk/Happy-Hare#12-gate-map-describing-filament-type-color-and-status) for more details.
+This final section is commented out because it is not generally needed. It retains abilities that existed in earlier versions of Happy Hare which may still be useful in some specific cases.  Normally when reset Happy Hare will default to empty or simple values for these settings. However, you can define the default here so that after a MMU reset has been performed they will be the starting values perhaps saving some additional configuration. E.g. if you always have specific filament spools loaded on a particular gate (I always have ABS black on gate #8 for example) you can define that here by setting the starting `gate_material` and `gate_color` arrays. Read [Tool and Gate](Tool-and-Gate-Maps) for more details.
 
 > [!NOTE]  
 > Happy Hare will report error if these arrays are not the same length as the configured number of gates.
