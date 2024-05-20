@@ -1,4 +1,3 @@
-*TODO - Remove config file layout and link to outline page*
 #### Page Sections:
 - [Klipper Config](Hardware-Configuration#step-1-validate-your-hardware-configuration)
 - [Endstops](Hardware-Configuration#step-2-check-endstops--optional-sensors)
@@ -62,7 +61,7 @@ sync_feedback_compression_pin:
 <br>
 
 ### c) Variables file (mmu\_vars.cfg):
-This is the file where Happy Hare stores all calibration settings and state. It is pointed to by this section at the top of `mmu_software.cfg`:
+This is the file where Happy Hare stores all calibration settings and state. It is pointed to by this section at the top of `mmu_macro_vars.cfg`:
 
 ```
 [save_variables]

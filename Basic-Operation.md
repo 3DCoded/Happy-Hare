@@ -80,7 +80,7 @@ The "visual log" (set at level 2) above shows individual steps of a typical load
 
   <ul>
     <li>ERCF: This is achieved using the encoder by advancing filament until if is measured. It it doesn't see filament it will try 'encoder_load_retries' times (default 2). If still no filament it will report the error. The speed of this initial movement is controlled by 'gear_short_move_speed', the acceleration is as defined on the gear stepper motor config in 'mmu_hardware.cfg'.  Note that the encoder sensor is considered "point 0" and any movement beyond into the bowden will automatically be handled by the next bowden move.</li>
-    <li>Tradrack: This is achieved by homing to specific point. Note that the homing point is considered "point 0". TODO</li>
+    <li>Tradrack: This is achieved by homing to specific point. Note that the homing point is considered "point 0".</li>
   </ul>
 
 **3\. Bowden Tube Loading:** The MMU will then load the filament through the bowden in a fast movement. The speed is controlled by `gear_from_spool_speed` and `gear_from_buffer_speed` depending on whether Happy Hare believes it is pulling filament from the spool or from the buffer. It is advantageous to pull more slowly from the spool to overcome the higher friction. Once a full unload has occurred and deposited filament in the buffer the higher speed 'gear_speed_from_buffer' can be used to reduce loading times. The length of the bowden move is determined by the calibrated value `mmu_calibration_bowden_length` that is persisted in `mmu_vars.cfg`
@@ -165,7 +165,7 @@ The "visual log" (set at level 2) above shows individual steps of a typical unlo
 
   <ul>
     <li>ERCF: This is achieved using the encoder by pulling filament until no more movement is detected and then a final parking move to locate the filament correctly at "point 0"</li>
-    <li>Tradrack: This is achieved by a homing move to a specific endstop. Note that the homing point is considered "point 0". TODO</li>
+    <li>Tradrack: This is achieved by a homing move to the gate endtop and then final parking move to locate the filament correctly at "point 0"</li>
   </ul>
 
 > [!NOTE]  

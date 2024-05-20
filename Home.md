@@ -116,8 +116,6 @@ Happy Hare software is modular in nature and works as a "[State Machine](https:/
 
 If you're not a software and automation expert, you can think of Happy Hare as a browser plugin and Klipper as the browser. Just like Chrome, Edge, et. al. functionality can be expanded with plugins, Happy Hare expands the functionality of Klipper. In the same way that an ad blocker doesn't change how the browser works internally, but filters out annoyances buy __changing the state__ of the data the browser uses, Happy Hare works with Klipper to change the state of the ERCF hardware. That's the basic idea of how Happy Hare works.  
 
-[More detailed information is here.](https://github.com/IRTrail/Happy-Hare/wiki/Conceptional-MMU-Designs-and-how-Happy-Hare-manages-them)
-
 <br>
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Setup and Installation Pages
