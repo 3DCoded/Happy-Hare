@@ -12,7 +12,7 @@ The Klipper configuration files for Happy Hare are modular and where to find the
 The first section specifies the type of MMU and is used by Happy Hare to adjust (primarily CAD) options. It is documented [here](Configuring-mmu_parameters.cfg#---mmu-vendor-type-and-size) and [here](Configuring-mmu_parameters.cfg#---other-mmu-cad-dimensions).
 
 > [!IMPORTANT]  
-> These three settings must be set. If "Other" is specified you will also need to specify cad dimensions [here](https://github.com/moggieuk/Happy-Hare?tab=readme-ov-file#1-important-mmu-vendor--version-specification)
+> These three settings must be set. If "Other" is specified you will also need to specify cad dimensions [here](Configuring-mmu_parameters.cfg#---mmu-vendor-type-and-size).
 
 ```yml
 #
@@ -187,7 +187,7 @@ gate_endstop_to_encoder: 20             # ADVANCED: Distance between gate endsto
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Bowden Loading & Unloading
 
-For more information on the bowden correct move, read about the loading sequence [here](https://github.com/moggieuk/Happy-Hare#---filament-loading-and-unloading-sequences).  The `bowden_num_moves` allows a long move to be broken into separate moves.  Only increase this if Klipper throws errors with very long moves - setting it higher than `1` will long down the loading process.
+For more information on the bowden correct move, read about the loading sequence [here](Basic-Operation#---filament-loading-and-unloading-sequences).  The `bowden_num_moves` allows a long move to be broken into separate moves.  Only increase this if Klipper throws errors with very long moves - setting it higher than `1` will long down the loading process.
 
 ```yml
 # Bowden tube loading/unloading --------------------------------------------------------------------------------------------

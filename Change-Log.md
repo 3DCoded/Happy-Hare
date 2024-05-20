@@ -15,7 +15,7 @@
 - SpoolMan support (new options to MMU_GATE_MAP for SpoolD.. see  doc)
 - Separate "per-print" and total swap stats!  No need to clear in your print_start anymore.
 - "Auto restoring" gate quality indication (the "excellent/good/../terrible" one).  Slowly averages out bad results.
-- New "state machine" that closes a lot of annoying corner cases that I knew about but most users hadn't found yet [doc](https://github.com/moggieuk/Happy-Hare#13-job-state-transistions-and-print-startend-handling)
+- New "state machine" that closes a lot of annoying corner cases that I knew about but most users hadn't found yet [doc](Print-Job-State-Machine).
 - New filament cutter option (Alternative `_MMU_CUT_TIP` macro) instead of tip forming and `mmu_form_tip_macro` setting
 - MMU_UNLOCK is back (but as an optional step to resume temps).  Can just call `RESUME` as well.
 - Better support for Octoprint users where the [print_stats] module is not available. Read up on new state machine and `_MMU_START_PRINT` and `_MMU_END_PRINT` conventions (must read doc)
@@ -69,7 +69,7 @@ New Features:
 - Workaround for CANbus comms timeout that is plaguing klipper
 - Much improved `MMU_STATUS SHOWCONFIG=1`.  It will tell you in english what loading and unload sequence you have based on dynamic changes with `MMU_TEST_CONFIG` or sensor disable/enable.
 - EndlessSpool is now available on tool load
-- Sync feedback sensor support .. I.e support for Annex Belay or another other sensor including proportional feedback. [doc](https://github.com/moggieuk/Happy-Hare/tree/main?tab=readme-ov-file#4-synchronized-gearextruder-motors)
+- Sync feedback sensor support .. I.e support for Annex Belay or another other sensor including proportional feedback. [doc](Synchronized-Gear-Extruder#---sync-feedback-sensor-options)
 - Improved "tip forming" test procedure and `MMU_FORM_TIP` command
 - Fixed silly bug in spoolman integration where spool_id was being used to search as filament_id
 - New `toolhead_ooze_reduction` parameter for tuning without messing with what should be fixed extruder measurements. Doc page to follow

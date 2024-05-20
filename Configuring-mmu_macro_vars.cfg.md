@@ -21,7 +21,7 @@ This is where Happy Hare saves all the variables and status information (remembe
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) \_MMU\_SOFTWARE\_VARS
 
-This section controls the behavior of the start up and finalization of a print through Happy Hare. In [this document](https://github.com/moggieuk/Happy-Hare/blob/main/doc/slicer_setup.md), the operation and setup of the proper macro calls are explained in great detail. Since setting up the slicer is outside the scope of this document, be sure to read up there and get a good understanding of things before you edit this section.
+This section controls the behavior of the start up and finalization of a print through Happy Hare. In the [Slicer Setup](Slicer-Setup) page, the operation and setup of the proper macro calls are explained in great detail. Since setting up the slicer is outside the scope of this document, be sure to read up there and get a good understanding of things before you edit this section.
 
 `variable_user_pre_initialize_extension`  This is called by `_MMU_START_SETUP` assuming you use the recommended Happy Hare start macros. You can use this extension to do a conditional home, set the printer LED status, or to put the printer into a certain state at the initiation of the print.
 
@@ -48,7 +48,7 @@ For more detailed info [Statistics and Consumption Counters](Statistics-and-Cons
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) \_MMU\_STATE\_VARS
 
-This section allows you to extend the functionality of Happy Hare with custom commands made after an action is performed, the state of the MMU has changed, or the gate map has changed. A good explaination of what all this means is [here.](https://github.com/moggieuk/Happy-Hare/blob/main/doc/macro_customization.md)
+This section allows you to extend the functionality of Happy Hare with custom commands made after an action is performed, the state of the MMU has changed, or the gate map has changed. A good explaination of what all this means can be found on the [Macro Customization](Macro-Customization) page.
 
 `variable_user_action_changed_extension` runs a command or macro after Happy Hare executes an action.
 
