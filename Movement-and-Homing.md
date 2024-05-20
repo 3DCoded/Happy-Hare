@@ -1,4 +1,4 @@
-Whilst this section isn't strictly essential it gives extra context to hardware setup and particular on endstop options in the filament path.
+Whilst this section isn't strictly essential it provides supplimental context to hardware setup and particular on endstop options in the filament path.
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Endstops and MMU Movement and Homing
 Happy Hare implements the MMU control as a "second toolhead" known as the MMU toolhead. The X-axis represents the selector movement and the Y-axis the filament movement until Klipper takes over the control of the extruder as normal. It offers some sophisticated stepper synching and homing options which add additional parameters to the regular klipper stepper definition.
