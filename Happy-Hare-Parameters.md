@@ -1,7 +1,7 @@
 *TODO - Move some of this content into the `mmu_parametes.cfg` Reference page. Give only an outline here.*<br>
 *TODO - Talk and `MMU_TEST_CONFIG`*
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Configuration Guide (mmu_parameters.cfg)
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Configuration Guide (mmu\_parameters.cfg)
 
 This is a sequential walkthrough of the main configuration files for Happy Hare. You should have tertiary understanding and awareness of all the settings but some are essential.  Those are labeled with "IMPORTANT" and you must setup for your MMU setup.
 
@@ -266,21 +266,21 @@ Consult this illustration of a typical toolhead or table of popular configuratio
 
 | Dimension | Rapido/R2 | Dragon SF | Dragon HF | Revo |
 | --------- | ------ | --------- | --------- | ---- |
-| `toolhead_extruder_to_nozzle`<br>(in mmu_parameters.cfg) | 84.82 | | | 72 | 
-| `toolhead_sensor_to_nozzle`<br>(in mmu_parameters.cfg) | 74.84 | | | 62 | 
-| `variable_blade_pos`<br>(in mmu_macro_vars.cfg) | 60.01 | | | 37.5 |
-| `variable_retract_length`<br>(in mmu_macro_vars.cfg) | 31.5 | | | |
-| `variable_pushback_length`<br>(in mmu_macro_vars.cfg) | 29.00 | | | |
+| `toolhead_extruder_to_nozzle`<br>(in mmu\_parameters.cfg) | 84.82 | | | 72 | 
+| `toolhead_sensor_to_nozzle`<br>(in mmu\_parameters.cfg) | 74.84 | | | 62 | 
+| `variable_blade_pos`<br>(in mmu\_macro\_vars.cfg) | 60.01 | | | 37.5 |
+| `variable_retract_length`<br>(in mmu\_macro\_vars.cfg) | 31.5 | | | |
+| `variable_pushback_length`<br>(in mmu\_macro\_vars.cfg) | 29.00 | | | |
 
 **G2E** dimensions for each hotend:
 
 | Dimension | Rapido/R2 | Dragon SF | Dragon HF | Revo |
 | --------- | ------ | --------- | --------- | ---- |
-| `toolhead_extruder_to_nozzle`<br>(in mmu_parameters.cfg) | 99.38 | | | 99.18<sup>1</sup> |
-| `toolhead_sensor_to_nozzle`<br>(in mmu_parameters.cfg) | 79.78 | | | 79.58<sup>1</sup> |
-| `variable_blade_pos`<br>(in mmu_macro_vars.cfg) | 61.22 | | | 61.03<sup>1</sup> |
-| `variable_retract_length`<br>(in mmu_macro_vars.cfg) | 32.22 | | | 32.03<sup>2</sup> |
-| `variable_pushback_length`<br>(in mmu_macro_vars.cfg) | 31.22 | | | 31.03<sup>2</sup> |  
+| `toolhead_extruder_to_nozzle`<br>(in mmu\_parameters.cfg) | 99.38 | | | 99.18<sup>1</sup> |
+| `toolhead_sensor_to_nozzle`<br>(in mmu\_parameters.cfg) | 79.78 | | | 79.58<sup>1</sup> |
+| `variable_blade_pos`<br>(in mmu\_macro\_vars.cfg) | 61.22 | | | 61.03<sup>1</sup> |
+| `variable_retract_length`<br>(in mmu\_macro\_vars.cfg) | 32.22 | | | 32.03<sup>2</sup> |
+| `variable_pushback_length`<br>(in mmu\_macro\_vars.cfg) | 31.22 | | | 31.03<sup>2</sup> |  
 
 *<sup>1</sup> Taken directly from CAD - <ins>NOT</ins> tested.*  
 *<sup>2</sup> Estimated based on Rapido*  
@@ -533,23 +533,23 @@ Happy Hare has advanced features like:
 4. The filament color in each gate
 5. Grouping gates (spools) into Endless Spool groups
 
-Typically these will be set dynamically over time and automatically saved to 'mmu_vars.cfg'.  When you power up your MMU these values are loaded. However, if you explicity reset your MMU state through one of the many reset commands, these values will be restored to a default. The system default values are typically empty or in the case of TTG map, 1:1 mapping of Tx to Gate #x, or no Endless Spool groups.  However you have the option to define starting values here.
+Typically these will be set dynamically over time and automatically saved to 'mmu\_vars.cfg'.  When you power up your MMU these values are loaded. However, if you explicity reset your MMU state through one of the many reset commands, these values will be restored to a default. The system default values are typically empty or in the case of TTG map, 1:1 mapping of Tx to Gate #x, or no Endless Spool groups.  However you have the option to define starting values here.
 
 > [!IMPORTANT]  
 > The arrays of values must be the same length as the number of gates on your MMU otherwise they will be rejected.
 
-This group of settings collectively form the default gate map which can be updated with the `MMU_GATE_MAP` command or similar commands that determine gate status. They must all be the same length at the number of gates (0 .. n). Note that these are the defaults and will be overriden by saved values in mmu_vars.cfg
+This group of settings collectively form the default gate map which can be updated with the `MMU_GATE_MAP` command or similar commands that determine gate status. They must all be the same length at the number of gates (0 .. n). Note that these are the defaults and will be overriden by saved values in mmu\_vars.cfg
 
 1. `gate_material` - Similarly this specifies the material type present in the gate. If not specified or commented out the name will be empty `MMU_GATE_MAP` is used to adjust and persist during use
 2. `gate_color` - Similarly this specifies the color of the filament in each gate. If not specified or commented out the color will be default Color can be w3c color name or RRGGBB (no leading #) `MMU_GATE_MAP` is used to adjust and persist during use
 3. `gate_spool_id` - If spoolman is active, you can here define the gate to spoolId mapping. This would typically be kept up-to-date with the `MMU_GATE_MAP GATE=... SPOOLID=...` command and refreshed with `MMU_GATE_MAP REFRESH=1`
 4. `gate_status` - Whether gate has filament available (2=available from buffer, 1=available from spool, 0=empty). If not specified or commented out the system default of all gates in an unknown state will be assumed `MMU_GATE_MAP` is used to adjust and persist during use
 5. `tool_to_gate_map` - The default mapping for tool to gate.  If not specified out the default mapping will be "Tx = Gate #x".  `MMU_RESET_TTG_MAP` will revert current map to these default values. `MMU_REMAP_TTG` will modify and persist during use.
-6. `endless_spool_groups` - If endless spool is turned on, this will define the default EndlessSpool groups mapping with one entry for each gate in your MMU.  When filament runs out on a gate, it will switch to the next gate with the same group number for example, if set to `1, 2, 3, 1, 2, 3, 1, 2, 3` on a 9 cart MMU, and a runout occurs on gate #0 (in group 1) the MMU will switch to using gate #3 and then gate #6 automatically remapping the tool as it goes. Note that this will be overriden by a saved value in mmu_vars.cfg, if modified with `MMU_ENDLESS_SPOOL_GROUPS` command
+6. `endless_spool_groups` - If endless spool is turned on, this will define the default EndlessSpool groups mapping with one entry for each gate in your MMU.  When filament runs out on a gate, it will switch to the next gate with the same group number for example, if set to `1, 2, 3, 1, 2, 3, 1, 2, 3` on a 9 cart MMU, and a runout occurs on gate #0 (in group 1) the MMU will switch to using gate #3 and then gate #6 automatically remapping the tool as it goes. Note that this will be overriden by a saved value in mmu\_vars.cfg, if modified with `MMU_ENDLESS_SPOOL_GROUPS` command
 
-For completeness and primarily for historical reasons rather than usefulness, the default position of each gate on the selector and the optional bypass position can be specified. These would only ever be used if 'mmu_vars.cfg' was deleted
-> #selector_offsets: 3.2, 24.2, 45.2, 71.3, 92.3, 113.3, 141.6, 162.6, 183.6 <br>
-> #selector_bypass: 123.4   # Set to your measured bypass position, 0 to disable
+For completeness and primarily for historical reasons rather than usefulness, the default position of each gate on the selector and the optional bypass position can be specified. These would only ever be used if 'mmu\_vars.cfg' was deleted
+> #selector\_offsets: 3.2, 24.2, 45.2, 71.3, 92.3, 113.3, 141.6, 162.6, 183.6<br>
+> #selector\_bypass: 123.4   # Set to your measured bypass position, 0 to disable
 <br>
 
 ```yml
@@ -590,6 +590,7 @@ When `mmu_vendor` and `mmu_version` are set, Happy Hare will use the correct CAD
 <br>
 
 ### More essential config setup:
-[Hardware Configuration](Hardware-Configuration)
-[Movement and Homing](Movement-and-Homing)
-[Macro Configuration](Macro-Configuration)
+- [Hardware Configuration](Hardware-Configuration)
+  - [Endstops, Movement and Homing](Movement-and-Homing)
+- [Happy Hare Parameters]
+- [Macro Configuration](Macro-Configuration)

@@ -25,9 +25,9 @@
 <details open><summary><b>&nbsp;3. Essential Configuration</b></summary>
 
 - [Hardware Configuration](Hardware-Configuration)
-- [Movement and Homing](Movement-and-Homing)
+  - [Endstops, Movement and Homing](Movement-and-Homing)
 - [Happy Hare Parameters](Happy-Hare-Parameters)
-- [Macro Configuration]
+- [Macro Configuration](Macro-Configuration)
 
 </details>
 
