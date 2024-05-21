@@ -74,8 +74,14 @@ git clone https://github.com/moggieuk/Happy-Hare.git
 <br>
  
 ## ![#f03c15](https://github.com/moggieuk/Happy-Hare/wiki/resources/f03c15.png) ![#c5f015](https://github.com/moggieuk/Happy-Hare/wiki/resources/c5f015.png) ![#1589F0](https://github.com/moggieuk/Happy-Hare/wiki/resources/1589F0.png) Documentation
-
-<p align="left"><img src="https://github.com/moggieuk/Happy-Hare/wiki/resources/wiki.png" alt="wiki">MMU's are complexd! Fortunately Happy Hare has elaborate documentation logically organized in the [Wiki](https://github.com/moggieuk/Happy-Hare/wiki/Home)</p>
+<table>
+<tr>
+<td width=30%><img src="https://github.com/moggieuk/Happy-Hare/wiki/resources/wiki.png" alt="wiki"><td>
+<td>
+MMU's are complexd! Fortunately Happy Hare has elaborate documentation logically organized in the [Wiki](https://github.com/moggieuk/Happy-Hare/wiki/Home)
+</td>
+</tr>
+</table>
 
 <br>
 
