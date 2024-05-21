@@ -53,7 +53,8 @@ Some folks have asked about making a donation to cover the cost of the all the c
   <li>Gcode pre-processor check that all the required tools are avaialble!</li>
   <li>Drives LEDs for functional feed and some bling!</li>
   <li>Built in tip forming and filament cutter support</li>
-  <li>Lots more...</li>
+  <li>Lots more... Detail change log can be found in the [Wiki](https://github.com/moggieuk/Happy-Hare/wiki/Change-Log)
+</li>
 </ul>
 
 Controlling an ERCF with companion customized KlipperScreen for easy touchscreen MMU control!
@@ -81,18 +82,11 @@ git clone https://github.com/moggieuk/Happy-Hare.git
 MMU's are complexd! Fortunately Happy Hare has elaborate documentation logically organized in the <a href="https://github.com/moggieuk/Happy-Hare/wiki/Home">Wiki</a>
 </td>
 </tr>
-
-<tr>
-<td width=30%><a href="https://github.com/moggieuk/Happy-Hare/wiki/Home"><img src="https://github.com/moggieuk/Happy-Hare/wiki/resources/wiki.png" alt="wiki"></a></td>
-<td>
-MMU's are complexd! Fortunately Happy Hare has elaborate documentation logically organized in the <a href="https://github.com/moggieuk/Happy-Hare/wiki/Home">Wiki</a>
-</td>
-</tr>
 </table>
 
 ### Video Tutorials & Other Resources
 
-#### English: <small><i>coming soon</i></small>
+#### English: <i>coming soon</i>
 
 #### German:
 <div align="left">
@@ -109,7 +103,27 @@ MMU's are complexd! Fortunately Happy Hare has elaborate documentation logically
 
 <br>
 
+## ![#f03c15](https://github.com/moggieuk/Happy-Hare/wiki/resources/f03c15.png) ![#c5f015](https://github.com/moggieuk/Happy-Hare/wiki/resources/c5f015.png) ![#1589F0](https://github.com/moggieuk/Happy-Hare/wiki/resources/1589F0.png) My Testing and Setup:
+Most of the development of Happy Hare was done on my trusty ERCF v1.1 setup but as it's grown, so has my collection of MMU's and MCU controllers. Multi-color printing is addictive but can be frustrating during setup and learning. Be patient and use the forums for help!
 
+<p align<p align="center"><i>
+There once was a printer so keen,<br>
+To print in red, yellow, and green.<br>
+It whirred and it spun,<br>
+Mixing colors for fun,<br>
+The most vibrant prints ever seen!
+</i></p>
+
+<img src="https://github.com/moggieuk/Happy-Hare/wiki/resources/my_voron_and_ercf.jpg" width="400" alt="My Setup">
+ 
+---
+
+
+```
+    (\_/)
+    ( *,*)
+    (")_(") Happy Hare Ready
+```
 
 
 #### Optional hardware - Encoder
@@ -313,17 +327,13 @@ Be sure to follow the install directions carefully and read the [panel-by-panel]
 
 <br> 
  
-## ![#f03c15](/doc/resources/f03c15.png) ![#c5f015](/doc/resources/c5f015.png) ![#1589F0](/doc/resources/1589F0.png) My Testing:
+## ![#f03c15](/doc/resources/f03c15.png) ![#c5f015](/doc/resources/c5f015.png) ![#1589F0](/doc/resources/1589F0.png) My Testing and Setup:
 This new v2 Happy Hare software is largely rewritten and so, despite best efforts, has probably introduced some bugs that may not exist in the previous version.  It also lacks extensive testing on different configurations that will stress the corner cases.  I have been using it successfully on Voron 2.4 / ERCF v1.1 and ERCF v2.0 with EASY-BRD and ERB board.  I use a self-modified CW2 extruder with foolproof microswitch toolhead sensor (hall effect switches are extremely problematic in my experience). My day-to-day configuration is to load the filament to the extruder in a single movement at 250mm/s, then home to toolhead sensor with synchronous gear/extruder movement although I have just moved to an experimental automatic "touch" homing to the nozzle which works without ANY knowledge of my extruder dimensions!! Yeah, really, load filament in gate, fast 670mm move, home to nozzle!
 
 ### My Setup:
 
 <img src="doc/my_voron_and_ercf.jpg" width="400" alt="My Setup">
-
  
-## ![#f03c15](/doc/resources/f03c15.png) ![#c5f015](/doc/resources/c5f015.png) ![#1589F0](/doc/resources/1589F0.png) Revision History
-
-Detail change log can be found in the [Wiki](Change-Log)
 
 ```
     (\_/)
