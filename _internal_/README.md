@@ -101,9 +101,12 @@ MMU's are complexd! Fortunately Happy Hare has elaborate documentation logically
 <br>
 
 ## ![#f03c15](https://github.com/moggieuk/Happy-Hare/wiki/resources/f03c15.png) ![#c5f015](https://github.com/moggieuk/Happy-Hare/wiki/resources/c5f015.png) ![#1589F0](https://github.com/moggieuk/Happy-Hare/wiki/resources/1589F0.png) My Testing and Setup:
+
 Most of the development of Happy Hare was done on my trusty ERCF v1.1 setup but as it's grown, so has my collection of MMU's and MCU controllers. Multi-color printing is addictive but can be frustrating during setup and learning. Be patient and use the forums for help!
 
-<p align<p align="center"><i>
+*Now read the [Wiki](https://github.com/moggieuk/Happy-Hare/wiki/Home)!*
+
+<p align="center"><i>
 There once was a printer so keen,<br>
 To print in red, yellow, and green.<br>
 It whirred and it spun,<br>
@@ -111,7 +114,7 @@ Mixing colors for fun,<br>
 The most vibrant prints ever seen!
 </i></p>
 
-<img src="https://github.com/moggieuk/Happy-Hare/wiki/resources/my_voron_and_ercf.jpg" width="400" alt="My Setup">
+<img src="https://github.com/moggieuk/Happy-Hare/wiki/resources/my_voron_and_ercf.jpg" width="300" alt="My Setup">
  
 ---
 
