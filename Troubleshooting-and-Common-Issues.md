@@ -52,7 +52,8 @@ This is because the Linux operating system on the Raspberry Pi doesn't know how 
 The MMB is notorious for being difficult to flash. It doesn't seem to like running Katapult without Klipper installed. The instructions from BTT, well, they leave a lot to be desired. Some have had luck flashing both Katapult and Klipper (including the 8kib bootloader offset) over USB. That puts Katapult on the board so you can later flash firmware over CANBUS, as well as having the Klipper firmware running on the MMB before establishing CANBUS communications. So, try flashing both over USB. You'll need to get your UUID and save it first, so it can be put in `printer.cfg` or `mmu.cfg`.  
 
 ## Issues During Printing
-### Happy Hare pauses the print for a clog when there is no clog
+
+### <img src="Troubleshooting-and-Common-Issues/carrot.png" alt="" width="23" height="21">Happy Hare pauses the print for a clog when there is no clog
 This typically happens when the extruder looses steps. When a stepper on the X or Y looses steps, it's loud, obnoxious, and frightens the neighbors. When an extruder looses steps, you'll probably not even notice due to the other noise the machine makes. So, look for reasons the extruder may be overloading.
 - Heavy prime lines are a big cause. If your prime line exceeds the physical capacity for the extruder to melt and move plastic, it will lose steps and cause a pause due to clog.
 - Extruder tension setting is off. If the tension is light and it grinds the filament, Happy Hare will see the difference between the encoder and expected movement and pause due to clog. If the tension is too heavy, and it squishes the filament into an oval shape that drags on the filament path after the extruder, this can cause the extruder to grind the filament as well. A good inspection of the filament should give you hints here.
