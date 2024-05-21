@@ -32,7 +32,7 @@ Some folks have asked about making a donation to cover the cost of the all the c
 
 ## ![#f03c15](https://github.com/moggieuk/Happy-Hare/wiki/resources/f03c15.png) ![#c5f015](https://github.com/moggieuk/Happy-Hare/wiki/resources/c5f015.png) ![#1589F0](https://github.com/moggieuk/Happy-Hare/wiki/resources/1589F0.png) Major features:
 
-- Support any brand of MMU and user defined monsters (Caveat: ERCF 1.1, 2.0 and Tradrack, Prusa & KMS coming very soon)
+- Support any brand of MMU and user defined monsters (ERCF 1.1, 2.0, Tradrack, Custom.  Prusa & KMS coming very soon)
 - Synchronized movement of extruder and gear motors (with feedback control) to overcome friction and even work with FLEX materials!
 - Sophisticated multi-homing options including extruder!
 - Implements a Tool-to-Gate mapping so that the physical spool can be mapped to any tool
@@ -103,6 +103,7 @@ German instructional video created by Crydteam
 
 Most of the development of Happy Hare was done on my trusty ERCF v1.1 setup but as it's grown, so has my collection of MMU's and MCU controllers. Multi-color printing is addictive but can be frustrating during setup and learning. Be patient and use the forums for help!  **But first read the [Wiki](https://github.com/moggieuk/Happy-Hare/wiki/Home)!**
 
+<p align="center"><img src="https://github.com/moggieuk/Happy-Hare/wiki/resources/my_voron_and_ercf.jpg" width="300" alt="My Setup"></p>
 <p align="center"><i>
 There once was a printer so keen,<br>
 To print in red, yellow, and green.<br>
@@ -110,11 +111,8 @@ It whirred and it spun,<br>
 Mixing colors for fun,<br>
 The most vibrant prints ever seen!</br>
 </i></p>
-<p align="center"><img src="https://github.com/moggieuk/Happy-Hare/wiki/resources/my_voron_and_ercf.jpg" width="300" alt="My Setup"></p>
 
- 
 ---
-
 
 ```yml
   (\_/)

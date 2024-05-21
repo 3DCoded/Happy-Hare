@@ -99,6 +99,7 @@
   - [Slicer Tool Map](Tool-and-Gate-Maps#---slicer-tool-map)
 - [Filament Bypass](Filament-Bypass)
 - [Runout/Clog Detection](Clog-Runout-EndlessSpool)
+  - [Optional Encoder](Clog-Runout-EndlessSpool#---optional-encoder)
   - [Endless Spool](Clog-Runout-EndlessSpool#---endlessspool)
   - [Flowrate Monitoring](Clog-Runout-EndlessSpool#---flowrate-monitoring)
 - [Consuption Counters](Statistics-and-Consumption-Counters#---consumption-counters)
