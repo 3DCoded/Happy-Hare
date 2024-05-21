@@ -179,5 +179,6 @@ That's it.  This is harmless with normal printing but when printing sequentially
 <br>
 
 ### More slicer setup help:
-[Slicer Setup](Slicer-Setup)
-[Tip Forming and Purging](Tip-Forming-and-Purging)
+- [Slicer Setup](Slicer-Setup)
+- [Toolchange Movement]
+- [Tip Forming and Purging](Tip-Forming-and-Purging)

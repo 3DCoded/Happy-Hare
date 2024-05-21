@@ -175,5 +175,6 @@ When Happy Hare detects an error, even during print start it will pause the prin
 <br>
 
 ### More slicer setup help:
+[Slicer Setup]
 [Toolchange Movement](Toolchange-Movement)
 [Tip Forming and Purging](Tip-Forming-and-Purging)

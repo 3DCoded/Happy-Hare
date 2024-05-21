@@ -1,6 +1,3 @@
-*TODO - Move some of this content into the `mmu_parametes.cfg` Reference page. Give only an outline here.*<br>
-*TODO - Talk about the value of `MMU_TEST_CONFIG`*
-
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Configuration Guide (mmu\_parameters.cfg)
 
 This is a sequential walkthrough of the main configuration files for Happy Hare. You should have tertiary understanding and awareness of all the settings but some are essential.  Those are labeled with "IMPORTANT" and you must setup for your MMU setup.
@@ -12,7 +9,7 @@ The Klipper configuration files for Happy Hare are modular and where to find the
 
 Running without any parameters will display the current values broken up into `SPEEDS`, `TMC & MOTOR SYNC CONTROL`, `LOADING/UNLOADING`, `TIP FORMING`, `OTHER` and `CALIBRATION` sections:
 
-> MMU_TEST_CONFIG
+> MMU\_TEST\_CONFIG
 ```
 SPEEDS:
 gear_from_buffer_speed = 160.0
@@ -46,7 +43,7 @@ _(only partial output displayed)_
 
 Any of the displayed config settings can be modified. For example, to update the distance from extruder entrance (homing postion) to nozzle.
 
-> MMU_TEST_CONFIG toolhead_extruder_to_nozzle=45
+> MMU\_TEST\_CONFIG toolhead\_extruder\_to\_nozzle=45
 
 > [!IMPORTANT]  
 > When you make a change with `MMU_TEST_CONFIG` it will not be persisted and is only effective until the next restart. Therefore, once you find your tuned settings be sure to update `mmu_parameters.cfg`

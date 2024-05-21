@@ -49,13 +49,12 @@
 - [Basic Operation](Basic-Operation)
   - [Console and Logging](Basic-Operation#---console-and-logging)
   - [KlipperScreen](Basic-Operation#---klipperscreen-happy-hare)
-  - [Getting Started](Basic-Operation#---getting-started)
+  - [Useful Pre-Print Operations](Basic-Operation#---useful-pre-print-operations)
   - [Filament Loading and Unloading](Basic-Operation#---filament-loading-and-unloading-sequences)  
   - [Debugging Problems](Basic-Operation#---debugging-problems)
 - [Understanding Operation](Understanding-Operation)
 - [Handling Errors](Handling-Errors)
   - [Recovering MMU State](Handling-Errors#---state-recovery)
-- [Useful Pre-Print Operations](Useful-Pre-Print-Operations)
 
 </details>
 
