@@ -23,7 +23,7 @@ Universal MMU driver for Klipper
     <img src="https://img.shields.io/github/commit-activity/y/moggieuk/Happy-Hare"></a> &nbsp;
 </p>
 
-Happy Hare (v2) is the second edition of what started life and as [alternative software control](https://github.com/moggieuk/ERCF-Software-V3) for the ERCF v1.1 ecosystem. Now in its second incarnation it has been re-architected to support any type of MMU (ERCF, Tradrack, Prusa) in a consistent manner on the Klipper platform. It is best partnered with [KlipperScreen for Happy Hare](#---klipperscreen-happy-hare-edition) until the Mainsail integration is complete :-)
+Happy Hare (v2) is the second edition of what started life and as alternative software control for the ERCF v1.1 ecosystem - the original open source filament changer for multi-colored printing. However it has now been rearchected to support most types of MMU's connected to the Klipper ecosystem. That includes ERCF, Tradrack, AMS-style and other custom designs. It has extensive configuration to allow for customization and using the installer simplifies setup for common MMU types. The three conceptual types of MMUs and the function and operation of their various sensors can be [found here](https://github.com/moggieuk/Happy-Hare/wiki/Conceptual-MMU) and should be consulted for any customized setup.  It is best partnered with [KlipperScreen for Happy Hare](#---klipperscreen-happy-hare-edition) at least until the Mainsail integration is complete :-)
 
 Some folks have asked about making a donation to cover the cost of the all the coffee I'm drinking (actually it's been G&T lately!). Although I'm not doing this for any financial reward this is a BIG undertaking (9000 lines of python, 5000 lines of doc, 4000 lines of macros/config). I have put hundreds of hours into this project and if you find value and feel inclined a donation to PayPal https://www.paypal.me/moggieuk will certainly be spent making your life with your favorate MMU more enjoyable. Thank you!
 <p align="center"><a href="https://www.paypal.me/moggieuk"><img src="https://github.com/moggieuk/Happy-Hare/wiki/resources/donate.svg" width="25%"></a></p>
@@ -33,9 +33,8 @@ Some folks have asked about making a donation to cover the cost of the all the c
 ## ![#f03c15](https://github.com/moggieuk/Happy-Hare/wiki/resources/f03c15.png) ![#c5f015](https://github.com/moggieuk/Happy-Hare/wiki/resources/c5f015.png) ![#1589F0](https://github.com/moggieuk/Happy-Hare/wiki/resources/1589F0.png) Major features:
 
 <ul>
-  <li>Support any brand of MMU and user defined monsters. (Caveat: ERCF 1.1, 2.0 and Tradrack so far. Prusa coming very soon)</li>
-  <li>Companion <a href="#---klipperscreen-happy-hare-edition">KlipperScreen for Happy Hare</a> for very simple graphical interaction</li>
-  <li>Synchronized movement of extruder and gear motors during any part of the loading or unloading operations or homing so it can overcome friction and even work with FLEX materials!</li>
+  <li>Support any brand of MMU and user defined monsters (Caveat: ERCF 1.1, 2.0 and Tradrack, Prusa & KMS coming very soon)</li>
+  <li>Synchronized movement of extruder and gear motors (with feedback control) to overcome friction and even work with FLEX materials!</li>
   <li>Sophisticated multi-homing options including extruder!</li>
   <li>Implements a Tool-to-Gate mapping so that the physical spool can be mapped to any tool</li>
   <li>EndlessSpool allowing a spool to automatically be mapped and take over from a spool that runs out</li>
@@ -57,7 +56,7 @@ Some folks have asked about making a donation to cover the cost of the all the c
   <li>Lots more...</li>
 </ul>
 
-Companion customized [KlipperScreen for Happy Hare](#---klipperscreen-happy-hare-edition) for easy touchscreen MMU control!
+Controlling an ERCF with companion customized KlipperScreen for easy touchscreen MMU control!
 
 <p align="center"><img src="https://github.com/moggieuk/Happy-Hare/wiki/resources/my_klipperscreen.png" width="600" alt="KlipperScreen-Happy Hare edition"></p>
 
@@ -65,65 +64,30 @@ Companion customized [KlipperScreen for Happy Hare](#---klipperscreen-happy-hare
  
 ## ![#f03c15](https://github.com/moggieuk/Happy-Hare/wiki/resources/f03c15.png) ![#c5f015](https://github.com/moggieuk/Happy-Hare/wiki/resources/c5f015.png) ![#1589F0](https://github.com/moggieuk/Happy-Hare/wiki/resources/1589F0.png) Installation
 
-The module can be installed into an existing Klipper installation with the install script. Once installed it will be added to Moonraker update-manager to easy updates like other Klipper plugins:
+The module can be installed into an existing Klipper setup with the supplied install script. Once installed it will be added to Moonraker update-manager to easy updates like other Klipper plugins. Full installation documentation is in the [wiki](https://github.com/moggieuk/Home) but start with cloning the repo onto your rpi:
 
 ```
 cd ~
 git clone https://github.com/moggieuk/Happy-Hare.git
-cd Happy-Hare
-
-./install.sh -i
-```
-
-The `-i` option will bring up an interactive installer to aid setting some confusing parameters. For popular external mcu boards it will also configure all the pins for you. If run without with the `-i` flag it defaults to updating the current installation which is sometimes necessary for significant version updates (see [here](doc/update.md)). Note that if an existing install is found it will never be overwritten, it will be moved to a numbered backup folder with a `<file>.<date>` extension and current configuration defaults carried over. If you still choose not to install the new `mmu*.cfg` files automatically you can copy the templates and fill in all the tokens and blank parameters by hand. Frankly it is much easier to run through an initial install and use the generated config files as a starting point.
-<br>
-
-Note that the installer will look for Klipper install and config in standard locations. If you have customized locations or multiple Klipper instances on the same rpi, or the installer fails to find Klipper you can use the `-k` and `-c` flags to override the Klipper home directory and Klipper config directory respectively. Also, if installing on Repetier-Server add the `-r` option. E.g.
-```
-./install.sh -i -k /opt/klipper/LK5_Pro_ERCF -c /var/lib/Repetier-Server/database/klipper -m /opt/klipper/LK5_Pro_ERCF/moonraker -r LK5_Pro_ERCF
-```
-
-If you have multiple Klipper instances installed with for example Kiauh. You can use the `-a` flag to specify the service name. E.g.
-```
-./install-sh -a -a klipper-two -k <klipper_home_dir> -c <klipper_config_dir>
 ```
 
 <br>
-
-> [!IMPORTANT]  
-> `mmu.cfg`, `mmu_hardware.cfg`, `mmu_macro_vars.cfg` & `mmu_parameters.cfg` (and other base config files) must all be referenced by your `printer.cfg` master config file with `mmu.cfg` and `mmu_hardware.cfg` listed first (the recommended way to achieve this is simply with `[include mmu/base/*.cfg]`). `mmu/optional/client_macros.cfg` should also explicitly be referenced if you don't already have working PAUSE / RESUME / CANCEL_PRINT macros (but be sure to read the section beforehand regarding macro expectations and review the default macros). The install script can also include these optional config files for you.
-<br>
-
-> [!TIP]  
-> If you are concerned about running `install.sh -i` then run like this: `install.sh -i -c /tmp -k /tmp` This will build the `*.cfg` files for you but put then in /tmp rather than overwriting your active configuration. You can then refer to them, pulling out the bits you need to augment your existing install or simply see what answers to the various questions will do...
-
-```
-Usage: ./install.sh [-k <klipper_home_dir>] [-c <klipper_config_dir>] [-m <moonraker_home_dir>] [-b <branch>] [-r <Repetier-Server stub>] [-i] [-d] [-z]
-
--i for interactive install
--d for uninstall
--z skip github check (nullifies -b <branch>)
--r specify Repetier-Server <stub> to override printer.cfg and klipper.service names
-(no flags for safe re-install / upgrade)
-```
-
-> [!WARNING]  
-> Hall effect toolhead sensors can be problematic in a heated chamber because their characteristics change with temperature. Microswitch versions are preferred.
-
-<br>
-
-## ![#f03c15](/doc/resources/f03c15.png) ![#c5f015](/doc/resources/c5f015.png) ![#1589F0](/doc/resources/1589F0.png) Video Tutorials & Other Resources
+ 
 ## ![#f03c15](https://github.com/moggieuk/Happy-Hare/wiki/resources/f03c15.png) ![#c5f015](https://github.com/moggieuk/Happy-Hare/wiki/resources/c5f015.png) ![#1589F0](https://github.com/moggieuk/Happy-Hare/wiki/resources/1589F0.png) Documentation
 
-## ![#f03c15](https://github.com/moggieuk/Happy-Hare/wiki/resources/f03c15.png) ![#c5f015](https://github.com/moggieuk/Happy-Hare/wiki/resources/c5f015.png) ![#1589F0](https://github.com/moggieuk/Happy-Hare/wiki/resources/1589F0.png) Video Tutorials & Other Resources
+<p align="left"><img src="https://github.com/moggieuk/Happy-Hare/wiki/resources/wiki.png" alt="wiki">MMU's are complexd! Fortunately Happy Hare has elaborate documentation logically organized in the [Wiki](https://github.com/moggieuk/Happy-Hare/wiki/Home)</p>
 
-### English: 
+<br>
+
+### Video Tutorials & Other Resources
+
+#### English: 
 <i>coming soon</i>
 
-### German:
+#### German:
 <div align="left">
   <a href="https://www.youtube.com/watch?v=uaPLuWJBdQU">
-    <img src="https://github.com/moggieuk/Happy-Hare/blob/main/doc/resources/youtube1.png" width="30%"></a>
+    <img src="https://github.com/moggieuk/Happy-Hare/wiki/resources/youtube1.png" width="30%"></a>
     Instructional video created by the Crydteam
 <!--
     <img src="https://i9.ytimg.com/vi_webp/uaPLuWJBdQU/maxresdefault.webp?v=6522d1a6&sqp=CKycn6kG&rs=AOn4CLBCiHQsjGJ0c8ywvkxy9uWEk_yUXw" 
@@ -135,89 +99,8 @@ Usage: ./install.sh [-k <klipper_home_dir>] [-c <klipper_config_dir>] [-m <moonr
 
 <br>
 
-## ![#f03c15](/doc/resources/f03c15.png) ![#c5f015](/doc/resources/c5f015.png) ![#1589F0](/doc/resources/1589F0.png) Overview
-
-Happy Hare has been built to support most types of MMU's connected to the Klipper ecosystem. That includes ERCF, Tradrack, AMS-style and other custom designs. It has extensive configuration to allow for customization using the installer and specifying MMU type through `vendor` and `version` to minimize the need for customization.  The three conceptual types of MMUs and the function and operation of their various sensors can be [found here](doc/conceptual_mmu.md) and should be consulted for any customized setup.
 
 
-
-
-<br>
-
-## ![#f03c15](/doc/resources/f03c15.png) ![#c5f015](/doc/resources/c5f015.png) ![#1589F0](/doc/resources/1589F0.png) Basic Commands and Printer Variables
-
-Happy Hare has a built in help system to aid remembering the command set. It can be accessed with the `MMU_HELP` command and can also be used to view testing commands and user extensible macros which are called by Happy Hare on certain conditions. The full list of commands and options can be [found here](/doc/command_ref.md). A very useful command for understanding MMU operate (`MMU_STATUS`) is explained [in detail here](/doc/operation.md).
-
-
-
-
-
-
-<br>
-
-## ![#f03c15](/doc/resources/f03c15.png) ![#c5f015](/doc/resources/c5f015.png) ![#1589F0](/doc/resources/1589F0.png) Setup and Calibration:
-
-Configuration and calibration will vary slightly depending on your particular brand of MMU although the steps are essentially the same with some being dependent on your hardware configuration. Here are the five basic steps.
-
-### 1\. Important MMU Vendor / Version Specification
-
-Happy Hare functionality will vary with MMU vendor. After running the installer, it is important to verify `mmu_vendor` and `mmu_version` have been correctly set in `mmu_parameters.cfg` because they define the basic capabilities and options in Happy Hare. The only complication in order to correctly support the many popular modifications to some MMU's is that the correct suffix must be specified depending on modifications/upgrades.
-
-<details>
-<summary><sub>🔹 Read more about vendor/version specification...</sub></summary>
-<br>
- 
-```yml
-#
-# The vendor and version config is important to define the capabilities of the MMU and basic CAD dimensions. These can
-# all be overridden with the `cad` parameters detailed in the documentation but the vendor setting saves time.
-#
-# ERCF
-# 1.1 original design, add "s" suffix for Springy, "b" for Binky, "t" for Triple-Decky
-#     e.g. "1.1sb" for v1.1 with Springy mod and Binky encoder
-#
-# 2.0 new community ERCFv2
-#
-# Tradrack
-# 1.0 add "e" if using encoder is fitted
-#
-# Prusa
-#  - Comming soon (use Other for now)
-#
-# Other
-#  - Generic setup that will require further customization of `cad` parameters. See doc
-#
-mmu_vendor: ERCF			# MMU family
-mmu_version: 1.1sb			# MMU hardware version number (add mod suffix documented above)
-mmu_num_gates: 9 			# Number of selector gates
-```
-
-> [!NOTE]  
-> Despite the vendor and version strings taking care of most MMU variations, there are still a few parameters that need to be set. In an attempt to support such mods (as well as supporting completely custom designs) the follow parameters can be specified to override default settings. Note these mostly relate to CAD dimensions, encoder resolution (if fitted) and gate parking distance. Use ONLY if necessary because they could change in the future:<br>
-
-`cad_gate0_pos:` Distance from endstop to first gate in mm<br>
-`cad_gate_width:` Width of individual filament block in mm - if using modified/custom block<br>
-`cad_last_gate_offset:` Distance from end of travel to last gate<br>
-`cad_bypass_offset:` Distance from end of selector travel back to the bypass<br>
-
-This only apply to ERCF v1.1:<br>
-`cad_block_width:` Width of bearing block (ERCF v1.1)<br>
-`cad_bypass_block_width:` Width of bypass support block - if using a custom bypass bearing block like the one in my repo which is 7mm thick (ERCF v1.1)<br>
-`cad_bypass_block_delta:` - Distance from previous gate to bypass (ERCF v1.1)<br>
-
-This non-CAD setting are also commonly required to adjust for non Binky encoders:<br>
-`encoder_min_resolution:` Resolution of one 'pulse' on the encoder. Binky (default) is 23/(2x12)=0.96, TCRT5000 based is 23/(2x17)=0.68
-
-All other configuration parameters are made available and documented in `mmu_parameters.cfg`
-
-</details>
-
-### 2\. Validate your mmu_hardware.cfg configuration and basic operation
-
-Generally the typical "Type-A" MMU will consist of selector motor to position at the desired gate, a gear motor to drive the filament to the extruder and a servo to grip and release the filament. In addition there may be a one or more sensors (endstops) to aid filament positioning. See [hardware configuration doc](/doc/hardware_config.md) for detailed instructions and consult [MMU conceptual model](/doc/conceptual_mmu.md) for details of less common MMU types.
-
-<details>
-<summary><sub>🔹 Details on optional hardware...</sub></summary>
 
 #### Optional hardware - Encoder
 
