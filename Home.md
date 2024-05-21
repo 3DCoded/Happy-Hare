@@ -122,17 +122,17 @@ If you're not a software and automation expert, you can think of Happy Hare as a
 
 These are links to the setup and installation pages. They're broken out into individual pages because this one would be longer than a linear algebra lecture otherwise. So, grab a cup of coffee and work your way down the list.
   
-### <img src="resources/carrot.png" alt="" width="23" height="21">Software installation
+### Software installation
 [Happy Hare Software Installation](Installation)
 
-### <img src="resources/carrot.png" alt="" width="23" height="21">Configuration Files Setup  
+### Configuration Files Setup  
 Here, we'll walk through the configuration files and how the settings affect the performance of the ERCF.  
 
 It's worthwhile to note that there are only a few configuration files that are user editable. You'll notice a whole bunch more files that aren't user editable. The only files we need to worry about are:
 
  - [/base/mmu.cfg](Configuring-mmu.cfg)
- - [/base/mmu_hardware.cfg](Configuring-mmu_hardware.cfg)
- - [/base/mmu_parameters.cfg](Configuring-mmu_parameters.cfg)
- - [/base/mmu_macro_vars.cfg](Configuring-mmu_macro_vars.cfg)
+ - [/base/mmu\_hardware.cfg](Configuring-mmu_hardware.cfg)
+ - [/base/mmu\_parameters.cfg](Configuring-mmu_parameters.cfg)
+ - [/base/mmu\_macro\_vars.cfg](Configuring-mmu_macro_vars.cfg)
 
 These files contain all the user editable parameters for the basic MMU setup. Other folders have things for additional addon functionality like the [Blobifier](https://github.com/Dendrowen/Blobifier), [EREC](https://github.com/kevinakasam/ERCF_Filament_Cutter), etc. They'll be part of a different section.  
