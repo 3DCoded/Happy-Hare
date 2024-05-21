@@ -55,7 +55,7 @@ The best way to describe the workflow is as follows:
 
 > [!NOTE]  
 > You can mimick a pause behavior for testing with this command:<br>
-> > MMU_PAUSE FORCE_IN_PRINT=1
+> > MMU\_PAUSE FORCE\_IN\_PRINT=1
 
 <br>
 
@@ -77,17 +77,26 @@ You can decide if recovery is necessary by using the [MMU_STATUS](Understanding-
 
 If you need to recover there is a simple command that will do this automatically the majority of the time:
 
-> MMU_RECOVER
+> MMU\_RECOVER
+
 Here the tool or gate selection will not be changed, only the filament position reset
 
 By default this causes Happy Hare to run some tests (like reading sensors and wiggling the filament) to try to assertain the correct state, for example, to confirm the position of the filament. But you can also force it by specifying additional options. Here are some examples:
-> MMU_RECOVER TOOL=0
+
+> MMU\_RECOVER TOOL=0
+
 Tell MMU that T0 is selected but automatically look at filament location
-> MMU_RECOVER TOOL=5 LOADED=1
+
+> MMU\_RECOVER TOOL=5 LOADED=1
+
 Tell Happy Hare that T5 is loaded and ready to print
-> MMU_RECOVER TOOL=1 GATE=2 LOADED=0
+
+> MMU\_RECOVER TOOL=1 GATE=2 LOADED=0
+
 Tell Happy Hare that T1 is being serviced by gate #2 and the filament is Unloaded
-> MMU_RECOVER TOOL=1 GATE=1 LOADED=1
+
+> MMU\_RECOVER TOOL=1 GATE=1 LOADED=1
+
 Tell Happy Hare that T1 is being serviced by gate #2 and the filament is Unloaded
 
 This will ensure that Happy Hare understands that tool 1 is selected on gate 1 and the filament is loaded in the extruder. See the [Command Reference](Command-Reference) for more details.
