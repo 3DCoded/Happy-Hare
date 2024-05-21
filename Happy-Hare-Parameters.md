@@ -8,14 +8,51 @@ This is a sequential walkthrough of the main configuration files for Happy Hare.
 The Klipper configuration files for Happy Hare are modular and where to find them is discussed in the [Configuration Reference](Configuration-Reference). Also be sure to consult the [Configuring mmu\_parameters.cfg](Configuring-mmu_parameters.cfg) page for details about each and every parameter.
 
 > [!TIP]  
-> It's worth noting, and a VERY useful feature, that all the essential configuration and tuning parameters (in `mmu_parameters.cfg`) can be modified at runtime without restarting Klipper. Use the `MMU_TEST_CONFIG` command to do this. Running without any parameters will display the current values. **This even allows changes to configuration during a print!**<br>
->
-> Running without any parameters will display the current values:<br>
->
-> > MMU_TEST_CONFIG
-> ```
-> test
-> ```
+> It's worth noting, and a VERY useful feature, that all the essential configuration and tuning parameters (in `mmu_parameters.cfg`) can be modified at runtime without restarting Klipper. Use the `MMU_TEST_CONFIG` command to do this. Running without any parameters will display the current values. **This even allows changes to configuration during a print!**
+
+Running without any parameters will display the current values broken up into `SPEEDS`, `TMC & MOTOR SYNC CONTROL`, `LOADING/UNLOADING`, `TIP FORMING`, `OTHER` and `CALIBRATION` sections:
+
+> MMU_TEST_CONFIG
+```
+SPEEDS:
+gear_from_buffer_speed = 160.0
+gear_from_buffer_accel = 400.0
+gear_from_spool_speed = 80.0
+gear_from_spool_accel = 100.0
+gear_short_move_speed = 80.0
+gear_short_move_accel = 400.0
+gear_short_move_threshold = 70.0
+gear_homing_speed = 50.0
+extruder_homing_speed = 15.0
+extruder_load_speed = 15.0
+extruder_unload_speed = 15.0
+extruder_sync_load_speed = 15.0
+extruder_sync_unload_speed = 15.0
+extruder_accel = 400.0
+selector_move_speed = 200.0
+selector_homing_speed = 60.0
+selector_touch_speed = 80.0
+selector_touch_enable = 0
+
+TMC & MOTOR SYNC CONTROL:
+sync_to_extruder = 0
+sync_form_tip = 0
+sync_feedback_enable = 1
+sync_multiplier_high = 2.00
+:
+:
+```
+_(only partial output displayed)_
+
+Any of the displayed config settings can be modified. For example, to update the distance from extruder entrance (homing postion) to nozzle.
+
+> MMU_TEST_CONFIG toolhead_extruder_to_nozzle=45
+
+> [!IMPORTANT]  
+> When you make a change with `MMU_TEST_CONFIG` it will not be persisted and is only effective until the next restart. Therefore, once you find your tuned settings be sure to update `mmu_parameters.cfg`
+
+<br>
+
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) MMU Vendor, Type & Size
 
 The first section specifies the type of MMU and is used by Happy Hare to adjust (primarily CAD) options. It is documented [here](Configuring-mmu_parameters.cfg#---mmu-vendor-type-and-size) and [here](Configuring-mmu_parameters.cfg#---other-mmu-cad-dimensions).

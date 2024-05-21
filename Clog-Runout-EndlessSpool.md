@@ -1,31 +1,30 @@
 #### Page Sections:
-- [Runout Detection](Runout-Detection)
-- [Optional Encoder](Optional-Encoder)
-- [Clog Detection](Clog-Detection)
-- [EndlessSpool](EndlessSpool)
-- [Flowrate Monitoring](Flowrate Monitoring)
+- [Runout Detection](#---Runout-Detection)
+- [Optional Encoder](#---Optional-Encoder)
+- [Clog Detection](#---Clog-Detection)
+- [EndlessSpool](#---EndlessSpool)
+- [Flowrate Monitoring](#---Flowrate-Monitoring)
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Runout Detection
 
 Filament runout detection will be enabled if you have suitable sensors configured. These sensors include the `mmu_gate` sensor, all `pre_gate` sensors and the encoder. When this occurs the print will pause and allow you to replace filament before proceding. If EndlessSpool is enabled this filament replacement can be automatic. In addition if the MMU is enabled with an encoder it is able to detect clogs.
 
-The runout sensors are included in the list displayed by the `MMU_SENSORS`
+The runout sensors are included in the list displayed by the `MMU_SENSORS` command:
 
 ```yml
-MMU_SENSORS
-sync_feedback_tension: open
-toolhead: open
-mmu_gate: open                # Runout capable
-extruder: open
-mmu_pre_gate_0: TRIGGERED     # Runout capable
-mmu_pre_gate_1: TRIGGERED     # Runout capable
-mmu_pre_gate_2: TRIGGERED     # Runout capable
-mmu_pre_gate_3: open          # Runout capable
-mmu_pre_gate_4: TRIGGERED     # Runout capable
-mmu_pre_gate_5: open          # Runout capable
-mmu_pre_gate_6: open          # Runout capable
-mmu_pre_gate_7: open          # Runout capable
-mmu_pre_gate_8: TRIGGERED     # Runout capable
+    sync_feedback_tension: open
+    toolhead: open
+    mmu_gate: open                # Runout capable
+    extruder: open
+    mmu_pre_gate_0: TRIGGERED     # Runout capable
+    mmu_pre_gate_1: TRIGGERED     # Runout capable
+    mmu_pre_gate_2: TRIGGERED     # Runout capable
+    mmu_pre_gate_3: open          # Runout capable
+    mmu_pre_gate_4: TRIGGERED     # Runout capable
+    mmu_pre_gate_5: open          # Runout capable
+    mmu_pre_gate_6: open          # Runout capable
+    mmu_pre_gate_7: open          # Runout capable
+    mmu_pre_gate_8: TRIGGERED     # Runout capable
 ```
 
 
@@ -89,7 +88,7 @@ To set / change grouping you must specify a list which is the same length as the
 
 > MMU\_ENDLESS\_SPOOL GROUPS=1,2,3,1,2,3,1,2,3
 
-```yml
+```
     T0 -> Gate #0(B) ES_Group_1: 0*> 3?> 6?
     T1 -> Gate #1(B) ES_Group_2: 1*> 4?> 7?
     T2 -> Gate #2(B) ES_Group_3: 2*> 5?> 8* [SELECTED on gate #2]
