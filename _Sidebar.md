@@ -55,6 +55,7 @@
 - [Understanding Operation](Understanding-Operation)
 - [Handling Errors](Handling-Errors)
   - [Recovering MMU State](Handling-Errors#---state-recovery)
+- [Useful Pre-Print Operations](Useful-Pre-Print-Operations)
 
 </details>
 
