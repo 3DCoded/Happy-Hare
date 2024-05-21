@@ -104,17 +104,17 @@ MMU's are complexd! Fortunately Happy Hare has elaborate documentation logically
 
 Most of the development of Happy Hare was done on my trusty ERCF v1.1 setup but as it's grown, so has my collection of MMU's and MCU controllers. Multi-color printing is addictive but can be frustrating during setup and learning. Be patient and use the forums for help!
 
-*Now read the [Wiki](https://github.com/moggieuk/Happy-Hare/wiki/Home)!*
+**Now read the [Wiki](https://github.com/moggieuk/Happy-Hare/wiki/Home)!**
 
 <p align="center"><i>
 There once was a printer so keen,<br>
 To print in red, yellow, and green.<br>
 It whirred and it spun,<br>
 Mixing colors for fun,<br>
-The most vibrant prints ever seen!
+The most vibrant prints ever seen!</br>
+<img src="https://github.com/moggieuk/Happy-Hare/wiki/resources/my_voron_and_ercf.jpg" width="300" alt="My Setup">
 </i></p>
 
-<img src="https://github.com/moggieuk/Happy-Hare/wiki/resources/my_voron_and_ercf.jpg" width="300" alt="My Setup">
  
 ---
 
