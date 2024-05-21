@@ -1,9 +1,9 @@
 #### Page Sections:
-- [Console and Logging](Basic-Operation#---console-and-logging)
-- [KlipperScreen](Basic-Operation#---klipperscreen-happy-hare)
-- [Getting Started](Basic-Operation#---getting-started)
-- [Filament Loading and Unloading](Basic-Operation#---filament-loading-and-unloading-sequences)
-- [Debugging Problems](Basic-Operation#---debugging-problems)
+- [Console and Logging](#---console-and-logging)
+- [KlipperScreen](#---klipperscreen-happy-hare)
+- [Useful Pre-Print Operations](#---useful-pre-print-operations)
+- [Filament Loading and Unloading](#---filament-loading-and-unloading-sequences)
+- [Debugging Problems](#---debugging-problems)
 
 <br>
 
