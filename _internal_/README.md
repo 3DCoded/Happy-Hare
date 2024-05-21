@@ -77,8 +77,21 @@ git clone https://github.com/moggieuk/Happy-Hare.git
 <td width=30%><a href="https://github.com/moggieuk/Happy-Hare/wiki/Home"><img src="https://github.com/moggieuk/Happy-Hare/wiki/resources/wiki.png" alt="wiki"></a></td>
 <td>
 MMU's are complexd! Fortunately Happy Hare has elaborate documentation logically organized in the <a href="https://github.com/moggieuk/Happy-Hare/wiki/Home">Wiki</a>
-<p>
-#### English: <i>coming soon</i>
+
+**English: <i>coming soon</i>
+
+**German:**
+<div align="left">
+  <a href="https://www.youtube.com/watch?v=uaPLuWJBdQU">
+    <img src="https://github.com/moggieuk/Happy-Hare/wiki/resources/youtube1.png" width="30%"></a>
+    Instructional video created by the Crydteam
+<!--
+    <img src="https://i9.ytimg.com/vi_webp/uaPLuWJBdQU/maxresdefault.webp?v=6522d1a6&sqp=CKycn6kG&rs=AOn4CLBCiHQsjGJ0c8ywvkxy9uWEk_yUXw" 
+         alt="Everything Is AWESOME" 
+         style="width:50%;">
+-->
+  </a>
+</div>
 
 </td>
 </tr>
