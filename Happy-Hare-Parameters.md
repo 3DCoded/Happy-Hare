@@ -7,6 +7,15 @@ This is a sequential walkthrough of the main configuration files for Happy Hare.
 
 The Klipper configuration files for Happy Hare are modular and where to find them is discussed in the [Configuration Reference](Configuration-Reference). Also be sure to consult the [Configuring mmu\_parameters.cfg](Configuring-mmu_parameters.cfg) page for details about each and every parameter.
 
+> [!TIP]  
+> It's worth noting, and a VERY useful feature, that all the essential configuration and tuning parameters (in `mmu_parameters.cfg`) can be modified at runtime without restarting Klipper. Use the `MMU_TEST_CONFIG` command to do this. Running without any parameters will display the current values. **This even allows changes to configuration during a print!**<br>
+>
+> Running without any parameters will display the current values:<br>
+>
+> > MMU_TEST_CONFIG
+> ```
+> test
+> ```
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) MMU Vendor, Type & Size
 
 The first section specifies the type of MMU and is used by Happy Hare to adjust (primarily CAD) options. It is documented [here](Configuring-mmu_parameters.cfg#---mmu-vendor-type-and-size) and [here](Configuring-mmu_parameters.cfg#---other-mmu-cad-dimensions).
