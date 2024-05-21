@@ -112,8 +112,8 @@ To print in red, yellow, and green.<br>
 It whirred and it spun,<br>
 Mixing colors for fun,<br>
 The most vibrant prints ever seen!</br>
-<img src="https://github.com/moggieuk/Happy-Hare/wiki/resources/my_voron_and_ercf.jpg" width="300" alt="My Setup">
 </i></p>
+<p align="center"><img src="https://github.com/moggieuk/Happy-Hare/wiki/resources/my_voron_and_ercf.jpg" width="300" alt="My Setup"></p>
 
  
 ---
