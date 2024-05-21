@@ -64,7 +64,7 @@ Controlling an ERCF with companion customized KlipperScreen for easy touchscreen
  
 ## ![#f03c15](https://github.com/moggieuk/Happy-Hare/wiki/resources/f03c15.png) ![#c5f015](https://github.com/moggieuk/Happy-Hare/wiki/resources/c5f015.png) ![#1589F0](https://github.com/moggieuk/Happy-Hare/wiki/resources/1589F0.png) Installation
 
-The module can be installed into an existing Klipper setup with the supplied install script. Once installed it will be added to Moonraker update-manager to easy updates like other Klipper plugins. Full installation documentation is in the [wiki](https://github.com/moggieuk/Home) but start with cloning the repo onto your rpi:
+The module can be installed into an existing Klipper setup with the supplied install script. Once installed it will be added to Moonraker update-manager to easy updates like other Klipper plugins. Full installation documentation is in the [Wiki](https://github.com/moggieuk/wiki/Home) but start with cloning the repo onto your rpi:
 
 ```
 cd ~
@@ -76,19 +76,23 @@ git clone https://github.com/moggieuk/Happy-Hare.git
 ## ![#f03c15](https://github.com/moggieuk/Happy-Hare/wiki/resources/f03c15.png) ![#c5f015](https://github.com/moggieuk/Happy-Hare/wiki/resources/c5f015.png) ![#1589F0](https://github.com/moggieuk/Happy-Hare/wiki/resources/1589F0.png) Documentation
 <table>
 <tr>
-<td width=30%><a href="https://github.com/moggieuk/Happy-Hare/wiki/Home"><img src="https://github.com/moggieuk/Happy-Hare/wiki/resources/wiki.png" alt="wiki"></a><td>
+<td width=30%><a href="https://github.com/moggieuk/Happy-Hare/wiki/Home"><img src="https://github.com/moggieuk/Happy-Hare/wiki/resources/wiki.png" alt="wiki"></a></td>
+<td>
+MMU's are complexd! Fortunately Happy Hare has elaborate documentation logically organized in the <a href="https://github.com/moggieuk/Happy-Hare/wiki/Home">Wiki</a>
+</td>
+</tr>
+
+<tr>
+<td width=30%><a href="https://github.com/moggieuk/Happy-Hare/wiki/Home"><img src="https://github.com/moggieuk/Happy-Hare/wiki/resources/wiki.png" alt="wiki"></a></td>
 <td>
 MMU's are complexd! Fortunately Happy Hare has elaborate documentation logically organized in the <a href="https://github.com/moggieuk/Happy-Hare/wiki/Home">Wiki</a>
 </td>
 </tr>
 </table>
 
-<br>
-
 ### Video Tutorials & Other Resources
 
-#### English: 
-<i>coming soon</i>
+#### English: <small><i>coming soon</i></small>
 
 #### German:
 <div align="left">
@@ -319,7 +323,7 @@ This new v2 Happy Hare software is largely rewritten and so, despite best effort
  
 ## ![#f03c15](/doc/resources/f03c15.png) ![#c5f015](/doc/resources/c5f015.png) ![#1589F0](/doc/resources/1589F0.png) Revision History
 
-Detail change log can be found in the [wiki](Change-Log)
+Detail change log can be found in the [Wiki](Change-Log)
 
 ```
     (\_/)
