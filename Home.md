@@ -21,8 +21,11 @@ There are a few recurring problems with simple solutions and we've tried our bes
 [Happy Hare Troubleshooting Guide](Troubleshooting-and-Common-Issues)
 
 ### Discord
-If you don't find the answer there, speak up on the [Voron ERCF Discord channel](https://discord.com/channels/460117602945990666/909743915475816458). There is a lot going on there, so be patient and persistent. Don't give up and someone will certainly help you.
-Another avenue is the [ERCF V2 Github Discussion Board,](https://github.com/Enraged-Rabbit-Community/ERCF_v2/discussions), however, it is not as well monitored as the Discord channel.  
+If you don't find the answer there, ERCF users can speak up on the [Voron ERCF Discord channel](https://discord.com/channels/460117602945990666/909743915475816458). There is a lot going on there, so be patient and persistent. Don't give up and someone will certainly help you.  Another avenue is the [ERCF V2 Github Discussion Board,](https://github.com/Enraged-Rabbit-Community/ERCF_v2/discussions), however, it is not as well monitored as the Discord channel.  
+
+Tradrack users can use the [TrackRack General Discord](https://discord.com/channels/641407187004030997/1073213131964293180).
+
+Alternatively you can use the [Github Issue](https://github.com/moggieuk/Happy-Hare/issues) system although I only tend to look at that on a weekly cadence.
 
 When you ask for help you should be prepared to provide the following information:
 - klippy.log
