@@ -223,7 +223,7 @@ cd ~/Happy-Hare
 ```
 
 > [!TIP]  
-> Don't be shy about runnning this. If there is nothing to update the script will do nothing and it will always backup your entire config in a directory [see config file structure](Configuration-Reference#---location-of-configuration-files) in a parallel directory with name with datestamp, similar to `mmu-20240422_102329`. The new `mmu` directory will be rebuilt extracting all the previous configuration but with updated templates. Note that a backup directory is created each time you run the installer.
+> Don't be shy about runnning this. If there is nothing to update the script will do nothing and it will always backup your entire config in a directory [see config file structure](Configuration-Reference#---location-of-configuration-files) in a parallel directory with name with date stamp, similar to `mmu-20240422_102329`. The new `mmu` directory will be rebuilt extracting all the previous configuration but with updated templates. Note that a backup directory is created each time you run the installer.
 
 > [!IMPORTANT]  
 > If you have Klipper installed in a non-default location (i.e. you used the `-c`,`-k` or `-r` flags) you will need to add these flags again to the above, otherwise the upgrade will look in the default location and likely not find/upgrade what you expect.
