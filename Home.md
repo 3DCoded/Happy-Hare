@@ -25,9 +25,6 @@ If you don't find the answer there, ERCF users can speak up on the [Voron ERCF D
 
 Tradrack users can use the [TrackRack General Discord](https://discord.com/channels/641407187004030997/1073213131964293180).
 
-Alternatively you can use the [Github Issue](https://github.com/moggieuk/Happy-Hare/issues) system although I only tend to look at that on a weekly cadence.
-
-When you ask for help you should be prepared to provide the following information:
 - klippy.log
 - mmu.log
 - version information (copy output from `MMU_STATUS SHOWCONFIG=1`)
@@ -38,8 +35,12 @@ When you ask for help you should be prepared to provide the following informatio
 
 Also, **be respectful**. The team works diligently to advance the hardware and software. Direct messaging them is frowned upon and you'll not be moved to the front of the queue by doing so.
 
-Hint:
-The easiest way to get logs is to download them through Mainsail. Click the "Machine" tab, then in the dropdown at the top, select "logs". Then look for the chosen log file and RIGHT click and select download.
+> [!TIP]  
+> The easiest way to get logs is to download them through Mainsail. Click the "Machine" tab, then in the dropdown at the top, select "logs". Then look for the chosen log file and RIGHT click and select download.
+
+Alternatively you can use the [Github Issue](https://github.com/moggieuk/Happy-Hare/issues) system although I only tend to look at that on a weekly cadence.
+
+When you ask for help you should be prepared to provide the following information:
 
 <br>
 
