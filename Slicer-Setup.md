@@ -92,12 +92,9 @@ This macro will load the initial tool used by the print. No need to pass it any 
 #### `5.` Optional purge logic...
 Optionally you can put the parts of your original print start macro that you separated out here. Typically this would be the logic that purges the nozzle and prints prime line. Although not technically required for MMU prints it is nice to retain for when using the bypass on special single color prints.
 
-> [!IMPORTANT]  
-> The Happy Hare moonraker g-code pre-processor plugin (that's quite a mouthful) takes only a few seconds to process even with large g-code files, however, because of the way moonraker works it is important that your workflow is "Upload" and then "Print" rather than the combined "Upload and Print". The latter will result in the !placeholders! not being expanded in time.
-
 > [!TIP]  
 > The slicer defined extruder colors will be displayed on Mainsail / Fluidd UI next to the Extruder "Tx" buttons (see below). Note that the UI's do not currently automatically update when colors change so you will need to refresh your browser window to see the colors.
-> <img src="Slicer-Setup/mainsail_colors.png" width="450" alt="Mailsail Extruder Colors">
+> <p align="center"><img src="Slicer-Setup/mainsail_colors.png" width="450" alt="Mailsail Extruder Colors"></p>
 
 <br>
 
