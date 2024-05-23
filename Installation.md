@@ -215,7 +215,7 @@ Happy Hare will always return the toolhead to the correct position, but if you l
 
 Happy Hare is always being improved. You can update in the same way as you update Klipper through the update-manager facility in Moonraker when update is indicated. If you know an update is pending and it is not yet shown in update-manager (it can take 24h) you can force a refresh by clicking on the circular arrow.
 
-<p align="center"><img src="Installation/update_manager.png"<p>
+<p align="center"><img src="Installation/update_manager.png" width="500"><p>
 
 Sometimes an update includes a major change and simply upgrading through update manager is not sufficent. When this occurs you should see an error message directing you to the [Upgrade Notice](Upgrade-Notice) page (read that now because it explains major/minor/point release conventions). You will then need to run the `install.sh` script as below.
 
