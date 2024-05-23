@@ -12,7 +12,7 @@
 - [Gear/Extruder Synchronization](#---gearextruder-synchronization)
 - [Filament Management Options](#---filament-management-options)
 - [State Persistence aka Turn on Behavior](#---state-persistence-aka-turn-on-behavior)
-- [Statistics Formatting](#---statistics-formatting)
+- [Statistics Formatting](#---statistics-formatting-cosmetic)
 - [Miscellaneous](#---miscellaneous)
 - [Macro Naming](#---macro-naming)
 - [Statically defined "reset" defaults](#---statically-defined-reset-defaults)
@@ -354,7 +354,7 @@ Happy Hare can auto-initialize the MMU based on the previous persisted state. Ea
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Statistics Formatting
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Statistics Formatting (Cosmetic)
 
 These parameters determine how data is shown in the console. This table shows a lot of data, and probably more than you'd want to see. Below you can enable/disable options to your needs.
 <p align=center><img src="Configuring-mmu_parameters/mmu_statistics.png"></p>
