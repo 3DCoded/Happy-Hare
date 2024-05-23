@@ -42,8 +42,12 @@ Every update of pigment to gate map would recalc matrix and present as printer v
 variable_cooling_tube_position should have the comment: Measured from Nozzle to Top of Heater Block
 variable_cooling_tube_length should have the comment: Measured from Top of Heater Block to Top of Heatsink
 ```
+24. Ensure that start/end g-code macros are no-op if mmu is disabled. Others should probably be too..
+25. Double check EndlessSpool is still working - claim of hang on `_M400...`
+26. Merge `retract branch` .. after completing.  Note the change to "Cosmetic Options" in parameters .. need to update Wiki
+27. Update "Installation/Upgrade" wiki to include moonraker update manager example and screenshot
 
-### Reference Markdown
+### Reference Markdown so I don't forget
 
 > [!NOTE]  
 > Highlights information that users should take into account, even when skimming.

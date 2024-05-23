@@ -213,9 +213,13 @@ Happy Hare will always return the toolhead to the correct position, but if you l
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Upgrading
 
-Happy Hare is always being improved. You can update in the same way as you update Klipper through the update-manager facility in Moonraker. Sometimes an update includes a major change and simply upgrading through update manager is not sufficent. When this occurs you should see an error message directing you to the [Upgrade Notice](Upgrade-Notice) page (read that now because it explains major/minor/point release conventions).
+Happy Hare is always being improved. You can update in the same way as you update Klipper through the update-manager facility in Moonraker when update is indicated. If you know an update is pending and it is not yet shown in update-manager (it can take 24h) you can force a refresh by clicking on the circular arrow.
 
-Alternatively you can periodically run the following. Note that you **must not add the `-i` option to update**. This will pull the very latest code from Github and upgrade any necessary configuration files. This is also a good option to run if you suspect you have broken something or you have upgraded Klipper and it has removed the Happy Hare modules (possible because these are extensions that Klipper doesn't know about):
+<p align="center"><img src="Installation/update_manager.png"<p>
+
+Sometimes an update includes a major change and simply upgrading through update manager is not sufficent. When this occurs you should see an error message directing you to the [Upgrade Notice](Upgrade-Notice) page (read that now because it explains major/minor/point release conventions). You will then need to run the `install.sh` script as below.
+
+Alternatively you can simply run the following. Note that you **must not add the `-i` option to update**. This will pull the very latest code from Github and upgrade any necessary configuration files. This is also a good option to run if you suspect you have broken something or you have upgraded Klipper and it has removed the Happy Hare added modules (**hint: If you see a "step pin not defined for..." it is highly lightly that klipper has lost the Happy Hare modules and it struggling to parse the config**).
 
 ```yml
 cd ~/Happy-Hare
