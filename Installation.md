@@ -215,11 +215,11 @@ Happy Hare will always return the toolhead to the correct position, but if you l
 
 Happy Hare is always being improved. You can update in the same way as you update Klipper through the update-manager facility in Moonraker when update is indicated. If you know an update is pending and it is not yet shown in update-manager (it can take 24h) you can force a refresh by clicking on the circular arrow.
 
-<p align="center"><img src="Installation/update_manager.png" width="500"><p>
+<p align="center"><img src="Installation/update_manager.png" width="600"><p>
 
 Sometimes an update includes a major change and simply upgrading through update manager is not sufficent. When this occurs you should see an error message directing you to the [Upgrade Notice](Upgrade-Notice) page (read that now because it explains major/minor/point release conventions). You will then need to run the `install.sh` script as below.
 
-Alternatively you can simply run the following. Note that you **must not add the `-i` option to update**. This will pull the very latest code from Github and upgrade any necessary configuration files. This is also a good option to run if you suspect you have broken something or you have upgraded Klipper and it has removed the Happy Hare added modules (**hint: If you see a "step pin not defined for..." it is highly lightly that klipper has lost the Happy Hare modules and it struggling to parse the config**).
+Alternatively you can simply run the following. Note that you **must not add the `-i` option to update**. This will pull the very latest code from Github and upgrade any necessary configuration files. This is also a good option to run if you suspect you have broken something or you have upgraded Klipper and it has removed the Happy Hare added modules (Hint: If you see a "step pin not defined for..." it is highly lightly that klipper has lost the Happy Hare modules and it struggling to parse the config).
 
 ```yml
 cd ~/Happy-Hare
@@ -227,7 +227,7 @@ cd ~/Happy-Hare
 ```
 
 > [!TIP]  
-> Don't be shy about runnning this. If there is nothing to update the script will do nothing and it will always backup your entire config in a directory [see config file structure](Configuration-Reference#---location-of-configuration-files) in a parallel directory with name with date stamp, similar to `mmu-20240422_102329`. The new `mmu` directory will be rebuilt extracting all the previous configuration but with updated templates. Note that a backup directory is created each time you run the installer.
+> Don't be shy about runnning this. If there is nothing to update the script will do nothing and it will always backup your entire config in a directory [see config file structure](Configuration-Reference#---location-of-configuration-files) in a parallel directory with name with date stamp, similar to `mmu-20240422_102329`. The new `mmu` directory will be rebuilt extracting all the previous configuration but with updated templates. Note that an additional backup directory is created each time you run the installer uniquely date stamped.
 
 > [!IMPORTANT]  
 > If you have Klipper installed in a non-default location (i.e. you used the `-c`,`-k` or `-r` flags) you will need to add these flags again to the above, otherwise the upgrade will look in the default location and likely not find/upgrade what you expect.
