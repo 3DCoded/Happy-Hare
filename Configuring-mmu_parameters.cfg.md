@@ -12,7 +12,7 @@
 - [Gear/Extruder Synchronization](#---gearextruder-synchronization)
 - [Filament Management Options](#---filament-management-options)
 - [State Persistence aka Turn on Behavior](#---state-persistence-aka-turn-on-behavior)
-- [Cosmetic Options](#---cosmetic-options)
+- [Statistics Formatting](#---statistics-formatting)
 - [Miscellaneous](#---miscellaneous)
 - [Macro Naming](#---macro-naming)
 - [Statically defined "reset" defaults](#---statically-defined-reset-defaults)
@@ -354,7 +354,7 @@ Happy Hare can auto-initialize the MMU based on the previous persisted state. Ea
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Cosmetic Options
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Statistics Formatting
 
 These parameters determine how data is shown in the console. This table shows a lot of data, and probably more than you'd want to see. Below you can enable/disable options to your needs.
 <p align=center><img src="Configuring-mmu_parameters/mmu_statistics.png"></p>
@@ -384,6 +384,18 @@ This output only formats when using Python 3.
 
 `console_always_output_full` selects whether or not to show the full table. 1 = Show full table, 0 = Only show totals out of print
 
+<!---
+<br>
+
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Blob and Stringing Control
+
+`z_hop_height_toolchange` tells Happy Hare how high to move the extruder for a tool change. This is **only during printing** and does not affect stand alone tool changes.
+
+`z_hop_height_error` the z hop height Happy Hare moves the extruder on a pause or error to avoid making a blob on the print **only during printing**.
+
+`z_hop_speed` the speed of z hop moves initiated by Happy Hare.
+-->
+
 <br>
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Miscellaneous
@@ -399,6 +411,7 @@ The following variables are configurable based on your needs, but rarely need me
 
 `extruder_temp_variance`gives Happy Hare some tolerance when waiting for extruder temperature.  The number set is the ± variance in degrees. I.e. 2 will allow ±2. This allows Happy Hare to kick into action when the extruder is close, but not fully settled on it's target temperature.
 
+<!-- TODO Remove z_hop params when retract branch is launched -->
 `z_hop_height_toolchange` tells Happy Hare how high to move the extruder for a tool change. This is **only during printing** and does not affect stand alone tool changes.
 
 `z_hop_height_error` the z hop height Happy Hare moves the extruder on a pause or error to avoid making a blob on the print **only during printing**.
@@ -461,20 +474,26 @@ The following variables are configurable based on your needs, but rarely need me
 > More than likely you'll leave everything from here on out commented out in your config. They are usually set in other places using calibration commands like `MMU_GATE_MAP`, `MMU_TTG_MAP`, `MMU_ENDLESS_SPOOL`, etc. We'll not get too deep here as it isn't really necessary for a first configuration and startup. However, if you want to delve into this more, look at the [Command Reference](Command-Reference).
 
 #### Examples...
-##### MMU Gate Map
-|Gate| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 |
-|--|--|--|--|--|--|--|--|--|
-| gate_material | PLA | ABS | ABS+ | PLA | PLA | PETG | TPU | ABS |
-| gate_color | red | black | yellow | green | blue | indigo | ffffff | grey |
-| gate_spool_id | 3 | 2 | 1 | 4 | 5 | 6 | 7 | -1 |
-| gate_status | 1 | 2 | 1 | 2 | -1 | -1 | 0 | 1 |
-| gate_speed_overide | 100 | 100 | 100 | 100 | 100 | 100 | 50 | 100 |
-| endless_spool_groups | 0 | 1 | 2 | 1 | 0 | 0 | 3 | 4 |
+##### Setting default MMU Gate Map:
+```yml
+# Gate:               #0      #1      #2      #3      #4      #5      #6      #7      #8
+gate_material:        PLA,    ABS,    ABS,    ABS+,   PLA,    PLA,    PETG,   TPU,    ABS
+gate_color:           red,    black,  yellow, green,  blue,   indigo, ffffff, grey,   black
+gate_spool_id:        3,      2,      1,      4,      5,      6,      7,      -1,     9
+gate_status:          1,      0,      1,      2,      2,     -1,     -1,      0,      1
+gate_speed_override:  100,    100,    100,    100,    100,    100,    100,    50,     100
+```
+
+##### Defining EndlessSpool Groups:
+```yml
+endless_spool_groups: 0,      1,      2,      1,      0,      0,      3,      4,      1
+```
   
-##### Tool to Gate Map
-| Tool | T0 | T1 | T2 | T3 | T4 | T5 | T6 | T7 |
-|--|--|--|--|--|--|--|--|--|
-|tool_to_gate_map|0|1|2|3|4|5|6|7|
+##### Setting default Tool to Gate Map:
+```yml
+# Tool:               T0      T1      T2      T3      T4      T5      T6      T7      T8
+tool_to_gate_map:     0,      1,      2,      3,      4,      5,      6,      7,      8
+```
 
 <br>
 
