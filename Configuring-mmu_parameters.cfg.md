@@ -499,7 +499,7 @@ tool_to_gate_map:     0,      1,      2,      3,      4,      5,      6,      7,
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) "Other" MMU CAD Dimensions
 
-Normally all these settings are set based on your choice of 'mmu_vendor' and 'mmu_version', but they can be overridden. If you have selected a vendor of "Other" you must set these else you will get arbitary ERCFv1.1 defaults.
+Normally all these settings are set internally based on your choice of 'mmu_vendor' and 'mmu_version', but they can be overridden by uncommenting and defining here. If you have selected a vendor of "Other" you must set these else you will get arbitary ERCFv1.1 defaults.
 
 `cad_gate0_pos` is the approximate distance from end stop to the first gate. Used for rough calibration only and is overwritten during the gate position calibration process.
 
