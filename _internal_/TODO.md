@@ -46,6 +46,7 @@ variable_cooling_tube_length should have the comment: Measured from Top of Heate
 25. Double check EndlessSpool is still working - claim of hang on `_M400...`
 26. Merge `retract branch` .. after completing.  Note the change to "Cosmetic Options" in parameters .. need to update Wiki
 27. Update "Installation/Upgrade" wiki to include moonraker update manager example and screenshot
+28. Issue #292: don't wait for temp if in print and a new temp was set by slicer... (careful of corner cases and restart after cooled extruder..)
 
 ### Reference Markdown so I don't forget
 
