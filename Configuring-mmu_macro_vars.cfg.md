@@ -220,6 +220,9 @@ Mosquito: 20
 Revo: 10  
 RapidoHF: 22  
 
+<p align="center"><img src="Configuring-mmu_macro_vars.cfg/tip_forming_parameters.png"></p>
+
+
 `variable_initial_cooling_speed`is the initial slow movement (mm/s) to solidify the tip and cool the string if formed.  
 
 `variable_final_cooling_speed` is the fast movement (mm/s) speed for tip forming.  If too fast, the tip will deform while ejecting. If too slow there will be long strings and no separation from the melt pool, leaving a string with a blob on the end of the string.  
