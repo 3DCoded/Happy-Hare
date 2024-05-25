@@ -70,9 +70,18 @@ Repeat for the three positions:
 * move = ready the servo for selector move (optional - defaults to up)
 
 > [!NOTE]  
-> Refer to you specific MMU doc for information to determine exactly what servo positions are required
-> If you are unsure that your MMU requires a "move" position, set it the same as "up"
-> If you are unable to attain the servo angle required you might need to "change spline" or edit the servo configuration in `mmu_hardware.cfg`
+> Refer to you specific MMU doc for information to determine exactly what servo positions are required.<br>
+> If you are unsure that your MMU requires a "move" position, set it the same as "up"<br>
+> If you are unable to attain the servo angle required you might need to "change spline" or edit the servo configuration in `mmu_hardware.cfg`<br>
+> 
+> **Example servo positions on ERCF MMU design**<br>
+> Ignore this if not on an ERCF, but this might be helpful to many users. Make sure the 3 position of your servo arm so the arm does not hit the tophats when the selector is moving. See picture below to find out where the position should be for the 3 positions.
+> - Servo Up. (trap released / print without sync)
+> <p align="center"><img src="MMU-Calibration/servo_up.jpeg" width="250" alt="Servo Up"></p>
+> - Servo Move. (trap locked / selector movement)
+> <p align="center"><img src="MMU-Calibration/servo_move.jpeg" width="250" alt="Servo Move"></p>
+> - Servo Down. (trap released for Load/unload or print with sync mode)
+> <p align="center"><img src="MMU-Calibration/servo_down.jpeg" width="250" alt="Servo Down"></p>
 
 <br>
 
