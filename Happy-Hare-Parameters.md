@@ -634,5 +634,5 @@ When `mmu_vendor` and `mmu_version` are set, Happy Hare will use the correct CAD
 ### More essential config setup:
 - [Hardware Configuration](Hardware-Configuration)
   - [Endstops, Movement and Homing](Movement-and-Homing)
-- [Happy Hare Parameters]
+- Happy Hare Parameters
 - [Macro Configuration](Macro-Configuration)

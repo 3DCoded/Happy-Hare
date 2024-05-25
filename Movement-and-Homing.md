@@ -81,6 +81,6 @@ Altough this advanced functionality is already being used internally in Happy Ha
 
 ### More essential config setup:
 - [Hardware Configuration](Hardware-Configuration)
-  - [Endstops, Movement and Homing]
+  - Endstops, Movement and Homing
 - [Happy Hare Parameters](Happy-Hare-Parameters)
 - [Macro Configuration](Macro-Configuration)
