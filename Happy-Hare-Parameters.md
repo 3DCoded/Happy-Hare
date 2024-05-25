@@ -411,7 +411,8 @@ slicer_tip_park_pos: 0                   # This specifies the position of filame
 ```
 
 > [!NOTE]  
-> Setting `force_form_tip_standalone: 1` will cause Happy Hare to always run the supplied tip shaping macro.  If you set this then make sure you configure your slicer to not adding tip shaping logic of its own else tips will attempt to be created twice and knowledge of the filament position in the extruder may become inaccurate (see [Slicer Setup](Slicer-Setup)).
+> Setting `force_form_tip_standalone: 1` will cause Happy Hare to always run the supplied tip shaping macro.  If you set this then make sure you configure your slicer to not adding tip shaping logic of its own else tips will attempt to be created twice and knowledge of the filament position in the extruder may become inaccurate (see [Tip Forming and Purging](Tip-Forming-and-Purging)).
+Tip-Forming-and-Purging
 
 <br>
 
