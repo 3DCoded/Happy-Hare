@@ -220,7 +220,7 @@ Mosquito: 20
 Revo: 10  
 RapidoHF: 22  
 
-<p align="center"><img src="Configuring-mmu_macro_vars.cfg/tip_forming_parameters.png"></p>
+<p align="center"><img src="Configuring-mmu_macro_vars/tip_forming_parameters.png"></p>
 
 
 `variable_initial_cooling_speed`is the initial slow movement (mm/s) to solidify the tip and cool the string if formed.  
