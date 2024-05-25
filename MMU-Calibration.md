@@ -78,8 +78,10 @@ Repeat for the three positions:
 > Ignore this if not on an ERCF, but this might be helpful to many users. Make sure the 3 position of your servo arm so the arm does not hit the tophats when the selector is moving. See picture below to find out where the position should be for the 3 positions.
 > - Servo Up. (trap released / print without sync)
 > <p align="center"><img src="MMU-Calibration/servo_up.jpeg" width="250" alt="Servo Up"></p>
+>
 > - Servo Move. (trap locked / selector movement)
 > <p align="center"><img src="MMU-Calibration/servo_move.jpeg" width="250" alt="Servo Move"></p>
+>
 > - Servo Down. (trap released for Load/unload or print with sync mode)
 > <p align="center"><img src="MMU-Calibration/servo_down.jpeg" width="250" alt="Servo Down"></p>
 
