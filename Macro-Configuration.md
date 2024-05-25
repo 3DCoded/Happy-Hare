@@ -5,7 +5,7 @@ This is where you'll likely spend most of your time tuning the MMU after the ini
 You will need to consult the [Configuring mmu\_macro\_var.cfg](Configuring-mmu_macro_vars.cfg) reference page for full details, but essentially the file is broken up into sections where each section contains the configuration for the respective macro. These include:
 
 | Section | Macro Filename | Description |
-|---------|----------------|-------------|
+| ------- | -------------- | ----------- |
 | \_MMU\_SOFTWARE\_VARS | `base/mmu_software.cfg` | Controls the behavior of the print start and finalization |
 | \_MMU\_STATE\_VARS | `base/mmu_state.cfg` | Customization of behavior when state changes |
 | \_MMU\_LED\_VARS | `base/mmu_leds.cfg` | Configuration of LED actions |
