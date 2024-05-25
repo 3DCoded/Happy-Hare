@@ -385,9 +385,7 @@ toolhead_move_error_tolerance: 60       # ADVANCED default is probably ok
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Tip Forming
 
-TODO...
-
-Some more details on slicer setup can be found [here](Toolchange-Movement#---role-of-the-slicer)
+Here you set the name of the macro to call to perform the "tip forming". Happy Hare supplies both a traditional tip shaping macro (based on what Prusa/Super slicer did) as well as a tip cutting macro designed for toolhead based cutters like ERF (Filametrix).  More details on slicer setup can be found [here](Toolchange-Movement#---role-of-the-slicer) and in the setup of the individual macros.
 
 ``` yml
 # Tip forming -------------------------------------------------------------------------------------------------------------
@@ -413,7 +411,7 @@ slicer_tip_park_pos: 0                   # This specifies the position of filame
 ```
 
 > [!NOTE]  
-> Setting `force_form_tip_standalone: 1` will cause Happy Hare to always run the supplied tip shaping macro.  If you set this then make sure your slicer is not adding tip shaping logic of its own else tips will attempt to be created twice and knowledge of the filament position in the extruder may become inaccurate
+> Setting `force_form_tip_standalone: 1` will cause Happy Hare to always run the supplied tip shaping macro.  If you set this then make sure you configure your slicer to not adding tip shaping logic of its own else tips will attempt to be created twice and knowledge of the filament position in the extruder may become inaccurate (see [Slicer Setup](Slicer-Setup)).
 
 <br>
 
