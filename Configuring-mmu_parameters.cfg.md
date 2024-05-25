@@ -247,6 +247,8 @@ toolhead_homing_max: 40			# Maximum distance to advance in order to attempt to h
 > [!IMPORTANT]  
 > These next three settings are based on the physical dimensions of your toolhead. Once a homing position is determined, Happy Hare needs to know the final move distance to the nozzle. This is accomplished by the following variables and the extruder and toolhead switches, if present. There is **ONLY ONE** correct value for **YOUR SETUP**. If you have issues with oozing, use `toolhead_ooze_reduction` to control excessive oozing on load. Don't tweak the measurements in the following variables. They are directly tied to the physical distances in your toolhead. See [Happy Hare Parameter Overview](Happy-Hare-Parameters#---toolhead-loading--unloading) for a table of proposed values for common configurations. If you end up using something that isn't in the table, please create a pull request with your working numbers so others may benefit from your knowledge.
 
+<p align="center"><img src="Happy-Hare-Parameters/extruder_dimensions.png" alt='Extruder Dimensions' width='60%'></p>
+
 These are usually measured in CAD, which is the easiest route. The internal nozzle tip is the best place to measure from, based on several users' experience. The internal nozzle tip is the bottom of the internal "cone" just before the final nozzle opening. Other measurement places are intuitive.
 
 However, they can be measured directly. To measure directly, use a piece of filament about three times the length of your toolhead filament path. Do this with a new, unused nozzle (Sorry Revo owners, I know that's $40) with the nozzle cold. Each variable will have a description of how to obtain the measurement.
