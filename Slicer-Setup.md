@@ -108,7 +108,7 @@ Ensure this is added in your slicer's "custom end g-code" box:
 
 ```yml
 MMU_END
-; Enter YOUR print end macro call here
+; Optionally enter YOUR print end macro call here
 ```
 
 #### `1. MMU_END`
