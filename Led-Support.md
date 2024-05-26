@@ -31,7 +31,7 @@ pin: mmu:MMU_NEOPIXEL
 chain_count: 17            # Number gates x1 or x2 + 1 (if you want status)
 color_order: GRBW          # Set based on your particular neopixel specification
 ```
-This section may be all commented out, if so and you wish to configure LEDS, uncomment the entire section and ensure that the `MMU_NEOPIXEL` pin is correctly set in the aliases in `mmu.py` and that the `color_order` matches your particular LED (don't mix type or if you do, set to a comma separated list of the type of each led in the chain. e.g. "GRB, GRB, GRB, RGBW, RGBW, RGBW").  Note that you must also install "Klipper LED Effects" plugin.
+This section may be all commented out, if so and you wish to configure LEDS, uncomment the entire section and ensure that the `MMU_NEOPIXEL` pin is correctly set in the aliases in `mmu.cfg` and that the `color_order` matches your particular LED (don't mix type or if you do, set to a comma separated list of the type of each led in the chain. e.g. "GRB, GRB, GRB, RGBW, RGBW, RGBW").  Note that you must also install "Klipper LED Effects" plugin.
 
 The wiring of LED's is very flexible but must be controlled by the same pin.  Happy Hare defines three led segments: "entry", "exit" and "status" as described in the config file:
 ```yml
