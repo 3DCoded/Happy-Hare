@@ -115,7 +115,7 @@ MMU_END
 This is a macro (defined in `mmu_software.cfg`) that finalizes MMU, can print stats, reset any TTG map and eject filament. It is recommended to run this before your existing print end macro which is likely to disable heaters and turn motors off.
 
 > [!IMPORTANT]  
-> Make sure "octoprint compatibility" is False if not using Octoprint and you have your own `END_PRINT` following this, otherwise the `MMU_END` macro will force the state machine into a "COMPLETED" state which means any logic in your `END_PRINT` will look like starting a new print!
+> Make sure `octoprint_compat` is False (`mmu_macro_vars.cfg`) if not using Octoprint and you have your own `END_PRINT` following this, otherwise the `MMU_END` macro will force the state machine into a "COMPLETED" state which means any logic in your `END_PRINT` will look like starting a new print!
 
 #### `2. END_PRINT`
 This is where your existing print end macro would be placed
