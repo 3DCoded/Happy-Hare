@@ -22,7 +22,7 @@ Github user Dendrowen (our beloved Blobifier dev) offers this additonal general 
 - Replace SD card with one with fast read/write (especially write)
 - Upgrade rPi
 
-One additional observation that has been made is if you are running KlipperScreen on the same rpi as your printer.  Whilst there shouldn't be any issues this, certain conditions or timeouts can lead KlipperScreen to swamp `/var/log/syslog` with repeated messages such as "[job\_status.py:update\_file\_metadata()] - Cannot find file metadata. Listening for updated metadata".  This places severe load on writing to the SD card and can lead to TTC errors. A PR has been created to update Moonraker, but until then you can enable "object processing" in `moonraker.conf` which will give it more time to perform the pre-processing and thus not generate the KlipperScreen "metadata" error:
+One additional observation that has been made is if you are running KlipperScreen on the same rpi as your printer.  Whilst there shouldn't be any issues this, certain conditions or timeouts can lead KlipperScreen to swamp `/var/log/syslog` with repeated messages such as "[job\_status.py:update\_file\_metadata()] - Cannot find file metadata. Listening for updated metadata".  This places severe load on writing to the SD card and can lead to TTC errors. A [PR](https://github.com/Arksine/moonraker/pull/862) has been created to update Moonraker, but until then you can enable "object processing" in `moonraker.conf` which will give it more time to perform the pre-processing and thus not generate the KlipperScreen "metadata" error:
 
 ```yml
 [file_manager]
