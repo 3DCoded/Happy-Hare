@@ -47,6 +47,8 @@ variable_cooling_tube_length should have the comment: Measured from Top of Heate
 26. Merge `retract branch` .. after completing.  Note the change to "Cosmetic Options" in parameters .. need to update Wiki
 27. Update "Installation/Upgrade" wiki to include moonraker update manager example and screenshot
 28. Issue #292: don't wait for temp if in print and a new temp was set by slicer... (careful of corner cases and restart after cooled extruder..)
+29. Initial toolchange often occurs very close to bed. Would be 0mm if (z_hop=0, I think?). Is this true? Should there be a min for x/y movement? Then x/y would always be at minimum height...?
+30. Spaghetti Noodle problem... after load when printing without sync, there can be a lot of slack in filament that can cause clog detection issue.  Perhaps tighten the filament using gear motor once loaded...?
 
 ### Reference Markdown so I don't forget
 
