@@ -49,6 +49,26 @@ variable_cooling_tube_length should have the comment: Measured from Top of Heate
 28. Issue #292: don't wait for temp if in print and a new temp was set by slicer... (careful of corner cases and restart after cooled extruder..)
 29. Initial toolchange often occurs very close to bed. Would be 0mm if (z_hop=0, I think?). Is this true? Should there be a min for x/y movement? Then x/y would always be at minimum height...?
 30. Spaghetti Noodle problem... after load when printing without sync, there can be a lot of slack in filament that can cause clog detection issue.  Perhaps tighten the filament using gear motor once loaded...?
+31. MMU_CALIBRATE_TOOLHEAD with no toolhead sensor idea...
+             # IF NO TS (currently not supported, but some ideas here)
+                # IF "extruder" sensor:
+                    # Reverse home to "extruder" sensor with synced movement
+                    # --> Movement is `toolhead_entry_to_extruder` + `toolhead_extruder_to_nozzle`
+                    # Remember this
+                    # Home to extruder entrance using collision (not important to be accurate)
+                    # [Filament is now tight against extruder and under compression]
+                    # Reverse home to extruder sensor
+                    # Distance moved is approximately `toolhead_entry_to_extruder`
+                    # --> `toolhead_extruder_to_nozzle` = Early recorded movement - ``toolhead_entry_to_extruder`
+                    # NOTE: the above is flawed because filament cannot be retracted evenly -- it tends to spring and jerk
+                    #       But it could be compared with calibrated length - "a homing move to the extruder sensor"
+                # Else: # NO "extruder" sensor (or TS):
+                    # Ideas:
+                    # 1. to use gate as homing point .. almost certainly too far away to be accurate
+                    # 2. Use stallguard on extruder stepper to sense the nozzle .. will work IF stallguard set well
+                    #    Move 5-10mm synced to ensure clean transition into extruder
+                    #    Move 100mm extruder only, "touch" homing move
+                    #    Measured distance is `toolhead_entry_to_extruder`
 
 ### Reference Markdown so I don't forget
 
