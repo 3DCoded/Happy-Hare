@@ -69,6 +69,8 @@ variable_cooling_tube_length should have the comment: Measured from Top of Heate
                     #    Move 5-10mm synced to ensure clean transition into extruder
                     #    Move 100mm extruder only, "touch" homing move
                     #    Measured distance is `toolhead_entry_to_extruder`
+32. DONE: Add `gate_autoload` param 0/1 to enable disable autoload feature. Default to 1.
+33. Add `endless_spool_waste_gate` param.  -1 = current gate (default), 0-n = designated gate.  If a designated gate then pre-gate sensors are automatically excluded.  Implement the special waste gate unloading...
 
 ### Reference Markdown so I don't forget
 
