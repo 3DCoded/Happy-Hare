@@ -72,6 +72,48 @@ variable_cooling_tube_length should have the comment: Measured from Top of Heate
 32. DONE: Add `gate_autoload` param 0/1 to enable disable autoload feature. Default to 1.
 33. Add `endless_spool_waste_gate` param.  -1 = current gate (default), 0-n = designated gate.  If a designated gate then pre-gate sensors are automatically excluded.  Implement the special waste gate unloading...
 
+OLD LIST:
+MMU TODO + Ideas
+1. Separate servo class
+2. Add type to parameters and set based on vendor/version
+3. Separate selector class 
+4. Allow for multiple selector servos
+5. Allow for multiple gear steppers
+8. Rewrite automated bowden calibration - DONE
+9. Finish homing measured for non-homing extruder
+10. DONE - Pass params to RESUME
+11. Compression pin homing feedback for extruder (same as collision)
+12. DONE - Record the gate homing point with calibration so dead space can be added/subtracted for quick change
+13. DONE - Check that entry_to_extruder amount is added / subtracted too
+14. Virtual selector see #3
+15. Switching drive gear
+16. Virtual servo (force sync KMS case)
+17. Prusa_servo
+18. Inattention time instead of retry on fail. Remove ‘retry_change_on_error’
+19. force_form_tip_standalone —> allow_slicer_form_tip or tip forming strategy form|slicer|cut cut_mmu??
+20. _form_tip as separate “_STEP”
+21. Externalize ‘boot up tasks’ so users could add things like “check_gates”
+22.  VALIDATE state on resume — does it match possible recover states.  e.g. filament at end of bowden but not in extruder.  Will HH do full load from this point or unload+load?
+23. Review performance of pre-processing logic.  Can it work well with slow sd-cards?
+24. Set initial state of tension feedback for Belay (see issues)
+25. New PS based tip forming?
+
+Mmu_home when in print should pause like check_gates .. done?
+
+Happy Hare
+1. Option to eject filament on cancel print
+2. Tradrack (installer):
+    1. gate_parking_distance of 17.5mm is good
+    2. gate_endstop to encoder is 28mm
+    3. Higher load/unload speed possible (350mm max), could use 250 as default for TR.
+3. DONE - Reverse these pins for MMB v1.1 board: PIN[MMB,gear_enable_pin]="PA8" PIN[MMB,pre_gate_1_pin]="PB8";       # STP4
+4. Add per tool change (filament found in extruder flag) so that EREC can detect and not cut…
+5. MMU_TEST_TRACKING does not keep servo down so records 0!
+6. DONE - Better sync feedback logic .. don’t like what I did (shouldn’t be necessary, but maybe after restart the state of compression and tension needs to be reset)
+7. Think about “notch detection” logic for runout sensors…
+8. If single color print and referenced tools is empty, the check gates should only check “initial tool”…
+
+
 ### Reference Markdown so I don't forget
 
 > [!NOTE]  
