@@ -127,6 +127,7 @@ Here is where you'll define the MMU movement speeds, accelerations, and distance
 Let's discuss the differences between the MMU and the printer. The MMU has very long moves compared to the printer. Loading a bowden tube takes single moves in several hundred millimeters if not more than a meter. The typical print move is less than a milimeter. This basically boils down to missing a step on a print move usually is imperceptible or a very mild layer shift. One step in a typical printer move is about 0.2mm. If the printer stalls for one step, you likely won't hear it and only see the result as a minor layer issue. If you've heard a printer stall, it rattles like a diesel engine. This results in large layer shifts because the printer looses steps on several dozen moves, resulting in the bap-bap-bap-bap sound. Now, on the MMU, where one move is very long in comparison, if it looses steps, the sound is more like a high pitched whistle while the motor armature can't synch up with the pulsing magnetic field. Usually this looks like the motor starting to move, then stopping and whistling during the main part of the move, then trying to "catch up" as the controller decelerates the pulses. So, if you hear that long whistle move, that's the MMU gear stepper loosing steps on a single move. Time to adjust your speeds and accelerations.
 
 Long moves are generally faster than small moves and are used for the bulk of bowden movements. There are two fast  load speeds depending on whether MMU thinks it is pulling from the buffer or from the spool. This can be determined by `MMU_STATUS` and checking for `B` or `S` in the gate output adjacent to the `Avail:` label. `B` denoting that Happy Hare thinks the filament is buffered, and `S` denoting that Happy Hare thinks the buffer is used up and pulling from the spool, through the buffer:
+
 <p align=center><img src="Configuring-mmu_parameters/status_log.png" alt=""></p>
 
 Lower speeds and accelerations are helpful when pulling from the spool because more force is required to overcome friction. Lower speeds and accelerations prevent losing steps. 100mm/s should be relatively quiet with a NEMA14 motor, but slower is quieter.
@@ -198,6 +199,8 @@ The `encoder` method, due to the nature of its operation will overshoot a little
 
 `gate_endstop_to_encoder`is the distance between gate end stop and encoder. Only active if both are fitted. This number is positive if the end stop is after the encoder.
 
+`gate_autoload` only applied if you have pre-gate sensors installed, this allow the autoload feature to be explicitly disabled. This is useful if the pregate sensor it placed a long way from the gear. In these cases the `MMU_PRELOAD` command can be manually called to achieve the same results.
+
 <br>
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Bowden Loading and Unloading
@@ -230,7 +233,7 @@ In addition to an entry sensor just before the extruder gears, it is possible fo
 
 Note: `extruder_homing_endstop` will be ignored if a toolhead sensor is available unless `extruder_force_homing: 1`
 
-`extruder_homing_current`percentage of gear stepper current (10%-100%) used when homing to extruder (100 to disable).
+`extruder_collision_homing_current`percentage of gear stepper current (10%-100%) used when homing to extruder using collision detection (100 to disable).
 
 `extruder_force_homing` In the absence of a toolhead sensor Happy Hare will automatically default to extruder entrance detection regardless of this setting, however if you have a toolhead sensor you can still force the additional (unnecessary) step of initially homing to extruder entrance then home to the toolhead sensor. 1=enable, 0=disable.
 
@@ -333,7 +336,9 @@ This section deals with the various filament handling and management options.
 
 `endless_spool_on_load` tells Happy Hare to look for the next spool if there is no filament in the current tool. For instance, if you forgot to replenish the original spool after a print and start another, there is no filament in the original gate. So, if enabled, Happy Hare will move to the next gate marked for endless spool and load it. 0 = don't apply endless spool on load, 1 = run endless spool if gate is empty.
 
-`endless_spool_final_eject`is the extra unload distance Happy Hare will push the filament on runout to prevent accidentally reloading the small amount of leftover filament.
+`endless_spool_final_eject` is the extra unload distance Happy Hare will push the filament on runout to prevent accidentally reloading the small amount of leftover filament.
+
+`endless_spool_eject_gate` normally endless spool will unload the filament remains into the current gate (`-1`), however it is possible to designate a specific gate (which of course but be kept unloaded) as the "waste gate". If this is configured only runout sensors after the gate will operational and filament will be unloaded only into the waste gate. This is useful if you have a very compact rotary style buffer where unloading of filament can run into the neighboring gate.
 
 `enable_spoolman` 0 = disable spoolman support, 1 = enable spoolman (requires spoolman setup).
 
@@ -386,7 +391,6 @@ This output only formats when using Python 3.
 
 `console_always_output_full` selects whether or not to show the full table. 1 = Show full table, 0 = Only show totals out of print
 
-<!---
 <br>
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Blob and Stringing Control
@@ -396,7 +400,10 @@ This output only formats when using Python 3.
 `z_hop_height_error` the z hop height Happy Hare moves the extruder on a pause or error to avoid making a blob on the print **only during printing**.
 
 `z_hop_speed` the speed of z hop moves initiated by Happy Hare.
--->
+
+`z_hop_ramp` if the toolhead is configured to z\_hop above then this is the horizonal distance that will be travelled during the hop. The direction is automatic and the move can can help break strings.
+
+`toolchange_retract` immediately before the z\_hop and immediately after the reciprical restoration of z-height this amount of retraction or un-retraction will be applied. When loading the extruder, the filament will be loaded just short of the nozzle so this distance can be employed to prevent blobs by immediately depressuring the nozzle when pausing or repressuring at the point of resuming print.
 
 <br>
 
@@ -412,13 +419,6 @@ The following variables are configurable based on your needs, but rarely need me
 `default_extruder_temp` is the baseline temperature for performing swaps and forming tips outside of a print. You'll want this slightly higer than Klipper's `min_extrude_temp` to prevent pauses based on the extruder not being hot enough.
 
 `extruder_temp_variance`gives Happy Hare some tolerance when waiting for extruder temperature.  The number set is the ± variance in degrees. I.e. 2 will allow ±2. This allows Happy Hare to kick into action when the extruder is close, but not fully settled on it's target temperature.
-
-<!-- TODO Remove z_hop params when retract branch is launched -->
-`z_hop_height_toolchange` tells Happy Hare how high to move the extruder for a tool change. This is **only during printing** and does not affect stand alone tool changes.
-
-`z_hop_height_error` the z hop height Happy Hare moves the extruder on a pause or error to avoid making a blob on the print **only during printing**.
-
-`z_hop_speed` the speed of z hop moves initiated by Happy Hare.
 
 `auto_calibrate_gates` Allows Happy Hare to read the encoder and extruder information to automatically calibrate gates. Since gate 0 is the "gold standard" by which other gates are adjusted, it doesn't work for gate 0. 1 = calibrated automatically on first load, 0 = disabled.
 

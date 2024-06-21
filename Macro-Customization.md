@@ -26,7 +26,7 @@ Possible action strings are:
     Exiting Ext    Unloading filament from the extruder (usually after Foriming Tip and before Unloading)
     Forming Tip    When running standalone tip forming (cannot detect when slicer does it)
     Heating        When heating the nozzle
-    Checking       Checking gates for filament (MMU_CHECK_GATES)
+    Checking       Checking gates for filament (MMU_CHECK_GATE)
     Homing         Homing the selector
     Selecting      When the selector is moving to select a new filament
     Unknown        Should not occur

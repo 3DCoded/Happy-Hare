@@ -111,7 +111,7 @@ Logging: Console 1(INFO), Logfile 4(STEPPER), Visual 2(SHORT), Statistics 1(ON)
 ```
 
 ### Representation of MMU gates and filament position
-The text graphic representation is probably already familiar.  It depicts each of the physical gates of your MMU, the (logical) tools that is supported by that gate as well as the availability of filament and currently selected tool/gate.  The availablity symbols are: `B` filament is available from buffer, `S` filament is available by tugging on the spool, `.` gate is empty and `?` which means Happy Hare isn't sure about the status. Note that the availability of pre-gate sensors as well as use will allow Happy Hare to fill in the gaps over time.
+The text graphic representation is probably already familiar.  It depicts each of the physical gates of your MMU, the (logical) tools that is supported by that gate as well as the availability of filament and currently selected tool/gate.  The availablity symbols are: `B` filament is available from buffer, `S` filament is available by tugging on the spool, `.` gate is empty and `?` which means Happy Hare isn't sure about the status. Note that the availability of pre-gate sensors as well as use will allow Happy Hare to fill in the gaps over time. If you see a `W` for one of the gates it means you have configured `endless_spool_eject_gate` functionality and that is the designated "waste" gate.
 
 The filament position graphic shows various sensors along the filament path, the current direction and an approximation of the filament location.  The distance measurement is generally the distance from the gate "endstop" for loading and from the nozzle for unloading.
 

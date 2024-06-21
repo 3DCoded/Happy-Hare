@@ -196,3 +196,24 @@ The release provides more flexibilty in tool change movement, introduces consump
 - Bug: Fixed user defined load/unload_sequence macro names (previously would always look for default names)
 - Add all slicer tools to the "slicer_tool_map" (unused tools only visible with DETAIL=1 flag).
 - Set color on Tx macros so color can be seen in Mainsail / Fluidd UI's. Requires refresh of Mainsail screen because it doesn't update dynamically :-(
+
+#### v2.5.2
+- Doc converted to Wiki and removed from distribution. Old doc links will be invalid
+
+#### v2.5.3
+- Focus on blobbing, stringing and beautiful prints:
+  - Added new `MMU_CALIBRATE_TOOLHEAD` command for automated measurement of `toolhead_extruder_to_nozzle`, `toolhead_sensor_to_nozzle`, `toolhead_entry_to_extruder` and `toolhead_ooze_reduction`. Read the doc but this will eliminate incorrect "trial and error" values for these key dimensions.
+  - Added new `toolchange_retract` parameter to allow for retraction at the time of "z\_hop" and un-retract as print resumes.
+  - Added new `z_hop_ramp` parameter to control how the toolhead move off the print to help break stringing. It allow the definition of a horizonal move on top of the "z\_hop". The direction will be towards the center of the print area. The toolhead will ramp up and away from the print and then move back to original position above starting point. `z_hop_speed` should be increased closer to your x,y travel speed.
+  - Updated `form_tip` and `cut_tip` macros (and Blobifer) to correctly compensate for `toolhead_ooze_reduction` and `toolchange_retract`
+  - Pass a calculated "additional purge" volume to Blobifer macro to allow for filament left in the hotend based on configuration rather than having to compensate by altering slicer purge map
+- Added `gate_autoload` parameter to allow the pre-gate sensor autoload feature to be disabled
+- Change parameter name `extruder_homing_current` to `extruder_collision_homing_current` to be more precise on meaning (upgrade will have made this change for you)
+- Added `endless_spool_eject_gate` parameter to allow for one gate to marked the waste gate ('W' in status) so that filament fragments will be sent to this gate rather than current gate. Allows for a dump shoot and prevents possible tangling when buffering on certain buffer designs
+- Imporved `MMU_STATUS SHOWCONFIG=1` functionality
+- New installer support:
+  - For new MMU's boards
+  - For GDW DS041MG servo option with Siboor ERCFv2 kits
+- New `servo_always_active` parameter for servos that require continuous PWM signal (like GDW DS041MG). Use with caution.
+- `MMU_CHECK_GATE` now defaults to current gate when invoked with no arguments. `ALL=1` flag to force checking all gates.
+

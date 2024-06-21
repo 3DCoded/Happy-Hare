@@ -50,7 +50,7 @@ The `MMU_PRELOAD` is an aid to loading filament into the MMU.  The command works
 
 ### MMU\_CHECK\_GATE
 
-Similarly the `MMU_CHECK_GATE` command will run through all the gates (or the one specified), checks that filament is available, correctly parks and updates the [Gate Map](Tool-and-Gate-Maps#---gate-map) including the "gate status" so the MMU knows which gates have filament available.
+Similarly the `MMU_CHECK_GATE` command will check the current gate (no options) or run through all the gates (`ALL=1`) or the one specified (`GATE=`) and checks that filament is available, correctly parks and updates the [Gate Map](Tool-and-Gate-Maps#---gate-map) including the "gate status" so the MMU knows which gates have filament available.
 
 > [!NOTE]
 > The `MMU_CHECK_GATE` command has a special option that is designed to be called from your `PRINT_START` macro. When called as in this example: `MMU_CHECK_GATE TOOLS=0,3,5`. Happy Hare will validate that tools 0, 3 & 5 are ready to go else generate an error prior to starting the print. This is a really useful pre-print check! See [Slicer Setup](Slicer-Setup) for more details.

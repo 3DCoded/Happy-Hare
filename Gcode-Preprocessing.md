@@ -37,7 +37,7 @@ This placeholder is substituted with a comma separated list of tools used in a p
 
 __Why is this useful?__
 <br>
-When combined with the `MMU_CHECK_GATES TOOLS=` functionality and placed in your `START_PRINT` macro it allows for up-front verification that all required tools are present before commencing the print!
+When combined with the `MMU_CHECK_GATE TOOLS=` functionality and placed in your `START_PRINT` macro it allows for up-front verification that all required tools are present before commencing the print!
 
 To implement incorporate into your start g-code on your Slicer:
 
@@ -73,7 +73,7 @@ gcode:
 
 > [!NOTE]  
 > * `MMU_CHECK_GATE TOOLS=` with empty string will be ignored by Happy Hare.<br>
-> * Any tool that was loaded prior to calling `MMU_CHECK_GATES` will be automatically restored at the end of the checking procedure.<br>
+> * Any tool that was loaded prior to calling `MMU_CHECK_GATE` will be automatically restored at the end of the checking procedure.<br>
 > * In the gcode snippet above we also pass in the slicer placeholder {initial_tool} because single color prints have no tool changes and thus `REFERENCED_TOOLS` (which counts `Tx` commands) will be empty. This code will ensure that `REFERENCED_TOOLS` will always contain the initial tool.
 
 ### Placeholder: `!colors!`

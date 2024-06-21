@@ -224,6 +224,7 @@ gate_unload_buffer: 50                  # Amount to reduce the fast unload so th
 gate_load_retries: 2                    # Number of times MMU will attempt to grab the filament on initial load (max 5)
 gate_parking_distance: 23               # ADVANCED: Parking postion in the gate (distance back from gate endstop/encoder point)
 gate_endstop_to_encoder: 20             # ADVANCED: Distance between gate endstop and encoder (IF both fitted. +ve if encoder after endstop)
+gate_autoload: 1                        # If pre-gate sensor fitted this controls the automatic loading of the gate
 ```
 
 <br>
@@ -281,7 +282,7 @@ This section controls the optional extruder homing step. With a toolhead sensor 
 #
 extruder_homing_max: 80                 # Maximum distance to advance in order to attempt to home the extruder
 extruder_homing_endstop: collision      # Filament homing method/endstop name (fallback if toolhead sensor is available)
-extruder_homing_current: 40             # % gear_stepper current (10%-100%) to use when homing to extruder homing (100 to disable)
+extruder_collision_homing_current: 40   # % gear_stepper current (10%-100%) to use when homing to extruder homing (100 to disable)
 
 # In the absence of a toolhead sensor Happy Hare will automatically default to extruder entrance detection regardless of
 # this setting, however if you have a toolhead sensor you can still force the additional (unecessary) step of initially homing to
@@ -459,6 +460,7 @@ enable_clog_detection: 2                # 0 = disable, 1 = static length clog de
 enable_endless_spool: 1                 # 0 = disable, 1 = enable endless spool
 endless_spool_on_load: 0                # 0 = don't apply endless spool on load, 1 = run endless spool if gate is empty
 endless_spool_final_eject: 50           # Extra unload distance on runout to prevent accidental reload
+endless_spool_eject_gate: -1            # Which gate to eject the filament remains. -1 = current gate
 enable_spoolman: 0                      # 0 = disable spoolman support,  1 = enable spoolman (requires spoolman setup)
 #endless_spool_groups: 1,1,1,1,2,2,2,2  # Default EndlessSpool groups after reset
 ```
@@ -470,7 +472,7 @@ Clog detection and EndlessSpool feature is well documented [here](Clog-Runout-En
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) State Persistence
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Turn on behavior (state persistence)
 
 State persisence is a powerful feature of Happy Hare and is documented [here](State-Persistence). I highly recommend level `4` as soon as you understand how it works.
 
@@ -482,6 +484,7 @@ State persisence is a powerful feature of Happy Hare and is documented [here](St
 # MMU while it is offline and it can come back to life exactly where it left off!  If you do touch it or get confused
 # then issue an appropriate reset command (E.g. MMU_RESET) to get state back to the defaults.
 # Enabling 'startup_status' is recommended if you use persisted state at level 2 and above
+
 # Levels: 0 = start fresh every time except calibration data (the former default behavior)
 #         1 = restore persisted endless spool groups
 #         2 = additionally restore persisted tool-to-gate mapping
@@ -489,6 +492,73 @@ State persisence is a powerful feature of Happy Hare and is documented [here](St
 #         4 = additionally restore persisted tool, gate and filament position! (Recommended when MMU is working well)
 #
 persistence_level: 3
+```
+
+<br>
+
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Statistic Reporting
+
+If you want the tool change statistics can be reported on every toolchange or just at the end of a print. Separate statistics exist for all time (until reset) as well as the last print. There and many formatting options.
+
+```yml
+# Print Statistics ---------------------------------------------------------------------------------------------------
+#
+# These parameters determine how print statistic data is shown in the console. This table shows a lot of data, and
+# probably more than you'd want to see. Below you can enable/disable options to your needs.
+# 
+# +-----------+---------------------+----------------------+----------+
+# |  114(46)  |      unloading      |       loading        | complete |
+# |   swaps   | pre  |   -   | post | pre  |   -   | post  |   swap   |
+# +-----------+------+-------+------+------+-------+-------+----------+
+# | all time  | 0:07 | 47:19 | 0:00 | 0:01 | 37:11 | 33:39 |  2:00:38 |
+# |     - avg | 0:00 |  0:24 | 0:00 | 0:00 |  0:19 |  0:17 |     1:03 |
+# | this job  | 0:00 | 10:27 | 0:00 | 0:00 |  8:29 |  8:30 |    28:02 |
+# |     - avg | 0:00 |  0:13 | 0:00 | 0:00 |  0:11 |  0:11 |     0:36 |
+# |      last | 0:00 |  0:12 | 0:00 | 0:00 |  0:10 |  0:14 |     0:39 |
+# +-----------+------+-------+------+------+-------+-------+----------+
+#             Note: Only formats correctly on Python3
+# 
+# Comma separated list of desired columns
+# Options: pre_unload, unload, post_unload, pre_load, load, post_load, total
+console_stat_columns: pre_unload, unload, post_unload, pre_load, load, post_load, total
+
+# Comma seperated list of rows. The order determines the order in which they're shown.
+# Options: total, total_average, job, job_average, last
+console_stat_rows: total, total_average, job, job_average, last
+
+# How you'd want to see the state of the gates and how they're performing
+#   string     - poor, good, perfect, etc..
+#   percentage - rate of success
+#   emoticon   - fun sad to happy faces (python3 only)
+console_gate_stat: emoticon
+
+# Always display the full statistics table
+console_always_output_full: 1   # 1 = Show full table, 0 = Only show totals out of print
+```
+
+<br>
+
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Blobbing and Stringing Controls
+
+This section contains the parameters that, once toolhead and other dimensions are correctly set, can be used to optimize blobbing and stringing during the toolchange process.
+
+```yml
+# Tool Change Blob and Stringing Control -----------------------------------------------------------------------------
+#
+# These parameters can be used to optimize stringing and blobs that can occur when changing tools. In addition to these
+# controls, 'toolhead_ooze_reduction' can be used to reduce the loading length of filament into the extruder in all
+# circumstances. IMPORTANT: So the config order would be:
+#   1. Configure extruder dimensions like 'toolhead_extruder_to_nozzle', etc. These are based on geometry.
+#   2. Tweak 'toolhead_ooze_reduction' only if necessary so that filament _just_ appears at the nozzle on load
+#   3. Only then, adjust these settings to control stringing and blobs when tool changing in print
+#
+# NOTE: All of these settings operate IN PRINT ONLY
+#
+z_hop_height_toolchange: 1.0    # Height in mm of z_hop move on toolchange
+z_hop_height_error: 2.0         # Height in mm of z_hop move on pause or error to avoid blob on print
+z_hop_speed: 15                 # Speed of z_hop move (mm/s)
+z_hop_ramp: 0                   # Horizontal distance in mm to travel during the lift. Can help break string. Direction is automatic
+toolchange_retract: 2           # Retract / un-retract distance to prevent blobs when toolchanging
 ```
 
 <br>
@@ -513,9 +583,6 @@ timeout_pause: 72000            # Idle time out in seconds used when in MMU paus
 disable_heater: 600             # Delay in seconds after which the hotend heater is disabled in the MMU_PAUSE state
 default_extruder_temp: 200      # The baseline temperature for performing swaps and forming tips outside of a print
 extruder_temp_variance: 2       # When waiting for extruder temperature this is the +/- permissible variance in degrees (>= 1)
-z_hop_height_error: 5           # Height in mm of z_hop move on pause to avoid blob on print
-z_hop_height_toolchange: 1      # Height in mm of z_hop move on toolchange or runout to avoid blob on print
-z_hop_speed: 15                 # Speed of z_hop move (mm/s)
 auto_calibrate_gates: 0         # ADVANCED: Automated gate (not gate#0) calibration. 1=calibrated automatically on first load, 0=disabled
 strict_filament_recovery: 0     # If enabled with MMU with toolhead sensor, this will cause filament position recovery to
                                 # perform extra moves to look for filament trapped in the space after extruder but before sensor

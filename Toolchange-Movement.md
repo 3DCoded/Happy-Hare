@@ -65,6 +65,7 @@ The rest of this guide describes the toolhead movement possibilities that occurs
 <br>
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Tip Cutting Options
+
 Firstly, although the default way to form tips is through calculated filament movement, there is an easier way -- just cut it off! There are supported ways to do this at the MMU (through piggybacking on the `_MMU_POST_UNLOAD` callback) the more typical way is with a filament cutter at the toolhead.  This it usually some form of blade that is operated via a dedicated servo mechanism or simply the movement of the toolhead itself and pressing against a pin (optionally itself activated by a servo).
 
 To set this up you need to edit three modular configuraton files: `mmu_parameters.cfg` (the primary setup), `mmu_cut_tip.cfg` (contains the tip cutting macro) and `mmu_sequence.cfg` (contains the default toolhead movement options)
@@ -119,13 +120,14 @@ To set this up you need to edit three modular configuraton files: `mmu_parameter
 <br>
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Return To Print Movement
+
 How the toolhead returns to the print has three options contolled by the `variable_restore_xy_pos` variable in `mmu_macro_vars.cfg`:
 
 ### "last"
 This is the default option and will cause the toolhead to be returned to the **last postion** it was at when the toolchange was issued  before giving control back to the slicer generated code. The exact movement is as follows:
 - As a safety step the toolhead Z-height is restored to tool change plane if necessary (this allows for some fault tolerence of user supplied extensions)
 - Toolhead travels to the last X,Y position at `variable_travel_speed` speed
-- Finally Toolhead Z-height is restored onto the print internally by Happy Hare (undoing `z_hop_height_toolchange` if set) or by slicer g-code
+- Finally Toolhead Z-height is restored onto the print (and un-retract applied) internally by Happy Hare (undoing `z_hop_height_toolchange` if set) or by slicer g-code
 
 ### "none"
 In this option the Z-height is restored first to the print height defined at the start of toolchange but no X,Y movement occurs. The specific movements are:
@@ -138,7 +140,7 @@ Caution: If the slicer or Happy Hare isn't configured to do a toolchange z-hop t
 This advanced option will cause the toolhead to return to the **next print position**. This is benficial because the travel height can easily be controlled. The specific movements are:
 - As a safety step the toolhead Z-height is restored to tool change plane if necessary (this allows for some fault tolerence of user supplied extensions)
 - Toolhead travels to the next X,Y position at `variable_travel_speed` speed
-- Finally Toolhead Z-height is restored onto the print internally by Happy Hare (undoing `z_hop_height_toolchange` if set) or by slicer g-code
+- Finally Toolhead Z-height is restored onto the print (and un-retract applied) internally by Happy Hare (undoing `z_hop_height_toolchange` if set) or by slicer g-code
 You can see this is a variation on "last" but will prevent print marking. Of course, out of print this will act the same as "last" because there is no concept of "next"
 
 > [!NOTE]  
@@ -151,6 +153,7 @@ You can see this is a variation on "last" but will prevent print marking. Of cou
 <br>
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Z-Hop Moves
+
 It's worth noting and to aid debugging that there are three possible origins for z-hop moves during a toolchange:
 - The first is input by the slicer which often have a "z-hop on toolchange option". With the settings described above that should be disabled though.
 - The second is by Happy Hare: during a print, HH will immediately lift the toolhead away from the print on toolchange and on error if `z_hop_height_toolchange` is non-zero in `mmu_parameters.cfg`. This move only occurs when in a print and is designed to prevent any chance of a blob forming on your part.  The z-hop move is the first move and occurs before any movement in the horizontal plane.
@@ -162,7 +165,7 @@ This illustrations visualize and explain the toolhead movements in the vertical 
 The primary configuration options that effect z-height are described here:
 <img src="Toolchange-Movement/toolchange_z_hop_config.png" width="100%" alt="Toolchange Z-hop Config">
 
-Personally I find it useful to set z-hop to 0.8mm in Happy Hare, disable in the slicer and 0mm in the parking (`mmu_macro_vars.cfg`) macro since out of a print I'm not worried about hitting objects or possible blobs.
+Personally I find it useful to set z-hop to 1.0mm in Happy Hare, disable in the slicer and 0mm in the parking (`mmu_macro_vars.cfg`) macro since out of a print I'm not worried about hitting objects or possible blobs.
 
 <br>
 

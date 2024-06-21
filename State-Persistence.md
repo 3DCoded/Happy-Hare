@@ -51,7 +51,7 @@ Needless to say, other operations can update specific state
 
 > [!NOTE]
 > <ul>
->   <li>Closely relevant to the usefulness of this functionality is the `MMU_CHECK_GATE` command that will examine all or selection of gates for presence of filament</li>
+>   <li>Closely relevant to the usefulness of this functionality is the `MMU_CHECK_GATE` command that will examine current, all or selection of gates for presence of filament</li>
 >   <li>In the graphic depictions of filament state the `*` indicates presence ('B' and 'S' represent whether the filament is buffered or pulling straight from the spool), '?' unknown and ' ' or '.' the lack of filament</li>
 >   <li>With tool-to-gate mapping it is entirely possible to have multiple tools mapped to the same gate (for example to force a multi-color print to be monotone) and therefore some gates can be made inaccessible until map is reset</li>
 >   <li>The default value for `gate_status`, `tool_to_gate_map` and `endless_spool_groups` can be set in `mmu_parameters.cfg`.  If not set the default will be, Tx maps to Gate#x, the status of each gate is unknown and each tool is in its own endless spool group (i.e. not part of a group)</li>
