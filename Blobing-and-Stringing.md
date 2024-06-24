@@ -28,18 +28,23 @@ Let's run through the important steps in a toolchange (for both tip forming and 
 
 ### Tip Forming
 
-Transitioning from an orange filament to a blue:
-<br>_(Click on images to see the detail)_
+Transitioning from an orange filament to a blue _(Click on images to see the detail)_:
 
 <p align="center"><a href="https://github.com/moggieuk/Happy-Hare/wiki/Blobing-and-Stringing/Unloading_Tip_Forming.png"><img src="Blobing-and-Stringing/Unloading_Tip_Forming.png" alt="Unloading Tip Forming"></a></p>
 <p align="center"><a href="https://github.com/moggieuk/Happy-Hare/wiki/Blobing-and-Stringing/Loading_Tip_Forming.png"><img src="Blobing-and-Stringing/Loading_Tip_Forming.png" alt="Loading Tip Forming" width="70%"></a></p>
 
 ### Toolhead Tip Cutting
 
-With toolhead tip cutting the procedure is a little more complex:
+With toolhead tip cutting the procedure is a little more complex and introduces two additional macro variables (defined in `mmu_macro_vars.cfg` that configure the tip cutting logic):
 
 <p align="center"><a href="https://github.com/moggieuk/Happy-Hare/wiki/Blobing-and-Stringing/Unloading_Tip_Cutting.png"><img src="Blobing-and-Stringing/Unloading_Tip_Cutting.png" alt="Unloading Tip Cutting"></a></p>
 <p align="center"><a href="https://github.com/moggieuk/Happy-Hare/wiki/Blobing-and-Stringing/Loading_Tip_Cutting.png"><img src="Blobing-and-Stringing/Loading_Tip_Cutting.png" alt="Loading Tip Cutting" width="70%"></a></p>
+
+Note that the cut piece of filament remaining and the residual filament are automatically accounted for by Happy Hare so long as you have configured the parameters exactly as defined in this illustration.
+
+> [!IMPORTANT]  
+> 1. The really important reference point is the internal nozzle "shoulder". This is considered the 0mm reference point for most parameters. For CHT nozzle this will be further away from the tip than regular nozzles.<br>
+> 2. You can see how the `toolhead_xxx_to_nozzle` settings and `toolhead_ooze_reduction` are related, so while you can tune the former ignore latter, it is recommended you use them correctly so that Happy Hare is able to optimize print quality and correctly control purge volumes.
 
 <br>
 
