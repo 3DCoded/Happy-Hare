@@ -6,3 +6,4 @@
 <p align="center"><img src="Mcu_Reference/Mellow_CAN_v1.png" alt="Mellow_CAN_v1"></p>
 <p align="center"><img src="Mcu_Reference/Mellow_CAN_v2.png" alt="Mellow_CAN_v2"></p>
 <p align="center"><img src="Mcu_Reference/MMB_CAN_v1.0_Pinout.jpg" alt="MMB_CAN_v1.0_Pinout"></p>
+<p align="center"><img src="Mcu_Reference/Easy_Brd_Pcb.jpg" alt="Easy_Brd_Pcb"></p>
