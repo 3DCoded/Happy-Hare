@@ -1,16 +1,17 @@
 This discussion assumes that you have initial setup complete and are now ready to tune the quality of your prints. Although some of the information contained here is useful early in your journey it will make a lot more sense once you have some experience with default or "borrowed" toolhead parameters. Then this will guide you to optimizing a few critical parameters for quality prints.
 
 Specifically in this guide you will learn how to correctly set the following parameters:
-> toolhead\_extruder\_to\_nozzle
-> toolhead\_sensor\_to\_nozzle
-> toolhead\_entry\_to\_extruder
-> toolhead\_ooze\_reduction
+> - toolhead\_extruder\_to\_nozzle
+> - toolhead\_sensor\_to\_nozzle
+> - toolhead\_entry\_to\_extruder
+> - toolhead\_ooze\_reduction
+> - variable\_blade\_pos & variable\_retract\_length
 
 And use z-hop and retraction settings to eliminate blobs and stringing during color changes in your prints:
-> z\_hop\_height\_toolchange
-> z\_hop\_ramp
-> toolchange\_retract
-> toolchange\_retract\_speed
+> - z\_hop\_height\_toolchange
+> - z\_hop\_ramp
+> - toolchange\_retract
+> - toolchange\_retract\_speed
 
 <br>
 
@@ -43,8 +44,9 @@ With toolhead tip cutting the procedure is a little more complex and introduces 
 Note that the cut piece of filament remaining and the residual filament are automatically accounted for by Happy Hare so long as you have configured the parameters exactly as defined in this illustration.
 
 > [!IMPORTANT]  
-> 1. The really important reference point is the internal nozzle "shoulder". This is considered the 0mm reference point for most parameters. For CHT nozzle this will be further away from the tip than regular nozzles.<br>
+> 1. The really important reference point is the internal nozzle "shoulder". This is considered the 0mm reference point for most parameters. For CHT nozzle this will be further away from the tip than regular nozzles.
 > 2. You can see how the `toolhead_xxx_to_nozzle` settings and `toolhead_ooze_reduction` are related, so while you can tune the former ignore latter, it is recommended you use them correctly so that Happy Hare is able to optimize print quality and correctly control purge volumes.
+> 3. `toolhead_ooze_reduction` is dependent on your extruder and nozzle. High flow systems generally have a much higher value than regular.
 
 <br>
 
