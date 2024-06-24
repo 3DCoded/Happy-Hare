@@ -47,7 +47,7 @@ Run Current: 0.49A Hold Current: 0.09A
 Measuring clean toolhead dimensions after cold pull...
 Measured toolhead_sensor_to_nozzle: 59.1
 Measured toolhead_extruder_to_nozzle: 67.6
-Measured toolhead_entry_to_extruder: 7.9 
+Measured toolhead_entry_to_extruder: 7.9
 -----------------------------------
 Calibration Results (clean nozzle):
 > toolhead_extruder_to_nozzle: 67.6 (currently: 70.0)
@@ -83,3 +83,20 @@ Calibration Results (dirty nozzle):
 -----------------------------------
 New calibrated ooze reduction active until restart. Update mmu_parameters.cfg to persist
 ```
+
+### With a normal DIRTY toolhead
+
+This must be done with tip forming and not tip cutting, or just retract filament out of extruder
+
+> MMU\_CALIBRATE\_TOOLHEAD
+
+Here is an example below. Note which parameters are set with each pass.
+
+```
+MMU_CALIBRATE_TOOLHEAD
+...blah blah blah...
+-----------------------------------
+Calibration Results (dirty nozzle):
+> toolhead_ooze_reduction: 3.0 (currently: 3.4)
+-----------------------------------
+New calibrated ooze reduction active until restart. Update mmu_parameters.cfg to persist
