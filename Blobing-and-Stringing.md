@@ -7,13 +7,13 @@ Specifically in this guide you will learn how to correctly set the following par
 - `toolhead_ooze_reduction`
 
 And use z-hop and retraction settings to eliminate blobs and stringing during color changes in your prints:
-> - z\_hop\_height\_toolchange
-> - z\_hop\_ramp
-> - z\_hop\_speed
-> - toolchange\_retract & toolchange\_retract\_speed
+- `z_hop_height_toolchange`
+- `z_hop_ramp`
+- `z_hop_speed`
+- `toolchange_retract` & `toolchange_retract_speed`
 
 And key tip cutting macro variables:
-> - variable\_blade\_pos & variable\_retract\_length
+- `variable_blade_pos` & `variable_retract_length`
 
 <br>
 
@@ -29,14 +29,16 @@ In practice it has been hard to determine these values other than through experi
 
 Let's run through the important steps in a toolchange (for both tip forming and tip cutting cases) and relate to these parameters:
 
-### Tip Forming
+### With Tip Forming
 
 Transitioning from an orange filament to a blue _(Click on images to see the detail)_:
 
 <p align="center"><a href="https://github.com/moggieuk/Happy-Hare/wiki/Blobing-and-Stringing/Unloading_Tip_Forming.png"><img src="Blobing-and-Stringing/Unloading_Tip_Forming.png" alt="Unloading Tip Forming"></a></p>
 <p align="center"><a href="https://github.com/moggieuk/Happy-Hare/wiki/Blobing-and-Stringing/Loading_Tip_Forming.png"><img src="Blobing-and-Stringing/Loading_Tip_Forming.png" alt="Loading Tip Forming" width="70%"></a></p>
 
-### Toolhead Tip Cutting
+<br>
+
+### With Toolhead Tip Cutting
 
 With toolhead tip cutting the procedure is a little more complex and introduces two additional macro variables (defined in `mmu_macro_vars.cfg` that configure the tip cutting logic):
 
