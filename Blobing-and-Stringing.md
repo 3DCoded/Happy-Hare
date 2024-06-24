@@ -1,8 +1,8 @@
 This discussion assumes that you have initial setup complete and are now ready to tune the quality of your prints. Although some of the information contained here is useful early in your journey it will make a lot more sense once you have some experience with default or "borrowed" toolhead parameters. Then this will guide you to optimizing a few critical parameters for quality prints.
 
 Specifically in this guide you will learn how to correctly set the following parameters:
-`toolhead\_extruder\_to\_nozzle`<br>
-> - toolhead\_sensor\_to\_nozzle
+<br>`toolhead\_extruder\_to\_nozzle`
+<br>`toolhead\_sensor\_to\_nozzle`
 > - toolhead\_entry\_to\_extruder
 > - toolhead\_ooze\_reduction
 
