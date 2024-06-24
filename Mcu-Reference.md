@@ -10,8 +10,10 @@
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Reference of Popular MCU's used for MMU Designs
 
 ### Fysetc ERB v2
-<p align="center"><img src="Mcu_Reference/ERB_v2_Connections.png" alt="ERB_v2_Connections"></p>
 <p align="center"><img src="Mcu_Reference/ERB_V2_Pinout_White.png" alt="ERB_v2_Pinout_White"></p>
+
+ERCF v2 Connection Diagram:
+<p align="center"><img src="Mcu_Reference/ERB_v2_Connections.png" alt="ERB_v2_Connections"></p>
 
 <br>
 
