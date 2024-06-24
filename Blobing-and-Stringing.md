@@ -99,19 +99,22 @@ New toolhead calibration active until restart. Update mmu_parameters.cfg to pers
 Assuming you didn't run with the `SAVE=0` option this will temporarily correct your toolhead parameters.
 
 > [!NOTE]  
-> You must remember these and manually update `mmu_parameters.cfg` for them to persist across a restart, but do that later.
+> - You must remember these and manually update `mmu_parameters.cfg` for them to persist across a restart, but do that later.
+> - If you want to run again before dirtying the extruder you can to validate your results. Add `SAVE=0` to skip updating parameters.
 
-Refering back to the earlier ilustrations, because the extruder was empty we were able to establish the position of the internal nozzle shoulder:
+Refering back to the earlier ilustrations, because the extruder was empty we were able to establish the position of the internal nozzle shoulder as well as some other magic:
 
 <p align="center"><a href="https://github.com/moggieuk/Happy-Hare/wiki/Blobing-and-Stringing/Probe_Nozzle_Shoulder.png"><img src="Blobing-and-Stringing/Probe_Nozzle_Shoulder.png" alt="Probe Nozzle Shoulder" width="30%"></a></p>
 
+### Now dirty the extruder:
 
-Next load and unload a filament:
+Next heat up you extruder, and load and unload a filament:
 
 > MMU\_LOAD
+extrude some filament
 > MMU\_EJECT
 
-This must be done with tip forming and not tip cutting, or just retract filament out of extruder
+This MUST be done with tip forming and not tip cutting or alternatively, after extruding some filament, manually retract the filament out of the extruder and then part the filament in the MMU gate.
 
 > MMU\_CALIBRATE\_TOOLHEAD
 
