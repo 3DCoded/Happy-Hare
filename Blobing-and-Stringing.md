@@ -98,15 +98,15 @@ New toolhead calibration active until restart. Update mmu_parameters.cfg to pers
 
 Assuming you didn't run with the `SAVE=0` option this will temporarily correct your toolhead parameters.
 
-> [!NOTE]  
-> - You must remember these and manually update `mmu_parameters.cfg` for them to persist across a restart, but do that later.
-> - If you want to run again before dirtying the extruder you can to validate your results. Add `SAVE=0` to skip updating parameters.
+> [!TIP]  
+> 1. You must remember these and manually update `mmu_parameters.cfg` for them to persist across a restart, but do that later.
+> 2. If you want to run again before dirtying the extruder you can to validate your results. Add `SAVE=0` to skip updating parameters.
 
 Refering back to the earlier ilustrations, because the extruder was empty we were able to establish the position of the internal nozzle shoulder as well as some other magic:
 
 <p align="center"><a href="https://github.com/moggieuk/Happy-Hare/wiki/Blobing-and-Stringing/Probe_Nozzle_Shoulder.png"><img src="Blobing-and-Stringing/Probe_Nozzle_Shoulder.png" alt="Probe Nozzle Shoulder" width="30%"></a></p>
 
-### Now dirty the extruder:
+### Now DIRTY the extruder:
 
 Next heat up you extruder, and load and unload a filament:
 
