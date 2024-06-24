@@ -64,7 +64,7 @@ You have a toolhead sensor...
 
 Now Happy Hare can help with a new `MMU_CALIBRATE_TOOLHEAD` command. The complete process is to start with a CLEAN extruder/nozzle. To do this you need to perform a cold pull where you warm up the extruder, purge some filament, then cool. At the right temperature you manually pull the filament out with a bit of force pulling all the old residue and carbon deposits. This is something that most of you probably already know how to do, but for those that need help you can run the supplied `MMU_COLD_PULL` macro and follow directions. This is documented [later in this page](TODO).
 
-### With a CLEAN toolhead (after cold pull)
+### Step 1: With a CLEAN toolhead (after cold pull)
 
 Reattach bowden to toolhead, and prepare the MMU: select the gate you wish to use but ensure filament is available but don't try to load the extruder. Then run:
 
@@ -84,8 +84,8 @@ Run Current: 0.21A Hold Current: 0.09A
 Restoring MMU gear stepper run current to 100% configured
 Run Current: 0.49A Hold Current: 0.09A
 Measuring clean toolhead dimensions after cold pull...
-Measured toolhead_sensor_to_nozzle: 59.1
-Measured toolhead_extruder_to_nozzle: 67.6
+Measured toolhead_sensor_to_nozzle: 62.1
+Measured toolhead_extruder_to_nozzle: 70.6
 Measured toolhead_entry_to_extruder: 7.9
 -----------------------------------
 Calibration Results (clean nozzle):
@@ -102,11 +102,11 @@ Assuming you didn't run with the `SAVE=0` option this will temporarily correct y
 > 1. You must remember these and manually update `mmu_parameters.cfg` for them to persist across a restart, but do that later.
 > 2. If you want to run again before dirtying the extruder you can to validate your results. Add `SAVE=0` to skip updating parameters.
 
-Refering back to the earlier ilustrations, because the extruder was empty we were able to establish the position of the internal nozzle shoulder as well as some other magic:
+Referring back to the earlier ilustrations, because the extruder was empty we were able to establish the position of the internal nozzle shoulder as well as magially, some other settings:
 
 <p align="center"><a href="https://github.com/moggieuk/Happy-Hare/wiki/Blobing-and-Stringing/Probe_Nozzle_Shoulder.png"><img src="Blobing-and-Stringing/Probe_Nozzle_Shoulder.png" alt="Probe Nozzle Shoulder" width="30%"></a></p>
 
-### Now DIRTY the extruder:
+### Step 2: Now DIRTY the extruder:
 
 Next heat up you extruder, and load and unload a filament:
 
@@ -116,23 +116,7 @@ extrude some filament
 
 This MUST be done with tip forming and not tip cutting or alternatively, after extruding some filament, manually retract the filament out of the extruder and then part the filament in the MMU gate.
 
-> MMU\_CALIBRATE\_TOOLHEAD
-
-Here is an example below. Note which parameters are set with each pass.
-
-```
-MMU_CALIBRATE_TOOLHEAD
-...blah blah blah...
------------------------------------
-Calibration Results (dirty nozzle):
-> toolhead_ooze_reduction: 3.0 (currently: 3.4)
------------------------------------
-New calibrated ooze reduction active until restart. Update mmu_parameters.cfg to persist
-```
-
-### With a normal DIRTY toolhead
-
-This must be done with tip forming and not tip cutting, or just retract filament out of extruder
+### Step 3: Calibrate with DIRTY extruder
 
 > MMU\_CALIBRATE\_TOOLHEAD
 
@@ -146,3 +130,36 @@ Calibration Results (dirty nozzle):
 > toolhead_ooze_reduction: 3.0 (currently: 3.4)
 -----------------------------------
 New calibrated ooze reduction active until restart. Update mmu_parameters.cfg to persist
+```
+
+Again referring back to the earlier ilustrations, although the calibration reported measurements, these would be shorter because of the filament residue that is always left behind in the extruder. The difference between the clean reading and the dirty one is what `toolhead_ooze_reduction` compensates for:
+
+<p align="center"><a href="https://github.com/moggieuk/Happy-Hare/wiki/Blobing-and-Stringing/Probe_Filament_Remains.png"><img src="Blobing-and-Stringing/Probe_Filament_Remains.png" alt="Probe Filament Remains" width="30%"></a></p>
+
+> [!TIP]  
+> 1. You can run a dirty calibration as often as you like and to see if it is different with different filament types, changes to you tip forming macro, etc.
+> 2. If you are curious you can also use it as a trick way to measure the "filament\_remaining" after tip cutting. Just remember to use the `SAVE=0` option because you DON'T want to `toolhead_ooze_reduction` to include the cut piece of filament!
+
+<br>
+
+With the toolhead now properly configured you should experience better loading and uploading with reduction of blobbing and thus stringing. But there is more... 
+
+<br>
+
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Toolhead Retraction
+
+TODO
+
+<br>
+
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Z-Hop and Ramping
+
+TODO
+
+<br>
+
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Cleaning Extruder with a "Cold-Pull"
+
+TODO
+
+<p align="center"><img src="Blobing-and-Stringing/Cold_Pull_Normal_Example.png" alt="Cold Pull Normal" width="30%"></a><img src="Blobing-and-Stringing/Cold_Pull_CHT_Example.png" alt="Cold Pull Normal" width="30%"></a></p>
