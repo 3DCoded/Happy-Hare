@@ -120,5 +120,5 @@
 
 [**11. Troubleshooting**](Troubleshooting-and-Common-Issues)<br>
 [**12. FAQ**](FAQ)<br>
-[**13. MCU Board Reference](Mcu-Reference)<br>
+[**13. MCU Board Reference**](Mcu-Reference)<br>
 [**14. Change Log**](Change-Log)<br>
