@@ -47,6 +47,8 @@ With toolhead tip cutting the procedure is a little more complex and introduces 
 
 Note that the cut piece of filament remaining and the residual filament are automatically accounted for by Happy Hare so long as you have configured the parameters exactly as defined in this illustration.
 
+<br>
+
 > [!IMPORTANT]  
 > 1. The really important reference point is the internal nozzle "shoulder". This is considered the 0mm reference point for most parameters. For CHT nozzle this will be further away from the tip than regular nozzles.
 > 2. You can see how the `toolhead_xxx_to_nozzle` settings and `toolhead_ooze_reduction` are related, so while you can tune the former ignore latter, it is recommended you use them correctly so that Happy Hare is able to optimize print quality and correctly control purge volumes.
@@ -56,11 +58,15 @@ Note that the cut piece of filament remaining and the residual filament are auto
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Calibrating Toolhead
 
-Now Happy Hare can help with a new `MMU_CALIBRATE_TOOLHEAD` command. The process is to start with a clean extruder/nozzle. To do this you need to perform a cold pull where you warm up the extruder, purge some filament, then cool. At the right temperature you manually pull the filament out with a bit of force pulling all the old residue and carbon deposits. This is something that many of you already know how to do, but for those that need help you can run the supplied `MMU_COLD_PULL` macro and follow directions. This is documented later in this guide.
+Ok, now you know what the correct meaning of the dimensions are the next question is how to discover them for your setup. For everything other than `toolhead_ooze_reduction` it is possible to use accurate CAD models to measure them (remember to use the internal shoulder in the nozzle). If you have a toolhead sensor there is now an automated way to measure! If not, then you can refer back to this wiki where we will collate verified measurements for common toolheads and once you have those set experiment to discover `toolhead_ooze_reduction`
 
-### With a CLEAN toolhead
+You have a toolhead sensor...
 
-Reattach bowden to toolhead, and prepare the MMU: select the gate you wish to use but ensure the filament is not loaded. Then run:
+Now Happy Hare can help with a new `MMU_CALIBRATE_TOOLHEAD` command. The complete process is to start with a CLEAN extruder/nozzle. To do this you need to perform a cold pull where you warm up the extruder, purge some filament, then cool. At the right temperature you manually pull the filament out with a bit of force pulling all the old residue and carbon deposits. This is something that most of you probably already know how to do, but for those that need help you can run the supplied `MMU_COLD_PULL` macro and follow directions. This is documented [later in this page](TODO).
+
+### With a CLEAN toolhead (after cold pull)
+
+Reattach bowden to toolhead, and prepare the MMU: select the gate you wish to use but ensure filament is available but don't try to load the extruder. Then run:
 
 > MMU\_CALIBRATE\_TOOLHEAD CLEAN=1
 
@@ -83,9 +89,9 @@ Measured toolhead_extruder_to_nozzle: 67.6
 Measured toolhead_entry_to_extruder: 7.9
 -----------------------------------
 Calibration Results (clean nozzle):
-> toolhead_extruder_to_nozzle: 67.6 (currently: 70.0)
-> toolhead_sensor_to_nozzle: 59.1 (currently: 62.0)
-> toolhead_entry_to_extruder: 7.9 (currently: 8.0)
+> toolhead_extruder_to_nozzle: 70.6 (currently: 70.0)
+> toolhead_sensor_to_nozzle: 62.1 (currently: 62.0)
+> toolhead_entry_to_extruder: 7.9 (currently: 8.5)
 -----------------------------------
 New toolhead calibration active until restart. Update mmu_parameters.cfg to persist settings
 ```
@@ -93,10 +99,14 @@ New toolhead calibration active until restart. Update mmu_parameters.cfg to pers
 Assuming you didn't run with the `SAVE=0` option this will temporarily correct your toolhead parameters.
 
 > [!NOTE]  
-> You must remember these and manually update `mmu_parameters.cfg` for them to persist across a restart
+> You must remember these and manually update `mmu_parameters.cfg` for them to persist across a restart, but do that later.
+
+Refering back to the earlier ilustrations, because the extruder was empty we were able to establish the position of the internal nozzle shoulder:
+
+<p align="center"><a href="https://github.com/moggieuk/Happy-Hare/wiki/Blobing-and-Stringing/Probe_Nozzle_Shoulder.png"><img src="Blobing-and-Stringing/Probe_Nozzle_Shoulder.png" alt="Probe Nozzle Shoulder" width="30%"></a></p>
 
 
-Then load and unload a filament:
+Next load and unload a filament:
 
 > MMU\_LOAD
 > MMU\_EJECT
