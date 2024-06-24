@@ -10,10 +10,11 @@ And use z-hop and retraction settings to eliminate blobs and stringing during co
 > z\_hop\_height\_toolchange
 > z\_hop\_ramp
 > toolchange\_retract
+> toolchange\_retract\_speed
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Calibrating Toolhead
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Correct Meaning of Key Dimensions
 
 First it is important to understand that while sensors like a toolhead sensor can help with extruder loading and unloading, the process relies on precise movement distances. These "dimensions" often interact with each other so it is also important that they be set according to their meaning. Doing so will give detministic toolchanges rather than a "these settings seem to work" scenario.
 
@@ -21,7 +22,23 @@ When the extruder is loaded, Happy Hare will move the filament a precise distanc
 
 To account for this, Happy Hare defines `toolhead_extruder_to_nozzle` and `toolhead_sensor_to_nozzle` as theoretical and thus should be able to be pulled form CAD drawings or other users. It uses `toolhead_ooze_reduction` to represent how much to reduce the loading move by for the new filament to butt up against the old without accidently oozing.
 
-In practice it has been hard to determine these values other than through experimentation and even then it is hard to determine whether to increase `toolhead_ooze_reduction` or reduce `toolhead_sensor_to_nozzle`.
+In practice it has been hard to determine these values other than through experimentation and even then it is hard to determine for example, whether to increase `toolhead_ooze_reduction` or reduce `toolhead_sensor_to_nozzle`.
+
+Let's run through the important steps in a toolchange (for both tip forming and tip cutting cases) and relate to these parameters:
+
+### Tip Forming
+
+<p align=center><img src="Blobing-and-Stringing/Unloading_Tip_Forming.png" alt="Unloading Tip Forming"></p>
+<p align=center><img src="Blobing-and-Stringing/Loading_Tip_Forming.png" alt="Loading Tip Forming"></p>
+
+### Toolhead Tip Cutting
+
+<p align=center><img src="Blobing-and-Stringing/Unloading_Tip_Cutting.png" alt="Unloading Tip Cutting"></p>
+<p align=center><img src="Blobing-and-Stringing/Loading_Tip_Cutting.png" alt="Loading Tip Cutting"></p>
+
+<br>
+
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Calibrating Toolhead
 
 Now Happy Hare can help with a new `MMU_CALIBRATE_TOOLHEAD` command. The process is to start with a clean extruder/nozzle. To do this you need to perform a cold pull where you warm up the extruder, purge some filament, then cool. At the right temperature you manually pull the filament out with a bit of force pulling all the old residue and carbon deposits. This is something that many of you already know how to do, but for those that need help you can run the supplied `MMU_COLD_PULL` macro and follow directions. This is documented later in this guide.
 
