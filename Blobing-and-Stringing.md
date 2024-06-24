@@ -31,6 +31,9 @@ Let's run through the important steps in a toolchange (for both tip forming and 
 <p align=center><img src="Blobing-and-Stringing/Unloading_Tip_Forming.png" alt="Unloading Tip Forming"></p>
 <p align=center><img src="Blobing-and-Stringing/Loading_Tip_Forming.png" alt="Loading Tip Forming"></p>
 
+![Unloading Tip Forming](Blobing-and-Stringing/Unloading_Tip_Forming.png)
+![Loading Tip Forming](Blobing-and-Stringing/Loading_Tip_Forming.png)
+
 ### Toolhead Tip Cutting
 
 <p align=center><img src="Blobing-and-Stringing/Unloading_Tip_Cutting.png" alt="Unloading Tip Cutting"></p>
