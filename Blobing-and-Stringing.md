@@ -177,7 +177,7 @@ The cold pull method of cleaning your extruder should be in your bag of printer 
 To help with the process Happy Hare includes a special macro that will guide you through the process. To run:
 1. Detact bowden from toolhead
 2. Load approximately 25mm of filament into the extruder at normal temperature
-3. Run `MMU_COLD_PULL` optionally with the `COLD_TEMP=xxx` argument to better suite your material (default is 70°C) and/or `HOT_TEMP=xxx` for extruding temp (default to 255°C)
+3. Run `MMU_COLD_PULL` optionally with the `COLD_TEMP=xxx` argument to better suite your material (default 70°C) and/or `HOT_TEMP=xxx` for extruding temp (default 255°C)
 4. Be ready to pull at the right time .. you will be given a little warning
 
 > MMU\_COLD\_PULL
@@ -198,4 +198,4 @@ Cold pull is successful if you can see the shape of the nozzle at the filament e
 It may take a few pulls to get suitable results. Remember to extrude 10mm or so of filament between pull attempts.
 
 > [!TIP]  
-> Some materials are better than others for cleaning with nylon often being found to be the best. PLA is also quite good. PTEG and ABS can be used but often stretch rather than pulling with sufficient force. The cool pulling temperature will be different with each material type so you may need to experiment.
+> Some materials are better than others for cleaning with nylon often being found to be the best. PLA is also quite good. PTEG and ABS can be used but often stretch rather than pulling with sufficient force. The cold pulling temperature will be different with each material type so you may need to experiment.
