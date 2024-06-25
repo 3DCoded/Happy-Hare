@@ -148,6 +148,41 @@ Happy Hare MMU commands: (use MMU_HELP MACROS=1 TESTING=1 STEPS=1 for full comma
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Macros
 
+```yml
+    MMU_END : Called when ending print to finalize MMU
+    MMU_START_CHECK : Helper macro. Can be called to perform pre-start checks on MMU based on slicer requirements
+    MMU_START_LOAD_INITIAL_TOOL : Helper to load initial tool if not paused
+    MMU_START_SETUP : Called when starting print to setup MMU
+    _MMU_ACTION_CHANGED : Called when an action has changed
+    _MMU_DUMP_TOOLHEAD : For debugging: dump current configuration of MMU Toolhead rails
+    _MMU_GATE_MAP_CHANGED : Called when gate map is updated
+    _MMU_LOAD_SEQUENCE : Called when MMU is asked to load filament
+    _MMU_POST_FORM_TIP : Optional post tip forming/cutting routing
+    _MMU_POST_LOAD : Optional post load routine for filament change
+    _MMU_POST_UNLOAD : Optional post unload routine for filament change
+    _MMU_PRE_LOAD : Optional pre load routine for filament change
+    _MMU_PRE_UNLOAD : Optional pre unload routine for filament change
+    _MMU_PRINT_END : Cleans up state after after print end
+    _MMU_PRINT_START : Initialize MMU state and ready for print
+    _MMU_PRINT_STATE_CHANGED : Called when print state changes
+    _MMU_UNLOAD_SEQUENCE : Called when MMU is asked to unload filament
+```
+
+### Macros intended for Slicer Setup (defined in mmu_software.cfg):
+
+See [Slicer Setup](Slicer-Setup) for details
+
+  | Macro | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Parameters |
+  | ----- | ----------- | ---------- |
+  | `MMU_START_SETUP` | Call when starting print to setup MMU | `INITIAL_TOOL`, `REFERENCED_TOOLS`, `TOOL_COLORS`, `TOOL_TEMPS`, `TOOL_MATERIALS`. See [Slicer Setup](Slicer-Setup) for details |
+  | `MMU_START_CHECK` | Helper macro. Can be called to perform pre-start checks on MMU based on slicer requirements | |
+  | `MMU_START_LOAD_INITIAL_TOOL` | Helper to load initial tool if not paused | |
+  | `MMU_END` | Called when ending print to finalize MMU | `EJECT=[0\|1]` Override the macro setting for final unloading of filament |
+  | | | |
+  | `_MMU_UPDATE_HEIGHT` | Called on layer change to record maximum toolhead height for z-hop base for sequential printing | 'HEIGHT=..' Optionally reset the minimum height. Normally not specified |
+
+<br>
+
 ### Callbacks (defined in mmu_software.cfg, mmu_form_tip.cfg, mmu_cut_tip.cfg, mmu_sequence.cfg, mmu_state.cfg, mmu_leds.cfg):
 
   | Macro | Description | Supplied Parameters |
@@ -164,21 +199,6 @@ Happy Hare MMU commands: (use MMU_HELP MACROS=1 TESTING=1 STEPS=1 for full comma
   | `_MMU_GATE_MAP_CHANGED` | Called when gate map is updated. Useful for updating LED lights, etc | |
   | `_MMU_LOAD_SEQUENCE` | Advanced: Called when MMU is asked to load filament | `FILAMENT_POS` `LENGTH` `FULL` `HOME_EXTRUDER` `SKIP_EXTRUDER` `EXTRUDER_ONLY` |
   | `_MMU_UNLOAD_SEQUENCE` | Advanced: Called when MMU is asked to unload filament | `FILAMENT_POS` `LENGTH` `EXTRUDER_ONLY` `PARK_POS` |
-
-<br>
-
-### Macros intended for Slicer Setup (defined in mmu_software.cfg):
-
-See [Slicer Setup](Slicer-Setup) for details
-
-  | Macro | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Parameters |
-  | ----- | ----------- | ---------- |
-  | `MMU_START_SETUP` | Call when starting print to setup MMU | `INITIAL_TOOL`, `REFERENCED_TOOLS`, `TOOL_COLORS`, `TOOL_TEMPS`, `TOOL_MATERIALS`. See [Slicer Setup](Slicer-Setup) for details |
-  | `MMU_START_CHECK` | Helper macro. Can be called to perform pre-start checks on MMU based on slicer requirements | |
-  | `MMU_START_LOAD_INITIAL_TOOL` | Helper to load initial tool if not paused | |
-  | `MMU_END` | Called when ending print to finalize MMU | `EJECT=[0\|1]` Override the macro setting for final unloading of filament |
-  | | | |
-  | `_MMU_UPDATE_HEIGHT` | Called on layer change to record maximum toolhead height for z-hop base for sequential printing | 'HEIGHT=..' Optionally reset the minimum height. Normally not specified |
 
 <br>
 
