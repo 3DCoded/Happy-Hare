@@ -172,11 +172,14 @@ Again referring back to the earlier ilustrations, although the calibration repor
 If you have a toolhead cutter, now is a good time to calibrate the blade cutting position `variable_blade_pos` and set the `variable_retract_length` which will control the amount of cut filament left in the extruder because it pulls the filament towards the cutter prior to the cut. 
 
 You must set this up correctly. There are two ways to do this:
-- With the extruder unloaded press and HOLD the cutter blade in the closed postion. Stay in this position until the calibration is complete.
-- Load the filament, allow the extruder to cool and then manually pressing the cut lever a couple of times to ensure the filament is cleanly cut. After you have cut the filament, unload/eject without further tip forming:<br>
+
+1. With the extruder unloaded press and HOLD the cutter blade in the closed postion. STAY in this position until the calibration is complete.
+
+2. Load the filament, allow the extruder to cool and then manually pressing the cut lever a couple of times to ensure the filament is cleanly cut. After you have cut the filament, unload/eject without further tip forming:
+
 > MMU\_EJECT SKIP\_TIP=1<br>
 
-Once the filament is unloaded in the MMU, run:
+After your chosen method and with the filament unloaded and parked in the MMU, run:
 
 > MMU\_CALIBRATE\_TOOLHEAD CUT=1
 ```
