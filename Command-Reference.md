@@ -98,6 +98,7 @@ Happy Hare MMU commands: (use MMU_HELP MACROS=1 TESTING=1 STEPS=1 for full comma
     MMU_CALIBRATE_GATES : Optional calibration of individual MMU gate
     MMU_CALIBRATE_GEAR : Calibration routine for gear stepper rotational distance
     MMU_CALIBRATE_SELECTOR : Calibration of the selector positions or postion of specified gate
+    MMU_CALIBRATE_TOOLHEAD : Calibration of key toolhead distances
 ```
   
   | Command | Description | Parameters |
@@ -108,6 +109,8 @@ Happy Hare MMU commands: (use MMU_HELP MACROS=1 TESTING=1 STEPS=1 for full comma
   | `MMU_CALIBRATE_SELECTOR` | Calibration of the selector gate positions. By default will automatically calibrate every gate.  ERCF v1.1 users must specify the bypass block position if fitted.  If GATE to BYPASS option is sepcifed this will update the calibrate for a single gate | `GATE=[0..n]` The individual gate position to calibrate <br>`BYPASS=[0\|1]` Calibrate the bypass position <br>`BYPASS_BLOCK=..` Optional (v1.1 only). Which bearing block contains the bypass where the first one is numbered 1 <br>`SAVE=[0\|1]` (default 1) Whether to save the result |
   | `MMU_CALIBRATE_BOWDEN` | Measure the calibration length of the bowden tube used for fast load movement. This will be performed on gate #0 | `BOWDEN_LENGTH=..` The approximate length of the bowden tube but NOT longer than the real measurement. 50mm less that real is a good starting point <br>`HOMING_MAX=..` (default 100) The distance after the sepcified BOWDEN_LENGTH to search of the extruder entrance <br>`REPEATS=..` (default 3) Number of times to average measurement over <br>`SAVE=[0\|1]` (default 1)  Whether to save the result <br>`MANUAL=1` This allows for calibration without an encoder |
   | `MMU_CALIBRATE_GATES` | Optional calibration for loading of a sepcifed gate or all gates. This is calculated as a ratio of gate #0 and thus this is usually the last calibration step | `GATE=[0..n]` The individual gate position to calibrate <br>`ALL[0\|1]` Calibrate all gates 1..n sequentially (filament must be available in each gate) <br>`LENGTH=..` Distance (mm) to measure over. Longer is better, defaults to 400mm <br>`REPEATS=..` Number of times to average over <br>`SAVE=[0\|1]` (default 1)  Whether to save the result |
+  | `MMU_CALIBRATE_TOOLHEAD` | Optional calibration of key toolhead dimension and toolhead cutting variables. This should be run as instructed in [Blobing and Stringing](Blobing-and-Stringing) but briefly without parameters this will calibrate `toolhead_ooze_reduction` | `CLEAN=1` This will calibrate `toolhead_extruder_to_nozzle`, `toolhead_sensor_to_nozzle`, `toolhead_entry_to_extruder` <br>`CUT=1` Calibrate `variable_blade_pos` for the tip cutting macro |
+  | `MMU_COLD_PULL` | This command (implement as a macro) should be run as instructed in [Blobing and Stringing](Blobing-and-Stringing#---cleaning-extruder-with-a-cold-pull). It walks you through the process automating much of the work | `COLD_TEMP=..[70]` Optionally override the cold pull temperature <br>`HOT_TEMP=..[255]` Optionally override the hot temperature used to prime the nozzle |
 
 <br>
 
@@ -145,7 +148,7 @@ Happy Hare MMU commands: (use MMU_HELP MACROS=1 TESTING=1 STEPS=1 for full comma
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Macros
 
-### User defined/configurable macros (defined in mmu_software.cfg)
+### Callbacks (defined in mmu_software.cfg, mmu_form_tip.cfg, mmu_cut_tip.cfg, mmu_sequence.cfg, mmu_state.cfg, mmu_leds.cfg):
 
   | Macro | Description | Supplied Parameters |
   | ----- | ----------- | ------------------- |
@@ -161,17 +164,27 @@ Happy Hare MMU commands: (use MMU_HELP MACROS=1 TESTING=1 STEPS=1 for full comma
   | `_MMU_GATE_MAP_CHANGED` | Called when gate map is updated. Useful for updating LED lights, etc | |
   | `_MMU_LOAD_SEQUENCE` | Advanced: Called when MMU is asked to load filament | `FILAMENT_POS` `LENGTH` `FULL` `HOME_EXTRUDER` `SKIP_EXTRUDER` `EXTRUDER_ONLY` |
   | `_MMU_UNLOAD_SEQUENCE` | Advanced: Called when MMU is asked to unload filament | `FILAMENT_POS` `LENGTH` `EXTRUDER_ONLY` `PARK_POS` |
-  | `_MMU_INITIALIZE` | Call when starting print to setup MMU | `INITIAL_TOOL`, `REFERENCED_TOOLS`, `TOOL_COLORS`, `TOOL_TEMPS`, `TOOL_MATERIALS` (see slicer setup guide) |
-  | `_MMU_LOAD_INITIAL_TOOL` | Helper to load initial tool if not paused | |
-  | `_MMU_FINALIZE` | Call when ending print to finalize MMU | `EJECT=[0\|1]` Override the macro setting for final unloading of filament (see slicer setup guide) |
-  | `_MMU_PRINT_START` | Initialize MMU state and ready for print (optionally include in print start macro) | None |
-  | `_MMU_PRINT_END` | Restore MMU idle state after print (optionally include in print end macro) | None |
+
+<br>
+
+### Macros intended for Slicer Setup (defined in mmu_software.cfg):
+
+See [Slicer Setup](Slicer-Setup) for details
+
+  | Macro | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Parameters |
+  | ----- | ----------- | ---------- |
+  | `MMU_START_SETUP` | Call when starting print to setup MMU | `INITIAL_TOOL`, `REFERENCED_TOOLS`, `TOOL_COLORS`, `TOOL_TEMPS`, `TOOL_MATERIALS`. See [Slicer Setup](Slicer-Setup) for details |
+  | `MMU_START_CHECK` | Helper macro. Can be called to perform pre-start checks on MMU based on slicer requirements | |
+  | `MMU_START_LOAD_INITIAL_TOOL` | Helper to load initial tool if not paused | |
+  | `MMU_END` | Called when ending print to finalize MMU | `EJECT=[0\|1]` Override the macro setting for final unloading of filament |
+  | | | |
+  | `_MMU_UPDATE_HEIGHT` | Called on layer change to record maximum toolhead height for z-hop base for sequential printing | 'HEIGHT=..' Optionally reset the minimum height. Normally not specified |
 
 <br>
 
 ### Internal macros for custom composition of load/unload sequences
 
-  | Macro | Description | Parameters |
+  | Macro | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Parameters |
   | ----- | ----------- | ---------- |
   | `_MMU_STEP_LOAD_GATE` | User composable loading step: Move filament from gate to start of bowden using encoder or gate sensor | |
   | `_MMU_STEP_LOAD_BOWDEN` | User composable loading step: Smart loading of bowden | `LENGTH=..` |
