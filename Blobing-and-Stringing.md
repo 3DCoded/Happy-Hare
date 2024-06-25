@@ -164,7 +164,7 @@ TODO
 
 The cold pull method of cleaning your extruder should be in your bag of printer maintance tricks already. Generally it is a great way to clean carbon deposits that build up over time and can result in under extrusion. We are using it here to clear to prepare for accurate toolhead dimension measurements.
 
-### Procedure
+### General Procedure
 1. Detact bowden from toolhead
 2. Load approximately 25mm of filament into the extruder at normal temperature
 3. Extrude at least 10mm of filament
@@ -172,7 +172,12 @@ The cold pull method of cleaning your extruder should be in your bag of printer 
 5. At this point, pull the filament quite firmly out of the extruder
 6. Inspect the tip to see if it has been successful
 
-### Using `MMU_COLD_PULL` macro
+### Using MMU\_COLD\_PULL macro
+To help with the process Happy Hare includes a special macro that will guide you through the process. To run:
+1. Detact bowden from toolhead
+2. Load approximately 25mm of filament into the extruder at normal temperature
+3. Run `MMU_COLD_PULL` optionally with the `COLD_TEMP=xxx` argument to better suite your material (default is 70 degrees celcius)
+
 TODO
 
 **How do you know if the cold pull was successful?** The pulled end of the filament should like like one of the pictures below. You need to be able to see the impression of the nozzle to be sure the pull was successful. On regular nozzles it should look similar to the image on the left, while with CHT nozzles similar to the image on the right. Note that the author of that picture should be commended for an excellent result because CHT nozzles require the pull at exactly the right temperature to be successful.
