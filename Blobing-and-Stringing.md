@@ -178,8 +178,9 @@ To help with the process Happy Hare includes a special macro that will guide you
 2. Load approximately 25mm of filament into the extruder at normal temperature
 3. Run `MMU_COLD_PULL` optionally with the `COLD_TEMP=xxx` argument to better suite your material (default is 70°C) and/or `HOT_TEMP=xxx` for extruding temp (default to 255°C)
 
+> MMU\_COLD\_PULL
+
 ```yml
-MMU_COLD_PULL
 Heating hotend
 Cleaning nozzle tip
 Cooling hotend
