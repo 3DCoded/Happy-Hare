@@ -107,7 +107,7 @@ Assuming you didn't run with the `SAVE=0` option this will temporarily correct y
 <table>
 <tr>
 <td>
-Referring back to the earlier ilustrations, because the extruder was empty we were able to establish the position of the internal nozzle shoulder as well as magially, some other settings:
+Referring back to the earlier ilustrations, because the extruder was empty we were able to establish the position of the internal nozzle shoulder as well (magically) some other settings:
 </td>
 <td width=30%>
 <a href="https://github.com/moggieuk/Happy-Hare/wiki/Blobing-and-Stringing/Probe_Nozzle_Shoulder.png"><img src="Blobing-and-Stringing/Probe_Nozzle_Shoulder.png" alt="Probe Nozzle Shoulder"></a>
@@ -145,9 +145,17 @@ Calibration Results (dirty nozzle):
 New calibrated ooze reduction active until restart. Update mmu_parameters.cfg to persist
 ```
 
+<table>
+<tr>
+<td>
 Again referring back to the earlier ilustrations, although the calibration reports measurements, these would likely be shorter because of the filament residue that is always left behind in the extruder. The difference between the clean reading and the dirty one is what `toolhead_ooze_reduction` compensates for:
+</td>
+<td width=30%>
+<a href="https://github.com/moggieuk/Happy-Hare/wiki/Blobing-and-Stringing/Probe_Filament_Remains.png"><img src="Blobing-and-Stringing/Probe_Filament_Remains.png" alt="Probe Filament Remains"></a>
+</td>
+</tr>
+</table>
 
-<p align="center"><a href="https://github.com/moggieuk/Happy-Hare/wiki/Blobing-and-Stringing/Probe_Filament_Remains.png"><img src="Blobing-and-Stringing/Probe_Filament_Remains.png" alt="Probe Filament Remains" width="25%"></a></p>
 
 > [!TIP]  
 > 1. You can run a dirty calibration as often as you like and to see if it differs with different filament types, changes you make to your tip forming macro, etc.
@@ -176,9 +184,17 @@ Calibration Results (cut tip):
 New calibrated variables active until restart. Update mmu_macro_vars.cfg to persist
 ```
 
+<table>
+<tr>
+<td>
 Referencing earlier ilustrations, although the calibration reports measurements, these are much be shorter because of the cut filament remains. The blade position `variable_blade_pos` can thus be established and the range of sensible values for `variable_retract_length` recommended.
+</td>
+<td width=30%>
+<a href="https://github.com/moggieuk/Happy-Hare/wiki/Blobing-and-Stringing/Probe_Cut_Remains.png"><img src="Blobing-and-Stringing/Probe_Cut_Remains.png" alt="Probe Cut Remains"></a>
+</td>
+</tr>
+</table>
 
-<p align="center"><a href="https://github.com/moggieuk/Happy-Hare/wiki/Blobing-and-Stringing/Probe_Cut_Remains.png"><img src="Blobing-and-Stringing/Probe_Cut_Remains.png" alt="Probe Cut Remains" width="25%"></a></p>
 
 <br>
 
