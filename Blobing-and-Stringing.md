@@ -145,6 +145,10 @@ Calibration Results (dirty nozzle):
 New calibrated ooze reduction active until restart. Update mmu_parameters.cfg to persist
 ```
 
+> [!TIP]  
+> 1. You can run a dirty calibration as often as you like and to see if it differs with different filament types, changes you make to your tip forming macro, etc.
+> 2. If you are curious you can also use it as a trick way to measure the "filament\_remaining" after tip cutting. Just remember to use the `SAVE=0` option because you DON'T want to `toolhead_ooze_reduction` to include the cut piece of filament!
+
 <table>
 <tr>
 <td>
@@ -155,11 +159,6 @@ Again referring back to the earlier ilustrations, although the calibration repor
 </td>
 </tr>
 </table>
-
-
-> [!TIP]  
-> 1. You can run a dirty calibration as often as you like and to see if it differs with different filament types, changes you make to your tip forming macro, etc.
-> 2. If you are curious you can also use it as a trick way to measure the "filament\_remaining" after tip cutting. Just remember to use the `SAVE=0` option because you DON'T want to `toolhead_ooze_reduction` to include the cut piece of filament!
 
 <br>
 
