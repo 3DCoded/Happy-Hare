@@ -77,9 +77,9 @@ This will perform some probing with a cold extruder and report back on the criti
 
 ```
 Notes:
-1.toolhead_extruder_to_nozzle, toolhead_sensor_to_nozzle (and toolhead_entry_to_extruder) are calibrated with a CLEAN extruder and the 'CLEAN=1' flag
-2.toolhead_ooze_reduction (and toolhead_entry_to_extruder) are calibrated with a normal dirty extruder but without a cut filament tip
-3.Optional variable_blade_pos is calibrated with manuall cut tip and the 'CUT=1' flag
+1) toolhead_extruder_to_nozzle, toolhead_sensor_to_nozzle (and toolhead_entry_to_extruder) are calibrated with a CLEAN extruder and the 'CLEAN=1' flag
+2) toolhead_ooze_reduction (and toolhead_entry_to_extruder) are calibrated with a normal dirty extruder but without a cut filament tip
+3) Optional variable_blade_pos is calibrated with manuall cut tip and the 'CUT=1' flag
 Desired gate should be selected but the filament unloaded
 
 Modifying MMU gear stepper run current to 40% for collision detection
