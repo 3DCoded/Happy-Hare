@@ -99,6 +99,7 @@ Happy Hare MMU commands: (use MMU_HELP MACROS=1 TESTING=1 STEPS=1 for full comma
     MMU_CALIBRATE_GEAR : Calibration routine for gear stepper rotational distance
     MMU_CALIBRATE_SELECTOR : Calibration of the selector positions or postion of specified gate
     MMU_CALIBRATE_TOOLHEAD : Calibration of key toolhead distances
+    MMU_COLD_PULL : Guide you through the process of cleaning your extruder with a cold pull
 ```
   
   | Command | Description | Parameters |
@@ -202,10 +203,25 @@ See [Slicer Setup](Slicer-Setup) for details
 
 <br>
 
-### Internal macros for custom composition of load/unload sequences
+### Internal "step" macros for custom composition of load/unload sequences
+
+```yml
+_MMU_M400 : Wait on both move queues
+_MMU_STEP_HOME_EXTRUDER : User composable loading step: Home to extruder sensor or entrance through collision detection
+_MMU_STEP_HOMING_MOVE : User composable loading step: Generic homing move
+_MMU_STEP_LOAD_BOWDEN : User composable loading step: Smart loading of bowden
+_MMU_STEP_LOAD_GATE : User composable loading step: Move filament from gate to start of bowden
+_MMU_STEP_LOAD_TOOLHEAD : User composable loading step: Toolhead loading
+_MMU_STEP_MOVE : User composable loading step: Generic move
+_MMU_STEP_SET_FILAMENT : User composable loading step: Set filament position state
+_MMU_STEP_UNLOAD_BOWDEN : User composable unloading step: Smart unloading of bowden
+_MMU_STEP_UNLOAD_GATE : User composable unloading step: Move filament from start of bowden and park in the gate
+_MMU_STEP_UNLOAD_TOOLHEAD : User composable unloading step: Toolhead unloading
+```
 
   | Macro | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Parameters |
   | ----- | ----------- | ---------- |
+  | `_MMU_M400` | User composable loading step that will force a wait on both the toolhead and mmu move queues | |
   | `_MMU_STEP_LOAD_GATE` | User composable loading step: Move filament from gate to start of bowden using encoder or gate sensor | |
   | `_MMU_STEP_LOAD_BOWDEN` | User composable loading step: Smart loading of bowden | `LENGTH=..` |
   | `_MMU_STEP_HOME_EXTRUDER` | User composable loading step: Extruder collision detection | |
