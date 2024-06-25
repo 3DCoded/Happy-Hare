@@ -76,7 +76,6 @@ Reattach bowden to toolhead, and prepare the MMU: select the gate you wish to us
 This will perform some probing with a cold extruder and report back on the critical toolhead parameters. For example:
 
 ```
-MMU_CALIBRATE_TOOLHEAD CLEAN=1
 Note:
 toolhead_extruder_to_nozzle, toolhead_sensor_to_nozzle (and toolhead_entry_to_extruder) are calibrated with a CLEAN extruder and the 'CLEAN=1' flag
 toolhead_ooze_reduction (and toolhead_entry_to_extruder) are calibrated with a normal dirty extruder but without a cut filament tip
@@ -127,12 +126,10 @@ This MUST be done with tip forming and not tip cutting or alternatively, after e
 
 ### Step 3: Calibrate with DIRTY extruder
 
+This is run with no parameters. Here is an example below.
+
 > MMU\_CALIBRATE\_TOOLHEAD
-
-Here is an example below. Note which parameters are set with each pass.
-
 ```
-MMU_CALIBRATE_TOOLHEAD
 ...blah blah blah...
 -----------------------------------
 Calibration Results (dirty nozzle):
@@ -162,9 +159,7 @@ You must set this up correctly and is best achieved by loading filament, allowin
 Once the filament is unloaded in the MMU, run:
 
 > MMU\_CALIBRATE\_TOOLHEAD CUT=1
-
 ```
-MMU_CALIBRATE_TOOLHEAD CUT=1
 ...blah blah blah...
 -----------------------------------
 Calibration Results (cut tip):
@@ -226,7 +221,6 @@ To help with the process Happy Hare includes a special macro that will guide you
 4. Be ready to pull at the right time .. you will be given a little warning
 
 > MMU\_COLD\_PULL
-
 ```yml
 Heating hotend
 Cleaning nozzle tip
