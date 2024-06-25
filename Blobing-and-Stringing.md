@@ -107,7 +107,9 @@ Assuming you didn't run with the `SAVE=0` option this will temporarily correct y
 <table>
 <tr>
 <td>
+
 Referring back to the earlier ilustrations, because the extruder was empty we were able to establish the position of the internal nozzle shoulder as well (magically) some other settings:
+
 </td>
 <td width=30%>
 <a href="https://github.com/moggieuk/Happy-Hare/wiki/Blobing-and-Stringing/Probe_Nozzle_Shoulder.png"><img src="Blobing-and-Stringing/Probe_Nozzle_Shoulder.png" alt="Probe Nozzle Shoulder"></a>
@@ -188,7 +190,9 @@ New calibrated variables active until restart. Update mmu_macro_vars.cfg to pers
 <table>
 <tr>
 <td>
+
 Referencing earlier ilustrations, although the calibration reports measurements, these are much be shorter because of the cut filament remains. The blade position `variable_blade_pos` can thus be established and the range of sensible values for `variable_retract_length` recommended.
+
 </td>
 <td width=30%>
 <a href="https://github.com/moggieuk/Happy-Hare/wiki/Blobing-and-Stringing/Probe_Cut_Remains.png"><img src="Blobing-and-Stringing/Probe_Cut_Remains.png" alt="Probe Cut Remains"></a>
