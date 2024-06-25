@@ -187,6 +187,27 @@ Calibration Results (cut tip):
 New calibrated variables active until restart. Update mmu_macro_vars.cfg to persist
 ```
 
+<table>
+<tr>
+<td>
+
+> MMU\_CALIBRATE\_TOOLHEAD CUT=1
+
+</td>
+<td width=70%>
+```
+...blah blah blah...
+-----------------------------------
+Calibration Results (cut tip):
+> variable_blade_pos: 36.2 (currently: 37.5)
+> variable_retract_length: 3.0 - 31.2 (recommended)
+-----------------------------------
+New calibrated variables active until restart. Update mmu_macro_vars.cfg to persist
+```
+</td>
+</tr>
+</table>
+
 > [!TIP]  
 > The larger the `variable_retract_length` the less additional purge is necessary to clean out the prior color. However if you get too aggressive you may experience clogs because you are cutting a hot part of the filament. Experience has shown that about 5mm shorter than the blade position (i.e. 5mm cut length) is about as good as you can get. If you do still run into clogging issues, shorten this value.
 
