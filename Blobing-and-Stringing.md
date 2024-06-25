@@ -175,7 +175,8 @@ You must set this up correctly. There are two ways to do this:
 - With the extruder unloaded press and HOLD the cutter blade in the closed postion. Stay in this position until the calibration is complete.
 - Load the filament, allow the extruder to cool and then manually pressing the cut lever a couple of times to ensure the filament is cleanly cut. After you have cut the filament, unload/eject without further tip forming:<br>
 > MMU\_EJECT SKIP\_TIP=1<br>
-Once the filament is unloaded in the MMU, run:<br>
+
+Once the filament is unloaded in the MMU, run:
 
 > MMU\_CALIBRATE\_TOOLHEAD CUT=1
 ```
