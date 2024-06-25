@@ -1,25 +1,25 @@
 This discussion assumes that you have initial setup complete and are now ready to tune the quality of your prints. Although some of the information contained here is useful early in your journey it will make a lot more sense once you have some experience with default or "borrowed" toolhead parameters. Then this will guide you to optimizing a few critical parameters for quality prints.
 
-Specifically in this guide you will learn how to correctly set the following parameters:
+Specifically in this guide you will learn how to correctly set the following parameters (`mmu/base/mmu_parameters.cfg`):
 - `toolhead_extruder_to_nozzle`
 - `toolhead_sensor_to_nozzle`
 - `toolhead_entry_to_extruder`
 - `toolhead_ooze_reduction`
 
-And use z-hop and retraction settings to eliminate blobs and stringing during color changes in your prints:
+Use z-hop and retraction settings to eliminate blobs and stringing during color changes in your prints:
 - `z_hop_height_toolchange`
 - `z_hop_ramp`
 - `z_hop_speed`
 - `toolchange_retract` & `toolchange_retract_speed`
 
-And key tip cutting macro variables:
+Set key tip cutting macro variables (`mmu/base/mmu_macros_vars.cfg`):
 - `variable_blade_pos` & `variable_retract_length`
 
 <br>
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Correct Meaning of Key Dimensions
 
-First it is important to understand that while sensors like a toolhead sensor can help with extruder loading and unloading, the process relies on precise movement distances. These "dimensions" often interact with each other so it is also important that they be set according to their meaning. Doing so will give detministic toolchanges rather than a "these settings seem to work" scenario.
+First it is important to understand that while sensors like a toolhead sensor can help with extruder loading and unloading, the process relies on precise movement distances. These "dimensions" often interact with each other so it is also important that they be set according to their meaning. Doing so will give deterministic toolchanges rather than a "these settings seem to work" scenario.
 
 When the extruder is loaded, Happy Hare will move the filament a precise distance from either the extruder gear or the toolhead sensor to the end of the nozzle. This distance is set with `toolhead_extruder_to_nozzle` and/or `toolhead_sensor_to_nozzle` and represents the CAD measured distance in a perfectly clean extruder/nozzle. The reality is that once the extruder is "dirty" this distance changes. I.e. some filament is inevitably left behind in the extruder/nozzle shortening this distance. The amount of filament remaining seems to vary greatly from a couple of mm to as much as 15mm in some HF hotends!
 
@@ -51,18 +51,18 @@ Note that the cut piece of filament remaining and the residual filament are auto
 
 > [!IMPORTANT]  
 > 1. The really important reference point is the internal nozzle "shoulder". This is considered the 0mm reference point for most parameters. For CHT nozzle this will be further away from the tip than regular nozzles.
-> 2. You can see how the `toolhead_xxx_to_nozzle` settings and `toolhead_ooze_reduction` are related, so while you can tune the former ignore latter, it is recommended you use them correctly so that Happy Hare is able to optimize print quality and correctly control purge volumes.
-> 3. `toolhead_ooze_reduction` is dependent on your extruder and nozzle. High flow systems generally have a much higher value than regular.
+> 2. You can see how the `toolhead_XXX_to_nozzle` settings and `toolhead_ooze_reduction` are related, so while you can tune the former and ignore latter, it is recommended you use them correctly so that Happy Hare is able to optimize print quality and correctly control purge volumes.
+> 3. `toolhead_ooze_reduction` is dependent on your extruder and nozzle. High flow systems generally have a much higher value (more residual filament stuck in extruder) than regular ones.
 
 <br>
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Calibrating Toolhead
 
-Ok, now you know what the correct meaning of the dimensions are the next question is how to discover them for your setup. For everything other than `toolhead_ooze_reduction` it is possible to use accurate CAD models to measure them (remember to use the internal shoulder in the nozzle). If you have a toolhead sensor there is now an automated way to measure! If not, then you can refer back to this wiki where we will collate verified measurements for common toolheads and once you have those set experiment to discover `toolhead_ooze_reduction`
+Ok, now you know what the correct meaning of the dimensions are the next question is how to discover them for your setup. For everything other than `toolhead_ooze_reduction` it is possible to use accurate CAD models to measure them (remember to use the internal shoulder in the nozzle). If you have a toolhead sensor there is now an automated way to measure! If not, then you can refer back to this wiki where we will collate verified measurements for common toolhead combinations and once you have those set experiment to discover the correct `toolhead_ooze_reduction` setting.
 
 You have a toolhead sensor...
 
-Now Happy Hare can help with a new `MMU_CALIBRATE_TOOLHEAD` command. The complete process is to start with a CLEAN extruder/nozzle. To do this you need to perform a cold pull where you warm up the extruder, purge some filament, then cool. At the right temperature you manually pull the filament out with a bit of force pulling all the old residue and carbon deposits. This is something that most of you probably already know how to do, but for those that need help you can run the supplied `MMU_COLD_PULL` macro and follow directions. This is documented [later in this page](TODO).
+Now Happy Hare can help with a new `MMU_CALIBRATE_TOOLHEAD` command. The complete process is to start with a CLEAN extruder/nozzle. To do this you need to perform a cold pull where you warm up the extruder, purge some filament, then cool. At the right temperature you manually pull the filament out with a bit of force pulling all the old residue and carbon deposits. This is something that most of you probably already know how to do, but for those that need help you can run the supplied `MMU_COLD_PULL` macro and follow directions. This is documented [later in this page](#---cleaning-extruder-with-a-cold-pull).
 
 ### Step 1: With a CLEAN toolhead (after cold pull)
 
@@ -111,10 +111,12 @@ Referring back to the earlier ilustrations, because the extruder was empty we we
 Next heat up you extruder, and load and unload a filament:
 
 > MMU\_LOAD
-extrude some filament
+
+_extrude some filament..._
+
 > MMU\_EJECT
 
-This MUST be done with tip forming and not tip cutting or alternatively, after extruding some filament, manually retract the filament out of the extruder and then part the filament in the MMU gate.
+This MUST be done with tip forming and not tip cutting or alternatively, after extruding some filament, manually retract the filament out of the extruder and then park the filament in the MMU gate.
 
 ### Step 3: Calibrate with DIRTY extruder
 
