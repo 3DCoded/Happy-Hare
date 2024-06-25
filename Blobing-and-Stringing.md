@@ -168,7 +168,7 @@ Again referring back to the earlier ilustrations, although the calibration repor
 
 ### Step 4: Optional: Calibrate toolhead cutting macro variables
 
-If you have a toolhead cutter, now is a good time to calibrate the blade cutting position `variable_blade_pos` and set the `variable_retract_length` which will control the amount of cut filament left in the extruder.
+If you have a toolhead cutter, now is a good time to calibrate the blade cutting position `variable_blade_pos` and set the `variable_retract_length` which will control the amount of cut filament left in the extruder because it pulls the filament towards the cutter prior to the cut. 
 
 You must set this up correctly and is best achieved by loading filament, allowing the extruder to cool and then manually pressing the cut lever a couple of times to ensure the filament is cleanly cut. After you have cut the filament, unload/eject without further tip forming:
 
@@ -186,6 +186,9 @@ Calibration Results (cut tip):
 -----------------------------------
 New calibrated variables active until restart. Update mmu_macro_vars.cfg to persist
 ```
+
+> [!TIP]  
+> The larger the `variable_retract_length` the less additional purge is necessary to clean out the prior color. However if you get too aggressive you may experience clogs because you are cutting a hot part of the filament. Experience has shown that about 5mm shorter than the blade position (i.e. 5mm cut length) is about as good as you can get. If you do still run into clogging issues, shorten this value.
 
 <table>
 <tr>
@@ -219,13 +222,25 @@ With the toolhead now properly configured you should experience better basic loa
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Toolhead Retraction
 
-TODO
+Incorrect toolhead dimensions contribute most to blobbing problems but even when perfect blobing can still occur when the toolhead is moved fully loaded. Just like when printing it is often necessary to relax the pressure in the extruder prior to a travel move to prevent the slow oozing that would otherwise occur. The `toolchange_retraction` setting is set to the retraction distance and will be applied immediately prior to z_hop move and any travel movements during the toolchange. All the supplied macros will understand this setting and either compensate for this extruder pre movement. At the end of the toolchange process immediately following the reversal of the z_hop move, the un-retract will occur to correctly pressurise the extruder again. In this manner the extruder is never fully loaded during travel moves and thus oozing is minimized.
+
+Note that the retraction and un-retraction speed is set with the related `toolchange_retraction_speed` parameter and can thus be set independently (often faster) than your general extruder load/unload speeds.
+
+> [!NOTE]  
+> The toolhead retract is ONLY applied during a print by Happy Hare and is independent of anything performed by the sequence macros.
 
 <br>
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Z-Hop and Ramping
 
-TODO
+When a toolchange occurs it is preferable to move the toolhead so the hot nozzle isn't left on the print. Such travel moves can graze the top of the print so you will usually want to perform a z-hop move (raise the toolhead) before travelling. This z-hop height is controlled by `z_hop_height_toolchange`. It is performed the moment after the toolchange retraction and usually 2mm is plenty to stay clear of the print.
+
+Despite the retraction and upward movement many filaments will still have a dendency to "string". What is needed is a much larger toolhead movement to "break the string". The `z_hop_ramp` setting is thus the horizontal move to combine with the vertical (`z_hop_height`) and essentially allows for fast travel moves of a greater distance (vertical movement is generally much slower than horizontal). The horizontal movement component will be towards the center of the build plate followed by a return at the new z-height.
+
+The speed of the z-hop move whether purely vertical or including a ramp is specified with `z_hop_speed`.
+
+> [!TIP]  
+> If employing a z-hop ramp then you will likely want to set a fast speed similar to your normal printer x/y travel speed. Klipper will always limit a move to the slowest direction and thus this will not accidently try to move faster than possible in the vertical direction. If you are not using a ramp then then `z_hop_speed` can be your desired vertical movement only.
 
 <br>
 
