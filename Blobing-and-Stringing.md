@@ -173,12 +173,9 @@ If you have a toolhead cutter, now is a good time to calibrate the blade cutting
 
 You must set this up correctly. There are two ways to do this:
 
-1\. With the extruder unloaded press and HOLD the cutter blade in the closed postion. STAY in this position until the calibration is complete.
+1. With the extruder unloaded press and HOLD the cutter blade in the closed postion. STAY in this position until the calibration is complete.
 
-or
-
-2\. Load the filament, allow the extruder to cool and then manually pressing the cut lever a couple of times to ensure the filament is cleanly cut. After you have cut the filament, unload/eject without further tip forming:
-
+2. Load the filament, allow the extruder to cool and then manually pressing the cut lever a couple of times to ensure the filament is cleanly cut. After you have cut the filament, unload/eject without further tip forming:<br>
 > MMU\_EJECT SKIP\_TIP=1<br>
 
 After your chosen method and with the filament unloaded and parked in the MMU, run:
