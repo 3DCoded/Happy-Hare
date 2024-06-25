@@ -168,7 +168,7 @@ New calibrated variables active until restart. Update mmu_macro_vars.cfg to pers
 
 Referencing earlier ilustrations, although the calibration reports measurements, these are much be shorter because of the cut filament remains. The blade position `variable_blade_pos` can thus be established and the range of sensible values for `variable_retract_length` recommended.
 
-<p align="center"><a href="https://github.com/moggieuk/Happy-Hare/wiki/Blobing-and-Stringing/Probe_Cut_Remains.png"><img src="Blobing-and-Stringing/Probe_Filament_Remains.png" alt="Probe Cut Remains" width="30%"></a></p>
+<p align="center"><a href="https://github.com/moggieuk/Happy-Hare/wiki/Blobing-and-Stringing/Probe_Cut_Remains.png"><img src="Blobing-and-Stringing/Probe_Cut_Remains.png" alt="Probe Cut Remains" width="30%"></a></p>
 
 <br>
 
