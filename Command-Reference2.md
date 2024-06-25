@@ -171,7 +171,7 @@ Happy Hare MMU commands: (use MMU_HELP MACROS=1 TESTING=1 STEPS=1 for full comma
 
 See [Slicer Setup](Slicer-Setup) for details
 
-  | Macro | Description | Parameters |
+  | Macro | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Parameters |
   | ----- | ----------- | ---------- |
   | `MMU_START_SETUP` | Call when starting print to setup MMU | `INITIAL_TOOL`, `REFERENCED_TOOLS`, `TOOL_COLORS`, `TOOL_TEMPS`, `TOOL_MATERIALS`. See [Slicer Setup](Slicer-Setup) for details |
   | `MMU_START_CHECK` | Helper macro. Can be called to perform pre-start checks on MMU based on slicer requirements | |
