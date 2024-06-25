@@ -13,7 +13,8 @@ Use z-hop and retraction settings to eliminate blobs and stringing during color 
 - `toolchange_retract` & `toolchange_retract_speed`
 
 Set key tip cutting macro variables (`mmu/base/mmu_macros_vars.cfg`):
-- `variable_blade_pos` & `variable_retract_length`
+- `variable_blade_pos`
+- `variable_retract_length`
 
 <br>
 
