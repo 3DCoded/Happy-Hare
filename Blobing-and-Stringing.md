@@ -112,7 +112,7 @@ Next heat up you extruder, and load and unload a filament:
 
 > MMU\_LOAD
 
-_extrude some filament..._
+_be sure to manually extrude some filament..._
 
 > MMU\_EJECT
 
@@ -134,17 +134,17 @@ Calibration Results (dirty nozzle):
 New calibrated ooze reduction active until restart. Update mmu_parameters.cfg to persist
 ```
 
-Again referring back to the earlier ilustrations, although the calibration reported measurements, these would be shorter because of the filament residue that is always left behind in the extruder. The difference between the clean reading and the dirty one is what `toolhead_ooze_reduction` compensates for:
+Again referring back to the earlier ilustrations, although the calibration reports measurements, these would likely be shorter because of the filament residue that is always left behind in the extruder. The difference between the clean reading and the dirty one is what `toolhead_ooze_reduction` compensates for:
 
 <p align="center"><a href="https://github.com/moggieuk/Happy-Hare/wiki/Blobing-and-Stringing/Probe_Filament_Remains.png"><img src="Blobing-and-Stringing/Probe_Filament_Remains.png" alt="Probe Filament Remains" width="30%"></a></p>
 
 > [!TIP]  
-> 1. You can run a dirty calibration as often as you like and to see if it is different with different filament types, changes to you tip forming macro, etc.
+> 1. You can run a dirty calibration as often as you like and to see if it differs with different filament types, changes you make to your tip forming macro, etc.
 > 2. If you are curious you can also use it as a trick way to measure the "filament\_remaining" after tip cutting. Just remember to use the `SAVE=0` option because you DON'T want to `toolhead_ooze_reduction` to include the cut piece of filament!
 
 <br>
 
-With the toolhead now properly configured you should experience better loading and uploading with reduction of blobbing and thus stringing. But there is more... 
+With the toolhead now properly configured you should experience better basic loading and uploading with reduction of blobbing and thus stringing. However there is more... 
 
 <br>
 
@@ -162,6 +162,24 @@ TODO
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Cleaning Extruder with a "Cold-Pull"
 
+The cold pull method of cleaning your extruder should be in your bag of printer maintance tricks already. Generally it is a great way to clean carbon deposits that build up over time and can result in under extrusion. We are using it here to clear to prepare for accurate toolhead dimension measurements.
+
+### Procedure
+1. Detact bowden from toolhead
+2. Load approximately 25mm of filament into the extruder at normal temperature
+3. Extrude at least 10mm of filament
+4. Turn of extruder heat and wait for extruder to cool to correct temperature
+5. At this point, pull the filament quite firmly out of the extruder
+6. Inspect the tip to see if it has been successful
+
+### Using `MMU_COLD_PULL` macro
 TODO
 
+**How do you know if the cold pull was successful?** The pulled end of the filament should like like one of the pictures below. You need to be able to see the impression of the nozzle to be sure the pull was successful. On regular nozzles it should look similar to the image on the left, while with CHT nozzles similar to the image on the right. Note that the author of that picture should be commended for an excellent result because CHT nozzles require the pull at exactly the right temperature to be successful.
+
 <p align="center"><img src="Blobing-and-Stringing/Cold_Pull_Normal_Example.png" alt="Cold Pull Normal" width="30%"></a><img src="Blobing-and-Stringing/Cold_Pull_CHT_Example.png" alt="Cold Pull Normal" width="30%"></a></p>
+
+It may take a few pulls to get suitable results. Remember to extrude 10mm or so of filament between pull attempts.
+
+> [!TIP]  
+> Some materials are better than others for cleaning with nylon often being found to be the best. PLA is also quite good. PTEG and ABS can be used but often stretch rather than pulling with sufficient force. The cool pulling temperature will be different with each material type so you may need to experiment.
