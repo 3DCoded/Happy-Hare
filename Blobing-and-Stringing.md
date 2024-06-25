@@ -1,4 +1,4 @@
-This discussion assumes that you have initial setup complete and are now ready to tune the quality of your prints. Although some of the information contained here is useful early in your journey it will make a lot more sense once you have some experience with default or "borrowed" toolhead parameters. Then this will guide you to optimizing a few critical parameters for quality prints.
+This discussion assumes that you have initial setup complete and are now ready to tune the quality of your prints. Although some of the information contained here is useful early in your journey it will make a lot more sense once you have some experience with default or "borrowed" toolhead parameters. Then this will guide you to optimizing a few critical parameters for quality prints that avoids blobbing on your wipetower or print and stringing when moving to change tool.
 
 Specifically in this guide you will learn how to correctly set the following parameters (`mmu/base/mmu_parameters.cfg`):
 - `toolhead_extruder_to_nozzle`
@@ -177,11 +177,11 @@ Referencing earlier ilustrations, although the calibration reports measurements,
 
 ### Summary of MMU\_CALIBRATE\_TOOLHEAD options
 
-  | Option | Description |
-  | ------ | ----------- |
-  | `CLEAN=1` | This will calibrate `toolhead_extruder_to_nozzle`, `toolhead_sensor_to_nozzle`, `toolhead_entry_to_extruder` and MUST be run on clean extruder after cold-pull | 
-  | _none_ | This will calibrate `toolhead_ooze_reduction` and should be run with a dirty extruder where tip has been formed for filament retracted from extruder. It must not be run after tip cutting |
-  | `CUT=1` | This will calibrate `variable_blade_pos` and suggest `variable_retract_length` for the tip cutting macro. This MUST be run after loading the extruder and manually cutting the filament and running `MMU_EJECT SKIP_TIP=1` to unload without re-running the tip cutting macro |
+  | Order | Option | Description |
+  | ----- |------ | ----------- |
+  | 1 | `CLEAN=1` | This will calibrate `toolhead_extruder_to_nozzle`, `toolhead_sensor_to_nozzle`, `toolhead_entry_to_extruder` and MUST be run on clean extruder after cold-pull | 
+  | 2 | _none_ | This will calibrate `toolhead_ooze_reduction` and should be run with a dirty extruder where tip has been formed for filament retracted from extruder. It must not be run after tip cutting |
+  | 3 | `CUT=1` | This will calibrate `variable_blade_pos` and suggest `variable_retract_length` for the tip cutting macro. This MUST be run after loading the extruder and manually cutting the filament and running `MMU_EJECT SKIP_TIP=1` to unload without re-running the tip cutting macro |
 
 <br>
 
@@ -218,7 +218,7 @@ To help with the process Happy Hare includes a special macro that will guide you
 1. Detact bowden from toolhead
 2. Load approximately 25mm of filament into the extruder at normal temperature
 3. Run `MMU_COLD_PULL` optionally with the `COLD_TEMP=xxx` argument to better suite your material (default 70°C) and/or `HOT_TEMP=xxx` for extruding temp (default 255°C)
-4. Be ready to pull at the right time .. you will be given a little warning
+4. Be ready to pull at the right time .. you will be given a little warning but it is important to pull at the correct temperature when the filament is still slightly pliable
 
 > MMU\_COLD\_PULL
 ```yml
