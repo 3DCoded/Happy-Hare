@@ -164,7 +164,7 @@ Once the filament is unloaded in the MMU, run:
 > MMU\_CALIBRATE\_TOOLHEAD CUT=1
 
 ```
-MMU_CALIBRATE_TOOLHEAD
+MMU_CALIBRATE_TOOLHEAD CUT=1
 ...blah blah blah...
 -----------------------------------
 Calibration Results (cut tip):
