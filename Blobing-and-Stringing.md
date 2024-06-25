@@ -110,7 +110,7 @@ Assuming you didn't run with the `SAVE=0` option this will temporarily correct y
 Referring back to the earlier ilustrations, because the extruder was empty we were able to establish the position of the internal nozzle shoulder as well as magially, some other settings:
 </td>
 <td width=30%>
-<a href="https://github.com/moggieuk/Happy-Hare/wiki/Blobing-and-Stringing/Probe_Nozzle_Shoulder.png"><img src="Blobing-and-Stringing/Probe_Nozzle_Shoulder.png" alt="Probe Nozzle Shoulder" width="25%"></a>
+<a href="https://github.com/moggieuk/Happy-Hare/wiki/Blobing-and-Stringing/Probe_Nozzle_Shoulder.png"><img src="Blobing-and-Stringing/Probe_Nozzle_Shoulder.png" alt="Probe Nozzle Shoulder"></a>
 </td>
 </tr>
 </table>
