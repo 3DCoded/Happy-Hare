@@ -65,6 +65,8 @@ You have a toolhead sensor...
 
 Now Happy Hare can help with a new `MMU_CALIBRATE_TOOLHEAD` command. The complete process is to start with a CLEAN extruder/nozzle. To do this you need to perform a cold pull where you warm up the extruder, purge some filament, then cool. At the right temperature you manually pull the filament out with a bit of force pulling all the old residue and carbon deposits. This is something that most of you probably already know how to do, but for those that need help you can run the supplied `MMU_COLD_PULL` macro and follow directions. This is documented [later in this page](#---cleaning-extruder-with-a-cold-pull).
 
+<br>
+
 ### Step 1: With a CLEAN toolhead (after cold pull)
 
 Reattach bowden to toolhead, and prepare the MMU: select the gate you wish to use but ensure filament is available but don't try to load the extruder. Then run:
@@ -107,6 +109,8 @@ Referring back to the earlier ilustrations, because the extruder was empty we we
 
 <p align="center"><a href="https://github.com/moggieuk/Happy-Hare/wiki/Blobing-and-Stringing/Probe_Nozzle_Shoulder.png"><img src="Blobing-and-Stringing/Probe_Nozzle_Shoulder.png" alt="Probe Nozzle Shoulder" width="30%"></a></p>
 
+<br>
+
 ### Step 2: Now DIRTY the extruder:
 
 Next heat up you extruder, and load and unload a filament:
@@ -118,6 +122,8 @@ _be sure to manually extrude some filament..._
 > MMU\_EJECT
 
 This MUST be done with tip forming and not tip cutting or alternatively, after extruding some filament, manually retract the filament out of the extruder and then park the filament in the MMU gate.
+
+<br>
 
 ### Step 3: Calibrate with DIRTY extruder
 
@@ -142,6 +148,8 @@ Again referring back to the earlier ilustrations, although the calibration repor
 > [!TIP]  
 > 1. You can run a dirty calibration as often as you like and to see if it differs with different filament types, changes you make to your tip forming macro, etc.
 > 2. If you are curious you can also use it as a trick way to measure the "filament\_remaining" after tip cutting. Just remember to use the `SAVE=0` option because you DON'T want to `toolhead_ooze_reduction` to include the cut piece of filament!
+
+<br>
 
 ### Step 4: Optional: Calibrate toolhead cutting macro variables
 
