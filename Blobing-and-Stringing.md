@@ -152,7 +152,9 @@ New calibrated ooze reduction active until restart. Update mmu_parameters.cfg to
 <table>
 <tr>
 <td>
+
 Again referring back to the earlier ilustrations, although the calibration reports measurements, these would likely be shorter because of the filament residue that is always left behind in the extruder. The difference between the clean reading and the dirty one is what `toolhead_ooze_reduction` compensates for:
+
 </td>
 <td width=30%>
 <a href="https://github.com/moggieuk/Happy-Hare/wiki/Blobing-and-Stringing/Probe_Filament_Remains.png"><img src="Blobing-and-Stringing/Probe_Filament_Remains.png" alt="Probe Filament Remains"></a>
