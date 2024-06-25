@@ -73,7 +73,7 @@ Reattach bowden to toolhead, and prepare the MMU: select the gate you wish to us
 
 This will perform some probing with a cold extruder and report back on the critical toolhead parameters. For example:
 
-```yml
+```
 MMU_CALIBRATE_TOOLHEAD CLEAN=1
 Note:
 toolhead_extruder_to_nozzle, toolhead_sensor_to_nozzle (and toolhead_entry_to_extruder) are calibrated with a CLEAN extruder and the 'CLEAN=1' flag
@@ -125,7 +125,7 @@ This MUST be done with tip forming and not tip cutting or alternatively, after e
 
 Here is an example below. Note which parameters are set with each pass.
 
-```yml
+```
 MMU_CALIBRATE_TOOLHEAD
 ...blah blah blah...
 -----------------------------------
@@ -155,7 +155,7 @@ Once the filament is unloaded in the MMU, run:
 
 > MMU\_CALIBRATE\_TOOLHEAD CUT=1
 
-```yml
+```
 MMU_CALIBRATE_TOOLHEAD
 ...blah blah blah...
 -----------------------------------
