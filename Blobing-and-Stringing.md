@@ -73,7 +73,7 @@ Reattach bowden to toolhead, and prepare the MMU: select the gate you wish to us
 
 This will perform some probing with a cold extruder and report back on the critical toolhead parameters. For example:
 
-```
+```yml
 MMU_CALIBRATE_TOOLHEAD CLEAN=1
 Note:
 toolhead_extruder_to_nozzle, toolhead_sensor_to_nozzle (and toolhead_entry_to_extruder) are calibrated with a CLEAN extruder and the 'CLEAN=1' flag
@@ -125,7 +125,7 @@ This MUST be done with tip forming and not tip cutting or alternatively, after e
 
 Here is an example below. Note which parameters are set with each pass.
 
-```
+```yml
 MMU_CALIBRATE_TOOLHEAD
 ...blah blah blah...
 -----------------------------------
@@ -145,11 +145,30 @@ Again referring back to the earlier ilustrations, although the calibration repor
 
 ### Step 4: Optional: Calibrate toolhead cutting macro variables
 
-If you have a toolhead cutter, now is a good time to calibrate the blade cutting position `variable_blade_pos` and set the `variable_retract_length` which will control the amount of cut filament left in the extruder
+If you have a toolhead cutter, now is a good time to calibrate the blade cutting position `variable_blade_pos` and set the `variable_retract_length` which will control the amount of cut filament left in the extruder.
+
+You must set this up correctly and is best achieved by loading filament, allowing the extruder to cool and then manually pressing the cut lever a couple of times to ensure the filament is cleanly cut. After you have cut the filament, unload/eject without further tip forming:
+
+> MMU\_EJECT SKIP\_TIP=1
+
+Once the filament is unloaded in the MMU, run:
 
 > MMU\_CALIBRATE\_TOOLHEAD CUT=1
 
-TODO
+```yml
+MMU_CALIBRATE_TOOLHEAD
+...blah blah blah...
+-----------------------------------
+Calibration Results (cut tip):
+> variable_blade_pos: 36.2 (currently: 37.5)
+> variable_retract_length: 3.0 - 31.2 (recommended)
+-----------------------------------
+New calibrated variables active until restart. Update mmu_macro_vars.cfg to persist
+```
+
+Referencing earlier ilustrations, although the calibration reports measurements, these are much be shorter because of the cut filament remains. The blade position `variable_blade_pos` can thus be established and the range of sensible values for `variable_retract_length` recommended.
+
+<p align="center"><a href="https://github.com/moggieuk/Happy-Hare/wiki/Blobing-and-Stringing/Probe_Cut_Remains.png"><img src="Blobing-and-Stringing/Probe_Filament_Remains.png" alt="Probe Cut Remains" width="30%"></a></p>
 
 <br>
 
@@ -159,7 +178,7 @@ TODO
   | ------ | ----------- |
   | `CLEAN=1` | This will calibrate `toolhead_extruder_to_nozzle`, `toolhead_sensor_to_nozzle`, `toolhead_entry_to_extruder` and MUST be run on clean extruder after cold-pull | 
   | _none_ | This will calibrate `toolhead_ooze_reduction` and should be run with a dirty extruder where tip has been formed for filament retracted from extruder. It must not be run after tip cutting |
-  | `CUT=1` | Calibrate `variable_blade_pos` and suggest `variable_retract_length` for the tip cutting macro. This MUST be run after manually loading and cutting the filament with cold extruder |
+  | `CUT=1` | This will calibrate `variable_blade_pos` and suggest `variable_retract_length` for the tip cutting macro. This MUST be run after loading the extruder and manually cutting the filament and running `MMU_EJECT SKIP_TIP=1` to unload without re-running the tip cutting macro |
 
 <br>
 
