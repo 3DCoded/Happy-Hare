@@ -191,7 +191,7 @@ Cold pull is successful if you can see the shape of the nozzle at the filament e
 
 **How do you know if the cold pull was successful?** The pulled end of the filament should like like one of the pictures below. You need to be able to see the impression of the nozzle to be sure. On regular nozzles it should look similar to the image on the left, while with CHT nozzles similar to the image on the right. Note that the author of that picture should be commended for an excellent result because CHT nozzles require the pull at exactly the right temperature!
 
-<p align="center"><img src="Blobing-and-Stringing/Cold_Pull_Normal_Example.png" alt="Cold Pull Normal" width="30%"></a><img src="Blobing-and-Stringing/Cold_Pull_CHT_Example.png" alt="Cold Pull Normal" width="30%"></a></p>
+<p align="center"><img src="Blobing-and-Stringing/Cold_Pull_Normal_Example.png" alt="Cold Pull Normal" width="40%"></a><img src="Blobing-and-Stringing/Cold_Pull_CHT_Example.png" alt="Cold Pull Normal" width="40%"></a></p>
 
 It may take a few pulls to get suitable results. Remember to extrude 10mm or so of filament between pull attempts.
 
