@@ -194,7 +194,8 @@ New calibrated variables active until restart. Update mmu_macro_vars.cfg to pers
 > MMU\_CALIBRATE\_TOOLHEAD CUT=1
 
 </td>
-<td width=70%>
+<td width=60%>
+
 ```
 ...blah blah blah...
 -----------------------------------
@@ -204,6 +205,7 @@ Calibration Results (cut tip):
 -----------------------------------
 New calibrated variables active until restart. Update mmu_macro_vars.cfg to persist
 ```
+
 </td>
 </tr>
 </table>
