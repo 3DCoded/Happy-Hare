@@ -143,6 +143,24 @@ Again referring back to the earlier ilustrations, although the calibration repor
 > 1. You can run a dirty calibration as often as you like and to see if it differs with different filament types, changes you make to your tip forming macro, etc.
 > 2. If you are curious you can also use it as a trick way to measure the "filament\_remaining" after tip cutting. Just remember to use the `SAVE=0` option because you DON'T want to `toolhead_ooze_reduction` to include the cut piece of filament!
 
+### Step 4: Optional: Calibrate toolhead cutting macro variables
+
+If you have a toolhead cutter, now is a good time to calibrate the blade cutting position `variable_blade_pos` and set the `variable_retract_length` which will control the amount of cut filament left in the extruder
+
+> MMU\_CALIBRATE\_TOOLHEAD CUT=1
+
+TODO
+
+<br>
+
+### Summary of MMU\_CALIBRATE\_TOOLHEAD options
+
+  | Option | Description |
+  | ------ | ----------- |
+  | `CLEAN=1` | This will calibrate `toolhead_extruder_to_nozzle`, `toolhead_sensor_to_nozzle`, `toolhead_entry_to_extruder` and MUST be run on clean extruder after cold-pull | 
+  | _none_ | This will calibrate `toolhead_ooze_reduction` and should be run with a dirty extruder where tip has been formed for filament retracted from extruder. It must not be run after tip cutting |
+  | `CUT=1` | Calibrate `variable_blade_pos` and suggest `variable_retract_length` for the tip cutting macro. This MUST be run after manually loading and cutting the filament with cold extruder |
+
 <br>
 
 With the toolhead now properly configured you should experience better basic loading and uploading with reduction of blobbing and thus stringing. However there is more... 
