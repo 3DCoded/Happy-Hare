@@ -252,32 +252,36 @@ The speed of the z-hop move whether purely vertical or including a ramp is speci
 The cold pull method of cleaning your extruder should be in your bag of printer maintance tricks already. Generally it is a great way to clean carbon deposits that build up over time and can result in under extrusion. We are using it here to clear to prepare for accurate toolhead dimension measurements.
 
 ### General Procedure
-1. Detact bowden from toolhead
-2. Load approximately 25mm of filament into the extruder at normal temperature
-3. Extrude at least 10mm of filament
-4. Turn of extruder heat and wait for extruder to cool to correct temperature
-5. At this point, pull the filament quite firmly out of the extruder
-6. Inspect the tip to see if it has been successful
+1. Move toolhead to a convenient location, often the front middle of your build plate and at least 20mm above
+2. Detatch bowden from toolhead
+3. Open extruder latch, manually load a 250mm fragment of filament and close extruder latch
+4. Extrude at least 20mm-30mm of filament
+5. Turn of extruder heat and wait for extruder to cool to correct temperature
+6. Keep the nozzle completely full by occassionaly extruding 1-2mm more
+6. At this point, pull the filament quite firmly and evenly out of the extruder in a vertical direction
+7. Inspect the tip to see if it has been successful
 
 ### Using MMU\_COLD\_PULL macro
 To help with the process Happy Hare includes a special macro that will guide you through the process. To run:
-1. Detact bowden from toolhead
-2. Load approximately 25mm of filament into the extruder at normal temperature
-3. Run `MMU_COLD_PULL` optionally with the `COLD_TEMP=xxx` argument to better suite your material (default 70°C) and/or `HOT_TEMP=xxx` for extruding temp (default 255°C)
-4. Be ready to pull at the right time .. you will be given a little warning but it is important to pull at the correct temperature when the filament is still slightly pliable
+1. Move toolhead to a convenient location, often the front middle of your build plate and at least 20mm above
+2. Detatch bowden from toolhead
+3. Open extruder latch, manually load a 250mm fragment of filament and close extruder latch
+3. Run `MMU_COLD_PULL MATERIAL=nylon|pla|abs|petg`. Optionally you can add temperature overrides with `COLD_TEMP=xxx`, `HOT_TEMP=xxx` and `MIN_EXTRUDER_TEMP=xxx` to better suite your material (see table of defaults below)
+4. Be ready to pull at the right time .. you will be given a little warning but it is important to pull at the correct temperature when the filament is still slightly pliable. Pull directly upwards with a consistent firm pull.
 
 > MMU\_COLD\_PULL
 ```yml
+Cold Pull with hot_temp=255°C, min_extrude_temp=190°C, cold_temp=100°C
 Heating hotend to 255°C
 Cleaning nozzle tip
-Cooling hotend to 90°C
-Stuffing nozzle at 250°C...
-Stuffing nozzle at 240°C...
-Stuffing nozzle at 230°C...
-Stuffing nozzle at 220°C...
-Stuffing nozzle at 210°C...
-Stuffing nozzle at 200°C...
-Stuffing nozzle at 190°C...
+Cooling hotend to 100°C...
+Stuffing nozzle at 250°C
+Stuffing nozzle at 240°C
+Stuffing nozzle at 230°C
+Stuffing nozzle at 220°C
+Stuffing nozzle at 210°C
+Stuffing nozzle at 200°C
+Stuffing nozzle at 190°C
 Get ready to pull...
 >>>>> PULL NOW <<<<<
 Cold pull is successful if you can see the shape of the nozzle at the filament end
@@ -287,8 +291,17 @@ Cold pull is successful if you can see the shape of the nozzle at the filament e
 
 <p align="center"><img src="Blobing-and-Stringing/Cold_Pull_Normal_Example.png" alt="Cold Pull Normal" width="40%"> <img src="Blobing-and-Stringing/Cold_Pull_CHT_Example.png" alt="Cold Pull Normal" width="40%"></p>
 
-It may take a few pulls to get suitable results. Remember to extrude 10mm or so of filament between pull attempts.
+It may take a few pulls to get suitable results...
 
 > [!TIP]  
 > - Some materials are better than others for cleaning with nylon often being found to be the best. PLA is also quite good. PTEG and ABS can be used but often stretch and snap rather than pulling with sufficient force. The cold pulling temperature will be different with each material type so you may need to experiment.
 > - You may need to repeat the process if the purpose is to completely clean your nozzle of carbon rather than just prepare for calibration
+> - Feedback is that clear filament may be the strongest. Avoid strong pigmentation.
+
+ | Material | Hot Temp | Cold Temp | Min Extrude Temp
+ | -------- | -------- | --------- | ---------------- |
+ | NYLON    | 260      | 105       | 190              |
+ | ABS      | 255      | 100       | 190              |
+ | PLA      | 220      | 95        | 150              |
+ | PETG     | 240      | 95        | 180              |
+
