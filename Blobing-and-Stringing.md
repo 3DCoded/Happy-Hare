@@ -268,11 +268,18 @@ To help with the process Happy Hare includes a special macro that will guide you
 
 > MMU\_COLD\_PULL
 ```yml
-Heating hotend
+Heating hotend to 255°C
 Cleaning nozzle tip
-Cooling hotend
+Cooling hotend to 90°C
+Stuffing nozzle at 250°C...
+Stuffing nozzle at 240°C...
+Stuffing nozzle at 230°C...
+Stuffing nozzle at 220°C...
+Stuffing nozzle at 210°C...
+Stuffing nozzle at 200°C...
+Stuffing nozzle at 190°C...
 Get ready to pull...
-Pull now!!!
+>>>>> PULL NOW <<<<<
 Cold pull is successful if you can see the shape of the nozzle at the filament end
 ```
 
@@ -283,4 +290,5 @@ Cold pull is successful if you can see the shape of the nozzle at the filament e
 It may take a few pulls to get suitable results. Remember to extrude 10mm or so of filament between pull attempts.
 
 > [!TIP]  
-> Some materials are better than others for cleaning with nylon often being found to be the best. PLA is also quite good. PTEG and ABS can be used but often stretch rather than pulling with sufficient force. The cold pulling temperature will be different with each material type so you may need to experiment.
+> - Some materials are better than others for cleaning with nylon often being found to be the best. PLA is also quite good. PTEG and ABS can be used but often stretch and snap rather than pulling with sufficient force. The cold pulling temperature will be different with each material type so you may need to experiment.
+> - You may need to repeat the process if the purpose is to completely clean your nozzle of carbon rather than just prepare for calibration
