@@ -300,10 +300,13 @@ It may take a few pulls to get suitable results...
 
 ### Default Cold Pull Temps for different materials
 
- | Material | Hot Temp | Cold Temp | Min Extrude Temp
- | -------- | -------- | --------- | ---------------- |
- | NYLON    | 260      | 105       | 190              |
- | ABS      | 255      | 100       | 190              |
- | PLA      | 220      | 95        | 150              |
- | PETG     | 240      | 95        | 180              |
+ | Material | hot_temp | cold_temp | min_extruder_temp | 
+ | -------- | -------- | --------- | ----------------- |
+ | NYLON    | 260      | 105       | 190               |
+ | ABS      | 255      | 100       | 190               |
+ | PLA      | 220      | 95        | 150               |
+ | PETG     | 240      | 95        | 180               |
 
+The `min_extrude_temp` is the temperature above which `MMU_COLD_PULL` will keep the nozzle pressurised with filament to ensure it is completely full.
+
+Good luck!
