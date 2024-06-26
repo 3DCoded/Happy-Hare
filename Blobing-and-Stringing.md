@@ -266,7 +266,7 @@ To help with the process Happy Hare includes a special macro that will guide you
 1. Move toolhead to a convenient location, often the front middle of your build plate and at least 20mm above
 2. Detatch bowden from toolhead
 3. Open extruder latch, manually load a 250mm fragment of filament and close extruder latch
-3. Run `MMU_COLD_PULL MATERIAL=nylon|pla|abs|petg`. Optionally you can add temperature overrides with `COLD_TEMP=xxx`, `HOT_TEMP=xxx` and `MIN_EXTRUDER_TEMP=xxx` to better suite your material (see [table of defaults](#default-cold-pull-temps-for-different-materials) below)
+3. Run `MMU_COLD_PULL MATERIAL=nylon|pla|abs|petg`. Optionally you can add temperature overrides with `COLD_TEMP=xxx`, `HOT_TEMP=xxx` and `MIN_EXTRUDER_TEMP=xxx` to better suite your material (see [table of defaults](#default-mmu_cold_pull-temperatures-for-different-materials) below)
 4. Be ready to pull at the right time .. you will be given a little warning but it is important to pull at the correct temperature when the filament is still slightly pliable. Pull directly upwards with a consistent firm pull.
 
 > MMU\_COLD\_PULL MATERIAL=abs
