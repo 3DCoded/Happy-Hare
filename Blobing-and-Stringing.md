@@ -269,7 +269,7 @@ To help with the process Happy Hare includes a special macro that will guide you
 3. Run `MMU_COLD_PULL MATERIAL=nylon|pla|abs|petg`. Optionally you can add temperature overrides with `COLD_TEMP=xxx`, `HOT_TEMP=xxx` and `MIN_EXTRUDER_TEMP=xxx` to better suite your material (see [table of defaults](#default-cold-pull-temps-for-different-materials) below)
 4. Be ready to pull at the right time .. you will be given a little warning but it is important to pull at the correct temperature when the filament is still slightly pliable. Pull directly upwards with a consistent firm pull.
 
-> MMU\_COLD\_PULL
+> MMU\_COLD\_PULL MATERIAL=abs
 ```yml
 Cold Pull with hot_temp=255°C, min_extrude_temp=190°C, cold_temp=100°C
 Heating hotend to 255°C
