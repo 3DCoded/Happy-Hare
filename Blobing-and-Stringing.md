@@ -298,7 +298,7 @@ It may take a few pulls to get suitable results...
 > - You may need to repeat the process if the purpose is to completely clean your nozzle of carbon rather than just prepare for calibration
 > - Feedback is that clear filament may be the strongest. Avoid strong pigmentation.
 
-### Default Cold Pull Temps for different materials
+### Default `MMU_COLD_PULL` temperatures for different materials
 
  | Material | hot_temp | cold_temp | min_extruder_temp | 
  | -------- | -------- | --------- | ----------------- |
