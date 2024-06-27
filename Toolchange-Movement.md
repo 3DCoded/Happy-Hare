@@ -84,7 +84,7 @@ To set this up you need to edit three modular configuraton files: `mmu_parameter
 - Neutral: Possibility of oozing (blobs) on the wipertower. Not really a big problem unless they are large and this is where the slicer designers assume the toolhead will be positioned
 <img src="Toolchange-Movement/cutter_wipe_tower.png" width="900" alt="Cutting and Parking on Wipetower">
 
-#### Option 4: Cutting tip and, custom purge with no wipe tower <img src="resources/cool.png" width="40">
+#### Option 4: Cutting tip and custom purge with no wipe tower <img src="resources/cool.png" width="40">
 - Pro: You get your full buildplate to work with because wipe tower is disabled
 - Con: You will need to implement your own purging routine.  This could just be a purge into a large bin followed by nozzle cleaning or, more likely, some form of pellet forming and cleaning.
 - Neutral: This is perhaps the coolest option!
