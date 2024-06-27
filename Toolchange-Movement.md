@@ -87,7 +87,8 @@ To set this up you need to edit three modular configuraton files: `mmu_parameter
 #### Option 4: Cutting tip and custom purge with no wipe tower <img src="resources/cool.png" width="40">
 - Pro: You get your full buildplate to work with because wipe tower is disabled
 - Con: You will need to implement your own purging routine.  This could just be a purge into a large bin followed by nozzle cleaning or, more likely, some form of pellet forming and cleaning.
-- Neutral: This is perhaps the coolest option!&nbsp;
+- Neutral: This is perhaps the coolest option!
+
 <img src="Toolchange-Movement/cutter_custom_purge_hh.png" width="900" alt="Cutting and No Wipetower"><br>
 
 <br>
@@ -114,7 +115,8 @@ To set this up you need to edit three modular configuraton files: `mmu_parameter
 #### Option 8: Forming tip by Happy Hare, custom purge with no wipe tower <img src="resources/cool.png" width="40">
 - Pro: You get your full buildplate to work with because wipe tower is disabled
 - Con: You will need to implement your own purging routine.  This could just be a purge into a large bin followed by nozzle cleaning or, more likely, some form of pellet forming and cleaning.
-- Neutral: This is perhaps the coolest option!&nbsp;
+- Neutral: This is perhaps the coolest option!
+
 <img src="Toolchange-Movement/forming_custom_purge_hh.png" width="900" alt="Tip Forming by HH No Wipetower"><br>
 
 <br>
