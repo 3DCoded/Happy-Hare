@@ -162,9 +162,11 @@ It's worth noting and to aid debugging that there are three possible origins for
 - Finally, the movement macro defined in `mmu_sequence.cfg` can optionally define a Z-hop move. This lifting move, if configured (`variable_enable_park` and `variable_park_z_hop`) will always happen both in and out of a print. Out of a print and for convenience it will be automatically skipped if the z-axis has not been homed.
 
 This illustrations visualize and explain the toolhead movements in the vertical plane:
+
 <img src="Toolchange-Movement/toolchange_z_hop.png" width="100%" alt="Toolchange Z-hop">
 
 The primary configuration options that effect z-height are described here:
+
 <img src="Toolchange-Movement/toolchange_z_hop_config.png" width="100%" alt="Toolchange Z-hop Config">
 
 Personally I find it useful to set z-hop to 1.0mm in Happy Hare, disable in the slicer and 0mm in the parking (`mmu_macro_vars.cfg`) macro since out of a print I'm not worried about hitting objects or possible blobs.
