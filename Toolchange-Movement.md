@@ -165,6 +165,7 @@ This illustrations visualize and explain the toolhead movements in the vertical 
 
 <img src="Toolchange-Movement/toolchange_z_hop.png" width="100%" alt="Toolchange Z-hop">
 
+<p>
 The primary configuration options that effect z-height are described here:
 
 <img src="Toolchange-Movement/toolchange_z_hop_config.png" width="100%" alt="Toolchange Z-hop Config">
