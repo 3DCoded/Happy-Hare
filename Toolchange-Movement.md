@@ -163,7 +163,7 @@ It's worth noting and to aid debugging that there are three possible origins for
 
 This illustrations visualize and explain the toolhead movements in the vertical plane:
 
-<img src="Toolchange-Movement/toolchange_z_hop.png" width="100%" alt="Toolchange Z-hop">
+<img src="Toolchange-Movement/toolchange_z_hop.png" width="100%" alt="Toolchange Z-hop"><br>
 
 <br>
 
