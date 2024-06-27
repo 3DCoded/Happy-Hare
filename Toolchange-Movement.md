@@ -169,7 +169,7 @@ This illustrations visualize and explain the toolhead movements in the vertical 
 
 The primary configuration options that effect z-height are described here:
 
-<img src="Toolchange-Movement/toolchange_z_hop_config.png" width="100%" alt="Toolchange Z-hop Config">
+<img src="Toolchange-Movement/toolchange_z_hop_config.png" width="100%" alt="Toolchange Z-hop Config"><br>
 
 Personally I find it useful to set z-hop to 1.0mm in Happy Hare, disable in the slicer and 0mm in the parking (`mmu_macro_vars.cfg`) macro since out of a print I'm not worried about hitting objects or possible blobs.
 
