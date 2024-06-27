@@ -4,7 +4,8 @@ Happy Hare exposed 'printer' variables that can be used in your own macros.
 
 ```yml
     printer.mmu.enabled : {bool} True if MMU is enabled
-    printer.mmu.is_locked : {bool} True if MMU is paused after an error DEPRECATED: use print_job_state
+    printer.mmu.is_paused : {bool} True if MMU is paused after an error (can also use print_job_state)
+    printer.mmu.is_locked : {bool} historical alias for printer.mmu.is_paused
     printer.mmu.is_homed : {bool} True if MMU has been homed
     printer.mmu.tool : {int} 0..n | -1 for unknown | -2 for bypass
     printer.mmu.gate : {int} 0..n | -1 for unknown
@@ -14,6 +15,7 @@ Happy Hare exposed 'printer' variables that can be used in your own macros.
     printer.mmu.last_toolchange : {string} description of last change similar to M117 display
     printer.mmu.runout : {bool} True while MMU is handling a runout
     printer.mmu.filament : {string} filament state in extruder (Loaded | Unloaded | Unknown)
+    printer.mmu.filament_position : {float} location in mm of filament
     printer.mmu.filament_pos : {int} state machine - exact location of filament
     printer.mmu.filament_direction : {int} 1 (load) | -1 (unload)
     printer.mmu.servo : {string} Up | Down | Move | Unknown
@@ -36,6 +38,10 @@ Happy Hare exposed 'printer' variables that can be used in your own macros.
     printer.mmu.clog_detection : {int} 0 (off) | 1 (manual) | 2 (auto)
     printer.mmu.endless_spool : {int} 0 (disabled) | 1 (enabled) | 2 (additionally enabled for pre-gate sensor)
     printer.mmu.print_start_detection : {int} 0 (disabled) | 1 (enabled)
+    printer.mmu.reason_for_pause : {string} 
+    printer.mmu.extruder_filament_remaining : {float} amount of cut filament left in the extruder (for toolchange macros)
+    printer.mmu.extruder_residual_filament : {float} amount of residual filament always left in extruder (for toolchange macros)
+    printer.mmu.toolchange_retract : {float} amount of extruder retraction (useful in toolchange macros)
 ```
 
 Optionally exposed for mmu_encoder (if fitted):
