@@ -191,16 +191,16 @@ The release provides more flexibilty in tool change movement, introduces consump
 - Updates and to bloblifier macro (needs latest klipper)
 - Allow specifying spool_id in advance for supporting RFID readers. You can read more about it [here](Spoolman-Support#auto-setting-with-rfid-reader)
 
-#### v2.5.1 (patches)
+### v2.5.1 (patches)
 - Fixed incorrect doc in `mmu_macro_vars`
 - Bug: Fixed user defined load/unload_sequence macro names (previously would always look for default names)
 - Add all slicer tools to the "slicer_tool_map" (unused tools only visible with DETAIL=1 flag).
 - Set color on Tx macros so color can be seen in Mainsail / Fluidd UI's. Requires refresh of Mainsail screen because it doesn't update dynamically :-(
 
-#### v2.5.2
+### v2.5.2
 - Doc converted to Wiki and removed from distribution. Old doc links will be invalid
 
-#### v2.5.3 (CURRENTLY BETA ONLY on "253" branch)
+### v2.5.3 (CURRENTLY BETA ONLY on "253" branch)
 Main focus on this release is the reduction of blobing, stringing and tuning for beautiful prints (see https://github.com/moggieuk/Happy-Hare/wiki/Blobbing-and-Stringing). Most issues are because of incorrect toolhead parameters and the former lack of a retract setting when the toolhead is moving.  Both of those are now solved with automated toolhead calibration (including tip cutting variables) and an new z-hop ramp setting:
   - Added new `MMU_CALIBRATE_TOOLHEAD` command for automated measurement of `toolhead_extruder_to_nozzle`, `toolhead_sensor_to_nozzle`, `toolhead_entry_to_extruder` and `toolhead_ooze_reduction`. Read the doc but this will eliminate incorrect "trial and error" values for these key dimensions.
   - Added new `toolchange_retract` and `toolchange_retract_speed` parameters to allow for retraction at the time of "z\_hop" and un-retract as print resumes.
