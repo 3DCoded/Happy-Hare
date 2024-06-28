@@ -206,7 +206,8 @@ Main focus on this release is the reduction of blobing, stringing and tuning for
   - Added new `toolchange_retract` and `toolchange_retract_speed` parameters to allow for retraction at the time of "z\_hop" and un-retract as print resumes.
   - Added new `z_hop_ramp` parameter to control how the toolhead move off the print to help break stringing. It allow the definition of a horizonal move on top of the "z\_hop". The direction will be towards the center of the print area. The toolhead will ramp up and away from the print and then move back to original position above starting point. `z_hop_speed` should be increased closer to your x,y travel speed.
   - Updated `form_tip` and `cut_tip` macros (and Blobifer) to correctly compensate for `toolhead_ooze_reduction` and `toolchange_retract`
-  - Pass a calculated "additional purge" volume to Blobifer macro to allow for filament left in the hotend based on configuration rather than having to compensate by altering slicer purge map
+  - Blobifier automatically calculates "additional purge" volume basaed on filament left in the hotend based on calibration rather than having to compensate by altering slicer purge map
+  - New printer.mmu variables.. 'extruder_filament_remaining', 'extruder_residual_filament', 'toolchange_retract'
   - Removed some minor pauses when resuming print
 - New `MMU_COLD_PULL` helper command. Useful in its own right but essential for the new toolhead calibration. Check it out (https://github.com/moggieuk/Happy-Hare/wiki/Blobbing-and-Stringing#---cleaning-extruder-with-a-cold-pull)
 
