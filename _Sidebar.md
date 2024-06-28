@@ -73,10 +73,7 @@
 
 <details open><summary><b>&nbsp;7. Tuning</b></summary>
 
-- Comming Soon
-<!--
-- [Blobbing and Stringing](Blobbing-and-Stringing)
--->
+- [Blobbing and Stringing (v253 beta)](Blobbing-and-Stringing)
 
 </details>
 
