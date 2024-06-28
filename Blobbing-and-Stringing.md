@@ -34,8 +34,8 @@ Let's run through the important steps in a toolchange (for both tip forming and 
 
 Transitioning from an orange filament to a blue _(Click on images to see the detail)_:
 
-<p align="center"><a href="https://github.com/moggieuk/Happy-Hare/wiki/Blobing-and-Stringing/Unloading_Tip_Forming.png"><img src="Blobing-and-Stringing/Unloading_Tip_Forming.png" alt="Unloading Tip Forming"></a></p>
-<p align="center"><a href="https://github.com/moggieuk/Happy-Hare/wiki/Blobing-and-Stringing/Loading_Tip_Forming.png"><img src="Blobing-and-Stringing/Loading_Tip_Forming.png" alt="Loading Tip Forming" width="70%"></a></p>
+<p align="center"><a href="https://github.com/moggieuk/Happy-Hare/wiki/Blobbing-and-Stringing/Unloading_Tip_Forming.png"><img src="Blobbing-and-Stringing/Unloading_Tip_Forming.png" alt="Unloading Tip Forming"></a></p>
+<p align="center"><a href="https://github.com/moggieuk/Happy-Hare/wiki/Blobbing-and-Stringing/Loading_Tip_Forming.png"><img src="Blobbing-and-Stringing/Loading_Tip_Forming.png" alt="Loading Tip Forming" width="70%"></a></p>
 
 <br>
 
@@ -43,8 +43,8 @@ Transitioning from an orange filament to a blue _(Click on images to see the det
 
 With toolhead tip cutting the procedure is a little more complex and introduces two additional macro variables (defined in `mmu_macro_vars.cfg` that configure the tip cutting logic):
 
-<p align="center"><a href="https://github.com/moggieuk/Happy-Hare/wiki/Blobing-and-Stringing/Unloading_Tip_Cutting.png"><img src="Blobing-and-Stringing/Unloading_Tip_Cutting.png" alt="Unloading Tip Cutting"></a></p>
-<p align="center"><a href="https://github.com/moggieuk/Happy-Hare/wiki/Blobing-and-Stringing/Loading_Tip_Cutting.png"><img src="Blobing-and-Stringing/Loading_Tip_Cutting.png" alt="Loading Tip Cutting" width="70%"></a></p>
+<p align="center"><a href="https://github.com/moggieuk/Happy-Hare/wiki/Blobbing-and-Stringing/Unloading_Tip_Cutting.png"><img src="Blobbing-and-Stringing/Unloading_Tip_Cutting.png" alt="Unloading Tip Cutting"></a></p>
+<p align="center"><a href="https://github.com/moggieuk/Happy-Hare/wiki/Blobbing-and-Stringing/Loading_Tip_Cutting.png"><img src="Blobbing-and-Stringing/Loading_Tip_Cutting.png" alt="Loading Tip Cutting" width="70%"></a></p>
 
 Note that the cut piece of filament remaining and the residual filament are automatically accounted for by Happy Hare so long as you have configured the parameters exactly as defined in this illustration.
 
@@ -113,7 +113,7 @@ Referring back to the earlier ilustrations, because the extruder was empty we we
 
 </td>
 <td width=30%>
-<a href="https://github.com/moggieuk/Happy-Hare/wiki/Blobing-and-Stringing/Probe_Nozzle_Shoulder.png"><img src="Blobing-and-Stringing/Probe_Nozzle_Shoulder.png" alt="Probe Nozzle Shoulder"></a>
+<a href="https://github.com/moggieuk/Happy-Hare/wiki/Blobbing-and-Stringing/Probe_Nozzle_Shoulder.png"><img src="Blobbing-and-Stringing/Probe_Nozzle_Shoulder.png" alt="Probe Nozzle Shoulder"></a>
 </td>
 </tr>
 </table>
@@ -160,7 +160,7 @@ Again referring back to the earlier ilustrations, although the calibration repor
 
 </td>
 <td width=30%>
-<a href="https://github.com/moggieuk/Happy-Hare/wiki/Blobing-and-Stringing/Probe_Filament_Remains.png"><img src="Blobing-and-Stringing/Probe_Filament_Remains.png" alt="Probe Filament Remains"></a>
+<a href="https://github.com/moggieuk/Happy-Hare/wiki/Blobbing-and-Stringing/Probe_Filament_Remains.png"><img src="Blobbing-and-Stringing/Probe_Filament_Remains.png" alt="Probe Filament Remains"></a>
 </td>
 </tr>
 </table>
@@ -201,7 +201,7 @@ Referencing earlier ilustrations, although the calibration reports measurements,
 
 </td>
 <td width=30%>
-<a href="https://github.com/moggieuk/Happy-Hare/wiki/Blobing-and-Stringing/Probe_Cut_Remains.png"><img src="Blobing-and-Stringing/Probe_Cut_Remains.png" alt="Probe Cut Remains"></a>
+<a href="https://github.com/moggieuk/Happy-Hare/wiki/Blobbing-and-Stringing/Probe_Cut_Remains.png"><img src="Blobbing-and-Stringing/Probe_Cut_Remains.png" alt="Probe Cut Remains"></a>
 </td>
 </tr>
 </table>
@@ -225,7 +225,7 @@ With the toolhead now properly configured you should experience better basic loa
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Toolhead Retraction
 
-Incorrect toolhead dimensions contribute most to blobbing problems but even when perfect blobing can still occur when the toolhead is moved fully loaded. Just like when printing it is often necessary to relax the pressure in the extruder prior to a travel move to prevent the slow oozing that would otherwise occur. The `toolchange_retraction` setting is set to the retraction distance and will be applied immediately prior to z_hop move and any travel movements during the toolchange. All the supplied macros will understand this setting and either compensate for this extruder pre movement. At the end of the toolchange process immediately following the reversal of the z_hop move, the un-retract will occur to correctly pressurise the extruder again. In this manner the extruder is never fully loaded during travel moves and thus oozing is minimized.
+Incorrect toolhead dimensions contribute most to blobbing problems but even when perfect, blobbing can still occur when the toolhead is moved fully loaded. Just like when printing it is often necessary to relax the pressure in the extruder prior to a travel move to prevent the slow oozing that would otherwise occur. The `toolchange_retraction` setting is set to the retraction distance and will be applied immediately prior to z-hop move and any travel movements during the toolchange. All the supplied macros will understand this setting and either compensate for this extruder pre movement. At the end of the toolchange process immediately following the reversal of the z-hop move, the un-retract will occur to correctly pressurise the extruder again. In this manner the extruder is never fully loaded during travel moves and thus oozing is minimized.
 
 Note that the retraction and un-retraction speed is set with the related `toolchange_retraction_speed` parameter and can thus be set independently (often faster) than your general extruder load/unload speeds.
 
@@ -289,7 +289,7 @@ Cold pull is successful if you can see the shape of the nozzle at the filament e
 
 **How do you know if the cold pull was successful?** The pulled end of the filament should like like one of the pictures below. You need to be able to see the impression of the nozzle to be sure. On regular nozzles it should look similar to the image on the left, while with CHT nozzles similar to the image on the right. Note that the author of that picture (@igiannakas) should be commended for an excellent result because CHT nozzles require the pull at exactly the right temperature and a bit of luck!
 
-<p align="center"><img src="Blobing-and-Stringing/Cold_Pull_Normal_Example.png" alt="Cold Pull Normal" width="40%"> <img src="Blobing-and-Stringing/Cold_Pull_CHT_Example.png" alt="Cold Pull Normal" width="40%"></p>
+<p align="center"><img src="Blobbing-and-Stringing/Cold_Pull_Normal_Example.png" alt="Cold Pull Normal" width="40%"> <img src="Blobbing-and-Stringing/Cold_Pull_CHT_Example.png" alt="Cold Pull Normal" width="40%"></p>
 
 It may take a few pulls to get suitable results...
 
