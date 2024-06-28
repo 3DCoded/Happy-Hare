@@ -552,13 +552,15 @@ This section contains the parameters that, once toolhead and other dimensions ar
 #   2. Tweak 'toolhead_ooze_reduction' only if necessary so that filament _just_ appears at the nozzle on load
 #   3. Only then, adjust these settings to control stringing and blobs when tool changing in print
 #
+# NOTE: Read about the `MMU_CALIBRATE_TOOLHEAD` command to automate setting these!
 # NOTE: All of these settings operate IN PRINT ONLY
 #
 z_hop_height_toolchange: 1.0    # Height in mm of z_hop move on toolchange
 z_hop_height_error: 2.0         # Height in mm of z_hop move on pause or error to avoid blob on print
-z_hop_speed: 15                 # Speed of z_hop move (mm/s)
+z_hop_speed: 150                # Limit the speed of z_hop move (mm/s). Should be fast (x,y travel speed) if 'z_hop_ramp' is set
 z_hop_ramp: 0                   # Horizontal distance in mm to travel during the lift. Can help break string. Direction is automatic
 toolchange_retract: 2           # Retract / un-retract distance to prevent blobs when toolchanging
+toolchange_retract_speed: 20    # Speed of the retract move in mm/s
 ```
 
 <br>

@@ -3,6 +3,7 @@
 - [Optional Encoder](#---Optional-Encoder)
 - [Clog Detection](#---Clog-Detection)
 - [EndlessSpool](#---EndlessSpool)
+  - [Designated Waste Gate](#EndlessSpool-Designated-Waste-Gate-Option)
 - [Flowrate Monitoring](#---Flowrate-Monitoring)
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Runout Detection
@@ -123,7 +124,7 @@ This will emulate a filament runout and force the MMU to interpret it as a true 
   <li>Move the toolhead up a little (defined by `z_hop_height_toolchange` & `z_hop_speed`) to avoid blobs
   <li>Call the unloading sequence macros (defined in `mmu_sequence.cfg`). By default this will quickly move the toolhead to your defined parking area
   <li>Perform the toolchange and map the new gate in the sequence
-  <li>Call the loading sequence macros (defined in `mmu_sequence.cfg`). Typically this is where you would add logic to clean the nozzle and then quickly move the toolhead back to the position where it was before the toolchange
+  <li>Call the loading sequence macros (defined in `mmu_sequence.cfg`)
   <li>Move the toolhead back down the final amount and resume the print
 </ul>
 
@@ -133,8 +134,16 @@ If you ever get confused you can reset the EndlessSpool groups to the default "o
 
 > MMU\_ENDLESS\_SPOOL RESET=1
 
-> [!NOTE]  
+> [!TIP]  
 > Similar to Tool-to-Gate mapping, EndlessSpool is best visualized and modified using KlipperScreen Happy Hare edition.
+
+### EndlessSpool Designated Waste Gate Option
+
+When EndlessSpool activates, the remains of the filament is feed back into the respective buffer. In certain compact buffer designs this can lead to the end of the filament escaping into neighboring buffers and causes those to get tangled. While this is best solved with clear separation between buffers, this is an option to designate one gate as the "waste gate".  Then when unloading the fragment is sent to this designated gate where special measures can be taken to contain the retracted filament. This option is enabled by the `endless_spool_eject_gate` parameter in `mmu_parameters.cfg`.
+
+> [!NOTE]  
+> - It is only recommended to use this if you have a problem because one implication is that all "pre-gate" runout sensors are disabled - the end of the filament has to pass completely through the gate before runout is detected because the selector will need to be able to move to another gate.
+> - This option may be incompatible with type-B or C MMU designs
 
 <br>
 

@@ -200,20 +200,24 @@ The release provides more flexibilty in tool change movement, introduces consump
 #### v2.5.2
 - Doc converted to Wiki and removed from distribution. Old doc links will be invalid
 
-#### v2.5.3
-- Focus on blobbing, stringing and beautiful prints:
+#### v2.5.3 (CURRENTLY BETA ONLY on "253" branch)
+Main focus on this release is the reduction of blobing, stringing and tuning for beautiful prints (see https://github.com/moggieuk/Happy-Hare/wiki/Blobbing-and-Stringing). Most issues are because of incorrect toolhead parameters and the former lack of a retract setting when the toolhead is moving.  Both of those are now solved with automated toolhead calibration (including tip cutting variables) and an new z-hop ramp setting:
   - Added new `MMU_CALIBRATE_TOOLHEAD` command for automated measurement of `toolhead_extruder_to_nozzle`, `toolhead_sensor_to_nozzle`, `toolhead_entry_to_extruder` and `toolhead_ooze_reduction`. Read the doc but this will eliminate incorrect "trial and error" values for these key dimensions.
-  - Added new `toolchange_retract` parameter to allow for retraction at the time of "z\_hop" and un-retract as print resumes.
+  - Added new `toolchange_retract` and `toolchange_retract_speed` parameters to allow for retraction at the time of "z\_hop" and un-retract as print resumes.
   - Added new `z_hop_ramp` parameter to control how the toolhead move off the print to help break stringing. It allow the definition of a horizonal move on top of the "z\_hop". The direction will be towards the center of the print area. The toolhead will ramp up and away from the print and then move back to original position above starting point. `z_hop_speed` should be increased closer to your x,y travel speed.
   - Updated `form_tip` and `cut_tip` macros (and Blobifer) to correctly compensate for `toolhead_ooze_reduction` and `toolchange_retract`
   - Pass a calculated "additional purge" volume to Blobifer macro to allow for filament left in the hotend based on configuration rather than having to compensate by altering slicer purge map
+- New `MMU_COLD_PULL` helper command. Useful in its own right but essential for the new toolhead calibration. Check it out (https://github.com/moggieuk/Happy-Hare/wiki/Blobbing-and-Stringing#---cleaning-extruder-with-a-cold-pull)
+
+Other new features include:
 - Added `gate_autoload` parameter to allow the pre-gate sensor autoload feature to be disabled
+- Enhanced EndlessSpool functionality with `endless_spool_eject_gate` option allow for one gate to marked the waste gate ('W' in status) so that filament fragments will be sent to this gate rather than current gate. Allows for a "dump shoot" and prevents possible tangling when buffering on certain buffer designs where retracted filament end can escape into neighboring buffers. The default value of `-1` will use the current gate.
 - Change parameter name `extruder_homing_current` to `extruder_collision_homing_current` to be more precise on meaning (upgrade will have made this change for you)
-- Added `endless_spool_eject_gate` parameter to allow for one gate to marked the waste gate ('W' in status) so that filament fragments will be sent to this gate rather than current gate. Allows for a dump shoot and prevents possible tangling when buffering on certain buffer designs
-- Imporved `MMU_STATUS SHOWCONFIG=1` functionality
+- Improved `MMU_STATUS SHOWCONFIG=1` functionality
 - New installer support:
   - For new MMU's boards
   - For GDW DS041MG servo option with Siboor ERCFv2 kits
-- New `servo_always_active` parameter for servos that require continuous PWM signal (like GDW DS041MG). Use with caution.
+- New `servo_always_active` parameter for servos that require continuous PWM signal (like GDW DS041MG). Use with caution!
 - `MMU_CHECK_GATE` now defaults to current gate when invoked with no arguments. `ALL=1` flag to force checking all gates.
-
+- Updated Wiki with new pages, and enhancements to existing pages
+- Bug fixes
