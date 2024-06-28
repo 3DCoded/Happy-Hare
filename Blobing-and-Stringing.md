@@ -156,7 +156,7 @@ New calibrated ooze reduction active until restart. Update mmu_parameters.cfg to
 <tr>
 <td>
 
-Again referring back to the earlier ilustrations, although the calibration reports measurements, these would likely be shorter because of the filament residue that is always left behind in the extruder. The difference between the clean reading and the dirty one is what `toolhead_ooze_reduction` compensates for:
+Again referring back to the earlier ilustrations, although the calibration reports measurements, these would likely be shorter because of the filament residue that is always left behind in the extruder. The difference between the clean reading and the dirty one is what `toolhead_ooze_reduction` compensates for and represents the residual filament that is always left behind in the extruder:
 
 </td>
 <td width=30%>
