@@ -321,7 +321,7 @@ It may take a few pulls to get suitable results...
  | NYLON    | 260      | 50        | 120       | 190              | Best        |
  | PLA      | 250      | 42        | 100       | 160              | Good        |
  | ABS      | 255      | 50        | 120       | 190              | Ok          |
- | PETG     | 250      | 42        | 100       | 180              | Tricky?     |
+ | PETG     | 250      | 42        | 100       | 180              | Ok          |
 
 The `min_extrude_temp` is the temperature above which `MMU_COLD_PULL` will keep the nozzle pressurized with filament to ensure it is completely full.
 
