@@ -76,10 +76,10 @@ Reattach bowden to toolhead, and prepare the MMU: select the gate you wish to us
 This will perform some probing with a cold extruder and report back on the critical toolhead parameters. For example:
 
 ```
-Notes:
-1) toolhead_extruder_to_nozzle, toolhead_sensor_to_nozzle (and toolhead_entry_to_extruder) are calibrated with a CLEAN extruder and the 'CLEAN=1' flag
-2) toolhead_ooze_reduction (and toolhead_entry_to_extruder) are calibrated with a normal dirty extruder but without a cut filament tip
-3) Optional variable_blade_pos is calibrated with manuall cut tip and the 'CUT=1' flag
+Reminder:
+1) 'CLEAN=1' with clean extruder for: toolhead_extruder_to_nozzle, toolhead_sensor_to_nozzle (and toolhead_entry_to_extruder)
+2) No flags with dirty extruder (no cut tip) for: toolhead_ooze_reduction (and toolhead_entry_to_extruder)
+3) 'CUT=1' holding blade in for: variable_blade_pos
 Desired gate should be selected but the filament unloaded
 
 Modifying MMU gear stepper run current to 40% for collision detection
@@ -268,25 +268,36 @@ To help with the process Happy Hare includes a special macro that will guide you
 2. Detatch bowden from toolhead
 3. Open extruder latch, manually load a 250mm - 300mm fragment of filament and close extruder latch
 3. Run `MMU_COLD_PULL MATERIAL=nylon|pla|abs|petg`. Optionally you can add temperature overrides e.g. `PULL_TEMP=xxx` (see [Command Reference](Command-Reference#---calibration) for details) to better suite your material (see [table of defaults](#default-mmu_cold_pull-temperatures-for-different-materials) below)
-4. Be ready to pull at the right time .. you will be given a little warning but it is important to pull at the correct temperature when the filament is still slightly pliable. Pull directly upwards with a consistent firm pull, the extruder stepper will aid the pull (unlatch if you want to be 100% manual)
+4. Be ready to pull at the right time .. you will be given a little warning but it is important to pull at the correct temperature when the filament is still slightly pliable. Pull directly upwards with a consistent firm pull, the extruder stepper will aid the pull (unlatch if you want to be 100% manual). Note some extruders have enough grip/torque to do this without assistance although the manual approach allows you to "feel" the correct pull speed.
 
-> MMU\_COLD\_PULL MATERIAL=pla
+> MMU\_COLD\_PULL MATERIAL=abs
 ```yml
-Cold Pull with pull_temp=100°C, hot_temp=250°C, min_extrude_temp=160°C, cold_temp=40°C
-Heating hotend to 250°C
+Cold Pull with pull_temp=120°C, hot_temp=255°C, min_extrude_temp=190°C, cold_temp=50°C
+Heating extruder to 255°C
 Cleaning nozzle tip
-Cooling hotend to 40°C...
+Allowing extruder to cool...
+Stuffing nozzle at 250°C
 Stuffing nozzle at 240°C
 Stuffing nozzle at 230°C
 Stuffing nozzle at 220°C
 Stuffing nozzle at 210°C
 Stuffing nozzle at 200°C
-Stuffing nozzle at 190°C
-Stuffing nozzle at 180°C
-Stuffing nozzle at 170°C
-Stuffing nozzle at 160°C
-Waiting for extruder to completely cool. May take some time
-Re-warming hotend to 100°C...
+Waiting for extruder to completely cool to 50°C...
+Nozzle at 180°C
+Nozzle at 170°C
+Nozzle at 160°C
+Nozzle at 150°C
+Nozzle at 140°C
+Nozzle at 130°C
+Nozzle at 120°C
+Nozzle at 110°C
+Nozzle at 100°C
+Nozzle at 90°C
+Nozzle at 80°C
+Nozzle at 70°C
+Nozzle at 60°C
+Nozzle at 50°C
+Re-warming extruder to 120°C
 Get ready to pull...
 >>>>> PULL NOW <<<<<
 Cold pull is successful if you can see the shape of the nozzle at the filament end
@@ -307,10 +318,10 @@ It may take a few pulls to get suitable results...
 
  | Material | hot_temp | cold_temp | pull_temp | min_extrude_temp | Suitability |
  | -------- | -------- | --------- | --------- | ---------------- | ----------- |
- | NYLON    | 260      | 40        | 120       | 190              | Best        |
- | PLA      | 250      | 40        | 100       | 160              | Good        |
- | ABS      | 255      | 40        | 120       | 190              | Difficult   |
- | PETG     | 250      | 40        | 100       | 180              | Difficult   |
+ | NYLON    | 260      | 50        | 120       | 190              | Best        |
+ | PLA      | 250      | 42        | 100       | 160              | Good        |
+ | ABS      | 255      | 50        | 120       | 190              | Ok          |
+ | PETG     | 250      | 42        | 100       | 180              | Tricky?     |
 
 The `min_extrude_temp` is the temperature above which `MMU_COLD_PULL` will keep the nozzle pressurized with filament to ensure it is completely full.
 
