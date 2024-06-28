@@ -256,8 +256,9 @@ The cold pull method of cleaning your extruder should be in your bag of printer 
 2. Detatch bowden from toolhead
 3. Open extruder latch, manually load a 250mm fragment of filament and close extruder latch
 4. Extrude at least 20mm-30mm of filament
-5. Turn of extruder heat and wait for extruder to cool to correct temperature
+5. Turn of extruder heat and wait for extruder to cool
 6. Keep the nozzle completely full by occassionaly extruding 1-2mm more
+7. Warm extruder back to pull temp
 6. At this point, pull the filament quite firmly and evenly out of the extruder in a vertical direction
 7. Inspect the tip to see if it has been successful
 
@@ -265,23 +266,27 @@ The cold pull method of cleaning your extruder should be in your bag of printer 
 To help with the process Happy Hare includes a special macro that will guide you through the process. To run:
 1. Move toolhead to a convenient location, often the front middle of your build plate and at least 20mm above
 2. Detatch bowden from toolhead
-3. Open extruder latch, manually load a 250mm fragment of filament and close extruder latch
-3. Run `MMU_COLD_PULL MATERIAL=nylon|pla|abs|petg`. Optionally you can add temperature overrides with `COLD_TEMP=xxx`, `HOT_TEMP=xxx` and `MIN_EXTRUDER_TEMP=xxx` to better suite your material (see [table of defaults](#default-mmu_cold_pull-temperatures-for-different-materials) below)
-4. Be ready to pull at the right time .. you will be given a little warning but it is important to pull at the correct temperature when the filament is still slightly pliable. Pull directly upwards with a consistent firm pull.
+3. Open extruder latch, manually load a 250mm - 300mm fragment of filament and close extruder latch
+3. Run `MMU_COLD_PULL MATERIAL=nylon|pla|abs|petg`. Optionally you can add temperature overrides e.g. `PULL_TEMP=xxx` (see [Command Reference](Command-Reference#---calibration) for details) to better suite your material (see [table of defaults](#default-mmu_cold_pull-temperatures-for-different-materials) below)
+4. Be ready to pull at the right time .. you will be given a little warning but it is important to pull at the correct temperature when the filament is still slightly pliable. Pull directly upwards with a consistent firm pull, the extruder stepper will aid the pull (unlatch if you want to be 100% manual)
 
-> MMU\_COLD\_PULL MATERIAL=abs
+> MMU\_COLD\_PULL MATERIAL=pla
 ```yml
-Cold Pull with hot_temp=255°C, min_extrude_temp=190°C, cold_temp=100°C
-Heating hotend to 255°C
+Cold Pull with pull_temp=100°C, hot_temp=250°C, min_extrude_temp=160°C, cold_temp=40°C
+Heating hotend to 250°C
 Cleaning nozzle tip
-Cooling hotend to 100°C...
-Stuffing nozzle at 250°C
+Cooling hotend to 40°C...
 Stuffing nozzle at 240°C
 Stuffing nozzle at 230°C
 Stuffing nozzle at 220°C
 Stuffing nozzle at 210°C
 Stuffing nozzle at 200°C
 Stuffing nozzle at 190°C
+Stuffing nozzle at 180°C
+Stuffing nozzle at 170°C
+Stuffing nozzle at 160°C
+Waiting for extruder to completely cool. May take some time
+Re-warming hotend to 100°C...
 Get ready to pull...
 >>>>> PULL NOW <<<<<
 Cold pull is successful if you can see the shape of the nozzle at the filament end
@@ -294,19 +299,19 @@ Cold pull is successful if you can see the shape of the nozzle at the filament e
 It may take a few pulls to get suitable results...
 
 > [!TIP]  
-> - Some materials are better than others for cleaning with nylon often being found to be the best. PLA is also quite good. PTEG and ABS can be used but often stretch and snap rather than pulling with sufficient force. The cold pulling temperature will be different with each material type so you may need to experiment.
+> - Some materials are better than others for cleaning with nylon often being found to be the best. PLA is also good. PTEG and ABS can be used but often stretch and snap rather than pulling with sufficient force. The cold pulling temperature will be different with each material type so you may need to experiment.
 > - You may need to repeat the process if the purpose is to completely clean your nozzle of carbon rather than just prepare for calibration
 > - Feedback is that clear filament may be the strongest. Avoid strong pigmentation.
 
 ### Default `MMU_COLD_PULL` temperatures for different materials
 
- | Material | hot_temp | cold_temp | min_extruder_temp | 
- | -------- | -------- | --------- | ----------------- |
- | NYLON    | 260      | 105       | 190               |
- | ABS      | 255      | 100       | 190               |
- | PLA      | 220      | 95        | 150               |
- | PETG     | 240      | 95        | 180               |
+ | Material | hot_temp | cold_temp | pull_temp | min_extrude_temp | Suitability |
+ | -------- | -------- | --------- | --------- | ---------------- | ----------- |
+ | NYLON    | 260      | 40        | 120       | 190              | Best        |
+ | PLA      | 250      | 40        | 100       | 160              | Good        |
+ | ABS      | 255      | 40        | 120       | 190              | Difficult   |
+ | PETG     | 250      | 40        | 100       | 180              | Difficult   |
 
-The `min_extrude_temp` is the temperature above which `MMU_COLD_PULL` will keep the nozzle pressurised with filament to ensure it is completely full.
+The `min_extrude_temp` is the temperature above which `MMU_COLD_PULL` will keep the nozzle pressurized with filament to ensure it is completely full.
 
 Good luck!
