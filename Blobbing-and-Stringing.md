@@ -86,7 +86,7 @@ If you have removed the Bowden tube, reattach it to the toolhead, and prepare th
 Then run:
 
 > MMU\_CALIBRATE\_TOOLHEAD CLEAN=1
-(optionally add `SAVE=0`
+(optionally add `SAVE=0`)
 
 This will perform a number of probing moves with a cold extruder and report back the empty toolhead parameters. For example:
 
