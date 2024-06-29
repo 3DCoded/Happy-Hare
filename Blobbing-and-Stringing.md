@@ -85,7 +85,8 @@ If you have removed the Bowden tube, reattach it to the toolhead, and prepare th
 
 Then run:
 
-> MMU\_CALIBRATE\_TOOLHEAD CLEAN=1 [optially add SAVE=0]
+> MMU\_CALIBRATE\_TOOLHEAD CLEAN=1
+(optionally add `SAVE=0`
 
 This will perform a number of probing moves with a cold extruder and report back the empty toolhead parameters. For example:
 
@@ -135,7 +136,7 @@ Because the extruder was empty we were able to establish the position of the int
 
 <br>
 
-### S✅tep 3: Load (dirty) the nozzle with filament
+### ✅ Step 3: Load (dirty) the nozzle with filament
 
 During this operation we will load filament all the way to the end of the nozzle tip and extrude some. We will then unload the extruder simulating the amount of molten filament that will be left over inside the nozzle tip when filament is ejected.
 
