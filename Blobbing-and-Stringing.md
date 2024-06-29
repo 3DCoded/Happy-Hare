@@ -201,7 +201,7 @@ Again referring back to the earlier illustrations, the difference between the cl
 
 <br>
 
-### Step 5: Calibrate toolhead cutting macro variables (if using a filament cutter)
+### :check:Step 5: Calibrate toolhead cutting macro variables (if using a filament cutter)
 
 If you have a toolhead cutter, you must now calibrate the blade cutting position `variable_blade_pos` and set the `variable_retract_length`. Because the other toolhead dimensions are now different from your original settings, the blade position will most likely also need to be calibrated correctly. 
 
@@ -330,8 +330,8 @@ To help with the process Happy Hare includes a special macro that will guide you
 5. Be ready to pull at the right time! You will be given a little warning but it is important to pull at the correct temperature when the filament is still slightly pliable. 
 6. Pull directly upwards with a consistent firm pull. The extruder stepper will also spin to aid the pull. If you want to do the pull manually, unlatch the extruder and pull. Note: some extruders (like the Galileo 2) have enough grip and torque to do this without assistance, although the manual approach allows you to "feel" the correct pull speed.
 
-```yml
 > MMU\_COLD\_PULL MATERIAL=pla
+```yml
 Cold Pull with pull_temp=120°C, hot_temp=250°C, min_extrude_temp=160°C, cold_temp=45°C
 Heating extruder to 250°C
 Cleaning nozzle tip with 25mm of filament
