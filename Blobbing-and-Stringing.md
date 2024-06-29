@@ -146,20 +146,27 @@ As the previous step may have ground your filament a little, make sure you unloa
 
 Heat up your extruder to your filament print temperature , and run the load and unload filament macros as below:
 1. `MMU_LOAD`
-2. manually extrude some filament using the printer’s web interface
+2. Manually extrude some filament using the printer’s web interface
 3. `MMU_EJECT`
 4. Switch off your nozzle heater (set the nozzle temperature to 0c)
 
 #### If you are using tip cutting:
-
-As the tip cutting operation will leave additional residue filament in the toolhead that we don’t want, the dirtying of the extruder is slightly different to the above.
+As the tip cutting operation would normally leave additional filament in the toolhead that we don’t want, the dirtying of the extruder is slightly different to the above and avoids the actual cutting action:
 1. `MMU_LOAD`
-2. manually extrude some filament using the printer’s web interface
+2. Manually extrude some filament using the printer’s web interface
+3. `MMU_EJECT SKIP_TIP=1 EXTRUDER_ONLY=1`
+4. `MMU_EJECT`
+5. Switch off your nozzle heater (set the nozzle temperature to 0c)
+
+<!--
+1. `MMU_LOAD`
+2. Manually extrude some filament using the printer’s web interface
 3. Disconnect the Bowden tube from your toolhead, unlatch your extruder and manually remove the filament
 4. Let the tip cool a little and re-place the filament in the toolhead until it is just above the cutting blade. Press and hold the filament cutter and push the filament against it and then back off slightly
-5. Run `MMU_EJECT`
+5. `MMU_EJECT`
 6. Switch off your nozzle heater (set the nozzle temperature to 0c)
 7. Reconnect your Bowden tube to the toolhead.
+-->
 
 <br>
 
@@ -216,7 +223,7 @@ To calibrate the above:
 5. With the filament unloaded and parked in the MMU and a cold nozzle, run `MMU_CALIBRATE_TOOLHEAD CUT=1`
 
 > [!TIP]  
-> TIME SAVER: Rather than loading, cutting and cooling you can simply with the extruder unloaded press and HOLD the cutter blade in the closed postion. STAY in this position until the calibration is complete.
+> TIME SAVER: Rather than loading, cutting and cooling you can simply (with the extruder unloaded) press and HOLD the cutter blade in the closed postion. STAY in this position until the calibration is complete.
 
 > MMU\_CALIBRATE\_TOOLHEAD CUT=1
 ```
