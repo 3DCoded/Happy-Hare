@@ -73,13 +73,13 @@ Now Happy Hare can help with a new `MMU_CALIBRATE_TOOLHEAD` command.
 
 <br>
 
-### Step 1: Perform a cold pull to empty your nozzle
+### ✅ Step 1: Perform a cold pull to empty your nozzle
 
 This process requires you to start with a CLEAN (as in empty) extruder and nozzle. To do this you need to perform a cold pull. During this operation, you warm up the extruder, purge some filament, then let the nozzle cool. At the right temperature and using a bit of force you manually pull the filament out pulling with it all the old residue as well as any carbon deposits. This is something that most of you probably already know how to do, but for those that need help, or want a more convenient way to perform it you can run the supplied `MMU_COLD_PULL` macro and follow the directions displayed in the console. This is documented [later in this page](#---cleaning-extruder-with-a-cold-pull).
 
 <br>
 
-### Step 2: Calibrate the empty toolhead dimensions
+### ✅ Step 2: Calibrate the empty toolhead dimensions
 
 If you have removed the Bowden tube, reattach it to the toolhead, and prepare the MMU bu selecting the gate you with to use. Ensure filament is available and parked at the gate but don't load the extruder yet.
 
@@ -135,7 +135,7 @@ Because the extruder was empty we were able to establish the position of the int
 
 <br>
 
-### Step 3: Load (dirty) the nozzle with filament
+### S✅tep 3: Load (dirty) the nozzle with filament
 
 During this operation we will load filament all the way to the end of the nozzle tip and extrude some. We will then unload the extruder simulating the amount of molten filament that will be left over inside the nozzle tip when filament is ejected.
 
@@ -162,7 +162,7 @@ As the tip cutting operation will leave additional residue filament in the toolh
 
 <br>
 
-### Step 4: Calibrate ooze reduction (with dirty nozzle)
+### ✅ Step 4: Calibrate ooze reduction (with dirty nozzle)
 
 Now that the nozzle is “dirty” and simulating the left over material after a filament ejection, it is time to calibrate the ooze reduction variable.
 
@@ -201,7 +201,7 @@ Again referring back to the earlier illustrations, the difference between the cl
 
 <br>
 
-### :check:Step 5: Calibrate toolhead cutting macro variables (if using a filament cutter)
+### ✅ Step 5: Calibrate toolhead cutting macro variables (if using a filament cutter)
 
 If you have a toolhead cutter, you must now calibrate the blade cutting position `variable_blade_pos` and set the `variable_retract_length`. Because the other toolhead dimensions are now different from your original settings, the blade position will most likely also need to be calibrated correctly. 
 
