@@ -323,7 +323,6 @@ For this guide, we are using it to empty the nozzle and prepare it for accurate 
 ### Using MMU\_COLD\_PULL macro
 To help with the process Happy Hare includes a special macro that will guide you through the process and can also run it for you in a fully automated manner. To run it:
 
-To run:
 1. Move the toolhead to a convenient location, often the front middle of your build plate and at least 20mm above
 2. Detach the bowden tube from toolhead
 3. Open the extruder latch and manually load a 250mm piece of filament all the way in to the nozzle. Then close the extruder latch.
@@ -331,8 +330,8 @@ To run:
 5. Be ready to pull at the right time! You will be given a little warning but it is important to pull at the correct temperature when the filament is still slightly pliable. 
 6. Pull directly upwards with a consistent firm pull. The extruder stepper will also spin to aid the pull. If you want to do the pull manually, unlatch the extruder and pull. Note: some extruders (like the Galileo 2) have enough grip and torque to do this without assistance, although the manual approach allows you to "feel" the correct pull speed.
 
-> MMU\_COLD\_PULL MATERIAL=pla
 ```yml
+> MMU\_COLD\_PULL MATERIAL=pla
 Cold Pull with pull_temp=120°C, hot_temp=250°C, min_extrude_temp=160°C, cold_temp=45°C
 Heating extruder to 250°C
 Cleaning nozzle tip with 25mm of filament
