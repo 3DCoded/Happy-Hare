@@ -63,7 +63,7 @@ Note that the cut piece of filament remaining and the residual filament are auto
 
 Ok, now you know what the correct meaning of the dimensions are the next question is how to discover them for your setup. For everything other than `toolhead_ooze_reduction` it is possible to use accurate CAD models to measure them (remember to use the internal shoulder in the nozzle). This can be a challenge if using a CHT nozzle as shown below.
 
-<p align="center"><a href="https://github.com/moggieuk/Happy-Hare/wiki/Blobbing-and-Stringing/CHT_Cutaway.png"><img src="Blobbing-and-Stringing/CHT_Cutaway.png" alt="CHT Cutaway" width="50%"></a></p>
+<p align="center"><a href="https://github.com/moggieuk/Happy-Hare/wiki/Blobbing-and-Stringing/CHT_Cutaway.png"><img src="Blobbing-and-Stringing/CHT_Cutaway.png" alt="CHT Cutaway" width="40%"></a></p>
 
 If you have a toolhead sensor there is now an automated way to measure! If not, then you can refer to this wiki in the future, where we will aim to collate verified measurements for common toolhead combinations and once you have those set, you can experiment to discover the correct `toolhead_ooze_reduction` setting.
 
