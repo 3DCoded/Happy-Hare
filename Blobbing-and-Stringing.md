@@ -154,19 +154,8 @@ Heat up your extruder to your filament print temperature , and run the load and 
 As the tip cutting operation would normally leave additional filament in the toolhead that we don’t want, the dirtying of the extruder is slightly different to the above and avoids the actual cutting action:
 1. `MMU_LOAD`
 2. Manually extrude some filament using the printer’s web interface
-3. `MMU_EJECT SKIP_TIP=1 EXTRUDER_ONLY=1`
-4. `MMU_EJECT`
+3. `MMU_EJECT SKIP_TIP=1` (notice the option)
 5. Switch off your nozzle heater (set the nozzle temperature to 0c)
-
-<!--
-1. `MMU_LOAD`
-2. Manually extrude some filament using the printer’s web interface
-3. Disconnect the Bowden tube from your toolhead, unlatch your extruder and manually remove the filament
-4. Let the tip cool a little and re-place the filament in the toolhead until it is just above the cutting blade. Press and hold the filament cutter and push the filament against it and then back off slightly
-5. `MMU_EJECT`
-6. Switch off your nozzle heater (set the nozzle temperature to 0c)
-7. Reconnect your Bowden tube to the toolhead.
--->
 
 <br>
 
@@ -223,7 +212,7 @@ To calibrate the above:
 5. With the filament unloaded and parked in the MMU and a cold nozzle, run `MMU_CALIBRATE_TOOLHEAD CUT=1`
 
 > [!TIP]  
-> TIME SAVER: Rather than loading, cutting and cooling you can simply (with the extruder unloaded) press and HOLD the cutter blade in the closed postion. STAY in this position until the calibration is complete.
+> TIME SAVER: Rather than loading, cutting and cooling you can simply (with the extruder unloaded) press and HOLD the cutter blade in the closed postion. STAY in this position until the calibration is complete. Note that the measurement will be shorter by one blade thickness, so add 0.5mm to the reported distance.
 
 > MMU\_CALIBRATE\_TOOLHEAD CUT=1
 ```
@@ -305,7 +294,7 @@ The speed of the z-hop move, whether purely vertical or including a ramp is spec
 > [!TIP]  
 > If employing a z-hop ramp, you will likely want to set a fast speed in the `z_hop_speed` parameter similar to your normal printer x/y travel speed. Klipper will always limit your z travel speed to the speed defined in your [printer] section and thus this will not accidentally try to move vertically faster than possible. If you are not using a ramp then then `z_hop_speed` can be your desired vertical movement only.
 
-Finally, the acceleration of the travel move when performing a ramp z-hop is set to the maximum between your [printer] `max_accel` value and 10k mm/sec2. This overrides the acceleration used to print the last feature before the tool change (usually external walls) and restores it back to your slicer set acceleration after the z hop move is done. However, make sure your [printer] `max_accel` value is set within the mechanical limits of your printer!
+Finally, the acceleration of the travel move when performing a ramp z-hop is set with `z_hop_accel`. Since klipper will limit the speed and accelaration of the z-axis movement you should set to your desired travel speed. This overrides the acceleration used to print the last feature before the tool change (usually external walls) and restores it back to your slicer set acceleration after the z-hop move is done. However, make sure your [printer] `max_accel` value is set within the mechanical limits of your printer!
 
 <br>
 
