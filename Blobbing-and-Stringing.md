@@ -145,17 +145,17 @@ As the previous step may have ground your filament a little, make sure you unloa
 #### If you are using tip forming:
 
 Heat up your extruder to your filament print temperature , and run the load and unload filament macros as below:
-1. `MMU_LOAD`
+1. `MMU_LOAD` or `Tx`
 2. Manually extrude some filament using the printer’s web interface
 3. `MMU_EJECT`
-4. Switch off your nozzle heater (set the nozzle temperature to 0c)
+4. Switch off your nozzle heater (set the nozzle temperature to 0°C)
 
 #### If you are using tip cutting:
 As the tip cutting operation would normally leave additional filament in the toolhead that we don’t want, the dirtying of the extruder is slightly different to the above and avoids the actual cutting action:
-1. `MMU_LOAD`
+1. `MMU_LOAD` or `Tx`
 2. Manually extrude some filament using the printer’s web interface
 3. `MMU_EJECT SKIP_TIP=1` (notice the option)
-5. Switch off your nozzle heater (set the nozzle temperature to 0c)
+5. Switch off your nozzle heater (set the nozzle temperature to 0°C)
 
 <br>
 
@@ -183,6 +183,8 @@ New calibrated ooze reduction active until restart. Update mmu_parameters.cfg to
 > 5. If you don’t have a filament cutter, the calibration process is done. Make sure you note down the above measurements and update them together with the ones from the first step in your `mmu_parameters.cfg` file. If you do have a filament cutter, make sure you follow step 4 below.  
 > 6. If you have a belay sensor (filament tension/compression sensor) installed on your Bowden path, make sure you “lock” it in place so it doesn’t move. It is important that the filament path length stays static throughout the calibration process. You can either remove it and install a coupler or simply hold it firmly in its fully extended position when the calibration commands are run.
 
+Remember, that the calibrated `toolhead_ooze_reduction` is your starting point. You can still adjust this according to what you see happening with the wipetower with and actual print. See [Tip Forming and Purging](Tip-Forming-and-Purging#tuning-toolhead_ooze_reduction) for details on what to look for.
+
 <table>
 <tr>
 <td>
@@ -205,7 +207,7 @@ If you have a toolhead cutter, you must now calibrate the blade cutting position
 These variables control the amount of cut filament left in the extruder after the cut operation, so they need to be correct to avoid oozing when loading the toolhead after a cut move.
 
 To calibrate the above:
-1. Run `MMU_LOAD` to load filament in your extruder
+1. Run `MMU_LOAD` or `Tx` to load filament in your extruder
 2. Switch off the nozzle heating element (set nozzle temperature to 0) and wait for it to cool down.
 3. Manually press the cut lever a couple of times to ensure the filament is cleanly cut. 
 4. After you have cut the filament, unload/eject without further tip forming by running `MMU_EJECT SKIP_TIP=1` (did you notice the skip tip option?)
