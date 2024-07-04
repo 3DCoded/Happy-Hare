@@ -24,7 +24,7 @@ The `mmu.cfg` file is part of the hardware configuration but defines aliases for
 ### b) Hardware Configuration (mmu\_hardware.cfg):
 This can be daunting but the interactive installer will make the process easier for common mcu's designed for a MMU (e.g. ERCF EASY-BRD, Burrows ERB, etc) and perform most of the setup for you. A few tweaks remain and include the setting of endstop options, optional extruder "touch" homing as the usual pin invert checking, etc.
 
-Endstop setup and options can be found in [Movement and Homing](Movement and Homing)
+Endstop setup and options can be found in [Movement and Homing](Movement-and-Homing).
 
 Note that all sensors can be setup with a simple section in `mmu_hardware.cfg`. This ensures things are setup correctly and only requires you to supply the pins. There is no need to comment out if not used, you can leave the pin empty or reference an empty alias. In those cases the sensor will be ignored
 
