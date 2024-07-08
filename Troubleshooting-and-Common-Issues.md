@@ -23,11 +23,16 @@ Github user Dendrowen (our beloved Blobifier dev) offers this additonal general 
 - Upgrade rPi
 
 One additional observation that has been made is if you are running KlipperScreen on the same rpi as your printer.  Whilst there shouldn't be any issues this, certain conditions or timeouts can lead KlipperScreen to swamp `/var/log/syslog` with repeated messages such as "[job\_status.py:update\_file\_metadata()] - Cannot find file metadata. Listening for updated metadata".  This places severe load on writing to the SD card and can lead to TTC errors. A [PR](https://github.com/Arksine/moonraker/pull/862) has been created to update Moonraker, but until then you can enable "object processing" in `moonraker.conf` which will give it more time to perform the pre-processing and thus not generate the KlipperScreen "metadata" error:
-
 ```yml
 [file_manager]
 enable_object_processing: True
 ```
+**UPDATE:** PR for Moonraker was incorporated. This increases the pre-processing default timeout and also allows you to increase it with:
+```yml
+[file_manager]
+default_metadata_parser_timeout: 30
+```
+to avoid having to enable object\_processing.
 
 
 ### <img src="Troubleshooting-and-Common-Issues/carrot.png" alt="" width="23" height="21"> Klipper internal "Step Compress" error
