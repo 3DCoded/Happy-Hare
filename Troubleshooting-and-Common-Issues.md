@@ -27,7 +27,7 @@ One additional observation that has been made is if you are running KlipperScree
 [file_manager]
 enable_object_processing: True
 ```
-**UPDATE:** PR for Moonraker was incorporated. This increases the pre-processing default timeout and also allows you to increase it without having to enable object\_processing:
+**UPDATE: PR for Moonraker was incorporated.** This increases the pre-processing default timeout and also allows you to increase it without having to enable object\_processing:
 ```yml
 [file_manager]
 default_metadata_parser_timeout: 30
