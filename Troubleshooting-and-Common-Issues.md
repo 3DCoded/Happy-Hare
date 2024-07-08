@@ -19,6 +19,7 @@ Github user Dendrowen (our beloved Blobifier dev) offers this additonal general 
 - Check load: https://www.klipper3d.org/Debugging.html#generating-load-graphs
 - Check wiring
 - Increase Pi voltage to 5.1V
+- Backup rpi, reformat SD card and restore. This will elminate slowdown that occurs from bad-blocks and residual data erasure that can increase over time
 - Replace SD card with one with fast read/write (especially write)
 - Upgrade rPi
 
