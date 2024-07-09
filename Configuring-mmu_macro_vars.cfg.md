@@ -290,6 +290,14 @@ gcode: MMU_CHANGE_TOOL TOOL=7
 
 <br>
 
+> [!TIP]  
+> It's worth noting, and a VERY useful feature, that all the macro configuration parameters (in `mmu_macro_vars.cfg`) can be modified at runtime without restarting Klipper using the standard klipper variable setting command `SET_GCODE_VARIABLE`. For example, if you have Blobifier purging macro configured as a post load extension you can disable it with:
+> ```yml
+> SET_GCODE_VARIABLE MACRO=_MMU_SEQUENCE_VARS VARIABLE=user_post_load_extension VALUE=''
+> ```
+>
+> This ability is really useful when experimenting.  Remember that you must manually update `mmu_macro_vars.cfg` to make changes persistent accross klipper restarts.
+
 ---
 
 That about sums it up. That's a lot to take in, so take your time and drink lots of coffee. You'll get there in time!
