@@ -301,6 +301,8 @@ gcode: MMU_CHANGE_TOOL TOOL=7
 >
 > This ability is a real time saver when experimenting.  Remember that you must manually update `mmu_macro_vars.cfg` to make changes persistent accross klipper restarts.
 
+<br>
+
 ---
 
 That about sums it up. That's a lot to take in, so take your time and drink lots of coffee. You'll get there in time!
