@@ -7,6 +7,7 @@
 - [\_MMU\_CUT\_TIP\_VARS](#---_mmu_cut_tip_vars)
 - [\_MMU\_FORM\_TIP\_VARS](#---_mmu_form_tip_vars)
 - [\_MMU\_CLIENT\_VARS](#---_mmu_client_vars)
+- [Time Saving Tip](#time-saving-tip)
 
 This is where you'll likely spend most of your time tuning the MMU. The bulk of what the MMU does is controlled here. So, grab a cup of coffee, get ready, and let's dive in!
 
@@ -289,6 +290,8 @@ gcode: MMU_CHANGE_TOOL TOOL=7
 ```  
 
 <br>
+
+## Time Saving Tip
 
 > [!TIP]  
 > It's worth noting, and a very useful feature, that all the macro configuration parameters (in `mmu_macro_vars.cfg`) can be modified at runtime without restarting Klipper using the standard klipper variable setting command `SET_GCODE_VARIABLE`. For example, if you have Blobifier purging macro configured as a post load extension you can disable it with (making sure to pick the correct macro name):
