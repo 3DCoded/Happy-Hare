@@ -200,7 +200,7 @@ The release provides more flexibilty in tool change movement, introduces consump
 ### v2.5.2
 - Doc converted to Wiki and removed from distribution. Old doc links will be invalid
 
-### v2.6.0 (Early Access on the "260" branch)
+### v2.6.0
 Main focus on this release is the reduction of blobing, stringing and tuning for beautiful prints (see https://github.com/moggieuk/Happy-Hare/wiki/Blobbing-and-Stringing). Most issues are because of incorrect toolhead parameters and the former lack of a retract setting when the toolhead is moving.  Both of those are now solved with automated toolhead calibration (including tip cutting variables) and an new z-hop ramp setting:
   - Added new `MMU_CALIBRATE_TOOLHEAD` command for automated measurement of `toolhead_extruder_to_nozzle`, `toolhead_sensor_to_nozzle`, `toolhead_entry_to_extruder` and `toolhead_ooze_reduction`. Read the doc but this will eliminate incorrect "trial and error" values for these key dimensions.
   - Added new `toolchange_retract` and `toolchange_retract_speed` parameters to allow for retraction at the time of "z-hop" and un-retract as print resumes.
@@ -212,6 +212,8 @@ Main focus on this release is the reduction of blobing, stringing and tuning for
 - New `MMU_COLD_PULL` helper command. Useful in its own right but essential for the new toolhead calibration. Check it out - it can work in a completely automated way (https://github.com/moggieuk/Happy-Hare/wiki/Blobbing-and-Stringing#---cleaning-extruder-with-a-cold-pull)
 
 Other new features include:
+- Help address one of the Timer Too Close error conditions - Klipper has a less than optimal "save-variable" implementation can can cause problems with old/slower SD-cards. To workaround this HH now includes a batch update so all the HH overhead is combined into one or two calls rather than the previous 10 or so. You can see a "mmu__revision" added to you `mmu_vars.cfg` that increments on every write.
+- Couple more bug fixes (erroneous load errors) when using the `EXTRUDER_ONLY=1` flag on extruder loading/unloading without using bypass
 - Added `gate_autoload` parameter to allow the pre-gate sensor autoload feature to be disabled
 - Enhanced EndlessSpool functionality with `endless_spool_eject_gate` option allow for one gate to marked the waste gate ('W' in status) so that filament fragments will be sent to this gate rather than current gate. Allows for a "dump shoot" and prevents possible tangling when buffering on certain buffer designs where retracted filament end can escape into neighboring buffers. The default value of `-1` will use the current gate.
 - Change parameter name `extruder_homing_current` to `extruder_collision_homing_current` to be more precise on meaning (upgrade will have made this change for you)
