@@ -73,7 +73,7 @@
 
 <details open><summary><b>&nbsp;7. Tuning</b></summary>
 
-- [Blobbing and Stringing (v2.6.0 beta)](Blobbing-and-Stringing)
+- [Blobbing and Stringing](Blobbing-and-Stringing)
 
 </details>
 
