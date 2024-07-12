@@ -139,6 +139,7 @@ _MMU_UPDATE_HEIGHT
 This is likely to be the slicer default, but it is worth checking that the custom tool change g-code is set to this:
 
 <img src="Slicer-Setup/tool_change_gcode.png" width="280" alt="Tool Change G-Code">
+
 ```yml
 T[next_extruder]
 ```
