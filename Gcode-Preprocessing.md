@@ -47,7 +47,7 @@ START_PRINT REFERENCED_TOOLS=!referenced_tools! INITIAL_TOOL={initial_tool} ...t
 
 Then in you print start macro add logic similar to:
 
-```yml
+```jinja
 [gcode_macro START_PRINT]
 description: Called when starting print
 gcode:
@@ -87,7 +87,7 @@ START_PRINT COLORS=!colors! ...the other parameters...
 
 Then in you print start macro add logic similar to:
 
-```yml
+```jinja
 [gcode_macro START_PRINT]
 description: Called when starting print
 gcode:
