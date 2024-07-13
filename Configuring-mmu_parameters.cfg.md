@@ -274,7 +274,7 @@ Measure by inserting the filament until the entry sensor triggers. Make your fir
 
 `toolhead_unload_safety_margin` Distance added to the extruder unload movement to ensure filament is free of extruder. This adds some degree of tolerance to slightly incorrect configuration or extruder slippage. However, don't use as an excuse for incorrect toolhead settings.
 
-
+`toolhead_post_load_tighten` If enabled and not synchronizing gear and extruder this will add a move that will tighten the filament after a load. Without this option you may experience a "false" clog detection immediately after the tool change if you have a long bowden and/or large internal diameter because of the initial slack in the filament. Disable if you don't have this problem and want to save a second or two on loading times and extra servo movement.
 
 `toolhead_move_error_tolerance` ADVANCED: Controls the detection of successful extruder load and unload movement. Also represents the fraction of allowable mismatch between actual extruder movement and that seen by encoder. Setting to 100% tolerance effectively turns off checking. Some designs of extruder have a short move distance that may not be picked up by encoder and cause false errors. This allows masking of those errors. However, the error often indicates that your extruder load speed is too high, or the friction is too high on the filament.  In that case masking the error is not a good idea. Try reducing friction and lowering speed first!
 

@@ -338,33 +338,41 @@ Read about the loading and unloading sequences [here](Basic-Operation#---filamen
 > Once Happy Hare is loaded you can use `MMU_STATUS SHOWCONFIG=1` to describe in english what you have configured for loading and unloading sequences. After changing a config value (see how to use `MMU_TEST_CONFIG` for runtime changes) you can run again to see the impact of the change. Note that this also works for dynamic changes to sensors: e.g. if you disable your toolhead sensor via Mainsail, you will be able to see the fallback approach that Happy Hare is configured to do
 
 ```yml
-# Default toolhead loading and unloading ----------------------------------------------------------------------------------
+# Default toolhead loading and unloading ------------------------------------------------------------------------------
 #
-# It is possible to define highly customized loading and unloading sequences, however, unless you have a specialized setup
-# it is probably easier to opt for the built-in toolhead loading and unloading sequence which already offers a high degree
-# of customization. If you need even more control then edit the _MMU_LOAD_SEQUENCE and _MMU_UNLOAD_SEQUENCE macros in
-# mmu_sequence.cfg - but be careful!
+# It is possible to define highly customized loading and unloading sequences, however, unless you have a specialized
+# setup it is probably easier to opt for the built-in toolhead loading and unloading sequence which already offers a
+# high degree of customization. If you need even more control then edit the _MMU_LOAD_SEQUENCE and _MMU_UNLOAD_SEQUENCE
+# macros in mmu_sequence.cfg - but be careful!
 #
-# An MMU must have a known point at the end of the bowden from which it can precisely load the extruder. Generally this will
-# either be the extruder extrance (which is controlled with settings above) or by homing to toolhead sensor. If you have
-# toolhead sensor it is past the extruder gear and the driver needs to know the max distance (from end of bowden move) to
-# attempt homing
+# An MMU must have a known point at the end of the bowden from which it can precisely load the extruder. Generally this
+# will either be the extruder extrance (which is controlled with settings above) or by homing to toolhead sensor. If
+# you have toolhead sensor it is past the extruder gear and the driver needs to know the max distance (from end of
+# bowden move) to attempt homing
 #
 toolhead_homing_max: 40                 # Maximum distance to advance in order to attempt to home to defined homing endstop
 
 # IMPORTANT: These next three settings are based on the physical dimensions of your toolhead
-# Once a homing position is determined, Happy Hare needs to know the final move distance to the nozzle. There is only one
-# correct value for your setup - use 'toolhead_ooze_reduction' to control excessive oozing on load. See doc for table of
-# proposed values for common configurations. E.g Revo Voron with CW2 extruder values are 72 & 62 respectively
+# Once a homing position is determined, Happy Hare needs to know the final move distance to the nozzle. There is only
+# one correct value for your setup - use 'toolhead_ooze_reduction' (which corresponds to the residual filament left in
+# your nozzle) to control excessive oozing on load. See doc for table of proposed values for common configurations.
+#
+# NOTE: If you have a toolhead sensor you can automate the calculation of these parameters! Read about the
+# `MMU_CALIBRATE_TOOLHEAD` command (https://github.com/moggieuk/Happy-Hare/wiki/Blobing-and-Stringing)
 #
 toolhead_extruder_to_nozzle: 72         # Distance from extruder gears (entrance) to nozzle
 toolhead_sensor_to_nozzle: 62           # Distance from toolhead sensor to nozzle (ignored if not fitted)
 toolhead_entry_to_extruder: 8           # Distance from extruder "entry" sensor to extruder gears (ignored if not fitted)
 
-# TUNING: The is a tuning setting that should start at 0. It represents how much to reduce the extruder loading to prevent
-# excessive ooze. It is important to tune this parameter and not the dimensions above which are shared by unload logic.
-# If you experience blobs on your purge tower, increase this value. If you experience gaps, decrease this value. If gaps and
-# already at 0 then perhaps the 'toolhead_extruder_to_nozzle' setting is incorrect
+# TUNING: The is a tuning setting that represents how much residual filament is left behind in the nozzle when filament
+# is removed, it is thus used to reduce the extruder loading length and prevent excessive ooze.
+# It is important to tune this parameter and not the dimensions above which are shared by other logic. If using a wipetower
+# and you experience blobs on it, increase this value (reduce the quantity of filament loaded). If you experience gaps,
+# decrease this value. If gaps and already at 0 then perhaps the 'toolhead_extruder_to_nozzle' setting is incorrect.
+# Also see 'toolchange_retract' for final in-print blob tuning.
+#
+# NOTE: If you have a toolhead sensor you can automate the calculation of this parameter! Read about the
+# `MMU_CALIBRATE_TOOLHEAD` command (https://github.com/moggieuk/Happy-Hare/wiki/Blobing-and-Stringing)
 #
 toolhead_ooze_reduction: 0              # Reduction in extruder loading length to fine tune ooze (default: 0mm)
 
@@ -373,13 +381,20 @@ toolhead_ooze_reduction: 0              # Reduction in extruder loading length t
 #
 toolhead_unload_safety_margin: 10       # Extra movement saftey margin (default: 10mm)
 
+# If not synchronizing gear and extruder and you experience a "false" clog detection immediately after the tool change
+# it might be because of a long bowden and/or large internal diameter that causes slack in the filament. This optional
+# move will tighten the filament after a load
+#
+toolhead_post_load_tighten: 1           # 1 to enable, 0 disabled. Ignored if 'sync_to_extruder: 1'
+
 # ADVANCED: Controls the detection of successful extruder load/unload movement and represents the fraction of allowable
 # mismatch between actual movement and that seen by encoder. Setting to 100% tolerance effectively turns off checking.
-# Some designs of extruder have a short move distance that may not be picked up by encoder and cause false errors. This allows
-# masking of those errors. However the error often indicates that your extruder load speed is too high or the friction is too
-# high on the filament and in that case masking the error is not a good idea. Try reducing friction and lowering speed first!
+# Some designs of extruder have a short move distance that may not be picked up by encoder and cause false errors. This
+# allows masking of those errors. However the error often indicates that your extruder load speed is too high or the
+# friction is too high on the filament and in that case masking the error is not a good idea. Try reducing friction
+# and lowering speed first!
 #
-toolhead_move_error_tolerance: 60       # ADVANCED default is probably ok
+toolhead_move_error_tolerance: 60
 ```
 
 <br>
@@ -552,12 +567,12 @@ This section contains the parameters that, once toolhead and other dimensions ar
 #   2. Tweak 'toolhead_ooze_reduction' only if necessary so that filament _just_ appears at the nozzle on load
 #   3. Only then, adjust these settings to control stringing and blobs when tool changing in print
 #
-# NOTE: Read about the `MMU_CALIBRATE_TOOLHEAD` command to automate setting these!
 # NOTE: All of these settings operate IN PRINT ONLY
 #
 z_hop_height_toolchange: 1.0    # Height in mm of z_hop move on toolchange
 z_hop_height_error: 2.0         # Height in mm of z_hop move on pause or error to avoid blob on print
-z_hop_speed: 150                # Limit the speed of z_hop move (mm/s). Should be fast (x,y travel speed) if 'z_hop_ramp' is set
+z_hop_speed: 150                # Speed of z_hop move (mm/s). Should be fast (x,y travel speed) if 'z_hop_ramp' is set
+z_hop_accel: 5000               # Accelaration of z_hop move (will be limited by printer maximums)
 z_hop_ramp: 0                   # Horizontal distance in mm to travel during the lift. Can help break string. Direction is automatic
 toolchange_retract: 2           # Retract / un-retract distance to prevent blobs when toolchanging
 toolchange_retract_speed: 20    # Speed of the retract move in mm/s
@@ -578,7 +593,7 @@ This section contains an eclectic set of remaining options. Ask on discord if an
 
 
 ```yml
-# Misc configurable, but fairly fixed values -----------------------------------------------------------------------------
+# Misc configurable, but fairly fixed values -------------------------------------------------------------------------
 #
 extruder: extruder              # Name of the toolhead extruder that MMU is using
 timeout_pause: 72000            # Idle time out in seconds used when in MMU pause state
@@ -588,12 +603,14 @@ extruder_temp_variance: 2       # When waiting for extruder temperature this is 
 auto_calibrate_gates: 0         # ADVANCED: Automated gate (not gate#0) calibration. 1=calibrated automatically on first load, 0=disabled
 strict_filament_recovery: 0     # If enabled with MMU with toolhead sensor, this will cause filament position recovery to
                                 # perform extra moves to look for filament trapped in the space after extruder but before sensor
+filament_recovery_on_pause: 1   # 1 = Run a quick check to determine current filament position on pause/error, 0 = disable
 retry_tool_change_on_error: 0   # Whether to automatically retry a failed tool change. If enabled Happy Hare will perform
                                 # the equivalent of 'MMU_RECOVER' + 'Tx' commands which usually is all that is necessary
                                 # to recover. Note that enabling this can mask problems with your MMU
 print_start_detection: 1        # ADVANCED: Enabled for Happy Hare to automatically detect start and end of print and call
                                 # _MMU_START_PRINT and _MMU_END_PRINT. Disable if you want to include in your own macros
-encoder_move_validation: 1      # 1 = Normally Encoder validates move distances are within given tolerance (slower but more safe)
+show_error_dialog: 0            # 1 = show pop-up dialog in addition to console message, 0 = show error in console
+encoder_move_validation: 1      # 1 = Normally Encoder validates move distances are within given tolerance
                                 # 0 = Validation is disabled for many moves (eliminates slight pause between moves but less safe)
 gcode_load_sequence: 0          # VERY ADVANCED: Gcode loading sequence 1=enabled, 0=internal logic (default)
 gcode_unload_sequence: 0        # VERY ADVANCED: Gcode unloading sequence, 1=enabled, 0=internal logic (default)
