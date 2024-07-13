@@ -34,7 +34,7 @@ graph TD;
 In additon to these states the macros are passed some additional information and hints about the context.  An important one is `FILAMENT_POS` which represents the position of the filament in mm either from "point 0" in the gate (load direction) or from the nozzle (unload direction).  Here are the default macros with additional information:
 
 
-```yml
+```jinja
 ###########################################################################
 # ADVANCED: User modifable loading and unloading sequences
 #
