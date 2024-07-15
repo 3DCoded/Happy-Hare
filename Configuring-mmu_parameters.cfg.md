@@ -405,7 +405,9 @@ This output only formats when using Python 3.
 
 `toolchange_retract` immediately before the z\_hop and immediately after the reciprical restoration of z-height this amount of retraction or un-retraction will be applied. When loading the extruder, the filament will be loaded just short of the nozzle so this distance can be employed to prevent blobs by immediately depressuring the nozzle when pausing or repressuring at the point of resuming print.
 
-`toolchange_retract_speed` to speed of the retract and un-retract movement in mm/s. Usually you want this as fast as your extruder can handle. The default is 20mm/s
+`toolchange_retract_speed` to speed of the retract movement in mm/s. Usually you want this as fast as your extruder can handle. The default is 20mm/s.
+
+`toolchange_unretract_speed` to speed of the un-retract movement in mm/s. Defaults to the retract speed.
 
 <br>
 

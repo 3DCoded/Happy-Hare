@@ -254,11 +254,9 @@ RapidoHF: 22
 
 These are variables used in general print and MMU moves.  
 
-`variable_retract` is the distance Happy Hare retracts when it (or you) initiates a pause.  
+`variable_retract` is the distance for retracts and un-retracts on pause. Important to note that this is NOT performed during a print or MMU error because Happy Hare will manage the retraction in that case.  This is useful for regular pauses during a print or if the MMU is disabled.
 
 `variable_retract_speed` the speed of the above retraction movement.  
-
-`variable_unretract` the distance Happy Hare will unretract after resuming.  
 
 `variable_unretract_speed` is the speed Happy Hare will unretract.  
 
