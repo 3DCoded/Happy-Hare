@@ -340,7 +340,7 @@ This section deals with the various filament handling and management options.
 
 `endless_spool_eject_gate` normally endless spool will unload the filament remains into the current gate (`-1`), however it is possible to designate a specific gate (which of course but be kept unloaded) as the "waste gate". If this is configured only runout sensors after the gate will operational and filament will be unloaded only into the waste gate. This is useful if you have a very compact rotary style buffer where unloading of filament can run into the neighboring gate.
 
-`enable_spoolman` 0 = disable spoolman support, 1 = enable spoolman (requires spoolman setup).
+`enable_spoolman` 0 = disable spoolman support, 1 = enable spoolman (requires spoolman setup) attribute pulling and spool activation, 2 = enable (same as `1`) but also sync mmu gate map with spoolman db so it tracks what spools you are using on your mmu! This is a complex options, so be sure to read [Spoolman Support](Spoolman-Support) for more details.
 
 `pending_spool_id_timeout` Seconds after which this pending spool_id (set with rfid) is voided.
 

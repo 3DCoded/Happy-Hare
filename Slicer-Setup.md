@@ -21,7 +21,7 @@ Enter the following (using your own print start macro call) into your "custom st
 <img src="Slicer-Setup/start_gcode.png" width="100%" alt="Custom Start G-Code"><br>Your `START_PRINT ...` macro is likely to be different from mine! Here is some cut'n'paste text:
 
 ```yml
-MMU_START_SETUP INITIAL_TOOL={initial_tool} REFERENCED_TOOLS=!referenced_tools! TOOL_COLORS=!colors! TOOL_TEMPS=!temperatures! TOOL_MATERIALS=!materials! PURGE_VOLUMES=!purge_volumes!
+MMU_START_SETUP INITIAL_TOOL={initial_tool} REFERENCED_TOOLS=!referenced_tools! TOOL_COLORS=!colors! TOOL_TEMPS=!temperatures! TOOL_MATERIALS=!materials! FILAMENT_NAMES=!filament_names! PURGE_VOLUMES=!purge_volumes!
 MMU_START_CHECK
 ; Enter YOUR start_print macro call here
 MMU_START_LOAD_INITIAL_TOOL
@@ -53,8 +53,8 @@ This macro initializes the MMU, establishes whether the print is single or multi
       purge_volumes: [[100, 100], [100, 100]] ; NxN matrix of purge volume changing from tool X to tool Y
 ```
 
-The "Slicer Tool Map" can be displayed on the console at any time during the print by running the `MMU_SLICER_TOOL_MAP` command without any set parameters (optional `DETAIL=1` to see purge matrix):<br>
-> MMU_SLICER_TOOL_MAP DETAIL=1<br>
+The "Slicer Tool Map" can be displayed on the console at any time during the print by running the `MMU_SLICER_TOOL_MAP` command without any set parameters (optional `DETAIL=1` or `PURGE_MAP=1` or `SPARSE_PURGE_MAP=1` to see purge matrix):<br>
+> MMU_SLICER_TOOL_MAP PURGE_MAP=1<br>
 ```
 -------- Slicer MMU Tool Summary ---------
 2 color print (Purge volume map loaded)
@@ -74,7 +74,7 @@ T6   200  200  200  200  200  200   -   200  200
 T7   200  200  200  200  200  200  200   -   200
 T8   200  200  200  200  200  200  200  200   -
 ```
-The `DETAIL=1` flag will also report on tools that are defined in slicer but not defined for current print
+Note that the `DETAIL=1` flag will also report on tools that are defined in slicer but not defined for current print. Similarly adding `SPARSE_PURGE_MAP=1` can make the purge volumes more readable but showing only referenced tools.
 
 #### `2. MMU_START_CHECK`
 This macro uses the "Slicer Tool Map" and performs checks to ensure the MMU is fully ready to print. Currently checks are limited to confirming that filament is available in all the required tools, but in the future it might check that the filaments types the sliced g-code expects match those actually loaded in the MMU (think how the Spoolman integration could be used...)

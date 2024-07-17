@@ -142,22 +142,24 @@ The slicer tool map will typically be set up in the print start macros as docume
 Here is an example map stored in the printer variable:
 ```yml
    printer.mmu.slicer_tool_map.
-      initial_tool: 0          ; Initial tool number expected to be loaded at the beginning of the print
-      ; List of all the tools referenced in the print (T0 and T3)
-      tools.0.color: ff0000    ; Color in RRGGBB format for T0
-      tools.0.material: ABS    ; Material type for T0
-      tools.0.temp: 240        ; Extruder temperature for T0
-      tools.0.in_use: 1        ; Tool used in print
-      tools.3.color: 00e410    ; Color in RRGGBB format for T3
-      tools.3.material: ASA    ; Material type for T3
-      tools.3.temp: 245        ; Extruder temperature for T3
-      tools.3.in_use: 1        ; Tool used in print
-      purge_volumes: [[100, 100], [100, 100]] ; NxN matrix of purge volume changing from tool X to tool Y
+      initial_tool: 0                  ; Initial tool number expected to be loaded at the beginning of the print
+      referenced_tools : [0, 3]        ; List of all the tools referenced in the print (T0 and T3)
+      tools.0.color: ff0000            ; Color in RRGGBB format for T0
+      tools.0.material: ABS            ; Material type for T0
+      tools.0.temp: 240                ; Extruder temperature for T0
+      tools.0.name: eSun ABS Red       ; Extruder temperature for T0
+      tools.0.in_use: 1                ; Tool used in print
+      tools.3.color: 00e410            ; Color in RRGGBB format for T3
+      tools.3.material: ASA            ; Material type for T3
+      tools.3.temp: 245                ; Extruder temperature for T3
+      tools.3.name: eSun ABS+ Lt Green ; Extruder temperature for T0
+      tools.3.in_use: 1                ; Tool used in print
+      purge_volumes: [[100, 100, ...], [100, 100, ...]] ; NxN matrix of purge volume changing from tool X to tool Y
 ```
 
 The map can be displayed on the console at any time during the print by running the `MMU_SLICER_TOOL_MAP` command without any set parameters:
 
-> MMU_SLICER_TOOL_MAP1
+> MMU_SLICER_TOOL_MAP
 
 ```
 -------- Slicer MMU Tool Summary ---------

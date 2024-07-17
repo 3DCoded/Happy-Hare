@@ -119,7 +119,7 @@ MMU_SLICER_TOOL_MAP PURGE_VOLUMES=70,70,70,70,70,70,70,70,70 "list of 9 elements
 MMU_SLICER_TOOL_MAP PURGE_VOLUMES=70,70,70,70,70,70,70,70,70,70,... "list of 18 or 81 elements"
 ```
 ```
-> MMU_SLICER_TOOL_MAP DETAIL=1
+> MMU_SLICER_TOOL_MAP PURGE_MAP=1
 Purge Volume Map:
 To -> T0   T1   T2   T3   T4   T5   T6   T7   T8
 T0    -   140  140  140  140  140  140  140  140
@@ -134,7 +134,12 @@ T8   140  140  140  140  140  140  140  140   -
 ```
 
 > [!NOTE]
-> The CNC world and Happy Hare use tool names that are zero-based. Thus T0 is the first tool. Some slicers prefer to start with tool T1(!) Unfortunately this can lead to confusion but since the actual gcode will always contain `T0` that is the preferred numbering convention. Sorry Prusa.
+> - It is unusual but ok for your slicer is setup with less tools that the number of gates in your MMU. If this is the case, the purge map will show all possible tools but only values for slicer defined tools will be shown. This capability is controlled with the `NUM_SLICER_TOOLS` parameter
+> - The CNC world and Happy Hare use tool names that are zero-based. Thus T0 is the first tool. Some slicers prefer to start with tool T1(!) Unfortunately this can lead to confusion but since the actual gcode will always contain `T0` that is the preferred numbering convention. Sorry Prusa
+
+> [!TIP]
+> - Use `MMU_SLICER_TOOL_MAP SPARSE_PURGE_MAP=1` to see a more readable purge map that removes all toolchanges that are not possible in the print
+> - When displaying purge map with slicer setup for less gates than your MMU you can combine `NUM_SLICER_TOOLS=` to trim the matrix
 
 <br>
 

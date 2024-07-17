@@ -469,14 +469,16 @@ sync_multipler_low: 0.95                # Minimum factor to apply
 # - EndlessSpool feature allows detection of runout on one spool and the automatic mapping of tool to an alternative
 #   gate (spool). Set to '1', this feature requires clog detection or gate sensor or pre-gate sensors. EndlessSpool
 #   functionality can optionally be extended to attempt to load an empty gate with 'endless_spool_on_load'
-# - Spoolman support will use the SpoolId configured with the gate to load filament details and color from spoolman.
+# - Spoolman support requires you to correct enable spoolman with moonraker first. Then if enabled here, the SpoolId
+#   configured on the gate will be used to load filament details and color from the spoolman database. If 'enable_poolman'
+#   is set to 2, it will also use the remote mmu_gate_map to map the spoolman spool to the gate at klipper startup.
 #
 enable_clog_detection: 2                # 0 = disable, 1 = static length clog detection, 2 = automatic length clog detection
 enable_endless_spool: 1                 # 0 = disable, 1 = enable endless spool
 endless_spool_on_load: 0                # 0 = don't apply endless spool on load, 1 = run endless spool if gate is empty
 endless_spool_final_eject: 50           # Extra unload distance on runout to prevent accidental reload
 endless_spool_eject_gate: -1            # Which gate to eject the filament remains. -1 = current gate
-enable_spoolman: 0                      # 0 = disable spoolman support,  1 = enable spoolman (requires spoolman setup)
+enable_spoolman: 0                      # 0 = disabled,  1 = enable spoolman support, 2 = enable spoolman and use remote mmu_gate_map
 #endless_spool_groups: 1,1,1,1,2,2,2,2  # Default EndlessSpool groups after reset
 ```
 
