@@ -49,7 +49,7 @@ If you set `spoolman` to `off` then Happy Hare will not interact with spoolman.
 If you set `spoolman` to `push` then Happy Hare will push the local gate map (that can be seen in `mmu_vars.cfg` file) to spoolman at klipper startup and when explicitely asked. This is useful if you want to manage the gate map in Happy Hare but want to use spoolman to track filament usage.
 In this mode klipper will read the mmu_vars.cfg file at startup to initialize its internal gate map and then push that to spoolman by asking moonraker to update the spoolman database. In this case the local configuration is the source of truth and spoolman is updated to match. When you make changes to the gate map (using `MMU_GATE_MAP GATE=<int> SPOOLID=<int>` you can push those changes to spoolman by calling the `MMU_SPOOLMAN SYNC=1` command. (see section on [commands](Command-Reference) for more details).
 
-> [!EXAMPLE]
+> [!NOTE]
 Executing
 ```yml
 MMU_GATE_MAP GATE=0 SPOOLID=5
@@ -57,7 +57,7 @@ MMU_SPOOLMAN SYNC=1
 ```
 > Will result in the following gate map in the spoolman webbrowser interface:
 >
-> <img src="Spoolman-Support/spoolman_interface_example.png" width="70%">
+> <img src="Spoolman-Support/spoolman_interface_example.png" width="100%">
 
 See thee graph below detailing the klipper and moonraker startup and syncing mechanisms:
 ```mermaid
