@@ -34,7 +34,7 @@ The `spoolman` parameter can be set to:
 - `pull` - The remote spoolman database is considered as the source of truth and will be pulled into the local gate map
 
 > [!IMPORTANT]
-> Please note that both `push` and `pull` modes require you to have spoolman 0.18.1 or later installed. If you are using an older version of spoolman you will need to upgrade to use this feature.
+> Please note that both `push` and `pull` modes require you to have [spoolman **0.18.1**](https://github.com/Donkie/Spoolman/releases) or later installed. If you are using an older version of spoolman you will need to upgrade to use this feature.
 
 > [!TIP]
 > If spoolman support is enabled, you can enable additional columns to be displayed in spoolman web interface (after a moonraker restart) as follows:
