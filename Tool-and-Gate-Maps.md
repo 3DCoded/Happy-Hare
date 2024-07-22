@@ -1,6 +1,7 @@
 #### Page Sections:
 - [Gate Map](#---gate-map) - The filaments currently loaded in the MMU
 - [Tool to Gate Map](#---tool-to-gate-ttg-mapping) - The mapping of `Tx` tool numbers to gates
+    - [Automatic Tool to Gate (TTG) Mapping](#---auto-tool-to-gate-ttg-mapping) - The automated mapping of tools to gates
 - [Slicer Tool Map](#---slicer-tool-map) - What the slicer defines for each tool of the current print
 
 Happy Hare maintains a set of "maps" (exposed by printer variables) that are used to keep track of filaments:
@@ -9,7 +10,7 @@ Happy Hare maintains a set of "maps" (exposed by printer variables) that are use
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Gate Map
 **Management Command: `MMU_GATE_MAP`**<br>
-**Printer Variables: `printer.mmu.gate_status`, `printer.mmu.gate_material`, `printer.mmu.gate_color`, `printer.mmu.gate_color_rgb` and `printer.mmu.gate_spool_id` (if spoolman is enabled)**
+**Printer Variables: `printer.mmu.gate_status`, `printer.mmu.gate_material`, `printer.mmu.gate_color`, `printer.mmu.gate_color_rgb` and `printer.mmu.gate_spool_id`, `gate_filament_name` (if spoolman is enabled)**
 
 Happy Hare can keep track of the type and color for each filament you have loaded in the MMU as well as the current availability. This is leveraged in KlipperScreen visualization but also has more practical purposes because this information is made available through printer variables so you can leverage in your own macros to, for example, customize pressure advance, temperature and more. The map is persisted in `mmu_vars.cfg`.
 
@@ -123,7 +124,7 @@ An example of how to interpret a TTG map (this example has EndlessSpool disabled
 
 The lower paragraph of the status is the gate centric view showing the mapping back to tools as well as the configured filament material type and color which is explained later in this guide.<br>
 
-> [!NOTE]  
+> [!NOTE]
 > The initial availability of filament (and tihe default after a reset) at each gate can also be specified in the `mmu_parameters.cfg` file by updating the `gate_status` list of the same length as the number of gates. Generally this might be useful if you have purposefully decommissioned part of you MMU. E.g.<br>
 
 ```
@@ -131,6 +132,17 @@ gate_status = 1, 1, 0, 0, 1, 0, 0, 0, 1
 ```
 
 <br>
+
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Automatic Tool to Gate (TTG) Mapping
+
+Automatic TTG mapping is a feature that can be enabled in the `mmu_parameters.cfg` file. When enabled, the MMU will automatically map tools to gates based on a strategy that you define. The strategy can be one of the following:
+- `filament_name` The tool will be mapped one or more gates based on the filament name.
+- `color` The tool will be mapped to one or more gates based on the filament color. In this case HH will try to exactly match the desired color on a gate that matches its material.
+- `material` The tool will be mapped to one or more gates based on the filament material type. This can be useful if you have multiple spools of the same color but different material and don't care which one is used.
+
+For each of the modes described above, if multiple gates match then an endless spool will be created.
+- `closest_color` The tool will be mapped to the gate with the closest color match. This can be useful if you have a lot of spools of the same material and you want HH to select the closest color match without having you to remap the tools manually. When using this strategy the automapping feature will display a color match status in the console.
+
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Slicer Tool Map
 **Management Command: `MMU_SLICER_TOOL_MAP`**
@@ -170,5 +182,5 @@ Initial Tool: T0
 -------------------------------------------
 ```
 
-> [!NOTE]  
+> [!NOTE]
 > The purge volume portion of the map is covered under [Tip Forming and Purging](Tip-Forming-and-Purging#---purge-volumes) and not shown here
