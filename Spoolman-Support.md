@@ -20,13 +20,53 @@ Firstly, Happy Hare's moonraker extension should be installed. It will be by def
 [mmu_server]
 enable_file_preprocessor: True
 ```
-> [!IMPORTANT]  
+> [!IMPORTANT]
 > The 'enable_file_preprocessor' may be True or False depending on whether slicer placeholder pre-processing is enabled. Having the section is important
 
 Secondly, in `mmu_parameters.cfg` enable support:
 ```yml
-enable_spoolman: 1
+spoolman: push|pull
 ```
+
+The `spoolman` parameter can be set to:
+- `off` - no spoolman support
+- `push` - The local gate map is considered as the source of truth and will be pushed to spoolman
+- `pull` - The remote spoolman database is considered as the source of truth and will be pulled into the local gate map
+
+> [!IMPORTANT]
+> Please note that both `push` and `pull` modes require you to have spoolman 0.18.1 or later installed. If you are using an older version of spoolman you will need to upgrade to use this feature.
+
+> [!TIP]
+> If spoolman support is enabled, you can enable additional columns to be displayed in spoolman web interface (after a moonraker restart) as follows:
+>
+> <img src="Spoolman-Support/spoolman_columns.png" width="30%">
+>
+> I'd recommend adding the `Printer Name` and `MMU Gate` for a smoother experience. The printer name will refer to the klipper machine's hostname and the MMU gate will refer to the gate number that the spool is loaded into. This can be useful if you have multiple printers and MMUs and want to keep track of which spool is loaded into which MMU.
+
+### Off:
+If you set `spoolman` to `off` then Happy Hare will not interact with spoolman.
+### Push:
+If you set `spoolman` to `push` then Happy Hare will push the local gate map (that can be seen in `mmu_vars.cfg` file) to spoolman at klipper startup and when explicitely asked. This is useful if you want to manage the gate map in Happy Hare but want to use spoolman to track filament usage.
+In this mode klipper will read the mmu_vars.cfg file at startup to initialize its internal gate map and then push that to spoolman by asking moonraker to update the spoolman database. In this case the local configuration is the source of truth and spoolman is updated to match. When you make changes to the gate map (using `MMU_GATE_MAP GATE=<int> SPOOLID=<int>` you can push those changes to spoolman by calling the `MMU_SPOOLMAN SYNC=1` command. (see section on [commands](Command-Reference) for more details).
+
+> [!EXAMPLE]
+Executing
+```yml
+MMU_GATE_MAP GATE=0 SPOOLID=5
+MMU_SPOOLMAN SYNC=1
+```
+> Will result in the following gate map in the spoolman webbrowser interface:
+>
+> <img src="Spoolman-Support/spoolman_interface_example.png" width="70%">
+
+See thee graph below detailing the klipper and moonraker startup and syncing mechanisms:
+```mermaid
+```
+
+### Pull:
+If you set `spoolman` to `pull` then Happy Hare will pull the gate map from spoolman at klipper startup and when explicitely asked. This is useful if you want to manage the gate map in spoolman and have Happy Hare use that information.
+<br>
+
 If you made changes, restart klipper and moonraker services and you are done.
 
 <br>
@@ -58,9 +98,9 @@ A `SpoolID` of `-1` can be used to unset the spool ID and other attributes can b
 
 See the [command reference](Command-Reference) for a complete list of command arguments.
 
-> [!NOTE]  
+> [!NOTE]
 > If you see a command similar to this appear on the console during boot, don't worry. It is the startup sync of gate map with spoolman at work. It doesn't always appears because the sync can occur before the console is ready but seeing it occassionaly is confirmation that everything is connected
-> 
+>
 > <img src="Spoolman-Support/spoolman_update.png" width="70%">
 
 <br>
@@ -91,10 +131,10 @@ The gate map entry for this gate will automatically be updated with the spool_id
 pending_spool_id_timeout: 20            # Seconds after which this pending spool_id (set with rfid) is voided
 ```
 
-> [!TIP]  
+> [!TIP]
 > If the `pending_spool_id_timeout` is exceed the spool_id will be forgotten and the RFID would need to be read again. Set this to a little longer than the time it takes you to load a spool into your MMU but not too long that it never expires
 
 <br>
 
-> [!NOTE]  
+> [!NOTE]
 > In the future Happy Hare may include direct RFID reader support but at present you need to program the calling of `MMU_GATE_MAP NEXT_SPOOLID=..`
