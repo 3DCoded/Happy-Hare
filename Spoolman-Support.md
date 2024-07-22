@@ -104,7 +104,7 @@ sequenceDiagram
     K->>M: pull gate map
     M->>S: pull gate map
     S->>M: gate_map
-    M->>K: "MMU_GATE_MAP MAP=gate_map
+    M->>K: MMU_GATE_MAP MAP=gate_map
     K->>L: write local gate map
 ```
 <br>
