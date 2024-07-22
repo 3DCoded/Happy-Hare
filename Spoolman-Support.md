@@ -46,25 +46,67 @@ The `spoolman` parameter can be set to:
 ### Off:
 If you set `spoolman` to `off` then Happy Hare will not interact with spoolman.
 ### Push:
-If you set `spoolman` to `push` then Happy Hare will push the local gate map (that can be seen in `mmu_vars.cfg` file) to spoolman at klipper startup and when explicitely asked. This is useful if you want to manage the gate map in Happy Hare but want to use spoolman to track filament usage.
-In this mode klipper will read the mmu_vars.cfg file at startup to initialize its internal gate map and then push that to spoolman by asking moonraker to update the spoolman database. In this case the local configuration is the source of truth and spoolman is updated to match. When you make changes to the gate map (using `MMU_GATE_MAP GATE=<int> SPOOLID=<int>` you can push those changes to spoolman by calling the `MMU_SPOOLMAN SYNC=1` command. (see section on [commands](Command-Reference) for more details).
+If you set `spoolman` to `push` then Happy Hare will push the local gate map (that can be seen in `mmu_vars.cfg` file) to spoolman at klipper startup and when explicitely asked.
+In this mode klipper will read the mmu_vars.cfg file at startup to initialize its internal gate map and then push that to spoolman by asking moonraker to update the spoolman database. In this case the local configuration is the source of truth and spoolman is updated to match. When you make changes to the gate map using `MMU_GATE_MAP GATE=<int> SPOOLID=<int>` you can push those changes to spoolman by calling the `MMU_SPOOLMAN SYNC=1` command. (see section on [commands](Command-Reference) for more details).
 
 > [!NOTE]
-Executing
-```yml
-MMU_GATE_MAP GATE=0 SPOOLID=5
-MMU_SPOOLMAN SYNC=1
-```
+> Executing
+> ```yml
+> MMU_GATE_MAP GATE=3 SPOOLID=74
+> MMU_SPOOLMAN SYNC=1
+>```
 > Will result in the following gate map in the spoolman webbrowser interface:
 >
 > <img src="Spoolman-Support/spoolman_interface_example.png" width="100%">
 
-See thee graph below detailing the klipper and moonraker startup and syncing mechanisms:
+The graph below details the klipper startup sequence:
 ```mermaid
+sequenceDiagram
+    participant L as Persisted variables
+    participant K as Klipper
+    participant M as Moonraker
+    participant S as Spoolman
+
+    L->>K: read local gate map
+    K->>M: push gate map
+    M->>S: push gate map
+```
+The graph below details the klipper explicit push sequence:
+```mermaid
+sequenceDiagram
+    participant L as Persisted variables
+    participant K as Klipper
+    participant M as Moonraker
+    participant MF as Mainsail/Fluidd
+    participant S as Spoolman
+
+    MF->>M: MMU_GATE_MAP GATE=3 SPOOLID=74
+    M->>K: MMU_GATE_MAP GATE=3 SPOOLID=74
+    K->>L: write local gate map
+    MF->>M: MMU_SPOOLMAN SYNC=1
+    M->>K: MMU_SPOOLMAN SYNC=1
+    K->>M: push gate map
+    M->>S: push gate map
 ```
 
 ### Pull:
-If you set `spoolman` to `pull` then Happy Hare will pull the gate map from spoolman at klipper startup and when explicitely asked. This is useful if you want to manage the gate map in spoolman and have Happy Hare use that information.
+If you set `spoolman` to `pull` then Happy Hare will pull the gate map from spoolman at klipper startup and when explicitely asked.
+In this mode klipper will ask moonraker to pull the gate map from spoolman at startup and then read the gate map from moonraker to initialize its internal gate map. In this case spoolman is the source of truth and klipper is updated to match. When you make changes to the gate map in spoolman you can pull those changes to klipper by calling the `MMU_SPOOLMAN SYNC=1` command. (see section on [commands](Command-Reference) for more details).
+
+The graph below details the klipper startup sequence:
+```mermaid
+sequenceDiagram
+    participant L as Persisted variables
+    participant K as Klipper
+    participant M as Moonraker
+    participant S as Spoolman
+
+    K->>M: pull gate map
+    M->>S: pull gate map
+    S->>M: gate_map
+    M->>K: "MMU_GATE_MAP MAP=gate_map
+    K->>L: write local gate map
+```
 <br>
 
 If you made changes, restart klipper and moonraker services and you are done.
@@ -78,15 +120,15 @@ Each gate can have configured information about what is loaded (technically it c
 The gate map currently consists of: (1) availability of filament, (2) filament material type, (3) filament color in W3C color name or in RGB format, (4) the spoolman spool ID, (5) load/unload speed override. If spoolman is enabled the material and color is automatically retrieved from the spoolman database. Note a direct way to manipulate the gate map is via the `MMU_GATE_MAP` command. For example:
 ```
 Gates / Filaments:
-Gate 0: Status: Empty, Material: TPU, Color: DC6834, SpoolID: 3
-Gate 1: Status: Spool, Material: PTEG, Color: DCDA34, SpoolID: 2
-Gate 2: Status: Empty, Material: PLA, Color: 8CDFAC, SpoolID: 1
-Gate 3: Status: Empty, Material: ASA, Color: 95DC34, SpoolID: 4
-Gate 4: Status: Empty, Material: ABS, Color: n/a, SpoolID: 5
-Gate 5: Status: Empty, Material: ABS, Color: n/a, SpoolID: 6
-Gate 6: Status: Empty, Material: ABS+, Color: 34DCAD, SpoolID: 7
-Gate 7: Status: Empty, Material: TPU, Color: grey, SpoolID: n/a, Load Speed: 50%
-Gate 8: Status: Empty, Material: TPU, Color: black, SpoolID: 9, Load Speed: 60%
+Gate 0: Status: Empty, Material: TPU, Color: DC6834, Name: Filamentum Industrial Flexifill TPU 98A Grey, SpoolID: 3
+Gate 1: Status: Spool, Material: PTEG, Color: DCDA34, Name: n/a, SpoolID: 2
+Gate 2: Status: Empty, Material: PLA, Color: 8CDFAC, Name: n/a, SpoolID: 1
+Gate 3: Status: Empty, Material: ASA, Color: 95DC34, Name: Nanovia ASA Black, SpoolID: 4
+Gate 4: Status: Empty, Material: ABS, Color: n/a, Name: n/a, SpoolID: 5
+Gate 5: Status: Empty, Material: ABS, Color: n/a, Name: Sakata 3D ABS-E Black, SpoolID: 6
+Gate 6: Status: Empty, Material: ABS+, Color: 34DCAD, Name: n/a, SpoolID: 7
+Gate 7: Status: Empty, Material: TPU, Color: grey, Name: n/a, SpoolID: n/a, Load Speed: 50%
+Gate 8: Status: Empty, Material: TPU, Color: black, Name: n/a, SpoolID: 9, Load Speed: 60%
 ```
 If spoolman is enabled and a `SpoolID` is available, Happy Hare will use this to pull attributes from spoolman and set the other elements of the gate map. I.e. it will replace whatever was statically created with dynamic data from spoolman. If you exploit that you can simple keep the `SpoolID` up to date when you replace or reload a filament spool and not worry about anything else. If you have LEDs installed they can display the dynamically set filament color.
 
