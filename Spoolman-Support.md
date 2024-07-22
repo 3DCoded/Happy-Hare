@@ -55,7 +55,7 @@ In this mode klipper will read the mmu_vars.cfg file at startup to initialize it
 > MMU_GATE_MAP GATE=3 SPOOLID=74
 > MMU_SPOOLMAN SYNC=1
 >```
-> Will result in the following gate map in the spoolman webbrowser interface:
+> Will result in the following gate map in the spoolman web browser interface (if you have enabled the additional columns as described above):
 >
 > <img src="Spoolman-Support/spoolman_interface_example.png" width="100%">
 
@@ -108,6 +108,24 @@ sequenceDiagram
     K->>L: write local gate map
 ```
 <br>
+
+The graph below details the klipper explicit pull sequence:
+```mermaid
+sequenceDiagram
+    participant L as Persisted variables
+    participant K as Klipper
+    participant M as Moonraker
+    participant MF as Mainsail/Fluidd
+    participant S as Spoolman
+
+    MF->>M: MMU_SPOOLMAN SYNC=1
+    M->>K: MMU_SPOOLMAN SYNC=1
+    K->>M: pull gate map
+    M->>S: pull gate map
+    S->>M: gate_map
+    M->>K: MMU_GATE_MAP MAP=gate_map
+    K->>L: write local gate map
+```
 
 If you made changes, restart klipper and moonraker services and you are done.
 
