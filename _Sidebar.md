@@ -102,7 +102,7 @@
 - [Tool and Gate Maps](Tool-and-Gate-Maps)
   - [Gate Map](Tool-and-Gate-Maps#---gate-map)
   - [Tool to Gate Map](Tool-and-Gate-Maps#---tool-to-gate-ttg-mapping)
-    - [Automatic Tool to Gate (TTG) Mapping](#---automatic-tool-to-gate-ttg-mapping) - The automated mapping of tools to gates
+    - [Automatic Tool to Gate (TTG) Mapping](#---automatic-tool-to-gate-ttg-mapping)
   - [Slicer Tool Map](Tool-and-Gate-Maps#---slicer-tool-map)
 - [Filament Bypass](Filament-Bypass)
 - [Runout/Clog Detection](Clog-Runout-EndlessSpool)
