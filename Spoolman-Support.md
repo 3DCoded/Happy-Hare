@@ -39,7 +39,7 @@ The `spoolman` parameter can be set to:
 > [!TIP]
 > If spoolman support is enabled, you can enable additional columns to be displayed in spoolman web interface (after a moonraker restart) as follows:
 >
-> <img src="Spoolman-Support/spoolman_columns.png" width="30%">
+> <img src="Spoolman-Support/spoolman_columns.png" width="60%">
 >
 > I'd recommend adding the `Printer Name` and `MMU Gate` for a smoother experience. The printer name will refer to the klipper machine's hostname and the MMU gate will refer to the gate number that the spool is loaded into. This can be useful if you have multiple printers and MMUs and want to keep track of which spool is loaded into which MMU.
 
