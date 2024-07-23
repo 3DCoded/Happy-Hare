@@ -2,7 +2,7 @@
 - [Configuration](#---configuration)
 - [Gate Map and Spool ID](#---gate-map-and-spool-id)
   - [Auto-setting with RFID reader](#auto-setting-with-rfid-reader)
-- [MMU\_SPOOLMAN command](#---mmu-spoolman-command)
+- [MMU\_SPOOLMAN Command](#---mmu_spoolman-command)
 
 Spoolman has become a popular way to manage a large collection of print spools. It is a database that you host somewhere (commonly on same rpi as your printer) that can be accessed through a web UI and web based remote procedure calls. Other than providing spool management it does two additional things:
 - Tracks filament usage
