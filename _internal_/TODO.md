@@ -43,13 +43,13 @@ variable_cooling_tube_position should have the comment: Measured from Nozzle to 
 variable_cooling_tube_length should have the comment: Measured from Top of Heater Block to Top of Heatsink
 ```
 24. DONE - Ensure that start/end g-code macros are no-op if mmu is disabled. Others should probably be too..
-25. Double check EndlessSpool is still working - claim of hang on `_M400...`
-26. Merge `retract branch` .. after completing.  Note the change to "Cosmetic Options" in parameters .. need to update Wiki
+25. DONE Double check EndlessSpool is still working - claim of hang on `_M400...`
+26. DONE Merge `retract branch` .. after completing.  Note the change to "Cosmetic Options" in parameters .. need to update Wiki
 27. Update "Installation/Upgrade" wiki to include moonraker update manager example and screenshot
 28. DONE - Issue #292: don't wait for temp if in print and a new temp was set by slicer... (careful of corner cases and restart after cooled extruder..)
 29. Initial toolchange often occurs very close to bed. Would be 0mm if (z_hop=0, I think?). Is this true? Should there be a min for x/y movement? Then x/y would always be at minimum height...?
-30. Spaghetti Noodle problem... after load when printing without sync, there can be a lot of slack in filament that can cause clog detection issue.  Perhaps tighten the filament using gear motor once loaded...?
-31. Maybe implement MMU_CALIBRATE_TOOLHEAD with no toolhead sensor idea...?
+30. DONE Spaghetti Noodle problem... after load when printing without sync, there can be a lot of slack in filament that can cause clog detection issue.  Perhaps tighten the filament using gear motor once loaded...?
+31. DONE Maybe implement MMU_CALIBRATE_TOOLHEAD with no toolhead sensor idea...?
              # IF NO TS (currently not supported, but some ideas here)
                 # IF "extruder" sensor:
                     # Reverse home to "extruder" sensor with synced movement
@@ -70,8 +70,8 @@ variable_cooling_tube_length should have the comment: Measured from Top of Heate
                     #    Move 100mm extruder only, "touch" homing move
                     #    Measured distance is `toolhead_entry_to_extruder`
 32. DONE: Add `gate_autoload` param 0/1 to enable disable autoload feature. Default to 1.
-33. Add `endless_spool_waste_gate` param.  -1 = current gate (default), 0-n = designated gate.  If a designated gate then pre-gate sensors are automatically excluded.  Implement the special waste gate unloading...
-34. Implement `z_hop_ramp` parameter and action
+33. DONE Add `endless_spool_waste_gate` param.  -1 = current gate (default), 0-n = designated gate.  If a designated gate then pre-gate sensors are automatically excluded.  Implement the special waste gate unloading...
+34. DONE Implement `z_hop_ramp` parameter and action
 35. DONE: Implement `MMU_CHECK_GATE ALL=1` semantic change
 
 ### Reference Markdown so I don't forget
