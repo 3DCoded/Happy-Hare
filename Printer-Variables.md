@@ -5,7 +5,7 @@ Happy Hare exposed 'printer' variables that can be used in your own macros.
 ```yml
     printer.mmu.enabled : {bool} True if MMU is enabled
     printer.mmu.is_paused : {bool} True if MMU is paused after an error (can also use print_job_state)
-    printer.mmu.is_locked : {bool} historical alias for printer.mmu.is_paused
+    printer.mmu.is_locked : {bool} Deprecated, use for printer.mmu.is_paused instead
     printer.mmu.is_homed : {bool} True if MMU has been homed
     printer.mmu.tool : {int} 0..n | -1 for unknown | -2 for bypass
     printer.mmu.gate : {int} 0..n | -1 for unknown
@@ -22,6 +22,7 @@ Happy Hare exposed 'printer' variables that can be used in your own macros.
     printer.mmu.ttg_map : {list} defined gate for each tool
     printer.mmu.gate_status : {list} per gate: 0 empty | 1 available | 2 available from buffer |  -1 unknown
     printer.mmu.gate_material : {list} of material names, one per gate
+    printer.mmu.gate_name : {list} of filament names, one per gate
     printer.mmu.gate_color : {list} of color names, one per gate
     printer.mmu.gate_color_rgb : {list} of color rbg values from 0.0 - 1.0 in truples (red, green blue), one per gate
     printer.mmu.gate_spool_id : {list} of IDs for Spoolman, one per gate
@@ -42,7 +43,8 @@ Happy Hare exposed 'printer' variables that can be used in your own macros.
     printer.mmu.extruder_filament_remaining : {float} amount of cut filament left in the extruder (for toolchange macros)
     printer.mmu.extruder_residual_filament : {float} amount of residual filament always left in extruder (for toolchange macros)
     printer.mmu.toolchange_retract : {float} amount of extruder retraction (useful in toolchange macros)
-    printer.mmu.enable_spoolman : {int} 0 (disabled) | 1 (enabled) | 2 (enabled with remote gate map)
+    printer.mmu.enable_spoolman : {int} 0 (disabled) | 1 (enabled) Deprecated, use printer.mmu.spoolman_support instead
+    printer.mmu.spoolman_support: {string} spoolman integration mode (off | push | pull)
 ```
 
 Optionally exposed for mmu_encoder (if fitted):
