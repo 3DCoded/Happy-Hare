@@ -20,42 +20,54 @@ Firstly, Happy Hare's moonraker extension should be installed. It will be by def
 ```yml
 [mmu_server]
 enable_file_preprocessor: True
+enable_toolchange_next_pos: True
+update_spoolman_location: True
 ```
 > [!IMPORTANT]
-> The 'enable_file_preprocessor' may be True or False depending on whether slicer placeholder pre-processing is enabled. Having the section is important
+> The number and setting value of parameters may be different from above, but having this section is important.
 
 Secondly, in `mmu_parameters.cfg` enable support:
 ```yml
-spoolman: push|pull
+spoolman_support: push|pull
 ```
 
-The `spoolman` parameter can be set to:
-- `off` - no spoolman support
+The `spoolman_support` parameter can be set to:
+- `off` - No spoolman support
 - `push` - The local gate map is considered as the source of truth and will be pushed to spoolman
 - `pull` - The remote spoolman database is considered as the source of truth and will be pulled into the local gate map
 
-> [!IMPORTANT]
-> Please note that both `push` and `pull` modes require you to have [spoolman **0.18.1**](https://github.com/Donkie/Spoolman/releases) or later installed. If you are using an older version of spoolman you will need to upgrade to use this feature.
+Please note that both `push` and `pull` modes require you to have [spoolman **0.18.1**](https://github.com/Donkie/Spoolman/releases) or later installed. If you are using an older version of spoolman you will need to upgrade to use this feature.
 
-> [!TIP]
-> If spoolman support is enabled, you can enable additional columns to be displayed in spoolman web interface (after a moonraker restart) as follows:
+If spoolman support is enabled (`push` or `pull` modes), you will notice that two additional columns will be added to spoolman db. To display this in spoolman web interface you may need to open "Hide Columns" and select them:
+
+<p align="center"><img src="Spoolman-Support/spoolman_columns.png" width="60%"></p>
+
+An alternative to displaying these additional columns is to use the default behavior of concatenating printer and gate into the "Location" column (see not below). The printer name will refer to the klipper machine's hostname and the MMU gate will refer to the gate number that the spool is loaded into. This can be useful if you have multiple printers and MMUs and want to keep track of which spool is loaded into which MMU.
+
+> [!NOTE]  
+> The use of the "Location" field can be controlled be `update_spoolman_location` parameter in `moonraker.conf`. If not specified it defaults to `True`
 >
-> <img src="Spoolman-Support/spoolman_columns.png" width="60%">
->
-> I'd recommend adding the `Printer Name` and `MMU Gate` for a smoother experience. The printer name will refer to the klipper machine's hostname and the MMU gate will refer to the gate number that the spool is loaded into. This can be useful if you have multiple printers and MMUs and want to keep track of which spool is loaded into which MMU.
+> ```
+> [mmu_server]
+> update_spoolman_location: False
+> ```
+
+<br>
 
 ### Off:
-If you set `spoolman` to `off` then Happy Hare will not interact with spoolman.
+If you set `spoolman` to `off` then Happy Hare will not interact with spoolman and spool ids will not be seen in the gate map
+
+<br>
+
 ### Push:
 If you set `spoolman` to `push` then Happy Hare will push the local gate map (that can be seen in `mmu_vars.cfg` file) to spoolman at klipper startup and when explicitely asked.
 In this mode klipper will read the mmu_vars.cfg file at startup to initialize its internal gate map and then push that to spoolman by asking moonraker to update the spoolman database. In this case the local configuration is the source of truth and spoolman is updated to match. When you make changes to the gate map using `MMU_GATE_MAP GATE=<int> SPOOLID=<int>` you can push those changes to spoolman by calling the `MMU_SPOOLMAN SYNC=1` command. (see section on [commands](Command-Reference) for more details).
 
-> [!NOTE]
-> Executing
-> ```yml
-> MMU_GATE_MAP GATE=3 SPOOLID=74
-> MMU_SPOOLMAN SYNC=1
->```
+> [!NOTE]  
+> Executing:
+> > MMU_GATE_MAP GATE=3 SPOOLID=74
+> > MMU_SPOOLMAN SYNC=1
+>
 > Will result in the following gate map in the spoolman web browser interface (if you have enabled the additional columns as described above):
 >
 > <img src="Spoolman-Support/spoolman_interface_example.png" width="100%">
@@ -89,6 +101,8 @@ sequenceDiagram
     K->>M: push gate map
     M->>S: push gate map
 ```
+
+<br>
 
 ### Pull:
 If you set `spoolman` to `pull` then Happy Hare will pull the gate map from spoolman at klipper startup and when explicitely asked.
@@ -139,22 +153,22 @@ Each gate can have configured information about what is loaded (technically it c
 The gate map currently consists of: (1) availability of filament, (2) filament material type, (3) filament color in W3C color name or in RGB format, (4) the spoolman spool ID, (5) load/unload speed override. If spoolman is enabled the material and color is automatically retrieved from the spoolman database. Note a direct way to manipulate the gate map is via the `MMU_GATE_MAP` command. For example:
 ```
 Gates / Filaments:
-Gate 0: Status: Empty, Material: TPU, Color: DC6834, Name: Filamentum Industrial Flexifill TPU 98A Grey, SpoolID: 3
-Gate 1: Status: Spool, Material: PTEG, Color: DCDA34, Name: n/a, SpoolID: 2
-Gate 2: Status: Empty, Material: PLA, Color: 8CDFAC, Name: n/a, SpoolID: 1
-Gate 3: Status: Empty, Material: ASA, Color: 95DC34, Name: Nanovia ASA Black, SpoolID: 4
-Gate 4: Status: Empty, Material: ABS, Color: n/a, Name: n/a, SpoolID: 5
-Gate 5: Status: Empty, Material: ABS, Color: n/a, Name: Sakata 3D ABS-E Black, SpoolID: 6
-Gate 6: Status: Empty, Material: ABS+, Color: 34DCAD, Name: n/a, SpoolID: 7
-Gate 7: Status: Empty, Material: TPU, Color: grey, Name: n/a, SpoolID: n/a, Load Speed: 50%
-Gate 8: Status: Empty, Material: TPU, Color: black, Name: n/a, SpoolID: 9, Load Speed: 60%
+Gate 0: Status: Unknown, SpoolId: 3, Material: TPU, Color: DC6834, Name: Filamentum Industrial Flexifill TPU 98A Grey
+Gate 1: Status: Spool, SpoolId: 2, Material: PTEG, Color: DCDA34, Name: n/a
+Gate 2: Status: Empty, SpoolId: 1, Material: PLA, Color: 8CDFAC, Name: n/a
+Gate 3: Status: Buffer, SpoolId: 4, Material: ASA, Color: 95DC34, Name: Nanovia ASA Black
+Gate 4: Status: Buffer, SpoolId: 5, Material: ABS, Color: n/a, Name: n/a
+Gate 5: Status: Unknown, SpoolId: 6, Material: ABS, Color: n/a, Name: Sakata 3D ABS-E Black
+Gate 6: Status: Buffer, SpoolId: 7, Material: ABS+, Color: 34DCAD, Name: n/a
+Gate 7: Status: Buffer, SpoolId: n/a, Material: TPU, Color: grey, Name: n/a, Load Speed: 50%
+Gate 8: Status: Unknown, SpoolId: 9, Material: TPU, Color: black, Name: n/a, Load Speed: 60%
 ```
 If spoolman is enabled and a `SpoolID` is available, Happy Hare will use this to pull attributes from spoolman and set the other elements of the gate map. I.e. it will replace whatever was statically created with dynamic data from spoolman. If you exploit that you can simple keep the `SpoolID` up to date when you replace or reload a filament spool and not worry about anything else. If you have LEDs installed they can display the dynamically set filament color.
 
 To set the `SpoolID` use the command like this to set the ID to 5 on gate #0:
-```yml
-MMU_GATE_MAP GATE=0 SPOOLID=5
-```
+
+> MMU_GATE_MAP GATE=0 SPOOLID=5
+
 A `SpoolID` of `-1` can be used to unset the spool ID and other attributes can be set manually as in `MMU_GATE_MAP GATE=0 SPOOLID=-1 COLOR=red MATERIAL=PLA`
 
 See the [command reference](Command-Reference) for a complete list of command arguments.
@@ -169,11 +183,11 @@ See the [command reference](Command-Reference) for a complete list of command ar
 ### Changing SpoolID on Toolchange
 Once configured Happy Hare will, on a change of tool, let spoolman know (via moonraker) to deactivate the previous spool and activate the new one. You will see this occur in a UI like mainsail:
 
-<img src="Spoolman-Support/spoolman_mainsail.png" width="50%">
+<img src="Spoolman-Support/spoolman_mainsail.png" width="60%">
 
-If you use my enhanced [KlipperScreen-Happy Hare Edition](https://github.com/moggieuk/KlipperScreen-Happy-Hare-Edition) there are also screens to visualize the gate map with spoolman setup as well as to edit the spoolID:
+If you use my enhanced [KlipperScreen Happy Hare Edition](https://github.com/moggieuk/KlipperScreen-Happy-Hare-Edition) there are also screens to visualize the gate map with spoolman setup as well as to edit the spool\_id:
 
-<img src="Spoolman-Support/spoolman_ks.png" width="50%">
+<img src="Spoolman-Support/spoolman_ks.png" width="60%">
 
 <br>
 
@@ -182,8 +196,8 @@ So you have fitted all you spools with a fancy RIFD tags and built a nifty RFID 
 
 Because it isn't practical to build a RFID into every gate, the workflow supported by Happy Hare is this:
 - Offer up spool to reader
-- Read the spool_id you have programmed onto the RFID tag
-- In this reader macro, call: `MMU_GATE_MAP NEXT_SPOOLID=..` with the read spool_id
+- Read the spool\_id you have programmed onto the RFID tag
+- In this reader macro, call: `MMU_GATE_MAP NEXT_SPOOLID=..` with the read spool\_id
   - Insert filament into gate and run MMU_PRELOAD` to load and park the filament, or
   - If you have pre-gate sensors then simply insert the filament into the back of the gate (this can even be done in print although obviously the filament cannot be preloaded in that case
 
@@ -204,22 +218,16 @@ pending_spool_id_timeout: 20            # Seconds after which this pending spool
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) MMU_SPOOLMAN command
 
-This command allows for limited management of the added functionality to Spoolman. Specifically, Happy Hare adds the printer name and gate assignment to the spoolman db (in addition to reading filament attributes from it). You can use this command to modify the the gate association as well as retrieve information about spools.
+This command allows for management of the added functionality to Spoolman. Specifically, Happy Hare adds the printer name and gate assignment to the spoolman db (in addition to reading filament attributes from it). You can use this command to modify the the gate association as well as retrieve information about spools.
 
 Here you can see the additional extra fields `Printer Name` and `MMU Gate` added to the database in the Spoolman web interface. The "Location" field is updated by default but this can be controlled with the `update_spoolman_location` config option in `moonraker.conf`. Add/set it to `False` to prevent the overwriting of the "Location" field.
 
-```yml
-[mmu_server]
-update_spoolman_location: True
-```
-
-<img src="Spoolman-Support/spoolman_ui.png" width="50%">
-
+<p align="center"><img src="Spoolman-Support/spoolman_ui.png" width="80%"></p>
 
 To view the essential information about a spool use this command. If the `SPOOLID` parameter is omitted it will default to the currently active spool (if available):
 
-```yml
-MMU_SPOOLMAN SHOWINFO=1 SPOOLID=1
+> MMU_SPOOLMAN SHOWINFO=1 SPOOLID=1
+```
 Spool is: Matte Green (id: 1)
 - Material: n/a
 - Used: 56 g
@@ -228,17 +236,15 @@ Spool is: Matte Green (id: 1)
 
 If the spool is not current assigned to this printer you will additionally see:
 
-```yml
+```
 Spool id 1 is not assigned to this printer!
 Run: MMU_SPOOLMAN UPDATE=1 SPOOLID=1 GATE=..
 ```
 
-#### Re-syncing with spoolman
+### Re-syncing with spoolman
 Happy hare will resync on its own as necessary, but you can force a re-sync of the local gate map and the remote gate map with this command. The synchronization will be in the direction of the `spoolman_support` setting.  If 'push' the printer name, gate and optionally the location field will be updated to match local map. If 'pull' the local gate mapping will be synced based on the printer name, gate assignment stored in spoolman. Note that this does not rebuild the cache (see `REFRESH=1` later)
 
-```yml
-MMU_SPOOLMAN SYNC=1
-```
+> MMU_SPOOLMAN SYNC=1
 
 ### Working with a remote gate map
 This is useful if managing more that one printer or in a print farm scenario where centralized management if preferable. To this this up, change `spoolman_support: pull` in `mmu_parameters.cfg`
@@ -247,8 +253,9 @@ This is useful if managing more that one printer or in a print farm scenario whe
 > You can practice switching between modes with the `MMU_TEST_CONFIG spoolman_support=xxx`. If you have the spoolman web UI active you should dynamically see it change.
 
 If `spoolman_support: pull` set in `mmu_parameters.cfg` the MMU will get its gate map and filament attributes from spoolman. Technically it pulls from spoolman and stores locally. The local gate map will display slightly differently to remind you:
-```yml
-MMU_GATE_MAP
+
+> MMU_GATE_MAP
+```
 Gates / Filaments:
 Gate 0: Status: Unknown
 Gate 1: Status: Unknown
@@ -266,8 +273,8 @@ When operating in this mode these commands are also useful:
 ### Checking remote gate map
 Without any parameters the command will list the gate assignment for the printer. If you want to quickly check the gate assignment for another printer that shares the same spoolman db by specifing the `PRINTER=xxx` parameter:
 
-```yml
-MMU_SPOOLMAN
+> MMU_SPOOLMAN
+```
 Gate assignment for printer: BigRed
 Gate | Spool ID
 -----+---------
@@ -280,34 +287,31 @@ Gate | Spool ID
 ```
 
 #### Updating remote gate map
-In this mode changing the gate map locally will not have a lasting effect because it will be overwritten by the "map" stored in spoolman. There to update remotely use the `UPDATE=1` parameter. For example to remotely set (associate) gate 1 with spool id 5, run:
-```yml
-MMU_SPOOLMAN UPDATE=1 GATE=1 SPOOLID=5
-```
+In this mode changing the gate map locally will not have a lasting effect because it will be overwritten by the "map" stored in spoolman. There to update remotely use the `UPDATE=1` parameter.
+
+For example to remotely **SET** (associate) gate 1 with spool id 5, run:
+
+> MMU_SPOOLMAN UPDATE=1 GATE=1 SPOOLID=5
+
 If another gate was previously set to spool id 5 it will automatically be cleared.
 
-Run with a `SPOOLID` but without the `GATE` will unset (disassociate), thus clearing the gate association:
-```yml
-MMU_SPOOLMAN UPDATE=1 SPOOLID=5
-```
+There are two ways to  **UNSET** (disassociate) a spool id and gate. Either run with `SPOOLID` but without the `GATE` or specifiy the `GATE` but without the `SPOOLID`. The latter will find spool currently associated the gate on this printer and clear it. Examples:
 
-Run with the `GATE` but without the `SPOOLID` will find spool currently associated the gate on this printer and clear it:
-```yml
-MMU_SPOOLMAN UPDATE=1 GATE=1
-```
+> MMU_SPOOLMAN UPDATE=1 SPOOLID=5<br>
+> MMU_SPOOLMAN UPDATE=1 GATE=1
 
 To quickly clear the entire remote gate map for this printer:
-```yml
-MMU_SPOOLMAN CLEAR=1
+
+> MMU_SPOOLMAN CLEAR=1
+```
 Spool 5 gate cleared in spoolman db
 Spool 6 gate cleared in spoolman db
 ```
 
 #### Recovering if out of sync with spoolman db
 Normally this command is unecessary but since Happy Hare keeps a cache to reduce load on spoolman, it may be necessary if you remotely edit the spoolman db or an error condition occurs. Running it will completely reload spoolman, refresh the cache and then synchronized the local gate map with spoolman in the direction of the `spoolman_support` setting in `mmu_parameters.cfg` (either pushing the local map or pulling remote map):
-```yml
-MMU_SPOOLMAN REFRESH=1
-```
+
+> MMU_SPOOLMAN REFRESH=1
 
 > [!IMPORTANT]  
 > This is not recommended to run during a print which large spoolman databases
