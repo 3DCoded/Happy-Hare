@@ -140,7 +140,7 @@ Automatic TTG mapping is a feature that can be enabled in the `mmu_parameters.cf
 - `color` The tool will be mapped to one or more gates based on the filament color. In this case HH will try to exactly match the desired color on a gate that matches its material.
 - `material` The tool will be mapped to one or more gates based on the filament material type. This can be useful if you have multiple spools of the same color but different material and don't care which one is used.
 
-For each of the modes described above, if multiple gates match then an endless spool will be created.
+<!-- COOPER : For each of the modes described above, if multiple gates match then an endless spool will be created. -->
 - `closest_color` The tool will be mapped to the gate with the closest color match. This can be useful if you have a lot of spools of the same material and you want HH to select the closest color match without having you to remap the tools manually. When using this strategy the automapping feature will display a color match status in the console.
 
 
