@@ -55,12 +55,12 @@ An alternative to displaying these additional columns is to use the default beha
 <br>
 
 ### Off:
-If you set `spoolman` to `off` then Happy Hare will not interact with spoolman and spool ids will not be seen in the gate map
+If you set `spoolman_support` to `off` then Happy Hare will not interact with spoolman and spool ids will not be seen in the gate map
 
 <br>
 
 ### Push:
-If you set `spoolman` to `push` then Happy Hare will push the local gate map (that can be seen in `mmu_vars.cfg` file) to spoolman at klipper startup and when explicitely asked.
+If you set `spoolman_support` to `push` then Happy Hare will push the local gate map (that can be seen in `mmu_vars.cfg` file) to spoolman at klipper startup and when explicitely asked.
 In this mode klipper will read the mmu_vars.cfg file at startup to initialize its internal gate map and then push that to spoolman by asking moonraker to update the spoolman database. In this case the local configuration is the source of truth and spoolman is updated to match. When you make changes to the gate map using `MMU_GATE_MAP GATE=<int> SPOOLID=<int>` you can push those changes to spoolman by calling the `MMU_SPOOLMAN SYNC=1` command. (see section on [commands](Command-Reference) for more details).
 
 > [!NOTE]  
@@ -105,7 +105,7 @@ sequenceDiagram
 <br>
 
 ### Pull:
-If you set `spoolman` to `pull` then Happy Hare will pull the gate map from spoolman at klipper startup and when explicitely asked.
+If you set `spoolman_support` to `pull` then Happy Hare will pull the gate map from spoolman at klipper startup and when explicitely asked.
 In this mode klipper will ask moonraker to pull the gate map from spoolman at startup and then read the gate map from moonraker to initialize its internal gate map. In this case spoolman is the source of truth and klipper is updated to match. When you make changes to the gate map in spoolman you can pull those changes to klipper by calling the `MMU_SPOOLMAN SYNC=1` command. (see section on [commands](Command-Reference) for more details).
 
 The graph below details the klipper startup sequence:
@@ -234,7 +234,7 @@ Spool is: Matte Green (id: 1)
 - Remaining: 943 g
 ```
 
-If the spool is not current assigned to this printer you will additionally see:
+If the spool is not currently assigned to this printer you will additionally see this action message:
 
 ```
 Spool id 1 is not assigned to this printer!
