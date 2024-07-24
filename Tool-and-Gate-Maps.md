@@ -60,6 +60,19 @@ Here is an example snippet of a macro controlling LED's for reference:
 > KlipperScreen Happy Hare edition has a nice editor with color picker for easy updating<br>
 > [Spoolman](Spoolman-Support) integration can also be used to automatically update colors
 
+> [!TIP]  
+> The initial gate map (and therefore the default after a reset `MMU_GATE_MAP RESET=1`) can also be specified in the `mmu_parameters.cfg` file by updating the follow list parameters, ensuring each is the same length as the number of gates. E.g.<br>
+>
+> ```yml
+> gate_material:        PLA,    ABS,    ABS,    ABS+,   PLA,    PLA,    PETG,   TPU,    ABS
+> gate_color:           red,    black,  yellow, green,  blue,   indigo, ffffff, grey,   black
+> gate_spool_id:        3,      2,      1,      4,      5,      6,      7,      -1,     9
+> gate_status:          1,      0,      1,      2,      2,     -1,     -1,      0,      1
+> gate_speed_override:  100,    100,    100,    100,    100,    100,    100,    50,     100
+> ```
+>
+> If not specified or commented out (the default) the gate map will default and reset to empty attributes. Remember this is the default/reset values. With persistence enabled (`persistence_level`) the latest values are remembered accross restarts.
+
 <br>
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Slicer Tool Map
@@ -123,9 +136,11 @@ There are a few use cases for this feature, for example:
   <li>With `automap` explained next choose the best matching gate!
 </ul>
 
-Conceptually you can visual this feature:
+Conceptually you can visualize this feature:
 
 <p align="center"><img src="Tool-and-Gate-Maps/visual_ttg.png" width="70%">
+
+In this example, the slicer is set up for 4 tools "extruders" with red/green/blue/black colors but you have loaded your 8 gate MMU in a different order. The TTG map defines this relationship and saves your from either reconfiguring your slicer or reloading your MMU. In addition, because there are two spools of the black PLA filament loaded an EndlessSpool group can be established so when gate 7 runs out, printing continues from gate 3 automatically!
 
 To view the current detailed mapping you can use either `MMU_STATUS DETAIL=1` or `MMU_REMAP_TTG` with no parameters
 
@@ -181,18 +196,19 @@ For users of my [KlipperScreen - Happy Hare Edition](https://github.com/moggieuk
 <p align="center"><img src="Tool-and-Gate-Maps/klipperscreen_mmu_toolmap.png" width="60%">
 
 
-> [!NOTE]  
-> The initial availability of filament (and therefore the default after a reset) at each gate can also be specified in a similar form to other "gate map attributes" in the `mmu_parameters.cfg` file by updating the `gate_status` list, ensuring it is the same length as the number of gates. E.g.<br>
-
-```yml
-gate_status = 1, 1, 0, 0, 1, 0, 0, 0, 1
-```
-
-PAUL TODO need visual of conception mapping of SlicerToolMap to Tools to Gatas
+> [!TIP]  
+> The initial TTG map (and therefore the default after a reset `MMU_TTG_MAP RESET=1`) can also be specified in a similar form to other "gate map attributes" in the `mmu_parameters.cfg` file by updating the `tool_to_gate_map` list, ensuring it is the same length as the number of gates. E.g.<br>
+>
+> ```yml
+> tool_to_gate_map = 0, 1, 2, 3, 7, 6, 5, 4"
+> ```
+>
+> If not specified the gate map will default to a "pass-through" mapping with each tool mapped to their respective gate. Further there is an option to automatically reset the TTG map at the end of every print to prevent confusion on the next print
 
 <br>
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Automatic Tool to Gate (TTG) Mapping
+
 Automatic TTG mapping is a feature that can be enabled in the `mmu_macro_vars.cfg` file. When enabled, the [MMU_START_SETUP](Slicer-Setup#1-mmu_start_setup) macro will automatically map tools to gates based on a strategy that you define. The strategy can be one of the following:
 - `none` No automapping with occur (the default)
 - `filament_name` The tool will be mapped one or more gates based on the filament name.
@@ -202,11 +218,14 @@ Automatic TTG mapping is a feature that can be enabled in the `mmu_macro_vars.cf
 - `closest_color` The tool will be mapped to the gate with the closest color match. This can be useful if you have a lot of spools of the same material and you want HH to select the closest color match without having you to remap the tools manually. When using this strategy the automapping feature will display a color match status in the console.
 - `spool_id` [FUTURE] The tool will be exactly mapped based on the spool_id [_when slicers pass spool id_]
 
-For those of your that are interested, this automated mapping can be called (**after the slicer tool map is loaded**) with a command of the form:
-> MMU_SLICER_TOOL_MAP TOOL=1 AUTOMAP=name
-This example with decide the best gate mapping of tool T1 to a gate based on the filament name
+When your slicer and MMU are fully configured, the 4-color print illustration above (in the TTG mapping section) can have the gate association and EndlessSpool groups set automatically using the strategy of "color" or "closest_color".  Pretty cool, right?!
 
-> MMU_SLICER_TOOL_MAP TOOL=6 AUTOMAP=closest_color
+> [!NOTE]  
+>For those of your that are interested, this automated mapping can be called (**after the slicer tool map is loaded**) with a command of the form:
+> > MMU_SLICER_TOOL_MAP TOOL=1 AUTOMAP=name
+>This example with decide the best gate mapping of tool T1 to a gate based on the filament name
+>
+> > MMU_SLICER_TOOL_MAP TOOL=6 AUTOMAP=closest_color
 This example with decide the best gate mapping of tool T6 to a gate based on the closest available color match
 
 Of course you can also use `MMU_TTG_MAP` to manually choose the mapping
