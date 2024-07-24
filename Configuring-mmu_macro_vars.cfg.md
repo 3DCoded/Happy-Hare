@@ -34,6 +34,8 @@ This section controls the behavior of the start up and finalization of a print t
 
 `variable_load_initial_tool`  set to `True` will automatically load the first tool in the print before the print starts. If your Slicer doesn't explicitly call the first tool, it will error if set to `False` because the tool isn't loaded. If the first tool is already loaded, then it just happily skips the load sequence. So, there's no drawback to leaving it on. Usually `True`.
 
+`variable_automap_strategy` This is an advanced feature to automatically set up tool to gate map when starting print. It is complex and fully explained in [Tool and Gate Maps](Tool-and-Gate-Maps.md#---automatic-tool-to-gate-ttg-mapping). Leave it at "none" until you are an expert user :-)
+
 `variable_eject_tool` tells Happy Hare whether or not to eject the filament back to the buffer at the end of the print. If set to `False` the filament will remain loaded. This one is up to your preference. Usually `True`.
 
 `variable_reset_ttg` tells Happy Hare whether to reset the tool to gate map at the end of the print. Typically, the tool to gate map is not changed unless you switch filament colors or change the endless spool settings. Leaving this one `False` will save you from having to redo the tool to gate map on every print.  See [Gate Map](Tool-and-Gate-Maps#---gate-map) for explaination on how to map the gates. Usually `False`.

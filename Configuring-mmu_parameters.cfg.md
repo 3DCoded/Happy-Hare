@@ -248,6 +248,9 @@ An MMU must have a known point at the end of the bowden from which it can precis
 toolhead_homing_max: 40			# Maximum distance to advance in order to attempt to home to defined homing endstop
 
 > [!IMPORTANT]  
+> UPDATE: Since v2.6.0 there is now automation to help set up these dimensions. Maybe worth reading [Blobbing and Stringing](Blobbing-and-Stringing) now at least to understand the measurements better
+
+> [!NOTE]  
 > These next three settings are based on the physical dimensions of your toolhead. Once a homing position is determined, Happy Hare needs to know the final move distance to the nozzle. This is accomplished by the following variables and the extruder and toolhead switches, if present. There is **ONLY ONE** correct value for **YOUR SETUP**. If you have issues with oozing, use `toolhead_ooze_reduction` to control excessive oozing on load. Don't tweak the measurements in the following variables. They are directly tied to the physical distances in your toolhead. See [Happy Hare Parameter Overview](Happy-Hare-Parameters#---toolhead-loading--unloading) for a table of proposed values for common configurations. If you end up using something that isn't in the table, please create a pull request with your working numbers so others may benefit from your knowledge.
 
 <p align="center"><img src="Happy-Hare-Parameters/extruder_dimensions.png" alt='Extruder Dimensions' width='60%'></p>
@@ -340,11 +343,19 @@ This section deals with the various filament handling and management options.
 
 `endless_spool_eject_gate` normally endless spool will unload the filament remains into the current gate (`-1`), however it is possible to designate a specific gate (which of course but be kept unloaded) as the "waste gate". If this is configured only runout sensors after the gate will operational and filament will be unloaded only into the waste gate. This is useful if you have a very compact rotary style buffer where unloading of filament can run into the neighboring gate.
 
-`enable_spoolman` 0 = disable spoolman support, 1 = enable spoolman (requires spoolman setup) attribute pulling and spool activation, 2 = enable (same as `1`) but also sync mmu gate map with spoolman db so it tracks what spools you are using on your mmu! This is a complex options, so be sure to read [Spoolman Support](Spoolman-Support) for more details.
+`spoolman_support` Controls the level of Spoolman integration: `off` = disable spoolman support, `push` = enable spoolman with gate attributes like color being read from spoolman and gate associated pushed for visualization, `pull` = enable spoolman but pull sync mmu gate map from spoolman db. This is a complex option, so be sure to read [Spoolman Support](Spoolman-Support) for more details, but here is a quick summary table:
+
+  | spoolman_support | Activate/Deactive Spool? | Fetch filament attributes from spoolman | Filament gate assignment shown in spoolman db? | Filament gate assignment pulled from spoolman |
+  | ---- | --- | --- | --- | --- |
+  | off  | no  | no  | no  | no  |
+  | push | yes | yes | yes | no  |
+  | pull | yes | yes | yes | yes |
 
 `pending_spool_id_timeout` Seconds after which this pending spool_id (set with rfid) is voided.
 
 `endless_spool_groups` Default Endless Spool groups, discussed later on.
+
+`t_macro_color` Controls the way the filament color is displayed in Mainsail and Fluidd. See [Mainsail/Fluidd Integration](Mainsail-Fluidd-Integration)
 
 <br>
 

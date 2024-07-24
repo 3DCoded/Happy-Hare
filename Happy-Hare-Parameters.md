@@ -463,15 +463,48 @@ sync_multipler_low: 0.95                # Minimum factor to apply
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Filament Management Options
 
 ```yml
-# Filament Management Options ----------------------------------------------------------------------------------------------
+# Filament Management Options ----------------------------------------------------------------------------------------
 #
-# - Clog detection is available when encoder is fitted and it can detect when filament is not moving and pause the print.
+# - Clog detection is available when encoder is fitted and it can detect when filament is not moving and pause the print
 # - EndlessSpool feature allows detection of runout on one spool and the automatic mapping of tool to an alternative
 #   gate (spool). Set to '1', this feature requires clog detection or gate sensor or pre-gate sensors. EndlessSpool
-#   functionality can optionally be extended to attempt to load an empty gate with 'endless_spool_on_load'
-# - Spoolman support requires you to correct enable spoolman with moonraker first. Then if enabled here, the SpoolId
-#   configured on the gate will be used to load filament details and color from the spoolman database. If 'enable_poolman'
-#   is set to 2, it will also use the remote mmu_gate_map to map the spoolman spool to the gate at klipper startup.
+#   functionality can optionally be extended to attempt to load an empty gate with 'endless_spool_on_load'. It can
+#   also be configured to eject filament remains to a designated gate rather than defaulting to current gate. A custom
+#   gate will disable pre-gate runout detection for EndlessSpool because filament end must completely pass through the
+#   gate for selector to move
+#
+enable_clog_detection: 2                # 0 = disable, 1 = static length clog detection, 2 = automatic length clog detection
+enable_endless_spool: 1                 # 0 = disable, 1 = enable endless spool
+endless_spool_on_load: 0                # 0 = don't apply endless spool on load, 1 = run endless spool if gate is empty
+endless_spool_final_eject: 50           # Extra unload distance on runout to prevent accidental reload
+endless_spool_eject_gate: -1            # Which gate to eject the filament remains. -1 = current gate
+#endless_spool_groups:                  # Default EndlessSpool groups (see later in file)
+#
+# Spoolman support requires you to correctly enable spoolman with moonraker first. If enabled, the gate SpoolId will
+# be used to load filament details and color from the spoolman database and Happy Hare will activate/deactivate
+# spools as they are used. The enabled variation allows for either the local map or the spoolman map to be the
+# source of truth. See this table for explanation:
+#
+#                    | Activate/  | Fetch filament attributes | Filament gate    | Filament gate     |
+#   spoolman_support | Deactivate | attributes from spoolman  | assignment shown | assignment pulled |
+#                    | spool?     | based on spool_id?        | in spoolman db?  | from spoolman db? |
+#   -----------------+------------+---------------------------+------------------+-------------------+
+#         off        |     no     |           no              |           no     |        no         |
+#         push       |     yes    |           yes             |           yes    |        no         |
+#         pull       |     yes    |           yes             |           yes    |        yes        |
+#
+spoolman_support: off                   # off = disabled, push = local gate map is source of truth, pull = spoolman is
+pending_spool_id_timeout: 20            # Seconds after which this pending spool_id (set with rfid) is voided
+#
+# Mainsail/Fluid can visualize the color of filaments next to the extruder/tool selector. The color dynamicall
+# shown here can be customized to your choice:
+#    slicer   - Color from slicer tool map (what the slicer expects)
+#    allgates - Color from all the tools in the gate map after running through the TTG map
+#    gatemap  - As per gatemap but hide empty tools
+#
+# Note: Happy Hare will also add the 'spool_id' variable to the Tx macro if spoolman is enabled
+#
+t_macro_color: slicer                   # 'slicer' = default | 'allgates' = mmu | 'gatemap' = mmu without empty gates
 #
 enable_clog_detection: 2                # 0 = disable, 1 = static length clog detection, 2 = automatic length clog detection
 enable_endless_spool: 1                 # 0 = disable, 1 = enable endless spool
