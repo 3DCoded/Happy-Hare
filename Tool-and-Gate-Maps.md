@@ -144,7 +144,11 @@ In this example, the slicer is set up for 4 tools "extruders" with red/green/blu
 
 To view the current detailed mapping you can use either `MMU_STATUS DETAIL=1` or `MMU_REMAP_TTG` with no parameters
 
-The TTG map is controlled with the `MMU_REMAP_TTG` command although the graphical user interface with Happy Hare KlipperScreen makes this trivial. For example, to remap T0 to Gate #8, issue:
+The TTG map is controlled with the `MMU_REMAP_TTG` command although the graphical user interface with [KlipperScreen - Happy Hare Edition](https://github.com/moggieuk/KlipperScreen-Happy-Hare-Edition) makes this trivial (as well as editing EndlessSpool groups):
+
+<p align="center"><img src="Tool-and-Gate-Maps/klipperscreen_mmu_toolmap.png" width="60%">
+
+For console example, to remap T0 to Gate #8, issue:
 
 > MMU_REMAP_TTG TOOL=0 GATE=8
 
@@ -191,10 +195,6 @@ An example of how to interpret a TTG map (this example has EndlessSpool disabled
 
 The lower paragraph of the status is the gate centric view showing the mapping back to tools as well as the configured filament material type and color which is explained later in this guide.<br>
 
-For users of my [KlipperScreen - Happy Hare Edition](https://github.com/moggieuk/KlipperScreen-Happy-Hare-Edition) you can use the convenient and easy to visualize TTG editor panel which can also configure EndlessSpool groups:
-
-<p align="center"><img src="Tool-and-Gate-Maps/klipperscreen_mmu_toolmap.png" width="60%">
-
 
 > [!TIP]  
 > The initial TTG map (and therefore the default after a reset `MMU_TTG_MAP RESET=1`) can also be specified in a similar form to other "gate map attributes" in the `mmu_parameters.cfg` file by updating the `tool_to_gate_map` list, ensuring it is the same length as the number of gates. E.g.<br>
@@ -204,6 +204,8 @@ For users of my [KlipperScreen - Happy Hare Edition](https://github.com/moggieuk
 > ```
 >
 > If not specified the gate map will default to a "pass-through" mapping with each tool mapped to their respective gate. Further there is an option to automatically reset the TTG map at the end of every print to prevent confusion on the next print
+>
+> Default EndlessSpool groups can be setup in a similar way with the `endless_spool_groups` parameter. See `mmu_parameters.cfg` for full details
 
 <br>
 
