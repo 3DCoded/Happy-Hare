@@ -11,7 +11,7 @@ Happy Hare maintains a set of "maps" (exposed by printer variables) that are use
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Gate Map
 **Management Command: `MMU_GATE_MAP`**<br>
 
-**Printer Variables: `printer.mmu.gate_status`, `printer.mmu.gate_material`, `printer.mmu.gate_color`, `printer.mmu.gate_color_rgb` and `printer.mmu.gate_spool_id`, `gate_filament_name`**
+**Printer Variables:** `printer.mmu.gate_status`, `printer.mmu.gate_material`, `printer.mmu.gate_color`, `printer.mmu.gate_color_rgb` and `printer.mmu.gate_spool_id`, `printer.mmu.gate_filament_name`
 
 Happy Hare can keep track of the type and color for each filament you have loaded in the MMU as well as the current availability. This is leveraged in KlipperScreen visualization but also has more practical purposes because this information is made available through printer variables so you can leverage in your own macros to, for example, customize pressure advance, temperature and more. The map is persisted in `mmu_vars.cfg`.
 
@@ -78,7 +78,7 @@ Here is an example snippet of a macro controlling LED's for reference:
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Slicer Tool Map
 **Management Command: `MMU_SLICER_TOOL_MAP`**
 
-**Printer Variable: `printer.mmu.slicer_tool_map`**
+**Printer Variables:** `printer.mmu.slicer_tool_map`
 
 The slicer tool map will typically be set up in the print start macros as documented in [Slicer Setup](Slicer-Setup) and it is only valid for the current print (i.e. each print replaces the old map). It represents what the slicer is expecting to see for each tool and is pulled from information stored in the slicer's g-code file.
 
@@ -123,7 +123,7 @@ Although typical setup in the print start macro, you can manually manipulate thi
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Tool to Gate (TTG) Mapping
 **Management Command: `MMU_TTG_MAP`**<br>
 
-**Printer Variable: `printer.mmu.ttg_map`**
+**Printer Variables:** `printer.mmu.ttg_map`, `printer.mmu.endless_spool_groups`
 
 When changing a tool with the `Tx` command the MMU will by default select the filament at the gate (spool) of the same number. The mapping built into this _Happy Hare_ driver allows you to modify that.
 
