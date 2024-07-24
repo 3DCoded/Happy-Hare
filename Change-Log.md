@@ -225,3 +225,17 @@ Other new features include:
 - `MMU_CHECK_GATE` now defaults to current gate when invoked with no arguments. `ALL=1` flag to force checking all gates.
 - New Wiki content and enhancements to existing pages
 - Bug fixes: one condition that could result in klipper "stepcompress" error
+
+### v2.7.0
+Main focus: tighter integration with spoolman
+- Better integration with spoolman db. Printer name and gate assignment will be reflected in the spoolman db (requires spoolman >= 0.18.1)
+- Now two modes of spoolman integration: `push` the former mode augumented with the updating of assigned gate directly in spoolman, and `pull` where the gate map is defined by what is in spoolman. Useful in larger print farms. Details [here](https://github.com/moggieuk/Happy-Hare/wiki/Spoolman-Support.md)
+- New `MMU_SPOOLMAN` command for performing gate related writes to spoolman db
+- New innovative automatic TTG mapping strategies. Controlled by `variable_automap_strategy`. Essentially this is applied after reading the slicer tool map to ensure mapping to the correct gate even if the MMU is loaded incorrectly. Strategies include: 'none', 'filament_name', 'material', 'color', 'closest_color', 'spool_id'. Details [here](https://github.com/moggieuk/Happy-Hare/wiki/Tool-and-Gate-Maps.md#---automatic-tool-to-gate-ttg-mapping)
+- Mainsail integration: Extruder/Filament colors and other filament attributes from spoolman are displayed in UI. Also there are controls on what color to display: slicer, gatemap (hiding unused filaments), the full gate map. Controlled with `t_macro_color`. Details [here](https://github.com/moggieuk/Happy-Hare/wiki/Mainsail-Fluidd-Integration.md)
+
+Other features:
+- Now incorporates a filament "tightening" move after loading the toolhead if synced extruder is turned off. This is to prevent false clog detection when the slack in the bowden is greater than the clog detection length
+- Several PR's incorporated and bug fixes to address reported Issues
+- Lots of wiki updates.
+
