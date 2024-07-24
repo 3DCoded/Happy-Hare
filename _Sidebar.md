@@ -83,6 +83,7 @@
 - [LED Support](Led-Support)
 - [Spoolman Support](Spoolman-Support)
 - [Third Party Addon Features](Addon-Feature-Setup)
+- [Mainsail/Fluidd Integration](Mainsail-Fluidd-Integration)
 
 </details>
 
@@ -101,9 +102,9 @@
   - [Monitoring Consumables](Statistics-and-Consumption-Counters#---consumption-counters)
 - [Tool and Gate Maps](Tool-and-Gate-Maps)
   - [Gate Map](Tool-and-Gate-Maps#---gate-map)
+  - [Slicer Tool Map](Tool-and-Gate-Maps#---slicer-tool-map)
   - [Tool to Gate (TTG) Map](Tool-and-Gate-Maps#---tool-to-gate-ttg-mapping)
     - [Automatic TTG Mapping](Tool-and-Gate-Maps#---automatic-tool-to-gate-ttg-mapping)
-  - [Slicer Tool Map](Tool-and-Gate-Maps#---slicer-tool-map)
 - [Filament Bypass](Filament-Bypass)
 - [Runout/Clog Detection](Clog-Runout-EndlessSpool)
   - [Optional Encoder](Clog-Runout-EndlessSpool#---optional-encoder)
