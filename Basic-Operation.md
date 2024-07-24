@@ -191,7 +191,7 @@ There is a lot that can go wrong with an MMU and initial setup can be frustratin
 <ul>
 <li>This wiki. Read it all. I recommend a first pass all the way through to understand the scope and then methodically as you setup your MMU. Make sure you understand conceptually what Happy Hare is trying to do.
 <li>'mmu.log'.  This, by default, will log at the TRACE (3) level which will provide quite detailed description of what the firmware is doing. Review it when strange things happen.
-<li> 'MMU_TEST_CONFIG log_level=2'.  This can be a useful tool. Running this on startup will temporarily turn the console verbosity level to `DEBUG`. This will provide a richer running commentary of issues you might encounter.
+<li>'MMU_TEST_CONFIG log_level=2'.  This can be a useful tool. Running this on startup will temporarily turn the console verbosity level to `DEBUG`. This will provide a richer running commentary of issues you might encounter.
 <li>Check slicer settings. Happy Hare has only limited visibility into what the slicer is doing - if it, for example, ejects filament from the extruder when Happy Hare expects the filament to still be in the extruder, it will result in an error. Understand this interaction.
 </ul>
 
