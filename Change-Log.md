@@ -50,7 +50,7 @@ New Features:
 - Enhancements to existing commands. E.g try: 'MMU_STATUS SHOWCONFIG=1'
 
 ### v2.3.1
-- Full Spoolman integration: will now pull material and colors from spoolman in addition to activating the spool
+- Better Spoolman integration: will now pull material and colors from spoolman in addition to activating the spool
 - Allow the LED effects to be configure anywhere on a chain (as well as gate 0->N or N->0 ordering)
 - EndlessSpool got some love because I think it will be much more valuable with pre-gate switches and early runout detection:
  - a) endless_spool_on_load parameter that will activate ES on loading a tool with empty gate
@@ -201,7 +201,7 @@ The release provides more flexibilty in tool change movement, introduces consump
 - Doc converted to Wiki and removed from distribution. Old doc links will be invalid
 
 ### v2.6.0
-Main focus on this release is the reduction of blobing, stringing and tuning for beautiful prints (see https://github.com/moggieuk/Happy-Hare/wiki/Blobbing-and-Stringing). Most issues are because of incorrect toolhead parameters and the former lack of a retract setting when the toolhead is moving.  Both of those are now solved with automated toolhead calibration (including tip cutting variables) and an new z-hop ramp setting:
+**Main focus on this release is the reduction of blobing, stringing and tuning** for beautiful prints Read [here](https://github.com/moggieuk/Happy-Hare/wiki/Blobbing-and-Stringing). Most issues are because of incorrect toolhead parameters and the former lack of a retract setting when the toolhead is moving.  Both of those are now solved with automated toolhead calibration (including tip cutting variables) and an new z-hop ramp setting:
   - Added new `MMU_CALIBRATE_TOOLHEAD` command for automated measurement of `toolhead_extruder_to_nozzle`, `toolhead_sensor_to_nozzle`, `toolhead_entry_to_extruder` and `toolhead_ooze_reduction`. Read the doc but this will eliminate incorrect "trial and error" values for these key dimensions.
   - Added new `toolchange_retract` and `toolchange_retract_speed` parameters to allow for retraction at the time of "z-hop" and un-retract as print resumes.
   - Added new `z_hop_ramp` parameter to control how the toolhead move off the print to help break stringing. It allow the definition of a horizonal move on top of the "z-hop". The direction will be towards the center of the print area. The toolhead will ramp up and away from the print and then move back to original position above starting point. `z_hop_speed` should be increased closer to your x,y travel speed
@@ -211,7 +211,7 @@ Main focus on this release is the reduction of blobing, stringing and tuning for
   - Removed some minor pauses when resuming print
 - New `MMU_COLD_PULL` helper command. Useful in its own right but essential for the new toolhead calibration. Check it out - it can work in a completely automated way (https://github.com/moggieuk/Happy-Hare/wiki/Blobbing-and-Stringing#---cleaning-extruder-with-a-cold-pull)
 
-Other new features include:
+**Other new features include:**
 - Help address one of the Timer Too Close error conditions - Klipper has a less than optimal "save-variable" implementation can can cause problems with old/slower SD-cards. To workaround this HH now includes a batch update so all the HH overhead is combined into one or two calls rather than the previous 10 or so. You can see a "mmu__revision" added to you `mmu_vars.cfg` that increments on every write.
 - Couple more bug fixes (erroneous load errors) when using the `EXTRUDER_ONLY=1` flag on extruder loading/unloading without using bypass
 - Added `gate_autoload` parameter to allow the pre-gate sensor autoload feature to be disabled
@@ -227,14 +227,14 @@ Other new features include:
 - Bug fixes: one condition that could result in klipper "stepcompress" error
 
 ### v2.7.0
-Main focus: tighter integration with spoolman
+**Main focus: tighter integration with spoolman**
 - Better integration with spoolman db. Printer name and gate assignment will be reflected in the spoolman db (requires spoolman >= 0.18.1)
-- Now two modes of spoolman integration: `push` the former mode augumented with the updating of assigned gate directly in spoolman, and `pull` where the gate map is defined by what is in spoolman. Useful in larger print farms. Details [here](https://github.com/moggieuk/Happy-Hare/wiki/Spoolman-Support.md)
+- Now two modes of spoolman integration: `push` the former mode augumented with the updating of assigned gate directly in spoolman, and `pull` where the gate map is defined by what is in spoolman. Useful in larger print farms. This is controlled via a new `spoolman_support` parameter. Details [here](https://github.com/moggieuk/Happy-Hare/wiki/Spoolman-Support.md)
 - New `MMU_SPOOLMAN` command for performing gate related writes to spoolman db
 - New innovative automatic TTG mapping strategies. Controlled by `variable_automap_strategy`. Essentially this is applied after reading the slicer tool map to ensure mapping to the correct gate even if the MMU is loaded incorrectly. Strategies include: 'none', 'filament_name', 'material', 'color', 'closest_color', 'spool_id'. Details [here](https://github.com/moggieuk/Happy-Hare/wiki/Tool-and-Gate-Maps.md#---automatic-tool-to-gate-ttg-mapping)
-- Mainsail integration: Extruder/Filament colors and other filament attributes from spoolman are displayed in UI. Also there are controls on what color to display: slicer, gatemap (hiding unused filaments), the full gate map. Controlled with `t_macro_color`. Details [here](https://github.com/moggieuk/Happy-Hare/wiki/Mainsail-Fluidd-Integration.md)
+- Mainsail integration: Extruder/Filament colors and other filament attributes from spoolman are displayed in UI. Also there are controls on what color to display: slicer, gatemap (hiding unused filaments), the full gate map. Controlled with the new `t_macro_color` parameter. Details [here](https://github.com/moggieuk/Happy-Hare/wiki/Mainsail-Fluidd-Integration.md)
 
-Other features:
+**Other features:**
 - Now incorporates a filament "tightening" move after loading the toolhead if synced extruder is turned off. This is to prevent false clog detection when the slack in the bowden is greater than the clog detection length
 - Several PR's incorporated and bug fixes to address reported Issues
 - Lots of wiki updates.
