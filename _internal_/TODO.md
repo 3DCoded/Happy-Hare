@@ -11,13 +11,15 @@
 10. Prusa_servo mock class .. maybe make servo a separate class for this and #9
 11. Inattention time instead of retry on fail. Remove ‘retry_change_on_error’
 12. force_form_tip_standalone —> allow_slicer_form_tip or tip forming strategy form|slicer|cut cut_mmu??
-13. \_form_tip as separate “\_STEP”
+13. MMU_STEP_FORM_TIP as separate step command -- currently bundled in MMU_STEP_UNLOAD_EXTRUDER
 14. Externalize ‘boot up tasks’ so users could add things like “check_gates”
 15. DONE - Remove sd_card pause..
 16. DONE - Disable gate runout during tool change -- maybe code encoder to disable that way too..?
 17. DONE - Ensure z_hop is correct if gcode offset is specified. E.g.
+```yml
      {% set z_min = params.Z_MIN|default(0)|float %}
      {% set z_park = [[(act.z + park_dz), z_min]|max, (max.z - origin.z)]|min %}
+```
 18. Add 'filament_temp' to gate_map.  Also, pull from spoolman. Edit `mmu_gate_map` command
 19. DONE Centralize macro variables .. need to update mmu.my for MMU_TEST_FORM_TIP
 20. DONE Deprecate printer.mmu.material .. Replaced with active_gate.material, active_gate.color, ...
@@ -34,8 +36,6 @@ Every update of pigment to gate map would recalc matrix and present as printer v
         if algorithm not in algorithms:
             raise gcmd.error("ALGORITHM is invalid. Options are: %s" % algorithms]
 ```
----
-
 22. DONE - If EndlessSpool enabled and initial tool is empty, auto map to next gate
 23. DONE - Check comments on tool_tip_macro.  Example:
 ```
@@ -47,32 +47,40 @@ variable_cooling_tube_length should have the comment: Measured from Top of Heate
 26. DONE Merge `retract branch` .. after completing.  Note the change to "Cosmetic Options" in parameters .. need to update Wiki
 27. Update "Installation/Upgrade" wiki to include moonraker update manager example and screenshot
 28. DONE - Issue #292: don't wait for temp if in print and a new temp was set by slicer... (careful of corner cases and restart after cooled extruder..)
-29. Initial toolchange often occurs very close to bed. Would be 0mm if (z_hop=0, I think?). Is this true? Should there be a min for x/y movement? Then x/y would always be at minimum height...?
+29. Reported: Initial toolchange often occurs very close to bed. Would be 0mm if (z_hop=0, I think?). Is this true? Should there be a min for x/y movement? Then x/y would always be at minimum height...?
 30. DONE Spaghetti Noodle problem... after load when printing without sync, there can be a lot of slack in filament that can cause clog detection issue.  Perhaps tighten the filament using gear motor once loaded...?
 31. DONE Maybe implement MMU_CALIBRATE_TOOLHEAD with no toolhead sensor idea...?
-             # IF NO TS (currently not supported, but some ideas here)
-                # IF "extruder" sensor:
-                    # Reverse home to "extruder" sensor with synced movement
-                    # --> Movement is `toolhead_entry_to_extruder` + `toolhead_extruder_to_nozzle`
-                    # Remember this
-                    # Home to extruder entrance using collision (not important to be accurate)
-                    # [Filament is now tight against extruder and under compression]
-                    # Reverse home to extruder sensor
-                    # Distance moved is approximately `toolhead_entry_to_extruder`
-                    # --> `toolhead_extruder_to_nozzle` = Early recorded movement - ``toolhead_entry_to_extruder`
-                    # NOTE: the above is flawed because filament cannot be retracted evenly -- it tends to spring and jerk
-                    #       But it could be compared with calibrated length - "a homing move to the extruder sensor"
-                # Else: # NO "extruder" sensor (or TS):
-                    # Ideas:
-                    # 1. to use gate as homing point .. almost certainly too far away to be accurate
-                    # 2. Use stallguard on extruder stepper to sense the nozzle .. will work IF stallguard set well
-                    #    Move 5-10mm synced to ensure clean transition into extruder
-                    #    Move 100mm extruder only, "touch" homing move
-                    #    Measured distance is `toolhead_entry_to_extruder`
+```
+ # IF NO TS (currently not supported, but some ideas here)
+    # IF "extruder" sensor:
+        # Reverse home to "extruder" sensor with synced movement
+        # --> Movement is `toolhead_entry_to_extruder` + `toolhead_extruder_to_nozzle`
+        # Remember this
+        # Home to extruder entrance using collision (not important to be accurate)
+        # [Filament is now tight against extruder and under compression]
+        # Reverse home to extruder sensor
+        # Distance moved is approximately `toolhead_entry_to_extruder`
+        # --> `toolhead_extruder_to_nozzle` = Early recorded movement - ``toolhead_entry_to_extruder`
+        # NOTE: the above is flawed because filament cannot be retracted evenly -- it tends to spring and jerk
+        #       But it could be compared with calibrated length - "a homing move to the extruder sensor"
+    # Else: # NO "extruder" sensor (or TS):
+        # Ideas:
+        # 1. to use gate as homing point .. almost certainly too far away to be accurate
+        # 2. Use stallguard on extruder stepper to sense the nozzle .. will work IF stallguard set well
+        #    Move 5-10mm synced to ensure clean transition into extruder
+        #    Move 100mm extruder only, "touch" homing move
+        #    Measured distance is `toolhead_entry_to_extruder`
+```
 32. DONE: Add `gate_autoload` param 0/1 to enable disable autoload feature. Default to 1.
 33. DONE Add `endless_spool_waste_gate` param.  -1 = current gate (default), 0-n = designated gate.  If a designated gate then pre-gate sensors are automatically excluded.  Implement the special waste gate unloading...
 34. DONE Implement `z_hop_ramp` parameter and action
 35. DONE: Implement `MMU_CHECK_GATE ALL=1` semantic change
+36. Ensure mmu_server works with "push" and old database
+37. Add HH install to Kiauh
+38. Make BTT MMB v2 live
+39. Bleeding edge branch of Danger Klipper fails .. extruder stepper change related
+40. Review encoder measure loading and unloading distances -- seem to have deviated from the real gear movement
+41. Related to #40 .. Issue #348 ... not adding encoder to gate sensor adjustment to encoder reading
 
 ### Reference Markdown so I don't forget
 
