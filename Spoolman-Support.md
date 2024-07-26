@@ -38,7 +38,7 @@ The `spoolman_support` parameter can be set to:
 
 Please note that both `push` and `pull` modes require you to have [spoolman **0.18.1**](https://github.com/Donkie/Spoolman/releases) or later installed. If you are using an older version of spoolman you will need to upgrade to use this feature.
 
-If spoolman support is enabled (`push` or `pull` modes), you will notice that two additional columns will be added to spoolman db. To display this in spoolman web interface you may need to open "Hide Columns" and select them:
+If spoolman support is enabled (`push` or `pull` modes), you will notice that two additional columns (`Printer Name` and `MMU Gate` will be added to spoolman db. To display this in spoolman web interface you may need to open "Hide Columns" and select them:
 
 <p align="center"><img src="Spoolman-Support/spoolman_columns.png" width="60%"></p>
 
