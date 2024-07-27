@@ -224,9 +224,9 @@ Here you can see the additional extra fields `Printer Name` and `MMU Gate` added
 
 <p align="center"><img src="Spoolman-Support/spoolman_ui.png" width="80%"></p>
 
-To view the essential information about a spool use this command. If the `SPOOLID` parameter is omitted it will default to the currently active spool (if available):
+To view the essential information about a spool use this command. If the `SPOOLINFO` parameter is `0` or `-1` it will default to the currently active spool (if available):
 
-> MMU_SPOOLMAN SHOWINFO=1 SPOOLID=1
+> MMU_SPOOLMAN SPOOLINFO=1
 ```
 Spool is: Matte Green (id: 1)
 - Material: n/a
@@ -238,7 +238,7 @@ If the spool is not currently assigned to this printer you will additionally see
 
 ```
 Spool id 1 is not assigned to this printer!
-Run: MMU_SPOOLMAN UPDATE=1 SPOOLID=1 GATE=..
+Run: MMU_SPOOLMAN SPOOLID=1 GATE=..
 ```
 
 ### Re-syncing with spoolman
@@ -275,30 +275,32 @@ Without any parameters the command will list the gate assignment for the printer
 
 > MMU_SPOOLMAN
 ```
-Gate assignment for printer: BigRed
+Spoolman gate assignment for printer: BigRed
 Gate | Spool ID
 -----+---------
 0    | 1
-1    | 2
-3    | 4
+1    | 23
+3    | 41
 4    | 5
-5    | 6
-8    | 7
+5    | 11
+6    |
+7    |
+8    | 12
 ```
 
 #### Updating remote gate map
-In this mode changing the gate map locally will not have a lasting effect because it will be overwritten by the "map" stored in spoolman. There to update remotely use the `UPDATE=1` parameter.
+In this mode changing the gate map locally will not have a lasting effect because it will be overwritten by the "map" stored in spoolman. Thus to update remotely specify the `SPOOLID` and/or `GATE` parameters
 
 For example to remotely **SET** (associate) gate 1 with spool id 5, run:
 
-> MMU_SPOOLMAN UPDATE=1 GATE=1 SPOOLID=5
+> MMU_SPOOLMAN GATE=1 SPOOLID=5
 
 If another gate was previously set to spool id 5 it will automatically be cleared.
 
 There are two ways to  **UNSET** (disassociate) a spool id and gate. Either run with `SPOOLID` but without the `GATE` or specifiy the `GATE` but without the `SPOOLID`. The latter will find spool currently associated the gate on this printer and clear it. Examples:
 
-> MMU_SPOOLMAN UPDATE=1 SPOOLID=5<br>
-> MMU_SPOOLMAN UPDATE=1 GATE=1
+> MMU_SPOOLMAN SPOOLID=5<br>
+> MMU_SPOOLMAN GATE=1
 
 To quickly clear the entire remote gate map for this printer:
 
@@ -313,6 +315,18 @@ Normally this command is unecessary but since Happy Hare keeps a cache to reduce
 
 > MMU_SPOOLMAN REFRESH=1
 
+> [!NOTE]  
+> To automatically fix and out of sync spoolman database, add the `FIX=1` parameter:
+> > MMU_SPOOLMAN REFRESH=1 FIX=1
+> This will clear offending entries of printer and gate association and retain only the first spool found if multiple are currently assigned to a gate
+
 > [!IMPORTANT]  
 > This is not recommended to run during a print which large spoolman databases
+
+#### Using in your macros
+If using `MMU_SPOOLMAN` in your own macros note that operations can be combined. E.g. To clear database, ensure all inconsistencies are fixed, then assign spool 6 to gate 0:
+
+> MMU_SPOOLMAN CLEAR=1 REFRESH=1 FIX=1 GATE=0 SPOOLID=6
+
+You can suppress output with the `QUIET=1` parameter
 
