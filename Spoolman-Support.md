@@ -38,13 +38,13 @@ The `spoolman_support` parameter can be set to:
 
 Please note that both `push` and `pull` modes require you to have [spoolman **0.18.1**](https://github.com/Donkie/Spoolman/releases) or later installed. If you are using an older version of spoolman you will need to upgrade to use this feature.
 
-If spoolman support is enabled (`push` or `pull` modes), you will notice that two additional columns will be added to spoolman db. To display this in spoolman web interface you may need to open "Hide Columns" and select them:
+If spoolman support is enabled (`push` or `pull` modes), you will notice that two additional columns (`Printer Name` and `MMU Gate`) will be added to spoolman db. To display this in spoolman web interface you will need to open "Hide Columns" and select them:
 
 <p align="center"><img src="Spoolman-Support/spoolman_columns.png" width="60%"></p>
 
-An alternative to displaying these additional columns is to use the default behavior of concatenating printer and gate into the "Location" column (see not below). The printer name will refer to the klipper machine's hostname and the MMU gate will refer to the gate number that the spool is loaded into. This can be useful if you have multiple printers and MMUs and want to keep track of which spool is loaded into which MMU.
+An alternative to displaying these additional columns is to use the default behavior of concatenating `Printer Name` and `MMU Gate` into the "Location" column (see note below). The printer name will refer to the klipper machine's hostname and the MMU gate will refer to the gate number that the spool is loaded into. This can be useful if you have multiple printers and MMUs and want to keep track of which spool is loaded into which MMU. It also unclutters the spoolman web interface.
 
-> [!NOTE]  
+> [!NOTE]
 > The use of the "Location" field can be controlled be `update_spoolman_location` parameter in `moonraker.conf`. If not specified it defaults to `True`
 >
 > ```
@@ -55,15 +55,15 @@ An alternative to displaying these additional columns is to use the default beha
 <br>
 
 ### Off:
-If you set `spoolman_support` to `off` then Happy Hare will not interact with spoolman and spool ids will not be seen in the gate map
+If you set `spoolman_support` to `off` then Happy Hare will not interact with spoolman and spool ids will not be seen in the gate map. In this case filament color and material retrieval is also disabled. Automapping of tools to gates (detailed [Here](Tool-and-Gate-Maps#---automatic-tool-to-gate-ttg-mapping)) might still be useful in this mode but will not be as powerful as when spoolman is enabled.
 
 <br>
 
 ### Push:
 If you set `spoolman_support` to `push` then Happy Hare will push the local gate map (that can be seen in `mmu_vars.cfg` file) to spoolman at klipper startup and when explicitely asked.
-In this mode klipper will read the mmu_vars.cfg file at startup to initialize its internal gate map and then push that to spoolman by asking moonraker to update the spoolman database. In this case the local configuration is the source of truth and spoolman is updated to match. When you make changes to the gate map using `MMU_GATE_MAP GATE=<int> SPOOLID=<int>` you can push those changes to spoolman by calling the `MMU_SPOOLMAN SYNC=1` command. (see section on [commands](Command-Reference) for more details).
+In this mode klipper will read the `mmu_vars.cfg` file at startup to initialize its internal gate map and then push that to spoolman by asking moonraker to update the spoolman database. In this case the local configuration is the source of truth and spoolman is updated to match. When you make changes to the gate map using `MMU_GATE_MAP GATE=<int> SPOOLID=<int>` you can push those changes to spoolman by calling the `MMU_SPOOLMAN SYNC=1` command. (see section on [commands](Command-Reference) for more details).
 
-> [!NOTE]  
+> [!NOTE]
 > Executing:
 > > MMU_GATE_MAP GATE=3 SPOOLID=74
 > > MMU_SPOOLMAN SYNC=1
@@ -247,9 +247,9 @@ Happy hare will resync on its own as necessary, but you can force a re-sync of t
 > MMU_SPOOLMAN SYNC=1
 
 ### Working with a remote gate map
-This is useful if managing more that one printer or in a print farm scenario where centralized management if preferable. To this this up, change `spoolman_support: pull` in `mmu_parameters.cfg`
+This is useful if managing more that one printer or in a print farm scenario where centralized management if preferable. To set this up, change `spoolman_support: pull` in `mmu_parameters.cfg`
 
-> [!TIP]  
+> [!TIP]
 > You can practice switching between modes with the `MMU_TEST_CONFIG spoolman_support=xxx`. If you have the spoolman web UI active you should dynamically see it change.
 
 If `spoolman_support: pull` set in `mmu_parameters.cfg` the MMU will get its gate map and filament attributes from spoolman. Technically it pulls from spoolman and stores locally. The local gate map will display slightly differently to remind you:
@@ -311,7 +311,7 @@ Spool 6 gate cleared in spoolman db
 ```
 
 #### Recovering if out of sync with spoolman db
-Normally this command is unecessary but since Happy Hare keeps a cache to reduce load on spoolman, it may be necessary if you remotely edit the spoolman db or an error condition occurs. Running it will completely reload spoolman, refresh the cache and then synchronized the local gate map with spoolman in the direction of the `spoolman_support` setting in `mmu_parameters.cfg` (either pushing the local map or pulling remote map):
+Normally this command is unecessary but since Happy Hare keeps a cache to reduce load on spoolman, it may be necessary if you remotely edit the spoolman db or an error condition occurs. Running it will completely reload spoolman, refresh the cache and then synchronize the local gate map with spoolman in the direction of the `spoolman_support` setting in `mmu_parameters.cfg` (either pushing the local map or pulling remote map):
 
 > MMU_SPOOLMAN REFRESH=1
 
@@ -320,7 +320,7 @@ Normally this command is unecessary but since Happy Hare keeps a cache to reduce
 > > MMU_SPOOLMAN REFRESH=1 FIX=1
 > This will clear offending entries of printer and gate association and retain only the first spool found if multiple are currently assigned to a gate
 
-> [!IMPORTANT]  
+> [!IMPORTANT]
 > This is not recommended to run during a print which large spoolman databases
 
 #### Using in your macros
