@@ -40,7 +40,7 @@ Please note that both `push` and `pull` modes require you to have [spoolman **0.
 
 If spoolman support is enabled (`push` or `pull` modes), you will notice that two additional columns (`Printer Name` and `MMU Gate`) will be added to spoolman db. To display this in spoolman web interface you will need to open "Hide Columns" and select them:
 
-<p align="center"><img src="Spoolman-Support/spoolman_columns.png" width="60%"></p>
+<p align="center"><img src="Spoolman-Support/spoolman_columns.png" width="80%"></p>
 
 An alternative to displaying these additional columns is to use the default behavior of concatenating `Printer Name` and `MMU Gate` into the "Location" column (see note below). The printer name will refer to the klipper machine's hostname and the MMU gate will refer to the gate number that the spool is loaded into. This can be useful if you have multiple printers and MMUs and want to keep track of which spool is loaded into which MMU. It also unclutters the spoolman web interface.
 
@@ -65,7 +65,7 @@ In this mode klipper will read the `mmu_vars.cfg` file at startup to initialize 
 
 > [!NOTE]
 > Executing:
-> > MMU_GATE_MAP GATE=3 SPOOLID=74
+> > MMU_GATE_MAP GATE=3 SPOOLID=74<br>
 > > MMU_SPOOLMAN SYNC=1
 >
 > Will result in the following gate map in the spoolman web browser interface (if you have enabled the additional columns as described above):
@@ -75,6 +75,7 @@ In this mode klipper will read the `mmu_vars.cfg` file at startup to initialize 
 The graph below details the klipper startup sequence:
 ```mermaid
 sequenceDiagram
+    autonumber
     participant L as Persisted variables
     participant K as Klipper
     participant M as Moonraker
@@ -82,24 +83,48 @@ sequenceDiagram
 
     L->>K: read local gate map
     K->>M: push gate map
-    M->>S: push gate map
+    M->>S: write gate map
+
+    K->>M: get filament details
+    M->>S: read filament details
+    S-->>M: filament details
+    M->>K: MMU_GATE_MAP MAP={filament details}
+    K->>L: write filament details
 ```
-The graph below details the klipper explicit push sequence:
+The graph below details the explicit gate update sequence:
 ```mermaid
 sequenceDiagram
+    autonumber
     participant L as Persisted variables
     participant K as Klipper
     participant M as Moonraker
-    participant MF as Mainsail/Fluidd
     participant S as Spoolman
+    participant MF as Mainsail/Fluidd
 
-    MF->>M: MMU_GATE_MAP GATE=3 SPOOLID=74
-    M->>K: MMU_GATE_MAP GATE=3 SPOOLID=74
+    MF->>K: MMU_GATE_MAP GATE=3 SPOOLID=74
     K->>L: write local gate map
-    MF->>M: MMU_SPOOLMAN SYNC=1
-    M->>K: MMU_SPOOLMAN SYNC=1
     K->>M: push gate map
-    M->>S: push gate map
+    M->>S: write gate map
+```
+The graph below details the explicit sync sequence:
+```mermaid
+sequenceDiagram
+    autonumber
+    participant L as Persisted variables
+    participant K as Klipper
+    participant M as Moonraker
+    participant S as Spoolman
+    participant MF as Mainsail/Fluidd
+
+    MF->>K: MMU_GATE_MAP SYNC=1
+    K->>M: push gate map
+    M->>S: write gate map
+
+    K->>M: get filament details
+    M->>S: read filament details
+    S-->>M: filament details
+    M->>K: MMU_GATE_MAP MAP={filament details}
+    K->>L: write filament details
 ```
 
 <br>
@@ -109,36 +134,54 @@ If you set `spoolman_support` to `pull` then Happy Hare will pull the gate map f
 In this mode klipper will ask moonraker to pull the gate map from spoolman at startup and then read the gate map from moonraker to initialize its internal gate map. In this case spoolman is the source of truth and klipper is updated to match. When you make changes to the gate map in spoolman you can pull those changes to klipper by calling the `MMU_SPOOLMAN SYNC=1` command. (see section on [commands](Command-Reference) for more details).
 
 The graph below details the klipper startup sequence:
+
 ```mermaid
 sequenceDiagram
+    autonumber
     participant L as Persisted variables
     participant K as Klipper
     participant M as Moonraker
     participant S as Spoolman
 
-    K->>M: pull gate map
-    M->>S: pull gate map
-    S->>M: gate_map
-    M->>K: MMU_GATE_MAP MAP=gate_map
+    K->>M: pull gate map & filament details
+    M->>S: read gate map & filament details
+    S-->>M: gate map & details
+    M->>K: MMU_GATE_MAP MAP={gate map...}
     K->>L: write local gate map
 ```
-<br>
 
-The graph below details the klipper explicit pull sequence:
+The graph below details the explicit gate update sequence:
+
 ```mermaid
 sequenceDiagram
+    autonumber
     participant L as Persisted variables
     participant K as Klipper
     participant M as Moonraker
-    participant MF as Mainsail/Fluidd
     participant S as Spoolman
+    participant MF as Mainsail/Fluidd
 
-    MF->>M: MMU_SPOOLMAN SYNC=1
-    M->>K: MMU_SPOOLMAN SYNC=1
+    MF->>K: MMU_SPOOLMAN GATE=3 SPOOLID=74
+    K->>M: update remote gate map
+    M->>S: write remote gate map
+```
+
+The graph below details the explicit sync sequence:
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant L as Persisted variables
+    participant K as Klipper
+    participant M as Moonraker
+    participant S as Spoolman
+    participant MF as Mainsail/Fluidd
+
+    MF->>K: MMU_SPOOLMAN SYNC=1
     K->>M: pull gate map
-    M->>S: pull gate map
-    S->>M: gate_map
-    M->>K: MMU_GATE_MAP MAP=gate_map
+    M->>S: read gate map
+    S-->>M: gate map
+    M->>K: MMU_GATE_MAP MAP={gate map...}
     K->>L: write local gate map
 ```
 
@@ -222,7 +265,7 @@ This command allows for management of the added functionality to Spoolman. Speci
 
 Here you can see the additional extra fields `Printer Name` and `MMU Gate` added to the database in the Spoolman web interface. The "Location" field is updated by default but this can be controlled with the `update_spoolman_location` config option in `moonraker.conf`. Add/set it to `False` to prevent the overwriting of the "Location" field.
 
-<p align="center"><img src="Spoolman-Support/spoolman_ui.png" width="80%"></p>
+<p align="center"><img src="Spoolman-Support/spoolman_ui.png" width="100%"></p>
 
 To view the essential information about a spool use this command. If the `SPOOLINFO` parameter is `0` or `-1` it will default to the currently active spool (if available):
 
