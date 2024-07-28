@@ -483,15 +483,16 @@ endless_spool_eject_gate: -1            # Which gate to eject the filament remai
 # Spoolman support requires you to correctly enable spoolman with moonraker first. If enabled, the gate SpoolId will
 # be used to load filament details and color from the spoolman database and Happy Hare will activate/deactivate
 # spools as they are used. The enabled variation allows for either the local map or the spoolman map to be the
-# source of truth. See this table for explanation:
+# source of truth as well as just fetching filament attributes. See this table for explanation:
 #
 #                    | Activate/  | Fetch filament attributes | Filament gate    | Filament gate     |
 #   spoolman_support | Deactivate | attributes from spoolman  | assignment shown | assignment pulled |
 #                    | spool?     | based on spool_id?        | in spoolman db?  | from spoolman db? |
 #   -----------------+------------+---------------------------+------------------+-------------------+
-#         off        |     no     |           no              |           no     |        no         |
-#         push       |     yes    |           yes             |           yes    |        no         |
-#         pull       |     yes    |           yes             |           yes    |        yes        |
+#        off         |     no     |           no              |        no        |        no         |
+#        readonly    |     yes    |           yes             |        no        |        no         |
+#        push        |     yes    |           yes             |        yes       |        no         |
+#        pull        |     yes    |           yes             |        yes       |        yes        |
 #
 spoolman_support: off                   # off = disabled, push = local gate map is source of truth, pull = spoolman is
 pending_spool_id_timeout: 20            # Seconds after which this pending spool_id (set with rfid) is voided

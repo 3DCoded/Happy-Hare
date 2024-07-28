@@ -44,7 +44,7 @@ Happy Hare exposed 'printer' variables that can be used in your own macros.
     printer.mmu.extruder_residual_filament : {float} amount of residual filament always left in extruder (for toolchange macros)
     printer.mmu.toolchange_retract : {float} amount of extruder retraction (useful in toolchange macros)
     printer.mmu.enable_spoolman : {int} 0 (disabled) | 1 (enabled) Deprecated, use printer.mmu.spoolman_support instead
-    printer.mmu.spoolman_support: {string} spoolman integration mode (off | push | pull)
+    printer.mmu.spoolman_support: {string} spoolman integration mode (off | readonly | push | pull)
 ```
 
 Optionally exposed for mmu_encoder (if fitted):

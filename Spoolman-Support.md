@@ -317,7 +317,7 @@ Run: MMU_SPOOLMAN SPOOLID=1 GATE=..
 ```
 
 ### Re-syncing with spoolman
-Happy hare will resync on its own as necessary, but you can force a re-sync of the local gate map and the remote gate map with this command. The synchronization will be in the direction of the `spoolman_support` setting.  If 'push' the printer name, gate and optionally the location field will be updated to match local map. If 'pull' the local gate mapping will be synced based on the printer name, gate assignment stored in spoolman. Note that this does not rebuild the cache (see `REFRESH=1` later)
+Happy hare will resync on its own as necessary, but you can force a re-sync of the local gate map and the remote gate map with this command. The synchronization will be in the direction of the `spoolman_support` setting.  If 'push' the printer name, gate and optionally the location field will be updated to match local map. If 'pull' the local gate mapping will be synced based on the printer name, gate assignment stored in spoolman. If 'readonly' just the filament attributes will be refreshed from spoolman. Note that this does not rebuild the moonraker cache (see `REFRESH=1` later)
 
 > MMU_SPOOLMAN SYNC=1
 
@@ -386,7 +386,7 @@ Spool 6 gate cleared in spoolman db
 ```
 
 #### Recovering if out of sync with spoolman db
-Normally this command is unecessary but since Happy Hare keeps a cache to reduce load on spoolman, it may be necessary if you remotely edit the spoolman db or an error condition occurs. Running it will completely reload spoolman, refresh the cache and then synchronize the local gate map with spoolman in the direction of the `spoolman_support` setting in `mmu_parameters.cfg` (either pushing the local map or pulling remote map):
+Normally this command is unecessary but since Happy Hare keeps a cache to reduce load on spoolman, it may be necessary if you remotely edit the spoolman db directly or an error condition occurs. Running it will completely reload spoolman, refresh the cache and then synchronize the local gate map with spoolman in the direction of the `spoolman_support` setting in `mmu_parameters.cfg` (either pushing the local map or pulling remote map):
 
 > MMU_SPOOLMAN REFRESH=1
 
@@ -396,12 +396,12 @@ Normally this command is unecessary but since Happy Hare keeps a cache to reduce
 > This will clear offending entries of printer and gate association and retain only the first spool found if multiple are currently assigned to a gate
 
 > [!IMPORTANT]
-> This is not recommended to run during a print which large spoolman databases
+> This is not recommended to run during a print which large spoolman databases.
 
 #### Using in your macros
 If using `MMU_SPOOLMAN` in your own macros note that operations can be combined. E.g. To clear database, ensure all inconsistencies are fixed, then assign spool 6 to gate 0:
 
 > MMU_SPOOLMAN CLEAR=1 REFRESH=1 FIX=1 GATE=0 SPOOLID=6
 
-You can suppress output with the `QUIET=1` parameter
+You can suppress output with the `QUIET=1` parameter.
 
