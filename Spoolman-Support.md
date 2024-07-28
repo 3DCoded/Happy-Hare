@@ -1,6 +1,11 @@
 #### Page Sections:
 - [Configuration](#---configuration)
-- [Gate Map and Spool ID](#---gate-map-and-spool-id)
+  - [Off](#mode-off)
+  - [Readonly](#mode-readonly)
+  - [Push (local gate map)](#mode-push)
+  - [Pull (remote gate map)](#mode-pull)
+- [Gate Map and Spool Id](#---gate-map-and-spool-id)
+  - [Activation Spool Id on toolchange](#activating-spoolid-on-toolchange)
   - [Auto-setting with RFID reader](#auto-setting-with-rfid-reader)
 - [MMU\_SPOOLMAN Command](#---mmu_spoolman-command)
 
@@ -55,7 +60,7 @@ An alternative to displaying these additional columns is to use the default beha
 
 <br>
 
-### Off:
+### Mode: "off":
 If you set `spoolman_support` to `off` then Happy Hare will not interact with spoolman and spool ids will not be seen in the gate map. In this case the local filament color and material details are used and retrieval from spoolman is disabled. Automapping of tools to gates (detailed [Here](Tool-and-Gate-Maps#---automatic-tool-to-gate-ttg-mapping)) might still be useful in this mode but will not be as powerful as when spoolman is enabled.
 
 #### Startup sequence explained
@@ -73,7 +78,7 @@ sequenceDiagram
 
 <br>
 
-### Readonly:
+### Mode "readonly":
 If you set `spoolman_support` to `readonly` it behaves as it did prior to the v2.7.0 release. In this mode Happy Hare will fetch the filament color and material details from spoolman and replace local attributes if a spoolid is set for a gate otherwise the local attributes will be used.
 
 #### Startup sequence explained
@@ -102,7 +107,7 @@ In summary:
 
 <br>
 
-### Push:
+### Mode "push":
 If you set `spoolman_support` to `push` then Happy Hare will push the local gate map (that can be seen in `mmu_vars.cfg` file) to spoolman at klipper startup or when a gate is assigned a new spool id.
 In this mode klipper will read the `mmu_vars.cfg` file at startup to initialize its internal gate map and then push that to spoolman by asking moonraker to update the spoolman database. In this case the local configuration is the source of truth and spoolman is updated to match.
 When you make changes to the gate map using `MMU_GATE_MAP GATE=<int> SPOOLID=<int>` with a different spool id, the change will also be synced to spoolman.
@@ -137,7 +142,7 @@ To update the gate map you would execute commands similar to this:
 
 Will result in the following gate map in the spoolman web browser interface (assuming compatible spoolman version):
 
-<img src="Spoolman-Support/spoolman_interface_example.png" width="100%"/>
+<p align="center"><img src="Spoolman-Support/spoolman_interface_example.png" width="100%"></p>
 
 First the local gate map is updated as it would be with spoolman disabled. Then the local gate map (gate, printer and spool_id) is pushed to spoolman db and filament attributes are updated from spoolman for gates with spool_id set and persisted locally. Note this is very similar to the startup sequence.
 
@@ -166,7 +171,7 @@ In summary:
 
 <br>
 
-### Pull:
+### Mode: "pull":
 If you set `spoolman_support` to `pull` then Happy Hare will pull the gate map from spoolman at klipper startup and when explicitely asked.
 In this mode klipper will ask moonraker to pull the gate map from spoolman at startup and then read the gate map from moonraker to initialize its internal gate map. In this case spoolman is the source of truth and klipper is updated to match. When you make changes to the gate map in spoolman the results will be synced to the local gate map. If you think the two are ever out of sync you can issue a `MMU_SPOOLMAN SYNC=1` command. (see section on [commands](Command-Reference) for more details).
 To make changes in spoolman you can either do it directly in spoolman (and then run the `MMU_SPOOLMAN REFRESH=1 SYNC=1`) or more conveniently by using the Happy Hare `MMU_SPOOLMAN GATE=<int> SPOOLID=<int>` command. (see section on [Command Reference](Command-Reference) for more details).
@@ -255,14 +260,14 @@ See the [command reference](Command-Reference) for a complete list of command ar
 
 <br>
 
-### Changing SpoolID on Toolchange
+### Activating SpoolID on Toolchange
 Once configured Happy Hare will, on a change of tool, let spoolman know (via moonraker) to deactivate the previous spool and activate the new one. You will see this occur in a UI like mainsail:
 
-<img src="Spoolman-Support/spoolman_mainsail.png" width="60%">
+<p align="center"><img src="Spoolman-Support/spoolman_mainsail.png" width="60%"></p>
 
 If you use my enhanced [KlipperScreen Happy Hare Edition](https://github.com/moggieuk/KlipperScreen-Happy-Hare-Edition) there are also screens to visualize the gate map with spoolman setup as well as to edit the spool\_id:
 
-<img src="Spoolman-Support/spoolman_ks.png" width="60%">
+<p align="center"><img src="Spoolman-Support/spoolman_ks.png" width="60%"></p>
 
 <br>
 
