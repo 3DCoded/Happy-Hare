@@ -126,8 +126,9 @@ The following are similar to `_MMU_STATE_VARS` and allow user customization base
 
 `variable_user_pre_load_extension` runs a command or macro after Happy Hare executes pre-load logic.
 
-`variable_user_post_load_extension` runs a command or macro after Happy Hare executes post-load logic. This would be a good place to add a nozzle brushing macro, but, just be sure the tool head doesn't crash into the print when running.  
-I.e. `variable_user_post_load_extension: CLEAN_NOZZLE`
+`variable_user_post_load_extension` runs a command or macro after Happy Hare executes post-load logic. This would be a good place to add a nozzle brushing macro, but, just be sure the tool head doesn't crash into the print when running. E.g. `variable_user_post_load_extension: CLEAN_NOZZLE`
+
+`variable_user_park_move_macro_macro` runs this command instead of the default straight line "G1 X Y (to variable_park_xy postion)" move. This is useful if you need to add some special logic like operating a servo to lower a silicon pad or moving is a "L" pattern. If set, the `variable_park_xy` is ignored.
 
 <br>
 
