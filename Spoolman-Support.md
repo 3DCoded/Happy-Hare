@@ -28,17 +28,18 @@ update_spoolman_location: True
 
 Secondly, in `mmu_parameters.cfg` enable support:
 ```yml
-spoolman_support: push|pull
+spoolman_support: get|push|pull
 ```
 
 The `spoolman_support` parameter can be set to:
 - `off` - No spoolman support
+- `readonly` - Only filament attributes are retrieved, spoolman db is never modified
 - `push` - The local gate map is considered as the source of truth and will be pushed to spoolman
 - `pull` - The remote spoolman database is considered as the source of truth and will be pulled into the local gate map
 
 Please note that both `push` and `pull` modes require you to have [spoolman **0.18.1**](https://github.com/Donkie/Spoolman/releases) or later installed. If you are using an older version of spoolman you will need to upgrade to use this feature.
 
-If spoolman support is enabled (`push` or `pull` modes), you will notice that two additional columns (`Printer Name` and `MMU Gate`) will be added to spoolman db. To display this in spoolman web interface you will need to open "Hide Columns" and select them:
+If spoolman support is enabled (`get`, `push` or `pull` modes), you will notice that two additional columns (`Printer Name` and `MMU Gate`) will be added to spoolman db. To display this in spoolman web interface you will need to open "Hide Columns" and select them:
 
 <p align="center"><img src="Spoolman-Support/spoolman_columns.png" width="80%"></p>
 
@@ -55,18 +56,59 @@ An alternative to displaying these additional columns is to use the default beha
 <br>
 
 ### Off:
-If you set `spoolman_support` to `off` then Happy Hare will not interact with spoolman and spool ids will not be seen in the gate map. In this case the filament color and material details are used and retrieval from spoolmand is disabled. Automapping of tools to gates (detailed [Here](Tool-and-Gate-Maps#---automatic-tool-to-gate-ttg-mapping)) might still be useful in this mode but will not be as powerful as when spoolman is enabled.
+If you set `spoolman_support` to `off` then Happy Hare will not interact with spoolman and spool ids will not be seen in the gate map. In this case the local filament color and material details are used and retrieval from spoolman is disabled. Automapping of tools to gates (detailed [Here](Tool-and-Gate-Maps#---automatic-tool-to-gate-ttg-mapping)) might still be useful in this mode but will not be as powerful as when spoolman is enabled.
+
+#### Startup sequence explained
+The graph below details the klipper startup sequence: the local gate map and filament details is read locally
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant L as Persisted variables
+    participant K as Klipper
+
+    K->>L: read local gate map
+    L-->>K: local gate map
+```
+
+<br>
+
+### Readonly:
+If you set `spoolman_support` to `readonly` it behaves as it did prior to the v2.7.0 release. In this mode Happy Hare will fetch the filament color and material details from spoolman and replace local attributes if a spoolid is set for a gate otherwise the local attributes will be used.
+
+#### Startup sequence explained
+The graph below details the klipper startup sequence: the local gate map (gate, printer and spool_id) is read and the filament details for all referenced spool ids is retrieved and updated locally.
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant L as Persisted variables
+    participant K as Klipper
+    participant M as Moonraker
+    participant S as Spoolman
+
+    K->>L: read local gate map
+    L-->>K: local gate map
+    K->>M: get filament attributes
+    M->>S: read filament details
+    S-->>M: filament details
+    M->>K: MMU_GATE_MAP MAP={filament details}
+    K->>L: update filament details
+```
+
+In summary:
+- Use the `MMU_GATE_MAP` command to adjust the gate map.
+- If spool id is specified the filament attributes will be pulled from spoolman overwriting local attributes
 
 <br>
 
 ### Push:
-If you set `spoolman_support` to `push` then Happy Hare will push the local gate map (that can be seen in `mmu_vars.cfg` file) to spoolman at klipper startup and when explicitely asked.
+If you set `spoolman_support` to `push` then Happy Hare will push the local gate map (that can be seen in `mmu_vars.cfg` file) to spoolman at klipper startup or when a gate is assigned a new spool id.
 In this mode klipper will read the `mmu_vars.cfg` file at startup to initialize its internal gate map and then push that to spoolman by asking moonraker to update the spoolman database. In this case the local configuration is the source of truth and spoolman is updated to match.
-When you make changes to the gate map using `MMU_GATE_MAP GATE=<int> SPOOLID=<int>` you can push those changes to spoolman by calling the `MMU_SPOOLMAN SYNC=1` command. (see section on [Command Reference](Command-Reference) for more details).
+When you make changes to the gate map using `MMU_GATE_MAP GATE=<int> SPOOLID=<int>` with a different spool id, the change will also be synced to spoolman.
 
 
-<br>
-
+#### Startup sequence explained
 The graph below details the klipper startup sequence: the local gate map (gate, printer and spool_id) is pushed to spoolman db and filament details for gate with spool_id are retrieved/updated.
 
 ```mermaid
@@ -77,32 +119,28 @@ sequenceDiagram
     participant M as Moonraker
     participant S as Spoolman
 
-    L->>K: read local gate map
+    K->>L: read local gate map
+    L-->>K: local gate map
     K->>M: push gate map
     M->>S: write gate map
-
-    K->>M: get filament details
     M->>S: read filament details
     S-->>M: filament details
     M->>K: MMU_GATE_MAP MAP={filament details}
-    K->>L: write filament details
+    K->>L: update filament details
 ```
 
 <br>
 
+#### Update sequence explained
 To update the gate map you would execute commands similar to this:
-> MMU_GATE_MAP GATE=3 SPOOLID=74<br>
-> MMU_SPOOLMAN SYNC=1
+> MMU_GATE_MAP GATE=3 SPOOLID=74
 
 Will result in the following gate map in the spoolman web browser interface (assuming compatible spoolman version):
 
 <img src="Spoolman-Support/spoolman_interface_example.png" width="100%"/>
 
-#### Sequence explained
+First the local gate map is updated as it would be with spoolman disabled. Then the local gate map (gate, printer and spool_id) is pushed to spoolman db and filament attributes are updated from spoolman for gates with spool_id set and persisted locally. Note this is very similar to the startup sequence.
 
-The next two graphs detail the explicit actions described above. First the local gate map is updated as it would be with spoolman disabled.
-
-> MMU_GATE_MAP GATE=3 SPOOLID=74
 ```mermaid
 sequenceDiagram
     autonumber
@@ -114,42 +152,26 @@ sequenceDiagram
 
     MF->>K: MMU_GATE_MAP GATE=3 SPOOLID=74
     K->>L: write local gate map
-    K->>M: push gate map
-    M->>S: write gate map
-```
-
-Then the local gate map (gate, printer and spool_id) is pushed to spoolman db and filament attributes are updated from spoolman for gates with spool_id set. Note this is very similar to the startup sequence.
-
-> MMU_SPOOLMAN SYNC=1
-```mermaid
-sequenceDiagram
-    autonumber
-    participant L as Persisted variables
-    participant K as Klipper
-    participant M as Moonraker
-    participant S as Spoolman
-    participant MF as Mainsail/Fluidd
-
-    MF->>K: MMU_SPOOLMAN SYNC=1
-    K->>M: push gate map
-    M->>S: write gate map
-
-    K->>M: get filament details
+    K->>M: push gate map change
+    M->>S: write gate map change
     M->>S: read filament details
     S-->>M: filament details
     M->>K: MMU_GATE_MAP MAP={filament details}
-    K->>L: write filament details
+    K->>L: update filament details
 ```
+
+In summary:
+- Use the `MMU_GATE_MAP` command to adjust the gate map.
+- Use `MMU_SPOOLMAN REFRESH=1 SYNC=1` to force the update of spoolman to reflect the local map
 
 <br>
 
 ### Pull:
 If you set `spoolman_support` to `pull` then Happy Hare will pull the gate map from spoolman at klipper startup and when explicitely asked.
-In this mode klipper will ask moonraker to pull the gate map from spoolman at startup and then read the gate map from moonraker to initialize its internal gate map. In this case spoolman is the source of truth and klipper is updated to match. When you make changes to the gate map in spoolman you can pull those changes to klipper by calling the `MMU_SPOOLMAN SYNC=1` command. (see section on [commands](Command-Reference) for more details).
-To make changes in spoolman you can either do it directly or more conveniently by using the `MMU_SPOOLMAN GATE=<int> SPOOLID=<int>` command. (see section on [Command Reference](Command-Reference) for more details).
+In this mode klipper will ask moonraker to pull the gate map from spoolman at startup and then read the gate map from moonraker to initialize its internal gate map. In this case spoolman is the source of truth and klipper is updated to match. When you make changes to the gate map in spoolman the results will be synced to the local gate map. If you think the two are ever out of sync you can issue a `MMU_SPOOLMAN SYNC=1` command. (see section on [commands](Command-Reference) for more details).
+To make changes in spoolman you can either do it directly in spoolman (and then run the `MMU_SPOOLMAN REFRESH=1 SYNC=1`) or more conveniently by using the Happy Hare `MMU_SPOOLMAN GATE=<int> SPOOLID=<int>` command. (see section on [Command Reference](Command-Reference) for more details).
 
-<br>
-
+#### Startup sequence explained
 The graph below details the klipper startup sequence: the remote gate map is requested and it is used to sync the local gate map.
 
 ```mermaid
@@ -160,22 +182,21 @@ sequenceDiagram
     participant M as Moonraker
     participant S as Spoolman
 
-    K->>M: pull gate map & filament details
+    K->>L: read local gate map
+    L-->>K: local gate map
+    K->>M: pull remote gate map & filament details
     M->>S: read gate map & filament details
     S-->>M: gate map & details
     M->>K: MMU_GATE_MAP MAP={gate map...}
-    K->>L: write local gate map
+    K->>L: update local gate map
 ```
 
+#### Update sequence explained
 To perform a similar update to the "push" example above, you would execute (note MMU_GATE_MAP is not used):
 > MMU_SPOOLMAN GATE=3 SPOOLID=74<br>
-> MMU_SPOOLMAN SYNC=1
 
-#### Sequence explained
+Firstly a request is sent via moonraker to persist the change in the remote gate map (spoolman). Then a sync is requested: The remote gate map (mapping and filament attribtues) is pulled from the spoolman db. The map is then persisted locally.
 
-The next two graphs detail the explicit actions described above. Firstly a request is sent via moonraker to persist the change in the remote gate map (spoolman).
-
-> MMU_SPOOLMAN GATE=3 SPOOLID=74
 ```mermaid
 sequenceDiagram
     autonumber
@@ -188,29 +209,15 @@ sequenceDiagram
     MF->>K: MMU_SPOOLMAN GATE=3 SPOOLID=74
     K->>M: update remote gate map
     M->>S: write remote gate map
-```
-
-Then a sync is requested: The remote gate map (mapping and filament attribtues) is pulled from the spoolman db. The map is then persisted locally.
-
-> MMU_SPOOLMAN SYNC=1
-```mermaid
-sequenceDiagram
-    autonumber
-    participant L as Persisted variables
-    participant K as Klipper
-    participant M as Moonraker
-    participant S as Spoolman
-    participant MF as Mainsail/Fluidd
-
-    MF->>K: MMU_SPOOLMAN SYNC=1
-    K->>M: pull gate map
-    M->>S: read gate map
-    S-->>M: gate map
+    M->>S: get filament detail
+    S-->>M: gate map & details
     M->>K: MMU_GATE_MAP MAP={gate map...}
-    K->>L: write local gate map
+    K->>L: update local gate map and details
 ```
 
-If you made changes, restart klipper and moonraker services and you are done.
+In summary:
+- Use the `MMU_SPOOLMAN` command to adjust the gate map.
+- Use `MMU_SPOOLMAN REFRESH=1 SYNC=1` if you ever edit spoolman directly
 
 <br>
 
