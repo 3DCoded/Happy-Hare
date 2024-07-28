@@ -343,13 +343,14 @@ This section deals with the various filament handling and management options.
 
 `endless_spool_eject_gate` normally endless spool will unload the filament remains into the current gate (`-1`), however it is possible to designate a specific gate (which of course but be kept unloaded) as the "waste gate". If this is configured only runout sensors after the gate will operational and filament will be unloaded only into the waste gate. This is useful if you have a very compact rotary style buffer where unloading of filament can run into the neighboring gate.
 
-`spoolman_support` Controls the level of Spoolman integration: `off` = disable spoolman support, `push` = enable spoolman with gate attributes like color being read from spoolman and gate associated pushed for visualization, `pull` = enable spoolman but pull sync mmu gate map from spoolman db. This is a complex option, so be sure to read [Spoolman Support](Spoolman-Support) for more details, but here is a quick summary table:
+`spoolman_support` Controls the level of Spoolman integration: `off` = disable spoolman support, `readonly` = just activate active spool and pull filament attributes from spoolman, `push` = enable spoolman with gate attributes like color being read from spoolman and gate associated pushed for visualization, `pull` = enable spoolman but pull sync mmu gate map from spoolman db. This is a complex option, so be sure to read [Spoolman Support](Spoolman-Support) for more details, but here is a quick summary table:
 
   | spoolman_support | Activate/Deactive Spool? | Fetch filament attributes from spoolman | Filament gate assignment shown in spoolman db? | Filament gate assignment pulled from spoolman |
-  | ---- | --- | --- | --- | --- |
-  | off  | no  | no  | no  | no  |
-  | push | yes | yes | yes | no  |
-  | pull | yes | yes | yes | yes |
+  | -------- | --- | --- | --- | --- |
+  | off      | no  | no  | no  | no  |
+  | readonly | yes | yes | no  | no  |
+  | push     | yes | yes | yes | no  |
+  | pull     | yes | yes | yes | yes |
 
 `pending_spool_id_timeout` Seconds after which this pending spool_id (set with rfid) is voided.
 
