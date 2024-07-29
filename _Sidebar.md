@@ -81,9 +81,9 @@
 
 - [Gcode Preprocessing](Gcode-Preprocessing)
 - [LED Support](Led-Support)
-- [Spoolman Support](Spoolman-Support)
+- [Spoolman Support](Spoolman-Support) :new:
 - [Third Party Addon Features](Addon-Feature-Setup)
-- [Mainsail/Fluidd Integration](Mainsail-Fluidd-Integration)
+- [Mainsail/Fluidd Integration](Mainsail-Fluidd-Integration) :new:
 
 </details>
 
