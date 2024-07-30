@@ -651,6 +651,7 @@ encoder_move_validation: 1      # 1 = Normally Encoder validates move distances 
                                 # 0 = Validation is disabled for many moves (eliminates slight pause between moves but less safe)
 gcode_load_sequence: 0          # VERY ADVANCED: Gcode loading sequence 1=enabled, 0=internal logic (default)
 gcode_unload_sequence: 0        # VERY ADVANCED: Gcode unloading sequence, 1=enabled, 0=internal logic (default)
+preload_attempts: 5             # How many "grabbing" attempts are made to pick up the filament with preload feature
 ```
 
 <br>

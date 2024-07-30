@@ -483,6 +483,8 @@ The following variables are configurable based on your needs, but rarely need me
 
 `load_sequence_macro` similar to above. **VERY ADVANCED**. Default is `_MMU_LOAD_SEQUENCE`.
 
+`preload_attempts` how many "grabbing" attempts are made to pick up the filament with preload feature.
+
 <br>
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Statically defined "reset" defaults
