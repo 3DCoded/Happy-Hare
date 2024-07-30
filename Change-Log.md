@@ -229,13 +229,18 @@ The release provides more flexibilty in tool change movement, introduces consump
 ### v2.7.0
 **Main focus: tighter integration with spoolman**
 - Better integration with spoolman db. Printer name and gate assignment will be reflected in the spoolman db (requires spoolman >= 0.18.1)
-- Now two modes of spoolman integration: `push` the former mode augumented with the updating of assigned gate directly in spoolman, and `pull` where the gate map is defined by what is in spoolman. Useful in larger print farms. This is controlled via a new `spoolman_support` parameter. Details [here](https://github.com/moggieuk/Happy-Hare/wiki/Spoolman-Support.md)
-- New `MMU_SPOOLMAN` command for performing gate related writes to spoolman db
+- Now three modes of spoolman integration: `readonly` the former mode, `push` the former augmented with the updating of assigned gate directly in spoolman, and `pull` where the gate map is defined by what is in spoolman. Useful in larger print farms. This is controlled via a new `spoolman_support` parameter. Details [here](https://github.com/moggieuk/Happy-Hare/wiki/Spoolman-Support.md)
+- New `MMU_SPOOLMAN` command for performing gate related management (updates) to spoolman db
 - New innovative automatic TTG mapping strategies. Controlled by `variable_automap_strategy`. Essentially this is applied after reading the slicer tool map to ensure mapping to the correct gate even if the MMU is loaded incorrectly. Strategies include: 'none', 'filament_name', 'material', 'color', 'closest_color', 'spool_id'. Details [here](https://github.com/moggieuk/Happy-Hare/wiki/Tool-and-Gate-Maps.md#---automatic-tool-to-gate-ttg-mapping)
-- Mainsail integration: Extruder/Filament colors and other filament attributes from spoolman are displayed in UI. Also there are controls on what color to display: slicer, gatemap (hiding unused filaments), the full gate map. Controlled with the new `t_macro_color` parameter. Details [here](https://github.com/moggieuk/Happy-Hare/wiki/Mainsail-Fluidd-Integration.md)
+- Moonraker plugin now parses the filament names and includes in slicer tool map and mmu gate maps
+- Mainsail integration: Extruder/Filament colors and other filament attributes from spoolman are displayed in UI. Also there are controls on what color to display: `slicer`, `gatemap` (hiding unused filaments), `allgates` for the full gate map. Controlled with the new `t_macro_color` parameter. Details [here](https://github.com/moggieuk/Happy-Hare/wiki/Mainsail-Fluidd-Integration.md) :cool:
 
 **Other features:**
 - Now incorporates a filament "tightening" move after loading the toolhead if synced extruder is turned off. This is to prevent false clog detection when the slack in the bowden is greater than the clog detection length
-- Several PR's incorporated and bug fixes to address reported Issues
-- Lots of wiki updates.
+- New `variable_user_park_move_macro` can be used to customized the movement to the park position instead of default straight line move (Issue #351).
+- New printer variables: `printer.mmu.gate_filament_name` and `printer.mmu.spoolman_support`
+- Fixed issue when the loaded slicer tool map could be reset during print start.
+- Several PR's incorporated and bug fixes to address reported Issues.
+- Lots of wiki updates (see links above).
+- Tolerance to in Danger Klipper "bleeding edge" added. Comes without warantee!
 
