@@ -259,9 +259,11 @@ These are variables used in general print and MMU moves.
 
 `variable_retract` is the distance for retracts and un-retracts on pause. Important to note that this is NOT performed during a print or MMU error because Happy Hare will manage the retraction in that case.  This is useful for regular pauses during a print or if the MMU is disabled.
 
-`variable_retract_speed` the speed of the above retraction movement.  
+`variable_retract_speed` the speed of the above retraction movement.
 
-`variable_unretract_speed` is the speed Happy Hare will unretract.  
+`variable_unretract_speed` is the speed Happy Hare will unretract.
+
+`variable_reset_ttg_on_cancel` similar to `reset_ttg` on print end, this tell Happy Hare whether to reset the tool to gate map at the end of the print. Typically, the tool to gate map is not changed unless you switch filament colors or change the endless spool settings. Leaving this one `False` will save you from having to redo the tool to gate map on every print.  See [Gate Map](Tool-and-Gate-Maps#---gate-map) for explaination on how to map the gates. Usually `False`.
 
 `variable_user_pause_extension` is any command or code you want executed after a base pause. For instance, you may want to change the status of the printer LEDs through the Klipper Led Effect add on, in which case you'd have something like `variable_user_pause_extension: status_pause`  
 

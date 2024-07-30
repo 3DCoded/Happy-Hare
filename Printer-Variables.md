@@ -7,6 +7,7 @@ Happy Hare exposed 'printer' variables that can be used in your own macros.
     printer.mmu.is_paused : {bool} True if MMU is paused after an error (can also use print_job_state)
     printer.mmu.is_locked : {bool} Deprecated, use for printer.mmu.is_paused instead
     printer.mmu.is_homed : {bool} True if MMU has been homed
+    printer.mmu.is_in_print : {bool} True if MMU is managing a print job (print_job_state is printing|pause_locked|paused)
     printer.mmu.tool : {int} 0..n | -1 for unknown | -2 for bypass
     printer.mmu.gate : {int} 0..n | -1 for unknown
     printer.mmu.active_filament : {dict} of active filament attributes (from gate_map, e.g. active_filament.material, active_filament.color)
