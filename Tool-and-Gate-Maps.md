@@ -224,10 +224,10 @@ When your slicer and MMU are fully configured, the 4-color print illustration ab
 
 > [!NOTE]  
 >For those of your that are interested, this automated mapping can be called (**after the slicer tool map is loaded**) with a command of the form:
-> > MMU_SLICER_TOOL_MAP TOOL=1 AUTOMAP=name
+> > MMU_SLICER_TOOL_MAP TOOL=1 AUTOMAP=name<br>
 >This example with decide the best gate mapping of tool T1 to a gate based on the filament name
 >
-> > MMU_SLICER_TOOL_MAP TOOL=6 AUTOMAP=closest_color
+> > MMU_SLICER_TOOL_MAP TOOL=6 AUTOMAP=closest_color<br>
 This example with decide the best gate mapping of tool T6 to a gate based on the closest available color match
 
 Of course you can also use `MMU_TTG_MAP` to manually choose the mapping
