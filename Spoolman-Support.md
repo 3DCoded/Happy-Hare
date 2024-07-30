@@ -1,3 +1,6 @@
+> [!IMPORTANT]  
+> THIS IS A v2.7.0 FEATURE (currently in limited beta)
+
 #### Page Sections:
 - [Configuration](#---configuration)
   - [Off](#mode-off)
@@ -15,7 +18,7 @@ Spoolman has become a popular way to manage a large collection of print spools. 
 
 Happy Hare fully integrates with spoolman and leverages these two capabilities. Specifically, when Happy Hare selects a filament/spool, spoolman is notified of the selection so that the printer can update usage against the correct spool.  Secondly, spoolman is asked again for filament attributes to ensure Happy Hare's knowledge is up to date. Note that the load of filament attributes is also done in bulk during MMU initialization.
 
-To use spoolman with Happy Hare you need to configure and understand the roll of the "gate map" and the "spool_id" attribute.
+To use spoolman with Happy Hare you need to configure and understand the roll of the "gate map" and the "spool\_id" attribute.
 
 <br>
 

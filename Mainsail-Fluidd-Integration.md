@@ -1,3 +1,6 @@
+> [!IMPORTANT]  
+> THIS IS A v2.7.0 FEATURE (currently in limited beta)
+
 Mainsail and (I believe Fluidd) have added support to display additional attributes about each extruder. These are exploited by Happy Hare to give you even more visual feedback
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Extruder/Filament Color
