@@ -34,9 +34,12 @@ enable_object_processing: True
 default_metadata_parser_timeout: 30
 ```
 
-
 ### <img src="Troubleshooting-and-Common-Issues/carrot.png" alt="" width="23" height="21"> Klipper internal "Step Compress" error
 This can occur when syncing the gear and extruder steppers (they are always synced through part of the extruder loading process even if you are not printing with them synced).  It occurs when there is too big a mismatch in the movement of a single step on the gear and the extruder - a small movement can issue "step instructions" to one stepper but not the other.  This is easily avoided by changing the microstep setting on either the gear or extruder.  Often the extruder is set with too high a microstep setting when really no higher than 32 is necessary with common gear ratios. If the extruder is set to 32, try increasing the MMU gear stepper to 16, 32, ...
+
+### <img src="Troubleshooting-and-Common-Issues/carrot.png" alt="" width="23" height="21"> Move out of range error
+
+<p align="center"><img src="Troubleshooting-and-Common-Issues/move_out_of_range.png" alt="" width="200"/></p>
 
 <br>
 
@@ -46,13 +49,12 @@ This can occur when syncing the gear and extruder steppers (they are always sync
 `Incorrect number of values for PURGE_VOLUMES. Expect 1, 8, 16, or 64, got XXX`
 This usually happens when your number of filaments in the slicer doesn't match the number of gates in the MMU.
 For instance, if you have an 8 gate MMU and your slicer only has 7 filaments:
-<p align="center">
-    <img src="Troubleshooting-and-Common-Issues/purge_volume_error1.png" alt="" width="422" height="195" />
-</p>
+
+<p align="center"><img src="Troubleshooting-and-Common-Issues/purge_volume_error1.png" alt="" width="422"/></p>
+
 Add in a placeholder filament so the number of tools and filaments matches the number of gates in the MMU:
-<p align="center">
-    <img src="Troubleshooting-and-Common-Issues/purge_volume_error2.png" alt="" width="419" height="153" />
-</p>
+
+<p align="center"><img src="Troubleshooting-and-Common-Issues/purge_volume_error2.png" alt="" width="419"/></p>
 
 <br>
 
