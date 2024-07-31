@@ -243,4 +243,7 @@ The release provides more flexibilty in tool change movement, introduces consump
 - Several PR's incorporated and bug fixes to address reported Issues.
 - Lots of wiki updates (see links above).
 - Tolerance to in Danger Klipper "bleeding edge" added. Comes without warantee!
+- Fixed (cosmetic) problem where the load/unload distances in the console animation weren't consistent (Issue #348)
+- Added sanity checks to MMU_COLDPULL parameters so it can be called from Mainsail UI (Issue #362)
+- Exposed `preload_retries` parameter to extend the time Happy Hare tries to automatically load a spool once the pre-gate sensor has been triggered (Issue #360)
 
