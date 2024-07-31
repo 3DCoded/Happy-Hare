@@ -39,7 +39,11 @@ This can occur when syncing the gear and extruder steppers (they are always sync
 
 ### <img src="Troubleshooting-and-Common-Issues/carrot.png" alt="" width="23" height="21"> Move out of range error
 
+Often it is tempting to set park and similar moves in Happy Hare macros to the absolute limit of your printer range. This is not a good idea if you have skew/tilt correction enabled because a move that works at z=0mm will fail at heigher heights as the skew correction is added. This will be seen with an error similar to:
+
 <p align="center"><img src="Troubleshooting-and-Common-Issues/move_out_of_range.png" alt="move out of range" width="400"/></p>
+
+To fix, simply change from using the absolute minimum or maxamum movement to say 0.5mm short of that.  This gives Klipper's correction some room to work.
 
 <br>
 
