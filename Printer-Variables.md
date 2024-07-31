@@ -4,6 +4,7 @@ Happy Hare exposed 'printer' variables that can be used in your own macros.
 
 ```yml
     printer.mmu.enabled : {bool} True if MMU is enabled
+    printer.mmu.num_gates : {int} number of gates configured
     printer.mmu.is_paused : {bool} True if MMU is paused after an error (can also use print_job_state)
     printer.mmu.is_locked : {bool} Deprecated, use for printer.mmu.is_paused instead
     printer.mmu.is_homed : {bool} True if MMU has been homed
