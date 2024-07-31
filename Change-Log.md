@@ -246,4 +246,6 @@ The release provides more flexibilty in tool change movement, introduces consump
 - Fixed (cosmetic) problem where the load/unload distances in the console animation weren't consistent (Issue #348)
 - Added sanity checks to MMU_COLDPULL parameters so it can be called from Mainsail UI (Issue #362)
 - Exposed `preload_retries` parameter to extend the time Happy Hare tries to automatically load a spool once the pre-gate sensor has been triggered (Issue #360)
+- Added `variable_min_toolchange_z` (mmu_macro_vars.cfg) to specify the floor at which any toolchange movement will occur to prevent scraping the bed if no z-hop is specified.
+- Project against klipper's new habit of setting toolhead position slightly out of range after homing - save position will ensure it is in range.
 

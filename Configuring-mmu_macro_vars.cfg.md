@@ -108,6 +108,8 @@ If parking is enabled, `restore_xy_pos` allows toolhead x,y position restoration
 
 `variable_park_z_hop` additional Z hop when performing a tool change. This works in or out of a print.
 
+`variable_min_toolchange_z` the absolute minimum height for toolchange moves during print. This prevents scraping the bed if no z-hop is specified
+
 `variable_travel_speed` tells Happy Hare how fast to move in and out of the tool head parking position.
 
 `variable_lift_speed` tells Happy Hare how fast to move Z during a Z hop.
