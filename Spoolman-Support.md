@@ -9,7 +9,7 @@
   - [Pull (remote gate map)](#mode-pull)
 - [Gate Map and Spool Id](#---gate-map-and-spool-id)
   - [Activation Spool Id on toolchange](#activating-spoolid-on-toolchange)
-  - [Auto-setting with RFID reader](#auto-setting-with-rfid-reader-or-qr-code-reader)
+  - [Auto-setting with RFID/QR code reader](#auto-setting-with-rfid-qr-reader-code-reader)
 - [MMU\_SPOOLMAN Command](#---mmu_spoolman-command)
 
 Spoolman has become a popular way to manage a large collection of print spools. It is a database that you host somewhere (commonly on same rpi as your printer) that can be accessed through a web UI and web based remote procedure calls. Other than providing spool management it does two additional things:
@@ -274,7 +274,7 @@ If you use my enhanced [KlipperScreen Happy Hare Edition](https://github.com/mog
 
 <br>
 
-### Auto-setting with RFID reader (or QR code reader)
+### Auto-setting with RFID/QR code reader
 So you have fitted all you spools with a fancy RIFD tags and built a nifty RFID onto your printer or MMU, perhaps are already using [nfc2klipper](https://github.com/bofh69/nfc2klipper) to be able to read that info into klipper. How do you automatically use that with Happy Hare?  Here is how...
 
 Because it isn't practical to build a RFID into every gate, the workflow supported by Happy Hare is this:
