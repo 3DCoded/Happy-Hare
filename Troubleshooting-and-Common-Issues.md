@@ -39,7 +39,7 @@ This can occur when syncing the gear and extruder steppers (they are always sync
 
 ### <img src="Troubleshooting-and-Common-Issues/carrot.png" alt="" width="23" height="21"> Move out of range error
 
-<p align="center"><img src="Troubleshooting-and-Common-Issues/move_out_of_range.png" alt="" width="200"/></p>
+<p align="center"><img src="Troubleshooting-and-Common-Issues/move_out_of_range.png" alt="move out of range" width="400"/></p>
 
 <br>
 
