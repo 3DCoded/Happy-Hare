@@ -33,7 +33,7 @@ update_spoolman_location: True
 ```
 > [!IMPORTANT]
 > The number and setting value of parameters may be different from above, but having this section is important.<br>
-> The new `update_spoolman_location` setting controls whether the spoolman "Location" field is updated with a summary of which MMU/gate the spool is located at. If you already use this field for another purpose, simply set to `False` but then you might want to display the printer & gate columns in the Spoolman UI.
+> The new `update_spoolman_location` setting controls whether the spoolman "Location" field is updated with a summary of which MMU/gate the spool is located. If you already use this field for another purpose, simply set to `False` -- You then might want to display the printer & gate columns in the Spoolman UI.
 
 Secondly, in `mmu_parameters.cfg` enable support:
 ```yml
