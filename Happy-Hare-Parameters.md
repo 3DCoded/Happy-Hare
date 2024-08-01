@@ -358,7 +358,7 @@ toolhead_homing_max: 40                 # Maximum distance to advance in order t
 # your nozzle) to control excessive oozing on load. See doc for table of proposed values for common configurations.
 #
 # NOTE: If you have a toolhead sensor you can automate the calculation of these parameters! Read about the
-# `MMU_CALIBRATE_TOOLHEAD` command (https://github.com/moggieuk/Happy-Hare/wiki/Blobing-and-Stringing)
+# `MMU_CALIBRATE_TOOLHEAD` command (https://github.com/moggieuk/Happy-Hare/wiki/Blobbing-and-Stringing)
 #
 toolhead_extruder_to_nozzle: 72         # Distance from extruder gears (entrance) to nozzle
 toolhead_sensor_to_nozzle: 62           # Distance from toolhead sensor to nozzle (ignored if not fitted)
@@ -372,7 +372,7 @@ toolhead_entry_to_extruder: 8           # Distance from extruder "entry" sensor 
 # Also see 'toolchange_retract' for final in-print blob tuning.
 #
 # NOTE: If you have a toolhead sensor you can automate the calculation of this parameter! Read about the
-# `MMU_CALIBRATE_TOOLHEAD` command (https://github.com/moggieuk/Happy-Hare/wiki/Blobing-and-Stringing)
+# `MMU_CALIBRATE_TOOLHEAD` command (https://github.com/moggieuk/Happy-Hare/wiki/Blobbing-and-Stringing)
 #
 toolhead_ooze_reduction: 0              # Reduction in extruder loading length to fine tune ooze (default: 0mm)
 
