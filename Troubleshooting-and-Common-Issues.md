@@ -5,15 +5,17 @@ Got problems? Here are some "carrots of wisdom" and common solutions.
 ### <img src="Troubleshooting-and-Common-Issues/carrot.png" alt="" width="23" height="21"> Timer too close
 This error typically occurs when the host sends a message to the MCU, scheduling an event at a time that is in the past. Reasons High system load of the host High disk activity of the host Swapping due to low free memory Disk errors / dying SD card Unstable voltage Other hardware hogging the USB bus or other system resources Running in a Virtual Machine USB, UART or CANBUS wiring faults leading to extremely delayed messages ElectroMagnetic Interference (EMI) affecting proper signal. Remember that the host (rPi) only needs to experience a tiny period of high load so watching an average load meter doesn't tell the whole story. Also, as we drive additional functionality on our printers we are naturally getting closer to this annoying error condition. That said it can be avoided with these tips:
 
-- Avoid overly high microsteps on steppers, especially on extruder and MMU gear steppers
+- Avoid overly high microsteps on steppers, especially on MMU gear stepper and extruder. Take into account the gear ratio -- the higher the ratio the lower the microsteps can be for the same resolution. Good values are generally 32 for extruder, 8 or 16 for gear stepper.
 - Ensure rPi doesn't run too hot because if it reaches certain thresholds (starting a 60 degrees), it will automatically throttle performance, so consider adding a fan hat to keep it frosty
 - A known communication delay has been found in some of the latest operating systems that can result in a message from a mcu being delayed beyond the limits set in Klipper. This is especially true when performing a homing move - something that Happy Hare does a lot. You have to manually patch klipper by editing `~/klipper/klippy/mcu.py` and changing:
 `TRSYNC_TIMEOUT = 0.025`
 to
 `TRSYNC_TIMEOUT = 0.05`
-(Until klipper incorporates a way to make this perminent you will need to make this change after a major klipper update)
+(Until klipper incorporates a way to make this perminent you will need to make this change after a major klipper update)<br>
 
-Github user Dendrowen (our beloved Blobifier dev) offers this additonal general advice ([from discord](https://discord.com/channels/460117602945990666/909743915475816458/1222875626231566396)):
+**Update:** Happy Hare v2.7.0 has a parameter called `update_trsync: 1` will automatically apply this without modifing klipper!
+
+Other ideas:
 - Decrease load (webcams, plugins, etc..)
 - Decrease logging verbosity
 - Check load: https://www.klipper3d.org/Debugging.html#generating-load-graphs
@@ -43,7 +45,7 @@ Often it is tempting to set park and similar moves in Happy Hare macros to the a
 
 <p align="center"><img src="Troubleshooting-and-Common-Issues/move_out_of_range.png" alt="move out of range" width="400"/></p>
 
-To fix, simply change from using the absolute minimum or maxamum movement to say 0.5mm short of that.  This gives Klipper's correction some room to work.
+Happy Hare v2.7.0 now includes logic to keep the position within bounds after homing that was previously a common source of this error. If it ocurs elsewhere it is likely to be because of skew/tilt correction and height. To fix, simply change parking positions from using the absolute minimum or maximum movement to say 0.5mm short of that.  This gives Klipper's correction some room to work.
 
 <br>
 
@@ -59,6 +61,8 @@ For instance, if you have an 8 gate MMU and your slicer only has 7 filaments:
 Add in a placeholder filament so the number of tools and filaments matches the number of gates in the MMU:
 
 <p align="center"><img src="Troubleshooting-and-Common-Issues/purge_volume_error2.png" alt="" width="419"/></p>
+
+**Update:** Since Happy Hare v2.7.0 you can have less extrudes defined than gates in your MMU.
 
 <br>
 
