@@ -26,8 +26,6 @@ This section controls the behavior of the start up and finalization of a print t
 
 `variable_user_pre_initialize_extension`  This is called by `_MMU_START_SETUP` assuming you use the recommended Happy Hare start macros. You can use this extension to do a conditional home, set the printer LED status, or to put the printer into a certain state at the initiation of the print.
 
-`variable_octoprint_compat`  allows Happy Hare to communicate via the Octoprint mechanism. Usually `True`.
-
 `variable_home_mmu` tells Happy Hare if you want to include a homing move at the beginning of your print. Most likely `True` unless you call a homing move in your `START_PRINT` macro, in which case, set it to `False` to avoid unnecessary homing moves.
  
 `variable_check_gates`  when set to `True` tells Happy Hare to check each gate used in the print for filament. This is helpful to make sure everything is ready. If you're certain you can print and you've loaded everything correctly, you can save a few seconds at the beginning of the print by turning it off. However, it's not a huge time savings and probably better to just leave on. Plus, it's pretty cool to watch. Usually `True`.

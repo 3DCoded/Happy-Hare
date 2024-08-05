@@ -114,9 +114,6 @@ MMU_END
 #### `1. MMU_END`
 This is a macro (defined in `mmu_software.cfg`) that finalizes MMU, can print stats, reset any TTG map and eject filament. It is recommended to run this before your existing print end macro which is likely to disable heaters and turn motors off.
 
-> [!IMPORTANT]  
-> Make sure `octoprint_compat` is False (`mmu_macro_vars.cfg`) if not using Octoprint and you have your own `END_PRINT` following this, otherwise the `MMU_END` macro will force the state machine into a "COMPLETED" state which means any logic in your `END_PRINT` will look like starting a new print!
-
 #### `2. END_PRINT`
 This is where your existing print end macro would be placed
 
@@ -160,7 +157,6 @@ gcode: # Leave empty
 
 # These variables control the behavor of the optional _MMU_INITIALIZE and _MMU_LOAD_INITIAL_TOOL macros
 variable_user_pre_initialize_extension      : "G28"     ; Executed at start of _MMU_INITIALIZE. Commonly G28 to home
-variable_octoprint_compat                   : True      ; True to force compatibility with Octoprint print job streaming
 variable_home_mmu                           : False     ; True/False, Whether to home mmu before print starts
 variable_check_gates                        : True      ; True/False, Whether to check filament is loaded in all gates used
 variable_load_initial_tool                  : True      ; True/False, Whether to automatically load initial tool

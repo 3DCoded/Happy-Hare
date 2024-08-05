@@ -47,7 +47,7 @@ variable_cooling_tube_length should have the comment: Measured from Top of Heate
 26. DONE Merge `retract branch` .. after completing.  Note the change to "Cosmetic Options" in parameters .. need to update Wiki
 27. Update "Installation/Upgrade" wiki to include moonraker update manager example and screenshot
 28. DONE - Issue #292: don't wait for temp if in print and a new temp was set by slicer... (careful of corner cases and restart after cooled extruder..)
-29. Reported: Initial toolchange often occurs very close to bed. Would be 0mm if (z_hop=0, I think?). Is this true? Should there be a min for x/y movement? Then x/y would always be at minimum height...?
+29. DONE: now have min height floor in v270. Reported: Initial toolchange often occurs very close to bed. Would be 0mm if (z_hop=0, I think?). Is this true? Should there be a min for x/y movement? Then x/y would always be at minimum height...?
 30. DONE Spaghetti Noodle problem... after load when printing without sync, there can be a lot of slack in filament that can cause clog detection issue.  Perhaps tighten the filament using gear motor once loaded...?
 31. DONE Maybe implement MMU_CALIBRATE_TOOLHEAD with no toolhead sensor idea...?
 ```
@@ -75,12 +75,14 @@ variable_cooling_tube_length should have the comment: Measured from Top of Heate
 33. DONE Add `endless_spool_waste_gate` param.  -1 = current gate (default), 0-n = designated gate.  If a designated gate then pre-gate sensors are automatically excluded.  Implement the special waste gate unloading...
 34. DONE Implement `z_hop_ramp` parameter and action
 35. DONE: Implement `MMU_CHECK_GATE ALL=1` semantic change
-36. Ensure mmu_server works with "push" and old database
+36. DONE: Ensure mmu_server works with "push" and old database
 37. Add HH install to Kiauh
 38. Make BTT MMB v2 live
 39. Bleeding edge branch of Danger Klipper fails .. extruder stepper change related
-40. Review encoder measure loading and unloading distances -- seem to have deviated from the real gear movement
-41. Related to #40 .. Issue #348 ... not adding encoder to gate sensor adjustment to encoder reading
+40. DONE: Review encoder measure loading and unloading distances -- seem to have deviated from the real gear movement
+41. DONE: Related to #40 .. Issue #348 ... not adding encoder to gate sensor adjustment to encoder reading
+42. Determine the single step movement difference that causes "step compress" errors and point out on startup (could also dynamically adjust). Explore the possibility of NOT send empty movements if that is the true source of the error.
+43. 
 
 ### Reference Markdown so I don't forget
 
