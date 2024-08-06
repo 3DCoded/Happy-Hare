@@ -125,24 +125,24 @@ The default effects, which are both functional as well as adding a little color,
 
   | State | Filament Entry LEDs<br>(typically gate loading) | Filament Exit LEDs<br>(to bowden tube) | Status LED |
   | ----- | ----------------------------------------------- | -------------------------------------- | ---------- |
-  | MMU Disabled | OFF | OFF | OFF |
-  | Print States |
-  | MMU Print State "initialization" | OFF | Bling - shooting stars <br>(for 3 seconds) | OFF |
-  | MMU Print State "ready" | **-default-** | **-default-** | **-default-** |
-  | MMU Print State "printing" | **-default-** | **-default-**  | **-default-** |
-  | MMU Print State "pause_locked"<br>(mmu pause) | OFF | Strobe | Strobe |
-  | MMU Print State "paused"<br>(after unlock) | OFF | OFF<br>(except current gate) Strobe | Strobe |
-  | MMU Print State "completed" | **-default-** | Sparkle <br>(for 20 seconds) | **-default-** |
-  | MMU Print State "cancelled" | **-default-** | **-default-** | OFF |
-  | MMU Print State "error" | Strobe <br>(for 20 seconds) | Strobe <br>(for 20 seconds) | OFF |
-  | MMU Print State "standby" | OFF | OFF | OFF |
-  | Actions |
-  | Action State "Loading"<br>(whole sequence) | OFF except current gate:<br>Slow Pulsing White | Slow Pulsing White | OFF |
-  | Action State "Unloading"<br>(whole sequence) | OFF except current gate:<br>Slow Pulsing White | Slow Pulsing White | OFF |
-  | Action State "Heating" | OFF except current gate:<br>Pulsing Red | Pulsing Red | OFF |
-  | Action State "Selecting" | Fast Pulsing White | OFF | OFF |
-  | Action State "Checking" | **-default-** | Fast Pulsing White | **-default-** |
-  | Action State "Idle" | **-default-** | **-default-** | **-default-** |
+  | MMU Disabled      | OFF | OFF | OFF |
+  | MMU Print States: | | | |
+  | "initialization"  | OFF | Bling - shooting stars <br>(for 3 seconds) | OFF |
+  | "ready"           | **-default-** | **-default-** | **-default-** |
+  | "printing"        | **-default-** | **-default-**  | **-default-** |
+  | "pause_locked"<br>(mmu pause) | OFF | Strobe | Strobe |
+  | "paused"<br>(after unlock) | OFF | OFF<br>(except current gate) Strobe | Strobe |
+  | "completed"       | **-default-** | Sparkle <br>(for 20 seconds) | **-default-** |
+  | "cancelled"       | **-default-** | **-default-** | OFF |
+  | "error"           | Strobe <br>(for 20 seconds) | Strobe <br>(for 20 seconds) | OFF |
+  | "standby"         | OFF | OFF | OFF |
+  | Actions States:   | | | |
+  | "Loading"<br>(whole sequence) | OFF except current gate:<br>Slow Pulsing White | Slow Pulsing White | OFF |
+  | "Unloading"<br>(whole sequence) | OFF except current gate:<br>Slow Pulsing White | Slow Pulsing White | OFF |
+  | "Heating"         | OFF except current gate:<br>Pulsing Red | Pulsing Red | OFF |
+  | "Selecting"       | Fast Pulsing White | OFF | OFF |
+  | "Checking"        | **-default-** | Fast Pulsing White | **-default-** |
+  | "Idle"            | **-default-** | **-default-** | **-default-** |
   | | | | |
   | Possible Defaults | **default_entry_effect**:<br>- gate_status<br>- filament_color<br>- slicer_color<br>- off | **default_exit_effect**:<br>- gate_status<br>- filament_color<br>- slicer_color<br>- off | **default_status_effect**:<br>- filament_color<br>- slicer_color<br>- on (white)<br>- off |
 
