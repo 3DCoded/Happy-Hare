@@ -126,6 +126,7 @@ The default effects, which are both functional as well as adding a little color,
   | State | Filament Entry LEDs<br>(typically gate loading) | Filament Exit LEDs<br>(to bowden tube) | Status LED |
   | ----- | ----------------------------------------------- | -------------------------------------- | ---------- |
   | MMU Disabled          | OFF | OFF | OFF |
+  |||||
   | **MMU Print States:** | | | |
   | "initialization"      | OFF | Bling - shooting stars <br>(for 3 seconds) | OFF |
   | "ready"               | **-default-** | **-default-** | **-default-** |
@@ -136,6 +137,7 @@ The default effects, which are both functional as well as adding a little color,
   | "cancelled"           | **-default-** | **-default-** | OFF |
   | "error"               | Strobe <br>(for 20 seconds) | Strobe <br>(for 20 seconds) | OFF |
   | "standby"             | OFF | OFF | OFF |
+  |||||
   | **Actions States:**   ||||
   | "Loading"<br>(whole sequence) | OFF except current gate:<br>Slow Pulsing White | Slow Pulsing White | OFF |
   | "Unloading"<br>(whole sequence) | OFF except current gate:<br>Slow Pulsing White | Slow Pulsing White | OFF |
@@ -143,7 +145,7 @@ The default effects, which are both functional as well as adding a little color,
   | "Selecting"           | Fast Pulsing White | OFF | OFF |
   | "Checking"            | **-default-** | Fast Pulsing White | **-default-** |
   | "Idle"                | **-default-** | **-default-** | **-default-** |
-  |                       ||||
+  |||||
   | Possible Defaults     | **default_entry_effect**:<br>- gate_status<br>- filament_color<br>- slicer_color<br>- off | **default_exit_effect**:<br>- gate_status<br>- filament_color<br>- slicer_color<br>- off | **default_status_effect**:<br>- filament_color<br>- slicer_color<br>- on (white)<br>- off |
 
 > [!NOTE]  
