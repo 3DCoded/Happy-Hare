@@ -123,8 +123,8 @@ The `slicer_color` is not persisted and can be set with the command `MMU_SLICER_
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Summary of Default Effects
 The default effects, which are both functional as well as adding a little color, are summerized here:
 
-  | State | LED at each Gate | Filament Exit (Bowden tube) | Status |
-  | ----- | ------------ | ------------------------------- | Status |
+  | State | LED at each Gate | Filament Exit (Bowden tube) | Status LED |
+  | ----- | ---------------- | --------------------------- | ---------- |
   | MMU Disabled | OFF | OFF | OFF |
   | MMU Print State "initialization" | Bling - shooting stars <br>(for 3 seconds) | OFF | OFF |
   | MMU Print State "ready" | **default_gate_effect**:<br>- gate_status<br>- filament_color<br>- silcer_color<br>- off | **default_exit_effect**:<br>- filament_color<br>- slicer_color<br>- on (white)<br>- off | OFF |
