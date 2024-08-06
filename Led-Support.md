@@ -128,7 +128,7 @@ The default effects, which are both functional as well as adding a little color,
   | MMU Disabled          | OFF | OFF | OFF |
   |||||
   | **MMU Print States:** | | | |
-  | "initialization"      | OFF | Bling - shooting stars <br>(for 3 seconds) | OFF |
+  | **MMU Print States:**<br>"initialization"      | OFF | Bling - shooting stars <br>(for 3 seconds) | OFF |
   | "ready"               | **-default-** | **-default-** | **-default-** |
   | "printing"            | **-default-** | **-default-**  | **-default-** |
   | "pause_locked"<br>(mmu pause) | OFF | Strobe | Strobe |
