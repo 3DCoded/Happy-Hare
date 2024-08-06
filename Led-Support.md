@@ -128,7 +128,7 @@ The default effects, which are both functional as well as adding a little color,
   | MMU Disabled     | OFF                                             | OFF                                    | OFF        |
   |||||
   | **MMU Print States:** ||||
-  | "initialization" | OFF                                             | Shooting stars<br>(for 3 seconds)      | OFF        |
+  | "initialization" | OFF                                             | `Shooting stars`<br>(for 3 seconds)      | OFF        |
   | "ready"          | _default_                                       | _default_                              | _default_  |
   | "printing"       | _default_                                       | _default_                              | _default_  |
   | "pause_locked"<br>(mmu pause)   | OFF                              | Strobe                                 | Strobe     |
