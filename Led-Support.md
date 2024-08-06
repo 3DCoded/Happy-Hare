@@ -147,6 +147,7 @@ The default effects, which are both functional as well as adding a little color,
   | "Idle"           | _default_                                       | _default_                              | _default_  |
   |||||
   | **Possible Defaults** | **default_entry_effect**:<br>- `gate_status`<br>- filament_color<br>- slicer_color<br>- off | **default_exit_effect**:<br>- `gate_status`<br>- filament_color<br>- slicer_color<br>- off | **default_status_effect**:<br>- filament_color<br>- slicer_color<br>- on (white)<br>- off |
+
 `Effect` this designates effect rather than static color
 
 > [!NOTE]  
