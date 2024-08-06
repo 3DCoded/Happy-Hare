@@ -127,11 +127,11 @@ The default effects, which are both functional as well as adding a little color,
   | ----- | ----------------------------- | ------------------------------ | ---------- |
   | MMU Disabled | OFF | OFF | OFF |
   | MMU Print State "initialization" | OFF | Bling - shooting stars <br>(for 3 seconds) | OFF |
-  | MMU Print State "ready" | **default_entry_effect**:<br>- gate_status<br>- filament_color<br>- silcer_color<br>- off | **default_exit_effect**:<br>- gate_status<br>- filament_color<br>- slicer_color<br>- on (white)<br>- off | **default_status_effect**:<br>- filament_color<br>- slicer_color<br>- on<br>- off |
-  | MMU Print State "printing" | **default_entry_effect**:<br>- gate_status<br>- filament_color<br>- slicer_color<br>- off | **default_exit_effect**:<br>- gate_status<br>- filament_color<br>- slicer_color<br>- on (white)<br>- off | **default_status_effect**:<br>- filament_color<br>- slicer_color<br>- on (white)<br>- off |
+  | MMU Print State "ready" | **default_entry_effect**:<br>- gate_status<br>- filament_color<br>- silcer_color<br>- off | **default_exit_effect**:<br>- gate_status<br>- filament_color<br>- slicer_color<br>- off | **default_status_effect**:<br>- filament_color<br>- slicer_color<br>- on<br>- off |
+  | MMU Print State "printing" | **default_entry_effect**:<br>- gate_status<br>- filament_color<br>- slicer_color<br>- off | **default_exit_effect**:<br>- gate_status<br>- filament_color<br>- slicer_color<br>- off | **default_status_effect**:<br>- filament_color<br>- slicer_color<br>- on (white)<br>- off |
   | MMU Print State "pause_locked"<br>(mmu pause) | OFF | Strobe | OFF |
   | MMU Print State "paused"<br>(after unlock) | OFF | OFF except current gate<br>Strobe | Strobe |
-  | MMU Print State "completed" | Sparkle <br>(for 20 seconds) | **default_exit_effect**:<br>- gate_status<br>- filament_color<br>- slicer_color<br>- on (white)<br>- off | **default_status_effect**:<br>- filament_color<br>- slicer_color<br>- on (white)<br>- off |
+  | MMU Print State "completed" | Sparkle <br>(for 20 seconds) | **default_exit_effect**:<br>- gate_status<br>- filament_color<br>- slicer_color<br>- off | **default_status_effect**:<br>- filament_color<br>- slicer_color<br>- on (white)<br>- off |
   | MMU Print State "cancelled" | **default_entry_effect**:<br>- gate_status<br>- filament_color<br>- slicer_color<br>- off | **default_exit_effect**:<br>- gate_status<br>- filament_color<br>- slicer_color<br>- on (white)<br>- off | OFF |
   | MMU Print State "error" | Strobe <br>(for 20 seconds) | Strobe <br>(for 20 seconds) | OFF |
   | MMU Print State "standby" | OFF | OFF | OFF |
@@ -140,7 +140,7 @@ The default effects, which are both functional as well as adding a little color,
   | Action State "Heating" | OFF except current gate:<br>Pulsing Red | Pulsing Red | OFF |
   | Action State "Selecting" | Fast Pulsing White | OFF | OFF |
   | Action State "Checking" | **default_entry_effect**:<br>- gate_status<br>- filament_color<br>- slicer_color<br>- off | Fast Pulsing White | **default_status_effect**:<br>- filament_color<br>- slicer_color<br>- on (white)<br>- off |
-  | Action State "Idle" | **default_entry_effect**:<br>- gate_status<br>- filament_color<br>- slicer_color<br>- off | **default_exit_effect**:<br>- gate_status<br>- filament_color<br>- slicer_color<br>- on (white)<br>- off | **default_status_effect**:<br>- filament_color<br>- slicer_color<br>- on (white)<br>- off |
+  | Action State "Idle" | **default_entry_effect**:<br>- gate_status<br>- filament_color<br>- slicer_color<br>- off | **default_exit_effect**:<br>- gate_status<br>- filament_color<br>- slicer_color<br>- off | **default_status_effect**:<br>- filament_color<br>- slicer_color<br>- on (white)<br>- off |
 
 > [!NOTE]  
 > - MMU Print State is the same as the printer variable `printer.mmu.print_state`
