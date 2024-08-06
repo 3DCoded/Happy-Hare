@@ -127,20 +127,20 @@ The default effects, which are both functional as well as adding a little color,
   | ----- | ------------ | ----------------------------------- |
   | MMU Disabled | OFF | OFF |
   | MMU Print State "initialization" | Bling - shooting stars <br>(for 3 seconds) | OFF |
-  | MMU Print State "ready" | **default_gate_effect**:<br>- gate_status<br>- filament_color<br>- off | **default_exit_effect**:<br>- filament_color<br>- on (white)<br>- off |
-  | MMU Print State "printing" | **default_gate_effect**:<br>- gate_status<br>- filament_color<br>- off | **default_exit_effect**:<br>- filament_color<br>- on (white)<br>- off |
+  | MMU Print State "ready" | **default_gate_effect**:<br>- gate_status<br>- filament_color<br>- silcer_color<br>- off | **default_exit_effect**:<br>- filament_color<br>- slicer_color<br>- on (white)<br>- off |
+  | MMU Print State "printing" | **default_gate_effect**:<br>- gate_status<br>- filament_color<br>- slicer_color<br>- off | **default_exit_effect**:<br>- filament_color<br>- slicer_color<br>- on (white)<br>- off |
   | MMU Print State "pause_locked"<br>(mmu pause) | Strobe | Strobe |
   | MMU Print State "paused"<br>(after unlock) | OFF except current gate<br>Strobe | Strobe |
-  | MMU Print State "completed" | Sparkle <br>(for 20 seconds) | **default_exit_effect**:<br>- filament_color<br>- on (white)<br>- off |
-  | MMU Print State "cancelled" | **default_gate_effect**:<br>- gate_status<br>- filament_color<br>- off | **default_exit_effect**:<br>- filament_color<br>- on (white)<br>- off |
+  | MMU Print State "completed" | Sparkle <br>(for 20 seconds) | **default_exit_effect**:<br>- filament_color<br>- slicer_color<br>- on (white)<br>- off |
+  | MMU Print State "cancelled" | **default_gate_effect**:<br>- gate_status<br>- filament_color<br>- slicer_color<br>- off | **default_exit_effect**:<br>- filament_color<br>- slicer_color<br>- on (white)<br>- off |
   | MMU Print State "error" | Strobe <br>(for 20 seconds) | Strobe <br>(for 20 seconds) |
   | MMU Print State "standby" | OFF | OFF |
   | Action State "Loading"<br>(whole sequence) | OFF except current gate:<br>Slow Pulsing White | Slow Pulsing White |
   | Action State "Unloading"<br>(whole sequence) | OFF except current gate:<br>Slow Pulsing White | Slow Pulsing White |
   | Action State "Heating" | OFF except current gate:<br>Pulsing Red | Pulsing Red |
   | Action State "Selecting" | Fast Pulsing White | OFF |
-  | Action State "Checking" | **default_gate_effect**:<br>- gate_status<br>- filament_color<br>- off | Fast Pulsing White |
-  | Action State "Idle" | **default_gate_effect**:<br>- gate_status<br>- filament_color<br>- off | **default_exit_effect**:<br>- filament_color<br>- on (white)<br>- off |
+  | Action State "Checking" | **default_gate_effect**:<br>- gate_status<br>- filament_color<br>- slicer_color<br>- off | Fast Pulsing White |
+  | Action State "Idle" | **default_gate_effect**:<br>- gate_status<br>- filament_color<br>- slicer_color<br>- off | **default_exit_effect**:<br>- filament_color<br>- slicer_color<br>- on (white)<br>- off |
 
 > [!NOTE]  
 > - MMU Print State is the same as the printer variable `printer.mmu.print_state`
@@ -148,6 +148,7 @@ The default effects, which are both functional as well as adding a little color,
 > - These are built-in functional "effects":
 >   - **filament_color** - displays the static color of the filament defined for the gate from MMU_GATE_MAP (specifically `printer.mmu.gate_color_rgb`). Requires you to setup color either directly or via Spoolman.
 >   - **gate_status** - dispays the status for the gate (printer.mmu.get_status): **red** if empty, **green** if loaded, **orange** if unknown
+>   - **slicer_color** - dispays the static color of the filament defined in the slicer tool map (printer.mmu.slicer_color_rgb).
 
 > [!TIP]  
 > Whilst not LEDs, Mailsail and Fluidd have visualizations of the filament color next to the "extruder" `T0`, `T1`, `T2`, ... buttons. Happy Hare can drive these in various ways similar to LED visualization here. Read [Mainsail/Fluidd Integration](Mainsail-Fluidd-Integration) for more details
