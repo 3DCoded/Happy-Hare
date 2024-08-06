@@ -123,30 +123,30 @@ The `slicer_color` is not persisted and can be set with the command `MMU_SLICER_
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Summary of Default Effects
 The default effects, which are both functional as well as adding a little color, are summerized here:
 
-  | State | Filament Entry LEDs<br>(typically gate loading) | Filament Exit LEDs<br>(to bowden tube) | Status LED |
-  | ----- | ----------------------------------------------- | -------------------------------------- | ---------- |
-  | MMU Disabled          | OFF | OFF | OFF |
+  | State            | Filament Entry LEDs<br>(typically gate loading) | Filament Exit LEDs<br>(to bowden tube) | Status LED |
+  | ---------------- | ----------------------------------------------- | -------------------------------------- | ---------- |
+  | MMU Disabled     | OFF                                             | OFF                                    | OFF |
   |||||
-  | **MMU Print States:** | | | |
-  | **MMU Print States:**<br>"initialization"      | OFF | Bling - shooting stars <br>(for 3 seconds) | OFF |
-  | "ready"               | **-default-** | **-default-** | **-default-** |
-  | "printing"            | **-default-** | **-default-**  | **-default-** |
-  | "pause_locked"<br>(mmu pause) | OFF | Strobe | Strobe |
-  | "paused"<br>(after unlock) | OFF | OFF<br>(except current gate) Strobe | Strobe |
-  | "completed"           | **-default-** | Sparkle <br>(for 20 seconds) | **-default-** |
-  | "cancelled"           | **-default-** | **-default-** | OFF |
-  | "error"               | Strobe <br>(for 20 seconds) | Strobe <br>(for 20 seconds) | OFF |
-  | "standby"             | OFF | OFF | OFF |
+  | **MMU Print States:** ||||
+  | "initialization" | OFF                                             | Shooting stars<br>(for 3 seconds)      | OFF |
+  | "ready"          | **-default-**                                   | **-default-**                          | **-default-** |
+  | "printing"       | **-default-**                                   | **-default-**                          | **-default-** |
+  | "pause_locked"<br>(mmu pause) | OFF                                | Strobe                                 | Strobe |
+  | "paused"<br>(after unlock) | OFF                                   | OFF<br>(except current gate) Strobe    | Strobe |
+  | "completed"      | **-default-**                                   | Sparkle<br>(for 20 seconds)            | **-default-** |
+  | "cancelled"      | **-default-**                                   | **-default-**                          | OFF |
+  | "error"          | Strobe<br>(for 20 seconds)                      | Strobe<br>(for 20 seconds)             | OFF |
+  | "standby"        | OFF                                             | OFF                                    | OFF |
   |||||
-  | **Actions States:**   ||||
-  | "Loading"<br>(whole sequence) | OFF except current gate:<br>Slow Pulsing White | Slow Pulsing White | OFF |
-  | "Unloading"<br>(whole sequence) | OFF except current gate:<br>Slow Pulsing White | Slow Pulsing White | OFF |
-  | "Heating"             | OFF except current gate:<br>Pulsing Red | Pulsing Red | OFF |
-  | "Selecting"           | Fast Pulsing White | OFF | OFF |
-  | "Checking"            | **-default-** | Fast Pulsing White | **-default-** |
-  | "Idle"                | **-default-** | **-default-** | **-default-** |
+  | **Actions States:** ||||
+  | "Loading"<br>(whole sequence) | OFF except current gate:<br>Slow Pulsing White | Slow Pulsing White         | OFF |
+  | "Unloading"<br>(whole sequence) | OFF except current gate:<br>Slow Pulsing White | Slow Pulsing White       | OFF |
+  | "Heating"        | OFF except current gate:<br>Pulsing Red | Pulsing Red                                    | OFF |
+  | "Selecting"      | Fast Pulsing White                              | OFF                                    | OFF |
+  | "Checking"       | **-default-**                                   | Fast Pulsing White                     | **-default-** |
+  | "Idle"           | **-default-**                                   | **-default-**                          | **-default-** |
   |||||
-  | Possible Defaults     | **default_entry_effect**:<br>- gate_status<br>- filament_color<br>- slicer_color<br>- off | **default_exit_effect**:<br>- gate_status<br>- filament_color<br>- slicer_color<br>- off | **default_status_effect**:<br>- filament_color<br>- slicer_color<br>- on (white)<br>- off |
+  | **Possible Defaults** | **default_entry_effect**:<br>- gate_status<br>- filament_color<br>- slicer_color<br>- off | **default_exit_effect**:<br>- gate_status<br>- filament_color<br>- slicer_color<br>- off | **default_status_effect**:<br>- filament_color<br>- slicer_color<br>- on (white)<br>- off |
 
 > [!NOTE]  
 > - MMU Print State is the same as the printer variable `printer.mmu.print_state`
