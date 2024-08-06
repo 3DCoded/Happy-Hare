@@ -148,7 +148,9 @@ The default effects, which are both functional as well as adding a little color,
   |||||
   | **Possible Defaults** | **default_entry_effect**:<br>- `gate_status`<br>- filament_color<br>- slicer_color<br>- off | **default_exit_effect**:<br>- `gate_status`<br>- filament_color<br>- slicer_color<br>- off | **default_status_effect**:<br>- filament_color<br>- slicer_color<br>- on (white)<br>- off |
 
-In the table, `Effect` designates effect (animation) rather than static color
+In the table above, `Effect` designates effect (animation) rather than static color
+
+<br>
 
 > [!NOTE]  
 > - MMU Print State is the same as the printer variable `printer.mmu.print_state`
