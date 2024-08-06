@@ -131,16 +131,15 @@ The default effects, which are both functional as well as adding a little color,
   | "initialization" | OFF                                             | Shooting stars<br>(for 3 seconds)      | OFF        |
   | "ready"          | _default_                                       | _default_                              | _default_  |
   | "printing"       | _default_                                       | _default_                              | _default_  |
-  | "pause_locked"
-<br>(mmu pause) | OFF                                | Strobe                                 | Strobe     |
-  | "paused"<br>(after unlock) | OFF                                   | OFF<br>(except current gate) Strobe    | Strobe     |
+  | "pause_locked"<br>(mmu pause)   | OFF                              | Strobe                                 | Strobe     |
+  | "paused"<br>(after unlock)      | OFF                              | OFF except current gate:<br> Strobe    | Strobe     |
   | "completed"      | _default_                                       | Sparkle<br>(for 20 seconds)            | _default_  |
   | "cancelled"      | _default_                                       | _default_                              | OFF        |
   | "error"          | Strobe<br>(for 20 seconds)                      | Strobe<br>(for 20 seconds)             | OFF        |
   | "standby"        | OFF                                             | OFF                                    | OFF        |
   |||||
   | **Actions States:** ||||
-  | "Loading"<br>(whole sequence) | OFF except current gate:<br>Slow Pulsing White | Slow Pulsing White         | OFF        |
+  | "Loading"<br>(whole sequence)   | OFF except current gate:<br>Slow Pulsing White | Slow Pulsing White       | OFF        |
   | "Unloading"<br>(whole sequence) | OFF except current gate:<br>Slow Pulsing White | Slow Pulsing White       | OFF        |
   | "Heating"        | OFF except current gate:<br>Pulsing Red         | Pulsing Red                            | OFF        |
   | "Selecting"      | Fast Pulsing White                              | OFF                                    | OFF        |
