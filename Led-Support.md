@@ -6,7 +6,7 @@
 
 Happy Hare now can drive LEDs (NeoPixel/WS2812) on your MMU to provide both functional feedback as well as to add a little bling to your machine.  Typically you would connect a string of neopixels (either descrete components or an LED strip, or combination of both if compatible contollers) to the neopixel output on the MCU that drives your MMU although this can be changed.
 
-The setup for LED's is contained at the bottom of the `mmu_hardware.cfg` file and requires the installation of [LED Effects for Klipper](https://github.com/julianschill/klipper-led_effect).
+The setup for LED's is contained at the bottom of the `mmu_hardware.cfg` file. If you would like you use LED animation you must also install the [LED Effects for Klipper](https://github.com/julianschill/klipper-led_effect). If this module is not installed, more static LED changes will be employed.
 
 <br>
 
@@ -93,11 +93,15 @@ gcode: # Leave empty
 #   'on'              - LED's white
 #   'gate_status'     - indicate gate availability
 #   'filament_color'  - indicate filament color
-#   'slicer_color'    - display slicer defined color for each gate (printer.mmu.slicer_color_rgb)
+#   'slicer_color'    - display slicer defined set color for each gate (printer.mmu.slicer_color_rgb)
 variable_led_enable             : True                  ; Whether LEDs are enabled at startup (MMU_LED can control)
+variable_led_animation_enable   : True                  ; Whether to use led-animation-effects vs static LEDs
 variable_default_exit_effect    : "gate_status"         ;    off|gate_status|filament_color|slicer_color
 variable_default_entry_effect   : "filament_color"      ;    off|gate_status|filament_color|slicer_color
 variable_default_status_effect  : "filament_color"      ; on|off|gate_status|filament_color|slicer_color
+variable_white_light            : (1, 1, 1)             ; RGB color for static white light
+variable_black_light            : (.01, 0, .02)         ; RGB color used to represent "black" (filament)
+variable_empty_light            : (0, 0, 0)             ; RGB color used to represent empty gate
 ```
 To change the default effect for a segment change the appropriate line. These effects can be any named effect you define, the built-in functional defaults, "on", "off", or even an RGB color specification in the form `red,green,blue` e.g. `0.5,0,0.5` would be 50% intensity red and blue with no green.
 
@@ -105,18 +109,25 @@ Happy Hare also has an empirical command to control LEDs:
 
 ```yml
 > MMU_LED
-  LEDs are enabled
-  Default exit effect: 'filament_color'
-  Default entry effect: 'gate_status'
-  Default status effect: 'filament_color'
-  ENABLE=[0|1] EXIT_EFFECT=[off|gate_status|filament_color|slicer_color] ENTRY_EFFECT=[off|gate_status|filament_color|slicer_color] STATUS_EFFECT=[off|on|filament_color|slicer_color]
+LED animations: enabled
+Default exit effect: 'gate_status'
+Default entry effect: 'filament_color'
+Default status effect: 'filament_color'
+
+Options:
+ENABLE=[0|1]
+ANIMATION=[0|1]
+EXIT_EFFECT=[off|gate_status|filament_color|slicer_color]
+ENTRY_EFFECT=[off|gate_status|filament_color|slicer_color]
+STATUS_EFFECT=[off|on|filament_color|slicer_color]
 ```
 You can change the effect at runtime, e.g. `MMU_LED ENTRY_EFFECT=gate_status` or `MMU_LED ENABLE=0` to turn off and disable the LED operation.  Please note that similar to `MMU_TEST_CONFIG` changes made like this don't persist on a restart.  Update the macro variables in `mmu_macro_vars.cfg` to make changes persistent.
 
 The `slicer_color` is not persisted and can be set with the command `MMU_SLICER_TOOL_MAP GATE=.. COLOR=..` as is the case in the recommended `MMU_START_SETUP` macro. The color can be a w3c color name or `RRGGBB` value.
 
 > [!TIP]
-> The strongly recommended Happy Hare version of Klipperscreen has buttons to quickly "toggle" between `gate_status` and `filament_color` for the default gate effect...
+> The strongly recommended Happy Hare version of Klipperscreen has buttons to quickly "toggle" between `gate_status` and `filament_color` for the default gate effect...<br>
+> If you want to reduce load on your system but still support LEDs then you can opt to turn off the animations by setting `variable_led_animation_enable` or using `MMU_LED ANIMATION=0`. This mode will automatically be inforced if the klipper-led\_effects module is not installed.
 
 <br>
 
@@ -148,7 +159,7 @@ The default effects, which are both functional as well as adding a little color,
   |||||
   | **Possible Defaults** | **default_entry_effect**:<br>- `gate_status`<br>- filament_color<br>- slicer_color<br>- off | **default_exit_effect**:<br>- `gate_status`<br>- filament_color<br>- slicer_color<br>- off | **default_status_effect**:<br>- filament_color<br>- slicer_color<br>- on (white)<br>- off |
 
-In the table above, `Effect` designates effect (animation) rather than static color
+In the table above, `Effect` designates effect (animation) rather than static color if `variable_led_animation_enable: True`
 
 <br>
 
