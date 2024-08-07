@@ -69,6 +69,8 @@ This section controls the MMU LEDs. This does not affect any of the printer LEDs
 
 `variable_led_enable` allows Happy Hare to use the MMU leds. `True` if you have LEDs on the MMU.
 
+`variable_led_animation_enable` controls if Happy Hare uses the installed "klipper-led_effects" module for animation. If set to `False` only static LEDs will be used which can be used to reduce strain on mcu's if a user runs into overload contitions like "Timer too Close" errors. This is automatically forced to false if the klipper module is not found.
+
 `variable_default_exit_effect` sets the status of the MMU exit LEDs. Choose between:  
 - `off` Turns exit LEDs off.
 - `gate_status` Sets the exit LEDs based on the status of the gate. Orange for no filament, Green for filament at the gate.

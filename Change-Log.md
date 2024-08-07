@@ -236,6 +236,7 @@ The release provides more flexibilty in tool change movement, introduces consump
 - Mainsail integration: Extruder/Filament colors and other filament attributes from spoolman are displayed in UI. Also there are controls on what color to display: `slicer`, `gatemap` (hiding unused filaments), `allgates` for the full gate map. Controlled with the new `t_macro_color` parameter. Details [here](https://github.com/moggieuk/Happy-Hare/wiki/Mainsail-Fluidd-Integration.md) :cool:
 
 **Other features:**
+- Can now use LEDs without led_effects being installed.  A new `variable_led_animation_enable` has been added to control this behavior and will simply be forced to False if led_effects module isn't installed. LED updates have also been made slightly more efficient.
 - Now incorporates a filament "tightening" move after loading the toolhead if synced extruder is turned off. This is to prevent false clog detection when the slack in the bowden is greater than the clog detection length
 - New `variable_user_park_move_macro` can be used to customized the movement to the park position instead of default straight line move (Issue #351).
 - New printer variables: `printer.mmu.gate_filament_name` and `printer.mmu.spoolman_support`
@@ -248,4 +249,5 @@ The release provides more flexibilty in tool change movement, introduces consump
 - Exposed `preload_retries` parameter to extend the time Happy Hare tries to automatically load a spool once the pre-gate sensor has been triggered (Issue #360)
 - Added `variable_min_toolchange_z` (mmu_macro_vars.cfg) to specify the floor at which any toolchange movement will occur to prevent scraping the bed if no z-hop is specified.
 - Project against klipper's new habit of setting toolhead position slightly out of range after homing - save position will ensure it is in range.
+- Octoprint compatibity option has been removed from mmu_macro_vars .. not necessary to ensure compatibility anymore
 

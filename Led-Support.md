@@ -157,8 +157,8 @@ In the table above, `Effect` designates effect (animation) rather than static co
 > - Action State is the same as the printer variable `printer.mmu.action`
 > - These are built-in functional "effects":
 >   - **filament_color** - displays the static color of the filament defined for the gate from MMU_GATE_MAP (specifically `printer.mmu.gate_color_rgb`). Requires you to setup color either directly or via Spoolman.
+>   - **slicer_color** - dispays the static color of the filament defined in the slicer tool map (printer.mmu.slicer_color_rgb). Note this might be empty until a print starts.
 >   - **gate_status** - dispays the status for the gate (printer.mmu.get_status): **red** if empty, **green** if loaded, **orange** if unknown
->   - **slicer_color** - dispays the static color of the filament defined in the slicer tool map (printer.mmu.slicer_color_rgb).
 
 > [!TIP]  
 > Whilst not LEDs, Mailsail and Fluidd have visualizations of the filament color next to the "extruder" `T0`, `T1`, `T2`, ... buttons. Happy Hare can drive these in various ways similar to LED visualization here. Read [Mainsail/Fluidd Integration](Mainsail-Fluidd-Integration) for more details
