@@ -177,7 +177,9 @@ gcode:
 **Defined in `mmu_state.cfg`**
 
 The extract from the cfg file illustrates current events and parameters. The `EVENT` parameter will always be defined with one of the available event strings. Optionally additional parameters by be supplied. For example:
-<br>
+
+<p>
+
 Happy Hare maintains a map of all the filaments in the MMU including material type, color, etc.  When this map changes this macro is called with a `gate_map_changed` event. The `GATE` parameter will either represent a specific gate that has been updated or `-1` meaning that mutliple gates are updated. The actual gate map infomation can be read through printer variables `printer.mmu.gate_color`, `printer.mmu.gate_material`, etc..
 
 Here is the start of the reference macro packaged in `mmu_state.cfg` which is used by default to manage consumption counters:
