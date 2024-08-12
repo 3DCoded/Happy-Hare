@@ -300,7 +300,7 @@ Tip forming is necessary to ensure the end of the filament will pass through the
 <br>
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) \_MMU\_FORM\_TIP
-**Defined in `form_tip.cfg`**
+**Defined in `form_tip.cfg`** (variables in `mmu_macro_vars.cfg`)
 
 This is probably the most important aspect of getting a reliable MMU after basic calibration is complete. There is plenty written about tip forming and lots of advice in the forums.  What is important to understand here is that this macro mimicks the tip forming logic from SuperSlicer (almost identical to PrusaSlicer). Read SuperSlicer documentation for hints. That said, here are a few things you should know:
 
@@ -317,136 +317,172 @@ This is probably the most important aspect of getting a reliable MMU after basic
 Here are the default values for tip forming.  These are the exact values I used for non PLA filaments (PLA seems to like skinny dip):
 
 ```yml
-# Unloading and Ramming values - Initial moves to form and shape tip
-variable_unloading_speed_start: 80     # Fast here to seperate the filament from meltzone (Very intitial retract SS uses distance of E-15)
-variable_unloading_speed: 20           # Too fast forms excessively long tip or hair. Slow is better here UNLOADING_SPEED_START/COOLING_MOVES seems a good start
-variable_ramming_volume: 0             # in mm3 SS default values = 2, 5, 9, 13, 18, 23, 27. Only Used to Simulate SS Ramming during standalone
-variable_ss_ramming: 0                 # Set to 0 for standalone ramming (RAMMING_VOLUME) or tuning, 1 to let the slicer do it (i.e. turn off standalone)
+# FORM_TIP ----------------------------------------------------------------
+# ███████╗ ██████╗ ██████╗ ███╗   ███╗    ████████╗██╗██████╗ 
+# ██╔════╝██╔═══██╗██╔══██╗████╗ ████║    ╚══██╔══╝██║██╔══██╗
+# █████╗  ██║   ██║██████╔╝██╔████╔██║       ██║   ██║██████╔╝
+# ██╔══╝  ██║   ██║██╔══██╗██║╚██╔╝██║       ██║   ██║██╔═══╝ 
+# ██║     ╚██████╔╝██║  ██║██║ ╚═╝ ██║       ██║   ██║██║     
+# ╚═╝      ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝       ╚═╝   ╚═╝╚═╝     
+# Don't need to configure if using tip cutting
+#   (base/mmu_form_tip.cfg)
+#
+[gcode_macro _MMU_FORM_TIP_VARS]
+description: Happy Hare tip forming macro configuration variables
+gcode: # Leave empty
 
-# Cooling Move Values - To cool the tip formed and separate from strings
-variable_cooling_tube_position: 35     # Dragon ST: 35, Dragon HF: 30, Mosquito: 30, Revo: 35, Phaetus Rapido HF: 43;  Measured from Top of Heater Block to Top of Heatsink
-variable_cooling_tube_length: 10       # Dragon ST: 15, Dragon HF: 10, Mosquito: 20, Revo: 10, Phaetus Rapido HF: 22; Measured from Nozzle to Top of Heater Block
-variable_initial_cooling_speed: 10     # Slow to solidify tip and cool string if formed.
-variable_final_cooling_speed: 50       # High speed break the string formed. Too fast = tip deformation during eject. Too Slow = long string/no seperation
-variable_toolchange_temp: 0            # Used if you want to lower temp during toolchanges default 0
-variable_cooling_moves: 4              # 2-4 is a good start
+# Step 1 - Ramming
+# Ramming is the initial squeeze of filament prior to cooling moves and is
+# described in terms of total volume and progression of squeeze intensity
+# printing/standalone. This can be separately controlled when printing or
+# standalone
+variable_ramming_volume            : 0          ; Volume in mm^3, 0 = disabled (optionally let slicer do it)
+variable_ramming_volume_standalone : 0          ; Volume in mm^3, 0 = disabled
 
-# SkinnyDip values - To burn off VERY FINE hairs only (This is NOT for long tip reshaping)
-variable_use_skinnydip: 1              # Tune this LAST, this is for removal of VERY FINE hairs only (Different than a long tip)
-variable_skinnydip_distance: 30        # Start just under Cooling_tube_position and increase - Will depend on how much Ramming Volume is used
-variable_dip_insertion_speed: 30       # Medium-Slow - Just long enough to melt the fine hairs. Too slow will pull up molten filament
-variable_dip_extraction_speed: 70      # Around 2x Insertion speed, Prevents forming new hairs
-variable_melt_zone_pause: 0            # in milliseconds - default 0
-variable_cooling_zone_pause: 0         # in milliseconds - default 0 - If you need to adjust here its possible Dip Insertion too slow
-variable_use_fast_skinnydip: 0         # Skip the toolhead temp change during skinnydip move - default 0
+# Optionally set for temperature change (reduction). The wait will occur
+# before nozzle separation if 'use_fast_skinnydip: False' else after cooling
+# moves. Temperature will be restored after tip creation is complete
+variable_toolchange_temp        : 0             ; 0 = don't change temp, else temp to set
+variable_toolchange_fan_assist  : False         ; Whether to use part cooling fan for quicker temp change
+variable_toolchange_fan_speed   : 50            ; Fan speed % if using fan_assist enabled
 
+# Step 2 - Nozzle Separation
+# The filament is then quickly separated from the meltzone by a fast movement
+# before then slowing to travel the remaining distance to cooling tube. The
+# initial fast movement should be as fast as extruder can comfortably perform.
+# A good starting point# for slower move is unloading_speed_start/cooling_moves.
+# Too fast a slower movement can lead to excessively long tips or hairs
+variable_unloading_speed_start  : 80            ; Speed in mm/s for initial fast movement
+variable_unloading_speed        : 18            ; Speed in mm/s for slow move to cooling zone
+
+# Step 3 - Cooling Moves
+# The cooling move allows the filament to harden while constantly moving back
+# and forth in the cooling tube portion of the extruder to prevent a bulbous
+# tip forming. The cooling tube position is measured from the internal nozzle
+# to just past the top of the heater block (often it is beneficial to add a
+# couple of mm to ensure the tip is in the cooling section. The cooling tube
+# length is then the distance from here to top of heatsink (this is the length
+# length of the cooling moves). The final cooling move is a fast movement to
+# break the string formed.
+variable_cooling_tube_position  : 35            ; Start of cooling tube. DragonST:35, DragonHF:30, Mosquito:30, Revo:35, RapidoHF:27
+variable_cooling_tube_length    : 10            ; Movement length. DragonST:15, DragonHF:10, Mosquito:20, Revo:10, RapidoHF:10
+variable_initial_cooling_speed  : 10            ; Inital slow movement (mm/s) to solidify tip and cool string if formed
+variable_final_cooling_speed    : 50            ; Fast movement (mm/s) Too fast: tip deformation on eject, Too Slow: long string/no seperation
+variable_cooling_moves          : 4             ; Number of back and forth cooling moves to make (2-4 is a good start)
+
+# Step 4 - Skinnydip
+# Skinnydip is an advanced final move that may have benefit with some
+# material like PLA to burn off persistent very fine hairs. To work the
+# depth of insertion is critical (start with it disabled and tune last)
+# For reference the internal nozzle would be at a distance of
+# cooling_tube_position + cooling_tube_length, the top of the heater
+# block would be cooling_tube_length away.
+variable_use_skinnydip          : True          ; True = enable skinnydip, False = skinnydip move disabled
+variable_skinnydip_distance     : 30            ; Distance to reinsert filament into hotend starting from end of cooling tube
+variable_dip_insertion_speed    : 30            ; Medium/Slow insertion speed mm/s - Just long enough to melt the fine hairs, too slow will pull up molten filament
+variable_dip_extraction_speed   : 70            ; Speed mm/s - Around 2x Insertion speed to prevents forming new hairs
+variable_melt_zone_pause        : 0             ; Pause if melt zone in ms. Default 0
+variable_cooling_zone_pause     : 0             ; Pause if cooling zone after dip in ms. Default 0
+variable_use_fast_skinnydip     : False         ; False = Skip the toolhead temp change wait during skinnydip move
+
+# Step 5 - Parking
 # Park filament ready to eject
-variable_parking_distance: 35          # Final filament parking position after final cooling move, 0 will leave filament where it naturally ends up
-
-# Final Eject - for standalone tuning only. Automatically set by `MMU_FORM_TIP` command
-variable_final_eject: 0                # default 0, enable during standalone tuning process to eject the filament
+variable_parking_distance       : 0             ; Position mm to park the filament at end of tip forming, 0 = leave where filament ends up after tip forming
+variable_extruder_eject_speed   : 25            ; Speed mm/s used for parking_distance (and final_eject when testing)
 ```
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) \_MMU\_CUT\_TIP
-**Defined in `cut_tip.cfg`**
+**Defined in `cut_tip.cfg`** (variables in `mmu_macro_vars.cfg`)
 
 To elminate the need to spend time tuning the tip forming procedure (you never wanted to understand fluid dynamics, right?!) you can opt to cut filament at the toolhead. The filametrix cutter bundled with ERCFv2 is an example of this. Note that Happy Hare can only have one tip creation macro defined. You can switch from the default tip forming to this tip cutting macro by setting `form_tip_macro: _MMU_CUT_TIP` in `mmu_parameters.cfg` to point to this macro instead.
 
 Here are the default values for tip cutting with explanation:
 
 ```yml
-###########################################################################
-# Happy Hare supporting macros
-#   Standalone Tip Cutting for Filametrix and toolhead cutters
+# CUT_TIP -----------------------------------------------------------------
+#  ██████╗██╗   ██╗████████╗    ████████╗██╗██████╗ 
+# ██╔════╝██║   ██║╚══██╔══╝    ╚══██╔══╝██║██╔══██╗
+# ██║     ██║   ██║   ██║          ██║   ██║██████╔╝
+# ██║     ██║   ██║   ██║          ██║   ██║██╔═══╝ 
+# ╚██████╗╚██████╔╝   ██║          ██║   ██║██║     
+#  ╚═════╝ ╚═════╝    ╚═╝          ╚═╝   ╚═╝╚═╝     
+# Don't need to configure if using tip forming
+#   (base/mmu_cut_tip.cfg)
 #
-# To configure, set
-#   'form_tip_macro: _MMU_CUT_TIP' in 'mmu_parameters.cfg'
-#
-# Default configuration is good for Stealthburner with CW2 and Voron Revo nozzle
-#
-# IMPORTANT:
-#   The park position of the filament is relative to the nozzle and
-#   represents where the end of the filament is after cutting. The park position
-#   is important and used by Happy Hare both to finish unloading the extruder
-#   as well as to calculate how far to advance the filament on the subsequent load.
-#   It is important to report back the position your cutter leaves the filament
-#   in the extruder via the variable 'output_park_pos'.
-#
-#   This can be set dynamically in gcode with this construct:
-#     SET_GCODE_VARIABLE MACRO=_MMU_CUT_TIP VARIABLE=output_park_pos VALUE=..
-#   or preset as a variable on the macro like this:
-#     'variable_output_park_pos: 35'
-#
-# When using this macro it is important to turn off tip forming in your slicer and
-# force Happy Hare to always run this when loading filament by adding:
-#   'force_form_tip_standalone: 1' in 'mmu_parameters.cfg'
-#
-[gcode_macro _MMU_CUT_TIP]
-description: Cut filament by pressing the cutter on a pin with a horizontal movement
+[gcode_macro _MMU_CUT_TIP_VARS]
+description: Happy Hare toolhead tip cutting macro configuration variables
+gcode: # Leave empty
 
-# This should be set to the distance from the internal nozzle tip to the cutting blade and is used in calculations on the
-# final location of the filament end (output_park_pos) and remaining filament fragment size (output_remaining_filament)
-# for use by Happy Hare
-variable_blade_pos: 37.5
+# Whether the toolhead tip cutting macro will return toolhead to initial
+# position (usually wipetower) after the cut is complete. If using parking
+# logic you may want to disable this and set 'park_after_form_tip: True'
+variable_restore_position       : True          ; True = return to initial position, False = don't return
 
-# Distance to retract prior to making the cut, this reduces wasted filament but might cause clog 
-# if set too large and/or if there are gaps in the hotend assembly 
-# This must be less than 'balde_pos' - the distance from the nozzle to the cutter 
-variable_retract_length: 32.5
+# Distance from the internal nozzle tip to the cutting blade. This dimension
+# is based on your toolhead and should not be used for tuning
+# Note: If you have a toolhead sensor this variable can be automatically determined!
+# Read https://github.com/moggieuk/Happy-Hare/wiki/Blobing-and-Stringing
+variable_blade_pos              : 37.5          ; Distance in mm from internal nozzle tip
 
-# The location of the pin, this should be the position of the toolhead when the cutter 
-# just lightly touches the pin
-variable_pin_loc_x: 14
-variable_pin_loc_y: 250
+# Distance to retract prior to making the cut, this reduces wasted filament
+# (left behind in extruder) but might cause clog if set too large and/or if
+# there are gaps in the hotend assembly.  This must be less than 'blade_pos'
+variable_retract_length         : 32.5          ; (5mm less than 'blade_pos' is a good starting point)
 
-# The starting and end positions when making the cut
-# In particular, instead of making the cut by traveling to the pin location above, 
-# we leave a small safety margin along X-axis to avoid scratching on the pin when traveling
-# This should also give a small distance to produce some momentum when pressing on the pin 
-variable_pin_park_x_dist: 5.0
+# Whether to perform a simple tip forming move after the initial retraction
+# Enabling this adds some time to the cutting but gives some additional cooling
+# time of molten filament and avoids potential clogging on some hotends
+variable_simple_tip_forming     : 1             ; True = Perform simple tip forming, False = skip
 
-# Position of the toolhead when the cutter is fully compressed
-# Should leave a small headroom (e.g., should be a bit larger than 0, or whatever xmin is) to avoid banging the toolhead or gantry
-variable_pin_loc_x_compressed: 0.5
-variable_pin_loc_x_compressed: 0.5
+# This should be the position of the toolhead where the cutter arm just
+# lightly touches the depressor pin
+variable_pin_loc_xy             : 13, 213       ; x,y coordinates of depressor pin
 
-# Retract length and speed after the cut so that the cutter can go back into its origin position
-variable_rip_length: 1                  # Distance to retract to aid lever decompression (>= 0)
-variable_rip_speed: 3                   # mm/s
+# This distance is added to 'pin_loc_x' to determine the starting position
+# and to create a small saftely distance that aids in generating momentum
+variable_pin_park_x_dist        : 5.0           ; Distance in mm
 
-# Pushback of the remaining tip from the cold end into the hotend. Cannot be larger than 'retract_length'
-variable_pushback_length: 5
-variable_pushback_dwell_time: 0         # Time to dwell after the pushback
+# Position of the toolhead when the cutter is fully compressed. Should leave
+# a small headroom (should be a bit larger than 0, or whatever xmin is) to
+# avoid banging the toolhead or gantry
+variable_pin_loc_x_compressed   : 0.5           ; x coordinate
 
-# Speed related settings
-# Note that if the cut speed is too fast, the steppers can lose steps. Therefore, for a cut: 
-# - We first make a fast move to accumulate some momentum and get the cut blade to the initial contact with the filament
-# - We then make a slow move for the actual cut to happen 
-variable_travel_speed: 150              # mm/s
-variable_cut_fast_move_speed: 32        # mm/s
-variable_cut_slow_move_speed: 8         # mm/s
-variable_evacuate_speed: 150            # mm/s
-variable_cut_dwell_time: 50             # Time to dwell at the cut point in ms
-variable_cut_fast_move_fraction: 1.0    # Fraction of the move that uses fast move 
+# Retract length and speed after the cut so that the cutter blade doesn't
+# get stuck on return to origin position
+variable_rip_length             : 1             ; Distance in mm to retract to aid lever decompression (>= 0)
+variable_rip_speed              : 3             ; Speed mm/s
 
-variable_extruder_move_speed: 25        # mm/s for all extruder movement
+# Pushback of the remaining tip from the cold end into the hotend. This does
+# not have to push back all the way, just sufficient to ensure filament
+# fragment stays in hot end. Cannot be larger than 'retract_length'
+variable_pushback_length        : 5             ; Distance in mm
+variable_pushback_dwell_time    : 0             ; Time in ms to dwell after the pushback
 
-# Safety margin for fast vs slow travel
-# When traveling to the pin location, we make a safer but longer move if we closer to the pin than this specified margin
-# Usually setting these to the size of the toolhead (plus a small margin) should be good enough 
-variable_safe_margin_x: 30
-variable_safe_margin_y: 30
+# Speed related settings for tip cutting
+# Note that if the cut speed is too fast, the steppers can lose steps.
+# Therefore, for a cut:
+# - We first make a fast move to accumulate some momentum and get the cut
+#   blade to the initial contact with the filament
+# - We then make a slow move for the actual cut to happen
+variable_travel_speed           : 200           ; Speed mm/s
+variable_cut_fast_move_speed    : 32            ; Speed mm/s
+variable_cut_slow_move_speed    : 8             ; Speed mm/s
+variable_evacuate_speed         : 150           ; Speed mm/s
+variable_cut_dwell_time         : 50            ; Time in ms to dwell at the cut point
+variable_cut_fast_move_fraction : 1.0           ; Fraction of the move that uses fast move
+variable_extruder_move_speed    : 25            ; Speed mm/s for all extruder movement
 
-# If gantry servo option is installed, enable the servo and set up and down angle positions
-variable_gantry_servo_enabled: 0
-variable_gantry_servo_down_angle: 55
-variable_gantry_servo_up_angle: 180
+# Safety margin for fast vs slow travel. When traveling to the pin location
+# we make a safer but longer move if we are closer to the pin than this
+# specified margin. Usually setting these to the size of the toolhead
+# (plus a small margin) should be good enough
+variable_safe_margin_xy         : 30, 30        ; Approx toolhead width +5mm, height +5mm)
 
-# Testing only: Whether to eject the filament at the end
-variable_final_eject: 0                 # Don't leave enabled!
-
-# -------------------------- Internal Don't Touch -------------------------
-variable_output_park_pos: 0             # Dynamically set in macro
+# If gantry servo option is installed, enable the servo and set up and down
+# angle positions
+variable_gantry_servo_enabled   : False         ; True = enabled, False = disabled
+variable_gantry_servo_down_angle: 55            ; Angle for when pin is deployed
+variable_gantry_servo_up_angle  : 180           ; Angle for when pin is retracted
 ```
 
 > [!NOTE]  
