@@ -1,3 +1,11 @@
+#### Page Sections:
+- [Methods of Customization](---methods_of_customization)
+  - [Macro Extension](methods_of_customization)
+  - [Macro Replacement](methods_of_customization)
+- [MMU_ACTION_CHANGED](---mmu_action_changed)
+
+<br>
+
 Happy Hare provides many "callback macros" that, if defined, will be called at specific times.  They are designed for you to be able to extend the base functionality and to implement additional operations.  For example, if you want to control your printers LED's based on the action Happy Hare is performing you would replace/extend `_MMU_ACTION_CHANGED`.
 
 All of the default handlers and examples are defined in either `mmu_state.cfg`, `mmu_sequence.cfg`, `mmu_form_tip.cfg` or `mmu_cut_tip.cfg` and implement default behavior but can also serve as a starting point for designing your own.
@@ -16,7 +24,7 @@ variable_user_print_state_changed_extension : 'MY_MACRO'
 Then "MY\_MACRO" will be called when the print state changes. The "MY\_MACRO" will be passed exactly the same parameters as the original callback macro `_MMU_PRINT_STATE_CHANGED` and wil be called after the default handling. In this way, although `mmu_state.cfg` is read-only, you have extended the original functionality with a macro you control.
 
 > [!NOTE]  
-> Because the settings in `mmu_macro_vars.cfg` are yours, they will be retained on upgrade. This allow the default logic to be enhanced without effecting your custom additions. This is therefore the recommended method of enhancing functionality.
+> Because the settings in `mmu_macro_vars.cfg` are yours, they will be retained on upgrade. This allow the default logic to be enhanced without effecting your custom additions. This is therefore the recommended method of adding functionality.
 
 This extension methodology works for many macros called by Happy Hare, including:
 ```
@@ -33,10 +41,10 @@ variable_user_pause_extension
 variable_user_resume_extension
 variable_user_cancel_extension
 ```
-One final user extension is `variable_user_park_move_macro`. Unlike the rest in the list which extend, this **replaces** the move macro with the defined logic rather than the default behavior. This is a special case to allow for non-straight line parking moves instead of the straight line ones and saves you having to replace many macros to achieve the same behavior.
+One final user extension is `variable_user_park_move_macro`. Unlike the rest in the list which extend, this **replaces** the move macro with the defined logic rather than the default behavior. This is a special case to allow for non-straight line parking moves instead of the default straight ones and saves you having to replace many macros to achieve the same behavior.
 
 ### 2. Replacing default callback macros
-If you want to change the default behavior rather than add to it (often a desire for tip forming for example) or no `variable_user_XXX_extension` hooks are available you can replace the entire macro with one of your own. To do this you don't edit the read-only defaults, but instead write your own in another in your `printer.cfg` and then edit `mmu_parameters.cfg` to point to your replacement macro. For example, to define a new tip forming macro, you would change:
+If you want to change the default behavior rather than add to it (often a desire for tip forming for example) or no `variable_user_XXX_extension` hooks are available at the right time you can replace the entire macro with one of your own. To do this you don't edit the read-only defaults, but instead write your own in another in your `printer.cfg` and then edit `mmu_parameters.cfg` to point to your replacement macro. For example, to define a new tip forming macro, you would change:
 ```yml
 form_tip_macro: MY_FORM_TIP
 ```
@@ -58,8 +66,8 @@ unload_sequence_macro: _MMU_UNLOAD_SEQUENCE
 load_sequence_macro: _MMU_LOAD_SEQUENCE
 ```
 
-> [!NOTE]  
-> It is important that you understand the operation of the existing macro and the parameters that may be sent to it. Therefore it is best practice to copy the reference macro as a starting point into your own renaming all "helper" macros that may be called. This method also will survive upgrades (because `mmu_parameters.cfg` is maintained) but has the disadvantage that you will not see updated functionality unless you also update your replacement macro. Other than for `form_tip_macro` replacement of these macros is rare and instead the use of `variable_user_XXX_extension` mechanism is encouraged.
+> [!IMPORTANT]  
+> Before embarking on this approach it is important that you understand the operation of the existing macro and the parameters that may be sent to it. Therefore it is best practice to copy the reference macro as a starting point into your own renaming all "helper" macros that may be called. This method also will survive upgrades (because `mmu_parameters.cfg` is maintained) but has the disadvantage that you will not see updated functionality unless you also update your replacement macro. Other than for `form_tip_macro` replacement of these macros is rare and instead the use of `variable_user_XXX_extension` mechanism is encouraged.
 
 <br>
 
