@@ -229,14 +229,14 @@ The release provides more flexibilty in tool change movement, introduces consump
 ### v2.7.0
 **Main focus: tighter integration with spoolman**
 - Better integration with spoolman db. Printer name and gate assignment will be reflected in the spoolman db (requires spoolman >= 0.18.1)
-- Now three modes of spoolman integration: `readonly` the former mode, `push` the former augmented with the updating of assigned gate directly in spoolman, and `pull` where the gate map is defined by what is in spoolman. Useful in larger print farms. This is controlled via a new `spoolman_support` parameter. Details [here](https://github.com/moggieuk/Happy-Hare/wiki/Spoolman-Support.md)
+- Now three modes of spoolman integration: `readonly` the former mode, `push` the former augmented with the updating of assigned gate directly in spoolman, and `pull` where the gate map is defined by what is in spoolman. Useful in larger print farms. This is controlled via a new `spoolman_support` parameter. Details [here](Spoolman-Support.md)
 - New `MMU_SPOOLMAN` command for performing gate related management (updates) to spoolman db
-- New innovative automatic TTG mapping strategies. Controlled by `variable_automap_strategy`. Essentially this is applied after reading the slicer tool map to ensure mapping to the correct gate even if the MMU is loaded incorrectly. Strategies include: 'none', 'filament_name', 'material', 'color', 'closest_color', 'spool_id'. Details [here](https://github.com/moggieuk/Happy-Hare/wiki/Tool-and-Gate-Maps.md#---automatic-tool-to-gate-ttg-mapping)
+- New innovative automatic TTG mapping strategies. Controlled by `variable_automap_strategy`. Essentially this is applied after reading the slicer tool map to ensure mapping to the correct gate even if the MMU is loaded incorrectly. Strategies include: 'none', 'filament_name', 'material', 'color', 'closest_color', 'spool_id'. Details [here](Tool-and-Gate-Maps.md#---automatic-tool-to-gate-ttg-mapping)
 - Moonraker plugin now parses the filament names and includes in slicer tool map and mmu gate maps
-- Mainsail integration: Extruder/Filament colors and other filament attributes from spoolman are displayed in UI. Also there are controls on what color to display: `slicer`, `gatemap` (hiding unused filaments), `allgates` for the full gate map. Controlled with the new `t_macro_color` parameter. Details [here](https://github.com/moggieuk/Happy-Hare/wiki/Mainsail-Fluidd-Integration.md) :cool:
+- Mainsail integration: Extruder/Filament colors and other filament attributes from spoolman are displayed in UI. Also there are controls on what color to display: `slicer`, `gatemap` (hiding unused filaments), `allgates` for the full gate map. Controlled with the new `t_macro_color` parameter. Details [here](Mainsail-Fluidd-Integration.md) :cool:
 
-**Other features:**
-- Can now use LEDs without led_effects being installed.  A new `variable_led_animation_enable` has been added to control this behavior and will simply be forced to False if led_effects module isn't installed. It can also be controlled from `MMU_LED ANIMATION=[0|1]`. LED updates have also been made slightly more efficient.
+**Other features/updates:**
+- Can now use LEDs without led_effects being installed.  A new `variable_led_animation_enable` has been added to control this behavior and will simply be forced to False if led_effects module isn't installed. It can also be controlled from `MMU_LED ANIMATION=[0|1]`. LED updates have also been made slightly more efficient. Details in this [Wiki](Led-Support)
 - Consumption counters now automatically track servo arm movement and filament cutting for automatic maintenance warnings - no need to add macros yourself. Remember `MMU_STATS SHOWCOUNTS=1` to view current counts.
 - Now incorporates a filament "tightening" move after loading the toolhead if synced extruder is turned off. This is to prevent false clog detection when the slack in the bowden is greater than the clog detection length
 - New `variable_user_park_move_macro` can be used to customized the movement to the park position instead of default straight line move (Issue #351).
@@ -251,4 +251,5 @@ The release provides more flexibilty in tool change movement, introduces consump
 - Added `variable_min_toolchange_z` (mmu_macro_vars.cfg) to specify the floor at which any toolchange movement will occur to prevent scraping the bed if no z-hop is specified.
 - Project against klipper's new habit of setting toolhead position slightly out of range after homing - save position will ensure it is in range.
 - Octoprint compatibity option has been removed from mmu_macro_vars .. not necessary to ensure compatibility anymore
+- Wiki page on [macro customization](Macro-Customization) has been improved.
 
