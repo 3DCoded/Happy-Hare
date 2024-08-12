@@ -75,9 +75,9 @@ load_sequence_macro: _MMU_LOAD_SEQUENCE
 > [!IMPORTANT]  
 > Before embarking on this approach it is important that you understand the operation of the existing macro and the parameters that may be sent to it. Therefore it is best practice to copy the reference macro as a starting point into your own renaming all "helper" macros that may be called. This method also will survive upgrades (because `mmu_parameters.cfg` is maintained) but has the disadvantage that you will not see updated functionality unless you also update your replacement macro. Other than for `form_tip_macro` replacement of these macros is rare and instead the use of `variable_user_XXX_extension` mechanism is encouraged.
 
-<br>
-
 <hr>
+
+<br>
 
 Here are all the callout macros together with details of where to find them:
 
