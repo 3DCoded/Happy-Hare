@@ -1,8 +1,12 @@
-Happy Hare provides many "callback macros" that, if they exist, will be called at specific times.  They are designed for you to be able to extend the base functionality and to implement additional operations.  For example, if you want to control your printers LED's based on the action Happy Hare is performing you would replace/extend `_MMU_ACTION_CHANGED`.
+Happy Hare provides many "callback macros" that, if defined, will be called at specific times.  They are designed for you to be able to extend the base functionality and to implement additional operations.  For example, if you want to control your printers LED's based on the action Happy Hare is performing you would replace/extend `_MMU_ACTION_CHANGED`.
 
 All of the default handlers and examples are defined in either `mmu_state.cfg`, `mmu_sequence.cfg`, `mmu_form_tip.cfg` or `mmu_cut_tip.cfg` and implement default behavior but can also serve as a starting point for designing your own.
 
-Since you likely will want the default behavior these macros are designed to be read-only. There are two methods of modifying behavior:
+Since you will most likely want extend the default behavior these macros are designed to be read-only but can be replaced. Therefore there are two methods of modifying behavior:
+
+<br>
+
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Methods of customization
 
 ### 1. Extension of existing functionality
 Generally you will be able to add functionality simply by definng the appropriate `variable_user_XXX_extension` variables in `mmu_macro_vars.cfg`. For example, if you want to do something custom when the MMU print state changes, you would define:
