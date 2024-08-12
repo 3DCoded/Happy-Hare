@@ -292,6 +292,11 @@ Logic here can perform extra purging operations, pause for ooze and then wipe no
 
 <br>
 
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Tip Forming
+Tip forming is necessary to ensure the end of the filament will pass through the MMU and extruder on subsequent loads. There are two primary methods: tip-shaping and tip-cutting. They are mutually exclusive and you choose one based on your seting and point to the macro by changing `form_tip_macro` in `mmu_parameters.cfg`
+
+<br>
+
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) \_MMU\_FORM\_TIP
 **Defined in `form_tip.cfg`**
 
