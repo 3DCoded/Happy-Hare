@@ -36,6 +36,9 @@ enable_object_processing: True
 default_metadata_parser_timeout: 30
 ```
 
+> [!NOTE]  
+> Esoterical has written a really [good guide](https://canbus.esoterical.online/) of common errors and mitigations. Although it is titled as CANbus, most of it is more generic. The only advice I question is the size of the CANbus queue of 1024. This is too large for homing moves (Klipper's Kevin O'Conner recommends 128).
+
 ### <img src="Troubleshooting-and-Common-Issues/carrot.png" alt="" width="24"> Klipper internal "Step Compress" error
 This can occur when syncing the gear and extruder steppers (they are always synced through part of the extruder loading process even if you are not printing with them synced).  It occurs when there is too big a mismatch in the movement of a single step on the gear and the extruder - a small movement can issue "step instructions" to one stepper but not the other.  This is easily avoided by changing the microstep setting on either the gear or extruder.  Often the extruder is set with too high a microstep setting when really no higher than 32 is necessary with common gear ratios. If the extruder is set to 32, try increasing the MMU gear stepper to 16, 32, ...
 
