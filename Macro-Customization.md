@@ -5,7 +5,7 @@
 - [MMU\_ACTION\_CHANGED](#---_mmu_action_changed)
 - [MMU\_PRINT\_STATE\_CHANGED](#---_mmu_action_changed)
 - [MMU\_EVENT](#---_mmu_action_changed)
-- [Unloading & Loading Sequence](#---unloading--loading-sequence-macros)
+- [Unloading & Loading Sequence Macros](#---unloading--loading-sequence-macros)
 - [Tip Forming](#)
   - [\_MMU\_FORM\_TIP](#---_mmu_form_tip)
   - [\_MMU\_CUT\_TIP](#---_mmu_cut_tip)
