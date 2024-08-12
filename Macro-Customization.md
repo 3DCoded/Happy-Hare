@@ -1,20 +1,55 @@
-Happy Hare provides many "callback macros" that, if they exist, will be called at specific times.  They are designed for you to be able to extend the base functionality and to implement additional operations.  For example, if you want to control your printers LED's based on the action Happy Hare is performing you would modify `_MMU_ACTION_CHANGED`.
+Happy Hare provides many "callback macros" that, if they exist, will be called at specific times.  They are designed for you to be able to extend the base functionality and to implement additional operations.  For example, if you want to control your printers LED's based on the action Happy Hare is performing you would replace/extend `_MMU_ACTION_CHANGED`.
 
-All of the default handlers and examples are defined in either `mmu_software.cfg`, `mmu_form_tip.cfg` or `mmu_cut_tip.cfg` and serve as a starting point for modification.
+All of the default handlers and examples are defined in either `mmu_state.cfg`, `mmu_sequence.cfg`, `mmu_form_tip.cfg` or `mmu_cut_tip.cfg` and implement default behavior but can also serve as a starting point for designing your own.
+
+Since you likely will want the default behavior these macros are designed to be read-only. There are two methods of modifying behavior:
+
+### 1. Extension of existing functionality
+Generally you will be able to add functionality simply by definng the appropriate `variable_user_XXX_extension` variables in `mmu_macro_vars.cfg`. For example, if you want to do something custom when the MMU print state changes, you would define:
+```yml
+variable_user_print_state_changed_extension : 'MY_MACRO'
+```
+Then "MY\_MACRO" will be called when the print state changes. The "MY\_MACRO" will be passed exactly the same parameters as the original callback macro `_MMU_PRINT_STATE_CHANGED` and wil be called after the default handling. In this way, although `mmu_state.cfg` is read-only, you have extended the original functionality with a macro you control.
 
 > [!NOTE]  
-> Most of the macro names can be changed in `mmu_parameters.cfg`.  Therefore it is best practice to copy the reference macro as a starting point into your own `cfg` file and to RENAME it.  Then simply point to your macro instead of these defaults.  The reason for that is that the reference set can be upgraded and that would overwrite your changes.
->
-> You can also use the klipper mechanism of renaming macros, replacing with your own of the original name and still calling the reference ones here from your custom macro to maintain functionality.
+> Because the settings in `mmu_macro_vars.cfg` are yours, they will be retained on upgrade. This allow the default logic to be enhanced without effecting your custom additions. This is therefore the recommended method of enhancing functionality.
+
+### 2. Replacing default callback macros
+If you want to change the default behavior rather than add to it (often a desire for tip forming for example) or no `variable_user_XXX_extension` hooks are available you can replace the entire macro with one of your own. To do this you don't edit the read-only defaults, but instead write your own in another in your `printer.cfg` and then edit `mmu_parameters.cfg` to point to your replacement macro. For example, to define a new tip forming macro, you would change:
+```yml
+form_tip_macro: MY_FORM_TIP
+```
+Then you would write a macro MY\_FORM\_TIP to do your own tip forming.
+
+This methodology works for many macros called by Happy Hare, including:
+```
+form_tip_macro: _MMU_FORM_TIP
+pause_macro: PAUSE
+action_changed_macro: _MMU_ACTION_CHANGED
+print_state_changed_macro: _MMU_PRINT_STATE_CHANGED
+mmu_event_macro: _MMU_EVENT
+pre_unload_macro: _MMU_PRE_UNLOAD
+post_form_tip_macro: _MMU_POST_FORM_TIP
+post_unload_macro: _MMU_POST_UNLOAD
+pre_load_macro: _MMU_PRE_LOAD
+post_load_macro: _MMU_POST_LOAD
+unload_sequence_macro: _MMU_UNLOAD_SEQUENCE
+load_sequence_macro: _MMU_LOAD_SEQUENCE
+```
+
+> [!NOTE]  
+> It is important that you understand the operation of the existing macro and the parameters that may be sent to it. Therefore it is best practice to copy the reference macro as a starting point into your own. This method also will survive upgrades (because `mmu_parameters.cfg` is maintained) but has the disadvantage that you will not see updated functionality unless you also update your replacement macro. Other than for `form_tip_macro` replacement of these macros is rare and instead the use of `variable_user_XXX_extension` mechanism is encouraged.
+
+<br>
 
 Here are all the callout macros together with details of where to find them:
 
 <br>
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) \_MMU\_ACTION\_CHANGED
-**Defined in `mmu_software.cfg`**
+**Defined in `mmu_state.cfg`**
 
-Most of the time Happy Hare will be in the `Idle` state but it starts to perform a new action this macro is called.  The action string is passed as a `ACTION` parameter to the macro but can also be read with the printer variable `printer.mmu.action`. The previous action is passed in as `OLD_ACTION`
+Most of the time Happy Hare will be in the `Idle` state but it starts to perform a new action this macro is called.  The action string is passed as a `ACTION` parameter to the macro but can also be read with the printer variable `printer.mmu.action`. The previous action is passed in as `OLD_ACTION`.
 
 Possible action strings are:
 
@@ -32,7 +67,7 @@ Possible action strings are:
     Unknown        Should not occur
 ```
 
-Here is the start of the reference macro packaged in `mmu_software.cfg` used to drive LED effects:
+Here is the start of the reference macro packaged in `mmu_state.cfg` which is used by default to drive LED effects:
 
 ```yml
 ###########################################################################
@@ -58,9 +93,9 @@ gcode:
 <br>
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) \_MMU\_PRINT\_STATE\_CHANGED
-**Defined in `mmu_software.cfg`**
+**Defined in `mmu_state.cfg`**
 
-Happy Hare implements a state machine tracking the prgoress of a print. It is difference from the klipper `print_stats` because it is specific to MMU state during a print. Full details can be found [here](Print-Job-State-Machine#---job-state-transitions).  Every time a state changes this macro will be called. Then new state will be passed with the `STATE` parameter and the previous state as `OLD_STATE`. The state can also be read with the printer variable `printer.mmu.print_state`
+Happy Hare implements a state machine tracking the prgoress of a print. It is difference from the klipper `print_stats` because it is specific to MMU state during a print. Full details can be found [here](Print-Job-State-Machine#---job-state-transitions).  Every time a state changes this macro will be called. Then new state will be passed with the `STATE` parameter and the previous state as `OLD_STATE`. The state can also be read with the printer variable `printer.mmu.print_state`.
 
 Possible state strings are:
 
@@ -77,7 +112,7 @@ Possible state strings are:
     standby        Printer has been idle for extended period of time
 ```
 
-Here is the start of the reference macro packaged in `mmu_software.cfg` used to drive LED effects:
+Here is the start of the reference macro packaged in `mmu_state.cfg` which is used by default to drive LED effects:
 
 ```yml
 ###########################################################################
@@ -103,27 +138,46 @@ gcode:
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) \_MMU\_GATE\_MAP\_CHANGED
-**Defined in `mmu_software.cfg`**
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) \_MMU\_EVENT
+**Defined in `mmu_state.cfg`**
 
 Happy Hare maintains a map of all the filaments in the MMU including material type, color, etc.  When this map changes this macro is called. The `GATE` parameter will either represent a specific gate that has been updated or `-1` meaning that mutliple gates are updated. The actual gate map infomation can be read through printer variables `printer.mmu.gate_color`, `printer.mmu.gate_material`, etc..
 
-Here is the start of the reference macro packaged in `mmu_software.cfg` used to drive LED effects:
+Here is the start of the reference macro packaged in `mmu_state.cfg` which is used by default to manage consumption counters:
 
 
 ```yml
 ###########################################################################
-# Called when the MMU gate_map (containing information about the filament
-# type, color, availability and spoolId) is updated
+# Called when an atomic event occurs. Different from ACTION_CHANGE because
+# these are not necessarily part of any important state change but rather
+# informational
 #
-# The `GATE` parameter will contain the gate that is updated or -1 if all updated
+# The `EVENT` parameter will contain the event name. Other parameters
+# depend on the event type
 #
-# The reference logic here drives a set of optional LED's
+# See Happy Hare README for full list of event strings, but a quick ref is:
 #
-[gcode_macro _MMU_GATE_MAP_CHANGED]
-description: Called when gate map is updated
+# Events:
+#   "restart"              Called when Happy Hare starts / restarts
+#       Parameters: None
+#
+#   "gate_map_changed"    Called when the MMU gate_map (containing information
+#                         about the filament type, color, availability and
+#                         spoolId) is updated
+#       Parameters: GATE  The gate that is updated or -1 if all updated
+#
+#   "servo_down"          Called when MMU servo (if fitted) grips filament
+#       Parameters: None
+#
+#   "filament_cut"        Called when filament is cut
+#       Parameters: None
+#
+# The reference logic here updates counters and drives optional LED's
+#
+[gcode_macro _MMU_EVENT]
+description: Called when certain MMU actions occur
 gcode:
-    {% set GATE = params.GATE|int %}
+    {% set event = params.EVENT|string %}
 ```
 
 <br>
