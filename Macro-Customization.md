@@ -79,6 +79,8 @@ load_sequence_macro: _MMU_LOAD_SEQUENCE
 
 Here are all the callout macros together with details of where to find them:
 
+<br>
+
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) \_MMU\_ACTION\_CHANGED
 **Defined in `mmu_state.cfg`**
 
