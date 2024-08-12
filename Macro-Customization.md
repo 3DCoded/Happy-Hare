@@ -2,13 +2,13 @@
 - [Methods of Customization](#---methods_of_customization)
   - [Macro Extension](#1-extension-of-existing-functionality)
   - [Macro Replacement](#2-replacing-default-callback-macros)
-- [MMU_ACTION_CHANGED](#---_mmu_action_changed)
-- [MMU_PRINT_STATE_CHANGED](#---_mmu_action_changed)
-- [MMU_EVENT](#---_mmu_action_changed)
+- [MMU\_ACTION\_CHANGED](#---_mmu_action_changed)
+- [MMU\_PRINT\_STATE\_CHANGED](#---_mmu_action_changed)
+- [MMU\_EVENT](#---_mmu_action_changed)
 - [Unloading & Loading Sequence](#---unloading--loading-sequence-macros)
 - [Tip Forming](#)
-  - [\_MMU_FORM_TIP](#---_mmu_form_tip)
-  - [\_MMU_FORM_TIP](#---_mmu_cut_tip)
+  - [\_MMU\_FORM\_TIP](#---_mmu_form_tip)
+  - [\_MMU\_CUT\_TIP](#---_mmu_cut_tip)
 
 <br>
 
