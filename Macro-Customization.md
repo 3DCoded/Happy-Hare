@@ -1,8 +1,14 @@
 #### Page Sections:
-- [Methods of Customization](---methods_of_customization)
-  - [Macro Extension](methods_of_customization)
-  - [Macro Replacement](methods_of_customization)
-- [MMU_ACTION_CHANGED](---mmu_action_changed)
+- [Methods of Customization](#---methods_of_customization)
+  - [Macro Extension](#1-extension-of-existing-functionality)
+  - [Macro Replacement](#2-replacing-default-callback-macros)
+- [MMU_ACTION_CHANGED](#---_mmu_action_changed)
+- [MMU_PRINT_STATE_CHANGED](#---_mmu_action_changed)
+- [MMU_EVENT](#---_mmu_action_changed)
+- [Unloading & Loading Sequence](#---unloading--loading-sequence-macros)
+- [Tip Forming](#)
+  - [\_MMU_FORM_TIP](#---_mmu_form_tip)
+  - [\_MMU_FORM_TIP](#---_mmu_cut_tip)
 
 <br>
 
