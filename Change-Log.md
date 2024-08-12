@@ -237,6 +237,7 @@ The release provides more flexibilty in tool change movement, introduces consump
 
 **Other features:**
 - Can now use LEDs without led_effects being installed.  A new `variable_led_animation_enable` has been added to control this behavior and will simply be forced to False if led_effects module isn't installed. It can also be controlled from `MMU_LED ANIMATION=[0|1]`. LED updates have also been made slightly more efficient.
+- Consumption counters now automatically track servo arm movement and filament cutting for automatic maintenance warnings - no need to add macros yourself. Remember `MMU_STATS SHOWCOUNTS=1` to view current counts.
 - Now incorporates a filament "tightening" move after loading the toolhead if synced extruder is turned off. This is to prevent false clog detection when the slack in the bowden is greater than the clog detection length
 - New `variable_user_park_move_macro` can be used to customized the movement to the park position instead of default straight line move (Issue #351).
 - New printer variables: `printer.mmu.gate_filament_name` and `printer.mmu.spoolman_support`

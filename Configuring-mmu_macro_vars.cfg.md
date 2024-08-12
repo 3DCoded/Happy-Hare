@@ -55,7 +55,11 @@ This section allows you to extend the functionality of Happy Hare with custom co
 
 `variable_user_print_state_changed_extension ` runs a command or macro after Happy Hare changes the MMU state.
 
-`variable_user_gate_map_changed_extension` runs a command or macro after the gate status is changed.
+`variable_user_mmu_event_extension` runs a command or macro after a specific MMU event (e.g. the gate status is changed, or filament has been cut)
+
+`variable_servo_down_limit` sets the maintence interval for servo down movement. In some MMU designs like ERCF, this servo movement can cause ware and this will generate a warning after the count is reached. Set to `-1` to disable.
+
+`variable_cutter_blade_limit` sets the maintence intervale for filament cutting. If using a filament cutter this will count the cuts and issue maintenance warning when the limit is reached. Set to `-1` to disable.
 
 As an example, if you have the [Klipper LED Effect module](https://github.com/julianschill/klipper-led_effect) installed and a custom status created that flashes all the LEDs in the printer three times, you could make the printer flash the lights after every action by Happy Hare by:
 `variable_user_action_changed_extension: STATUS_FLASH3`

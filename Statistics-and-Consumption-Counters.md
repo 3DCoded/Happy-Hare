@@ -94,6 +94,9 @@ Suppose you have fitted a filament cutter that has a blade that dulls (and ideal
 
 It is harmless for this to be specified multiple times because it doesn't reset so you could include in a macro if you wanted. You can also optionally specify `PAUSE=1` to the setup command. This will turn the warning into an MMU pause/error. Whilst this is not the default it could be useful if you need to take proactive action such as emptying a purge tray for example.
 
+> [!NOTE]  
+> LIMIT=-1 turns off limit checking. It can also be used on existing counters to temporarily turn off the limit.
+
 ### Counting:
 
 > MMU_STATS COUNTER=cutter_blade INCR=1

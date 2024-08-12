@@ -81,7 +81,7 @@ Happy Hare MMU commands: (use MMU_HELP SLICER=1 MACROS=1 CALLBACKS=1 TESTING=1 S
   | Command | Description | Parameters |
   | ------- | ----------- | ---------- |
   | `MMU_SENSORS` | Report on the state of all sensors connected to the MMU | `DETAIL=[0\|1]` Whether to show all disabled sensors or just active ones |
-  | `MMU_STATS` | Dump (and optionally reset) the MMU statistics for current print job or total | `RESET=1` If specified the persisted statistics will be reset (will only apply to counts if COUNTER argument is supplied). <br> `TOTAL=[0\|1]` whether to also show the total swap stats in addition to the current/last print job. <br>`DETAIL=[0\|1]` Whether to display additional details about the per-gate statistics. <br>`COUNTER=<name>` Consumption counter name. <br>`LIMIT=<int>` The maximum count for consumption counter before warning. <br>`WARNING="<message>"` The warning message to issue when the counter exceeds limit. <br>`PAUSE=1` Whether to pause the print when the limit is reach verses just warning. <br>`INCR=1` Increment the consumption counter by one (can be any positive number). <br>`DELETE=1` deletes the specified consumption counter completely (use "RESET=1" to reset count to 0). <br>`SHOWCOUNTS=1` will also display the comsuption counters |
+  | `MMU_STATS` | Dump (and optionally reset) the MMU statistics for current print job or total as well as managing consumption counters | `RESET=1` If specified the persisted statistics will be reset (will only apply to counts if COUNTER argument is supplied). <br> `TOTAL=[0\|1]` whether to also show the total swap stats in addition to the current/last print job. <br>`DETAIL=[0\|1]` Whether to display additional details about the per-gate statistics. <br>`COUNTER=<name>` Consumption counter name. <br>`LIMIT=<int>` The maximum count for consumption counter before warning. <br>`WARNING="<message>"` The warning message to issue when the counter exceeds limit. <br>`PAUSE=1` Whether to pause the print when the limit is reach verses just warning. <br>`INCR=1` Increment the consumption counter by one (can be any positive number). <br>`DELETE=1` deletes the specified consumption counter completely (use "RESET=1" to reset count to 0). <br>`SHOWCOUNTS=1` will also display the comsuption counters <br>`QUIET=1` optional argument to suppress unecessary output |
   | `MMU_STATUS` | Report on MMU state, capabilities and Tool-to-Gate map | `DETAIL=[0\|1]` Whether to show a more detailed view including EndlessSpool groups and full Tool-To-Gate mapping. <br>`SHOWCONFIG=[0\|1]` (default 0) Whether or not to describe the machine configuration in status message |
 
 <br>
@@ -161,7 +161,7 @@ Happy Hare MMU commands: (use MMU_HELP SLICER=1 MACROS=1 CALLBACKS=1 TESTING=1 S
     MMU_START_SETUP : Called when starting print to setup MMU
     _MMU_ACTION_CHANGED : Called when an action has changed
     _MMU_DUMP_TOOLHEAD : For debugging: dump current configuration of MMU Toolhead rails
-    _MMU_GATE_MAP_CHANGED : Called when gate map is updated
+    _MMU_EVENT : Called when certain MMU actions occur
     _MMU_POST_FORM_TIP : Optional post tip forming/cutting routing
     _MMU_POST_LOAD : Optional post load routine for filament change
     _MMU_POST_UNLOAD : Optional post unload routine for filament change
@@ -202,7 +202,7 @@ See [Slicer Setup](Slicer-Setup) for details
   | `_MMU_CUT_TIP` | Called to create tip by cutting the filament. You tune this macro by modifying the defaults to the parameters | `FINAL_EJECT` override the default configured behavior in mmu_macro_vars.cfg |
   | | | |
   | `_MMU_ACTION_CHANGED` | Callback that is called everytime the `printer.ercf.action` is updated. Great for contolling LED lights, etc | `ACTION` <br>`OLD_ACTION`|
-  | `_MMU_GATE_MAP_CHANGED` | Called when gate map is updated. Useful for updating LED lights, etc | `GATE` |
+  | `_MMU_EVENT` | Called when certain micellaneous MMU actions/events occur. For eaxmple when the gate map is updated (useful for updating LED lights, etc) or when the filament is cut on a system with filament blade | `EVENT` contains the event name "restart\|gate_map_changed\|servo_down\|filament_cut". <br>` ` each EVENT type can pass additional parameters. E.g. `GATE` to gate number or -1 for "gate_map_changed" event |
   | `_MMU_PRINT_STATE_CHANGED` | Callback when the print job state changes and `printer.ercf.print_state` is updated. Great for contolling LED lights, etc | `STATE` <br>`OLD_STATE`|
 
 <br>
