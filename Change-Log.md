@@ -243,6 +243,7 @@ The release provides more flexibilty in tool change movement, introduces consump
 - New printer variables: `printer.mmu.gate_filament_name` and `printer.mmu.spoolman_support`
 - Fixed issue when the loaded slicer tool map could be reset during print start.
 - Several PR's incorporated and bug fixes to address reported Issues.
+- Slight changes to stepper synchronization that should help with TTC and stepcompress errors.
 - Lots of wiki updates (see links above).
 - Tolerance to in Danger Klipper "bleeding edge" added. Comes without warantee!
 - Fixed (cosmetic) problem where the load/unload distances in the console animation weren't consistent (Issue #348)
@@ -252,4 +253,5 @@ The release provides more flexibilty in tool change movement, introduces consump
 - Project against klipper's new habit of setting toolhead position slightly out of range after homing - save position will ensure it is in range.
 - Octoprint compatibity option has been removed from mmu_macro_vars .. not necessary to ensure compatibility anymore
 - Wiki page on [macro customization](Macro-Customization) has been improved.
+- Bloblifier macro update that adds "safe decend logic" to ensure toolhead doesn't hit parts of the print.
 
