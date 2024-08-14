@@ -27,10 +27,10 @@ Generally you will be able to add functionality simply by definng the appropriat
 ```yml
 variable_user_print_state_changed_extension : 'MY_MACRO'
 ```
-Then "MY\_MACRO" will be called when the print state changes. The "MY\_MACRO" will be passed exactly the same parameters as the original callback macro `_MMU_PRINT_STATE_CHANGED` and wil be called after the default handling. In this way, although `mmu_state.cfg` is read-only, you have extended the original functionality with a macro you control.
+Then "MY\_MACRO" will be called when the print state changes. The "MY\_MACRO" will be passed exactly the same parameters as the original callback macro `_MMU_PRINT_STATE_CHANGED` and will be called after the default handling. In this way, although `mmu_state.cfg` (where `_MMU_PRINT_STATE_CHANGED) is read-only, you have extended the original functionality with a macro you control.
 
 > [!NOTE]  
-> Because the settings in `mmu_macro_vars.cfg` are yours, they will be retained on upgrade. This allow the default logic to be enhanced without effecting your custom additions. This is therefore the recommended method of adding functionality.
+> Because the settings in `mmu_macro_vars.cfg` are yours, they will be retained on upgrade. This allow the default logic to be upgraded without effecting your custom additions. This is therefore the recommended method of adding functionality.
 
 This extension methodology works for many macros called by Happy Hare, including:
 ```
@@ -50,11 +50,11 @@ variable_user_cancel_extension
 One final user extension is `variable_user_park_move_macro`. Unlike the rest in the list which extend, this **replaces** the move macro with the defined logic rather than the default behavior. This is a special case to allow for non-straight line parking moves instead of the default straight ones and saves you having to replace many macros to achieve the same behavior.
 
 ### 2. Replacing default callback macros
-If you want to change the default behavior rather than add to it (often a desire for tip forming for example) or no `variable_user_XXX_extension` hooks are available at the right time you can replace the entire macro with one of your own. To do this you don't edit the read-only defaults, but instead write your own in another in your `printer.cfg` and then edit `mmu_parameters.cfg` to point to your replacement macro. For example, to define a new tip forming macro, you would change:
+If the extension cability is insufficent you can completely replace the default behavior rather than add to it. This is often a desire for tip forming for example or where no `variable_user_XXX_extension` hooks are available at the right time. To do this you don't edit the read-only defaults, but instead write your own macro in another and include in your `printer.cfg`. Then edit `mmu_parameters.cfg` to point to your replacement macro. For example, to define a new tip forming macro, you would change:
 ```yml
 form_tip_macro: MY_FORM_TIP
 ```
-Then you would write a macro MY\_FORM\_TIP to do your own tip forming.
+Then you would implement a macro MY\_FORM\_TIP to do your own tip forming.
 
 This methodology works for many macros called by Happy Hare, including:
 ```
