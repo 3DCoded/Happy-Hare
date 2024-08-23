@@ -113,37 +113,39 @@ Get out your ruler and very carefully measure the length of the emited filament.
 <br>
 
 ### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Step 4. Calibrate your encoder (if fitted)
-If your MMU includes an encoder (like the ERCF design) the next step is to calibrate so it measures distance accurately. Re-fit the bowden to the selector/encoder (you can insert the short length of filament to tube as you fit to save time). Alternatively, just make sure you have some filament through gate #0 before starting.  Now run:
+If your MMU includes an encoder (like the ERCF design) the next step is to calibrate so it measures distance accurately. Re-fit the bowden to the selector/encoder (you can insert the short length of filament to tube as you fit to save time). Alternatively, just make sure you have some filament through gate #0 before starting - you can do this by running `MMU_TEST_MOVE` again if necessary. Now run:
 
   > MMU_CALIBRATE_ENCODER
 
 You will see an output similar to:
 
 ```
-    + counts = 368
-    - counts = 368
-    + counts = 369
-    - counts = 369
-    + counts = 369
-    - counts = 369
-    Load direction: mean=368.67 stdev=0.58 min=368 max=369 range=1
+    Testing over 400mm
+      + counts: 368
+      - counts: 368
+      + counts: 369
+      - counts: 369
+      + counts: 369
+      - counts: 369
+    Load direction:   mean=368.67 stdev=0.58 min=368 max=369 range=1
     Unload direction: mean=368.67 stdev=0.58 min=368 max=369 range=1
-    Before calibration measured length = 394.47
-    Resulting resolution of the encoder = 1.084991
-    After calibration measured length = 400.00
-    Encoder calibration has been saved for MMU ERCF v1.1sb
+    Before calibration measured length: 394.47mm
+    Calculated resolution of the encoder: 1.085049 (currently: 1.094543)
+    Encoder calibration has been saved
 ```
 
 > [!NOTE]  
 > (i) Use fresh filament - grooves from previous passes through extruder gears can lead to slight count differences.<br>
 > (ii) Make sure the selector is aligned with the gate. If it is off to one side you will almost certainly get disimilar counts in forward and reverse directions.<br>
-> (iii) You want the counts on each attempt to be the same or very similar but don't sweat +/-2 counts.  With ERCF v2.0, sprung servo and new Binky encoder design you should approach perfection though ;-)<br>
+> (iii) You want the counts on each attempt to be the same or very similar but don't sweat +/-3 counts.  With ERCF v2.0, sprung servo and new Binky encoder design they should be very consistent though ;-)<br>
 > (iv) You can run this (like all calibration commands) without saving the result by adding a `SAVE=0` flag.
+
+If this step worked then you should be able to unload the residual filament with `MMU_UNLOAD`. If you aren't happy with results, leave the filament ready for the next run.
 
 <br>
 
 ### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Step 5. Calibrate bowden length
-Optionally the last calibration before use! Here you can calibrate the length of your bowden from MMU gate to extruder entrance. This is important because it allows the MMU to move the filament at a fast pace over this distance because getting to the more complicated part of the load sequence. To speed up this process you need to give the calibration routine a hint of how far way the extruder is (but not exceeding the distance).  A good rule of thumb is to manually measure the distance from exit from the selector to the entrance to your extruder. Subtract 40-50mm from that distance. Approximate distance is 650mm on my system. In you have an encoder you can run the automatic method:
+Optionally the last calibration before use! Here you can calibrate the length of your bowden from MMU gate to extruder entrance. This is important because it allows the MMU to move the filament at a fast pace over this distance because getting to the more complicated part of the load sequence. To speed up this process you need to give the calibration routine a hint of how far way the extruder is (but not exceeding the distance).  A good rule of thumb is to manually measure the distance from exit from the selector to the entrance to your extruder. Subtract 40-50mm from that distance. I measured approximately 690mm on my system, so will supply 650mm as the starting value. In you have an encoder you can run the automatic method:
 
   > MMU_CALIBRATE_BOWDEN BOWDEN_LENGTH=650
 
@@ -196,21 +198,22 @@ You will see an output similar to:
 ```
     Tool T1 enabled
     Calibrating gate 1 over 400.0mm...
-    + measured = 404.4mm
-    - measured = 404.4mm
-    + measured = 404.4mm
-    - measured = 404.4mm
-    + measured = 405.5mm
-    - measured = 405.5mm
-    Load direction: mean=404.7 stdev=0.63 min=404.4 max=405.5 range=1.1
+      + measured: 404.4mm
+      - measured: 404.4mm
+      + measured: 404.4mm
+      - measured: 404.4mm
+      + measured: 405.5mm
+      - measured: 405.5mm
+    Load direction:   mean=404.7 stdev=0.63 min=404.4 max=405.5 range=1.1
     Unload direction: mean=404.7 stdev=0.63 min=404.4 max=405.5 range=1.1
     Calibration move of 6x 400.0mm, average encoder measurement: 404.7mm - Ratio is 1.011872
-    (Gate #1 rotation_distance: 22.941324 vs Gate #0: 22.672165)
-    Calibration for gate #1 has been saved
+    Calculated gate 1 rotation_distance: 22.941324 (currently: 22.672165)
+    Calibration for gate 1 has been saved
 ```
 
 > [!NOTE]  
-> You can also quickly run through all gates (even pass the loose filament gate to gate) with `MMU_CALIBRATE_GATES ALL=1`
+> (i) You can also quickly run through all gates (even pass the loose filament gate to gate) with `MMU_CALIBRATE_GATES ALL=1`<br>
+> (ii) If you see "Calibration ignored because it is not considered valid (>20% difference from gate 0)" then it either means the calibration failed because filament was not moving or the encoder was not working correctly. Less likely but possible is because you have not calibrated gate 0 (`MMU_CALIBRATE_GEAR` and `MMU_CALIBRATE_ENCODER`) correctly which serves as the reference gate.
 
 <br>
 
