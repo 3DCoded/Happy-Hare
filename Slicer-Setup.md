@@ -109,6 +109,7 @@ Ensure this is added in your slicer's "custom end g-code" box:
 ```yml
 MMU_END
 ; Optionally enter YOUR print end macro call here
+_MMU_END_PRINT
 ```
 
 #### `1. MMU_END`
@@ -116,6 +117,9 @@ This is a macro (defined in `mmu_software.cfg`) that finalizes MMU, can print st
 
 #### `2. END_PRINT`
 This is where your existing print end macro would be placed
+
+#### `3. _MMU_END_PRINT`
+This should be the very last g-code executed. When printing from virtual sd-card this isn't necessary (although harmless to include) because Happy Hare will automatically detect the end of print, it is necessary when printing from Octoprint.
 
 <br>
 
