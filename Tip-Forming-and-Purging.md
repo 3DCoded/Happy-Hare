@@ -107,10 +107,10 @@ MMU_TEST_CONFIG toolhead_ooze_reduction=N
 ```
 Just don't forget to persist the final result in `mmu_parameters.cfg` when the print is done.
 
+<p align="center"><img src="Tip-Forming-and-Purging/toolhead_ooze_reduction.png" width="60%" alt="ooze reduction"></p>
+
 > [!IMPORTANT] 
 > This information is included here as a last resort but really the `toolhead_ooze_reduction` should be set first by calibrating the toolhead in the [Blobbing and Stringing](Blobbing-and-Stringing) section since it represents the amount of residual filament left behind in your extruder.  It is often much bigger that you expect and thus it is important to run the not automated calibration if you have a toolhead sensor so you have an accurate starting point. You would only really need to tweak at most +/-2mm if you calibrated correctly.
-
-<p align="center"><img src="Tip-Forming-and-Purging/toolhead_ooze_reduction.png" width="60%" alt="ooze reduction"></p>
 
 <br>
 
