@@ -19,8 +19,6 @@ The shape of filament tips is of crucial importance for a reliable system. The f
 <br>&nbsp;
 <br>&nbsp;
 <br>&nbsp;
-<br>&nbsp;
-<br>&nbsp;
 
 ### Prusa Defaults
 A very solid base for filament profile multimaterial section is to use the default filament Prusa MMU profiles. To do that, add an Prusa printer + MMU from the system presets printers, and then select the MMU printer (NOT the Single one). From there, you’ll be able to access the list of filament system presets built for MultiMaterial (they have the @MMU tag in their name, only use those).
