@@ -28,10 +28,6 @@ The rest of this guide describes the toolhead movement possibilities that occurs
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Tip Cutting Options
 
-<br>
-
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Tip Cutting Options
-
 Firstly, although the default way to form tips is through calculated filament movement, there is an easier way -- just cut it off! There are supported ways to do this at the MMU (through piggybacking on the `_MMU_POST_UNLOAD` callback) the more typical way is with a filament cutter at the toolhead.  This it usually some form of blade that is operated via a dedicated servo mechanism or simply the movement of the toolhead itself and pressing against a pin (optionally itself activated by a servo).
 
 To set this up you need to edit three modular configuraton files: `mmu_parameters.cfg` (the primary setup), `mmu_cut_tip.cfg` (contains the tip cutting macro) and `mmu_sequence.cfg` (contains the default toolhead movement options)
@@ -153,7 +149,7 @@ That's it.  This is harmless with normal printing but when printing sequentially
 
 <br>
 
-### More slicer setup help:
+### Related docs:
 - [Slicer Setup](Slicer-Setup)
 - [Tip Forming and Purging](Tip-Forming-and-Purging)
 - [Toolchange Movement]
