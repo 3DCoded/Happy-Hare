@@ -1,6 +1,6 @@
 #### Page Sections:
-- [Turning off slicer tip forming](#turning-off-slicer-tip-forming)
-- [Turning off slicer wipetower](#turning-off-slicer-wipetower)
+- [Toolhead movement during toolchange](#---toolhead-movement-during-toolchange)
+  - [Role of Happy Hare](#role-of-happy-hare)
   - [Tip cutting options](#---tip-cutting-options)
   - [Tip forming options](#---tip-forming-options)
   - [Printing without wipetower](#printing-without-wipetower)
@@ -16,51 +16,17 @@ The tool change movement options in the guide assume you have configured key too
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Role of the Slicer
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Toolhead movement during toolchange
 
-The most important part of MMU printing is understanding how to configure your slicer for "single extruder multi material".  Because each slicer is different this is beyond the scope this documentation.  That said, the common slicers: Prusaslicer, Superslicer and Orcaslicer all have similar interfaces and there are a couple of settings you need to be aware of in deciding between what is performed by Happy Hare (the MMU "firmware") and the slicer.
+### Role of Happy Hare
 
-### Turning off slicer tip forming
-The first thing that has to happen on a tool change is to prepare the tip of the filament being removed from the extruder. The simplist and recommend approach is to disable the tip creation process in the slicer and allow Happy Hare to do this. The reason is Happy Hare will have to do this while not actively printing anyway - so why configure what will likely be the most furstrating part of your journey in two places.
+Happy Hare controls all of the setup, customization and control of your MMU. It allows your to change tools outside of a print as well as controlling the toolchange and movement inside of a print when the `Tx` toolchange command is issued.  The tip forming logic is the only duplicative component with the slicer and thus you need to decided on always allow the Happy Hare to do it (recommended) or split duties: Happy Hare out of print, slicer while printing. The `force_form_tip_standalone` is an important setting that switches between these options (together with correct slicer configuration).
 
-Slicers have some quirks and don't make it very straighforward to turn off as you would expect. Instead you need to configure in a number of different areas.  This screenshots shown here are for Prusaslicer but Superslicer and Orcaslicer are very similar.
-
-The first place is a setting like this on the `printer settings` tab.  This disables the primary retract/extrude oscillation that is the bulk of the tip forming and cooling movement.
-
-> [!NOTE]  
-> Whilst it is logical to zero all these settings out, Prusaslicer (v2.5) at least has bug that will insert illegal `G1 F0` commands if all the fields are exactly 0.  Instead use a tiny value for the cooling tube length.
-
-<img src="Toolchange-Movement/printer_settings.png" width="500" alt="Slicer printer settings">
-
-Working in conjunction with the above and found on the `filament settings` tab is this area where you should zero out all all movement speeds and distances.  Leave only the timing inputs that you can tune once you know the average loading and unloading time for your particular MMU.
-
-<img src="Toolchange-Movement/filament_settings.png" width="680" alt="Slicer filament settings">
-
-The next setting must be configure on each of your extruders.  This turns off an initial retraction and subsequent extrude that will leave blobs on your wipetower.  The reason to turn this off is that Happy Hare will correctly load the filament exatly to the nozzle and additonal extrusion will cause a blob.
-
-<img src="Toolchange-Movement/printer_settings_extruder.png" width="500" alt="Slicer printer settings per extruder">
-
-Unless you have a sepcialized purge system (documented later) you will want the slicer to manage a wipe tower used to purge out the remains of the previous filament.  To do this, make sure this option is enabled (it usually is by default):
-
-<img src="Toolchange-Movement/print_settings.png" width="500" alt="Slicer print settings">
-
-> [!NOTE]  
-> If you use SuperSlicer, be sure to turn off Skinnydip:
-> <br><img src="Toolchange-Movement/skinny_dip.png" width="500" alt="Skinnydip disabling"><br>
-> It's probably also a good idea to zero out the distances below.
-> Doing this prevents Superslicer from pushing out a blob of filament before cutting the tip.
-
-
-### Turning off slicer wipetower
-To switch to a custom purge system you need only to untoggle the `enable wipetower` option.  All tip forming settings remain the same.
+The rest of this guide describes the toolhead movement possibilities that occurs during a tool change.
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Role of Happy Hare
-
-Happy Hare controls all of the setup, customization and control of your MMU. It allows your to change tools outside of a print as well as controlling the toolchange and movement inside of a print when the `Tx` toolchange command is issued.  The tip forming logic is the only duplicative component with the slicer and thus you need to decided on always allow the firmware to do it (recommended) or split duties: firmware out of print, slicer while printing. The `force_form_tip_standalone` is an important setting that switches between these options (together with correct slicer configuration).
-
-The rest of this guide describes the toolhead movement possibilities that occurs during a tool change.
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Tip Cutting Options
 
 <br>
 
