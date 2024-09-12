@@ -12,8 +12,8 @@ There are two parts to an MMU toolchange that are critical to get set up correct
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Tuning Filament Tips
 
-The shape of filament tips is of crucial importance for a reliable system. The filament tips need to look like tiny spears, free of any blobs or long hairs. Here are some proper tips that won’t cause any issue:
 <img align="right" src="Tip-Forming-and-Purging/good_tips.png" width="150" alt="Good Tips">
+The shape of filament tips is of crucial importance for a reliable system. The filament tips need to look like tiny spears, free of any blobs or long hairs. Here are some proper tips that won’t cause any issue:
 
 <br>&nbsp;
 <br>&nbsp;
