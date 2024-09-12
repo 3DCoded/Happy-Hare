@@ -155,5 +155,5 @@ That's it.  This is harmless with normal printing but when printing sequentially
 
 ### More slicer setup help:
 - [Slicer Setup](Slicer-Setup)
-- [Toolchange Movement]
 - [Tip Forming and Purging](Tip-Forming-and-Purging)
+- [Toolchange Movement]

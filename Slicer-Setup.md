@@ -280,5 +280,5 @@ I wish slicers made it easy to toggle tip forming on/off but unfortunately that 
 
 ### More slicer setup help:
 - [Slicer Setup]
-- [Toolchange Movement](Toolchange-Movement)
 - [Tip Forming and Purging](Tip-Forming-and-Purging)
+- [Toolchange Movement](Toolchange-Movement)
