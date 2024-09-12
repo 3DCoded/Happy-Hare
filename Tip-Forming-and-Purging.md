@@ -13,9 +13,11 @@ There are two parts to an MMU toolchange that are critical to get set up correct
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Tuning Filament Tips
 
 The shape of filament tips is of crucial importance for a reliable system. The filament tips need to look like tiny spears, free of any blobs or long hairs. Here are some proper tips that won’t cause any issue:
-<p align="center"><img src="Tip-Forming-and-Purging/good_tips.png" width="150" alt="Good Tips"></p>
+<img align="right" src="Tip-Forming-and-Purging/good_tips.png" width="150" alt="Good Tips">
 
-<br>
+<br>&nbsp
+<br>&nbsp
+<br>&nbsp
 
 ### Prusa Defaults
 A very solid base for filament profile multimaterial section is to use the default filament Prusa MMU profiles. To do that, add an Prusa printer + MMU from the system presets printers, and then select the MMU printer (NOT the Single one). From there, you’ll be able to access the list of filament system presets built for MultiMaterial (they have the @MMU tag in their name, only use those).
