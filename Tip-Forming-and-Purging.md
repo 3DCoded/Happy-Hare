@@ -174,7 +174,7 @@ The bulk of tip cutting, and indeed, the only user editable parameters, is in `m
 
 <br>
 
-### Related docs
+### Related docs:
 - [Slicer Setup](Slicer-Setup)
 - [Tip Forming and Purging]
 - [Toolchange Movement](Toolchange-Movement)
