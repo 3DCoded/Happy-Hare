@@ -1,85 +1,146 @@
 #### Page Sections:
+- [Overview of toolhead parking movement](#---overview-of-toolhead-parking-movement)
 - [Toolhead movement during toolchange](#---toolhead-movement-during-toolchange)
-  - [Role of Happy Hare](#role-of-happy-hare)
   - [Tip cutting options](#---tip-cutting-options)
   - [Tip forming options](#---tip-forming-options)
-  - [Printing without wipetower](#printing-without-wipetower)
 - [Returning to print movement](#---return-to-print-movement)
 - [Z-hop moves](#---z-hop-moves)
   - [Sequential printing](#sequential-printing)
 
 <br>
 
-The tool change movement options in the guide assume you have configured key toolhead locations (if applicable to your setup) by editing the `mmu_macro_vars.cfg` file:
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Overview of toolhead parking movement
 
-<img src="Toolchange-Movement/toolhead_locations.png" width="900" alt="Toolhead Locations">
+Happy Hare controls all of the setup, customization and control of your MMU. It allows your to change tools outside of a print as well as controlling the toolchange and movement inside of a print when the `Tx` toolchange command is issued. It also uses the same parking and movement to control what happens when the MMU encounters and error or (optionally) when pausing or canceling a print whether an MMU print or not.
+
+Lets start with the basic parking movement and then discuss the toolchange in more detail. Note that all configuration if controlled with settings in `mmu_macro_vars.cfg` which also contains additional instruction.
+
+Happy Hare defines 7 operations that may require toolhead parking:
+- `toolchange` - normal toolchange initiated with Tx or MMU_CHANGE_TOOL command
+- `runout`     - when a forced toolchange occurs as a result of runout
+- `load`       - individual MMU_LOAD operation
+- `unload`     - individual MMU_UNLOAD/MMU_EJECT operation
+- `complete`   - when print is complete (Happy Hare enabled)
+- `pause`      - a regular klipper PAUSE
+- `cancel`     - a regular klipper CANCEL_PRINT
+
+These operations can occur in 3 contexts:
+- when printing with Happy Hare enabled
+- when not printing with Happy Hare enabled
+- when Happy Hare is disabled (MMU ENABLE=0)
+
+Therefore you are able to define what parking you want performed at the intersection of context/operation. While this sounds like a lot it is actually quite easy to set up:
+
+`variable_enable_park_printing`
+This is a list of the operations that should result in toolhead parking while in a print. There are really two main starting points from which you can customize. If using the slicer to form tips (and toolchange is over the wipetower) you don't want to park on "toolchange" but you would want to on "runout" which is a forced toolchange unknown by the slicer.  Typically you would want to park on pause (includes mmu errors), cancel and complete if not done elsewhere
+
+`variable_enabled_park_standalone`
+List of the operations that should result in toolhead parking when not printing, for example, just manipulating the MMU manually or via Klipperscreen. Really it is up to you to choose based on personal workflow preferences. If you want no parking moves when not printing set this to an empty list
+
+`variable_enabled_park_disabled`
+There is really no reason to disable Happy Hare once installed, because you can use the bypass to avoid MMU control howwever if you are using the recommended "client_macros", then when Happy Hare is disabled (MMU ENABLE=0) you can stil configure parking on pause or cancel operations. (Note that these are the only two options that can occur)
+
+For each operation (well, 5 because toolchange, runout, load & unload are all groups as type of "toolchange") the parking move is defined with 5 parameters: the x,y coordinates you wish to park at; the z-hop; the optional ramp of z-hop move; and the retraction length.
+E.g.
+```
+variable_park_pause: 50, 50, 5, 10, 2
+```
+Defines a parking position (50,50) with a z-hop of 5mm above the print for pause operations. The z-hop will include a rapid 10mm horizontal movement as it lifts to help break any stringing. The extruder will retract 2mm. To only z-hop define the x,y as -1,-1.  Thus parking move that does nothing would be `-1,-1,0,0,0`.
+
+One of the features of Happy Hare's parking moves is that they define a "toolhead movement plane" above the print (even when sequentially printing!). This plane is generally the current z-height plus the z-hop, but that absolute minimum height for movement can be set with:
+```
+variable_min_toolchange_z: 1.0        ; The absolute minimum saftey floor
+```
+Further if sequentially printing, the movement plane will be above the tallest park
+
+Finally the speed of travel is set with these two settings, where `park_lift_speed` is used when the move is only in the z-direction:
+```
+variable_park_travel_speed: 200       ; Speed for any travel movement XY(Z) in mm/s
+variable_park_lift_speed: 15          ; Z-only travel speed in mm/s
+```
+So bringing this together if you want a 20mm z-hop only parking movement with 5mm of retraction when cancelling a print, you would minimally define:
+```
+variable_enable_park_printing: `cancel`
+variable_park_cancel: -1, -1, 20, 0, 5
+```
+> [!IMPORTANT] 
+> You almost certainly want to define a parking position for the `pause` operation as this is called when the mmu encounters an error. You can place your toolhead in a convenient location away from your print while you fix the problem. Note that the parking movement of any MMU operation (e.g. MMU_UNLOAD, MMU_LOAD, Tx) invoked directly when in a paused state will act in the same way as they do out of the print and subject to the same configuration.
+
+Possible context/operations:
+
+|              | toolchange | runout  | load    | unload  | complete | pause   | cancel  |
+|--------------|------------|---------|---------|---------|----------|---------|---------|
+| printing     | ✅         | ✅      | ✅      | ✅      | ✅       | ✅      | ✅      |
+| standalone   | ✅         |         | ✅      | ✅      |          | ✅      | ✅      |
+| disabled     |            |         |         |         |          | ✅      | ✅      |
 
 <br>
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Toolhead movement during toolchange
 
-### Role of Happy Hare
+Parking an movement for toolchange is usually a little more nuanced so there are additional options. Firstly, you often want to differentiate beween a regular toolchange and a runout: if you have the slicer performing the tip forming then you often won't have a parking move on "toolchange" but you will likely need one on runout because you don't want the whole toolchange to occur on the print. In addition as you build a more sophisticated toolchange procedure employing tip cutting, custom purging, nozzle parking and cleaning you may want additional parking moves during the process rather than just at the beginning and end. To those ends you have specify additional parking moves at these points in the process:
+```yml
+variable_pre_unload_position    : -1, -1, 0     ; x,y,z-hop position before unloading starts
+variable_post_form_tip_position : -1, -1, 0     ; x,y,z-hop position after form/cut tip on unload
+variable_pre_load_position      : -1, -1, 0     ; x,y,z-hop position before loading starts
+```
+Each defines the x,y coordinates desired and optionally z-hop (note: z-hop is not compounded, the largest z-hop will be used to adjust movement plane). The default `-1,-1,0` does nothing.
 
-Happy Hare controls all of the setup, customization and control of your MMU. It allows your to change tools outside of a print as well as controlling the toolchange and movement inside of a print when the `Tx` toolchange command is issued.  The tip forming logic is the only duplicative component with the slicer and thus you need to decided on always allow the Happy Hare to do it (recommended) or split duties: Happy Hare out of print, slicer while printing. The `force_form_tip_standalone` is an important setting that switches between these options (together with correct slicer configuration).
+> [!NOTE] 
+> It is also possible to call the parking logic directly from your macros in this form:
+> > _MMU_PARK FORCE_PARK=1 X=10 Y=10 Z_HOP=5
 
-The rest of this guide describes the toolhead movement possibilities that occurs during a tool change.
+No matter how many parking moves are applied the toolhead will always be correctly restored prior to continuing the print (see `variable_restore_xy_pos` options discussed later)
+
+How you setup parking depends largely on the tip forming strategy. This logic is the only duplicative component between Happy Hare and the slicer and thus you need to decided on always allow the Happy Hare to do it (recommended) or split duties: Happy Hare out of print, slicer while printing. The `force_form_tip_standalone` is an important setting that switches between these options (together with correct slicer configuration).
+
+Here are some common setups with an explanation of the basic configuration for each as a starting point for both tip forming and tip cutting options...
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Tip Cutting Options
+### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Tip Forming Options
+
+#### Example 1: Complete slicer control with parking and purging on the wipetower
+- Pro: Minimizes movement
+- Con: The wipetower occupies a portion of your build plate, cannot do sequential printing
+
+Here it is important not to define parking for `toolchange` when in print. Essentially parking is disabled. You may still want parking for pause/cancel/complete as well as in print runout.
+<img src="Toolchange-Movement/parking_example_1.png" width="900" alt="Example 1">
+
+#### Example 2: Happy Hare tip forming with parking and purging on the wipetower
+- Pro: Minimizes movement, only have to tune tip forming in one place
+- Con: The wipetower occupies a portion of your build plate, cannot do sequential printing
+
+Here Happy Hare is forming tips so we define a simple z-hop parking while that occurs at which point the toolhead will be lowered onto the wipetower for the slicer to perform the purge.
+<img src="Toolchange-Movement/parking_example_2.png" width="900" alt="Example 2">
+
+<br>
+
+### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Tip Cutting Options
 
 Firstly, although the default way to form tips is through calculated filament movement, there is an easier way -- just cut it off! There are supported ways to do this at the MMU (through piggybacking on the `_MMU_POST_UNLOAD` callback) the more typical way is with a filament cutter at the toolhead.  This it usually some form of blade that is operated via a dedicated servo mechanism or simply the movement of the toolhead itself and pressing against a pin (optionally itself activated by a servo).
 
-To set this up you need to edit three modular configuraton files: `mmu_parameters.cfg` (the primary setup), `mmu_cut_tip.cfg` (contains the tip cutting macro) and `mmu_sequence.cfg` (contains the default toolhead movement options)
-
-#### Option 1: Cutting tip and parking at the cutter while making the tool change
-- Pro: Minimizes movement
-- Con: Possibility of oozing in a undesirable part of the build plate
-<img src="Toolchange-Movement/cutter_cutter.png" width="900" alt="Cutting and Parking at Cutter">
-
-#### Option 2: Cutting tip and parking in a designated park area (often over purge bucket) while making the tool change.
-- Pro: Allows of addition of brush cleaning move after the new filament is loaded before returning to wipe tower
-<img src="Toolchange-Movement/cutter_park_area.png" width="900" alt="Cutting and Parking at Purge">
-
-#### Option 3: Cutting tip and parking at the wipetower
-- Pro: Minimizes movement
-- Neutral: Possibility of oozing (blobs) on the wipertower. Not really a big problem unless they are large and this is where the slicer designers assume the toolhead will be positioned
-<img src="Toolchange-Movement/cutter_wipe_tower.png" width="900" alt="Cutting and Parking on Wipetower">
-
-#### Option 4: Cutting tip and custom purge with no wipe tower <img src="resources/cool.png" width="40">
-- Pro: You get your full buildplate to work with because wipe tower is disabled
-- Con: You will need to implement your own purging routine.  This could just be a purge into a large bin followed by nozzle cleaning or, more likely, some form of pellet forming and cleaning.
-- Neutral: This is perhaps the coolest option!
-
-<img src="Toolchange-Movement/cutter_custom_purge_hh.png" width="900" alt="Cutting and No Wipetower"><br>
-
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Tip Forming Options
+#### Example 3: Cutting tip and parking in a designated park area (often over purge bucket) while making the tool change.
+- Pro: Allows of addition of brush cleaning move after the new filament is loaded before returning to wipe tower, can do sequential printing
 
-#### Option 5: Forming tip by Happy Hare and parking in a designated park area (often over purge bucket) while making the tool change.
-- Pro: Allows of addition of brush cleaning move after the new filament is loaded before returning to wipe tower
-<img src="Toolchange-Movement/forming_park_area_hh.png" width="900" alt="Tip Forming by HH at Park Area">
+Here we opt not to park on toolchange, instead allowing the CUT_TIP macro to move the toolhead and then return the toolhead back to the wipetower (`variable_restore_position`).
+<img src="Toolchange-Movement/parking_example_4.png" width="900" alt="Example 3">
 
-#### Option 6: Forming tip by Happy Hare and parking at the wipetower
-- Pro: Minimizes movement
-- Neutral: Possibility of oozing (blobs) on the wipertower. Not really a big problem unless they are large and this is where the slicer designers assume the toolhead will be positioned
-<img src="Toolchange-Movement/forming_wipe_tower_hh.png" width="900" alt="Tip Forming by HH at Wipetower">
+#### Example 4: Cutting tip and parking in a designated park area (often over purge bucket) while making the tool change.
+- Pro: Allows of addition of brush cleaning move after the new filament is loaded before returning to wipe tower, can do sequential printing
 
-#### Option 7: Forming tip by slicer and parking at the wipetower
-- Neutral: Possibility of oozing (blobs) on the wipertower. Not really a big problem unless they are large and this is where the slicer designers assume the toolhead will be positioned
-- Con: You will also need to tune tip forming in the slicer and manage all the settings that were zeroed out above.
-- Con: Movement during a toolchange will also be different in a print verses out of a print
-<img src="Toolchange-Movement/forming_wipe_tower_slicer.png" width="900" alt="Tip Forming by Slicer at Wipetower">
+Here were define the initial toolchange park to z-hop 1mm and move to the cutter pin, after cutting the `post_form_tip_position` parks at the purge bucket for the remainder of the toolchange. Presumably the `variable_user_post_load_extension` would be used to purge and wipe nozzle.
+<img src="Toolchange-Movement/parking_example_4.png" width="900" alt="Example 4">
 
-### Printing without wipetower
-
-#### Option 8: Forming tip by Happy Hare, custom purge with no wipe tower <img src="resources/cool.png" width="40">
-- Pro: You get your full buildplate to work with because wipe tower is disabled
-- Con: You will need to implement your own purging routine.  This could just be a purge into a large bin followed by nozzle cleaning or, more likely, some form of pellet forming and cleaning.
+#### Example 5: Cutting tip and custom park and custom purging with no wipe tower <img src="resources/cool.png" width="40">
+- Pro: You get your full buildplate to work with because wipe tower is disabled, don't have to tune tip forming, blobifer purging optimizes speed and waste, custom park location can prevent ooze during toolchange, can do sequential printing
+- Con: More complex to set up
 - Neutral: This is perhaps the coolest option!
 
-<img src="Toolchange-Movement/forming_custom_purge_hh.png" width="900" alt="Tip Forming by HH No Wipetower"><br>
+Here the movement has even more steps. There are a few ways to achieve this so this is just one way.
+<img src="Toolchange-Movement/parking_example_5.png" width="900" alt="Example 5">
 
 <br>
 
@@ -133,7 +194,7 @@ The primary configuration options that effect z-height are described here:
 
 <img src="Toolchange-Movement/toolchange_z_hop_config.png" width="100%" alt="Toolchange Z-hop Config"><br>
 
-Personally I find it useful to set z-hop to 1.0mm in Happy Hare, disable in the slicer and 0mm in the parking (`mmu_macro_vars.cfg`) macro since out of a print I'm not worried about hitting objects or possible blobs.
+Personally I find it useful to set toolchange z-hop to 1.0mm in Happy Hare with a 10mm ramp, set the slicer at 0.2mm. Pause, Complete and Cancel are set with larger z-hop between 5mm and 10mm.
 
 <br>
 

@@ -255,3 +255,46 @@ The release provides more flexibilty in tool change movement, introduces consump
 - Wiki page on [macro customization](Macro-Customization) has been improved.
 - Bloblifier macro update that adds "safe decend logic" to ensure toolhead doesn't hit parts of the print.
 
+### v2.7.0 (patches)
+- Lots of work to avoid TTC errors. Specifically working around what appears to be a klipper bug when lots of homing moves are used. I know this has solved the problem for the 4 users I was working closely with.
+- Improved error reporting for connection problems with SpoolMan.
+
+### v2.7.1
+**Completely revised parking and movement for toolchange operations:**
+- This is the big one and, after upgrade, **WILL REQUIRE TWEAKING of the MOVEMENT** section `mmu_macro_vars.cfg` to finish configuration -- upgrade cannot be completely automated.
+- Previously anything other than simple toolchange workflows was very confusing to setup. The configuration had too many "enable_parking" settings, etc. The new system is both much more sophisticated but should be easier to configure to get the behavior you want. Specifically parking can be defined on 7 operations: toolchange, load, unload, runout, complete, pause & cancel, and for each of those you can choose the parking location,z-hop (including optional ramp) and retraction.
+- Additionally movements can be specified between certain toolchange steps to make it easy to, for example, park on a silicon pad to stop ozzing while changing. 
+- End of print eject will no longer return to the print.
+- Rewritten wiki page: [Toolchange Movement](Toolchange-Movement)
+
+<br>Teaser:
+```yml
+variable_enable_park_printing   : 'toolchange,runout,load,unload,complete,pause,cancel'
+variable_enable_park_standalone : 'load,unload,pause,cancel'
+variable_enable_park_disabled   : 'pause,cancel'
+
+variable_min_toolchange_z       : 1.0
+
+variable_park_toolchange        : -1, -1, 1, 10, 2
+variable_park_runout            : -1, -1, 2, 10, 2
+variable_park_pause             : 50, 50, 10, 0, 2
+variable_park_cancel            : 150, 50, 20, 0, 5
+variable_park_complete          : 50, 50, 20, 0, 5
+
+variable_pre_unload_position    : -1, -1, 0
+variable_post_form_tip_position : -1, -1, 0
+variable_pre_load_position      : -1, -1, 0
+```
+
+**Automated calibration / tuning of bowden length and gear ratios:**
+- Gear "ratios" in `mmu_vars.cfg` have been upgraded to a single list of "rotation_distances".
+- Bowden tube length can now be automatically tuned over time by setting the `auto_calibrate_bowden: 1` parameter. This will use telemetry from successful loads and unloads on gate 0 to adjust slowly to find the perfect length. [Caveat: not tested with all sync-feedback devices like Belay]
+- For designs like the ERCF that use a different BMG drive for each gate, each gear needs to be calibrated. Now the option `autoauto_calibrate_gates: 1` will use telemetry similar to above to tune the "rotation_distance" for that gear so movement matches the reference gate 0.
+
+**Other:**
+- Improved error feedback from spoolman moonraker module
+- X and Y axis filament cutter support (PR413 - thank you)
+- Creality K1 support (PR388 -- thank you)
+- Various bug fixes from Discord / Issue feedback
+- Wiki pages updated: [Slicer Setup](Slicer-Setup), [Command Reference](Command-Reference), [Happy Hare Parameters](Happy-Hare-Parameters), [Blobbing and Stringing](Blobbing-and-Stringing) and more..
+

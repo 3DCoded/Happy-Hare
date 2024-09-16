@@ -8,11 +8,11 @@ Specifically in this guide you will learn how to correctly set the following par
 - `toolhead_entry_to_extruder`
 - `toolhead_ooze_reduction`
 
-It will also illustrate how to use z-hop and retraction settings to eliminate blobs and stringing during color changes or EndlessSpool operations in your prints:
-- `z_hop_height_toolchange`
-- `z_hop_ramp`
-- `z_hop_speed`
-- `toolchange_retract` & `toolchange_retract_speed`
+It will also illustrate how to use z-hop movement/ramping and retraction settings to eliminate blobs and stringing during color changes or EndlessSpool operations in your prints (`mmu/base/mmu_macro_vars.cfg`):
+- `variable_park_toolchange`, `variable_park_mmu_error`, `variable_park_pause`, `variable_park_cancel`, `variable_park_complete`
+- `variable_restore_xy_pos`
+- `variable_park_travel_speed`, `variable_park_lift_speed`
+- `variable_retract`, `variable_retract_speed`, `variable_unretract_speed`
 
 And finally, set key tip cutting macro variables (`mmu/base/mmu_macros_vars.cfg`):
 - `variable_blade_pos`

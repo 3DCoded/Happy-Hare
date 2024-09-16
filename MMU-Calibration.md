@@ -120,7 +120,7 @@ If your MMU includes an encoder (like the ERCF design) the next step is to calib
 You will see an output similar to:
 
 ```
-    Testing over 400mm
+    Calibrating over 400mm...
       + counts: 368
       - counts: 368
       + counts: 369

@@ -589,34 +589,6 @@ console_always_output_full: 1   # 1 = Show full table, 0 = Only show totals out 
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Blobbing and Stringing Controls
-
-This section contains the parameters that, once toolhead and other dimensions are correctly set, can be used to optimize blobbing and stringing during the toolchange process.
-
-```yml
-# Tool Change Blob and Stringing Control -----------------------------------------------------------------------------
-#
-# These parameters can be used to optimize stringing and blobs that can occur when changing tools. In addition to these
-# controls, 'toolhead_ooze_reduction' can be used to reduce the loading length of filament into the extruder in all
-# circumstances. IMPORTANT: So the config order would be:
-#   1. Configure extruder dimensions like 'toolhead_extruder_to_nozzle', etc. These are based on geometry.
-#   2. Tweak 'toolhead_ooze_reduction' only if necessary so that filament _just_ appears at the nozzle on load
-#   3. Only then, adjust these settings to control stringing and blobs when tool changing in print
-#
-# NOTE: All of these settings operate IN PRINT ONLY
-#
-z_hop_height_toolchange: 1.0    # Height in mm of z_hop move on toolchange
-z_hop_height_error: 5.0         # Height in mm of z_hop move on pause or error to avoid blob on print
-z_hop_speed: 150                # Speed of z_hop move (mm/s). Should be fast (x,y travel speed) if 'z_hop_ramp' is set
-z_hop_accel: 5000               # Accelaration of z_hop move (will be limited by printer maximums)
-z_hop_ramp: 5                   # Horizontal distance in mm to travel during the lift. Can help break string. Direction is automatic
-toolchange_retract: 2           # Retract / un-retract distance to prevent blobs when toolchanging
-toolchange_retract_speed: 20    # Speed of the retract move in mm/s
-toolchange_unretract_speed: 20  # Speed of the unretract move in mm/s
-```
-
-<br>
-
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Miscellaneous
 
 This section contains an eclectic set of remaining options. Ask on discord if any aren't clear, however a couple warrant further explantion:<br>

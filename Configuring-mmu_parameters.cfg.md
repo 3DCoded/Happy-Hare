@@ -436,7 +436,12 @@ The following variables are configurable based on your needs, but rarely need me
 
 `extruder_temp_variance`gives Happy Hare some tolerance when waiting for extruder temperature.  The number set is the ± variance in degrees. I.e. 2 will allow ±2. This allows Happy Hare to kick into action when the extruder is close, but not fully settled on it's target temperature.
 
-`auto_calibrate_gates` Allows Happy Hare to read the encoder and extruder information to automatically calibrate gates. Since gate 0 is the "gold standard" by which other gates are adjusted, it doesn't work for gate 0. 1 = calibrated automatically on first load, 0 = disabled.
+`auto_calibrate_gates` Allows Happy Hare to read the encoder (if fitted) and extruder information to automatically calibrate gates. Since gate 0 is the "gold standard" by which other gates are adjusted, it doesn't work for gate 0. 1 = calibrated automatically on first load and tuned on subsequent loads, 0 = disabled, then manual calibration is necessary.
+
+`auto_calibrate_bowden` When using gate 0, this Allows Happy Hare to deduce through actual length of homing operations whether the bowden length is optimal and tune if necessary. Note that bowden length is only determined on gate 0 - the one where you calibrated the gear with manual verification. Other gates use `auto_calibrate_gates` function to tune the rotation_distance. 1 = tuned automatically, 0 = disabled, once set the bowden length will not change.
+
+> [!TIP]  
+> A great option for MMU's with variable gate ratios (i.e. potential for drive variations between gates) is to initally enable both these `auto_calibrate` options and then disable them after a week of successful printing to lock down optimal calibration!
 
 `strict_filament_recovery` If enabled with an MMU with toolhead sensor, this set to true (1) will use filament position recovery if the filament becomes trapped in the space after extruder but before sensor.
 

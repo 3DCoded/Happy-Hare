@@ -96,23 +96,32 @@ This section controls the MMU LEDs. This does not affect any of the printer LEDs
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) \_MMU\_SEQUENCE\_VARS
 
 These control the movement of the toolhead during a tool change.  
-If `enable_park` is `False` all movement during a tool change is disabled during a print except when handling a filament runout where `enable_runout_park` controls parking. This allows for parking the toolhead only for filament runout handling or excludes parking the toolhead due to filament runout.  
-Parking the tool head when not printing is controlled by `enable_standalone_park`.  
-If parking is enabled, `restore_xy_pos` allows toolhead x,y position restoration to be deferred to the slicer, which results in less dwell time on the print. (CAUTION: Z-height will <ins>always</ins> be restored.)
 
-`variable_enable_park` enables tool head parking during a print, but does not control filament runout parking.
+`variable_enable_park_printing` TODO
 
-`variable_enable_park_runout` enables tool head parking during a filament runout. Does not control other in-print parking. This is useful to keep nozzle ooze off your print when a filament runout occurs.
+`variable_enable_park_standalone` TODO
 
-`variable_enable_park_standalone` allows Happy Hare to handle tool head parking when not in a print. For example, parking the tool head while the nozzle is heating.
-
-`variable_restore_xy_pos` determines where to position the tool head AFTER a tool change.
-
-`variable_park_xy` X and Y coordinates to place the tool head DURING a tool change.
-
-`variable_park_z_hop` additional Z hop when performing a tool change. This works in or out of a print.
+`variable_enable_park_disabled` TODO
 
 `variable_min_toolchange_z` the absolute minimum height for toolchange moves during print. This prevents scraping the bed if no z-hop is specified
+
+`variable_park_toolchange` TODO
+
+`variable_park_mmu_error` TODO
+
+`variable_park_pause` TODO
+
+`variable_park_cancel` TODO
+
+`variable_park_complete` TODO
+
+`variable_pre_unload_position` TODO
+
+`variable_post_form_tip_position` TODO
+
+`variable_pre_load_position` TODO
+
+`variable_restore_xy_pos` after the toolchange is complete this controls where the x,y position is restored to. "last" is the default and will return the toolhead to the exact location prior to the toolchange operation. "next" can be used effectively to reduce print artifacts to advance the toolhead to the next g-code print postion before lowering (this option requires the Happy Hare moonraker module to be enabled). Finally "none" will result in the restoration of z-height but the x,y move will be left to the next g-code instruction. Therefore the difference between "next" and "none" is the z-heigh that the toolhead will move at and the exact point the un-retraction occurs -- "next" drop and un-retract onto the next print position, "none" will drop and un-retract where the toolhead ends up after toolchange. 
 
 `variable_travel_speed` tells Happy Hare how fast to move in and out of the tool head parking position.
 
@@ -120,21 +129,29 @@ If parking is enabled, `restore_xy_pos` allows toolhead x,y position restoration
 
 `variable_auto_home` tells Happy Hare to automatically home, if necessary. This only homes the X and Y axes so the sequence macros can park the toolhead. It's called, if necessary, at toolhead load or unload.
 
-`variable_park_after_form_tip` set to `True` delays moving the tool head to the park position. Use this for tip cutting to allow Happy Hare to move to the filament cutting position (if you have filament cutting enabled) before parking. Otherwise, Happy Hare sends the tool head directly to the parking position and makes extra movements on filament cutting. Recommended to be `True` if cutting filament tips, or `False` if forming filament tips.
+`variable_user_park_move_macro_macro` runs this command instead of the default straight line "G1 X Y (to `variable_park_*` postion)" move. This is useful if you need to add some special logic like operating a servo to lower a silicon pad or moving is a "L" pattern. This macro will be supplied the expected final x,y coordinates and configured speed like this: `YOUR_MOVE_MACRO X=<x_coord> Y=<y_coord> F=<speed>`
+
+`variable_retract` immediately before the z\_hop and immediately after the reciprical restoration of z-height this amount of retraction or un-retraction will be applied. When loading the extruder, the filament will be loaded just short of the nozzle so this distance can be employed to prevent blobs by immediately depressuring the nozzle when pausing or repressuring at the point of resuming print.
+
+`variable_retract_speed` to speed of the retract movement in mm/s. Usually you want this as fast as your extruder can handle. The default is 25mm/s.
+
+`variable_unretract_speed` to speed of the un-retract movement in mm/s. Defaults to the retract speed.
 
 `variable_timelapse` if `True` Happy Hare will trigger a snapshot from a camera after a tool change successfully loads.
 
-The following are similar to `_MMU_STATE_VARS` and allow user customization based on Happy Hare tool loading and unloading events.
+The following are similar to `_MMU_STATE_VARS` and allow user customization/extension of the base Happy Hare tool loading and unloading events.
+
+`variable_user_mmu_error_extension` runs a command or macro when a MMU error occurs after the default pause logic.
 
 `variable_user_pre_unload_extension` runs a command or macro after Happy Hare executes pre-unload logic.
+
+`variable_user_post_form_tip_extension` runs a command or macro immediately after the cut tip operation. 
 
 `variable_user_post_unload_extension` runs a command or macro after Happy Hare executes post-unload logic.
 
 `variable_user_pre_load_extension` runs a command or macro after Happy Hare executes pre-load logic.
 
 `variable_user_post_load_extension` runs a command or macro after Happy Hare executes post-load logic. This would be a good place to add a nozzle brushing macro, but, just be sure the tool head doesn't crash into the print when running. E.g. `variable_user_post_load_extension: CLEAN_NOZZLE`
-
-`variable_user_park_move_macro_macro` runs this command instead of the default straight line "G1 X Y (to variable_park_xy postion)" move. This is useful if you need to add some special logic like operating a servo to lower a silicon pad or moving is a "L" pattern. If set, the `variable_park_xy` is ignored.
 
 <br>
 
