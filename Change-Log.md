@@ -297,4 +297,3 @@ variable_pre_load_position      : -1, -1, 0
 - Creality K1 support (PR388 -- thank you)
 - Various bug fixes from Discord / Issue feedback
 - Wiki pages updated: [Slicer Setup](Slicer-Setup), [Command Reference](Command-Reference), [Happy Hare Parameters](Happy-Hare-Parameters), [Blobbing and Stringing](Blobbing-and-Stringing) and more..
-
