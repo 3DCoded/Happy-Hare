@@ -259,13 +259,13 @@ The release provides more flexibilty in tool change movement, introduces consump
 - Lots of work to avoid TTC errors. Specifically working around what appears to be a klipper bug when lots of homing moves are used. I know this has solved the problem for the 4 users I was working closely with.
 - Improved error reporting for connection problems with SpoolMan.
 
-### v2.7.1
+### v2.7.1 (BETA ACCESS ONLY)
 **Completely revised parking and movement for toolchange operations:**
 - This is the big one and, after upgrade, **WILL REQUIRE TWEAKING of the MOVEMENT** section `mmu_macro_vars.cfg` to finish configuration -- upgrade cannot be completely automated.
 - Previously anything other than simple toolchange workflows was very confusing to setup. The configuration had too many "enable_parking" settings, etc. The new system is both much more sophisticated but should be easier to configure to get the behavior you want. Specifically parking can be defined on 7 operations: toolchange, load, unload, runout, complete, pause & cancel, and for each of those you can choose the parking location,z-hop (including optional ramp) and retraction.
 - Additionally movements can be specified between certain toolchange steps to make it easy to, for example, park on a silicon pad to stop ozzing while changing. 
 - End of print eject will no longer return to the print.
-- Rewritten wiki page: [Toolchange Movement](Toolchange-Movement)
+<!--- Rewritten wiki page: [Toolchange Movement](Toolchange-Movement)-->
 
 <br>Teaser:
 ```yml
@@ -296,5 +296,5 @@ variable_pre_load_position      : -1, -1, 0
 - X and Y axis filament cutter support (PR413 - thank you)
 - Creality K1 support (PR388 -- thank you)
 - Various bug fixes from Discord / Issue feedback
-- Wiki pages updated: [Slicer Setup](Slicer-Setup), [Command Reference](Command-Reference), [Happy Hare Parameters](Happy-Hare-Parameters), [Blobbing and Stringing](Blobbing-and-Stringing) and more..
+<!--- Wiki pages updated: [Slicer Setup](Slicer-Setup), [Command Reference](Command-Reference), [Happy Hare Parameters](Happy-Hare-Parameters), [Blobbing and Stringing](Blobbing-and-Stringing) and more..-->
 
