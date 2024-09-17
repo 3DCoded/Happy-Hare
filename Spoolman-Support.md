@@ -131,7 +131,7 @@ sequenceDiagram
     K->>L: read local gate map
     L-->>K: local gate map
     K->>M: push gate map
-    M->>S: write gate map
+    M->>S: write printer/gate mapping
     M->>S: read filament details
     S-->>M: filament details
     M->>K: MMU_GATE_MAP MAP={filament details}
