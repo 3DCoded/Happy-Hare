@@ -40,20 +40,20 @@ List of the operations that should result in toolhead parking when not printing,
 `variable_enabled_park_disabled`
 There is really no reason to disable Happy Hare once installed, because you can use the bypass to avoid MMU control howwever if you are using the recommended "client_macros", then when Happy Hare is disabled (MMU ENABLE=0) you can stil configure parking on pause or cancel operations. (Note that these are the only two options that can occur)
 
-For each operation (well, 5 because toolchange, runout, load & unload are all groups as type of "toolchange") the parking move is defined with 5 parameters: the x,y coordinates you wish to park at; the z-hop; the optional ramp of z-hop move; and the retraction length.
+For each operation (well, 5 because toolchange, load & unload are all grouped as type of "toolchange") the parking move is defined with 5 parameters: the x,y coordinates you wish to park at; the z-hop; the optional ramp of z-hop move; and the retraction length.
 E.g.
 ```
 variable_park_pause: 50, 50, 5, 10, 2
 ```
-Defines a parking position (50,50) with a z-hop of 5mm above the print for pause operations. The z-hop will include a rapid 10mm horizontal movement as it lifts to help break any stringing. The extruder will retract 2mm. To only z-hop define the x,y as -1,-1.  Thus parking move that does nothing would be `-1,-1,0,0,0`.
+Defines a parking position (50,50) with a z-hop of 5mm above the print for pause operations. The z-hop will include a rapid 10mm horizontal movement as it lifts to help break any stringing. The extruder will retract 2mm. To only z-hop define the x,y as -1,-1.  Thus the parking move that does nothing would be `-1,-1,0,0,0`.
 
-One of the features of Happy Hare's parking moves is that they define a "toolhead movement plane" above the print (even when sequentially printing!). This plane is generally the current z-height plus the z-hop, but that absolute minimum height for movement can be set with:
+One of the features of Happy Hare's parking moves is that they define a "toolhead movement plane" above the print (even when sequentially printing!). This plane is generally the current z-height plus the z-hop, but the absolute minimum height for movement can be set with:
 ```
 variable_min_toolchange_z: 1.0        ; The absolute minimum saftey floor
 ```
-Further if sequentially printing, the movement plane will be above the tallest park
+Further if sequentially printing, the movement plane will be above the tallest part.
 
-Finally the speed of travel is set with these two settings, where `park_lift_speed` is used when the move is only in the z-direction:
+Finally the speed of travel is set with these two settings, where `park_lift_speed` is only used when the move is only in the z-direction:
 ```
 variable_park_travel_speed: 200       ; Speed for any travel movement XY(Z) in mm/s
 variable_park_lift_speed: 15          ; Z-only travel speed in mm/s
@@ -64,7 +64,7 @@ variable_enable_park_printing: `cancel`
 variable_park_cancel: -1, -1, 20, 0, 5
 ```
 > [!IMPORTANT] 
-> You almost certainly want to define a parking position for the `pause` operation as this is called when the mmu encounters an error. You can place your toolhead in a convenient location away from your print while you fix the problem. Note that the parking movement of any MMU operation (e.g. MMU_UNLOAD, MMU_LOAD, Tx) invoked directly when in a paused state will act in the same way as they do out of the print and subject to the same configuration.
+> You almost certainly want to define a parking position for the `pause` operation as this is called when the mmu encounters an error. You can place your toolhead in a convenient location away from your print while you fix the problem. Note that the parking movement of any MMU operation (e.g. MMU_UNLOAD, MMU_LOAD, Tx) invoked directly when in a paused state will act in the same way as they do out of the print and subject to the same "standalone" configuration.
 
 Possible context/operations:
 
@@ -78,7 +78,7 @@ Possible context/operations:
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Toolhead movement during toolchange
 
-Parking an movement for toolchange is usually a little more nuanced so there are additional options. Firstly, you often want to differentiate beween a regular toolchange and a runout: if you have the slicer performing the tip forming then you often won't have a parking move on "toolchange" but you will likely need one on runout because you don't want the whole toolchange to occur on the print. In addition as you build a more sophisticated toolchange procedure employing tip cutting, custom purging, nozzle parking and cleaning you may want additional parking moves during the process rather than just at the beginning and end. To those ends you have specify additional parking moves at these points in the process:
+Parking movement for toolchange is usually a little more nuanced so there are additional options. Firstly, you often want to differentiate beween a regular toolchange and a runout: if you have the slicer performing the tip forming then you often won't have a parking move on "toolchange" but you will likely need one on "runout" because you don't want the whole toolchange to occur touching the print. In addition as you build a more sophisticated toolchange procedure employing tip cutting, custom purging, nozzle parking and cleaning you may want additional parking moves during the process rather than just at the beginning and end. To accomplish this you can specify additional parking moves at these points in the process:
 ```yml
 variable_pre_unload_position    : -1, -1, 0     ; x,y,z-hop position before unloading starts
 variable_post_form_tip_position : -1, -1, 0     ; x,y,z-hop position after form/cut tip on unload
@@ -92,7 +92,7 @@ Each defines the x,y coordinates desired and optionally z-hop (note: z-hop is no
 
 No matter how many parking moves are applied the toolhead will always be correctly restored prior to continuing the print (see `variable_restore_xy_pos` options discussed later)
 
-How you setup parking depends largely on the tip forming strategy. This logic is the only duplicative component between Happy Hare and the slicer and thus you need to decided on always allow the Happy Hare to do it (recommended) or split duties: Happy Hare out of print, slicer while printing. The `force_form_tip_standalone` is an important setting that switches between these options (together with correct slicer configuration).
+How you setup parking depends largely on the tip forming strategy. Tip forming logic is the only duplicative component between Happy Hare and the slicer and thus you need to decided between always allowing Happy Hare to do it (recommended) or split duties: Happy Hare out of print, slicer while printing. The `force_form_tip_standalone` is an important setting that switches between these options (together with correct slicer configuration).
 
 Here are some common setups with an explanation of the basic configuration for each as a starting point for both tip forming and tip cutting options...
 
@@ -126,7 +126,7 @@ Firstly, although the default way to form tips is through calculated filament mo
 - Pro: Allows of addition of brush cleaning move after the new filament is loaded before returning to wipe tower, can do sequential printing
 
 Here we opt not to park on toolchange, instead allowing the CUT_TIP macro to move the toolhead and then return the toolhead back to the wipetower (`variable_restore_position`).
-<img src="Toolchange-Movement/parking_example_4.png" width="900" alt="Example 3">
+<img src="Toolchange-Movement/parking_example_3.png" width="900" alt="Example 3">
 
 #### Example 4: Cutting tip and parking in a designated park area (often over purge bucket) while making the tool change.
 - Pro: Allows of addition of brush cleaning move after the new filament is loaded before returning to wipe tower, can do sequential printing
