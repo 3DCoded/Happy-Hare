@@ -203,23 +203,23 @@ The first place is a setting like this on the `printer settings` tab.  This disa
 > [!NOTE]  
 > Whilst it is logical to zero all these settings out, Prusaslicer (v2.5) at least has bug that will insert illegal `G1 F0` commands if all the fields are exactly 0.  Instead use a tiny value for the cooling tube length.
 
-<img src="Toolchange-Movement/printer_settings.png" width="500" alt="Slicer printer settings">
+<img src="Slicer-Setup/printer_settings.png" width="500" alt="Slicer printer settings">
 
 Working in conjunction with the above and found on the `filament settings` tab is this area where you should zero out all all movement speeds and distances.  Leave only the timing inputs that you can tune once you know the average loading and unloading time for your particular MMU.
 
-<img src="Toolchange-Movement/filament_settings.png" width="680" alt="Slicer filament settings">
+<img src="Slicer-Setup/filament_settings.png" width="680" alt="Slicer filament settings">
 
 The next setting must be configure on each of your extruders.  This turns off an initial retraction and subsequent extrude that will leave blobs on your wipetower.  The reason to turn this off is that Happy Hare will correctly load the filament exatly to the nozzle and additonal extrusion will cause a blob.
 
-<img src="Toolchange-Movement/printer_settings_extruder.png" width="500" alt="Slicer printer settings per extruder">
+<img src="Slicer-Setup/printer_settings_extruder.png" width="500" alt="Slicer printer settings per extruder">
 
 Unless you have a sepcialized purge system (documented later) you will want the slicer to manage a wipe tower used to purge out the remains of the previous filament.  To do this, make sure this option is enabled (it usually is by default):
 
-<img src="Toolchange-Movement/print_settings.png" width="500" alt="Slicer print settings">
+<img src="Slicer-Setup/print_settings.png" width="500" alt="Slicer print settings">
 
 > [!NOTE]  
 > If you use SuperSlicer, be sure to turn off Skinnydip:
-> <br><img src="Toolchange-Movement/skinny_dip.png" width="500" alt="Skinnydip disabling"><br>
+> <br><img src="Slicer-Setup/skinny_dip.png" width="500" alt="Skinnydip disabling"><br>
 > It's probably also a good idea to zero out the distances below.
 > Doing this prevents Superslicer from pushing out a blob of filament before cutting the tip.
 
