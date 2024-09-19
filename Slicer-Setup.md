@@ -40,7 +40,7 @@ SET_PRINT_STATS_INFO TOTAL_LAYER={total_layer_count} ; For pause at layer functi
 ### Sequence Explained:
 
 #### `1. MMU_START_SETUP`
-This is a macro (defined in `mmu_software.cfg`) that is passed information either through slicer "placeholder" variables delimited by `{}` like `{initial_tool}` or through a similar mechanism implemented by Happy Hare moonraker extension which pre-processes the g-code file when it is uploaded and substitutes placeholders that are useful for MMU printing. Unfortunatelythese are absent in all popular slicer programs hence the pre-processor extension. These placeholders are variables delimied by `!!` like `!referenced_tools!`. Happy Hare's g-code pre-processing is explained in [detail here](Gcode-Preprocessing)
+This is a macro (defined in `mmu_software.cfg`) that is passed information either through slicer "placeholder" variables delimited by `{}` like `{initial_tool}` or through a similar mechanism implemented by Happy Hare's moonraker extension which pre-processes the g-code file when it is uploaded and substitutes `!!` like `!referenced_tools!` that are useful for MMU printing. Unfortunately these placeholders are absent in all popular slicer programs hence the pre-processor extension. Happy Hare's g-code pre-processing is explained in [detail here](Gcode-Preprocessing)
 
 This macro initializes the MMU, establishes whether the print is single or multi-color, detects when the intent is to print bypassing the MMU and then stores this infomation in Happy Hare for the duration of the print in the "Slicer Tool Map". This can be accessed in your own macros through the `printer.mmu.slicer_tool_map` printer variable. E.g.
 
