@@ -90,13 +90,13 @@ If this macro fails, the print will pause but not abort or skip the rest of the 
 > On failure while in a paused state, you can run this macro by hand to repeat the checks. Simply run `MMU_START_CHECK` without any parameters
 
 #### `3.`START_PRINT...
-This is where you put your normal print start macro passing additional slicer placeholders. This macro doesn't need anything added for MMU support, but note that it should NOT assume the extruder is loaded with filament. Activities like purging should be separated out and included later.
+This is where you put your normal print start macro passing additional slicer placeholders it may require. This macro doesn't need to do anything added for MMU support and will likely home the printer, level the bed and set print temperatures. It shouldn't have logic that assumes the extruder is loaded with filament - activities like purging should be separated out and included later (see step 5).
 
 #### `4. MMU_START_LOAD_INITIAL_TOOL`
 This macro will load the initial tool used by the print. No need to pass it any information - it retrieves it from the "Slicer Tool Map" setup earlier
 
 #### `5.` Optional purge logic...
-Optionally you can put the parts of your original print start macro that you separated out here. Typically this would be the logic that purges the nozzle, cleans nozzle and prints prime line.
+Optionally you can put the parts of your original print start macro that you separated out here. Typically this would be the logic that purges the nozzle, cleans nozzle and prints prime line. This is separated out because you want it to run AFTER the initial tool have been loaded.
 
 <br>
 
