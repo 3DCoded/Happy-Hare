@@ -23,15 +23,22 @@ Enter the following (using your own print start macro call) into your "custom st
 
 ```yml
 MMU_START_SETUP INITIAL_TOOL={initial_tool} REFERENCED_TOOLS=!referenced_tools! TOOL_COLORS=!colors! TOOL_TEMPS=!temperatures! TOOL_MATERIALS=!materials! FILAMENT_NAMES=!filament_names! PURGE_VOLUMES=!purge_volumes!
+
 MMU_START_CHECK
-; Enter YOUR start_print macro call here
+
+; Enter YOUR exist start_print macro call here (minus purging logic because tool may not be loaded yet)
+
 MMU_START_LOAD_INITIAL_TOOL
-; Optionally add YOUR additional start logic to run just prior to start
+
+; Optionally add YOUR additional start logic (like purging) here to run just prior to start
+
 SET_PRINT_STATS_INFO TOTAL_LAYER={total_layer_count} ; For pause at layer functionality and better print stats
 ```
 
 > [!NOTE]  
-> The reason that it is recommended to add these 4-5 lines in your slicer is to keep them as separate gcode macros to enable the print to pause and then continue in the case of an error.  If you bundle everything into a single print start macro then the first opportunity to pause will be at the end of that, potentially long running, macro! (This is particularly accute if using the new klipper pop-up dialogs -- these frustratingly will not be able to be closed until the current macro is complete)
+> There are two reasons that it is recommended to add these 4-5 lines in your slicer:<br>
+> - Keeping them as separate gcode macros to enable the print to pause and then continue in the case of an error.  If you bundle everything into a single print start macro then the first opportunity to pause will be at the end of that, potentially long running, macro! (This is particularly accute if using the new klipper pop-up dialogs -- these frustratingly will not be able to be closed until the current macro is complete)
+> - You will likely want to separate out any nozzle purging logic you have in your current "start_print" marco and run it AFTER all the MMU checks and loading the initial tool
 
 ### Sequence Explained:
 
@@ -86,13 +93,13 @@ If this macro fails, the print will pause but not abort or skip the rest of the 
 > On failure while in a paused state, you can run this macro by hand to repeat the checks. Simply run `MMU_START_CHECK` without any parameters
 
 #### `3.`START_PRINT...
-This is where you put your normal print start macro passing additional slicer placeholders. This macro doesn't need anything added for MMU support, but note that it should not assume the extruder is loaded with filament. Activities like purging should be separated out and included later.
+This is where you put your normal print start macro passing additional slicer placeholders. This macro doesn't need anything added for MMU support, but note that it should NOT assume the extruder is loaded with filament. Activities like purging should be separated out and included later.
 
 #### `4. MMU_START_LOAD_INITIAL_TOOL`
 This macro will load the initial tool used by the print. No need to pass it any information - it retrieves it from the "Slicer Tool Map" setup earlier
 
 #### `5.` Optional purge logic...
-Optionally you can put the parts of your original print start macro that you separated out here. Typically this would be the logic that purges the nozzle and prints prime line. Although not technically required for MMU prints it is nice to retain for when using the bypass on special single color prints.
+Optionally you can put the parts of your original print start macro that you separated out here. Typically this would be the logic that purges the nozzle, cleans nozzle and prints prime line.
 
 <br>
 
