@@ -23,15 +23,10 @@ Enter the following (using your own print start macro call) into your "custom st
 
 ```yml
 MMU_START_SETUP INITIAL_TOOL={initial_tool} REFERENCED_TOOLS=!referenced_tools! TOOL_COLORS=!colors! TOOL_TEMPS=!temperatures! TOOL_MATERIALS=!materials! FILAMENT_NAMES=!filament_names! PURGE_VOLUMES=!purge_volumes!
-
 MMU_START_CHECK
-
 ; Enter YOUR exist start_print macro call here (minus purging logic because tool may not be loaded yet)
-
 MMU_START_LOAD_INITIAL_TOOL
-
 ; Optionally add YOUR additional start logic (like purging) here to run just prior to start
-
 SET_PRINT_STATS_INFO TOTAL_LAYER={total_layer_count} ; For pause at layer functionality and better print stats
 ```
 
