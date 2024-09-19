@@ -101,7 +101,7 @@ Optionally you can put the parts of your original print start macro that you sep
 <br>
 
 > [!TIP]  
-> Did you know the slicer defined extruder colors can be displayed on Mainsail / Fluidd UI next to the Extruder "Tx" buttons (see below). Happy Hare ensures the color information is parsed from the slicers g-code and provided to these interfaces.
+> Did you know the slicer defined extruder colors can be displayed on Mainsail / Fluidd UI next to the Extruder "Tx" buttons (see below). Happy Hare ensures the color information is parsed from the slicers g-code and provided to this user interface.
 > <p align="center"><img src="Slicer-Setup/mainsail_colors.png" width="500" alt="Mailsail Extruder Colors"></p>
 
 <br>
@@ -125,7 +125,7 @@ This is a macro (defined in `mmu_software.cfg`) that finalizes MMU, can print st
 This is where your existing print end macro would be placed
 
 #### `3. _MMU_END_PRINT`
-This should be the very last g-code executed. When printing from virtual sd-card this isn't necessary (although harmless to include) because Happy Hare will automatically detect the end of print, it is necessary when printing from Octoprint.
+This should be the very last g-code executed. When printing from virtual sd-card this isn't techincally necessary (although harmless to include) because Happy Hare will automatically detect the end of print, it is necessary when printing from Octoprint.
 
 <br>
 
@@ -205,7 +205,7 @@ Slicers have some quirks and don't make it very straighforward to turn off as yo
 The first place is a setting like this on the `printer settings` tab.  This disables the primary retract/extrude oscillation that is the bulk of the tip forming and cooling movement.
 
 > [!NOTE]  
-> Whilst it is logical to zero all these settings out, Prusaslicer (v2.5) at least has bug that will insert illegal `G1 F0` commands if all the fields are exactly 0.  Instead use a tiny value for the cooling tube length.
+> Whilst it is logical to zero all these settings out, Prusaslicer (v2.5) at least has bug that will insert illegal `G1 F0` commands if all the fields are exactly 0.  Instead use a tiny value for the cooling tube length, like "0.01"
 
 <img src="Slicer-Setup/printer_settings.png" width="500" alt="Slicer printer settings">
 
