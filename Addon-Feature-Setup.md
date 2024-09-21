@@ -21,7 +21,6 @@ https://github.com/kevinakasam/ERCF_Filament_Cutter
 1. Add `[include mmu/addons/mmu_erec_cutter.cfg]` to your `printer.cfg`
 1. Edit `mmu_erec_cutter.cfg` and `mmu_erec_cutter_hw.cfg` to work with your setup
 1. In `mmu_macro_vars.cfg` set `variable_user_post_unload_extension : "EREC_CUTTER_ACTION"`
-1. Optionally in `mmu_macro_vars.cfg` set `variable_user_pre_unload_extension : "BLOBIFIER_PARK"` to park the nozzle on the tray during a swap
 
 <hr>
 
@@ -40,4 +39,9 @@ https://github.com/Dendrowen/Blobifier
 1. Add `[include mmu/addons/blobifier.cfg]` to your `printer.cfg`
 1. Edit `blobifier.cfg` and `blobifier_hw.cfg` to work with your setup
 1. Set `variable_user_post_load_extension : "BLOBIFIER"` in `mmu_macro_vars.cfg`
-1. Optionally set `variable_user_pre_unload_extension : "BLOBIFIER_PARK"` in `mmu_macro_vars.cfg` to park the nozzle on the tray during a swap
+1. Optionally set `variable_user_post_form_tip_extension : "BLOBIFIER_PARK"` in `mmu_macro_vars.cfg` to park the nozzle on the tray during a swap. Note that it is always recommended that you at least z-hop on toolchange so that the toolhead is immediately lifted off the print. Read [Toolchange Movement](Toolchange-Movement) for more details.
+
+<br>
+
+> [!IMPORTANT] 
+> For all add-on extensions, ensure that you always use the "cfg" files from Happy Hare and not those sourced elsewhere so you have the most recent changes and fixes.

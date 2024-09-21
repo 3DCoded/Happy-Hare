@@ -95,31 +95,41 @@ This section controls the MMU LEDs. This does not affect any of the printer LEDs
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) \_MMU\_SEQUENCE\_VARS
 
-These control the movement of the toolhead during a tool change.  
+These control the movement of the toolhead during a tool change. For a detailed explanation refer to [Toolhead Movement](Toolhead-Movement) page.
 
-`variable_enable_park_printing` TODO
+`variable_enable_park_printing` list of operations requiring parking movement when printing. List includes: "toolchange, load, unload, runout, complete, pause, cancel"
 
-`variable_enable_park_standalone` TODO
+`variable_enable_park_standalone` list of operations requiring parking movement when not printing. List includes: "toolchange, load, unload, pause, cancel"
 
-`variable_enable_park_disabled` TODO
+`variable_enable_park_disabled` list of operations requiring parking movement when MMU is disabled (`MMU ENABLE=0`). List includes: "pause, cancel"
 
 `variable_min_toolchange_z` the absolute minimum height for toolchange moves during print. This prevents scraping the bed if no z-hop is specified
 
-`variable_park_toolchange` TODO
+`variable_park_toolchange` park location, retraction and z-hop specification for toolchange operations (toolchange, load, unload).
 
-`variable_park_mmu_error` TODO
+`variable_park_runout` park location, retraction and z-hop specification for runout toolchange operation (runout). This is separate from regular toolchange to allow for configuration where slicer is in control during a print, but Happy Hare controls during a runout.
 
-`variable_park_pause` TODO
+`variable_park_pause` park location, retraction and z-hop specification for pause operation (pause) including MMU errors.
 
-`variable_park_cancel` TODO
+`variable_park_cancel` park location, retraction and z-hop specification for when canceling a print with CANCEL_PRINT (cancel).
 
-`variable_park_complete` TODO
+`variable_park_complete` park location, retraction and z-hop specification for when print completes (complete).
 
-`variable_pre_unload_position` TODO
+> [!NOTE] 
+> All "park" specifications are a list of 5 parameters: Xcoord, Ycoord, Z-hop, Z-hop-ramp, retraction<br>
+> Coordinates of -1,-1 mean no movement. Z-hop of 0 means no Z-hop. Z-hop-ramp is the horizontal movement during Z-hop and can help break stringing.<br>
+> Thus `-1,-1,0,0,0` does nothing. See [Toolhead Movement](Toolhead-Movement)
 
-`variable_post_form_tip_position` TODO
+`variable_pre_unload_position` optional move to location before executing the unload sequence
 
-`variable_pre_load_position` TODO
+`variable_post_form_tip_position` optional move to location after tip forming logic
+
+`variable_pre_load_position` optional move to location before executing the load sequence
+
+> [!NOTE] 
+> All "position" specifications are a list of 3 parameters: Xcoord, Ycoord, Z-hop.<br>
+> Coordinates of -1,-1 mean no movement. Z-hop can only increase the Z-hop preceeding "park", i.e. the max of the two is applied thus potentially resetting the toolchange/movement plane.<br>
+> Thus `-1,-,1,0` does nothing. See [Toolhead Movement](Toolhead-Movement)
 
 `variable_restore_xy_pos` after the toolchange is complete this controls where the x,y position is restored to. "last" is the default and will return the toolhead to the exact location prior to the toolchange operation. "next" can be used effectively to reduce print artifacts to advance the toolhead to the next g-code print postion before lowering (this option requires the Happy Hare moonraker module to be enabled). Finally "none" will result in the restoration of z-height but the x,y move will be left to the next g-code instruction. Therefore the difference between "next" and "none" is the z-heigh that the toolhead will move at and the exact point the un-retraction occurs -- "next" drop and un-retract onto the next print position, "none" will drop and un-retract where the toolhead ends up after toolchange. 
 

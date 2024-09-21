@@ -42,6 +42,7 @@ variable_user_pre_unload_extension
 variable_user_post_unload_extension
 variable_user_pre_load_extension
 variable_user_post_load_extension
+variable_user_mmu_error_extension
 variable_user_park_move_macro
 variable_user_pause_extension
 variable_user_resume_extension
@@ -255,46 +256,6 @@ gcode_load_sequence: 1
 gcode_unload_sequence: 1
 ```
 This is quite advanced and you will need to understand the Happy Hare state machine before embarking on changes. Read [Custom Load/Unload Sequences](Custom-Load-Unload-Sequences) for more details.
-
-<p>
-
-The behavior of these default macros is controlled by the following set of variables found at the top of the `mmu_sequence.cfg` file.  Once you have set `variable_park_xy` to the coordinates of a safe park area (usually over your purge bucket) you can set `variable_enable_park: 1` to enable movement of the toolhead away from the print while changing filaments.
-```yml
-###########################################################################
-# Variables controlling sequence macros are all set here
-#
-[gcode_macro _MMU_Variables]
-variable_enable_park: 0                 # Whether the parking move is enabled. Turn on after setting park_xy
-variable_park_xy: 50, 50                # Coordinates of park position for toolchange
-variable_park_z_hop: 1                  # Additional Z_hop when toolchanging
-variable_travel_speed: 200              # XY travel speed in mm/s
-variable_lift_speed: 15                 # Z travel speed in mm/s
-variable_auto_home: 0                   # Automatically home if necessary (mainly testing use case)
-variable_park_after_form_tip: 0         # Set to 1 if tip cutting at toolhead to delay move to park position
-```
-
-> [!NOTE]  
-> Generally `variable_park_after_form_tip` will be `0` meaning the move away from the print is immediate.  If you are using a cutter at the toolhead you will want to set this to `1`.  This delays the move until after the movement defined in the tip cutting macro.
-
-Here are some examples of logic that might be put in these macros:
-
-#### \_MMU\_PRE\_UNLOAD (mmu\_sequence.cfg)
-Logic here would typically move the toolhead to a safe spot like over the purge bucket
-
-#### \_MMU\_POST\_FORM\_TIP (mmu\_sequence.cfg)
-Optional this logic would do the same this as `_MMU_PRE_UNLOAD` in the case of a tip cutting movement
-
-#### \_MMU\_POST\_UNLOAD (mmu\_sequence.cfg)
-Logic here can be used to implement tip cutting and cleanup at the MMU gate
-
-#### \_MMU\_PRE\_LOAD (mmu\_sequence.cfg)
-This is a great spot to add logic to take time lapse photography (although it can also be done elsewhere)
-
-#### \_MMU\_POST\_LOAD (mmu\_sequence.cfg)
-Logic here can perform extra purging operations, pause for ooze and then wipe nozzle before returning to the original position recorded in either the `_MMU_PRE_UNLOAD` or `_MMU_POST_FORM_TIP` macros
-
-> [!NOTE]  
-> Although Happy Hare has defensive logic to always return the toolhead to the correct position it may do this slowly because it is only anticipating a z\_hop movement. A common problem is that the `_MMU_POST_LOAD` does not restore the X/Y toolhead position correctly leading to this strange slow movement.
 
 <br>
 

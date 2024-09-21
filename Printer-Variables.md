@@ -6,7 +6,7 @@ Happy Hare exposed 'printer' variables that can be used in your own macros.
     printer.mmu.enabled : {bool} True if MMU is enabled
     printer.mmu.num_gates : {int} number of gates configured
     printer.mmu.is_paused : {bool} True if MMU is paused after an error (can also use print_job_state)
-    printer.mmu.is_locked : {bool} Deprecated, use for printer.mmu.is_paused instead
+    printer.mmu.is_locked : {bool} DEPRECATED, use for printer.mmu.is_paused instead
     printer.mmu.is_homed : {bool} True if MMU has been homed
     printer.mmu.is_in_print : {bool} True if MMU is managing a print job (print_job_state is printing|pause_locked|paused)
     printer.mmu.tool : {int} 0..n | -1 for unknown | -2 for bypass
@@ -15,7 +15,8 @@ Happy Hare exposed 'printer' variables that can be used in your own macros.
     printer.mmu.next_tool : {int} 0..n | -1 for unknown | -2 for bypass (during a tool change)
     printer.mmu.last_tool : {int} 0..n | -1 for unknown | -2 for bypass (during a tool change after unload)
     printer.mmu.last_toolchange : {string} description of last change similar to M117 display
-    printer.mmu.runout : {bool} True while MMU is handling a runout
+    printer.mmu.runout : {bool} DEPRECATED, use printer.mmu.operation == "runout" instead
+    printer.mmu.operation : {string} Operation in progress (toolchange, load, unload, runout, pause, cancel, complete)
     printer.mmu.filament : {string} filament state in extruder (Loaded | Unloaded | Unknown)
     printer.mmu.filament_position : {float} location in mm of filament
     printer.mmu.filament_pos : {int} state machine - exact location of filament
@@ -40,12 +41,12 @@ Happy Hare exposed 'printer' variables that can be used in your own macros.
     printer.mmu.print_job_state : {string} current job state seen by MMU (initialized | standby | started | printing | pause_locked | paused | complete | cancelled | error)
     printer.mmu.clog_detection : {int} 0 (off) | 1 (manual) | 2 (auto)
     printer.mmu.endless_spool : {int} 0 (disabled) | 1 (enabled) | 2 (additionally enabled for pre-gate sensor)
-    printer.mmu.print_start_detection : {int} 0 (disabled) | 1 (enabled)
+    printer.mmu.print_start_detection : {int} 0 (disabled) | 1 (enabled) For Klippain
     printer.mmu.reason_for_pause : {string} 
     printer.mmu.extruder_filament_remaining : {float} amount of cut filament left in the extruder (for toolchange macros)
     printer.mmu.extruder_residual_filament : {float} amount of residual filament always left in extruder (for toolchange macros)
     printer.mmu.toolchange_retract : {float} amount of extruder retraction (useful in toolchange macros)
-    printer.mmu.enable_spoolman : {int} 0 (disabled) | 1 (enabled) Deprecated, use printer.mmu.spoolman_support instead
+    printer.mmu.enable_spoolman : {int} 0 (disabled) | 1 (enabled) DEPRECATED, use printer.mmu.spoolman_support instead
     printer.mmu.spoolman_support: {string} spoolman integration mode (off | readonly | push | pull)
 ```
 
