@@ -131,7 +131,7 @@ sequenceDiagram
     K->>L: read local gate map
     L-->>K: local gate map
     K->>M: push gate map
-    M->>S: write gate map
+    M->>S: write printer/gate mapping
     M->>S: read filament details
     S-->>M: filament details
     M->>K: MMU_GATE_MAP MAP={filament details}
@@ -153,11 +153,11 @@ First the local gate map is updated as it would be with spoolman disabled. Then 
 ```mermaid
 sequenceDiagram
     autonumber
+    participant MF as Mainsail/Fluidd
     participant L as Persisted variables
     participant K as Klipper
     participant M as Moonraker
     participant S as Spoolman
-    participant MF as Mainsail/Fluidd
 
     MF->>K: MMU_GATE_MAP GATE=3 SPOOLID=74
     K->>L: write local gate map
@@ -209,11 +209,11 @@ Firstly a request is sent via moonraker to persist the change in the remote gate
 ```mermaid
 sequenceDiagram
     autonumber
+    participant MF as Mainsail/Fluidd
     participant L as Persisted variables
     participant K as Klipper
     participant M as Moonraker
     participant S as Spoolman
-    participant MF as Mainsail/Fluidd
 
     MF->>K: MMU_SPOOLMAN GATE=3 SPOOLID=74
     K->>M: update remote gate map
