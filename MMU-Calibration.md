@@ -113,7 +113,7 @@ Get out your ruler and very carefully measure the length of the emited filament.
 <br>
 
 ### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Step 4. Calibrate your encoder (if fitted)
-If your MMU includes an encoder (like the ERCF design) the next step is to calibrate so it measures distance accurately. Re-fit the bowden to the selector/encoder (you can insert the short length of filament to tube as you fit to save time). Alternatively, just make sure you have some filament through gate #0 before starting - you can do this by running `MMU_TEST_MOVE` again if necessary. Now run:
+If your MMU includes an encoder (like the ERCF design) the next step is to calibrate so it measures distance accurately. Re-fit the bowden to the selector/encoder (you can insert the short length of filament to tube as you fit to save time). Alternatively, just make sure you have some filament at gate #0 before starting. Now run:
 
   > MMU_CALIBRATE_ENCODER
 

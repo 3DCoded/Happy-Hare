@@ -298,6 +298,8 @@ These are variables used in general print and MMU moves.
 
 `variable_reset_ttg_on_cancel` similar to `reset_ttg` on print end, this tell Happy Hare whether to reset the tool to gate map at the end of the print. Typically, the tool to gate map is not changed unless you switch filament colors or change the endless spool settings. Leaving this one `False` will save you from having to redo the tool to gate map on every print.  See [Gate Map](Tool-and-Gate-Maps#---gate-map) for explaination on how to map the gates. Usually `False`.
 
+`variable_eject_tool_on_cancel` tells Happy Hare whether or not to eject the filament out of the extruder and back to the buffer when print is cancelled. If set to `False` the filament will remain loaded. This one is up to your preference.
+
 `variable_user_pause_extension` is any command or code you want executed after a base pause. For instance, you may want to change the status of the printer LEDs through the Klipper Led Effect add on, in which case you'd have something like `variable_user_pause_extension: status_pause`  
 
 `variable_user_resume_extension` any command or code you want executed before a base resume. Following the above, you could set the leds to the printing status, `variable_user_resume_extension: status_printing` 
