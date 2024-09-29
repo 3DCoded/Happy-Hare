@@ -303,7 +303,7 @@ variable_pre_load_position      : -1, -1, 0
 - Wiki pages updated: [Slicer Setup](Slicer-Setup), [Command Reference](Command-Reference), [Happy Hare Parameters](Happy-Hare-Parameters), [Blobbing and Stringing](Blobbing-and-Stringing) and more..
 
 ### v2.7.2
-**Addressed design oversight in toolhead calibration settings when cutting tips***
+**Addressed design oversight in toolhead calibration settings when cutting tips**
 - Fixes issue where `toolhead_ooze_reduction` parameter was used for two purposes that cancelled each other out and thus prevented use for fine tuning load distance.
   - The previous `toolhead_ooze_reduction` value will be moved to `toolhead_residual_filament` to better represent what is means
   - `toolhead_ooze_reduction` will be reset to 0 and used exclusively for tuning the loading length (it's primary purpose)
