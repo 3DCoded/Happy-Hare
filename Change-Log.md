@@ -310,7 +310,7 @@ variable_pre_load_position      : -1, -1, 0
   - `MMU_CALBRATE_TOOLHEAD` updated accordingly
   - Printer variables updated: `printer.mmu.extruder_filament_remaining` now holds the combined `toolhead_residual_filament` + any cut fragment length
   - Wiki updated
-- New printer variable `printer.mmu.toolchange_purge_volume` which is valid during a toolchange and contains the recommended purge volume (from slicer tool map purge volues + volume of any residual filament left in extruder. Saves time in macros reading the entire purge volumes map
+- New printer variable `printer.mmu.toolchange_purge_volume` which is valid during a toolchange and contains the recommended purge volume (from slicer tool map purge volues + volume of any residual filament left in extruder). Saves time in macros reading the entire purge volumes map
 - Possible TTC mitigations (doing everything possible to give host more headroom)
   - Absolute minimal writes to `[save_variables]` during toolchange or check gates operations
   - Improved logger
