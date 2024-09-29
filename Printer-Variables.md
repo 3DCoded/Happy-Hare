@@ -12,8 +12,9 @@ Happy Hare exposed 'printer' variables that can be used in your own macros.
     printer.mmu.tool : {int} 0..n | -1 for unknown | -2 for bypass
     printer.mmu.gate : {int} 0..n | -1 for unknown
     printer.mmu.active_filament : {dict} of active filament attributes (from gate_map, e.g. active_filament.material, active_filament.color)
-    printer.mmu.next_tool : {int} 0..n | -1 for unknown | -2 for bypass (during a tool change)
     printer.mmu.last_tool : {int} 0..n | -1 for unknown | -2 for bypass (during a tool change after unload)
+    printer.mmu.next_tool : {int} 0..n | -1 for unknown | -2 for bypass (during a tool change)
+    printer.mmu.toolchange_purge_volume : {float} suggested purge volume for current toolchange (mm^3)
     printer.mmu.last_toolchange : {string} description of last change similar to M117 display
     printer.mmu.runout : {bool} DEPRECATED, use printer.mmu.operation == "runout" instead
     printer.mmu.operation : {string} Operation in progress (toolchange, load, unload, runout, pause, cancel, complete)
@@ -43,9 +44,7 @@ Happy Hare exposed 'printer' variables that can be used in your own macros.
     printer.mmu.endless_spool : {int} 0 (disabled) | 1 (enabled) | 2 (additionally enabled for pre-gate sensor)
     printer.mmu.print_start_detection : {int} 0 (disabled) | 1 (enabled) For Klippain
     printer.mmu.reason_for_pause : {string} 
-    printer.mmu.extruder_filament_remaining : {float} amount of cut filament left in the extruder (for toolchange macros)
-    printer.mmu.extruder_residual_filament : {float} amount of residual filament always left in extruder (for toolchange macros)
-    printer.mmu.toolchange_retract : {float} amount of extruder retraction (useful in toolchange macros)
+    printer.mmu.extruder_filament_remaining : {float} amount of residual + cut filament left in the extruder (for toolchange macros)
     printer.mmu.enable_spoolman : {int} 0 (disabled) | 1 (enabled) DEPRECATED, use printer.mmu.spoolman_support instead
     printer.mmu.spoolman_support: {string} spoolman integration mode (off | readonly | push | pull)
 ```

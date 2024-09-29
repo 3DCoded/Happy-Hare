@@ -57,6 +57,9 @@ MMU_TEST_FORM_TIP cooling_moves=5 unloading_speed=15
 
 It might take 40-50 attempts until you start to home in on the optimum values for your particular extruder.
 
+> [!TIP]  
+> Timesaver: If you have an extruder (entry) sensor configured, then select the bypass before tuning tip forming. Then whenever you insert the filament fragment into the extruder it will automatically be loaded ready for the next test (see `bypass_autoload` setting).
+
 > [!IMPORTANT]  
 > The parameters your just set will only be valid until klipper is restarted. To make this persistent, make sure you edit `mmu_marco_vars.cfg` and your chosen settings.
 
@@ -91,15 +94,19 @@ Clicking on the Show advanced settings in the manual purging volume panel will p
 If you enable the Advanced wiping volume option in the Printer settings, Single Extruder MM setup section, the slicer will use the Pigment percentage, ranging from 0 to 1, to define the purge volume for each swap. You can adjust the different values of this option to finely tune the final purging volume. Note that if you have the same profile for filaments of different colors, you’ll need to duplicate those filament profiles and adjust, for each, the pigment percentage value. Don’t forget to select the proper filament profile for each tool.
 
 ### Purging on the Wipe Tower
-Normally the purging logic is performed by the slicer and written into the g-code. The purged filament will be deposited onto the wipe tower (that is why `enable wipe tower` must be checked to access the purge matrix and then disabled if you want to use the volumes but not the wipe tower. 
+Normally the purging logic is performed by the slicer and written into the g-code. The purged filament will be deposited onto the wipe tower (BTW that is why `enable wipe tower` must be checked to access the purge matrix and then disabled if you want to use the volumes but not the wipe tower).
 
-Even with purge volumes setup correctly the configuration of your toolhead parameters also come into play.  Let's assume that you have correctly defined your toolhead geometry [here](Configuration#---toolhead-loading--unloading) noting that these settings are based on the CAD of your toolhead and are not designed to be tunables. Ok, with that said it is still necessary to fine tune the purging process and altough the toolhead dimensions will effect this, the correct parameter to tune is `toolhead_ooze_reduction` defined in `mmu_parameters.cfg`. This controls a "delta" in the theoretical loading distance. Typically this would be 0 or a small positive value to reduce the load distance so that the extruder doesn't prematurely extrude plastic. 
+Even with purge volumes setup correctly the configuration of your toolhead parameters also come into play.  Let's assume that you have correctly defined your toolhead geometry [here](Configuration#---toolhead-loading--unloading) noting that these settings are based on the CAD of your toolhead and are not designed to be tunables. It is still necessary define `toolhead_residual_filament` - the amount of filament naturally left behind in the extruder after filament ejection. In addition if cutting the filament the tip will still be in the extruder. Unfortunately the slicer has no way to know this information and thus it is often necessary to over-compensate and set large purge volumes.
+
+Later we describe alternative methods of purging controlled by Happy Hare that take into account, both the configured `toolhead_residual_filament` and the cut filament piece to intelligently calculate the necessary extra purge based on your particular setup.
+
 
 <br>
 
 ### Tuning `toolhead_ooze_reduction`
-Once you are printing your first multi filament print, check the purge tower to verify that the `toolhead_ooze_reduction` value is well tuned (at that your dimensional settings are correct).  If you notice over extrusion during loads (i.e., plastic blobs on the purge tower after a load) you need to increase the `toolhead_ooze_reduction` value.
-If you notice big gaps on the purge tower after a load, you need to decrease the `toolhead_ooze_reduction` value. Note that although small negative values are allowed, going negative almost certainly means that the `toolhead_extruder_to_nozzle` or `toolhead_sensor_to_nozzle` are too long. Here is an example purge tower here, with values for the `toolhead_ooze_reduction` from 0 to +14 mm. In this example, the proper value seems to be around 5 mm. Note that because there is some uncertainty in this process (because of the filament tip shape), there will be some slight differences even when the value is the same, as shown in the green to grey and white to orange transitions. As explained in [Blobbing and Stringing](Blobbing-and-Stringing) this value represents the residual filament left behind in extruder (and why if cannot physically be negative). Low flow extruders will typically have a value between 1-5mm and with high flow as high as 15mm.
+Once you are printing your first multi filament print, check the purge tower to verify that the toolhead calibration settings including `toolhead_residual_filament` are correct. If you notice over extrusion during loads (i.e., plastic blobs on the purge tower after a load) you can fine tune using the `toolhead_ooze_reduction` setting. This controls a small delta in the theoretical loading distance. Typically this would be 0 or a small positive value to reduce the load distance so that the extruder doesn't prematurely extrude plastic.  If you find you need a negative or large value (>5mm) it is likely that your toolhead calibration dimensions or `toolhead_residual_filament` settings are sub-optimum and it is recommended that you fix these before tuning `toolhead_ooze_reduction`.
+
+To set, if you notice big gaps on the purge tower after a load, you need to decrease the `toolhead_ooze_reduction` value. Note that although small negative values are allowed, going negative almost certainly means that the `toolhead_extruder_to_nozzle` or `toolhead_sensor_to_nozzle` are too long. Here is an example purge tower here, with values for the `toolhead_ooze_reduction` from -3 to +8 mm. In this example, the proper value seems to be around 1 mm. Note that because there is some uncertainty in this process (because of the filament tip shape), there will be some slight differences even when the value is the same, as shown in the green to grey and white to orange transitions. As explained in [Blobbing and Stringing](Blobbing-and-Stringing) this value represents the final reduction in load length after the length has already been reduced by the `toolhead_residual_filament` and by any cut filament top.
 
 Tweaking this is something that can be done in print with:
 ```
@@ -110,7 +117,7 @@ Just don't forget to persist the final result in `mmu_parameters.cfg` when the p
 <p align="center"><img src="Tip-Forming-and-Purging/toolhead_ooze_reduction.png" width="60%" alt="ooze reduction"></p>
 
 > [!IMPORTANT] 
-> This information is included here as a last resort but really the `toolhead_ooze_reduction` should be set first by calibrating the toolhead in the [Blobbing and Stringing](Blobbing-and-Stringing) section since it represents the amount of residual filament left behind in your extruder.  It is often much bigger that you expect and thus it is important to run the not automated calibration if you have a toolhead sensor so you have an accurate starting point. You would only really need to tweak at most +/-2mm if you calibrated correctly.
+> This information is included here as a last resort but really the `toolhead_residual_filament` should be set first by calibrating the toolhead in the [Blobbing and Stringing](Blobbing-and-Stringing) section since it represents the amount of residual filament left behind in your extruder.  That amount is often much bigger that you expect (2-3mm for low flow extruders and 12-15mm for high flow) and thus it is important to run the not automated calibration if you have a toolhead sensor so you have an accurate starting point. Once you have done this you would only really need to tweak at most +/-3mm with `toolhead_ooze_reduction`
 
 <br>
 

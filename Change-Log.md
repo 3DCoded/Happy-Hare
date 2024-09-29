@@ -302,3 +302,22 @@ variable_pre_load_position      : -1, -1, 0
 - Start of a new wiki page for KlipperScreen-Happy-Hare edition: [Klipperscreen](KlipperScreen)
 - Wiki pages updated: [Slicer Setup](Slicer-Setup), [Command Reference](Command-Reference), [Happy Hare Parameters](Happy-Hare-Parameters), [Blobbing and Stringing](Blobbing-and-Stringing) and more..
 
+### v2.7.1 (patches)
+- Allow extruder (entry) sensor to be used to autoload extruder when using the bypass. Controlled with new `bypass_autoload` parameter in `mmu_parameters.cfg`
+-
+
+### v2.7.2
+**Addressed design oversight in toolhead calibration settings when cutting tips***
+- Fixes issue where `toolhead_ooze_reduction` parameter was used for two purposes that cancelled each other out and thus prevented use for fine tuning load distance.
+  - The previous `toolhead_ooze_reduction` value will be moved to `toolhead_residual_filament` to better represent what is means
+  - `toolhead_ooze_reduction` will be reset to 0 and used exclusively for tuning the loading length (it's primary purpose)
+  - `MMU_CALBRATE_TOOLHEAD` updated accordingly
+  - Printer variables updated: `printer.mmu.extruder_filament_remaining` now holds the combined `toolhead_residual_filament` + any cut fragment length
+  - Wiki updated
+
+- Experimental printer variable `printer.mmu.toolchange_purge_volume` which is valid during a toolchange and contains the recommended purge volume (from slicer tool map purge volues + volume of any residual filament left in extruder
+
+- Possible TTC mitigations (doing everything possible to give host more headroom)
+  - Absolute minimal writes to `[save_variables]` during toolchange or check gates operations
+  - Improved logger
+

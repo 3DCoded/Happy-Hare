@@ -199,7 +199,7 @@ The `encoder` method, due to the nature of its operation will overshoot a little
 
 `gate_endstop_to_encoder`is the distance between gate end stop and encoder. Only active if both are fitted. This number is positive if the end stop is after the encoder.
 
-`gate_autoload` only applied if you have pre-gate sensors installed, this allow the autoload feature to be explicitly disabled. This is useful if the pregate sensor it placed a long way from the gear. In these cases the `MMU_PRELOAD` command can be manually called to achieve the same results.
+`gate_autoload` only applied if you have pre-gate sensors installed, this allow the autoload feature to be explicitly disabled. This is useful if the pregate sensor it placed a long way from the gear. In these cases the `MMU_PRELOAD` command can be manually called to achieve the same results. See also `bypass_autoload`.
 
 <br>
 
@@ -448,6 +448,8 @@ The following variables are configurable based on your needs, but rarely need me
 `filament_recovery_on_pause` tells Happy Hare to try and figure out where the filament is when a pause occurs. 1 = Run a quick check to determine current filament position on pause/error, 0 = disable.
 
 `retry_tool_change_on_error` tells Happy Hare to automatically retry a failed tool change if enabled (1). If enabled Happy Hare will perform the equivalent of `MMU_RECOVER` + `Tx` (where x is the tool number) commands which usually is all that is necessary to recover. Enabling this can mask problems with your MMU that might need sorted out before enabling.
+
+`bypass_autoload` only applied if you have an extruder (entry) sensor installed, this allow the autoload feature to be explicitly enabled/disabled. This works only on the bypass "gate" and will automatically load the extruder when a filament is offered up to the extruder (similar to the way Prusa printers work).
 
 `print_start_detection` allows Happy Hare to automatically detect start and end of print and call `_MMU_START_PRINT` and `_MMU_END_PRINT`. Disable (0) if you want to include in your own macros.
 

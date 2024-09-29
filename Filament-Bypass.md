@@ -35,3 +35,6 @@ Be sure to manually pull the filament all the way back out of the MMU before sel
 
 > [!NOTE]
 > The `MMU_LOAD` and `MMU_EJECT` automatically add the `EXTRUDER_ONLY=1` flag when the bypass is selected
+
+> [!TIP]
+> A very useful timesaver is automatic extruder loading if you have an extruder (entry) sensor. This is enabled with the `bypass_autoload` setting in `mmu_parameters.cfg`. If enabled, when a filament triggers the sensor the loading will be automatic.

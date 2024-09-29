@@ -1,3 +1,14 @@
+#### Page Sections:
+- [Correct Meaning of Key Dimensions](#---correct-meaning-of-key-dimensions)
+- [Calibrating Toolhead](#---calibrating-toolhead)
+  - [Final Blob Tuning](#---final-blob-tuning---toolhead_ooze_reduction)
+  - [Toolchange Retraction](#---tool-change-retraction)
+  - [Z-Hop and Ramping](#---z-hop-and-ramping)
+- [Summary of Tuning Steps](#---summary-of-tuning-steps)
+- [Cleaning Extruder with Cold Pull](#---cleaning-extruder-with-a-cold-pull)
+
+<br>
+
 This discussion assumes that you have initial setup complete and are now ready to tune the quality of your prints. Although some of the information contained here is useful early in your journey it will make a lot more sense once you have some experience with default or "borrowed" toolhead parameters.
 
 This guide will then guide you to optimize a few critical parameters for print qualit that avoids blobbing on your wipetower or print and stringing when moving to change tool.
@@ -6,6 +17,7 @@ Specifically in this guide you will learn how to correctly set the following par
 - `toolhead_extruder_to_nozzle`
 - `toolhead_sensor_to_nozzle`
 - `toolhead_entry_to_extruder`
+- `toolhead_residual_filament`
 - `toolhead_ooze_reduction`
 
 It will also illustrate how to use z-hop movement/ramping and retraction settings to eliminate blobs and stringing during color changes or EndlessSpool operations in your prints (`mmu/base/mmu_macro_vars.cfg`):
@@ -26,9 +38,9 @@ Firstly it is important to understand that while sensors like a toolhead sensor 
 
 When the extruder is loaded, Happy Hare will move the filament a precise distance from either the extruder gear or the toolhead sensor to the end of the nozzle. This distance is set with `toolhead_extruder_to_nozzle` and/or `toolhead_sensor_to_nozzle` and represents the CAD measured distance in a perfectly clean extruder/nozzle. The reality is that once the extruder is "dirty" this distance changes. This is because some filament is inevitably left behind in the extruder/nozzle shortening this distance. The amount of filament remaining seems to vary greatly from a couple of mm to as much as 15mm in some high flow hotends! In addition, CHT type nozzles use an insert that is not accounted for in external toolhead measurements and often neither in CAD, which equally effects the accuraacy of these measurements. 
 
-To account for this, Happy Hare defines `toolhead_extruder_to_nozzle` and `toolhead_sensor_to_nozzle` as theoretical and thus should be able to be pulled form CAD drawings or other users. It uses `toolhead_ooze_reduction` to represent how much to reduce the loading move by for the new filament to butt up against the old without accidently oozing.
+To account for this, Happy Hare defines `toolhead_extruder_to_nozzle` and `toolhead_sensor_to_nozzle` as theoretical and thus should be able to be pulled form CAD drawings or other users. It uses `toolhead_residual_filament` to represent how much to reduce the loading move by for the new filament to butt up against the old without accidently blobbing.
 
-In practice it has been hard to determine these values other than through experimentation and even then it is hard to determine for example, whether to increase `toolhead_ooze_reduction` or reduce `toolhead_sensor_to_nozzle`.
+In practice it has been hard to determine these values other than through experimentation and even then it is hard to determine for example, whether to increase `toolhead_residual_filament` or reduce `toolhead_sensor_to_nozzle`.
 
 Let's run through the important steps in a toolchange (for both tip forming and tip cutting cases) and relate to these parameters:
 
@@ -50,22 +62,26 @@ With toolhead tip cutting the procedure is a little more complex and introduces 
 
 Note that the cut piece of filament remaining and the residual filament are automatically accounted for by Happy Hare so long as you have configured the parameters exactly as defined in this illustration.
 
+> [!TIP] 
+> The printer variable `printer.mmu.extruder_filament_remaining` contains the total length of filament left in the extruder combining both the `toolhead_residual_filament` and length of any cut tip.<br>
+> Related is the printer variable `printer.mmu.toolchange_purge_volume` that calculates the total volume of filament to be purged by summing both the slicer tool map purge volume and the volume of this remaining material.
+
 <br>
 
 > [!IMPORTANT]  
 > 1. The really important reference point is the internal nozzle "shoulder". This is considered the 0mm reference point for most parameters. For CHT nozzle this will be further away from the tip than regular nozzles.
-> 2. You can see how the `toolhead_XXX_to_nozzle` settings and `toolhead_ooze_reduction` are related, so while you can tune the former and ignore latter, it is recommended you use them correctly so that Happy Hare is able to control the filament movement when loading and unloading the toolhead and correctly influence purge volumes.
-> 3. `toolhead_ooze_reduction` is dependent on your extruder and nozzle. High flow and CHT systems generally have a much higher value i.e. more residual filament left over in the extruder) than regular ones.
+> 2. You can see how the `toolhead_XXX_to_nozzle` settings and `toolhead_residual_filament` are related, so while you can tune the former and ignore latter, it is recommended you use them correctly so that Happy Hare is able to control the filament movement when loading and unloading the toolhead and correctly influence purge volumes.
+> 3. `toolhead_residual_filament` is dependent on your extruder and nozzle. High flow and CHT systems generally have a much higher value i.e. more residual filament left over in the extruder) than regular ones.
 
 <br>
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Calibrating Toolhead
 
-Ok, now you know what the correct meaning of the dimensions are the next question is how to discover them for your setup. For everything other than `toolhead_ooze_reduction` it is possible to use accurate CAD models to measure them (remember to use the internal shoulder in the nozzle). This can be a challenge if using a CHT nozzle as shown below.
+Ok, now you know what the correct meaning of the dimensions are the next question is how to discover them for your setup. For everything other than `toolhead_residual_filament` it is possible to use accurate CAD models to measure them (remember to use the internal shoulder in the nozzle). This can be a challenge if using a CHT nozzle as shown below.
 
 <p align="center"><a href="https://github.com/moggieuk/Happy-Hare/wiki/Blobbing-and-Stringing/CHT_Cutaway.png"><img src="Blobbing-and-Stringing/CHT_Cutaway.png" alt="CHT Cutaway" width="40%"></a></p>
 
-If you have a toolhead sensor there is now an automated way to measure! If not, then you can refer to this wiki in the future, where we will aim to collate verified measurements for common toolhead combinations and once you have those set, you can experiment to discover the correct `toolhead_ooze_reduction` setting.
+If you have a toolhead sensor there is now an automated way to measure! If not, then you can refer to this wiki in the future, where we will aim to collate verified measurements for common toolhead combinations and once you have those set, you can experiment to discover the correct `toolhead_residual_filament` setting.
 
 If you have a toolhead sensor continue reading below.
 
@@ -93,7 +109,7 @@ This will perform a number of probing moves with a cold extruder and report back
 ```
 Reminder:
 1) 'CLEAN=1' with clean extruder for: toolhead_extruder_to_nozzle, toolhead_sensor_to_nozzle (and toolhead_entry_to_extruder)
-2) No flags with dirty extruder (no cut tip) for: toolhead_ooze_reduction (and toolhead_entry_to_extruder)
+2) No flags with dirty extruder (no cut tip) for: toolhead_residual_filament (and toolhead_entry_to_extruder)
 3) 'CUT=1' holding blade in for: variable_blade_pos
 Desired gate should be selected but the filament unloaded
 
@@ -159,18 +175,18 @@ As the tip cutting operation would normally leave additional filament in the too
 
 <br>
 
-### ✅ Step 4: Calibrate ooze reduction (with dirty nozzle)
+### ✅ Step 4: Calibrate residual filament (with dirty nozzle)
 
-Now that the nozzle is “dirty” and simulating the left over material after a filament ejection, it is time to calibrate the ooze reduction variable.
+Now that the nozzle is “dirty” and simulating the left over material after a filament ejection, it is time to calibrate the residual filament parameter.
 
-To do this, run the below command, with no parameters.
+To do this, run the below command, with no arguments.
 
 > MMU\_CALIBRATE\_TOOLHEAD
 ```
 ...blah blah blah...
 -----------------------------------
 Calibration Results (dirty nozzle):
-> toolhead_ooze_reduction: 3.0 (currently: 3.4)
+> toolhead_residual_filament: 3.0 (currently: 3.4)
 -----------------------------------
 New calibrated ooze reduction active until restart. Update mmu_parameters.cfg to persist
 ```
@@ -178,18 +194,19 @@ New calibrated ooze reduction active until restart. Update mmu_parameters.cfg to
 > [!TIP]  
 > 1. You can run a dirty calibration as often as you like and to see if it differs with different filament types, changes you make to your tip forming macro, etc.
 > 2. Just be mindful that filament will grind a little in the gears & the extruder, so make sure you eject the filament fully from your MMU, cut the used portion and try with a new filament segment again.
-> 3. If you are curious, you can also use it as a trick way to measure the "filament_remaining" after tip cutting, validating that you are not cutting molten filament. Just remember to use the SAVE=0 option because you DON'T want to `toolhead_ooze_reduction` to include the cut piece of filament!
+> 3. If you are curious, you can also use it as a trick way to measure the "filament_remaining" after tip cutting, validating that you are not cutting molten filament. Just remember to use the SAVE=0 option because you DON'T want to `toolhead_residual_filament` to include the cut piece of filament!
 > 4. Again you can use the optional command SAVE=0 to skip saving the results in memory. 
 > 5. If you don’t have a filament cutter, the calibration process is done. Make sure you note down the above measurements and update them together with the ones from the first step in your `mmu_parameters.cfg` file. If you do have a filament cutter, make sure you follow step 4 below.  
 > 6. If you have a belay sensor (filament tension/compression sensor) installed on your Bowden path, make sure you “lock” it in place so it doesn’t move. It is important that the filament path length stays static throughout the calibration process. You can either remove it and install a coupler or simply hold it firmly in its fully extended position when the calibration commands are run.
 
-Remember, that the calibrated `toolhead_ooze_reduction` is your starting point. You can still adjust this according to what you see happening with the wipetower with and actual print. See [Tip Forming and Purging](Tip-Forming-and-Purging#tuning-toolhead_ooze_reduction) for details on what to look for.
+> [!IMPORTANT] 
+> Remember, that the calibrated `toolhead_residual_filament` is your starting point. You can still fine tune the reduction in loading length according to what you see happening with the wipetower with and actual print. See [Tip Forming and Purging](Tip-Forming-and-Purging#tuning-toolhead_ooze_reduction) for details on what to look for and how to use `toolhead_ooze_reduction` as the final parameter to tweak load volume. But a word of warning, this should be the very last step and should only be a very small adjustment to optimize blobbing and oozing during tool loading.
 
 <table>
 <tr>
 <td>
 
-Again referring back to the earlier illustrations, the difference between the clean reading and the dirty one is what `toolhead_ooze_reduction` compensates for and represents the residual filament that is always left behind in the extruder. The command will also measure the `toolhead_entry_to_extruder` variable but these should be similar (as in less than 1mm difference) between the two runs. If this is substantially different, you can re-run the calibration routine as the measurement was probably not accurate enough the first time.
+Again referring back to the earlier illustrations, the difference between the clean reading and the dirty one is what `toolhead_residual_filament` compensates for and represents the residual filament that is always left behind in the extruder. The command will also measure the `toolhead_entry_to_extruder` variable but these should be similar (as in less than 1mm difference) between the two runs. If this is substantially different, you can re-run the calibration routine as the measurement was probably not accurate enough the first time.
 
 </td>
 <td width=30%>
@@ -253,7 +270,7 @@ Referencing earlier illustrations, the blade position `variable_blade_pos` can t
   | Order | Option | Description |
   | ----- |------ | ----------- |
   | 1 | `CLEAN=1` | This will calibrate `toolhead_extruder_to_nozzle`, `toolhead_sensor_to_nozzle`, `toolhead_entry_to_extruder` and MUST be run on clean extruder after cold-pull | 
-  | 2 | _none_ | This will calibrate `toolhead_ooze_reduction` and should be run with a dirty extruder where tip has been formed for filament retracted from extruder. It must not be run after tip cutting |
+  | 2 | _none_ | This will calibrate `toolhead_residual_filament` and should be run with a dirty extruder where tip has been formed for filament retracted from extruder. It must not be run after tip cutting |
   | 3 | `CUT=1` | This will calibrate `variable_blade_pos` and suggest `variable_retract_length` for the tip cutting macro. This MUST be run after loading the extruder and manually cutting the filament and running `MMU_EJECT SKIP_TIP=1` to unload without re-running the tip cutting macro |
 
 <br>
@@ -262,18 +279,28 @@ With the toolhead now properly configured you should experience better basic loa
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Toolhead Retraction
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Final blob tuning - `toolhead_ooze_reduction`
 
-Incorrect toolhead dimensions contribute most to blobbing problems, but even when perfect, blobbing can still occur when the toolhead is moved fully loaded. Just like when printing, it is often necessary to relax the pressure in the extruder prior to a travel move to prevent the slow oozing that would otherwise occur. 
+Incorrect toolhead dimensions contribute most to blobbing problems, but even when perfect, blobbing can still occur when the toolhead is loaded. The reason might be air pockets or similar in the extruder or a slight variation in the `toolhead_residual_filament`. Therefore once the toolhead is properly calibrated (with likely fixed values), there is one tuning parameter left. 
 
-This is where the `toolchange_retraction` setting comes in. It is set to the filament retraction distance that will be applied immediately before the z-hop move and any travel movements during the toolchange. All the supplied macros will understand this setting and compensate for this accordingly. 
+This parameter `toolhead_ooze_reduction` should start with a value of 0. It can be tuned to further reduce the extruder loading length to completely eliminate blobs on the wipetower. A positive value will DECREASE the load length by that number of mm. Typically a few mm is all that is required and if you find yourself needing more, check your `toolhead_residual_filament` value. Technically this value can be slightly negative - the effect would be to INCREASE the loading length.
+
+The best way to tune this is while actually printing (it can be altered dynamically during a print with `MMU_TEST_CONFIG`). Refer to this [Tip Forming and Purging](Tip-Forming-and-Purging#tuning-toolhead_ooze_reduction) page for more details.
+
+<br>
+
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Tool change retraction
+
+Just like when printing, it is usually necessary to relax the pressure in the extruder prior to a travel move to prevent the slow oozing that would otherwise occur. 
+
+This is where the `retraction` setting comes in. It is set to the filament retraction distance that will be applied immediately before the z-hop move and any travel movements during the toolchange. All the supplied macros will understand this setting and compensate for this accordingly. Generally 2-3mm of retraction will minimize oozing although it might be a little higher on high flow systems.
 
 At the end of the toolchange process and immediately following the reversal of the z-hop move, the un-retract will occur to correctly pressurise the extruder again. In this manner the extruder is never fully loaded during travel moves and thus oozing is minimized.
 
-The retraction and un-retraction speed is set with the related `toolchange_retraction_speed` parameter and can thus be set independently (often faster) than your general extruder load/unload speeds.
+The retraction and un-retraction speed is set with the related `variable_retract_speed` and `variable_unretract_speed` variables and can thus be set independently (often faster) than your general extruder load/unload speeds.
 
 > [!NOTE]  
-> The toolhead retract is ONLY applied during a print by Happy Hare and is independent of anything performed by the sequence macros.
+> The retraction settings are configured in the MOVEMENT section of `mmu_macro_vars.cfg` and can be specified independently for different operations including toolchange, print complete, pause, cancel, etc. See this section in [Toolchange Movement](Toolchange-Movement#---overview-of-toolhead-parking-movement) for more details.
 
 <br>
 
@@ -281,7 +308,7 @@ The retraction and un-retraction speed is set with the related `toolchange_retra
 
 When a toolchange occurs, it is preferable to move the toolhead away from the print so the hot nozzle isn't left on the print causing marks. 
 
-However, such travel moves can graze the top of the print. This is mitigated by performing a z-hop move (i.e. raising the toolhead) before travelling. The height of the z-hop move is controlled by the `z_hop_height_toolchange` parameter. It is performed immediately after the toolchange retraction, with usually 2mm being plenty to stay clear of the print.
+However, such travel moves can graze the top of the print. This is mitigated by performing a z-hop move (i.e. raising the toolhead) before travelling. The height of the z-hop move is controlled by the `z_hop` parameter in the toolhead parking and movement section of `mmu_macro_vars.cfg`. It is performed immediately after the toolchange retraction (also specified in the same parking and movement section), with usually 1mm being plenty to stay clear of the print.
 
 Despite the retraction and upward movement many filaments will still have a tendency to "string" because a straight up retraction move pulls viscous filament from the nozzle. 
 
@@ -291,12 +318,33 @@ This ramped z-hop move essentially allows for a fast travel move of a greater di
 
 To ensure the toolhead does not go out of the print plate “bounds”, the horizontal movement component will be performed towards the center of the build plate.
 
-The speed of the z-hop move, whether purely vertical or including a ramp is specified with `z_hop_speed`.
+For full details on how to setup parking and thus define z-hop and retraction movements, read [Toolchange Movement](Toolchange-Movement) page.
 
-> [!TIP]  
-> If employing a z-hop ramp, you will likely want to set a fast speed in the `z_hop_speed` parameter similar to your normal printer x/y travel speed. Klipper will always limit your z travel speed to the speed defined in your [printer] section and thus this will not accidentally try to move vertically faster than possible. If you are not using a ramp then then `z_hop_speed` can be your desired vertical movement only.
+<br>
 
-Finally, the acceleration of the travel move when performing a ramp z-hop is set with `z_hop_accel`. Since klipper will limit the speed and accelaration of the z-axis movement you should set to your desired travel speed. This overrides the acceleration used to print the last feature before the tool change (usually external walls) and restores it back to your slicer set acceleration after the z-hop move is done. However, make sure your [printer] `max_accel` value is set within the mechanical limits of your printer!
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Summary of Tuning Steps
+
+Proceed in this order:<br>
+1. MMU_CALIBRATE_TOOLHEAD settings are defined in `mmu_parameters.cfg`
+2. toolhead_ooze_reduction is defined in `mmu_parameters.cfg`
+3. PARKING_MOVEMENT_SETUP is defined in MOVEMENT section of `mmu_macro_vars.cfg`
+
+```mermaid
+stateDiagram-v2
+    MMU_Operational --> MMU_CALIBRATE_TOOLHEAD
+    state MMU_CALIBRATE_TOOLHEAD { 
+        direction LR
+        toolhead_XXX_to_nozzle --> toolhead_entry_to_extruder
+        toolhead_entry_to_extruder --> toolhead_residual_filament
+    }
+    MMU_CALIBRATE_TOOLHEAD --> toolhead_ooze_reduction
+    toolhead_ooze_reduction --> PARKING_MOVEMENT_SETUP
+    state PARKING_MOVEMENT_SETUP {
+        direction LR
+        retraction --> z_hop
+        z_hop --> z_hop_ramp
+    }
+```
 
 <br>
 
