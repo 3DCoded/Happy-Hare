@@ -6,7 +6,7 @@
 - [User Extensible Management Panels](#---user-extensible-management-panels)
 - [MMU Options](#---mmu-options)
 
-KlipperScreen Panels for MMU - Happy Hare
+KlipperScreen - Happy Hare Edition is maintained as a [seperate project on github](https://github.com/moggieuk/KlipperScreen-Happy-Hare-Edition). Once setup this wiki page can be used as a guide of the additional functionality.
 
 <br>
 
