@@ -44,7 +44,7 @@ Notice that `T0` is now red because gate 7 contains red filament.
 
 > [!TIP]  
 > Fun tip: You don't need to restart klipper to make this change! Simple change the parameter dynamically with:
-> > MMU_TEST_CONFIG QUIET=1 t_macro_color=allgates<br>
+> > MMU_TEST_CONFIG t_macro_color=allgates QUIET=1<br>
 >
 > Boom! The update is immediate!<br>
 > Now try:<br>
