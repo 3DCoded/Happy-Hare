@@ -5,6 +5,7 @@ Mainsail and (I believe Fluidd) have added support to display additional attribu
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Extruder/Filament Color
 
 When you start a print the `MMU_START_SETUP` macro reads information from the sliced gcode file and loads it into the slicer tool map (discussed in [Tool and Gate Maps](https://github.com/moggieuk/Happy-Hare/wiki/Tool-and-Gate-Maps#---slicer-tool-map). Once this map is loaded, Happy Hare reports to Mainsail so that it can dynamically display the filament colors. What is displayed next to the tools is controlled by this parameter in `mmu_parameters.cfg`:
+
 ```yml
 t_macro_color: slicer
 ```
@@ -60,7 +61,13 @@ Notice that `T0` is now red because gate 7 contains red filament.
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Gate Assignment Visualization
 
 ### allgates
+```yml
+t_macro_color: allgates
+```
 
 ### gatemap
+```yml
+t_macro_color: gatemap
+```
 
 _comming soon when I energy to write more_
