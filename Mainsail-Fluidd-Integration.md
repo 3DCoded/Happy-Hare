@@ -60,6 +60,8 @@ Notice that `T0` is now red because gate 7 contains red filament.
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Gate Assignment Visualization
 
+_comming soon when I energy to write more_
+
 ### allgates
 ```yml
 t_macro_color: allgates
@@ -69,5 +71,3 @@ t_macro_color: allgates
 ```yml
 t_macro_color: gatemap
 ```
-
-_comming soon when I energy to write more_
