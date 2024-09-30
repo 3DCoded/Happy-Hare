@@ -59,4 +59,8 @@ Notice that `T0` is now red because gate 7 contains red filament.
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Gate Assignment Visualization
 
+### allgates
+
+### gatemap
+
 _comming soon when I energy to write more_
