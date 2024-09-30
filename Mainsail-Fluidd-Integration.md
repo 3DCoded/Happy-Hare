@@ -48,10 +48,10 @@ Notice that `T0` is now red because gate 7 contains red filament.
 >
 > Boom! The update is immediate!<br>
 > Now try:<br>
-> > MMU_TEST_CONFIG QUIET=1 t_macro_color=gatemap<br>
+> > MMU_TEST_CONFIG t_macro_color=gatemap QUIET=1<br>
 >
 > and:<br>
-> > MMU_TEST_CONFIG QUIET=1 t_macro_color=slicer<br>
+> > MMU_TEST_CONFIG t_macro_color=slicer QUIET=1<br>
 >
 > Now you can think of the Mainsail Extruder UI as another set of LED's! Remember though that these are "Tools" and are subject to the tool-to-gate (TTG) map unlike the gate LEDs.
 
