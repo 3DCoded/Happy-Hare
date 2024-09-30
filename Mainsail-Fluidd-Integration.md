@@ -45,9 +45,11 @@ Notice that `T0` is now red because gate 7 contains red filament.
 > [!TIP]  
 > Fun tip: You don't need to restart klipper to make this change! Simple change the parameter dynamically with:
 > > MMU_TEST_CONFIG QUIET=1 t_macro_color=allgates<br>
+>
 > Boom! The update is immediate!<br>
 > Now try:<br>
 > > MMU_TEST_CONFIG QUIET=1 t_macro_color=gatemap<br>
+>
 > and:<br>
 > > MMU_TEST_CONFIG QUIET=1 t_macro_color=slicer<br>
 > Now you can think of the Mainsail Extruder UI as another set of LED's! Remember though that these are "Tools" and are subject to the tool-to-gate (TTG) map unlike the gate LEDs.
@@ -57,4 +59,4 @@ Notice that `T0` is now red because gate 7 contains red filament.
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Gate Assignment Visualization
 
-_comming soon_
+_comming soon when I energy to write more_
