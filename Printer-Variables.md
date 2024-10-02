@@ -83,7 +83,7 @@ mmu:unsynced       -                     When filament driver (gear stepper) is 
 Happy Hare also listens for sync_feedback events. These can be generated internally with built in sync feedback support, but can also be used to keep gear/extruder motors in sync using a third party feedback device:
 
 ```yml
-mmu:sync_feedback  state                 The state is a float between -1.0 and +1.0 and represents the state of
-                                         tension (negative value) or compression (positive value) of the filament
-                                         inside the bowden. A value of 0 is netral
+mmu:sync_feedback  state                 The state is a float between -1.0 and +1.0 and represents
+                                         the state of tension (negative value) or compression (positive
+                                         value) of the filament inside the bowden. A value of 0 is neutral
 ```
