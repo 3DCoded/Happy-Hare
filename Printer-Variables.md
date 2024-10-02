@@ -70,6 +70,7 @@ If you are a developer you might be interested in the following klipper events t
 
 ```yml
 Event Name         Parameters            Description
+----------         ----------            -----------
 mmu:mmu_paused     -                     Called when mmu_error occurs
 mmu:mmu_resumed    -                     Called when print is resumed after mmu_error
 mmu:enabled        -                     When MMU is enabled, e.g. with MMU ENABLE=1
