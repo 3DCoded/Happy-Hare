@@ -110,7 +110,7 @@
   - [Optional Encoder](Clog-Runout-EndlessSpool#---optional-encoder)
   - [Endless Spool](Clog-Runout-EndlessSpool#---endlessspool)
   - [Flowrate Monitoring](Clog-Runout-EndlessSpool#---flowrate-monitoring)
-- [Consuption Counters](Statistics-and-Consumption-Counters#---consumption-counters)
+- [Consumption Counters](Statistics-and-Consumption-Counters#---consumption-counters)
 - [Synchronized Gear/Extruder](Synchronized-Gear-Extruder)
   - [Sync Feedback Sensors](Synchronized-Gear-Extruder#---sync-feedback-sensor-options)
 
