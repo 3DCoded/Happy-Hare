@@ -365,4 +365,4 @@ variable_pre_load_position      : -1, -1, 0
 - Reworked state recovery (MMU_RECOVER) that will utilize all new sensors if available
 - Incorporated many PR's. Sorry, I lost count.
 
-_This project continues to take considerable effort and time not to mention the cost of building many MMU prototypes. Please consider helping to support me by donating to my PayPal link in the github: https://github.com/moggieuk/Happy-Hare :pray:_
+_This project continues to take considerable effort and time not to mention the cost of building many MMU prototypes. Please consider helping to support me by donating to my [PayPal link](https://www.paypal.com/paypalme/moggieuk) in the github :pray:_
