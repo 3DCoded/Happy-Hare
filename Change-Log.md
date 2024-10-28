@@ -316,3 +316,53 @@ variable_pre_load_position      : -1, -1, 0
   - Improved logger
 - Allow extruder (entry) sensor to be used to autoload extruder when using the bypass. Controlled with new `bypass_autoload` parameter in `mmu_parameters.cfg`
 - New rainbow effect on startup on entry LEDs
+
+### v2.7.3
+** Blobifier v1.5 update. Pretty cool update by @dendrowen incorporating @igiannakas idea of pulsing purging!**
+- Purge with a pulsating (and occasionally, retracting) motion. This will prevent laminar flow from occuring and purge the old filament more quickly. (Up to 30% EXTRA filament saved!)
+- Changed the blob calculation mode. The blob will now split into equal parts if it is too large (e.g. 2x85mm instead of 150mm + 20mm). This will eliminate/reduce the small blobs scattering over the buildplate.
+- Due to the above changes, certain variables have been added and removed:
+  - new:
+    - z_raise: The total amount the nozzle should be raised during a blob. The value should be somewhere around iteration_z_raise * max_iterations_per_blob - triangular(iteration) * iteration_z_change
+    - z_raise_exp: The rate at which the hotend reduces raising speed during a blob. 0.85 seems to be a good starting value.
+    - purge_length_maximum: The maximum length of the entire purge. Use max_iterations_per_blob * max_iteration_length.
+  - removed: `iteration_z_raise, max_iterations_per_blob, iteration_z_change, max_iteration_length`
+- Revised some parameter checks to work with the new Happy Hare version 2.7
+- Add settings:
+  - shaker_arm_z to allow for different bed/shaker arm heights.
+  - brush_accell to be able to change the acceleration of the brush movement.
+
+<hr>
+
+### v3.0.0 (NOT RELEASED YET)
+(just so you know what is in the pipeline...)
+
+**Major code refactor for modular design**
+
+**The BIG news: Finally support for Type-B MMU's**
+- Type-B MMU support (e.g Angry-Beaver, AMS style designs: Box Turtle, others...)
+  - New style `mmu_hardware.cfg` to support replicated configuration. Old configurations will be upgraded but this might be a good time to look at the latest `mmu.cfg` and `mmu_hardware.cfg` templates.
+  - New individual `mmu_post_gate` sensor option (e.g. for Amored Turtle)
+  - Combined `mmu_gate` and `mmu_extruder` (entry) sensors for "no bowden designs" (e.g. Angry Beaver)
+  - New per-gate bowden lengths for most Type-B designs
+  - Imporved "exit" LED status for Type-B designs without a separate "status" LED.
+
+**Other**
+- New calculated purge volume option using filament colors that is calculted by Happy Hare rather than relying on slicer to supply purge matrix
+  - New `MMU_CALC_PURGE_VOLUMES` command to instruct Happy Hare to calculate purge volumes based on color strategy (slicer or gatemap). This is an option to reading from the slicer.
+  - Printer varible `printer.mmu.toolchange_purge_volume` is always available on toolchange with the purge volume based on chosen strategy.
+- Removed `persistence_level` parameter so that state is now always persisted. There are many command available to reset specifc parts of the state so I decided it was better to always persist. But for QoL, two new startup options have been added:
+  - `startup_home_if_unloaded` can be used to force homing of the selector (if MMU is unloaded) on startup if using a type-A MMU.
+  - `startup_reset_ttg_map` used to reset TTG map to the default on restart.
+- Renamed `auto_calibrate_gates` to `autotune_rotation_distance` to better describe what it does (auto upgraded)
+- Renamed `auto_calibrate_bowden` to `autotune_bowden_length` to better describe what it does (auto upgraded)
+- New per-filament temperature setting!
+  - New (persisted) gatemap "filament temperature" attribute
+  - `MMU_GATE_MAP` command extended with "TEMP=xx" setting per gate
+  - When out of a print, logic to ensure correct temperature will be per-filament, falling back to `extruder_default_temperature` setting if not available
+  - Extruder temperature will be pulled from spoolman if spoolman is enabled
+- New "addon" for driving DC respooler motor (for example for the Armored Turtle MMU design). Thanks @ammaze!
+- Reworked state recovery (MMU_RECOVER) that will utilize all new sensors if available
+- Incorporated many PR's. Sorry, I lost count.
+
+_This project continues to take considerable effort and time not to mention the cost of building many MMU prototypes. Please consider helping to support me by donating to my PayPal link in the github: https://github.com/moggieuk/Happy-Hare :pray:_
