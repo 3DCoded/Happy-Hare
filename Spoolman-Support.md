@@ -1,6 +1,3 @@
-> [!IMPORTANT]  
-> THE ENHANCED SPOOLMAN SUPPORT IS A v2.7.0 FEATURE (currently in limited beta)
-
 #### Page Sections:
 - [Configuration](#---configuration)
   - [Off](#mode-off)
