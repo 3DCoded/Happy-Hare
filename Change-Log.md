@@ -339,13 +339,16 @@ variable_pre_load_position      : -1, -1, 0
 
 **Major code refactor for modular design**
 
-**The BIG news: Finally support for Type-B MMU's**
-- Type-B MMU support:
+**The BIG news - Finally support for Type-B MMU's**
+- MMU's now supported:
   - Angry-Beaver
   - Box Turtle
   - Night Owl
   - 3MS
-  - more comming
+  - ERCF
+  - Tradrack
+  - Custom
+  - more comming (Prusa, Chameleon)
 
 Specific changes:
   - New style `mmu_hardware.cfg` to support replicated configuration. Old configurations will be upgraded with new `[mmu_machine]` section but this might be a good time to look at the latest `mmu.cfg` and `mmu_hardware.cfg` templates.
