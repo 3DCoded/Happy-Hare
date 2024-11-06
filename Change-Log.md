@@ -335,7 +335,7 @@ variable_pre_load_position      : -1, -1, 0
 <hr>
 
 ### v3.0.0
-(NOT RELEASED YET - just so you know what is in the pipeline...)
+(NOT ANNOUNCED/RELEASED YET - just so you know what is in the pipeline...)
 
 **Major code refactor for modular design**
 
