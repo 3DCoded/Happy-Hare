@@ -387,6 +387,8 @@ T6   285  204   89  192  320  320   -    -    -
 T7   285  204   89  192  320  320   -    -    -
 T8   285  204   89  192  320  320   -    -    -
 ```
+- MMU_UNLOAD / MMU_EJECT distinction: MMU_UNLOAD should be used for unloading filament and parking at the gate. MMU_EJECT will do the same as MMU_UNLOAD but will take the further action of ejecting the filament out of the the gear stepper! careful which one you pick -- KlipperScreen and print end macros have been updated
+  - the "final_ejection" of filament from the MMU is necessary for type-B designs but also use for ERCF/Tradrack users. You just have to change your muscle memory
 - Improved "exit" LED status (a "blue" loading/loaded status) for MMU designs without a separate "status" LED.
 - Removed `persistence_level` parameter so that state is now always persisted. There are many command available to reset specifc parts of the state so I decided it was better to always persist. But for QoL, two new startup options have been added:
   - `startup_home_if_unloaded` can be used to force homing of the selector (if MMU is unloaded) on startup if using a type-A MMU.
