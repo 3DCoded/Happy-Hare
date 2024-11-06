@@ -340,7 +340,14 @@ variable_pre_load_position      : -1, -1, 0
 **Major code refactor for modular design**
 
 **The BIG news: Finally support for Type-B MMU's**
-- Type-B MMU support (Angry-Beaver, Box Turtle, Night Owl, 3MS, more comming)
+- Type-B MMU support:
+  - Angry-Beaver
+  - Box Turtle
+  - Night Owl
+  - 3MS
+  - more comming
+
+Specific changes:
   - New style `mmu_hardware.cfg` to support replicated configuration. Old configurations will be upgraded with new `[mmu_machine]` section but this might be a good time to look at the latest `mmu.cfg` and `mmu_hardware.cfg` templates.
   - New individual `mmu_post_gate` sensor option (e.g. for Amored Turtle projects like Box Turtle and Night Turtle)
   - Combined `mmu_gate` and `mmu_extruder` (entry) sensors for "no bowden designs" (e.g. Angry Beaver and 3MS)
@@ -387,9 +394,10 @@ T8   285  204   89  192  320  320   -    -    -
 - Reworked state recovery (MMU_RECOVER) that will utilize all new sensors if available
 - Imporved filament pre-load functionality. Most noticable on type-B MMU's where we can load a gate without selecting it but it can now also allows pre-loading during a pause
 - Don't enforce the `min_toolchange_z` if the parking move is `-1, -1, 0` i.e. no movement
-- Improved selector calibration for designs without CAD defined physical travel limit (e.g. Tradrack)
-- Imporved bowden calibration methods
-- New startup state that reports any lapses of calibration
+- Improved calibration and intial setup:
+    - Better selector calibration for designs without CAD defined physical travel limit (e.g. Tradrack)
+    - Improved bowden calibration methods. Will now use automatically use the best method possible but all methods have been revamped
+    - New startup calibration state message that reports any lapses of calibration
 - Incorporated many PR's. Sorry, I lost count, but thanks to all of you who submitted, not matter how big or small
 
 _This project continues to take considerable effort and time not to mention the cost of building many MMU prototypes. Please consider helping to support me by donating to my [PayPal link](https://www.paypal.com/paypalme/moggieuk) in the github :pray:_
