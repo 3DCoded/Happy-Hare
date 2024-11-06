@@ -387,7 +387,7 @@ T6   285  204   89  192  320  320   -    -    -
 T7   285  204   89  192  320  320   -    -    -
 T8   285  204   89  192  320  320   -    -    -
 ```
-- Improved "exit" LED status (a "blue" mode!) for MMU designs without a separate "status" LED.
+- Improved "exit" LED status (a "blue" loading/loaded status) for MMU designs without a separate "status" LED.
 - Removed `persistence_level` parameter so that state is now always persisted. There are many command available to reset specifc parts of the state so I decided it was better to always persist. But for QoL, two new startup options have been added:
   - `startup_home_if_unloaded` can be used to force homing of the selector (if MMU is unloaded) on startup if using a type-A MMU.
   - `startup_reset_ttg_map` used to reset TTG map to the default on restart.
