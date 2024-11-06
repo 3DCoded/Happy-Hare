@@ -342,15 +342,34 @@ variable_pre_load_position      : -1, -1, 0
 **The BIG news: Finally support for Type-B MMU's**
 - Type-B MMU support (e.g Angry-Beaver, AMS style designs: Box Turtle, others...)
   - New style `mmu_hardware.cfg` to support replicated configuration. Old configurations will be upgraded but this might be a good time to look at the latest `mmu.cfg` and `mmu_hardware.cfg` templates.
-  - New individual `mmu_post_gate` sensor option (e.g. for Amored Turtle)
+  - New individual `mmu_post_gate` sensor option (e.g. for Amored Turtle projects like Box Turtle and Night Turtle)
   - Combined `mmu_gate` and `mmu_extruder` (entry) sensors for "no bowden designs" (e.g. Angry Beaver)
   - New per-gate bowden lengths for most Type-B designs
-  - Imporved "exit" LED status for Type-B designs without a separate "status" LED.
+  - New "no bowden" option for certain Type-B designs where the filaments are kept close to the extruder
+  - Improved "exit" LED status for Type-B designs without a separate "status" LED.
 
 **Other**
 - New calculated purge volume option using filament colors that is calculted by Happy Hare rather than relying on slicer to supply purge matrix
   - New `MMU_CALC_PURGE_VOLUMES` command to instruct Happy Hare to calculate purge volumes based on color strategy (slicer or gatemap). This is an option to reading from the slicer.
   - Printer varible `printer.mmu.toolchange_purge_volume` is always available on toolchange with the purge volume based on chosen strategy.
+E.g. In this example I have my "gate map" populated with filaments (that were pulled from spoolman). I can now calculate purge volume map...
+```yml
+> MMU_CALC_PURGE_VOLUMES
+Purge map updated. Use 'MMU_SLICER_TOOL_MAP PURGE_MAP=1' to view
+> MMU_SLICER_TOOL_MAP PURGE_MAP=1
+No slicer tool map loaded
+Purge Volume Map (mm^3):
+To -> T0   T1   T2   T3   T4   T5   T6   T7   T8
+T0    -   117  209  174  201  201  203  203  203
+T1   287   -   190  141  357  357  296  296  296
+T2   348  162   -   171  321  321  178  178  178
+T3   293   71  130   -   327  327  240  240  240
+T4   121  141  112  150   -    -   150  150  150
+T5   121  141  112  150   -    -   150  150  150
+T6   285  204   89  192  320  320   -    -    -
+T7   285  204   89  192  320  320   -    -    -
+T8   285  204   89  192  320  320   -    -    -
+```
 - Removed `persistence_level` parameter so that state is now always persisted. There are many command available to reset specifc parts of the state so I decided it was better to always persist. But for QoL, two new startup options have been added:
   - `startup_home_if_unloaded` can be used to force homing of the selector (if MMU is unloaded) on startup if using a type-A MMU.
   - `startup_reset_ttg_map` used to reset TTG map to the default on restart.
@@ -363,6 +382,8 @@ variable_pre_load_position      : -1, -1, 0
   - Extruder temperature will be pulled from spoolman if spoolman is enabled
 - New "addon" for driving DC respooler motor (for example for the Armored Turtle MMU design). Thanks @ammaze!
 - Reworked state recovery (MMU_RECOVER) that will utilize all new sensors if available
+- Don't enforce the `min_toolchange_z` if the parking move is `-1, -1, 0` i.e. no movement
+- Improved selector calibration for designs without CAD defined physical travel limit (e.g. Tradrack)
 - Incorporated many PR's. Sorry, I lost count.
 
 _This project continues to take considerable effort and time not to mention the cost of building many MMU prototypes. Please consider helping to support me by donating to my [PayPal link](https://www.paypal.com/paypalme/moggieuk) in the github :pray:_
