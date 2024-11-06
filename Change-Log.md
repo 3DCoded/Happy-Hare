@@ -334,24 +334,24 @@ variable_pre_load_position      : -1, -1, 0
 
 <hr>
 
-### v3.0.0 (NOT RELEASED YET)
-(just so you know what is in the pipeline...)
+### v3.0.0
+(NOT RELEASED YET - just so you know what is in the pipeline...)
 
 **Major code refactor for modular design**
 
 **The BIG news: Finally support for Type-B MMU's**
 - Type-B MMU support (e.g Angry-Beaver, AMS style designs: Box Turtle, others...)
-  - New style `mmu_hardware.cfg` to support replicated configuration. Old configurations will be upgraded but this might be a good time to look at the latest `mmu.cfg` and `mmu_hardware.cfg` templates.
+  - New style `mmu_hardware.cfg` to support replicated configuration. Old configurations will be upgraded with new `[mmu_machine]` section but this might be a good time to look at the latest `mmu.cfg` and `mmu_hardware.cfg` templates.
   - New individual `mmu_post_gate` sensor option (e.g. for Amored Turtle projects like Box Turtle and Night Turtle)
-  - Combined `mmu_gate` and `mmu_extruder` (entry) sensors for "no bowden designs" (e.g. Angry Beaver)
-  - New per-gate bowden lengths for most Type-B designs
+  - Combined `mmu_gate` and `mmu_extruder` (entry) sensors for "no bowden designs" (e.g. Angry Beaver and 3MS)
+  - New per-gate bowden lengths option for specific MMU designs
   - New "no bowden" option for certain Type-B designs where the filaments are kept close to the extruder
-  - Improved "exit" LED status for Type-B designs without a separate "status" LED.
+  - Simplifed `mmu_parameters.cfg` for type-B MMU's without selector
 
 **Other**
 - New calculated purge volume option using filament colors that is calculted by Happy Hare rather than relying on slicer to supply purge matrix
   - New `MMU_CALC_PURGE_VOLUMES` command to instruct Happy Hare to calculate purge volumes based on color strategy (slicer or gatemap). This is an option to reading from the slicer.
-  - Printer varible `printer.mmu.toolchange_purge_volume` is always available on toolchange with the purge volume based on chosen strategy.
+  - Printer varible `printer.mmu.toolchange_purge_volume` is always available on toolchange with the purge volume based on chosen strategy.<br>
 E.g. In this example I have my "gate map" populated with filaments (that were pulled from spoolman). I can now calculate purge volume map...
 ```yml
 > MMU_CALC_PURGE_VOLUMES
@@ -370,20 +370,26 @@ T6   285  204   89  192  320  320   -    -    -
 T7   285  204   89  192  320  320   -    -    -
 T8   285  204   89  192  320  320   -    -    -
 ```
+- Improved "exit" LED status (a "blue" mode!) for MMU designs without a separate "status" LED.
 - Removed `persistence_level` parameter so that state is now always persisted. There are many command available to reset specifc parts of the state so I decided it was better to always persist. But for QoL, two new startup options have been added:
   - `startup_home_if_unloaded` can be used to force homing of the selector (if MMU is unloaded) on startup if using a type-A MMU.
   - `startup_reset_ttg_map` used to reset TTG map to the default on restart.
 - Renamed `auto_calibrate_gates` to `autotune_rotation_distance` to better describe what it does (auto upgraded)
 - Renamed `auto_calibrate_bowden` to `autotune_bowden_length` to better describe what it does (auto upgraded)
+- Added `extruder_homing_buffer` parameter which is the amount to reduce the fast bowden load so filament doesn't overshoot the extruder homing point. Useful if you need/want to home to extruder sensor before loading extruder
 - New per-filament temperature setting!
   - New (persisted) gatemap "filament temperature" attribute
   - `MMU_GATE_MAP` command extended with "TEMP=xx" setting per gate
   - When out of a print, logic to ensure correct temperature will be per-filament, falling back to `extruder_default_temperature` setting if not available
   - Extruder temperature will be pulled from spoolman if spoolman is enabled
-- New "addon" for driving DC respooler motor (for example for the Armored Turtle MMU design). Thanks @ammaze!
+- New "addon" for driving DC eSpooler motor (for example for the Armored Turtle MMU design). Thanks @ammaze!
+  - Two new parameters in `mmu_parameters.cfg` for calling macro to control the eSpooler: `espooler_start_macro` and `espooler_stop_macro`
 - Reworked state recovery (MMU_RECOVER) that will utilize all new sensors if available
+- Imporved filament pre-load functionality. Most noticable on type-B MMU's where we can load a gate without selecting it but it can now also allows pre-loading during a pause
 - Don't enforce the `min_toolchange_z` if the parking move is `-1, -1, 0` i.e. no movement
 - Improved selector calibration for designs without CAD defined physical travel limit (e.g. Tradrack)
-- Incorporated many PR's. Sorry, I lost count.
+- Imporved bowden calibration methods
+- New startup state that reports any lapses of calibration
+- Incorporated many PR's. Sorry, I lost count, but thanks to all of you who submitted, not matter how big or small
 
 _This project continues to take considerable effort and time not to mention the cost of building many MMU prototypes. Please consider helping to support me by donating to my [PayPal link](https://www.paypal.com/paypalme/moggieuk) in the github :pray:_
