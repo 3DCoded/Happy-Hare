@@ -340,7 +340,7 @@ variable_pre_load_position      : -1, -1, 0
 **Major code refactor for modular design**
 
 **The BIG news - Finally support for Type-B MMU's**
-- MMU's now supported by Happy Hare
+- MMU's now supported by Happy Hare:
   - ERCF
   - Angry-Beaver
   - Box Turtle
@@ -409,5 +409,7 @@ T8   285  204   89  192  320  320   -    -    -
     - Improved bowden calibration methods. Will now use automatically use the best method possible but all methods have been revamped
     - New startup calibration state message that reports any lapses of calibration
 - Incorporated many PR's. Sorry, I lost count, but thanks to all of you who submitted, not matter how big or small
+
+<br>
 
 _This project continues to take considerable effort and time not to mention the cost of building many MMU prototypes. Please consider helping to support me by donating to my [PayPal link](https://www.paypal.com/paypalme/moggieuk) in the github :pray:_
