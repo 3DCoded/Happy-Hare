@@ -340,7 +340,7 @@ variable_pre_load_position      : -1, -1, 0
 **Major code refactor for modular design**
 
 **The BIG news: Finally support for Type-B MMU's**
-- Type-B MMU support (e.g Angry-Beaver, AMS style designs: Box Turtle, others...)
+- Type-B MMU support (Angry-Beaver, Box Turtle, Night Owl, 3MS, more comming)
   - New style `mmu_hardware.cfg` to support replicated configuration. Old configurations will be upgraded with new `[mmu_machine]` section but this might be a good time to look at the latest `mmu.cfg` and `mmu_hardware.cfg` templates.
   - New individual `mmu_post_gate` sensor option (e.g. for Amored Turtle projects like Box Turtle and Night Turtle)
   - Combined `mmu_gate` and `mmu_extruder` (entry) sensors for "no bowden designs" (e.g. Angry Beaver and 3MS)
