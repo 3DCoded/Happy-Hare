@@ -340,19 +340,26 @@ variable_pre_load_position      : -1, -1, 0
 **Major code refactor for modular design**
 
 **The BIG news - Finally support for Type-B MMU's**
-- MMU's now supported:
+- MMU's now supported by Happy Hare
+  - ERCF
   - Angry-Beaver
   - Box Turtle
   - Night Owl
   - 3MS
-  - ERCF
   - Tradrack
   - Custom
-  - more comming (Prusa, Chameleon)
+  - more comming! (Prusa, Chameleon)
+
+- MMU Options supported by Happy Hare:
+  - Toolhead filament cutting
+  - MMU filament cutting (EREC, Snapping Turtle, ..)
+  - Blobifier purging system
+  - Passive or active rewinders
+  - Sync feedback (Belay, TurtleNeck, ..)
 
 Specific changes:
-  - New style `mmu_hardware.cfg` to support replicated configuration. Old configurations will be upgraded with new `[mmu_machine]` section but this might be a good time to look at the latest `mmu.cfg` and `mmu_hardware.cfg` templates.
-  - New individual `mmu_post_gate` sensor option (e.g. for Amored Turtle projects like Box Turtle and Night Turtle)
+  - New style `mmu_hardware.cfg` to support replicated stepper configuration. Old configurations will be upgraded with new `[mmu_machine]` section but this might be a good time to look at the latest `mmu.cfg` and `mmu_hardware.cfg` templates.
+  - New individual `mmu_gear` sensor option just past the MMU filament driver (e.g. for Box Turtle and Night Owl)
   - Combined `mmu_gate` and `mmu_extruder` (entry) sensors for "no bowden designs" (e.g. Angry Beaver and 3MS)
   - New per-gate bowden lengths option for specific MMU designs
   - New "no bowden" option for certain Type-B designs where the filaments are kept close to the extruder
