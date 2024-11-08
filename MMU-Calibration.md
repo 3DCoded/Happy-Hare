@@ -68,6 +68,8 @@ Sit back and relax. The selector will move to find the extremes of movement and 
 > (i) ERCF v1.1 users need to pay particular attention to letter suffixes after the version number in `mmu_parameters.cfg`<br>
 > (ii) ERCF v1.1 users that are using a bypass block modification also need to specify the position of that block with `BYPASS_BLOCK=` (see command reference) to indicate which bearing block contains the bypass.
 
+<br>
+
 #### B) Extrapolate first and last gates
 Although the above automated method above will attempt to calibrate when the selector has no deterministic hard stop at limit at travel (Tradrack) it can result in drift unless all the gates/lanes are perfectly tight together. To address this a better method that can be used with Tradrack or any MMU design with equally spaced gates (e.g. ERCF v2) is as follows:
 ```yml
@@ -280,9 +282,8 @@ All calibrated results are stored in the configured `[save_variables]` file. By 
   | mmu_selector_offsets | MMU_CALIBRATE_SLECTOR | A list of offsets for each gate of the MMU |
   | mmu_selector_bypass | MMU_CALIBRATE_SELECTOR | The offset of the bypass (passthough) location |
   | mmu_servo_angles | MMU_SERVO | E.g {'down': 45, 'up': 125, 'move': 110} represents the angles for the three servo positions |
-  | mmu_gear_rotation_distances | MMU_CALIBRATE_GEAR or MMU_CALIBRATE_GATES | The list represents rotation_distance for each gate |
-  | mmu_encoder_resolution | MMU_CALIBRATE_ENCODER | |
+  | mmu_gear_rotation_distances | MMU_CALIBRATE_GEAR or MMU_CALIBRATE_GATES | The list represents `rotation_distance` for each gate |
+  | mmu_encoder_resolution | MMU_CALIBRATE_ENCODER | The distance each encoder signal transition represents |
   | mmu_calibration_bowden_home | MMU_CALIBRATE_BOWDEN | Records the gate homing endstop used as a basis for the calibration |
   | mmu_calibration_bowden_lengths | MMU_CALIBRATE_BOWDEN | The list will be the same length as the number of gates on your MMU |
   | mmu_calibration_clog_length | MMU_CALIBRATE_BOWDEN | Only used with encoder although always set incase you add in the future |
-```
