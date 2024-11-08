@@ -70,13 +70,15 @@ Sit back and relax. The selector will move to find the extremes of movement and 
 
 #### B) Extrapolate first and last gates
 Although the above automated method above will attempt to calibrate when the selector has no deterministic hard stop at limit at travel (Tradrack) it can result in drift unless all the gates/lanes are perfectly tight together. To address this a better method that can be used with Tradrack or any MMU design with equally spaced gates (e.g. ERCF v2) is as follows:
-  > MMU_MOTORS_OFF
-_Use a piece of filament to align gate 0; remove filament_
-  > MMU_CALIBRATE_SELECTOR GATE=0<br>
-  > MMU_MOTORS_OFF
-_Use a pieve of filament to align the last gate; remove filament_
-  > MMU_CALIBRATE_SELECTOR GATE=n
-_(where n is the last gate number, remember we are 0 based)_<br>
+```yml
+MMU_MOTORS_OFF
+  # Use a piece of filament to align gate 0; remove filament
+MMU_CALIBRATE_SELECTOR GATE=0
+MMU_MOTORS_OFF
+  # Use a pieve of filament to align the last gate; remove filament
+MMU_CALIBRATE_SELECTOR GATE=n
+  # (where n is the last gate number, remember we are 0 based)
+```
 This will automatically set the offset of all intermediate gates distributing any build variance
 
 #### C) Individual gate calibration
