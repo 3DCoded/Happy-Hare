@@ -142,7 +142,8 @@ Repeat for the three positions:
 <br>
 
 ### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Step 3. Calibrate your gear stepper
-**APPLICABLE TO ALL MMU's***<br>
+**APPLICABLE TO ALL MMU's**
+
 In this step you are simply ensuring that when the gear stepper is told to move 100mm of filament it really does move 100mm.  It is akin to what you did when you set up your extruder rotational distance although in this case no Klipper restart is necessary!  Select gate #0 (you can use `MMU_SELECT GATE=0` if you have finished the selector calibration above) and put some filament through the gate so that it pokes out just past the selector exit.  Run the following to ensure the filament is gripped if your MMU needs to actuate a servo to grip filament:
 
   > MMU_SERVO POS=down
@@ -171,6 +172,7 @@ Repeat for all other gates if your MMU has variable gears (not necessary on Trad
 
 ### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Step 4. Calibrate your encoder
 **APPLICABLE IF FITTED: All ERCF, Tradrack Binky Mod, etc**
+
 If your MMU includes an encoder (like the ERCF design) the next step is to calibrate so it measures distance accurately. Re-fit the bowden to the selector/encoder (you can insert the short length of filament to tube as you fit to save time). Alternatively, just make sure you have some filament at gate #0 before starting. Now run:
 
   > MMU_CALIBRATE_ENCODER
@@ -204,6 +206,7 @@ If this step worked then you should be able to unload the residual filament with
 
 ### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Step 5. Calibrate bowden length
 **APPLICABLE TO MMU's WITH FAST BOWDEN MOVE: Most designs except Angry Beaver***<br>
+
 The last calibration before use! Here you can calibrate the length of your bowden from MMU gate to extruder entrance. This is important because it allows the MMU to move the filament at a fast pace over this distance because getting to the more complicated part of the load sequence. To speed up this process you need to give the calibration routine a hint of how far way the extruder is (but not exceeding the distance).  A good rule of thumb is to manually measure the distance from exit from the selector to the entrance to your extruder. Subtract 40-50mm from that distance. I measured approximately 690mm on my system, so will supply 650mm as the starting value. In you have an encoder you can run the automatic method:
 
   > MMU_CALIBRATE_BOWDEN BOWDEN_LENGTH=650
@@ -246,7 +249,9 @@ This will reverse homes to the gate and use Klipper's measurement of stepper mov
 <br>
 
 ### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Step 6. Calibrating individual gates
+
 **APPLICABLE TO MMU's WITH VARIBLE PER_GATE ROTTION DISTANCE & ENCODER: ERCF**<br>
+
 This step allows for calibrating slight differences between gates and saves you from having to use `MMU_CALIBRATE_GEAR` on every gate.  It isn't required (or useful) for designs that cannot have variation like the Tradrack MMU but is useful for designs like ERCF that can have variation of feed between gates.  Even with ERCF this is optional because if not run, the gates will tune themselves as they are used automatically!  That said it be beneficial to get this out of the way with a test piece of filament but doing it also: (i) removes the need to set the `autotune_rotation_distance` in `mmu_parameters.cfg`, (ii) is necessary if there is substantial variation between gates -- e.g. if BMG gears for different gates are sourced from different vendors.
 
 Simply make sure filament is available at the gate you want to calibrate -- you can hold a (500mm) loose piece of filament and run:
