@@ -6,6 +6,7 @@
 - [4. Encoder](MMU-Calibration#---step-4-calibrate-your-encoder-if-fitted)
 - [5. Bowden Length](MMU-Calibration#---step-5-calibrate-bowden-length)
 - [6. Gates](MMU-Calibration#---step-6-calibrating-individual-gates)
+- [Calibration Storage](MMU-Calibration---calibration-storage)
 - [Calibration Commands](Command-Reference#---calibration)
 
 This discussion assumes that you have setup and debugged your hardware configuration. A detailed discusion can be found under [Hardware Configuration](Hardware-Configuration).
@@ -48,10 +49,15 @@ graph TD;
 - MMU designs with disimilar `rotation_distance` on each gate require separate measured calibration of each with `MMU_CALIBRATE_GEAR` or, if an encoder is fitted, with `MMU_CALIBRATE_GATES` to automate the process. This is important even if the drive gears look similar. Tradrack is an example of a design that doesn't require this.
 - Most MMU designs will share the same bowden length (and only one need be calibrated), however if the design can have different lenghts each must be calibrated separately.
 
+> [!TIP] 
+> All of the calibration commands can be run in a "check/test" mode. Simply add `SAVE=0` to the command and the calibration will be run but the results will not be saved. This is very useful to practice or to verify calibration
+
 <br>
 
 ### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Step 1. Calibrate selector offsets
 **ONLY APPLICABLE TO MMU's WITH LINEAR SLECTOR: ERCF, Tradrack**<br>
+
+#### A) Fully automatic calibration
 Let's start by getting the selector cailbrated in this easy step (it is important to do this early because the bowden and gate calibration need to be able to select gates).  This sets up the position all of all the gates as well as the bypass position if fitted.  Firstly ensure MMU motors are off by running `MMU_MOTORS_OFF` and remove filament from gate #0 -- you may need to run `MMU_SERVO POS=up` to release the filament.  Then re-insert and remove filament through selector to ensure that gate #0 is correctly alined with selector. Be careful and move the selector side to side whilst moving the filament inside the gate. Try to assess where the filament is centered in the gate and leave the selector in that position. Then run:
 
   > MMU_CALIBRATE_SELECTOR
@@ -62,22 +68,28 @@ Sit back and relax. The selector will move to find the extremes of movement and 
 > (i) ERCF v1.1 users need to pay particular attention to letter suffixes after the version number in `mmu_parameters.cfg`<br>
 > (ii) ERCF v1.1 users that are using a bypass block modification also need to specify the position of that block with `BYPASS_BLOCK=` (see command reference) to indicate which bearing block contains the bypass.
 
-#### For Selector designs with no deterministic hard stop at limit at travel (Tradrack) OR as alternative option for ERCFv2
-The automated method above will work for Tradrack but unless the gates/lanes are tight together the calibration of higher number gates may drift. To address that a better method that can be used with Tradrack or any MMU design with equally spaced gates (e.g. ERCF v2) is as follows:
- - MMU_MOTORS_OFF
- - Use a piece of filament to align gate 0; remove filament
- - `MMU_CALIBRATE_SELECTOR GATE=0`
- - MMU_MOTORS_OFF
- - Use a pieve of filament to align the last gate; remove filament
- - `MMU_CALIBRATE_SELECTOR GATE=n` (where n is the last gate number, remember we are 0 based)
+#### B) Extrapolate first and last gates
+Although the above automated method above will attempt to calibrate when the selector has no deterministic hard stop at limit at travel (Tradrack) it can result in drift unless all the gates/lanes are perfectly tight together. To address this a better method that can be used with Tradrack or any MMU design with equally spaced gates (e.g. ERCF v2) is as follows:
+  > MMU_MOTORS_OFF
+  > _Use a piece of filament to align gate 0; remove filament_
+  > MMU_CALIBRATE_SELECTOR GATE=0
+  > MMU_MOTORS_OFF
+  > _Use a pieve of filament to align the last gate; remove filament_
+  > `MMU_CALIBRATE_SELECTOR GATE=n
+  > _(where n is the last gate number, remember we are 0 based)_
 This will automatically set the offset of all intermediate gates distributing any build variance
 
-#### Individual gate calibration
-Although it should not be necessary, there is an option update a single position if you would like to tune or run into problems. See the command reference for more detailed information on options, but basically you turn MMU motors off, line up the desired gate with the selector and run:
+#### C) Individual gate calibration
+Although it should not be necessary other than for the bypass gate, there is an option update a single position if you would like to tune or run into problems. See the command reference for more detailed information on options, but basically you turn MMU motors off, line up the desired gate with the selector and run:
 
   > MMU_CALIBRATE_SELECTOR SINGLE=1 GATE=...
 
 Strictly speaking `SINGLE=1` is only required if calibrating just your final gate to avoid automatic extrapolation.
+
+#### D) Individual bypass gate calibration
+Similar to the above if your MMU has a bypass gate you can calibrate it's position by aligning the selector and running:
+
+  > MMU_CALIBRATE_SELECTOR BYPASS=1
 
 **Validation:** At the end of this step you should be able to select any tool/gate on your MMU. For instance, try running `MMU_HOME TOOL=3` to re-home and select tool/gate #3.
 
@@ -258,5 +270,17 @@ You will see an output similar to:
 
 <br>
 
-> [!IMPORTANT]  
-> All of the calibration steps can be run in a "check/test" mode.  Simply add `SAVE=0` to the command and the calibration will be run but the results will not be saved.  This is very useful for verification.<br>Finally, remember that the results from all the calibration is stored in `mmu_vars.cfg` so you can also view/edit that file directly.
+### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Calibration Storage
+All calibrated results are stored in the configured `[save_variables]` file. By default and most usually this will be the `mmu_vars.cfg`. Here is a list of those variables and the command that sets them:
+
+  | Variable | Command | Notes |
+  | -------- | ------- | ----- |
+  | mmu_selector_offsets | MMU_CALIBRATE_SLECTOR | A list of offsets for each gate of the MMU |
+  | mmu_selector_bypass | MMU_CALIBRATE_SELECTOR | The offset of the bypass (passthough) location |
+  | mmu_servo_angles | MMU_SERVO | E.g {'down': 45, 'up': 125, 'move': 110} represents the angles for the three servo positions |
+  | mmu_gear_rotation_distances | MMU_CALIBRATE_GEAR or MMU_CALIBRATE_GATES | The list represents rotation_distance for each gate |
+  | mmu_encoder_resolution | MMU_CALIBRATE_ENCODER | |
+  | mmu_calibration_bowden_home | MMU_CALIBRATE_BOWDEN | Records the gate homing endstop used as a basis for the calibration |
+  | mmu_calibration_bowden_lengths | MMU_CALIBRATE_BOWDEN | The list will be the same length as the number of gates on your MMU |
+  | mmu_calibration_clog_length | MMU_CALIBRATE_BOWDEN | Only used with encoder although always set incase you add in the future |
+```
