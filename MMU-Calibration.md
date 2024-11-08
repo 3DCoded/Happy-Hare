@@ -21,7 +21,6 @@ Before using your MMU you will need to calibrate it to adjust for differences in
 
 ```mermaid
 graph TD;
-  subgraph a
     Hardware_Working --> MMU_SERVO
     Hardware_Working --> MMU_CALIBRATE_SELECTOR
     MMU_CALIBRATE_SELECTOR --> MMU_CALIBRATE_BOWDEN
@@ -29,21 +28,12 @@ graph TD;
     MMU_CALIBRATE_GEAR --> MMU_CALIBRATE_ENCODER
     MMU_CALIBRATE_ENCODER --> MMU_CALIBRATE_BOWDEN["MMU_CALIBRATE_BOWDEN.."]
     MMU_CALIBRATE_BOWDEN --> MMU_CALIBRATE_GATES
-  end
 
     style Hardware_Working stroke-width:0px
     style MMU_SERVO stroke-dasharray: 5 5, stroke:#c5f015, stroke-width:2px
     style MMU_CALIBRATE_SELECTOR stroke-dasharray: 5 5, stroke:#c5f015, stroke-width:2px
     style MMU_CALIBRATE_ENCODER stroke-dasharray: 5 5, stroke:#1589f0, stroke-width:2px
     style MMU_CALIBRATE_GATES stroke-dasharray: 5 5, stroke:#1589f0, stroke-width:2px
-
-  subgraph b
-    LINEAR_SELECTOR["If MMU has Selector"]
-    ENCODER["If MMU has Encoder"]
-  end
-
-    style LINEAR_SELECTOR stroke-dasharray: 5 5, stroke:#c5f015, stroke-width:2px
-    style ENCODER stroke-dasharray: 5 5, stroke:#1589f0, stroke-width:2px
 ```
 ```mermaid
 graph TD;
