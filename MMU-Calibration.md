@@ -57,6 +57,7 @@ graph TD;
 <br>
 
 ### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Step 1. Calibrate selector offsets
+Only application to MMU's with linear selector: **E.g ERCF, Tradrack**<br>
 ONLY APPLICABLE TO MMU's WITH LINEAR SLECTOR: **E.g ERCF, Tradrack**<br>
 
 #### A) Fully automatic calibration
