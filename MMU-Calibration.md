@@ -1,12 +1,12 @@
 #### Page Sections:
 - [Calibration Steps](MMU-Calibration#---calibration-steps)
-- [1. Selector Offsets](MMU-Calibration#---step-1-calibrate-selector-offsets)
-- [2. Servo](MMU-Calibration#---step-2-calibrate-your-servo)
-- [3. Gear Stepper](MMU-Calibration#---step-3-calibrate-your-gear-stepper)
-- [4. Encoder](MMU-Calibration#---step-4-calibrate-your-encoder-if-fitted)
-- [5. Bowden Length](MMU-Calibration#---step-5-calibrate-bowden-length)
-- [6. Gates](MMU-Calibration#---step-6-calibrating-individual-gates)
-- [Calibration Storage](MMU-Calibration---calibration-storage)
+  - [1. Selector Offsets](MMU-Calibration#---step-1-calibrate-selector-offsets)
+  - [2. Servo](MMU-Calibration#---step-2-calibrate-your-servo)
+  - [3. Gear Stepper](MMU-Calibration#---step-3-calibrate-your-gear-stepper)
+  - [4. Encoder](MMU-Calibration#---step-4-calibrate-your-encoder-if-fitted)
+  - [5. Bowden Length](MMU-Calibration#---step-5-calibrate-bowden-length)
+  - [6. Gates](MMU-Calibration#---step-6-calibrating-individual-gates)
+- [Calibration Storage](MMU-Calibration#---calibration-storage)
 - [Calibration Commands](Command-Reference#---calibration)
 
 This discussion assumes that you have setup and debugged your hardware configuration. A detailed discusion can be found under [Hardware Configuration](Hardware-Configuration).
