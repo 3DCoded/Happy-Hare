@@ -83,6 +83,8 @@ MMU_CALIBRATE_SELECTOR GATE=n
 ```
 This will automatically set the offset of all intermediate gates distributing any build variance
 
+<br>
+
 #### C) Individual gate calibration
 Although it should not be necessary other than for the bypass gate, there is an option update a single position if you would like to tune or run into problems. See the command reference for more detailed information on options, but basically you turn MMU motors off, line up the desired gate with the selector and run:
 
@@ -101,6 +103,7 @@ Similar to the above if your MMU has a bypass gate you can calibrate it's positi
 
 ### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Step 2. Calibrate your servo
 **ONLY APPLICABLE TO MMU's WITH LINEAR SLECTOR: ERCF, Tradrack**<br>
+
 Happy Hare sets up theoretically good servo postions during installation, however they really should be calibrated. Most MMU's require precise servo movement. To do that you need to run through this process similar to this to update and record the angle for the three symbolic positions. Be sure to consult you MMU documentation.
 
 ```yml
