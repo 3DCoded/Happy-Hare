@@ -29,16 +29,18 @@ graph TD;
     MMU_CALIBRATE_GEAR --> MMU_CALIBRATE_ENCODER
     MMU_CALIBRATE_ENCODER --> MMU_CALIBRATE_BOWDEN["MMU_CALIBRATE_BOWDEN.."]
     MMU_CALIBRATE_BOWDEN --> MMU_CALIBRATE_GATES
-
-  subgraph two ["Two"]
-    LINEAR_SELECTOR["MMU has Selector"]
-    ENCODER["MMU has Encoder"]
+  end
 
   style Hardware_Working stroke-width:0px
   style MMU_SERVO stroke-dasharray: 5 5, stroke:#c5f015, stroke-width:2px
   style MMU_CALIBRATE_SELECTOR stroke-dasharray: 5 5, stroke:#c5f015, stroke-width:2px
   style MMU_CALIBRATE_ENCODER stroke-dasharray: 5 5, stroke:#1589f0, stroke-width:2px
   style MMU_CALIBRATE_GATES stroke-dasharray: 5 5, stroke:#1589f0, stroke-width:2px
+
+  subgraph two ["Two"]
+    LINEAR_SELECTOR["MMU has Selector"]
+    ENCODER["MMU has Encoder"]
+  end
 
   style LINEAR_SELECTOR stroke-dasharray: 5 5, stroke:#c5f015, stroke-width:2px
   style ENCODER stroke-dasharray: 5 5, stroke:#1589f0, stroke-width:2px
