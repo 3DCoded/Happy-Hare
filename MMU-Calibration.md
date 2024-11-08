@@ -37,7 +37,7 @@ graph TD;
 ```
 ```mermaid
 graph TD;
-    LINEAR_SELECTOR["With Selector: ERCF, Tradrack"]
+    LINEAR_SELECTOR["With Selector"]
     ENCODER["With Encoder"]
 
     style LINEAR_SELECTOR stroke-dasharray: 5 5, stroke:#c5f015, stroke-width:2px
