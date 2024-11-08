@@ -22,7 +22,7 @@ Before using your MMU you will need to calibrate it to adjust for differences in
 ```mermaid
 graph TD;
     Hardware_Working --> MMU_SERVO
-    Hardware_Working --> MMU_CALIBRATE_SELECTOR:::tooltip
+    Hardware_Working --> MMU_CALIBRATE_SELECTOR["MMU_CALIBRATE_SELECTOR<br/><span style='font-size:10px'>Small note here</span>"]
     MMU_CALIBRATE_SELECTOR --> MMU_CALIBRATE_BOWDEN
     MMU_SERVO --> MMU_CALIBRATE_GEAR["MMU_CALIBRATE_GEAR.."]
     MMU_CALIBRATE_GEAR --> MMU_CALIBRATE_ENCODER
@@ -34,8 +34,6 @@ graph TD;
     style MMU_CALIBRATE_SELECTOR stroke-dasharray: 5 5, stroke:#c5f015, stroke-width:2px
     style MMU_CALIBRATE_ENCODER stroke-dasharray: 5 5, stroke:#1589f0, stroke-width:2px
     style MMU_CALIBRATE_GATES stroke-dasharray: 5 5, stroke:#1589f0, stroke-width:2px
-
-    click MMU_CALIBRATE_SELECTOR "this is a test" _blank
 ```
 ```mermaid
 graph TD;
