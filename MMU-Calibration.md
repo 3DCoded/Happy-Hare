@@ -35,7 +35,6 @@ graph TD;
     style MMU_CALIBRATE_ENCODER stroke-dasharray: 5 5, stroke:#1589f0, stroke-width:2px
     style MMU_CALIBRATE_GATES stroke-dasharray: 5 5, stroke:#1589f0, stroke-width:2px
 
-graph TD;
     LINEAR_SELECTOR["MMU has Selector"]
     ENCODER["MMU has Encoder"]
 
