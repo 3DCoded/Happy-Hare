@@ -21,7 +21,7 @@ Before using your MMU you will need to calibrate it to adjust for differences in
 
 ```mermaid
 graph TD;
-    Hardware_Working --> MMU_SERVO
+    Hardware_Working --> MMU_SERVO["MMU_SERVO<br/><span style='font-size:10px'>(if fitted)</span>"]
     Hardware_Working --> MMU_CALIBRATE_SELECTOR["MMU_CALIBRATE_SELECTOR<br/><span style='font-size:10px'>If MMU has a selector</span>"]
     MMU_CALIBRATE_SELECTOR --> MMU_CALIBRATE_BOWDEN
     MMU_SERVO --> MMU_CALIBRATE_GEAR["MMU_CALIBRATE_GEAR<br/><span style='font-size:10px'>(can use on every gate to set rotation_distance)</span>"]
