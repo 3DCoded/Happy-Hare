@@ -37,8 +37,8 @@ graph TD;
 ```
 ```mermaid
 graph TD;
-    LINEAR_SELECTOR["With Selector"]
-    ENCODER["With Encoder"]
+    LINEAR_SELECTOR["MMU has Selector"]
+    ENCODER["MMU has Encoder"]
 
     style LINEAR_SELECTOR stroke-dasharray: 5 5, stroke:#c5f015, stroke-width:2px
     style ENCODER stroke-dasharray: 5 5, stroke:#1589f0, stroke-width:2px
