@@ -57,8 +57,7 @@ graph TD;
 <br>
 
 ### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Step 1. Calibrate selector offsets
-Only application to MMU's with linear selector: **E.g ERCF, Tradrack**<br>
-ONLY APPLICABLE TO MMU's WITH LINEAR SLECTOR: **E.g ERCF, Tradrack**<br>
+Only application to MMU's with linear selector: **E.g ERCF, Tradrack**
 
 #### A) Fully automatic calibration
 Let's start by getting the selector cailbrated in this easy step (it is important to do this early because the bowden and gate calibration need to be able to select gates).  This sets up the position all of all the gates as well as the bypass position if fitted.  Firstly ensure MMU motors are off by running `MMU_MOTORS_OFF` and remove filament from gate #0 -- you may need to run `MMU_SERVO POS=up` to release the filament.  Then re-insert and remove filament through selector to ensure that gate #0 is correctly alined with selector. Be careful and move the selector side to side whilst moving the filament inside the gate. Try to assess where the filament is centered in the gate and leave the selector in that position. Then run:
@@ -105,7 +104,7 @@ Similar to the above if your MMU has a bypass gate you can calibrate it's positi
 <br>
 
 ### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Step 2. Calibrate your servo
-ONLY APPLICABLE TO MMU's WITH LINEAR SLECTOR: **E.g ERCF, Tradrack**
+Only applicable to MMU's with linear selector: **E.g ERCF, Tradrack**
 
 Happy Hare sets up theoretically good servo postions during installation, however they really should be calibrated. Most MMU's require precise servo movement. To do that you need to run through this process similar to this to update and record the angle for the three symbolic positions. Be sure to consult you MMU documentation.
 
@@ -145,7 +144,7 @@ Repeat for the three positions:
 <br>
 
 ### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Step 3. Calibrate your gear stepper
-APPLICABLE TO ALL MMU's: Very important to get right
+Applicable to all MMU's: **Very important to get right**
 
 In this step you are simply ensuring that when the gear stepper is told to move 100mm of filament it really does move 100mm.  It is akin to what you did when you set up your extruder rotational distance although in this case no Klipper restart is necessary!  Select gate #0 (you can use `MMU_SELECT GATE=0` if you have finished the selector calibration above) and put some filament through the gate so that it pokes out just past the selector exit.  Run the following to ensure the filament is gripped if your MMU needs to actuate a servo to grip filament:
 
@@ -174,7 +173,7 @@ Repeat for all other gates if your MMU has variable gears (not necessary on Trad
 <br>
 
 ### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Step 4. Calibrate your encoder
-APPLICABLE IF FITTED: **All ERCF, Tradrack Binky Mod, etc**
+Applicable if fitted: **All ERCF, Tradrack Binky Mod, etc**
 
 If your MMU includes an encoder (like the ERCF design) the next step is to calibrate so it measures distance accurately. Re-fit the bowden to the selector/encoder (you can insert the short length of filament to tube as you fit to save time). Alternatively, just make sure you have some filament at gate #0 before starting. Now run:
 
@@ -208,7 +207,7 @@ If this step worked then you should be able to unload the residual filament with
 <br>
 
 ### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Step 5. Calibrate bowden length
-APPLICABLE TO MMU's WITH FAST BOWDEN MOVE: **Most designs except Angry Beaver***
+Applicable to MMU's with fast bowden move: **Most designs except Angry Beaver**
 
 The last calibration before use! Here you can calibrate the length of your bowden from MMU gate to extruder entrance. This is important because it allows the MMU to move the filament at a fast pace over this distance because getting to the more complicated part of the load sequence. To speed up this process you need to give the calibration routine a hint of how far way the extruder is (but not exceeding the distance).  A good rule of thumb is to manually measure the distance from exit from the selector to the entrance to your extruder. Subtract 40-50mm from that distance. I measured approximately 690mm on my system, so will supply 650mm as the starting value. In you have an encoder you can run the automatic method:
 
@@ -252,8 +251,7 @@ This will reverse homes to the gate and use Klipper's measurement of stepper mov
 <br>
 
 ### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Step 6. Calibrating individual gates
-
-APPLICABLE TO MMU's WITH VARIBLE PER_GATE ROTTION DISTANCE & ENCODER: **ERCF, Tradrack with Binky**
+Applicable to MMU's with varible per-gate rottion distance & encoder: **ERCF, Tradrack with Binky**
 
 This step allows for calibrating slight differences between gates and saves you from having to use `MMU_CALIBRATE_GEAR` on every gate.  It isn't required (or useful) for designs that cannot have variation like the Tradrack MMU but is useful for designs like ERCF that can have variation of feed between gates.  Even with ERCF this is optional because if not run, the gates will tune themselves as they are used automatically!  That said it be beneficial to get this out of the way with a test piece of filament but doing it also: (i) removes the need to set the `autotune_rotation_distance` in `mmu_parameters.cfg`, (ii) is necessary if there is substantial variation between gates -- e.g. if BMG gears for different gates are sourced from different vendors.
 
