@@ -22,9 +22,9 @@ Before using your MMU you will need to calibrate it to adjust for differences in
 ```mermaid
 graph TD;
     Hardware_Working --> MMU_SERVO
-    Hardware_Working --> MMU_CALIBRATE_SELECTOR["MMU_CALIBRATE_SELECTOR<br/><span style='font-size:10px'>Small note here</span>"]
+    Hardware_Working --> MMU_CALIBRATE_SELECTOR["MMU_CALIBRATE_SELECTOR<br/><span style='font-size:10px'>If MMU has a selector</span>"]
     MMU_CALIBRATE_SELECTOR --> MMU_CALIBRATE_BOWDEN
-    MMU_SERVO --> MMU_CALIBRATE_GEAR["MMU_CALIBRATE_GEAR.."]
+    MMU_SERVO --> MMU_CALIBRATE_GEAR["MMU_CALIBRATE_GEAR..<br/><span style='font-size:10px'>Can use on every gate if gear calibration is different.. usually the case</span>"]
     MMU_CALIBRATE_GEAR --> MMU_CALIBRATE_ENCODER
     MMU_CALIBRATE_ENCODER --> MMU_CALIBRATE_BOWDEN["MMU_CALIBRATE_BOWDEN.."]
     MMU_CALIBRATE_BOWDEN --> MMU_CALIBRATE_GATES
