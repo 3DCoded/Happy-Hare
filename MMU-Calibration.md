@@ -37,13 +37,13 @@ graph TD;
 ```
 ```mermaid
 graph TD;
-    LINEAR_SELECTOR["MMU has Selector"]
-    ENCODER["MMU has Encoder"]
+    LINEAR_SELECTOR["If MMU has Selector"]
+    ENCODER["If MMU has Encoder"]
 
     style LINEAR_SELECTOR stroke-dasharray: 5 5, stroke:#c5f015, stroke-width:2px
     style ENCODER stroke-dasharray: 5 5, stroke:#1589f0, stroke-width:2px
 ```
-- MMU designs with disimilar `rotation_distance` on each gate require separate measured calibration of each with `MMU_CALIBRATE_GEAR` or, if an encoder is fitted, `MMU_CALIBRATE_GATES` to automate the process. This is important even if the drive gears look similar. 
+- MMU designs with disimilar `rotation_distance` on each gate require separate measured calibration of each with `MMU_CALIBRATE_GEAR` or, if an encoder is fitted, with `MMU_CALIBRATE_GATES` to automate the process. This is important even if the drive gears look similar. Tradrack is an example of a design that doesn't require this.
 - Most MMU designs will share the same bowden length (and only one need be calibrated), however if the design can have different lenghts each must be calibrated separately.
 
 ### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Step 1. Calibrate selector offsets
