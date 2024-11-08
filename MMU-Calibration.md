@@ -28,6 +28,8 @@ graph TD;
     MMU_CALIBRATE_GEAR --> MMU_CALIBRATE_ENCODER
     MMU_CALIBRATE_ENCODER --> MMU_CALIBRATE_BOWDEN
     MMU_CALIBRATE_BOWDEN --> MMU_CALIBRATE_GATES
+
+style MMU_SERVO fill:#f9f,stroke:#333,stroke-width:2px,stroke-dasharray: 5 5
 ```
 
 ### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Step 1. Calibrate selector offsets
@@ -187,7 +189,7 @@ This will reverse homes to the gate and use Klipper's measurement of stepper mov
 <br>
 
 ### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Step 6. Calibrating individual gates
-This step allows for calibrating slight differences between gates.  It isn't required (or useful) for designs that cannot have variation like the Tradrack MMU but is useful for designs like ERCF that can have variation of feed between gates.  Even with ERCF this is optional because if not run, the gates will tune themselves as they are used automatically!  That said it be beneficial to get this out of the way with a test piece of filament but doing it also: (i) removes the need to set the `auto_calibrate_gates` in `mmu_parameters.cfg`, (ii) is necessary if there is substantial variation between gates -- e.g. if BMG gears for different gates are sourced from different vendors.
+This step allows for calibrating slight differences between gates.  It isn't required (or useful) for designs that cannot have variation like the Tradrack MMU but is useful for designs like ERCF that can have variation of feed between gates.  Even with ERCF this is optional because if not run, the gates will tune themselves as they are used automatically!  That said it be beneficial to get this out of the way with a test piece of filament but doing it also: (i) removes the need to set the `autotune_rotation_distance` in `mmu_parameters.cfg`, (ii) is necessary if there is substantial variation between gates -- e.g. if BMG gears for different gates are sourced from different vendors.
 
 Simply make sure filament is available at the gate you want to calibrate -- you can hold a (500mm) loose piece of filament and run:
 
