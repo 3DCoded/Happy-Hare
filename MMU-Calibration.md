@@ -29,7 +29,7 @@ graph TD;
     MMU_CALIBRATE_ENCODER --> MMU_CALIBRATE_BOWDEN
     MMU_CALIBRATE_BOWDEN --> MMU_CALIBRATE_GATES
 
-style MMU_SERVO fill:#f9f,stroke:#333,stroke-width:2px,stroke-dasharray: 5 5
+style MMU_SERVO stroke-dasharray: 2 2, stroke:#333, stroke-width:2px
 ```
 
 ### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Step 1. Calibrate selector offsets
