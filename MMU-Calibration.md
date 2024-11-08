@@ -24,7 +24,7 @@ graph TD;
     Hardware_Working --> MMU_SERVO
     Hardware_Working --> MMU_CALIBRATE_SELECTOR["MMU_CALIBRATE_SELECTOR<br/><span style='font-size:10px'>If MMU has a selector</span>"]
     MMU_CALIBRATE_SELECTOR --> MMU_CALIBRATE_BOWDEN
-    MMU_SERVO --> MMU_CALIBRATE_GEAR["MMU_CALIBRATE_GEAR..<br/><span style='font-size:10px'>Can use on every gate if gear calibration is different.. usually the case</span>"]
+    MMU_SERVO --> MMU_CALIBRATE_GEAR["MMU_CALIBRATE_GEAR<br/><span style='font-size:10px'>Can use on every gate to set rotation_distance</span>"]
     MMU_CALIBRATE_GEAR --> MMU_CALIBRATE_ENCODER
     MMU_CALIBRATE_ENCODER --> MMU_CALIBRATE_BOWDEN["MMU_CALIBRATE_BOWDEN.."]
     MMU_CALIBRATE_BOWDEN --> MMU_CALIBRATE_GATES
