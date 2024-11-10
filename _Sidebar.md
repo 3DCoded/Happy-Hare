@@ -13,7 +13,7 @@
 
 <details open><summary><b>&nbsp;2. Installation</b></summary>
 
-- [Quick-Start Guides](Quick-Start-Guides)
+- [Quick-Start Guides](3MS-Quick-Start)
   - [3MS](Quick-Start-Guides/3MS-Quick-Start)
   - [Box Turtle](Quick-Start-Guides/Box-Turtle-Quick-Start)
 - [Happy Hare Install](Installation)
