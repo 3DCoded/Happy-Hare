@@ -138,5 +138,6 @@ Review `mmu/addons/dc_espooler_hw.cfg`.
 
 ---
 
-🎉 Happy Hare is successfully installed! If you selected one of the default control boards, you don't need to follow the rest of this guide. If you selected `Not in list / Unknown`, read on.
+🎉 Happy Hare is successfully installed!
 
+(Quick start guide based on the 3MS template by 3DCoded)
