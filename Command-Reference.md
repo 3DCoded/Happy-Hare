@@ -9,11 +9,12 @@ Firstly you can get a quick reminder of commands using the `MMU_HELP` command fr
   > MMU_HELP
 
 ```yml
-Happy Hare MMU commands: (use MMU_HELP SLICER=1 MACROS=1 CALLBACKS=1 TESTING=1 STEPS=1 for full command set)
+Happy Hare MMU commands: (use MMU_HELP SLICER=1 CALLBACKS=1 TESTING=1 STEPS=1 for full command set)
     MMU : Enable/Disable functionality and reset state
+    MMU_CALC_PURGE_VOLUMES : Calculate purge volume matrix based on filament color overriding slicer tool map import
     MMU_CHANGE_TOOL : Perform a tool swap (called from Tx command)
     MMU_CHECK_GATE : Automatically inspects gate(s), parks filament and marks availability
-    MMU_EJECT : aka MMU_UNLOAD Eject filament and park it in the MMU or optionally unloads just the extruder (EXTRUDER_ONLY=1)
+    MMU_EJECT : Alias for MMU_UNLOAD if filament is loaded but will fully eject filament from MMU (release from gear) if in unloaded state
     MMU_ENCODER : Display encoder position and stats or enable/disable runout detection logic in encoder
     MMU_ENDLESS_SPOOL : Diplay or Manage EndlessSpool functionality and groups
     MMU_GATE_MAP : Display or define the type and color of filaments on each gate
@@ -22,15 +23,18 @@ Happy Hare MMU commands: (use MMU_HELP SLICER=1 MACROS=1 CALLBACKS=1 TESTING=1 S
     MMU_LED : Manage mode of operation of optional MMU LED's
     MMU_LOAD : Loads filament on current tool/gate or optionally loads just the extruder for bypass or recovery usage (EXTRUDER_ONLY=1)
     MMU_LOG : Logs messages in MMU log
-    MMU_MOTORS_OFF : Turn off both MMU motors
+    MMU_MOTORS_OFF : Turn off all MMU motors and servos
     MMU_PAUSE : Pause the current print and lock the MMU operations
     MMU_PRELOAD : Preloads filament at specified or current gate
+    MMU_PRINT_END : Forces clean up of state after after print end
+    MMU_PRINT_START : Forces initialization of MMU state ready for print (usually automatic)
     MMU_RECOVER : Recover the filament location and set MMU state after manual intervention/movement
     MMU_RESET : Forget persisted state and re-initialize defaults
+    MMU_RESPOOLER_START : G-Code macro
+    MMU_RESPOOLER_STOP : G-Code macro
     MMU_SELECT : Select the specified logical tool (following TTG map) or physical gate
     MMU_SELECT_BYPASS : Select the filament bypass
     MMU_SENSORS : Query state of sensors fitted to mmu
-    MMU_SERVO : Move MMU servo to position specified position or angle
     MMU_SLICER_TOOL_MAP : Display or define the tools used in print as specified by slicer
     MMU_SPOOLMAN : Manage spoolman integration
     MMU_STATS : Dump and optionally reset the MMU statistics
@@ -38,6 +42,7 @@ Happy Hare MMU commands: (use MMU_HELP SLICER=1 MACROS=1 CALLBACKS=1 TESTING=1 S
     MMU_SYNC_GEAR_MOTOR : Sync the MMU gear motor to the extruder stepper
     MMU_TOOL_OVERRIDES : Displays, sets or clears tool speed and extrusion factors (M220 & M221)
     MMU_TTG_MAP : aka MMU_REMAP_TTG Display or remap a tool to a specific gate and set gate availability
+    MMU_UNLOAD : Unloads filament and parks it at the gate or optionally unloads just the extruder (EXTRUDER_ONLY=1)
     MMU_UNLOCK : Wakeup the MMU prior to resume to restore temperatures and timeouts
 ```
 
@@ -47,8 +52,10 @@ Happy Hare MMU commands: (use MMU_HELP SLICER=1 MACROS=1 CALLBACKS=1 TESTING=1 S
   | Command | Description | Parameters |
   | ------- | ----------- | ---------- |
   | `MMU` | Enable and reset state or disable the MMU. Useful to completely turn off the MMU functionality rather then uninstalling it. Note that persisted state will be reset when re-enabling | `ENABLE=[0\|1]` 0 to disable, 1 to enable. |
+  | `MMU_CALC_PURGE_VOLUMES` | Calculate purge volume matrix based on filament color and algorithm for estimating flushing volume. The result sets/overrides the `purge_volumes` in the slicer tool map`. It can be called at anytime when using the gatemap colors or after print startup if pulling colors from the slicer. This mimicks a feature available in some slicers like OrcaSlicer. | `MIN=[0]` The minimum purge volume, default 0. <br>`MAX=[800]` The maximum purge volume, default 800. <br>`MULTIPLIER=[1.0]` The multiplier used in the calculation. Increase for larger purge volumes subject to MAX limit. <br>`SOURCE=[gatemap|slicer]` Where to pull the filament colors from. Defaults to "gatemap". |
   | `MMU_CHANGE_TOOL` | Perform a tool swap (generally called from 'Tx' macros). Use `STANDALONE=1` option in your print_start macro to saftely load the initial tool | `TOOL=[0..n]` Tool number to load. <br>`STANDALONE=[0\|1]` Optional to force standalone logic (tip forming). <br>`QUIET=[0\|1]` Optional to always suppress swap statistics |
-  | `MMU_EJECT` | `MMU_UNLOAD` | Eject filament and park it in the MMU gate or does the extruder unloading part of the unload sequence if in bypass | `EXTRUDER_ONLY=[0\|1]` To force just the extruder unloading (automatic if bypass selected). <br>`SKIP_TIP=[0\|1]` if set the tip forming/cutting macro will be skipped <br>`RESTORE=0` prevents parking logic from restoring toolhead position after the unload. Useful on final eject |
+  | `MMU_UNLOAD` | Unload filament and park it in the MMU gate or does the extruder unloading part of the unload sequence if in bypass | `EXTRUDER_ONLY=[0\|1]` To force just the extruder unloading (automatic if bypass selected). <br>`SKIP_TIP=[0\|1]` if set the tip forming/cutting macro will be skipped <br>`RESTORE=0` prevents parking logic from restoring toolhead position after the unload. Useful on final eject |
+  | `MMU_EJECT` | Alias for MMU_UNLOAD if filament is loaded, but if not or you have a multi-gear MMU this will fully eject filament out from the MMU | `GATE=[0..n]` Optional argument that allows ejection of filament from non selected gate on multi-gear MMUs. <br>`FORCE=1` Add this option to do both the unload operation and the final ejection |
   | `MMU_ENCODER` | Displays the current value of the MMU encoder or explicitly enable or disable the encoder. Note that the encoder state is set automatically so this will only be sticky until next tool change | `ENABLE=[0\|1]` 0=Disable, 1=Enable. <br>`VALUE=..` Set the current distance |
   | `MMU_HELP` | Generate reminder list of command set | `TESTING=1` Also list the testing command. <br>`MACROS=1` Also list the base macro commands. <br>`CALLBACKS=1` Also list the callback macros. <br>`STEPS=1` Also list the individual movement sequence macros for custom loading/unloading control |
   | `MMU_HOME` | Home the MMU selector and optionally selects gate associated with the specified tool | `TOOL=[0..n]` After homing, select gate associated with this tool. <br>`FORCE_UNLOAD=[0\|1]` Optional. If specified will override default intelligent filament unload behavior prior to homing |
@@ -144,7 +151,7 @@ Happy Hare MMU commands: (use MMU_HELP SLICER=1 MACROS=1 CALLBACKS=1 TESTING=1 S
   | `MMU_TEST_CONFIG` | Dump / Change Happy Hare klipper parameters at runtime | `..many..` Best to run MMU_TEST_CONFIG without options to report all parameters than can be specified. <br>`QUIET=1` To suppress the list of current values. Useful for use in a macro. <br> <br>You must manually update mmu_parameters.cfg to persist the change accross restarts. <br> <br>Note: this only modifies Happy Hare klipper parameters in found in mmu_parameters.cfg; Happy Hare macro variables in mmu\_macro\_vars.cfg can be updated in a similar way using `SET_GCODE_VARIABLE`. See [Macro Variable Tip](Configuring-mmu_macro_vars.cfg#time-saving-tip). |
   | `MMU_TEST_FORM_TIP` | Convenience macro to call to test the standalone tip forming functionality | `..many..` Any valid "\_MMU\_FORM\_TIP" gcode variables found in mmu\_macro\_vars.cfg can be supplied as a parameter and will override the defaults. The overrides will remain active (sticky) until called with "RESET=1" which will cause Happy Hare to revert to starting values (in mmu\_macro\_vars.cfg). <br>`SHOW=1` will just list the current macro variable values and not run macro. <br>`RUN=0` will set the variable but not run the macro. <br>`FORCE_IN_PRINT=1` behave like in print with gear/extruder syncing and current. <br>`RESET=1` Restore in memory override values back to config file defaults. |
   | `MMU_TEST_GRIP` | Test the MMU grip of the currently selected tool by gripping filament but relaxing the gear motor so you can check for good contact | None. |
-  | `MMU_TEST_LOAD` | Test loading filament from park position in the gate. (MMU_EJECT will unload) | `LENGTH=..[100]` Test load the specified length of filament into selected too. <br>`FULL=[0\|1]` If set to one a full bowden move will occur and filament will home to extruder. |
+  | `MMU_TEST_LOAD` | Test loading filament from park position in the gate. (MMU_UNLOAD will unload) | `LENGTH=..[100]` Test load the specified length of filament into selected too. <br>`FULL=[0\|1]` If set to one a full bowden move will occur and filament will home to extruder. |
   | `MMU_TEST_MOVE` | Simple test move the MMU gear stepper | `MOVE=..[100]` Length of gear move in mm. <br>`SPEED=..` (defaults to speed defined to type of motor/homing combination) Stepper move speed. <br>`ACCEL=..` (defaults to min accel defined on steppers employed in move) Motor acceleration. <br>`MOTOR=[gear\|extruder\|gear+extruder\|extruder+gear]` (default: gear) The motor or motor combination to employ. gear+extruder commands the gear stepper and links extruder to movement, extruder+gear commands the extruder stepper and links gear to movement. |
   | `MMU_TEST_HOMING_MOVE` | Testing homing move of filament using multiple stepper combinations specifying endstop and driection of homing move | `MOVE=..[100]` Length of gear move in mm. <br>`SPEED=..` (defaults to speed defined to type of motor/homing combination) Stepper move speed. <br>`ACCEL=..` Motor accelaration (defaults to min accel defined on steppers employed in homing move). <br>`MOTOR=[gear\|extruder\|gear+extruder\|extruder+gear]` (default: gear) The motor or motor combination to employ. gear+extruder commands the gear stepper and links extruder to movement, extruder+gear commands the extruder stepper and links gear to movement. This is important for homing because the endstop must be on the commanded stepper. <br>`ENDSTOP=..` Symbolic name of endstop to home to as defined in mmu_hardware.cfg. Must be defined on the primary stepper. <br>`STOP_ON_ENDSTOP=[1\|-1]` (default 1) The direction of homing move. 1 is in the normal direction with endstop firing, -1 is in the reverse direction waiting for endstop to release. Note that virtual (touch) endstops can only be homed in a forward direction. |
   | `MMU_TEST_RUNOUT` | Invoke filament runout handler that will also trigger EndlessSpool if enabled and thus useful to validate your load/unload sequence macros (define in `mmu_sequence.cfg`) | `FORCE_RUNOUT=0` optional parameter (defaults to `1`) that if set to `0` will cause HH to try to determine if a clog vs runout by also running a filament movement test. |

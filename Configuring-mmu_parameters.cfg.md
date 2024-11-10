@@ -11,7 +11,6 @@
 - [Tip Forming and Cutting](#---tip-forming-and-cutting)
 - [Gear/Extruder Synchronization](#---gearextruder-synchronization)
 - [Filament Management Options](#---filament-management-options)
-- [State Persistence aka Turn on Behavior](#---state-persistence-aka-turn-on-behavior)
 - [Statistics Formatting](#---statistics-formatting-cosmetic)
 - [Miscellaneous](#---miscellaneous)
 - [Macro Naming](#---macro-naming)
@@ -360,19 +359,6 @@ This section deals with the various filament handling and management options.
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) State Persistence aka Turn on Behavior
-
-Happy Hare can auto-initialize the MMU based on the previous persisted state. Each of 5 levels retrieves additional state information requiring progressively less initial setup. Higher levels assume that you don't touch MMU while it is offline, and it can come back to life exactly where it left off!  If you do touch it or get confused, simply issue an appropriate reset command (E.g. `MMU_RESET`) to return the MMU state back to defaults. Enabling `startup_status` is recommended if you use persisted state at level 2 and above. The levels are:
-- 0 = start fresh every time except calibration data (the former default behavior)
-- 1 = restore persisted endless spool groups
-- 2 = additionally restore persisted tool-to-gate mapping
-- 3 = additionally restore persisted gate status (filament availability, material and color, spoolID) (default)
-- 4 = additionally restore persisted tool, gate and filament position! (Recommended when MMU is working well)
-
-`persistence_level` is chosen per the above list. If you go for 3 or 4, make sure your MMU is working well.
-
-<br>
-
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Statistics Formatting (Cosmetic)
 
 These parameters determine how data is shown in the console. This table shows a lot of data, and probably more than you'd want to see. Below you can enable/disable options to your needs.
@@ -436,12 +422,14 @@ The following variables are configurable based on your needs, but rarely need me
 
 `extruder_temp_variance`gives Happy Hare some tolerance when waiting for extruder temperature.  The number set is the ± variance in degrees. I.e. 2 will allow ±2. This allows Happy Hare to kick into action when the extruder is close, but not fully settled on it's target temperature.
 
-`auto_calibrate_gates` Allows Happy Hare to read the encoder (if fitted) and extruder information to automatically calibrate gates. Since gate 0 is the "gold standard" by which other gates are adjusted, it doesn't work for gate 0. 1 = calibrated automatically on first load and tuned on subsequent loads, 0 = disabled, then manual calibration is necessary.
+`autotune_rotation_distance` Allows Happy Hare to read the encoder (if fitted) and extruder information to automatically calibrate gates. Since gate 0 is the "gold standard" by which other gates are adjusted, it doesn't work for gate 0. 1 = calibrated automatically on first load and tuned on subsequent loads, 0 = disabled, then manual calibration is necessary.
 
-`auto_calibrate_bowden` When using gate 0, this Allows Happy Hare to deduce through actual length of homing operations whether the bowden length is optimal and tune if necessary. Note that bowden length is only determined on gate 0 - the one where you calibrated the gear with manual verification. Other gates use `auto_calibrate_gates` function to tune the rotation_distance. 1 = tuned automatically, 0 = disabled, once set the bowden length will not change.
+`autotune_bowden_length` When using gate 0, this Allows Happy Hare to deduce through actual length of homing operations whether the bowden length is optimal and tune if necessary. Note that bowden length is only determined on gate 0 - the one where you calibrated the gear with manual verification. Other gates use `autotune_rotation_distance` function to tune the rotation_distance. 1 = tuned automatically, 0 = disabled, once set the bowden length will not change.
 
 > [!TIP]  
-> A great option for MMU's with variable gate ratios (i.e. potential for drive variations between gates) is to initally enable both these `auto_calibrate` options and then disable them after a week of successful printing to lock down optimal calibration!
+> A great option for MMU's with variable gate ratios (i.e. potential for drive variations between gates) is to initally enable both these `autotune` options and then disable them after a week of successful printing to lock down optimal calibration!
+
+`home_on_startup` Useful on Type-A MMU's like ERCF and Tradrack that have a selector. 1 = will force homing of selector on startup (but only if the MMU is unloaded). 0 = don't home (default)
 
 `strict_filament_recovery` If enabled with an MMU with toolhead sensor, this set to true (1) will use filament position recovery if the filament becomes trapped in the space after extruder but before sensor.
 

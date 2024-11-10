@@ -90,8 +90,48 @@ Clicking on the Show advanced settings in the manual purging volume panel will p
   <img src="Tip-Forming-and-Purging/matrix_purging_volumes.png" width="50%" alt="Matrix Purging Volumes">
 </p>
 
-### Advanced Purge Volume Algorithm
+### Advanced Purge Volumes
+
+#### Slicer Algorithm
 If you enable the Advanced wiping volume option in the Printer settings, Single Extruder MM setup section, the slicer will use the Pigment percentage, ranging from 0 to 1, to define the purge volume for each swap. You can adjust the different values of this option to finely tune the final purging volume. Note that if you have the same profile for filaments of different colors, you’ll need to duplicate those filament profiles and adjust, for each, the pigment percentage value. Don’t forget to select the proper filament profile for each tool.
+
+#### Happy Hare Algorithm
+Probably the most versitile option is to instruct Happy Hare to calculate a purge volume matrix based on filament colors. This is achived with the `MMU_CALC_PURGE_VOLUMES` command which could be run by hand but generally would be embedded in your print startup gcode. This command allow for the selection of where the filament color defintion comes from:
+- gatemap (including imports from Spoolman if configured)
+- slicer extruder color definitions available during the print start sequence when gcode file has been parsed
+It is based on the from/to color pigmentation but can be scaled by using the `MULTIPLIER` parameter. It is also possible to limit the min and max purge volume outside of the default (0-800 mm^3 range) by specifing `MIN=` and `MAX=` parameters.
+
+E.g. To populate the purge volume matrix from the filament colors defined in the gate map:
+```
+MMU_CALC_PURGE_VOLUMES SOURCE=gatemap MULTIPLIER=1.1
+Purge map updated. Use 'MMU_SLICER_TOOL_MAP PURGE_MAP=1' to view
+```
+```
+MMU_SLICER_TOOL_MAP PURGE_MAP=1
+No slicer tool map loaded
+Purge Volume Map (mm^3):
+To -> T0   T1   T2   T3   T4   T5   T6   T7   T8
+T0    -   129  230  192  221  221  223  480  223
+T1   316   -   210  155  393  393  325  606  325
+T2   383  179   -   189  354  354  195  551  195
+T3   322   78  143   -   359  359  264  570  264
+T4   133  155  124  165   -    -   165  354  165
+T5   133  155  124  165   -    -   165  354  165
+T6   314  224   98  212  352  352   -   541   -
+T7   102  122  120  116   65   65  111   -   111
+T8   314  224   98  212  352  352   -   541   -
+```
+
+E.g. To populate the purge volume matrix from the filament colors read in from the slicer with a minimum purge volume of 50mm^3 you would use:
+```
+MMU_CALC_PURGE_VOLUMES SOURCE=slicer MIN=50
+```
+
+
+> [!NOTE] 
+> During a toolchange the printer variable `printer.mmu.toolchange_purge_volume` will contain the suggested TOTAL purge volume comprised of the sum of components:<br>
+> `purge_volume_from_matrix + residual_filament + cut_tip_fragment`<br>
+> This is recommended to be read by any purging logic
 
 ### Purging on the Wipe Tower
 Normally the purging logic is performed by the slicer and written into the g-code. The purged filament will be deposited onto the wipe tower (BTW that is why `enable wipe tower` must be checked to access the purge matrix and then disabled if you want to use the volumes but not the wipe tower).

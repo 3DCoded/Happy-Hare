@@ -272,10 +272,10 @@ This is probably the most important aspect of getting a reliable MMU after basic
 * This macro will always be used when not printing, but you can elect to use it instead of your slicers logic by:</li>
   - Turning OFF all tip forming logic in your slicer</li>
   - Setting the `variable_standalone: 1` in the `T0` macro</li>
-* When tuning if is useful to pull the bowden from your extruder, load filament with the `MMU_LOAD EXTRUDER_ONLY=1` command, then call `MMU_FORM_TIP` command (and not the macro directly) or better still `MMU_EJECT EXTRUDER_ONLY=1`</li>
+* When tuning if is useful to pull the bowden from your extruder, load filament with the `MMU_LOAD EXTRUDER_ONLY=1` command, then call `MMU_FORM_TIP` command (and not the macro directly) or better still `MMU_UNLOAD EXTRUDER_ONLY=1`</li>
   - The benefit of calling as desribed is the additional TMC current control and pressure advance restoration will occur so it exactly mimicks what will occur when called automatically later</li>
   - If calling `MMU_FORM_TIP` you will want to set `variable_final_eject: 1` so that the filament is fully ejected for inspection (MMU\_EJECT will automatically do this and therefore is recommended)
-  - Calling with `MMU_EJECT EXTRUDER_ONLY=1` will also report on the final parking position of the filament</li>
+  - Calling with `MMU_UNLOAD EXTRUDER_ONLY=1` will also report on the final parking position of the filament</li>
 * Before you start tweaking, make sure the settings accurately represent the geometry of your extruder. The defaults are for my Voron Clockwork 2 extruder with Voron Revo hotend with 0.4mm tip</li>
 * Lastely there is a setting called `parking_distance` which, if set, will determine the final resting place measured from the nozzle. This should be a postive number!</li>
 

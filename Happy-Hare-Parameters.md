@@ -523,30 +523,6 @@ Clog detection and EndlessSpool feature is well documented [here](Clog-Runout-En
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Turn on behavior (state persistence)
-
-State persisence is a powerful feature of Happy Hare and is documented [here](State-Persistence). I highly recommend level `4` as soon as you understand how it works.
-
-```yml
-# Turn on behavior -------------------------------------------------------------------------------------------------------
-#
-# MMU can auto-initialize based on previous persisted state. There are 5 levels with each level bringing in
-# additional state information requiring progressively less inital setup. The higher level assume that you don't touch
-# MMU while it is offline and it can come back to life exactly where it left off!  If you do touch it or get confused
-# then issue an appropriate reset command (E.g. MMU_RESET) to get state back to the defaults.
-# Enabling 'startup_status' is recommended if you use persisted state at level 2 and above
-
-# Levels: 0 = start fresh every time except calibration data (the former default behavior)
-#         1 = restore persisted endless spool groups
-#         2 = additionally restore persisted tool-to-gate mapping
-#         3 = additionally restore persisted gate status (filament availability, material and color, spoolID) (default)
-#         4 = additionally restore persisted tool, gate and filament position! (Recommended when MMU is working well)
-#
-persistence_level: 3
-```
-
-<br>
-
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Statistic Reporting
 
 If you want the tool change statistics can be reported on every toolchange or just at the end of a print. Separate statistics exist for all time (until reset) as well as the last print. There and many formatting options.
@@ -595,35 +571,53 @@ This section contains an eclectic set of remaining options. Ask on discord if an
 `default_extruder_temp` - This is the default temperature for performing swaps and tip forming when outside of a print. It's also a fallback in the event that your printer tries to print with an unsafe temperature after a pause. When printing, the slicer will be responsible for setting the temperature. You may want to set this to a middleground temperature that works "well enough" with the full range of filaments you regularly print.<br>
 `extruder_temp_variance` - When waiting for extruder to get to temperature this is the permissible range: desired +/- extruder_temp_variance.<br>
 `slicer_tip_park_pos` - If you use the default slicer tip shaping logic then it will leave the filament at a particular place in the extruder. Unfortunately Happy Hare has no way to detect this like it can when it takes care of tip shaping. This parameter usually exists in the slicer and setting it will pass on to Happy Hare for more efficient subsequent unloading.<br>
-`auto_calibrate_gates` - discussed in main readme but avoids having to calibrate since that are automatically calibrated on first use.<br>
+`autotune_bowden_length` - will tune the bowden length for gates based on telemetry from successful loads/unloads. Note which gates can be tuned is dependent of MMU type.<br>
+`autotune_rotation_distance` - will tune the rotation distance for filament drive gears over time base of telemetry from successful loads/unloads. Note which gates can be tuned is dependent of MMU type.<br>
 `strict_filament_recovery` - Occassionaly Happy Hare will be forced to try to figure our where the filament is. It employs various mechanisms to achive this depending on the capability of the MMU. Some of this steps are invasive (e.g. warming the extruder when it is cold) and are therefore skipped by default. Enabling this option will force extra detection steps.
 `retry_tool_change_on_error` - This setting defaults to off (0) because it can hide problems with your MMU, however, if enabled (1) it will cause Happy Hare to automatically retry a failed tool change but performing the equivalent commands as `MMU_RECOVER` + `Tx`.  It is useful for long prints to minimize "baby-sitting" false failures.
 `print_start_detection` - Default is `1` which will cause Happy Hare to correctly initialize the MMU on print start and finalize on print end. Set to `0` if you wish to include `_MMU_PRINT_START` and `_MMU_PRINT_END` directly in your own print start/end macros.
 
 
 ```yml
-# Misc configurable, but fairly fixed values -------------------------------------------------------------------------
-#
-extruder: extruder              # Name of the toolhead extruder that MMU is using
-timeout_pause: 72000            # Idle time out in seconds used when in MMU pause state
-disable_heater: 600             # Delay in seconds after which the hotend heater is disabled in the MMU_PAUSE state
-default_extruder_temp: 200      # The baseline temperature for performing swaps and forming tips outside of a print
+timeout_pause: 540              # Idle time out (printer shutsdown) in seconds used when in MMU pause state
+disable_heater: 60              # Delay in seconds after which the hotend heater is disabled in the MMU_PAUSE state
+default_extruder_temp: 200      # Default temperature for performing swaps and forming tips when not in print (overriden by gate map)
 extruder_temp_variance: 2       # When waiting for extruder temperature this is the +/- permissible variance in degrees (>= 1)
-auto_calibrate_gates: 0         # ADVANCED: Automated gate (not gate#0) calibration. 1=calibrated automatically on first load, 0=disabled
+#
+# These are auto calibration/tuning settings. Once the gear rotation_distance and encoder are calibrated, enabling these options
+# will lessen the initial calibration and will automatically tune bowden length and individual gate rotation_distance differences.
+# Note: What can be tuned is based on "variable_rotation_distance" and "variable_bowden_lengths" settings in mmu_hardware.cfg
+#       E.g. with fixed bowden and multiple BMG gears and encoder like the ERCF, the bowden length is tuned on gate#0 and
+#            rotation_distance (MMU_CALIBRATE_GATE) is tuned for other gates.
+#
+autotune_bowden_length: 1       # Automated bowden length calibration/tuning. 1=automatic, 0=manual/off
+autotune_rotation_distance: 1   # Automated gate calibration/tuning (requires encoder). 1=automatic, 0=manual/off
+#
+# Other workflow options
+#
+startup_home_if_unloaded: 0     # 1 = force homing of selector on startup if unloaded, 0 = do nothing
+startup_reset_ttg_map: 0        # 1 = reset TTG map on startup, 0 = do nothing
+show_error_dialog: 0            # 1 = show pop-up dialog in addition to console message, 0 = show error in console
+preload_attempts: 5             # How many "grabbing" attempts are made to pick up the filament with preload feature
 strict_filament_recovery: 0     # If enabled with MMU with toolhead sensor, this will cause filament position recovery to
                                 # perform extra moves to look for filament trapped in the space after extruder but before sensor
 filament_recovery_on_pause: 1   # 1 = Run a quick check to determine current filament position on pause/error, 0 = disable
-retry_tool_change_on_error: 0   # Whether to automatically retry a failed tool change. If enabled Happy Hare will perform
+retry_tool_change_on_error: 1   # Whether to automatically retry a failed tool change. If enabled Happy Hare will perform
                                 # the equivalent of 'MMU_RECOVER' + 'Tx' commands which usually is all that is necessary
                                 # to recover. Note that enabling this can mask problems with your MMU
+bypass_autoload: 1              # If entruder sensor fitted this controls the automatic loading of extruder for bypass operation
+#
+# Advanced options. Don't mess unless you fully understand. Read documentation.
+#
+encoder_move_validation: 1      # ADVANCED: 1 = Normally Encoder validates move distances are within given tolerance
+                                #           0 = Validation is disabled (eliminates slight pause between moves but less safe)
 print_start_detection: 1        # ADVANCED: Enabled for Happy Hare to automatically detect start and end of print and call
-                                # _MMU_START_PRINT and _MMU_END_PRINT. Disable if you want to include in your own macros
-show_error_dialog: 0            # 1 = show pop-up dialog in addition to console message, 0 = show error in console
-encoder_move_validation: 1      # 1 = Normally Encoder validates move distances are within given tolerance
-                                # 0 = Validation is disabled for many moves (eliminates slight pause between moves but less safe)
+                                # ADVANCED: MMU_START_PRINT and MMU_END_PRINT automatically. Harmles to leave enabled but can disable
+                                #           if you think it is causing problems and known START/END is covered in your macros
+extruder: extruder              # ADVANCED: Name of the toolhead extruder that MMU is using
 gcode_load_sequence: 0          # VERY ADVANCED: Gcode loading sequence 1=enabled, 0=internal logic (default)
 gcode_unload_sequence: 0        # VERY ADVANCED: Gcode unloading sequence, 1=enabled, 0=internal logic (default)
-preload_attempts: 5             # How many "grabbing" attempts are made to pick up the filament with preload feature
+homing_extruder: 1              # CAUTION: Normally this should be 1. 0 will disable the homing extruder capability
 ```
 
 <br>

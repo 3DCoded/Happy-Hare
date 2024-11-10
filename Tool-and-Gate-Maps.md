@@ -11,7 +11,7 @@ Happy Hare maintains a set of "maps" (exposed by printer variables) that are use
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Gate Map
 **Management Command: `MMU_GATE_MAP`**<br>
 
-**Printer Variables:** `printer.mmu.gate_status`, `printer.mmu.gate_material`, `printer.mmu.gate_color`, `printer.mmu.gate_color_rgb` and `printer.mmu.gate_spool_id`, `printer.mmu.gate_filament_name`
+**Printer Variables:** `printer.mmu.gate_status`, `printer.mmu.gate_material`, `printer.mmu.gate_color`, `printer.mmu.gate_color_rgb`, `printer.mmu.gate_spool_id`, `printer.mmu.gate_filament_name` and `printer.mmu.gate_temperature`
 
 Happy Hare can keep track of the type and color for each filament you have loaded in the MMU as well as the current availability. This is leveraged in KlipperScreen visualization but also has more practical purposes because this information is made available through printer variables so you can leverage in your own macros to, for example, customize pressure advance, temperature and more. The map is persisted in `mmu_vars.cfg`.
 
@@ -20,21 +20,21 @@ The gate map can be viewed with the following command with no parameters (shown 
 > MMU_GATE_MAP
 
 ```
-    MMU Gates / Filaments:
-    Gate #0: Status: Buffered, Material: PLA, Color: red
-    Gate #1: Status: Buffered, Material: ABS+, Color: orange
-    Gate #2: Status: Buffered, Material: ABS, Color: tomato
-    Gate #3: Status: Unknown, Material: ABS, Color: green
-    Gate #4: Status: Unknown, Material: PLA, Color: blue
-    Gate #5: Status: Unknown, Material: PLA, Color: indigo
-    Gate #6: Status: Unknown, Material: PETG, Color: violet
-    Gate #7: Status: Unknown, Material: ABS, Color: ffffff
-    Gate #8: Status: Buffered, Material: ABS, Color: black
+    Gates / Filaments:
+    Gate 0: Status: Spool, Material: TPU, Color: dc6834, Name: Orange Pie, Temp: 225
+    Gate 1: Status: Empty, Material: PTEG, Color: red, Name: eMarble, Temp: 220
+    Gate 2: Status: Spool, Material: PLA - Silk, Color: 8cdfac, Name: Matte Green, Temp: 210
+    Gate 3: Status: Buffer, Material: ASA, Color: 95dc34, Name: Prusament Lime Green, Temp: 200
+    Gate 4: Status: Buffer, Material: ABS, Color: 7c6555, Name: eSun ABS, Temp: 240
+    Gate 5: Status: Unknown, Material: ABS, Color: 7c6555, Name: eSun ABS, Temp: 240
+    Gate 6: Status: Unknown, Material: ABS+, Color: 34dcad, Name: My Test Green, Temp: 200
+    Gate 7: Status: Empty, Material: n/a, Color: n/a, Name: n/a, Temp: 200
+    Gate 8: Status: Spool, Material: ABS+, Color: black, Name: My Test Green, Temp: 200
 ```
 
 To change for a particular gate use a command in this form:
 
-> MMU_GATE_MAP GATE=8 MATERIAL=PLA COLOR=ff0000 AVAILABLE=1
+> MMU_GATE_MAP GATE=8 MATERIAL=PLA COLOR=ff0000 TEMP=205 AVAILABLE=1
 
 If you remove buffered filament from a gate and want to quickly tell Happy Hare that it is loading from spool again (for slower loads) the easiest way is simply this:
 
@@ -64,14 +64,16 @@ Here is an example snippet of a macro controlling LED's for reference:
 > The initial gate map (and therefore the default after a reset `MMU_GATE_MAP RESET=1`) can also be specified in the `mmu_parameters.cfg` file by updating the follow list parameters, ensuring each is the same length as the number of gates. E.g.<br>
 >
 > ```yml
+> gate_status:          1,      0,      1,      2,      2,     -1,     -1,      0,      1
+> gate_filament_name:   one,    two,    three,  four,   five,   six,    seven,  eight,  nine
 > gate_material:        PLA,    ABS,    ABS,    ABS+,   PLA,    PLA,    PETG,   TPU,    ABS
 > gate_color:           red,    black,  yellow, green,  blue,   indigo, ffffff, grey,   black
+> gate_temperature:     210,    240,    235,    245,    210,    200,    215,    240,    240
 > gate_spool_id:        3,      2,      1,      4,      5,      6,      7,      -1,     9
-> gate_status:          1,      0,      1,      2,      2,     -1,     -1,      0,      1
 > gate_speed_override:  100,    100,    100,    100,    100,    100,    100,    50,     100
 > ```
 >
-> If not specified or commented out (the default) the gate map will default and reset to empty attributes. Remember this is the default/reset values. With persistence enabled (`persistence_level`) the latest values are remembered accross restarts.
+> If not specified or commented out (the default) the gate map will default and reset to empty attributes. Remember this is the default/reset values.
 
 <br>
 

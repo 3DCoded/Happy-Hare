@@ -19,7 +19,7 @@ Happy Hare defines 7 operations that may require toolhead parking:
 - `toolchange` - normal toolchange initiated with Tx or MMU_CHANGE_TOOL command
 - `runout`     - when a forced toolchange occurs as a result of runout
 - `load`       - individual MMU_LOAD operation
-- `unload`     - individual MMU_UNLOAD/MMU_EJECT operation
+- `unload`     - individual MMU_UNLOAD operation
 - `complete`   - when print is complete (Happy Hare enabled)
 - `pause`      - a regular klipper PAUSE
 - `cancel`     - a regular klipper CANCEL_PRINT

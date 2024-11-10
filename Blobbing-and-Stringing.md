@@ -163,14 +163,14 @@ As the previous step may have ground your filament a little, make sure you unloa
 Heat up your extruder to your filament print temperature , and run the load and unload filament macros as below:
 1. `MMU_LOAD` or `Tx`
 2. Manually extrude some filament using the printer’s web interface
-3. `MMU_EJECT`
+3. `MMU_UNLOAD`
 4. Switch off your nozzle heater (set the nozzle temperature to 0°C)
 
 #### If you are using tip cutting:
 As the tip cutting operation would normally leave additional filament in the toolhead that we don’t want, the dirtying of the extruder is slightly different to the above and avoids the actual cutting action:
 1. `MMU_LOAD` or `Tx`
 2. Manually extrude some filament using the printer’s web interface
-3. `MMU_EJECT SKIP_TIP=1` (notice the option)
+3. `MMU_UNLOAD SKIP_TIP=1` (notice the option)
 5. Switch off your nozzle heater (set the nozzle temperature to 0°C)
 
 <br>
@@ -227,7 +227,7 @@ To calibrate the above:
 1. Run `MMU_LOAD` or `Tx` to load filament in your extruder
 2. Switch off the nozzle heating element (set nozzle temperature to 0) and wait for it to cool down.
 3. Manually press the cut lever a couple of times to ensure the filament is cleanly cut. 
-4. After you have cut the filament, unload/eject without further tip forming by running `MMU_EJECT SKIP_TIP=1` (did you notice the skip tip option?)
+4. After you have cut the filament, unload/eject without further tip forming by running `MMU_UNLOAD SKIP_TIP=1` (did you notice the skip tip option?)
 5. With the filament unloaded and parked in the MMU and a cold nozzle, run `MMU_CALIBRATE_TOOLHEAD CUT=1`
 
 > [!TIP]  
@@ -271,7 +271,7 @@ Referencing earlier illustrations, the blade position `variable_blade_pos` can t
   | ----- |------ | ----------- |
   | 1 | `CLEAN=1` | This will calibrate `toolhead_extruder_to_nozzle`, `toolhead_sensor_to_nozzle`, `toolhead_entry_to_extruder` and MUST be run on clean extruder after cold-pull | 
   | 2 | _none_ | This will calibrate `toolhead_residual_filament` and should be run with a dirty extruder where tip has been formed for filament retracted from extruder. It must not be run after tip cutting |
-  | 3 | `CUT=1` | This will calibrate `variable_blade_pos` and suggest `variable_retract_length` for the tip cutting macro. This MUST be run after loading the extruder and manually cutting the filament and running `MMU_EJECT SKIP_TIP=1` to unload without re-running the tip cutting macro |
+  | 3 | `CUT=1` | This will calibrate `variable_blade_pos` and suggest `variable_retract_length` for the tip cutting macro. This MUST be run after loading the extruder and manually cutting the filament and running `MMU_UNLOAD SKIP_TIP=1` to unload without re-running the tip cutting macro |
 
 <br>
 

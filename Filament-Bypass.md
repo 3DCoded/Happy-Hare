@@ -29,12 +29,12 @@ Once selected you would insert the filament through the bypass all the way up to
 
 Finally, you can unload the extruder with the usual eject:
 
-> MMU_EJECT
+> MMU_UNLOAD
 
 Be sure to manually pull the filament all the way back out of the MMU before selecting another gate.
 
 > [!NOTE]
-> The `MMU_LOAD` and `MMU_EJECT` automatically add the `EXTRUDER_ONLY=1` flag when the bypass is selected
+> The `MMU_LOAD` and `MMU_UNLOAD` automatically add the `EXTRUDER_ONLY=1` flag when the bypass is selected
 
 > [!TIP]
 > A very useful timesaver is automatic extruder loading if you have an extruder (entry) sensor. This is enabled with the `bypass_autoload` setting in `mmu_parameters.cfg`. If enabled, when a filament triggers the sensor the loading will be automatic.

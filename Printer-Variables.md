@@ -22,12 +22,13 @@ Happy Hare exposes 'printer' variables that can be used in your own macros.
     printer.mmu.filament_position : {float} location in mm of filament
     printer.mmu.filament_pos : {int} state machine - exact location of filament
     printer.mmu.filament_direction : {int} 1 (load) | -1 (unload)
-    printer.mmu.servo : {string} Up | Down | Move | Unknown
+    printer.mmu.servo : {string} Up | Down | Move | Unknown (exists only if MMU has servo)
     printer.mmu.ttg_map : {list} defined gate for each tool
     printer.mmu.gate_status : {list} per gate: 0 empty | 1 available | 2 available from buffer |  -1 unknown
-    printer.mmu.gate_material : {list} of material names, one per gate
     printer.mmu.gate_name : {list} of filament names, one per gate
+    printer.mmu.gate_material : {list} of material names, one per gate
     printer.mmu.gate_color : {list} of color names, one per gate
+    printer.mmu.gate_temperature : {list} of filament temperatures, one per gate
     printer.mmu.gate_color_rgb : {list} of color rbg values from 0.0 - 1.0 in truples (red, green blue), one per gate
     printer.mmu.gate_spool_id : {list} of IDs for Spoolman, one per gate
     printer.mmu.custom_color_rgb : {list} of color rbg values from 0.0 - 1.0 in truples (red, green blue), one per gate
@@ -37,7 +38,7 @@ Happy Hare exposes 'printer' variables that can be used in your own macros.
     printer.mmu.tool_speed_multipliers : {list} current M220 extrusion multipliers (float), one per tool
     printer.mmu.action : {string} Idle | Loading | Unloading | Forming Tip | Heating | Loading Ext | Exiting Ext | Checking | Homing | Selecting
     printer.mmu.has_bypass : {bool} True if available else False
-    printer.mmu.sync_drive : {bool} True if gear stepper is currently synced to extruder
+    printer.mmu.synced_drive : {bool} True if gear stepper is currently synced to extruder
     printer.mmu.sync_feedback_state : {string} State of sync feedback sensor (compressed | expanded | neutral | disabled)
     printer.mmu.print_job_state : {string} current job state seen by MMU (initialized | standby | started | printing | pause_locked | paused | complete | cancelled | error)
     printer.mmu.clog_detection : {int} 0 (off) | 1 (manual) | 2 (auto)
@@ -47,6 +48,7 @@ Happy Hare exposes 'printer' variables that can be used in your own macros.
     printer.mmu.extruder_filament_remaining : {float} amount of residual + cut filament left in the extruder (for toolchange macros)
     printer.mmu.enable_spoolman : {int} 0 (disabled) | 1 (enabled) DEPRECATED, use printer.mmu.spoolman_support instead
     printer.mmu.spoolman_support: {string} spoolman integration mode (off | readonly | push | pull)
+    printer.mmu.selector_type: {string} style of MMU selector (VirtualSelector | LinearSelector)
 ```
 
 Optionally exposed for mmu_encoder (if fitted):

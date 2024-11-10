@@ -55,9 +55,6 @@ When bypass is selected, the `Colors...` button and `Eject` button change to `Lo
 
 Oh, the textual representation mirrors that you see in the Klipper console, but this one dynamically updates!
 
-> [!TIP] 
-> With this new level of visualization I would recommend you put Happy Hare persistence level to the maximum of `4`...  Turn printer on, check KlipperScreen and go... (I almost never home my MMU anymore!)_
-
 <br>
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) State Management & Recovery
@@ -76,7 +73,7 @@ There is one very important button: `Recover State...`. Since Happy Hare is stat
 
 This is what the `Recover State...` button reveals.  It shows what Happy Hare thinks the current state is, allows you to manuall reset on the right side of the screen or 'Auto Recover' just the filament LOADED/UNLOADED state.
 
-You can also reset all the persisted state that Happy Hare records across restarts (useful if you are running with persistence level of `4` or have messed with Tool-To-Gate maps, EndlessSpool groups or got completely confused).
+You can also reset all the persisted state that Happy Hare records across restarts (useful if you have messed with Tool-To-Gate maps, EndlessSpool groups or got completely confused).
 
 One note: If you move the selector on the Manage panel you will change the gate state to another postion. This is physical are real.  Because of TTG mapping the Tool will be reset to 'unknown'.  Why?  Well, because a tool can be mapped to many gates with EndlessSpool.  A gate might not even have a tool mapped to it or it might have more that one tool.
 
