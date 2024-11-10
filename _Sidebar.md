@@ -13,9 +13,9 @@
 
 <details open><summary><b>&nbsp;2. Installation</b></summary>
 
-- [Quick-Start Guides](3MS-Quick-Start)
-  - [3MS](Quick-Start-Guides/3MS-Quick-Start)
-  - [Box Turtle](Quick-Start-Guides/Box-Turtle-Quick-Start)
+- [Quick-Start Guides](#)
+  - [3MS](3MS-Quick-Start)
+  - [Box Turtle](Box-Turtle-Quick-Start)
 - [Happy Hare Install](Installation)
   - [Cloning Happy Hare Repo](Installation#---cloning-happy-hare-repo)
   - [Running Installer](Installation#---running-installer)
