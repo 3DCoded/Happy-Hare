@@ -11,10 +11,6 @@
 
 </details>
 
-<details open><summary><b>&nbsp;2. Quick Start Guides</b></summary>
-
-</details>
-
 <details open><summary><b>&nbsp;2. Installation</b></summary>
 - [Quick-Start Guildes](#)
   - [3MS](Quick-Start-Guides/3MS-Quick-Start)
