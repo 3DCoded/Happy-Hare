@@ -1,12 +1,12 @@
 #### Page Sections:
 - [Popular MCUs](#popular-mcus)
   - [BigTreeTech BTT MMB CAN v1](#bigtreetech-btt-mmb-can-v1)
-<!--   - [BigTreeTech BTT MMB CAN v2.0](#bigtreetech-btt-mmb-can-v20) -->
   - [Fysetc ERB v2](#fysetc-erb-v2)
   - [Mellow CAN v1](#mellow-can-v1)
   - [Mellow CAN v2](#mellow-can-v2)
   - [ERCF Easy Brd v1.1](#ercf-easy-brd-v11)
 - [Flashing Firmware](#flashing-firmware)
+<!--   - [BigTreeTech BTT MMB CAN v2.0](#bigtreetech-btt-mmb-can-v20) -->
 
 <br>
 
