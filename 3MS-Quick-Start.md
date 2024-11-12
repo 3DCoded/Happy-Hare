@@ -24,6 +24,12 @@ ssh pi@klippy.local
 
 Now, clone the Happy Hare repository onto your Raspberry Pi:
 
+> [!IMPORTANT]
+> K1 series users (K1, K1C, K1 Max, etc.) should instead run:
+> ```
+> git clone https://github.com/moggieuk/Happy-Hare.git /usr/data/happy-hare
+> ```
+
 ```
 cd ~
 git clone https://github.com/moggieuk/Happy-Hare.git
