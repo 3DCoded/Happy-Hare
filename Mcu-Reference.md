@@ -115,14 +115,13 @@ When using any MCU with Klipper, it is important to first flash Klipper firmware
 3. Enter your MCU board's firmware settings, as explained later in this page.
 4. Save (Q)
 5. Run the following command:
-  ```
-  make flash FLASH_DEVICE=/dev/serial/by-id/<your-mcu-id>
-
-  ```
+    ```
+    make flash FLASH_DEVICE=/dev/serial/by-id/<your-mcu-id>
+    ```
   > [!TIP]
   > To find your serial port, open a new SSH window, unplug your controller board, and 
   run:
   > ```
-  > ls /dev/serial/by-id
+  >  ls /dev/serial/by-id
   > ```
   > Next, plug in your controller board, and re-run the command. The newly added line is your controller's serial address.
