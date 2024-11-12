@@ -19,6 +19,7 @@ The folling a collection of reference material showing pinouts, pin numbering an
 <details>
   <summary>Click for details on Firmware flashing</summary>
   
+Probably the best guide available is Esoterical's site:
 **[Firmware Guide](https://canbus.esoterical.online/toolhead_flashing/common_hardware/BigTreeTech%20MMB%20CAN%20V1.0/README.html)**
 
 </details>
@@ -45,7 +46,8 @@ The folling a collection of reference material showing pinouts, pin numbering an
 <details>
   <summary>Click for details on Firmware flashing</summary>
   
-** TODO **
+Read the [Flashing Firmware Notes](#---flashing-firmware)
+![flashing](Mcu-Reference/menuconfig_fysetc_erb_v2))
 
 </details>
 
@@ -67,7 +69,8 @@ ERCF v2 Connection Diagram:
 <details>
   <summary>Click for details on Firmware flashing</summary>
   
-**TODO**
+Probably the best guide available is Esoterical's site:
+**[Firmware Settings](https://canbus.esoterical.online/toolhead_flashing/common_hardware/Mellow%20Fly%20ERCF/README.html)**
 
 </details>
 
@@ -79,7 +82,8 @@ ERCF v2 Connection Diagram:
 <details>
   <summary>Click for details on Firmware flashing</summary>
   
-**TODO**
+Probably the best guide available is Esoterical's site:
+**[Firmware Settings](https://canbus.esoterical.online/toolhead_flashing/common_hardware/Mellow%20Fly%20SB2040/README.html)**
 
 </details>
 
@@ -91,7 +95,8 @@ ERCF v2 Connection Diagram:
 <details>
   <summary>Click for details on Firmware flashing</summary>
   
-** TODO **
+Read the [Flashing Firmware Notes](#---flashing-firmware)
+![flashing](Mcu-Reference/menuconfig_easy_brd_v11))
 
 </details>
 
