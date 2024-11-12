@@ -43,21 +43,14 @@ Probably the best guide available is Esoterical's site:
 ### Fysetc ERB v2
 <p align="center"><img src="Mcu-Reference/ERB_V2_Pinout_White.png" alt="ERB_v2_Pinout_White"></p>
 
-<details>
-  <summary>Click for details on Firmware flashing</summary>
-  
-Read the [Flashing Firmware Notes](#---flashing-firmware)
-![flashing](Mcu-Reference/menuconfig_fysetc_erb_v2))
-
-</details>
-
 ERCF v2 Connection Diagram:
 <p align="center"><img src="Mcu-Reference/ERB_v2_Connections.png" alt="ERB_v2_Connections"></p>
 
 <details>
   <summary>Click for details on Firmware flashing</summary>
   
-**TODO**
+Read the [Flashing Firmware Notes](#---flashing-firmware)
+![flashing](Mcu-Reference/menuconfig_fysetc_erb_v2))
 
 </details>
 
