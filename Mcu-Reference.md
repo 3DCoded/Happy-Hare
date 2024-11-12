@@ -24,6 +24,7 @@ Probably the best guide available is Esoterical's site:
 
 </details>
 
+<hr>
 <br>
 
 <!--
@@ -55,6 +56,7 @@ Read the [Flashing Firmware Notes](#---flashing-firmware)
 
 </details>
 
+<hr>
 <br>
 
 ### Mellow CAN v1
@@ -68,6 +70,7 @@ Probably the best guide available is Esoterical's site:
 
 </details>
 
+<hr>
 <br>
 
 ### Mellow CAN v2
@@ -81,6 +84,7 @@ Probably the best guide available is Esoterical's site:
 
 </details>
 
+<hr>
 <br>
 
 ### ERCF Easy Brd v1.1
@@ -95,6 +99,7 @@ Read the [Flashing Firmware Notes](#---flashing-firmware)
 
 </details>
 
+<hr>
 <br>
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Flashing Firmware
