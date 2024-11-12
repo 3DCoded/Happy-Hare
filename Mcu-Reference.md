@@ -89,7 +89,7 @@ Probably the best guide available is Esoterical's site:
   <summary>Click for details on Firmware flashing</summary>
   
 Read the [Flashing Firmware Notes](#---flashing-firmware)
-![flashing](Mcu-Reference/menuconfig_easy_brd_v11.png))
+![flashing](Mcu-Reference/menuconfig_easy_brd_v11.jpg))
 
 </details>
 
