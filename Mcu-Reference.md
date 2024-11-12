@@ -50,7 +50,7 @@ ERCF v2 Connection Diagram:
   <summary>Click for details on Firmware flashing</summary>
   
 Read the [Flashing Firmware Notes](#---flashing-firmware)
-![flashing](Mcu-Reference/menuconfig_fysetc_erb_v2))
+![flashing](Mcu-Reference/menuconfig_fysetc_erb_v2.png))
 
 </details>
 
@@ -89,7 +89,7 @@ Probably the best guide available is Esoterical's site:
   <summary>Click for details on Firmware flashing</summary>
   
 Read the [Flashing Firmware Notes](#---flashing-firmware)
-![flashing](Mcu-Reference/menuconfig_easy_brd_v11))
+![flashing](Mcu-Reference/menuconfig_easy_brd_v11.png))
 
 </details>
 
