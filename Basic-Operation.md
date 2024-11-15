@@ -153,15 +153,15 @@ The filament is now extracted quickly through the bowden by the calibrated lengt
 #### 7. Parking in Gate:
 The final move prior to optionally instructing the MMU to release grip on the filament is to park the filament in the correct position in the gate, so, in the case of a type-A design with linear selector the filament does not impeed gate selection. The filament is now unloaded.
 
+> [!NOTE]  
+> - When the state of the MMU is unknown, Happy Hare will perform other movements and look at its sensors to try to ascertain filament location. This may modify the above sequence and result in the omission of the fast bowden move for unloads.<br>
+> - Happy Hare allows for easy experimentation of loading/unloading sequence or even during a print using the `MMU_TEST_CONFIG` command to dynamically adjust parameters or simply by enabling/disabling sensors. E.g you can use this feature to tune `toolhead_extruder_to_nozzle` or perhaps obserbing the different in load quality by turning on/off the toolhead sensor.
+
 <br>
 
 ### Load and Unload Speeds:
 
 Filament movement speeds and accelaration for all operations are detailed in the `mmu_parameters.cfg` file and will likely need to be tuned to your specific hardware.
-
-> [!NOTE]  
-> - When the state of the MMU is unknown, Happy Hare will perform other movements and look at its sensors to try to ascertain filament location. This may modify the above sequence and result in the omission of the fast bowden move for unloads.<br>
-> - Happy Hare allows for easy experimentation of loading/unloading sequence or even during a print using the `MMU_TEST_CONFIG` command to dynamically adjust parameters or simply by enabling/disabling sensors. E.g you can use this feature to tune `toolhead_extruder_to_nozzle` or perhaps obserbing the different in load quality by turning on/off the toolhead sensor.
 
 <br>
 
