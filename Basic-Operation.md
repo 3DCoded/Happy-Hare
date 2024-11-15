@@ -83,10 +83,8 @@ Starting with filament unloaded and sitting in the gate for tool 2
 #### 2. Loading the Gate:
 Firstly MMU pulls a short length of filament from the gate to the start of the bowden tube.
 
-  <ul>
-    <li>With Encoder: This is achieved using the encoder by advancing filament until if is measured. It it doesn't see filament it will try `encoder_load_retries` times (default 2). If still no filament it will report the error. The speed of this initial movement is controlled by `gear_short_move_speed`.  Note that the encoder sensor is considered "point 0" and any movement beyond into the bowden will automatically be handled by the next bowden move.</li>
-    <li>With Gate Sensor: This is achieved by homing to specific point. Note that the homing point is considered "point 0".</li>
-  </ul>
+**With Encoder:** This is achieved using the encoder by advancing filament until if is measured. It it doesn't see filament it will try `encoder_load_retries` times (default 2). If still no filament it will report the error. The speed of this initial movement is controlled by `gear_short_move_speed`.  Note that the encoder sensor is considered "point 0" and any movement beyond into the bowden will automatically be handled by the next bowden move.<br>
+**With Gate Sensor:** This is achieved by homing to specific point. Note that the homing point is considered "point 0".
 
 #### 3. Bowden Tube Loading:
 The MMU will then load the filament through the bowden in a fast movement. The speed is controlled by `gear_from_spool_speed` and `gear_from_buffer_speed` depending on whether Happy Hare believes it is pulling filament from the spool or from the buffer. It is advantageous to pull more slowly from the spool to overcome the higher friction. Once a full unload has occurred and deposited filament in the buffer the higher speed `gear_speed_from_buffer` can be used to reduce loading times. The length of the bowden move is determined by the calibrated value `mmu_calibration_bowden_length` that is persisted in `mmu_vars.cfg`
