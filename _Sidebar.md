@@ -133,3 +133,4 @@
 [**13. FAQ**](FAQ)<br>
 [**14. MCU Board Reference**](Mcu-Reference) :new:<br>
 [**15. Change Log**](Change-Log)<br>
+[**16. Happy Hare Discord](https://discord.gg/aABQUjkZPk)

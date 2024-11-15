@@ -10,7 +10,7 @@
 
 # Documentation and walkthrough of successful MMU setup
 
-This wiki serves to provide a logical set of instructions and FAQs to help you delve into the wonderful world of multi-material printing controlled by the extensive software suite Happy Hare.
+This wiki serves to provide a logical set of instructions and FAQs to help you delve into the wonderful world of MMU (Multi Material Unit) printing controlled by the extensive software suite Happy Hare.  Note that the term "MMU" is fairly common and understood in the community but the Amored rutle folks would call it an AFC (Automated Filament Changer). I prefer MMU and although it is also the name of the Prusa product, it is used generically in this wiki to cover all types of changer.
 
 <br>
 
@@ -21,13 +21,13 @@ There are a few recurring problems with simple solutions and we've tried our bes
 [Happy Hare Troubleshooting Guide](Troubleshooting-and-Common-Issues)
 
 ### Discord
-If you don't find the answer there, ERCF users can speak up on the [Voron ERCF Discord channel](https://discord.com/channels/460117602945990666/909743915475816458). There is a lot going on there, so be patient and persistent. Don't give up and someone will certainly help you.  Another avenue is the [ERCF V2 Github Discussion Board,](https://github.com/Enraged-Rabbit-Community/ERCF_v2/discussions), however, it is not as well monitored as the Discord channel.  
+Also you should join the [dedicated Happy Hare discord](https://discord.gg/aABQUjkZPk) where there are dedicated channels for each MMU type as well as some of the main extensions.
 
-Tradrack users can use the [TrackRack General Discord](https://discord.com/channels/641407187004030997/1073213131964293180) or give the ERCF channel a try - many folks there have multiple MMU's!
+ERCF users can speak up on the [Voron ERCF Discord channel](https://discord.com/channels/460117602945990666/909743915475816458). There is a lot going on there, so be patient and persistent. Don't give up and someone will certainly help you.  Similarly Tradrack users can use the [TrackRack General Discord](https://discord.com/channels/641407187004030997/1073213131964293180).
 
 When you ask for help you should be prepared to provide the following information:
-- klippy.log
-- mmu.log
+- `klippy.log`
+- `mmu.log`
 - version information (copy output from `MMU_STATUS SHOWCONFIG=1`)
 - specific error text (copy and paste out of Mainsail would work)
 - a detailed description of what has occurred
@@ -48,10 +48,14 @@ Alternatively you can use the [Github Issue](https://github.com/moggieuk/Happy-H
 The Wiki is organized to be as organic in nature as possible. The goal is to help you go step by step from having the MMU hardware built to a fully functioning setup. Since Happy Hare is intended to work for multiple MMUs, please consult the respective resources for hardware sourcing, building, and printed parts requirements.  
 
 Supported MMU types:
-* ERCF v1.1
-* ERCF v2.0
+* ERCF v1.1, v2.0
 * Tradrack v1.0
-* Generic MMU (basic setup files only)
+* Box Turtle v1.0
+* Night Owl v1.0
+* Angry Beaver v1.0
+* 3MS v1.0
+* Generic type-A (with selector) and type-B (with individual drive steppers) - basic setup files only
+More are in development
 
 ### General overview of the configuration and setup process:
 
@@ -60,13 +64,13 @@ flowchart LR
  subgraph subB["Installation Steps"]
     direction RL
         B1[/"MMU Type"/]
-        B2[/"Filament Blocks"/]
+        B2[/"(MMU Options)"/]
         B3[/"Number of Gates"/]
         B4[/"Control Board Type"/]
         B5[/"Control Board Address"/]
-        B6[/"Selector Touch Operation"/]
+        B6[/"(Selector Touch Operation)"/]
         B7[/"LED Options"/]
-        B8[/"Servo Options"/]
+        B8[/"(Servo Options)"/]
         B9[/"Clog Detection"/]
         B10[/"Tool Gate Mapping"/]
         B11[/"Finalization"/]
