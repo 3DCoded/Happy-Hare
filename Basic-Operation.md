@@ -89,19 +89,15 @@ Firstly MMU pulls a short length of filament from the gate to the start of the b
 #### 3. Bowden Tube Loading:
 The MMU will then load the filament through the bowden in a fast movement. The speed is controlled by `gear_from_spool_speed` and `gear_from_buffer_speed` depending on whether Happy Hare believes it is pulling filament from the spool or from the buffer. It is advantageous to pull more slowly from the spool to overcome the higher friction. Once a full unload has occurred and deposited filament in the buffer the higher speed `gear_speed_from_buffer` can be used to reduce loading times. The length of the bowden move is determined by the calibrated value `mmu_calibration_bowden_length` that is persisted in `mmu_vars.cfg`
 
-  <ul>
-    <li>With Encoder: Sometimes when loading from spool a sudden jerk can occur causing the gear stepper to loose steps. There is an advanced option to allow for correction if this occurs (or other slippage) if an encoder is fitted. If `bowden_apply_correction` is enabled and the encoder measures a difference greater than `bowden_allowable_load_delta`, additional moves will be made correct the error (see comments in `mmu_parameters.cfg` for more details)</li>
-  </ul>
+- **With Encoder:** Sometimes when loading from spool a sudden jerk can occur causing the gear stepper to loose steps. There is an advanced option to allow for correction if this occurs (or other slippage) if an encoder is fitted. If `bowden_apply_correction` is enabled and the encoder measures a difference greater than `bowden_allowable_load_delta`, additional moves will be made correct the error (see comments in `mmu_parameters.cfg` for more details)
 
 #### 4. Toolhead Homing:
 Before loading to the nozzle it is usually necessary to establish a known home position close or in the toolhead. For this point is then a known distance to the nozzle. There are four main methods of achieving this and the choice depends on the setting of `extruder_homing_endstop` and associated parameters.
-  <ul>
-    <li>4a. `collision` - Detects the collision with the extruder gear by creeping towards the extruder while monitoring encoder movement (obviously requires encoder and can cause filament grinding)
-    <li>4a. `mmu_gear_touch` - Use touch detection when the gear stepper hits the extruder (requires careful stallguard callibration)
-    <li>4a. `extruder` - If you have a "filament entry" endstop configured this will delicately home filament to this sensor before moving `toolhead_entry_to_extruder` to snug the filament to the extruder gears
-    <li>4a. `none` - Don't attempt to home. Only possibiliy if lacking all sensor options but also automatically employed by Happy Hare if a toolhead sensor is available. In this case the fast bowden similar move the required calibrated distance
-    <li>4b. Toolhead Homing: MMU will home the end of the filament to the toolhead sensor up to a maximum distance of `toolhead_homing_max`. Since the toolhead sensor is inside the extruder the transition moves detailed below will be employed.</li>
-  <ul>
+- **4a. `collision`** - Detects the collision with the extruder gear by creeping towards the extruder while monitoring encoder movement (obviously requires encoder and can cause filament grinding)
+- **4a. `mmu_gear_touch`** - Use touch detection when the gear stepper hits the extruder (requires careful stallguard callibration)
+- **4a. `extruder`** - If you have a "filament entry" endstop configured this will delicately home filament to this sensor before moving `toolhead_entry_to_extruder` to snug the filament to the extruder gears
+- **4a. `none`** - Don't attempt to home. Only possibiliy if lacking all sensor options but also automatically employed by Happy Hare if a toolhead sensor is available. In this case the fast bowden similar move the required calibrated distance
+- **4b. Toolhead Homing:** MMU will home the end of the filament to the toolhead sensor up to a maximum distance of `toolhead_homing_max`. Since the toolhead sensor is inside the extruder the transition moves detailed below will be employed.</li>
 Of the various methods, having a toolhead sensor positioned past the extruder gears and letting Happy Hare opt out of the need to home to the extruder is the most accurate and reliable.
 
 <br>
@@ -148,17 +144,13 @@ The "visual log" (set at level 2) above shows individual steps of a typical unlo
 Starting with filament loaded and sitting in the gate for tool 6
 
 #### 2. Tip Forming:
-  <ul>
-    <li>Standalone: Happy Hare contains a tip forming routine that mimics that found in PrusaSlicer / SuperSlicer. If you every unload out of a print or by explicitly configuring Happy Hare, the standalone routine will be called. The pressure advance is turned off and reset after the tip forming move automatically.  In addition you can increase the extruder stepper motor current for often-fast set of movements to avoid skipping steps. Motor current % increase is controlled with `extruder_form_tip_current`. For even more force you can also elect to synchronize the gear motor with the extruder for this step by setting `sync_form_tip`.</li>
-    <li>Slicer: In a print tip forming may be done but your slicer (in fact that is assumed unless you explicitly configure otherwise) and you will not see this step. If you are astute you may wonder how Happy Hare knows where the filament is left in the toolhead by the slicer.  The simple answer is that it doesn't and, although it can handle an unknown starting position, the unload process can be streamlined by setting `slicer_tip_park_pos` parameter to the distance from the nozzle to match your slicer. Note that if you are printing with synchronized gear and extruder steppers the slicer (`sync_to_extruder` and `sync_gear_current`) will also perform the tip forming move with synchronized steppers.</li>
-  </ul>
+- **Standalone:** Happy Hare contains a tip forming routine that mimics that found in PrusaSlicer / SuperSlicer. If you every unload out of a print or by explicitly configuring Happy Hare, the standalone routine will be called. The pressure advance is turned off and reset after the tip forming move automatically.  In addition you can increase the extruder stepper motor current for often-fast set of movements to avoid skipping steps. Motor current % increase is controlled with `extruder_form_tip_current`. For even more force you can also elect to synchronize the gear motor with the extruder for this step by setting `sync_form_tip`.
+- **Slicer:** In a print tip forming may be done but your slicer (in fact that is assumed unless you explicitly configure otherwise) and you will not see this step. If you are astute you may wonder how Happy Hare knows where the filament is left in the toolhead by the slicer.  The simple answer is that it doesn't and, although it can handle an unknown starting position, the unload process can be streamlined by setting `slicer_tip_park_pos` parameter to the distance from the nozzle to match your slicer. Note that if you are printing with synchronized gear and extruder steppers the slicer (`sync_to_extruder` and `sync_gear_current`) will also perform the tip forming move with synchronized steppers.
 
 #### 3-5. Unloading Toolhead:
 There are various methods by which the toolhead will be unloaded. Happy Hare will choice the optimum method based on available sensors and will use synchronize or extruder-only stepper movements as necessary.
-  <ul>
-    <li>If an `extruder` (entry) sensor is present, filament will be reverse homed to this sensor before the fast bowden unload. This is the best method for unload and why this sensor is recommended.
-    <li>Otherwise if a `toolhead` sensor is present, filament will be revered homed to this before moving a fixed additional distance to exit the extruder.
-  </ul>
+- If an `extruder` (entry) sensor is present, filament will be reverse homed to this sensor before the fast bowden unload. This is the best method for unload and why this sensor is recommended.
+- Otherwise if a `toolhead` sensor is present, filament will be revered homed to this before moving a fixed additional distance to exit the extruder.
 
 #### 6. Bowden tube Unloading:
 The filament is now extracted quickly through the bowden by the calibrated length. Generally the speed is controlled by `gear_from_buffer_speed` but can be reduced to a slower speed `gear_homing_speed` or incremental moves of `gear_short_move_speed` in cases of recovery or if Happy Hare is unsure of filament position after manual intervention.
@@ -188,11 +180,9 @@ Filament movement speeds and accelaration for all operations are detailed in the
 
 There is a lot that can go wrong with an MMU and initial setup can be frustrating. It is really important to tackle one problem at a time. Never move on and think the problem will go away - that is very unlikely. You have all the tools you need to diagnose issues:
 
-<ul>
-<li>This wiki. Read it all. I recommend a first pass all the way through to understand the scope and then methodically as you setup your MMU. Make sure you understand conceptually what Happy Hare is trying to do.
-<li>`mmu.log`.  This, by default, will log at the DEBUG (2) level which will provide addition infomation not displayed on the console. Review it when strange things happen.
-<li>`MMU_TEST_CONFIG log_level=2`. This can be a useful tool. Running this on startup will temporarily turn the console verbosity level to `DEBUG`. This will provide a richer running commentary of issues you might encounter. Similarly you can `MMU_TEST_CONFIG file_log_level=3` to add `TRACE` level logging to `mmu.log` for even more detail about operation.
-<li>Check slicer settings. Happy Hare has only limited visibility into what the slicer is doing - if it, for example, ejects filament from the extruder when Happy Hare expects the filament to still be in the extruder, it will result in an error. Understand this interaction.
-</ul>
+- This wiki. Read it all. I recommend a first pass all the way through to understand the scope and then methodically as you setup your MMU. Make sure you understand conceptually what Happy Hare is trying to do.
+- `mmu.log`.  This, by default, will log at the DEBUG (2) level which will provide addition infomation not displayed on the console. Review it when strange things happen.
+- `MMU_TEST_CONFIG log_level=2`. This can be a useful tool. Running this on startup will temporarily turn the console verbosity level to `DEBUG`. This will provide a richer running commentary of issues you might encounter. Similarly you can `MMU_TEST_CONFIG file_log_level=3` to add `TRACE` level logging to `mmu.log` for even more detail about operation.
+- Check slicer settings. Happy Hare has only limited visibility into what the slicer is doing - if it, for example, ejects filament from the extruder when Happy Hare expects the filament to still be in the extruder, it will result in an error. Understand this interaction.
 
 Good luck!
