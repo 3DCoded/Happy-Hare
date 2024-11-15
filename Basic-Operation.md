@@ -100,9 +100,7 @@ The "visual log" (enabled with `log_visual:1`) above shows individual steps of a
     <li>4a. "none" - Don't attempt to home. Only possibiliy if lacking all sensor options but also automatically employed by Happy Hare if a toolhead sensor is available. In this case the fast bowden similar move the required calibrated distance
     <li>4b. Toolhead Homing: MMU will home the end of the filament to the toolhead sensor up to a maximum distance of 'toolhead_homing_max'. Since the toolhead sensor is inside the extruder the transition moves detailed below will be employed.</li>
   <ul>
-
-> [!NOTE]  
-> Of the various methods, having a toolhead sensor positioned past the extruder gears and letting Happy Hare opt out of the need to home to the extruder is the most accurate and reliable.
+Of the various methods, having a toolhead sensor positioned past the extruder gears and letting Happy Hare opt out of the need to home to the extruder is the most accurate and reliable.
 
 **4-5. Transition Move:** Depending on the toolhead homing option employed the transition move can occur during the homing (toolhead sensor) or in the subsequent move, but in both cases it aims to reliably get the filament through the extruder gears using synchronized gear and extruder stepper movement.
 
