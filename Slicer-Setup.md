@@ -205,7 +205,8 @@ Slicers have some quirks and don't make it very straighforward to turn off as yo
 The first place is a setting like this on the `printer settings` tab.  This disables the primary retract/extrude oscillation that is the bulk of the tip forming and cooling movement.
 
 > [!NOTE]  
-> Whilst it is logical to zero all these settings out, Older versions of Prusaslicer (v2.5 - v2.7) at least has bug that will insert illegal `G1 F0` commands if all the fields are exactly 0.  For these versions only use a tiny value for the cooling tube length, like "0.01" instead. **With PrusaSlicer v2.8 and above please use a value of 0.**
+> Whilst it is logical to zero all these settings out, Older versions of Prusaslicer (v2.5 - v2.7) at least has bug that will insert illegal `G1 F0` commands if all the fields are exactly 0.  For these versions only use a tiny value for the cooling tube length, like "0.01" instead.<br>
+> **With PrusaSlicer v2.8 and above please use a value of exactly 0.**
 
 <img src="Slicer-Setup/printer_settings.png" width="500" alt="Slicer printer settings">
 
