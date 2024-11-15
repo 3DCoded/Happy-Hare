@@ -110,10 +110,6 @@ Filament is moved the remaining distance to the meltzone. This distance is defin
 > - If an encoder is available sanity checks checking for movement will monitor the loading process and issue errors (and lock the MMU) if things aren't copacetic.
 > - It is expected that encoder readings will differ slightly from the actual stepper movement. This is due to a number of valid reasons including calibration accuracy and slippage. It should not be a cause for concern unless the difference is excessive (>5% of movement)
 
-#### Speeds:
-
-Filament movement speeds and accelaration for all operations are detailed in the `mmu_parameters.cfg` file and will likely need to be tuned to your specific hardware.
-
 <br>
 
 ### Understanding the unload sequence:
@@ -157,7 +153,9 @@ The filament is now extracted quickly through the bowden by the calibrated lengt
 #### 7. Parking in Gate:
 The final move prior to optionally instructing the MMU to release grip on the filament is to park the filament in the correct position in the gate, so, in the case of a type-A design with linear selector the filament does not impeed gate selection. The filament is now unloaded.
 
-#### Unload Speeds:
+<br>
+
+### Load and Unload Speeds:
 
 Filament movement speeds and accelaration for all operations are detailed in the `mmu_parameters.cfg` file and will likely need to be tuned to your specific hardware.
 
