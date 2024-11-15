@@ -77,7 +77,7 @@ Loaded 780.3mm of filament (encoder measured 783.6mm)
 
 The "visual log" (enabled with `log_visual:1`) above shows individual steps of a typical loading process for MMU with optional toolhead sensor. Here is an explanation of steps with `mmu_parameter.cfg` options:
 
-1\. Starting with filament unloaded and sitting in the gate for tool 2
+**1\. Starting with filament unloaded and sitting in the gate for tool 2**
 
 **2\. Loading the Gate:** Firstly MMU pulls a short length of filament from the gate to the start of the bowden tube.
 
@@ -102,7 +102,7 @@ The "visual log" (enabled with `log_visual:1`) above shows individual steps of a
   <ul>
 Of the various methods, having a toolhead sensor positioned past the extruder gears and letting Happy Hare opt out of the need to home to the extruder is the most accurate and reliable.
 
-**4-5. Transition Move:** Depending on the toolhead homing option employed the transition move can occur during the homing (toolhead sensor) or in the subsequent move, but in both cases it aims to reliably get the filament through the extruder gears using synchronized gear and extruder stepper movement.
+**4-5\. Transition Move:** Depending on the toolhead homing option employed the transition move can occur during the homing (toolhead sensor) or in the subsequent move, but in both cases it aims to reliably get the filament through the extruder gears using synchronized gear and extruder stepper movement.
 
 **5\. Final Move to Nozzle:** Filament is moved the remaining distance to the meltzone. This distance is defined by `toolhead_extruder_to_nozzle` (extruder homing) or `toolhead_sensor_to_nozzle` (toolhead sensor homing) reduced by any filament remaining in nozzle (explained later in guide). This movement will always be with synced gear and extruder steppers.
 
