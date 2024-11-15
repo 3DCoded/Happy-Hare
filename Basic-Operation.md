@@ -83,7 +83,7 @@ Starting with filament unloaded and sitting in the gate for tool 2
 #### 2. Loading the Gate:
 Firstly MMU pulls a short length of filament from the gate to the start of the bowden tube.
 
-- **With Encoder:** This is achieved using the encoder by advancing filament until if is measured. It it doesn't see filament it will try `encoder_load_retries` times (default 2). If still no filament it will report the error. The speed of this initial movement is controlled by `gear_short_move_speed`.  Note that the encoder sensor is considered "point 0" and any movement beyond into the bowden will automatically be handled by the next bowden move.<br>
+- **With Encoder:** This is achieved using the encoder by advancing filament until if is measured. It it doesn't see filament it will try `encoder_load_retries` times (default 2). If still no filament it will report the error. The speed of this initial movement is controlled by `gear_short_move_speed`.  Note that the encoder sensor is considered "point 0" and any movement beyond into the bowden will automatically be handled by the next bowden move.
 - **With Gate Sensor:** This is achieved by homing to specific point. Note that the homing point is considered "point 0".
 
 #### 3. Bowden Tube Loading:
@@ -93,11 +93,11 @@ The MMU will then load the filament through the bowden in a fast movement. The s
 
 #### 4. Toolhead Homing:
 Before loading to the nozzle it is usually necessary to establish a known home position close or in the toolhead. For this point is then a known distance to the nozzle. There are four main methods of achieving this and the choice depends on the setting of `extruder_homing_endstop` and associated parameters.
-- **4a. `collision`** - Detects the collision with the extruder gear by creeping towards the extruder while monitoring encoder movement (obviously requires encoder and can cause filament grinding)
-- **4a. `mmu_gear_touch`** - Use touch detection when the gear stepper hits the extruder (requires careful stallguard callibration)
-- **4a. `extruder`** - If you have a "filament entry" endstop configured this will delicately home filament to this sensor before moving `toolhead_entry_to_extruder` to snug the filament to the extruder gears
-- **4a. `none`** - Don't attempt to home. Only possibiliy if lacking all sensor options but also automatically employed by Happy Hare if a toolhead sensor is available. In this case the fast bowden similar move the required calibrated distance
-- **4b. Toolhead Homing:** MMU will home the end of the filament to the toolhead sensor up to a maximum distance of `toolhead_homing_max`. Since the toolhead sensor is inside the extruder the transition moves detailed below will be employed.</li>
+- **4a.** `collision` - Detects the collision with the extruder gear by creeping towards the extruder while monitoring encoder movement (obviously requires encoder and can cause filament grinding)
+- **4a.** `mmu_gear_touch` - Use touch detection when the gear stepper hits the extruder (requires careful stallguard callibration)
+- **4a.** `extruder` - If you have a "filament entry" endstop configured this will delicately home filament to this sensor before moving `toolhead_entry_to_extruder` to snug the filament to the extruder gears
+- **4a.** `none` - Don't attempt to home. Only possibiliy if lacking all sensor options but also automatically employed by Happy Hare if a toolhead sensor is available. In this case the fast bowden similar move the required calibrated distance
+- **4b. Toolhead Homing:** MMU will home the end of the filament to the toolhead sensor up to a maximum distance of `toolhead_homing_max`. Since the toolhead sensor is inside the extruder the transition moves detailed below will be employed.
 Of the various methods, having a toolhead sensor positioned past the extruder gears and letting Happy Hare opt out of the need to home to the extruder is the most accurate and reliable.
 
 #### 4-5. Transition Move:
