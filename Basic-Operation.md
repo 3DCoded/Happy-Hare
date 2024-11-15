@@ -77,10 +77,10 @@ Loaded 780.3mm of filament (encoder measured 783.6mm)
 
 The "visual log" (enabled with `log_visual:1`) above shows individual steps of a typical loading process for MMU with optional toolhead sensor. Here is an explanation of steps with `mmu_parameter.cfg` options:
 
-#### 1\. Filament unload:
+#### 1. Filament unload:
 Starting with filament unloaded and sitting in the gate for tool 2
 
-#### 2\. Loading the Gate:
+#### 2. Loading the Gate:
 Firstly MMU pulls a short length of filament from the gate to the start of the bowden tube.
 
   <ul>
@@ -88,14 +88,15 @@ Firstly MMU pulls a short length of filament from the gate to the start of the b
     <li>With Gate Sensor: This is achieved by homing to specific point. Note that the homing point is considered "point 0".</li>
   </ul>
 
-#### 3\. Bowden Tube Loading:
+#### 3. Bowden Tube Loading:
 The MMU will then load the filament through the bowden in a fast movement. The speed is controlled by `gear_from_spool_speed` and `gear_from_buffer_speed` depending on whether Happy Hare believes it is pulling filament from the spool or from the buffer. It is advantageous to pull more slowly from the spool to overcome the higher friction. Once a full unload has occurred and deposited filament in the buffer the higher speed 'gear_speed_from_buffer' can be used to reduce loading times. The length of the bowden move is determined by the calibrated value `mmu_calibration_bowden_length` that is persisted in `mmu_vars.cfg`
 
   <ul>
     <li>With Encoder: Sometimes when loading from spool a sudden jerk can occur causing the gear stepper to loose steps. There is an advanced option to allow for correction if this occurs (or other slippage) if an encoder is fitted. If `bowden_apply_correction` is enabled and the encoder measures a difference greater than `bowden_allowable_load_delta', additional moves will be made correct the error (see comments in `mmu_parameters.cfg` for more details)</li>
   </ul>
 
-**4\. Toolhead Homing:** Before loading to the nozzle it is usually necessary to establish a known home position close or in the toolhead. For this point is then a known distance to the nozzle. There are four main methods of achieving this and the choice depends on the setting of `extruder_homing_endstop` and associated parameters.
+#### 4. Toolhead Homing:
+Before loading to the nozzle it is usually necessary to establish a known home position close or in the toolhead. For this point is then a known distance to the nozzle. There are four main methods of achieving this and the choice depends on the setting of `extruder_homing_endstop` and associated parameters.
   <ul>
     <li>4a. "collision" - Detects the collision with the extruder gear by creeping towards the extruder while monitoring encoder movement (obviously requires encoder and can cause filament grinding)
     <li>4a. "mmu_gear_touch" - Use touch detection when the gear stepper hits the extruder (requires careful stallguard callibration)
@@ -107,9 +108,11 @@ Of the various methods, having a toolhead sensor positioned past the extruder ge
 
 <br>
 
-**4-5\. Transition Move:** Depending on the toolhead homing option employed the transition move can occur during the homing (toolhead sensor) or in the subsequent move, but in both cases it aims to reliably get the filament through the extruder gears using synchronized gear and extruder stepper movement.
+#### 4-5. Transition Move:
+Depending on the toolhead homing option employed the transition move can occur during the homing (toolhead sensor) or in the subsequent move, but in both cases it aims to reliably get the filament through the extruder gears using synchronized gear and extruder stepper movement.
 
-**5\. Final Move to Nozzle:** Filament is moved the remaining distance to the meltzone. This distance is defined by `toolhead_extruder_to_nozzle` (extruder homing) or `toolhead_sensor_to_nozzle` (toolhead sensor homing) reduced by any filament remaining in nozzle (explained later in guide). This movement will always be with synced gear and extruder steppers.
+#### 5. Final Move to Nozzle:
+Filament is moved the remaining distance to the meltzone. This distance is defined by `toolhead_extruder_to_nozzle` (extruder homing) or `toolhead_sensor_to_nozzle` (toolhead sensor homing) reduced by any filament remaining in nozzle (explained later in guide). This movement will always be with synced gear and extruder steppers.
 
 > [!NOTE]  
 > - If an encoder is available sanity checks checking for movement will monitor the loading process and issue errors (and lock the MMU) if things aren't copacetic.
@@ -143,24 +146,27 @@ Unloaded 781.8mm of filament (encoder measured 784.7mm)
 <br>
 The "visual log" (set at level 2) above shows individual steps of a typical unloading process for MMU with optional toolhead sensor. Here is an explanation of steps with `mmu_parameter.cfg` options:
 
-1\. Starting with filament loaded and sitting in the gate for tool 6
+#### 1. Filament loaded:
+Starting with filament loaded and sitting in the gate for tool 6
 
-**2\. Tip Forming:**
-
+#### 2. Tip Forming:
   <ul>
     <li>Standalone: Happy Hare contains a tip forming routine that mimics that found in PrusaSlicer / SuperSlicer. If you every unload out of a print or by explicitly configuring Happy Hare, the standalone routine will be called. The pressure advance is turned off and reset after the tip forming move automatically.  In addition you can increase the extruder stepper motor current for often-fast set of movements to avoid skipping steps. Motor current % increase is controlled with `extruder_form_tip_current`. For even more force you can also elect to synchronize the gear motor with the extruder for this step by setting `sync_form_tip`.</li>
     <li>Slicer: In a print tip forming may be done but your slicer (in fact that is assumed unless you explicitly configure otherwise) and you will not see this step. If you are astute you may wonder how Happy Hare knows where the filament is left in the toolhead by the slicer.  The simple answer is that it doesn't and, although it can handle an unknown starting position, the unload process can be streamlined by setting `slicer_tip_park_pos` parameter to the distance from the nozzle to match your slicer. Note that if you are printing with synchronized gear and extruder steppers the slicer ('sync_to_extruder' and 'sync_gear_current') will also perform the tip forming move with synchronized steppers.</li>
   </ul>
 
-**3-5\. Unloading Toolhead:** There are various methods by which the toolhead will be unloaded. Happy Hare will choice the optimum method based on available sensors and will use synchronize or extruder-only stepper movements as necessary.
+#### 3-5. Unloading Toolhead:
+There are various methods by which the toolhead will be unloaded. Happy Hare will choice the optimum method based on available sensors and will use synchronize or extruder-only stepper movements as necessary.
   <ul>
     <li>If an `extruder` (entry) sensor is present, filament will be reverse homed to this sensor before the fast bowden unload. This is the best method for unload and why this sensor is recommended.
     <li>Otherwise if a `toolhead` sensor is present, filament will be revered homed to this before moving a fixed additional distance to exit the extruder.
   </ul>
 
-**6\. Bowden tube Unloading:** The filament is now extracted quickly through the bowden by the calibrated length. Generally the speed is controlled by `gear_from_buffer_speed` but can be reduced to a slower speed `gear_homing_speed` or incremental moves of `gear_short_move_speed` in cases of recovery or if Happy Hare is unsure of filament position after manual intervention.
+#### 6. Bowden tube Unloading:
+The filament is now extracted quickly through the bowden by the calibrated length. Generally the speed is controlled by `gear_from_buffer_speed` but can be reduced to a slower speed `gear_homing_speed` or incremental moves of `gear_short_move_speed` in cases of recovery or if Happy Hare is unsure of filament position after manual intervention.
 
-**7\. Parking in Gate:** The final move prior to optionally instructing the MMU to release grip on the filament is to park the filament in the correct position in the gate, so, in the case of a type-A design with linear selector the filament does not impeed gate selection. The filament is now unloaded.
+#### 7. Parking in Gate:
+The final move prior to optionally instructing the MMU to release grip on the filament is to park the filament in the correct position in the gate, so, in the case of a type-A design with linear selector the filament does not impeed gate selection. The filament is now unloaded.
 
 > [!NOTE]  
 > When the state of the MMU is unknown, Happy Hare will perform other movements and look at its sensors to try to ascertain filament location. This may modify the above sequence and result in the omission of the fast bowden move for unloads.
