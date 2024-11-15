@@ -100,8 +100,6 @@ Before loading to the nozzle it is usually necessary to establish a known home p
 - **4b. Toolhead Homing:** MMU will home the end of the filament to the toolhead sensor up to a maximum distance of `toolhead_homing_max`. Since the toolhead sensor is inside the extruder the transition moves detailed below will be employed.</li>
 Of the various methods, having a toolhead sensor positioned past the extruder gears and letting Happy Hare opt out of the need to home to the extruder is the most accurate and reliable.
 
-<br>
-
 #### 4-5. Transition Move:
 Depending on the toolhead homing option employed the transition move can occur during the homing (toolhead sensor) or in the subsequent move, but in both cases it aims to reliably get the filament through the extruder gears using synchronized gear and extruder stepper movement.
 
@@ -116,6 +114,7 @@ Filament is moved the remaining distance to the meltzone. This distance is defin
 
 Filament movement speeds and accelaration for all operations are detailed in the `mmu_parameters.cfg` file and will likely need to be tuned to your specific hardware.
 
+<br>
 
 ### Understanding the unload sequence:
 
@@ -163,8 +162,8 @@ The final move prior to optionally instructing the MMU to release grip on the fi
 Filament movement speeds and accelaration for all operations are detailed in the `mmu_parameters.cfg` file and will likely need to be tuned to your specific hardware.
 
 > [!NOTE]  
-> When the state of the MMU is unknown, Happy Hare will perform other movements and look at its sensors to try to ascertain filament location. This may modify the above sequence and result in the omission of the fast bowden move for unloads.<br>
-> Happy Hare allows for easy experimentation of loading/unloading sequence or even during a print using the `MMU_TEST_CONFIG` command to dynamically adjust parameters or simply by enabling/disabling sensors. E.g you can use this feature to tune `toolhead_extruder_to_nozzle` or perhaps obserbing the different in load quality by turning on/off the toolhead sensor.
+> - When the state of the MMU is unknown, Happy Hare will perform other movements and look at its sensors to try to ascertain filament location. This may modify the above sequence and result in the omission of the fast bowden move for unloads.<br>
+> - Happy Hare allows for easy experimentation of loading/unloading sequence or even during a print using the `MMU_TEST_CONFIG` command to dynamically adjust parameters or simply by enabling/disabling sensors. E.g you can use this feature to tune `toolhead_extruder_to_nozzle` or perhaps obserbing the different in load quality by turning on/off the toolhead sensor.
 
 <br>
 
