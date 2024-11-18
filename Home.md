@@ -1,4 +1,4 @@
-# Happy Hare Wiki
+# <img src="resources/wiki.svg">Happy Hare Wiki
 <p align="center"><img src="resources/happy_hare_logo.jpg" alt='Happy Hare' width='30%'></p>
 
 #### Page Sections:
