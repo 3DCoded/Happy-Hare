@@ -335,8 +335,6 @@ variable_pre_load_position      : -1, -1, 0
 <hr>
 
 ### v3.0.0
-(NOT ANNOUNCED/RELEASED YET - just so you know what is in the pipeline...)
-
 **Major code refactor for modular design**
 
 **The BIG news - Finally support for Type-B MMU's**
@@ -412,6 +410,14 @@ T8   285  204   89  192  320  320   -    -    -
     - Improved bowden calibration methods. Will now use automatically use the best method possible but all methods have been revamped
     - New startup calibration state message that reports any lapses of calibration
 - Incorporated many PR's. Sorry, I lost count, but thanks to all of you who submitted, not matter how big or small
+
+
+### v3.0.1
+**Production Release for v3**
+- Support for 3DChameleon added thanks to user @u3dreal !!
+- Fixed some bugs introduced during the code refactor
+- Dare I say **fixed the majority of Timer Too Close (TTC) errors**.  Really... results are very promising.
+
 
 <br>
 
