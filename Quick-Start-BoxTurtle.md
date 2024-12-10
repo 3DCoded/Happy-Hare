@@ -4,7 +4,6 @@
 
 - [Cloning Happy Hare Repo](#---cloning-happy-hare-repo)
 - [Running Installer](#---running-installer)
-- [Selecting your Configuration](#)
 
 This quickstart guide explains how to install Happy Hare firmware for use with the [BoxTurtle](https://github.com/ArmoredTurtle/BoxTurtle) modular multimaterial system. 
 
