@@ -1,6 +1,6 @@
 Got problems? Here are some "carrots of wisdom" and common solutions.  
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Klipper Issues
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Install Issues
 
 ### <img src="Troubleshooting-and-Common-Issues/carrot.png" alt="" width="24"> Upgrading to v3.0 from v2.6 or earlier
 If you get this error:
@@ -21,6 +21,8 @@ git checkout main
 This first updates to v2.7.1 and then reverts back to the main release and completes the upgrade to v3.0
 
 <br>
+
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Klipper Issues
 
 ### <img src="Troubleshooting-and-Common-Issues/carrot.png" alt="" width="24"> Timer too close
 This error typically occurs when the host sends a message to the MCU, scheduling an event at a time that is in the past. Reasons High system load of the host High disk activity of the host Swapping due to low free memory Disk errors / dying SD card Unstable voltage Other hardware hogging the USB bus or other system resources Running in a Virtual Machine USB, UART or CANBUS wiring faults leading to extremely delayed messages ElectroMagnetic Interference (EMI) affecting proper signal. Remember that the host (rPi) only needs to experience a tiny period of high load so watching an average load meter doesn't tell the whole story. Also, as we drive additional functionality on our printers we are naturally getting closer to this annoying error condition. That said it can be avoided with these tips:
