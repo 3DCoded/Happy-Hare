@@ -3,13 +3,10 @@
 **Page Sections:**
 
 - [Cloning Happy Hare Repo](#---cloning-happy-hare-repo)
-- [Running Beta Installer](#---running-beta-installer)
+- [Running Installer](#---running-installer)
 - [Selecting your Configuration](#)
 
 This quickstart guide explains how to install Happy Hare firmware for use with the [BoxTurtle](https://github.com/ArmoredTurtle/BoxTurtle) modular multimaterial system. 
-
-> [!IMPORTANT]
-> BoxTurtle support is currently in a beta state.
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Terminology
 
@@ -45,13 +42,13 @@ git clone https://github.com/moggieuk/Happy-Hare.git
 
 Happy Hare is now downloaded onto your Raspberry Pi. The next step is installing it.
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Running Beta Installer
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Running Installer
 
 To install Happy Hare firmware, run the following commands on your Raspberry Pi through SSH:
 
 ```
 cd ~/Happy-Hare
-./install.sh -i -b v3beta
+./install.sh -i
 ```
 
 This will open the interactive installer. You will be presented by several options, each of which are explained below.
