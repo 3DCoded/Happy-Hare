@@ -19,6 +19,23 @@ git checkout main
 ```
 This first updates to v2.7.1 and then reverts back to the main release and completes the upgrade to v3.0
 
+### <img src="Troubleshooting-and-Common-Issues/carrot.png" alt="" width="24"> Possible v3.0 upgrade problems
+If you get this error after upgrade to v3.0:
+> `Internal error during connect: No module named 'extras.mmu'`
+
+Then it means you simply need to run:
+```yml
+cd ~/Happy-Hare
+./install.sh
+```
+
+If you see this error
+> `Unable to open config file /home/pi/printer_data/config/mmu/optional/mmu_ercf_compat.cfg`
+This is because this optional "compatibility" module has been deprecated and removed from the install. To fix the error simple remove this line from your `printer.cfg` configuration:
+```yml
+[include mmu/optional/mmu_ercf_compat.cfg]
+```
+
 <br>
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Klipper Issues
