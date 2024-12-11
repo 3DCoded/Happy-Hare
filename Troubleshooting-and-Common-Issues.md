@@ -7,12 +7,12 @@ If you get this error:
 > `Please upgrade to v2.7.0 or later before attempting v3.0 upgrade`
 
 Then you must complete a 2-step upgrade process:
-```
+```yml
 cd ~/Happy-Hare
 ./install.sh -b tags/v2.7.1
 ```
 Once this upgrade is complete, run:
-```
+```yml
 cd ~/Happy-Hare
 git checkout main
 ./install.sh
