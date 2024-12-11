@@ -31,6 +31,7 @@ cd ~/Happy-Hare
 
 If you see this error
 > `Unable to open config file /home/pi/printer_data/config/mmu/optional/mmu_ercf_compat.cfg`
+
 This is because this optional "compatibility" module has been deprecated and removed from the install. To fix the error simple remove this line from your `printer.cfg` configuration:
 ```yml
 [include mmu/optional/mmu_ercf_compat.cfg]
