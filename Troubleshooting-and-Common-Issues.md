@@ -19,7 +19,7 @@ git checkout main
 ```
 This first updates to v2.7.1 and then reverts back to the main release and completes the upgrade to v3.0
 
-### <img src="Troubleshooting-and-Common-Issues/carrot.png" alt="" width="24"> Possible v3.0 upgrade problems
+### <img src="Troubleshooting-and-Common-Issues/carrot.png" alt="" width="24"> No "extras.mmu" error
 If you get this error after upgrade to v3.0:
 > `Internal error during connect: No module named 'extras.mmu'`
 
@@ -29,6 +29,7 @@ cd ~/Happy-Hare
 ./install.sh
 ```
 
+### <img src="Troubleshooting-and-Common-Issues/carrot.png" alt="" width="24"> Cannot open "mmu_ercf_compat.cfg" error
 If you see this error
 > `Unable to open config file /home/pi/printer_data/config/mmu/optional/mmu_ercf_compat.cfg`
 
