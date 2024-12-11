@@ -38,6 +38,16 @@ This is because this optional "compatibility" module has been deprecated and rem
 [include mmu/optional/mmu_ercf_compat.cfg]
 ```
 
+### <img src="Troubleshooting-and-Common-Issues/carrot.png" alt="" width="24"> "mmu_machine" not valid error
+If you see this startup error:
+> `Section 'mmu_machine' is not a valid config section`
+
+This can happen if you perform a hard reset to update your klipper install. This will remove all added modules including Happy Hare. To restore simple run:
+```yml
+cd ~/Happy-Hare
+./install.sh
+```
+
 <br>
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Klipper Issues
