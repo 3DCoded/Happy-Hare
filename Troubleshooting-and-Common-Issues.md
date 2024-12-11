@@ -4,9 +4,8 @@ Got problems? Here are some "carrots of wisdom" and common solutions.
 
 ### <img src="Troubleshooting-and-Common-Issues/carrot.png" alt="" width="24"> Upgrading to v3.0 from v2.6 or earlier
 If you get this error:
-```
-Please upgrade to v2.7.0 or later before attempting v3.0 upgrade
-```
+> `Please upgrade to v2.7.0 or later before attempting v3.0 upgrade`
+
 Then you must complete a 2-step upgrade process:
 ```
 cd ~/Happy-Hare
