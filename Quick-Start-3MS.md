@@ -22,10 +22,10 @@ ssh pi@klippy.local
 Now, clone the Happy Hare repository onto your Raspberry Pi:
 
 > [!IMPORTANT]
-> K1 series users (K1, K1C, K1 Max, etc.) should instead run:
-> ```
-> git clone https://github.com/moggieuk/Happy-Hare.git /usr/data/happy-hare
-> ```
+> K1 series users (K1, K1C, K1 Max, etc.) should instead perform the following steps (thank you **@trandanhlam**!):
+> 1. Upgrade Klipper using [this guide]( https://github.com/K1-Klipper/installer_script_k1_and_max
+) .
+> 2. Upgrade Klipper Firmware using [this guide](https://github.com/cryoz/k1_mcu_flasher) and [this firmware](https://github.com/pellcorp/klipper/tree/master/fw/K1) .
 
 ```
 cd ~
