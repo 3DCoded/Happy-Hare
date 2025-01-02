@@ -1,9 +1,12 @@
 #### Page Sections:
 - [Supported Placeholders](#---supported-placeholders)
   - [!referenced_tools!](#placeholder-referenced_tools)
+  - [!filament_names!](#placeholder-filament_names)
+  - [!materials!](#placeholder-materials)
   - [!colors!](#placeholder-colors)
   - [!temperatures!](#placeholder-temperatures)
   - [!purge_volumes!](#placeholder-purge_volumes)
+
 
 Happy Hare now provides a moonraker gcode preprocesser that parses uploaded gcode files prior to storage and can insert useful metadata that can then be passed into your `START_PRINT` macro to provide useful functionality.
 
@@ -76,6 +79,12 @@ gcode:
 > * Any tool that was loaded prior to calling `MMU_CHECK_GATE` will be automatically restored at the end of the checking procedure.<br>
 > * In the gcode snippet above we also pass in the slicer placeholder {initial_tool} because single color prints have no tool changes and thus `REFERENCED_TOOLS` (which counts `Tx` commands) will be empty. This code will ensure that `REFERENCED_TOOLS` will always contain the initial tool.
 
+### Placeholder: `!filament_names!`
+This placeholder is substituted with a comma separated list of filament names assigned to each extruder in the slicer. This is just informational and is persisted in the `slicer_tool_map` by the default Happy Hare startup macros.
+
+### Placeholder: `!materials!`
+This placeholder is substituted with a comma separated list of filament material type assigned to each extruder in the slicer. This is just informational and is persisted in the `slicer_tool_map` by the default Happy Hare startup macros. Note that is is used is the optional filament automap feature.
+
 ### Placeholder: `!colors!`
 This placeholder is substituted with a comma separated list of extruder colors as defined in the slicer. This could be used to setup the filament colors in the MMU gate map.  Although the colors defined in the slicer have nothing to do with the actual filaments loaded in the MMU it might be convenient (if not using spoolman) to transfer over the colors from the slicer gcode file, light LEDs on the MMU and perform a visual match on the whether the correct filaments are loaded
 
@@ -113,7 +122,8 @@ Note that this is used as an example only because the default [recommended](Slic
 > Filament colors are available in RGB float from to directly drive other leds by accessing the printer variables: `printer.mmu.gate_color_rbg` (filament colors in the gate map) and `printer.mmu.slicer_color_rgb` (filament colors defined by slicer).  These contains a list of truples contains the 0-1.0 value for each of the R,G,B pixels.  See [led doc](Led-Support) for more details.
 
 ### Placeholder: `!temperatures!`
-This placeholder is substituted with a comma separated list of filament temperatures as defined in the slicer.
+This placeholder is substituted with a comma separated list of filament temperatures as defined in the slicer. It is used by Happy Hare to set the default temperature for that filament if a filament is changed out of a print (in print the slicer is in full control).
 
 ### Placeholder: `!purge_volumes!`
-This placeholder is substituted with a comma separated list of NxN purge volumes (see [Purging](Tip-Forming-and-Purging)) used when changing from tool X to tool Y
+This placeholder is substituted with a comma separated list of NxN purge volumes (see [Purging](Tip-Forming-and-Purging)) used when changing from tool X to tool Y.
+
