@@ -6,6 +6,7 @@
   - [!colors!](#placeholder-colors)
   - [!temperatures!](#placeholder-temperatures)
   - [!purge_volumes!](#placeholder-purge_volumes)
+- [Next Toolhead Position](#---next-toolhead-position)
 
 
 Happy Hare now provides a moonraker gcode preprocesser that parses uploaded gcode files prior to storage and can insert useful metadata that can then be passed into your `START_PRINT` macro to provide useful functionality.
@@ -127,3 +128,15 @@ This placeholder is substituted with a comma separated list of filament temperat
 ### Placeholder: `!purge_volumes!`
 This placeholder is substituted with a comma separated list of NxN purge volumes (see [Purging](Tip-Forming-and-Purging)) used when changing from tool X to tool Y.
 
+<br>
+
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Next Toolhead Position
+Happy Hare responds to the normal `Tx` toolhead selection commands but, in order to support advanced toolhead positioning after a toolchange, it can replace these references to a form:
+```
+MMU_CHANGE_TOOL TOOL=2 NEXT_POS="26.456,156.4363" ; T2
+```
+This option is controlled by this option in the `[mmu_server]` section of `moonraker.conf`:
+```ini
+enable_toolchange_next_pos: True
+```
+Note that it is harmless to always enable this option but it must be enabled to allow the ["return to next position"](Toolchange-Movement#---return-to-print-movement) functionality after a toolchange.
