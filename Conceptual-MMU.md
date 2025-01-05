@@ -116,7 +116,7 @@ CONS: More costly build
 <br>
 
 Complete set of default Happy Hare endstops and filament sensors:<br>
-<img src="Conceptual-MMU/filament_sensors.png" width="500" alt="Filament Sensors"> <img src="Conceptual-MMU/endstops.png" width="300" alt="Endstops">
+<img src="Conceptual-MMU/filament_sensors.png" width="250" alt="Filament Sensors"> <img src="Conceptual-MMU/endstops.png" width="250" alt="Endstops"> <img src="Conceptual-MMU/mmu_sensors.png" width="200" alt="MMU Sensors">
 
 <br>
 
