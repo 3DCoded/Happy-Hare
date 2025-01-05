@@ -5,7 +5,7 @@
   - [Type B](#---type-b) - Multiple Drivers with Filament Combiner
   - [Type C](#---type-c) - Multiple Drivers with Selector
 - [Supported Sensors](#---supported-sensors)
-  - [My Ideal MMU](#----virtual-sensors)
+  - [My Ideal MMU](#----ideal-design)
 #
 <br>
 
@@ -98,11 +98,11 @@ CONS: More costly build
 
 Pre-gate sensors sit just prior to the entry of the filament into the MMU. They could physically be part of the MMU or mounted to the filament buffer system.
 
-**Primary Functions:***
+**Primary Functions:**
 1. Filament autoload - If the MMU is idle and a filament is inserted and triggers a pre-gate sensor, the selector will move to that gate and preload the filament and correctly park in the gate
 2. Filament detection - Regardless of whether the MMU is busy or not the insertion or removal of the filament will update the `gate_status` in the gate-map (and adjust status LEDs if fitted) thus retaining knowledge of the availability in that particular gate
 
-**Secondary Functions:***
+**Secondary Functions:**
 3. Runout detection - If "EndlessSpool" is enabled, this sensor can also act as a early runout sensor and automatically unload, map tool to an alternative gate, re-load and continue printing. This is a highly reliable from of continuous printing because the potentially kinked end of the filament is kept out of the MMU mechanisms.
 
 #### Post-Gear Sensor
@@ -110,11 +110,11 @@ Named: **`mmu_post_gear_X`**
 
 This sensor sits after the MMU gear stepper on each of the gates. Only pertinent to type-B designs.
 
-**Primary Functions:***
+**Primary Functions:**
 1. Acts as a per-gate homing point instead of using a shared `gate` sensor
 2. Used as a pre-loading homing (stop) point. Techically on type-B MMU designs this would allow pre-loading of filament in a gate even if filament is fully loaded in another. However as of v3.0.2 this is not implemented.
 
-**Secondary Function:***
+**Secondary Function:**
 2. Runout detection
 
 #### Gate Sensor
@@ -167,28 +167,27 @@ Complete set of default Happy Hare endstops and filament sensors:<br>
 
 <br>
 
-> [!NOTE]  
-> I've often been asked what would be the ultimate MMU design... Actually I've never been asked but I'm going to share with you anyway! :-)
->
-> I think the ultimate design has not been built yet. It think it will be a "type-C" design:
-> - powerful stepper for each filament gear likely direct drive or low gearing so that the filament can be driven at high speed
-> - very simple linear selector with small <10mm movement for each gate to allow for an arbitary number of gates (no servo)
-> - integrated `sync-feedback sensor` (with both cpmpression and tension feedback) built into the selector
-> - `gate sensor` built into the selector (maybe part of the sync-feedback design)
-> - `passive` filament buffer/rewinder system for simplicity
->   - shared rfid / QR-code reader used when loading spool (no need for one per gate)
->   - spool enclosure air fed from heated printer chamber
-> - `pre-gate` sensors on each gate for automated loading
-> - a bypass gate without gear stepper for the "+1" spool and traditional manual usage
-> - a toolhead designed for MMU printing for easy unclogging with integrated `toolhead sensor` and filament cutter (disclaimer: I know of a great design is comming very soon)
->   - ideally an `extruder sensor` but only important for use with bypass gate
-> - indicator LEDs on each gate with +1 LED for status
-> - no post-gear sensors, no encoder, no combiner/splitter, no active dc-rewinder, no servo
->
-> Such a design would blend the inherent benefits of a type-B design without given up the ability to have a large number of gates and eliminates some of the proven hurdles of current designs: selector servos, filament slippage when not active, encoder malfunctions, dc-motor rewinder control complexity, one way bearing malfunction, etc., 
->
-> If my setup I'd use blobifer instead of purge/wipe tower with dynamically controlled purge volumes. All filament useage would be synced with spoolman and I'd have pre-print explanation of potential issues like insufficent filament.
->
-> When such an MMU is built, Happy Hare is already ready to support it!
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Ideal Design
 
+I've often been asked what would be the ultimate MMU design... Actually I've never been asked but I'm going to share with you anyway! :-)
 
+I think the ultimate design has not been built yet. It think it will be a "type-C" design:
+- powerful stepper for each filament gear likely direct drive or low gearing so that the filament can be driven at high speed
+- very simple linear selector with small <10mm movement for each gate to allow for an arbitary number of gates (no servo)
+- integrated `sync-feedback sensor` (with both cpmpression and tension feedback) built into the selector
+- `gate sensor` built into the selector (maybe part of the sync-feedback design)
+- `passive` filament buffer/rewinder system for simplicity
+  - shared rfid / QR-code reader used when loading spool (no need for one per gate)
+  - spool enclosure air fed from heated printer chamber
+- `pre-gate` sensors on each gate for automated loading
+- a bypass gate without gear stepper for the "+1" spool and traditional manual usage
+- a toolhead designed for MMU printing for easy unclogging with integrated `toolhead sensor` and filament cutter (disclaimer: I know of a great design is comming very soon)
+  - ideally an `extruder sensor` but only important for use with bypass gate
+- indicator LEDs on each gate with +1 LED for status
+- no post-gear sensors, no encoder, no combiner/splitter, no active dc-rewinder, no servo
+
+Such a design would blend the inherent benefits of a type-B design without given up the ability to have a large number of gates and eliminates some of the proven hurdles of current designs: selector servos, filament slippage when not active, encoder malfunctions, dc-motor rewinder control complexity, one way bearing malfunction, etc., 
+
+If my setup I'd use blobifer instead of purge/wipe tower with dynamically controlled purge volumes. All filament useage would be synced with spoolman and I'd have pre-print explanation of potential issues like insufficent filament.
+
+When such an MMU is built, Happy Hare is already ready to support it!
