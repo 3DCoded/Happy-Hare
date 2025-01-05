@@ -6,7 +6,11 @@
   - [Type C](#---type-c) - Multiple Drivers with Selector
 - [Supported Sensors](#---supported-sensors)
   - [My Ideal MMU](#---ideal-design)
-#
+
+<br>
+
+So what is an MMU and what features distinguish it's type and how does Happy Hare support all the different types?...
+
 <br>
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) MMU Naming Conventions
