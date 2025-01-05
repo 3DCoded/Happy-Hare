@@ -1,10 +1,10 @@
 #### Page Sections:
 - [Naming Conventions](#---mmu-naming-convention) - Single Driver with Filament Selector
-- [Supported Sensors](#---supported-sensors)
 - [Type A](#---type-a) - Single Driver with Selector
 - [Type B](#---type-b) - Multiple Drivers with Filament Combiner
 - [Type C](#---type-c) - Multiple Drivers with Selector
-  - [My Ideal MMU](#---type-c)
+- [Supported Sensors](#---supported-sensors)
+- [My Ideal MMU](#----virtual-sensors)
 
 <br>
 
@@ -36,6 +36,58 @@ For completeness a third type ("type-C") is defined that have both individual ge
 #### Combiner / Splitter
 Used interchangably this term refers to a device on type-B MMU's that multiplexes several bowdens into one which feed the toolhead. Technically `Combiner`is a more accurate term because many (commonly 4) filament paths are combined into one, but `Splitter` has seen wider adoption even though it isn't really splitting the path.
 
+
+<br>&nbsp;
+
+Basic MMU types supported by Happy Hare:
+
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Type-A
+
+<img src="Conceptual-MMU/typeA_mmu.png" width="800" alt="Type A MMU">
+
+This is the most common type of MMU used today. The advantage is that it allows for a large number of gates (available filaments) at a low cost because it leverages only two steppers and a servo to complete the selection process. Examples of this design include Voron ERCF and Annex Tradrack.
+
+### Examples:
+<img src="Conceptual-MMU/default_ercf.png" width="400" alt="Default ERCF Design">  <img src="Conceptual-MMU/default_tradrack.png" width="400" alt="Default Tradrack Design">
+
+Many of the sensors in this design are optional, each providing additional capabilities and benefits, but generally any design needs a way to establish a "homing point" near to the gate (for parking filament) and another near or in the extruder (for verification and acurate loading to the nozzle).
+
+Gate parking sensor options include: `gate` sensor, and/or `encoder`
+
+Extruder parking sensor options include: `toolhead` sensor and/or `extruder` sensor, and/or `sync-feedback compression` sensor and/or `encoder`
+
+PROS: Very cost effective for large number of gates, easy bypass functionality, scalable
+NEUTRAL: Requires high-quality build
+CONS: Requires higher degree of tuning/troubleshooting
+
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Type-B
+
+<img src="Conceptual-MMU/typeB_mmu.png" width="800" alt="Type B MMU">
+
+The type has been popularized by Bambu Labs and their AMS system although new open-source alternatives like Box Turtle, 3MS, Angry Beaver are very similar. Each gate has a dedicated stepper for loading and unloading and it leverages a filament "combiner/splitted" rather than a selector in the Type-A design.  The advantage is in effeciency. The disadvantage is that it is generally limited to a small number of gates. _[Technically these units can be cascaded to provide a greater number of gates but the control logic both firmware and electronics quickly become complex and costly]_
+
+Despite the lack of cost effectiveness, multiple type-B MMU's can be combined by routing the output of each into an additional "combiner/splitter". Happy Hare will ensure that different units are are not used at the same time and thus competing for the additional combiner that routes filament to the toolhead.
+
+PROS: Easily build, less tuning
+NEUTRAL: Complexity increases with >4 gates
+CONS: More costly build and generally limited to 4 gates per unit, harder bypass functionality
+
+### Examples:
+<img src="Conceptual-MMU/default_box_turtle.png" width="400" alt="Default Box Turtle Design">
+
+<br>&nbsp;
+
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Type-C
+
+<img src="Conceptual-MMU/typeC_mmu.png" width="800" alt="Type C MMU">
+
+The type is more theoretical at this point - I'm not aware of any designs that take this approach.  It would eliminate the gate limitations of a filament "combiner" to allow for large gate arrays and thus simplify the controlling logic. It still suffers from the need for a large number of stepper motors and control electronics.
+
+PROS: Less tuning, no limit to gates, easy bypass functionality
+NEUTRAL: Moderate build complexity
+CONS: More costly build
+
+<br>
 
 ### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Supported Sensors
 
@@ -111,55 +163,7 @@ For completeness, endstops are created on the selector. Typically there are two 
 Complete set of default Happy Hare endstops and filament sensors:<br>
 <img src="Conceptual-MMU/filament_sensors.jpg" width="350" alt="Filament Sensors"> <img src="Conceptual-MMU/endstops.jpg" width="350" alt="Endstops">
 
-<br>&nbsp;
-
-Basic MMU types supported by Happy Hare:
-
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Type-A
-
-<img src="Conceptual-MMU/typeA_mmu.png" width="800" alt="Type A MMU">
-
-This is the most common type of MMU used today. The advantage is that it allows for a large number of gates (available filaments) at a low cost because it leverages only two steppers and a servo to complete the selection process. Examples of this design include Voron ERCF and Annex Tradrack.
-
-### Examples:
-<img src="Conceptual-MMU/default_ercf.png" width="400" alt="Default ERCF Design">  <img src="Conceptual-MMU/default_tradrack.png" width="400" alt="Default Tradrack Design">
-
-Many of the sensors in this design are optional, each providing additional capabilities and benefits, but generally any design needs a way to establish a "homing point" near to the gate (for parking filament) and another near or in the extruder (for verification and acurate loading to the nozzle).
-
-Gate parking sensor options include: `gate` sensor, and/or `encoder`
-
-Extruder parking sensor options include: `toolhead` sensor and/or `extruder` sensor, and/or `sync-feedback compression` sensor and/or `encoder`
-
-PROS: Very cost effective for large number of gates, easy bypass functionality, scalable
-NEUTRAL: Requires high-quality build
-CONS: Requires higher degree of tuning/troubleshooting
-
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Type-B
-
-<img src="Conceptual-MMU/typeB_mmu.png" width="800" alt="Type B MMU">
-
-The type has been popularized by Bambu Labs and their AMS system although new open-source alternatives like Box Turtle, 3MS, Angry Beaver are very similar. Each gate has a dedicated stepper for loading and unloading and it leverages a filament "combiner/splitted" rather than a selector in the Type-A design.  The advantage is in effeciency. The disadvantage is that it is generally limited to a small number of gates. _[Technically these units can be cascaded to provide a greater number of gates but the control logic both firmware and electronics quickly become complex and costly]_
-
-Despite the lack of cost effectiveness, multiple type-B MMU's can be combined by routing the output of each into an additional "combiner/splitter". Happy Hare will ensure that different units are are not used at the same time and thus competing for the additional combiner that routes filament to the toolhead.
-
-PROS: Easily build, less tuning
-NEUTRAL: Complexity increases with >4 gates
-CONS: More costly build and generally limited to 4 gates per unit, harder bypass functionality
-
-### Examples:
-<img src="Conceptual-MMU/default_box_turtle.png" width="400" alt="Default Box Turtle Design">
-
-<br>&nbsp;
-
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Type-C
-
-<img src="Conceptual-MMU/typeC_mmu.png" width="800" alt="Type C MMU">
-
-The type is more theoretical at this point - I'm not aware of any designs that take this approach.  It would eliminate the gate limitations of a filament "combiner" to allow for large gate arrays and thus simplify the controlling logic. It still suffers from the need for a large number of stepper motors and control electronics.
-
-PROS: Less tuning, no limit to gates, easy bypass functionality
-NEUTRAL: Moderate build complexity
-CONS: More costly build
+<br>
 
 > [!NOTE]  
 > I've often been asked what would be the ultimate MMU design... Actually I've never been asked but I'm going to share with you anyway! :-)
