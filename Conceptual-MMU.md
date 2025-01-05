@@ -51,7 +51,7 @@ Basic MMU types supported by Happy Hare:
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Type-A
 
-<img src="Conceptual-MMU/typeA_mmu.png" width="800" alt="Type A MMU">
+<img src="Conceptual-MMU/typeA_mmu.png" alt="Type A MMU">
 
 This is the most common type of MMU used today. The advantage is that it allows for a large number of gates (available filaments) at a low cost because it leverages only two steppers and a servo to complete the selection process. Examples of this design include Voron ERCF and Annex Tradrack.
 
@@ -64,15 +64,15 @@ Gate parking sensor options include: `gate` sensor, and/or `encoder`
 
 Extruder parking sensor options include: `toolhead` sensor and/or `extruder` sensor, and/or `sync-feedback compression` sensor and/or `encoder`
 
-PROS: Very cost effective for large number of gates, easy bypass functionality, scalable<br>
-NEUTRAL: Requires high-quality build<br>
-CONS: Requires higher degree of tuning/troubleshooting
+**PROS:** Very cost effective for large number of gates, easy bypass functionality, scalable<br>
+**NEUTRAL:** Requires high-quality build<br>
+**CONS:** Requires higher degree of tuning/troubleshooting
 
 <br>
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Type-B
 
-<img src="Conceptual-MMU/typeB_mmu.png" width="800" alt="Type B MMU">
+<img src="Conceptual-MMU/typeB_mmu.png" alt="Type B MMU">
 
 The type has been popularized by Bambu Labs and their AMS system although new open-source alternatives like Box Turtle, 3MS, Angry Beaver are very similar. Each gate has a dedicated stepper for loading and unloading and it leverages a filament "combiner/splitted" rather than a selector in the Type-A design.  The advantage is in efficiency. The disadvantage is that it is generally limited to a small number of gates. _[Technically these units can be cascaded to provide a greater number of gates but the control logic both firmware and electronics quickly become complex and costly]_
 
@@ -81,21 +81,21 @@ Despite the lack of cost effectiveness, multiple type-B MMU's can be combined by
 ### Examples:
 <img src="Conceptual-MMU/default_box_turtle.png" width="400" alt="Default Box Turtle Design">
 
-PROS: Easily build, less tuning<br>
-NEUTRAL: Complexity increases with >4 gates<br>
-CONS: More costly build and generally limited to 4 gates per unit, harder bypass functionality
+**PROS:** Easily build, less tuning<br>
+**NEUTRAL:** Complexity increases with >4 gates<br>
+**CONS:** More costly build and generally limited to 4 gates per unit, harder bypass functionality
 
 <br>
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Type-C
 
-<img src="Conceptual-MMU/typeC_mmu.png" width="800" alt="Type C MMU">
+<img src="Conceptual-MMU/typeC_mmu.png" alt="Type C MMU">
 
 The type is more theoretical at this point - I'm not aware of any designs that take this approach.  It would eliminate the gate limitations of a filament "combiner" to allow for large gate arrays and thus simplify the controlling logic. It still suffers from the need for a large number of stepper motors and control electronics.
 
-PROS: Less tuning, no limit to gates, easy bypass functionality<br>
-NEUTRAL: Moderate build complexity<br>
-CONS: More costly build
+**PROS:** Less tuning, no limit to gates, easy bypass functionality<br>
+**NEUTRAL:** Moderate build complexity<br>
+**CONS:** More costly build
 
 <br>
 
