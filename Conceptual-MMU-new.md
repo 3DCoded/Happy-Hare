@@ -100,7 +100,7 @@ CONS: More costly build
   | Post-Gear Sensor<br>(`mmu_post_gear_X`) |
 This sensor sits after the MMU gear stepper on each of the gates. Only pertinent to type-B designs.<br>&nbsp;<br>**Primary Functions:**<br>1. Acts as a per-gate homing point instead of using a shared `gate` sensor<br>2. Used as a pre-loading homing (stop) point. Techically on type-B MMU designs this would allow pre-loading of filament in a gate even if filament is fully loaded in another. However as of v3.0.2 this is not implemented<br>&nbsp;<br>**Secondary Function:**<br>3. Runout detection |
 
-  | Gate Sensor<br>(`mmu_gate`) | (`mmu_gate_sensor`) | This is a filament switch fitted on the exit of the MMU. It is "shared" in that it is used to provide a homing point for all filaments close to the MMU after they have been selected and are being driven by the filament drive or gear stepper.<br>&nbsp;<br>**Primary Functions:**<br>The gate sensor can trigger filament runout logic and thus initiate the "EndlessSpool" feature which allows continous printing form an alternative set of spools which are automatically mapped to the original tool number. |
+  | Gate Sensor<br>(`mmu_gate`) | This is a filament switch fitted on the exit of the MMU. It is "shared" in that it is used to provide a homing point for all filaments close to the MMU after they have been selected and are being driven by the filament drive or gear stepper.<br>&nbsp;<br>**Primary Functions:**<br>The gate sensor can trigger filament runout logic and thus initiate the "EndlessSpool" feature which allows continous printing form an alternative set of spools which are automatically mapped to the original tool number. |
 
 **Primary Functions:** |
   | Sensor<br>(`mmu_post_gear_X`) | **Primary Functions:** |
