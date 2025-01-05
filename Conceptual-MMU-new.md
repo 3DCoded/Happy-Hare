@@ -21,6 +21,9 @@ Some MMU designs employ and active rewinding mechanism which additional electron
 
 **Note:** a confusing trend is to call the sensor device that detects compression and tension in the filament (for gear/extruder stepper syncing and endstop detection purposes) a "buffer".  Whilst many of these designs do extend the bowden length to contain around 10mm of additional filament there is no reason their design has to. Their purpose is not to buffer filament but rather detect compression and tension in the filament passing through the bowden tube. Thus Happy Hare refers to these devices in their many forms as a "sync-feedback sensors" even if their design can add 10mm of variability (aka "buffer") to the bowden length.
 
+#### Sync-Feedback (aka "buffer")
+Sensor that detects compression and tension in the filament (for gear/extruder stepper syncing and endstop detection purposes)
+
 #### Gate
 Sometimes referred to as a "Lane", this represents where the end of the filament sits in the MMU when it is unloaded from the printer. In Happy Hare it represents the physical filament position on a 0-based numbering system.
 
@@ -61,7 +64,7 @@ PROS: Very cost effective for large number of gates, easy bypass functionality, 
 NEUTRAL: Requires high-quality build<br>
 CONS: Requires higher degree of tuning/troubleshooting
 
-<br>&nbsp;
+<br>
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Type-B
 
@@ -96,81 +99,15 @@ CONS: More costly build
 
   | Sensor | Description |
   | ------ | ----------- |
-  | Pre-Gate Sensor<br>(`mmu_pre_gate_X`) | Located at the filament entry to the MMU.<br>&nbsp;<br>**Primary Functions:**<br>1. Filament autoload - If the MMU is idle and a filament is inserted and triggers a pre-gate sensor, the selector will move to that gate and preload the filament and correctly park in the gate<br>2. Filament detection - Regardless of whether the MMU is busy or not the insertion or removal of the filament will update the `gate_status` in the gate-map (and adjust status LEDs if fitted) thus retaining knowledge of the availability in that particular gate<br>&nbsp;<br>**Secondary Function:**<br>3. Runout detection - If "EndlessSpool" is enabled, this sensor can also act as a early runout sensor and automatically unload, map tool to an alternative gate, re-load and continue printing. This is a highly reliable from of continuous printing because the potentially kinked end of the filament is kept out of the MMU mechanisms |
-  | Post-Gear Sensor<br>(`mmu_post_gear_X`) | This sensor sits after the MMU gear stepper on each of the gates. Only pertinent to type-B designs.<br>&nbsp;<br>**Primary Functions:**<br>1. Acts as a per-gate homing point instead of using a shared `gate` sensor<br>2. Used as a pre-loading homing (stop) point. Techically on type-B MMU designs this would allow pre-loading of filament in a gate even if filament is fully loaded in another. _(However as of v3.0.2 this is not yet implemented)_<br>&nbsp;<br>**Secondary Function:**<br>3. Runout detection |
-  | Gate Sensor<br>(`mmu_gate`) | This is a filament switch fitted on the exit of the MMU. It is "shared" in that it is located after the aggregation point for type-B designs and thus every filament can activate.<br>&nbsp;<br>**Primary Functions:**<br>1. Gate homing point - For exact location of all filaments close to the MMU after they have been selected and are being driven by the filament drive or gear stepper.<br>&nbsp;<br>**Secondary Functions:**<br>2. Runout detection - The gate sensor can trigger filament runout logic and thus initiate the "EndlessSpool" feature which allows continous printing form an alternative set of spools which are automatically mapped to the original tool number. |
-  | Encoder<br>(`mmu_encoder`) | The encoder measures filament movement and provides feedback to Happy Hare primarily for validation purposes.  However for homing it is an alternative to, but can also be combined with, the Gate Sensor and used to establish a reference point at the MMU.  This reference point is used in the subsequent bowden move when loading or as a point from which to measure the parking position in the gate when unloading. Similar to the Gate Sensor, the encoder can trigger filament runout logic and thus initiate the "EndlessSpool" feature which allows continous printing form an alternative set of spools which are automatically mapped to the original tool number.  However it has additional functionality in that it can detect a "clog" condition and automatically pause the print and notify you.  The encoder is visable through the printer object `printer['mmu_encoder mmu_encoder']`<br>&nbsp;<br>**Primary Functions:**<br>1. Move validation<br>2. Clog detection - Detects lack of expected filament movement<br>3. Gate homing - Reference point for parking filament in the MMU gate<br>&nbsp;<br>**Secondary Functions:**<br>4. Runout detection<br>&nbsp;<br>Note that the ERCF design exclusively uses an encoder for both homing and validation. For the Tradrack design it is optional because a Gate Sensor provides the reference homing point and if added the encoder can provide more reliability and error recovery. |
-  | Extruder Entry Sensor<br>(`extruder`) | This optional filament sensor sits right before the extruder entrance and can be used in several ways:<br>&nbsp;<br>1. it can provide an accurate homing point at the end of the long bowden move prior to loading the extruder. Although it is outside of the extruder gears (and thus not as accurate as a toolhead sensor for this purpose) it is still a well defined point<br>2. in Happy Hare "bypass" mode it can be used to trigger automatic filament loading of just the extruder<br>3. when unloading the extruder it is used to reliably "reverse" home to ensure the filament is clear of the extruder before any fast bowden unload<br>4. can be used as an (emergency) runout sensor<br>5. it provides extra feedback that the filament is right at the extruder entrance when trying to recover the state e.g. after restart |
-  | Toolhead Sensor<br>(`toolhead`) | This optional sensor sits after the extruder entrance but before the start of the hotend. It is **probably the most useful of all sensors** for these reasons:<br>&nbsp;<br>1. it is the only unobtrusive and reliable way to determine whether filament is loaded in the extruder which aids reliability, especially on startup-up state restoration. It also can validate correctly setup tip-forming movement, and early warning of a stuck filament before excessive grinding occurs, etc.<br>2. the other really valuable use is as the most accurate homing endstop close to the nozzle. Happy Hare is based on precision loading and although it is fully supported not to have the sensor, having it means that you know the exact filament position after the inherently problematic transition through the extruder gears.<br>3. the final use case with Happy Hare is in the calibration of the toolhead.  It allows for automated determination of key dimension of the extruder but also properties such as residual filament left behind after a filament change. The latter allows for the exact control of purge volumes. |
-  | "Virtual" Sensors<br>(`mmu_gear_touch`)<br>(`collision`)<br>(`mmu_ext_touch`) | Not shown in the diagram there are several "virtual sensors" that are implemented by Happy Hare:<br>&nbsp;<br>- If TMC stallguard is available and configured Happy Hare can sense the filament hitting the extruder entrance.  This therefore acts as an extruder homing point. Endstop is named **mmu_gear_touch**.<br>- If an encoder is available, Happy Hare can sense the lack of movement as another way to sense hitting the extruder entrance, again acting as a reference homing point. Endstop is named **collision**.<br>- If TMC stallguard is configured on the extruder stepper **(yes, that's possible with Happy Hare)**, then an endstop named **mmu_ext_touch** is also available for advanced/experimental detection of collision with the nozzle! |
+  | Pre-Gate Sensor<br>`mmu_pre_gate_X` | Located at the filament entry to the MMU.<br>&nbsp;<br>**Primary Functions:**<br>1. Filament autoload - If the MMU is idle and a filament is inserted and triggers a pre-gate sensor, the selector will move to that gate and preload the filament and correctly park in the gate<br>2. Filament detection - Regardless of whether the MMU is busy or not the insertion or removal of the filament will update the `gate_status` in the gate-map (and adjust status LEDs if fitted) thus retaining knowledge of the availability in that particular gate<br>&nbsp;<br>**Secondary Function:**<br>3. Runout detection - If "EndlessSpool" is enabled, this sensor can also act as a early runout sensor and automatically unload, map tool to an alternative gate, re-load and continue printing. This is a highly reliable from of continuous printing because the potentially kinked end of the filament is kept out of the MMU mechanisms |
+  | Post-Gear Sensor<br>`mmu_post_gear_X` | This sensor sits after the MMU gear stepper on each of the gates. Only pertinent to type-B designs.<br>&nbsp;<br>**Primary Functions:**<br>1. Acts as a per-gate homing point instead of using a shared `gate` sensor<br>2. Used as a pre-loading homing (stop) point. Techically on type-B MMU designs this would allow pre-loading of filament in a gate even if filament is fully loaded in another. _(However as of v3.0.2 this is not yet implemented)_<br>&nbsp;<br>**Secondary Function:**<br>3. Runout detection |
+  | Gate Sensor<br>`mmu_gate` | This is a filament switch fitted on the exit of the MMU. It is "shared" in that it is located after the aggregation point for type-B designs and thus every filament can activate.<br>&nbsp;<br>**Primary Functions:**<br>1. Gate homing point - For exact location of all filaments close to the MMU after they have been selected and are being driven by the filament drive or gear stepper.<br>&nbsp;<br>**Secondary Functions:**<br>2. Runout detection - The gate sensor can trigger filament runout logic and thus initiate the "EndlessSpool" feature which allows continous printing form an alternative set of spools which are automatically mapped to the original tool number. |
+  | Encoder<br>`mmu_encoder` | The encoder measures filament movement and provides feedback to Happy Hare primarily for validation purposes.  However for homing it is an alternative to, but can also be combined with, the Gate Sensor and used to establish a reference point at the MMU.  This reference point is used in the subsequent bowden move when loading or as a point from which to measure the parking position in the gate when unloading. Similar to the Gate Sensor, the encoder can trigger filament runout logic and thus initiate the "EndlessSpool" feature which allows continous printing form an alternative set of spools which are automatically mapped to the original tool number.  However it has additional functionality in that it can detect a "clog" condition and automatically pause the print and notify you.  The encoder is visable through the printer object `printer['mmu_encoder mmu_encoder']`<br>&nbsp;<br>**Primary Functions:**<br>1. Move validation<br>2. Clog detection - Detects lack of expected filament movement<br>3. Gate homing - Reference point for parking filament in the MMU gate<br>&nbsp;<br>**Secondary Functions:**<br>4. Runout detection<br>&nbsp;<br>Note that the ERCF design exclusively uses an encoder for both homing and validation. For the Tradrack design it is optional because a Gate Sensor provides the reference homing point and if added the encoder can provide more reliability and error recovery. |
+  | Extruder Entry Sensor<br>`extruder` | This optional filament sensor sits right before the extruder entrance and can be used in several ways:<br>&nbsp;<br>1. it can provide an accurate homing point at the end of the long bowden move prior to loading the extruder. Although it is outside of the extruder gears (and thus not as accurate as a toolhead sensor for this purpose) it is still a well defined point<br>2. in Happy Hare "bypass" mode it can be used to trigger automatic filament loading of just the extruder<br>3. when unloading the extruder it is used to reliably "reverse" home to ensure the filament is clear of the extruder before any fast bowden unload<br>4. can be used as an (emergency) runout sensor<br>5. it provides extra feedback that the filament is right at the extruder entrance when trying to recover the state e.g. after restart |
+  | Toolhead Sensor<br>`toolhead` | This optional sensor sits after the extruder entrance but before the start of the hotend. It is **probably the most useful of all sensors** for these reasons:<br>&nbsp;<br>1. it is the only unobtrusive and reliable way to determine whether filament is loaded in the extruder which aids reliability, especially on startup-up state restoration. It also can validate correctly setup tip-forming movement, and early warning of a stuck filament before excessive grinding occurs, etc.<br>2. the other really valuable use is as the most accurate homing endstop close to the nozzle. Happy Hare is based on precision loading and although it is fully supported not to have the sensor, having it means that you know the exact filament position after the inherently problematic transition through the extruder gears.<br>3. the final use case with Happy Hare is in the calibration of the toolhead.  It allows for automated determination of key dimension of the extruder but also properties such as residual filament left behind after a filament change. The latter allows for the exact control of purge volumes. |
+  | "Virtual" Sensors<br>`mmu_gear_touch`<br>`collision`<br>`mmu_ext_touch` | Not shown in the diagram there are several "virtual sensors" that are implemented by Happy Hare:<br>&nbsp;<br>- If TMC stallguard is available and configured Happy Hare can sense the filament hitting the extruder entrance.  This therefore acts as an extruder homing point. Endstop is named **mmu_gear_touch**.<br>- If an encoder is available, Happy Hare can sense the lack of movement as another way to sense hitting the extruder entrance, again acting as a reference homing point. Endstop is named **collision**.<br>- If TMC stallguard is configured on the extruder stepper **(yes, that's possible with Happy Hare)**, then an endstop named **mmu_ext_touch** is also available for advanced/experimental detection of collision with the nozzle! |
   | Selector Sensors<br>`mmu_sel_home`<br>`mmu_sel_touch` | For completeness, endstops are created on the selector. Typically there are two that are relevant (although you can add your own):<br>1. The selector homing endstop is called **mmu_sel_home**. This is most typically a physical switch.<br>2. If TMC stallguard is configured an additional **mmu_sel_touch** is available.<br>- If configured in place of the default physical endstop this can be used for homing.<br>- The other important use is in selector movement and detecting blocked gates with subsequent automatic recovery.<br>- Finally this is useful in detecting the limit of selector travel during setup and calibration. |
 
-
-<!--
-#### Pre-Gate Sensor (named: `mmu_pre_gate`)
-
-Pre-gate sensors sit just prior to the entry of the filament into the MMU. They could physically be part of the MMU or mounted to the filament buffer system.
-
-**Primary Functions:**
-1. Filament autoload - If the MMU is idle and a filament is inserted and triggers a pre-gate sensor, the selector will move to that gate and preload the filament and correctly park in the gate
-2. Filament detection - Regardless of whether the MMU is busy or not the insertion or removal of the filament will update the `gate_status` in the gate-map (and adjust status LEDs if fitted) thus retaining knowledge of the availability in that particular gate
-
-**Secondary Functions:**
-3. Runout detection - If "EndlessSpool" is enabled, this sensor can also act as a early runout sensor and automatically unload, map tool to an alternative gate, re-load and continue printing. This is a highly reliable from of continuous printing because the potentially kinked end of the filament is kept out of the MMU mechanisms.
-
-#### Post-Gear Sensor
-Named: **`mmu_post_gear_X`**
-
-This sensor sits after the MMU gear stepper on each of the gates. Only pertinent to type-B designs.
-
-**Primary Functions:**
-1. Acts as a per-gate homing point instead of using a shared `gate` sensor
-2. Used as a pre-loading homing (stop) point. Techically on type-B MMU designs this would allow pre-loading of filament in a gate even if filament is fully loaded in another. However as of v3.0.2 this is not implemented.
-
-**Secondary Function:**
-2. Runout detection
-
-#### Gate Sensor
-Named: **`mmu_gate_sensor`**
-
-This is a filament switch fitted on the exit of the MMU. It is "shared" in that it is used to provide a homing point for all filaments close to the MMU after they have been selected and are being driven by the filament drive or gear stepper.  The gate sensor can trigger filament runout logic and thus initiate the "EndlessSpool" feature which allows continous printing form an alternative set of spools which are automatically mapped to the original tool number.  The gate filament runout sensor is named `mmu_gate`
-
-#### Encoder
-Named: **`mmu_encoder`**
-
-The encoder measures filament movement and provides feedback to Happy Hare primarily for validation purposes.  However for homing it is an alternative to, but can also be combined with, the Gate Sensor and used to establish a reference point at the MMU.  This reference point is used in the subsequent bowden move when loading or as a point from which to measure the parking position in the gate when unloading. Similar to the Gate Sensor, the encoder can trigger filament runout logic and thus initiate the "EndlessSpool" feature which allows continous printing form an alternative set of spools which are automatically mapped to the original tool number.  However it has additional functionality in that it can detect a "clog" condition and automatically pause the print and notify you.  The encoder is visable through the printer object `printer['mmu_encoder mmu_encoder']`
-
-The ERCF design exclusively uses an encoder for both homing and validation.  For the Tradrack design it is optional because a Gate Sensor provides the reference homing point and if added the encoder can provide more reliability and error recovery.
-
-#### Extruder (Entry) Sensor
-Named: **`extruder`**
-
-This optional filament sensor sits right before the extruder entrance and can be used in several ways:
-<br>&nbsp;<br>
-1. it can provide an accurate homing point at the end of the long bowden move prior to loading the extruder. Although it is outside of the extruder gears (and thus not as accurate as a toolhead sensor for this purpose) it is still a well defined point<br>
-2. in Happy Hare "bypass" mode it can be used to trigger automatic filament loading of just the extruder<br>
-3. when unloading the extruder it is used to reliably "reverse" home to ensure the filament is clear of the extruder before any fast bowden unload<br>
-4. can be used as an (emergency) runout sensor<br>
-5. it provides extra feedback that the filament is right at the extruder entrance when trying to recover the state e.g. after restart
-
-#### Toolhead Sensor
-Named: **`toolhead`**
-This optional sensor sits after the extruder entrance but before the start of the hotend. It is **probably the most useful of all sensors** for these reasons:
-<br>&nbsp;<br>
-1. it is the only unobtrusive and reliable way to determine whether filament is loaded in the extruder which aids reliability, especially on startup-up state restoration. It also can validate correctly setup tip-forming movement, and early warning of a stuck filament before excessive grinding occurs, etc.<br>
-2. the other really valuable use is as the most accurate homing endstop close to the nozzle. Happy Hare is based on precision loading and although it is fully supported not to have the sensor, having it means that you know the exact filament position after the inherently problematic transition through the extruder gears.<br>
-3. the final use case with Happy Hare is in the calibration of the toolhead.  It allows for automated determination of key dimension of the extruder but also properties such as residual filament left behind after a filament change.  The latter allows for the exact control of purge volumes
-
-#### "Virtual" Sensors
-Note shown in the diagram there are several "virtual sensors" that are implemented by Happy Hare:
-<br>&nbsp;<br>
-- If TMC stallguard is available and configured Happy Hare can sense the filament hitting the extruder entrance.  This therefore acts as an extruder homing point. Endstop is named **`mmu_gear_touch`**<br>
-- If an encoder is available, Happy Hare can sense the lack of movement as another way to sense hitting the extruder entrance, again acting as a reference homing point. Endstop is named **`collision`**<br>
-- If TMC stallguard is configured on the extruder stepper **(yes, that's possible with Happy Hare)**, then an endstop named **`mmu_ext_touch`** is also available for advanced/experimental detection of collision with the nozzle!
-
-<br>
-
--->
 <br>
 
 Complete set of default Happy Hare endstops and filament sensors:<br>
