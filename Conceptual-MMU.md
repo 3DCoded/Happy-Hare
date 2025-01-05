@@ -130,7 +130,7 @@ I've often been asked what would be the ultimate MMU design... Actually I've nev
 I think the ultimate design has not been built yet. It think it will be a "type-C" design:
 - Powerful stepper for each filament gear likely direct drive or low gearing so that the filament can be driven at high speed
 - Very simple linear selector with small <10mm movement for each gate to allow for an arbitary number of gates (no servo)
-- Integrated `sync-feedback sensor` (with both cpmpression and tension feedback) built into the selector
+- Integrated `sync-feedback sensor` (with both compression and tension feedback) built into the selector
 - `gate sensor` built into the selector (maybe part of the sync-feedback design)
 - `passive` filament buffer/rewinder system for simplicity
   - Shared rfid / QR-code reader used when loading spool (no need for one per gate)
@@ -142,7 +142,7 @@ I think the ultimate design has not been built yet. It think it will be a "type-
 - Indicator LEDs on each gate with +1 LED for status
 - No post-gear sensors, no encoder, no combiner/splitter, no active dc-rewinder, no servo
 
-Such a design would blend the inherent benefits of a type-B design without given up the ability to have a large number of gates and eliminates some of the proven hurdles of current designs: selector servos, filament slippage when not active, encoder malfunctions, dc-motor rewinder control complexity, one way bearing malfunction, etc., 
+Such a design would blend the inherent benefits of a type-B design without given up the ability to have a large number of gates and eliminates some of the proven hurdles of current designs: selector servos, filament slippage when not active, encoder malfunctions, dc-motor rewinder control complexity, etc.
 
 If my setup I'd use blobifer instead of purge/wipe tower with dynamically controlled purge volumes. All filament useage would be synced with spoolman and I'd have pre-print explanation of potential issues like insufficent filament.
 
