@@ -94,6 +94,10 @@ CONS: More costly build
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Supported Sensors
 
+  | Sensor | Description |
+  | ------ | ----------- |
+  | Pre-Gate Sensor<br>(named: `mmu_pre_gate`) | **Primary Functions:**<br>1. Filament autoload - If the MMU is idle and a filament is inserted and triggers a pre-gate sensor, the selector will move to that gate and preload the filament and correctly park in the gate<br>2. Filament detection - Regardless of whether the MMU is busy or not the insertion or removal of the filament will update the `gate_status` in the gate-map (and adjust status LEDs if fitted) thus retaining knowledge of the availability in that particular gate<br>&nbsp;<br>**Secondary Functions:**<br>3. Runout detection - If "EndlessSpool" is enabled, this sensor can also act as a early runout sensor and automatically unload, map tool to an alternative gate, re-load and continue printing. This is a highly reliable from of continuous printing because the potentially kinked end of the filament is kept out of the MMU mechanisms |
+
 #### Pre-Gate Sensor (named: `mmu_pre_gate`)
 
 Pre-gate sensors sit just prior to the entry of the filament into the MMU. They could physically be part of the MMU or mounted to the filament buffer system.
