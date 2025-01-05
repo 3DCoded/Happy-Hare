@@ -96,8 +96,16 @@ CONS: More costly build
 
   | Sensor | Description |
   | ------ | ----------- |
-  | Pre-Gate Sensor<br>(named: `mmu_pre_gate`) | **Primary Functions:**<br>1. Filament autoload - If the MMU is idle and a filament is inserted and triggers a pre-gate sensor, the selector will move to that gate and preload the filament and correctly park in the gate<br>2. Filament detection - Regardless of whether the MMU is busy or not the insertion or removal of the filament will update the `gate_status` in the gate-map (and adjust status LEDs if fitted) thus retaining knowledge of the availability in that particular gate<br>&nbsp;<br>**Secondary Functions:**<br>3. Runout detection - If "EndlessSpool" is enabled, this sensor can also act as a early runout sensor and automatically unload, map tool to an alternative gate, re-load and continue printing. This is a highly reliable from of continuous printing because the potentially kinked end of the filament is kept out of the MMU mechanisms |
+  | Pre-Gate Sensor<br>(`mmu_pre_gate_X`) | **Primary Functions:**<br>1. Filament autoload - If the MMU is idle and a filament is inserted and triggers a pre-gate sensor, the selector will move to that gate and preload the filament and correctly park in the gate<br>2. Filament detection - Regardless of whether the MMU is busy or not the insertion or removal of the filament will update the `gate_status` in the gate-map (and adjust status LEDs if fitted) thus retaining knowledge of the availability in that particular gate<br>&nbsp;<br>**Secondary Functions:**<br>3. Runout detection - If "EndlessSpool" is enabled, this sensor can also act as a early runout sensor and automatically unload, map tool to an alternative gate, re-load and continue printing. This is a highly reliable from of continuous printing because the potentially kinked end of the filament is kept out of the MMU mechanisms |
+  | Post-Gear Sensor<br>(`mmu_post_gear_X`) |
+This sensor sits after the MMU gear stepper on each of the gates. Only pertinent to type-B designs.<br>&nbsp;<br>**Primary Functions:**<br>1. Acts as a per-gate homing point instead of using a shared `gate` sensor<br>2. Used as a pre-loading homing (stop) point. Techically on type-B MMU designs this would allow pre-loading of filament in a gate even if filament is fully loaded in another. However as of v3.0.2 this is not implemented<br>&nbsp;<br>**Secondary Function:**<br>3. Runout detection |
 
+  | Gate Sensor<br>(`mmu_gate`) | (`mmu_gate_sensor`) | This is a filament switch fitted on the exit of the MMU. It is "shared" in that it is used to provide a homing point for all filaments close to the MMU after they have been selected and are being driven by the filament drive or gear stepper.<br>&nbsp;<br>**Primary Functions:**<br>The gate sensor can trigger filament runout logic and thus initiate the "EndlessSpool" feature which allows continous printing form an alternative set of spools which are automatically mapped to the original tool number. |
+
+**Primary Functions:** |
+  | Sensor<br>(`mmu_post_gear_X`) | **Primary Functions:** |
+
+<!--
 #### Pre-Gate Sensor (named: `mmu_pre_gate`)
 
 Pre-gate sensors sit just prior to the entry of the filament into the MMU. They could physically be part of the MMU or mounted to the filament buffer system.
@@ -125,6 +133,7 @@ This sensor sits after the MMU gear stepper on each of the gates. Only pertinent
 Named: **`mmu_gate_sensor`**
 
 This is a filament switch fitted on the exit of the MMU. It is "shared" in that it is used to provide a homing point for all filaments close to the MMU after they have been selected and are being driven by the filament drive or gear stepper.  The gate sensor can trigger filament runout logic and thus initiate the "EndlessSpool" feature which allows continous printing form an alternative set of spools which are automatically mapped to the original tool number.  The gate filament runout sensor is named `mmu_gate`
+-->
 
 #### Encoder
 Named: **`mmu_encoder`**
