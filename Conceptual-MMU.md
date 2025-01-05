@@ -51,9 +51,9 @@ Basic MMU types supported by Happy Hare:
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Type-A
 
-<img src="Conceptual-MMU/typeA_mmu.png" alt="Type A MMU">
-
 This is the most common type of MMU used today. The advantage is that it allows for a large number of gates (available filaments) at a low cost because it leverages only two steppers and a servo to complete the selection process. Examples of this design include Voron ERCF and Annex Tradrack.
+
+<img src="Conceptual-MMU/typeA_mmu.png" alt="Type A MMU">
 
 **PROS:** Very cost effective for large number of gates, easy bypass functionality, scalable<br>
 **NEUTRAL:** Requires high-quality build<br>
@@ -72,15 +72,15 @@ Extruder parking sensor options include: `toolhead` sensor and/or `extruder` sen
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Type-B
 
-<img src="Conceptual-MMU/typeB_mmu.png" alt="Type B MMU">
-
 The type has been popularized by Bambu Labs and their AMS system although new open-source alternatives like Box Turtle, 3MS, Angry Beaver are very similar. Each gate has a dedicated stepper for loading and unloading and it leverages a filament "combiner/splitted" rather than a selector in the Type-A design.  The advantage is in efficiency. The disadvantage is that it is generally limited to a small number of gates. _[Technically these units can be cascaded to provide a greater number of gates but the control logic both firmware and electronics quickly become complex and costly]_
 
-Despite the lack of cost effectiveness, multiple type-B MMU's can be combined by routing the output of each into an additional "combiner/splitter". Happy Hare will ensure that different units are not used at the same time and thus competing for the additional combiner that routes filament to the toolhead.
+<img src="Conceptual-MMU/typeB_mmu.png" alt="Type B MMU">
 
 **PROS:** Easily build, less tuning<br>
 **NEUTRAL:** Complexity increases with >4 gates<br>
 **CONS:** More costly build and generally limited to 4 gates per unit, harder bypass functionality
+
+Despite the lack of cost effectiveness, multiple type-B MMU's can be combined by routing the output of each into an additional "combiner/splitter". Happy Hare will ensure that different units are not used at the same time and thus competing for the additional combiner that routes filament to the toolhead.
 
 ### Examples:
 <img src="Conceptual-MMU/default_box_turtle.png" width="400" alt="Default Box Turtle Design">
@@ -89,9 +89,9 @@ Despite the lack of cost effectiveness, multiple type-B MMU's can be combined by
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Type-C
 
-<img src="Conceptual-MMU/typeC_mmu.png" alt="Type C MMU">
-
 The type is more theoretical at this point - I'm not aware of any designs that take this approach.  It would eliminate the gate limitations of a filament "combiner" to allow for large gate arrays and thus simplify the controlling logic. It still suffers from the need for a large number of stepper motors and control electronics.
+
+<img src="Conceptual-MMU/typeC_mmu.png" alt="Type C MMU">
 
 **PROS:** Less tuning, no limit to gates, easy bypass functionality<br>
 **NEUTRAL:** Moderate build complexity<br>
