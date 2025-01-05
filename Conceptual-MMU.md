@@ -75,7 +75,7 @@ Extruder parking sensor options include: `toolhead` sensor and/or `extruder` sen
 This type has been popularized by Bambu Labs and their AMS system although new open-source alternatives like Box Turtle, 3MS, Angry Beaver are very similar. Each gate has a dedicated stepper for loading and unloading and it leverages a filament "combiner/splitted" rather than a selector in the Type-A design.  The advantage is in efficiency. The disadvantage is that it is generally limited to a small number of gates.
 
 > [!NOTE]  
-> _[Technically these units can be cascaded to provide a greater number of gates but the control logic both firmware and electronics quickly become complex and costly]_
+> _Technically these units can be cascaded to provide a greater number of gates but the control logic both firmware and electronics quickly become complex and costly_
 
 <img src="Conceptual-MMU/typeB_mmu.png" alt="Type B MMU">
 
