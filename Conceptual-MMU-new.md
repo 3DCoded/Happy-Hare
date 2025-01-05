@@ -1,15 +1,15 @@
 #### Page Sections:
-- [Naming Conventions](#---mmu-naming-convention)
+- [Naming Conventions](#---mmu-naming-conventions)
 - [MMU Design Categories](#---type-a)
   - [Type A](#---type-a) - Single Driver with Selector
   - [Type B](#---type-b) - Multiple Drivers with Filament Combiner
   - [Type C](#---type-c) - Multiple Drivers with Selector
 - [Supported Sensors](#---supported-sensors)
-  - [My Ideal MMU](#----ideal-design)
+  - [My Ideal MMU](#---ideal-design)
 #
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) MMU Naming Convention
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) MMU Naming Conventions
 
 #### MMU
 Referring to "Multi-Material Unit", the term first coined by Prusa Research, this is used to refer collectively to the entire extension to a 3D printer for the purpose of changing filaments on a single extruder system. Other terms are also in use including `AFC` Automatic Filament Changer, `AMS` Automatic Material System or even `VVD` (BTT Versitility, Vibrance, Delivered). Well, maybe that last one won't sitck as a generic name!
