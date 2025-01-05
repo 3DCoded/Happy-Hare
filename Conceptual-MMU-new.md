@@ -1,14 +1,15 @@
 #### Page Sections:
-- [Naming Conventions](#---mmu-naming-convention) - Single Driver with Filament Selector
-- [Type A](#---type-a) - Single Driver with Selector
-- [Type B](#---type-b) - Multiple Drivers with Filament Combiner
-- [Type C](#---type-c) - Multiple Drivers with Selector
+- [Naming Conventions](#---mmu-naming-convention)
+- [MMU Design Categories](#---type-a)
+  - [Type A](#---type-a) - Single Driver with Selector
+  - [Type B](#---type-b) - Multiple Drivers with Filament Combiner
+  - [Type C](#---type-c) - Multiple Drivers with Selector
 - [Supported Sensors](#---supported-sensors)
-- [My Ideal MMU](#----virtual-sensors)
-
+  - [My Ideal MMU](#----virtual-sensors)
+#
 <br>
 
-### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) MMU Naming Convention
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) MMU Naming Convention
 
 #### MMU
 Referring to "Multi-Material Unit", the term first coined by Prusa Research, this is used to refer collectively to the entire extension to a 3D printer for the purpose of changing filaments on a single extruder system. Other terms are also in use including `AFC` Automatic Filament Changer, `AMS` Automatic Material System or even `VVD` (BTT Versitility, Vibrance, Delivered). Well, maybe that last one won't sitck as a generic name!
@@ -18,7 +19,7 @@ Many MMU designs employ a method to catch and manage the loose filament that has
 
 Some MMU designs employ and active rewinding mechanism which additional electronics and additional motors to control it and as such don't have or need filament buffers.
 
-**Note:** a confusing trend is to call the sensor device that detects compression and tension in the filament (for gear/extruder stepper syncing and endstop detection purposes) a "buffer".  Whilst many of these designs do extend the bowden length to contain around 10mm of additional filament there is no reason their design has to. Their purpose is not to buffer filament but rather detect compression and tension in the filament passing through the bowden tube. Thus Happy Hare refers to these devices in their many forms as a "sync-feedback sensors" even if their design can add 10mm of variability to the bowden length.
+**Note:** a confusing trend is to call the sensor device that detects compression and tension in the filament (for gear/extruder stepper syncing and endstop detection purposes) a "buffer".  Whilst many of these designs do extend the bowden length to contain around 10mm of additional filament there is no reason their design has to. Their purpose is not to buffer filament but rather detect compression and tension in the filament passing through the bowden tube. Thus Happy Hare refers to these devices in their many forms as a "sync-feedback sensors" even if their design can add 10mm of variability (aka "buffer") to the bowden length.
 
 #### Gate
 Sometimes referred to as a "Lane", this represents where the end of the filament sits in the MMU when it is unloaded from the printer. In Happy Hare it represents the physical filament position on a 0-based numbering system.
@@ -56,9 +57,11 @@ Gate parking sensor options include: `gate` sensor, and/or `encoder`
 
 Extruder parking sensor options include: `toolhead` sensor and/or `extruder` sensor, and/or `sync-feedback compression` sensor and/or `encoder`
 
-PROS: Very cost effective for large number of gates, easy bypass functionality, scalable
-NEUTRAL: Requires high-quality build
+PROS: Very cost effective for large number of gates, easy bypass functionality, scalable<br>
+NEUTRAL: Requires high-quality build<br>
 CONS: Requires higher degree of tuning/troubleshooting
+
+<br>&nbsp;
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Type-B
 
@@ -68,12 +71,12 @@ The type has been popularized by Bambu Labs and their AMS system although new op
 
 Despite the lack of cost effectiveness, multiple type-B MMU's can be combined by routing the output of each into an additional "combiner/splitter". Happy Hare will ensure that different units are are not used at the same time and thus competing for the additional combiner that routes filament to the toolhead.
 
-PROS: Easily build, less tuning
-NEUTRAL: Complexity increases with >4 gates
-CONS: More costly build and generally limited to 4 gates per unit, harder bypass functionality
-
 ### Examples:
 <img src="Conceptual-MMU/default_box_turtle.png" width="400" alt="Default Box Turtle Design">
+
+PROS: Easily build, less tuning<br>
+NEUTRAL: Complexity increases with >4 gates<br>
+CONS: More costly build and generally limited to 4 gates per unit, harder bypass functionality
 
 <br>&nbsp;
 
@@ -83,16 +86,15 @@ CONS: More costly build and generally limited to 4 gates per unit, harder bypass
 
 The type is more theoretical at this point - I'm not aware of any designs that take this approach.  It would eliminate the gate limitations of a filament "combiner" to allow for large gate arrays and thus simplify the controlling logic. It still suffers from the need for a large number of stepper motors and control electronics.
 
-PROS: Less tuning, no limit to gates, easy bypass functionality
-NEUTRAL: Moderate build complexity
+PROS: Less tuning, no limit to gates, easy bypass functionality<br>
+NEUTRAL: Moderate build complexity<br>
 CONS: More costly build
 
 <br>
 
-### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Supported Sensors
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Supported Sensors
 
-#### Pre-Gate Sensor
-Named: **`mmu_pre_gate`**
+#### Pre-Gate Sensor (named: `mmu_pre_gate`)
 
 Pre-gate sensors sit just prior to the entry of the filament into the MMU. They could physically be part of the MMU or mounted to the filament buffer system.
 
