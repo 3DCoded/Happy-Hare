@@ -55,6 +55,10 @@ Basic MMU types supported by Happy Hare:
 
 This is the most common type of MMU used today. The advantage is that it allows for a large number of gates (available filaments) at a low cost because it leverages only two steppers and a servo to complete the selection process. Examples of this design include Voron ERCF and Annex Tradrack.
 
+**PROS:** Very cost effective for large number of gates, easy bypass functionality, scalable<br>
+**NEUTRAL:** Requires high-quality build<br>
+**CONS:** Requires higher degree of tuning/troubleshooting
+
 ### Examples:
 <img src="Conceptual-MMU/default_ercf.png" width="400" alt="Default ERCF Design">  <img src="Conceptual-MMU/default_tradrack.png" width="400" alt="Default Tradrack Design">
 
@@ -63,10 +67,6 @@ Many of the sensors in this design are optional, each providing additional capab
 Gate parking sensor options include: `gate` sensor, and/or `encoder`
 
 Extruder parking sensor options include: `toolhead` sensor and/or `extruder` sensor, and/or `sync-feedback compression` sensor and/or `encoder`
-
-**PROS:** Very cost effective for large number of gates, easy bypass functionality, scalable<br>
-**NEUTRAL:** Requires high-quality build<br>
-**CONS:** Requires higher degree of tuning/troubleshooting
 
 <br>
 
@@ -78,12 +78,12 @@ The type has been popularized by Bambu Labs and their AMS system although new op
 
 Despite the lack of cost effectiveness, multiple type-B MMU's can be combined by routing the output of each into an additional "combiner/splitter". Happy Hare will ensure that different units are not used at the same time and thus competing for the additional combiner that routes filament to the toolhead.
 
-### Examples:
-<img src="Conceptual-MMU/default_box_turtle.png" width="400" alt="Default Box Turtle Design">
-
 **PROS:** Easily build, less tuning<br>
 **NEUTRAL:** Complexity increases with >4 gates<br>
 **CONS:** More costly build and generally limited to 4 gates per unit, harder bypass functionality
+
+### Examples:
+<img src="Conceptual-MMU/default_box_turtle.png" width="400" alt="Default Box Turtle Design">
 
 <br>
 
