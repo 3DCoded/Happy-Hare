@@ -64,9 +64,9 @@ This screen is accessed by the top right "Manage..." button when not in print (y
 Type A designs including ERCF and Tradrack:
 <p align="center"><img src="KlipperScreen/mmu_manage_linear.png" width="80%"></p>
 3D Chameleon, PicoMMU:
-<p align="center"><img src="KlipperScreen/mmu_manage_rotary.png" width="60%"></p>
+<p align="center"><img src="KlipperScreen/mmu_manage_rotary.png" width="50%"></p>
 Most other type-B designs including Box Turtle, Night Owl, 3MS, Angry Beaver:
-<p align="center"><img src="KlipperScreen/mmu_manage_virtual.png" width="60%"></p>
+<p align="center"><img src="KlipperScreen/mmu_manage_virtual.png" width="50%"></p>
 
 There is one very important button: `Recover State...`. Since Happy Hare is stateful and will refuse to do things if it doesn't think you should do them, you might need to correct it's state before continuing.
 
