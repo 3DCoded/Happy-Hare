@@ -59,9 +59,14 @@ Oh, the textual representation mirrors that you see in the Klipper console, but 
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) State Management & Recovery
 
-This screen is accessed by the top right "Manage..." button when not in print (you shouldn't be doing anything here while printing anyway).  Conceptually it is working in the physical space with the concept of Gate (and not Tool).  That distinction is important.   I think most functions are obvious, but the `Load Extruder` and `Unload Extruder` may be new to you.  These do exactly as there names suggest and are designed to help sort out the MMU when it is enraged and you need to do some manual operations.
+This screen is accessed by the top right "Manage..." button when not in print (you shouldn't be doing anything here while printing anyway). It is designed to help you manage you MMU after an error as occured and the MMU has paused. Most/all of the functions you might need are available and the exact panel contents depends on the capabilities/type of MMU. Conceptually it is working in the physical space with the concept of Gate (and not Tool). That distinction is important. Most functions are obvious, but the `Load Extruder` and `Unload Extruder` may be new to you. These do exactly as there names suggest operating only on the extruder.
 
-<p align="center"><img src="KlipperScreen/mmu_manage.png" width="80%"></p>
+Type A designs including ERCF and Tradrack:
+<p align="center"><img src="KlipperScreen/mmu_manage_linear.png" width="80%"></p>
+3D Chameleon, PicoMMU:
+<p align="center"><img src="KlipperScreen/mmu_manage_rotary.png" width="80%"></p>
+Most other type-B designs including Box Turtle, Night Owl, 3MS, Angry Beaver:
+<p align="center"><img src="KlipperScreen/mmu_manage_virtual.png" width="80%"></p>
 
 There is one very important button: `Recover State...`. Since Happy Hare is stateful and will refuse to do things if it doesn't think you should do them, you might need to correct it's state before continuing.
 
