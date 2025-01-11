@@ -221,7 +221,7 @@ There are different ways to do this depending on your configuration and sensor o
 
 
 2. If `extruder_homing_endstop: collision` (and you are relying on an encoder), then during Bowden calibration `BOWDEN_LENGTH` needs to be supplied and MUST be slightly shorter than the actual length. A good rule of thumb is to manually measure the distance from exit from the selector to the entrance to your extruder. Subtract 40-50mm from that distance. I measured approximately 690mm on my system, so will supply 650mm as the starting value. For example:
-<br>**This is the method for non modified ERCF design**
+<br>(**This is the method for non modified ERCF design**)
 
   > MMU_CALIBRATE_BOWDEN BOWDEN_LENGTH=650
 
@@ -245,7 +245,7 @@ There are different ways to do this depending on your configuration and sensor o
 ```
 
 3. Finally, if you run into problems or don't have an encoder or homing sensor or have problems with collision detection at the extruder you can run manually. To do this, select gate 0, push filament through manually all the way to the extruder gears. This run with the `MANUAL=1` option. This will measure the distance in reverse to the gate homing position:
-<br>**This is the method for MMU designs like Tradrack that don't have encoder but do have `mmu_gate` sensor**
+<br>(**This is the method for MMU designs like Tradrack that don't have encoder but do have `mmu_gate` sensor**)
 
   > MMU_CALIBRATE_BOWDEN BOWDEN_LENGTH=1000 MANUAL=1
 
