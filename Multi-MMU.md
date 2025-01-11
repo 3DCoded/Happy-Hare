@@ -17,7 +17,7 @@ To combine MMU's you would connect the bowden output from each to a combiner/spl
 
 ### 1. Adjust `num_gates`
 
-Normally `num_gates` is an integer representing the number of gates/lanes on your MMU. To support multiple units you simply specify a comma separated list with the number of gates in each unit. For example, if you have two Box Turtle with 4 gates each, you would specify:
+Normally `num_gates` is an integer representing the total number of gates/lanes on your MMU. To support multiple units you simply specify a comma separated list with the number of gates in each unit. For example, if you have two Box Turtle with 4 gates each, you would specify:
 ```yml
 [mmu_machine]
 num_gates: 4,4
@@ -26,14 +26,14 @@ Happy Hare will see this as a 8-gate MMU but will know it is broken into two uni
 
 ### 2. Variable Bowden Lenghts
 
-Since you are connecting different MMU's together the bowden length of each will be different. Therefore it is necessary to tell Happy Hare that each bowden length can be different by (uncommenting and) setting:
+Since you are connecting different MMU's together the bowden length of each will be different. Therefore it is necessary to override the default and tell Happy Hare that each bowden length can be different by (uncommenting and) setting:
 ```yml
-variable_bowden_lengths: 1             # 1 = If MMU design has different bowden lengths per gate, 0 = bowden length is the same
+variable_bowden_lengths: 1
 ```
 
 ### 3. Define extra gear steppers
 
-Extend the definiton of gear steppers for additional units in the same way you did for the first unit. Make sure the gate/lane numbering is contiguous.
+You must extend the definiton of gear steppers for additional units in the same way you did for the first unit. Make sure the gate/lane numbering is contiguous.
 
 ```yml
 # Filament Drive Gear_4 --------------------------
