@@ -175,5 +175,5 @@ extra_endstop_names: mmu_gear_touch_2
 
 etc...
 ```
-As with mutli-mmu support, Happy Hare will select the correct "touch" endstop based on the currently selected gate and thus associated stepper. I.e. a name of `mmu_gear_touch` is automatically interpreted as `mmu_gear_touch_2` if gate 2 is the one selected.
+As with mutli-mmu support, Happy Hare will select the correct "touch" endstop based on the currently selected gate and thus associated stepper. I.e. a name of `mmu_gear_touch` is automatically interpreted as `mmu_gear_touch_2` if gate 2 is selected.
 
