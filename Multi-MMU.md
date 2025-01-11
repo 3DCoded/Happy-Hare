@@ -15,6 +15,8 @@ To combine MMU's you would connect the bowden output from each to a combiner/spl
 > [!NOTE]  
 > The Happy Hare installer can only be used to setup the first MMU. You will need to augment `mmu_hardware.cfg` manually with the configuration for additional units
 
+<br>
+
 ### 1. Adjust `num_gates`
 
 Normally `num_gates` is an integer representing the total number of gates/lanes on your MMU. To support multiple units you simply specify a comma separated list with the number of gates in each unit. For example, if you have two Box Turtle with 4 gates each, you would specify:
@@ -51,6 +53,8 @@ enable_pin: !mmu2:MMU_GEAR_ENABLE_4
 ```
 > [!IMPORTANT]  
 > It is unlikely that you have spare pins on your existing MMU thus you will also need to configure the additional mcu and create aliases (`mmu2` is used in this example) or specify the additional pins directly in the config file. Aliases are recommended so you might want to add another section to `mmu.cfg` with new pins
+
+<br>
 
 ### 4. Update `[mmu_sensors]`
 
@@ -92,6 +96,8 @@ Note that if your MMU setup had a `gate_sensor` AFTER the final filament combine
 > Per unit sensor are named with a `unit_X_` prefix, so the gate sensor for unit 1 would be `unit_1_mmu_gate`<br>
 > All defined sensors can be seen in Mainsail/Fluidd UI and can be dynamically enabled/diabled. If disabled, Happy Hare will treat them as non-existent and modify behavior to work as if they were never present. This can be useful during a print to temporarily disable a troublesome sensor.
 
+<br>
+
 ### 5. Configure LEDs
 
 LED setup is explained on the [LED Support](#Led-Support) page but essentially you have complete freedom to define a set of LEDs. Happy Hare will form "virtual chains" that are used for effects but doesn't care if they are bits of other chains, individual LEDs or care about order. In a multi-MMU setup you simply define as a single set. E.g. The following creates a virtual chain of 8 gates for "exit" LEDs using a neopixel strip for the first MMU in reverse other and then using individual LEDs on the second unit.
@@ -103,6 +109,8 @@ LED setup is explained on the [LED Support](#Led-Support) page but essentially y
               neopixel:bt_2c
               neopixel:bt_2d
 ```
+
+<br>
 
 ### 6. Check MMU Status
 
