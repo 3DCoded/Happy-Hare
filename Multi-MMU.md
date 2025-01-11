@@ -150,7 +150,7 @@ driver_SGTHRS: 60                       # 255 is most sensitive value, 0 is leas
 extra_endstop_pins: tmc2209_stepper_mmu_gear:virtual_endstop
 extra_endstop_names: mmu_gear_touch
 
-# ADDITIONAL FILAMENT DRIVE GEAR STEPPERS FOR TYPE-B MMU's -------------------------------------------------------------
+# ADDITIONAL FILAMENT DRIVE GEAR STEPPERS FOR TYPE-B MMU's ----------------------------------------
 # Filament Drive Gear_1 --------------------------
 [tmc2209 stepper_mmu_gear_1]
 :
