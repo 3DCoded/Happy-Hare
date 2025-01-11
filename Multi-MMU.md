@@ -24,12 +24,16 @@ num_gates: 4,4
 ```
 Happy Hare will see this as a 8-gate MMU but will know it is broken into two units.
 
+<br>
+
 ### 2. Variable Bowden Lenghts
 
 Since you are connecting different MMU's together the bowden length of each will be different. Therefore it is necessary to override the default and tell Happy Hare that each bowden length can be different by (uncommenting and) setting:
 ```yml
 variable_bowden_lengths: 1
 ```
+
+<br>
 
 ### 3. Define extra gear steppers
 
@@ -50,7 +54,8 @@ enable_pin: !mmu2:MMU_GEAR_ENABLE_4
 
 ### 4. Update `[mmu_sensors]`
 
-A default Happy Hare setup will define a single pin for each sensor. However in a multi-mmu setup it is possible for some sensors to be "per-unit". These include: `gate_switch_pin`, `sync_feedback_tension_pin` and `sync_feedback_compression_pin`. For these sensors you can specify a list of pins in the order of MMU units. For example, here is a setup for 2x Box Turtle each with it's own "hub" aka gate_sensor and "turtle neck" aka sync-feedback sensors:
+A default Happy Hare setup will define a single pin for each sensor. However in a multi-mmu setup it is possible for some sensors to be "per-unit". These include: `gate_switch_pin`, `sync_feedback_tension_pin` and `sync_feedback_compression_pin`. For these sensors you can specify a list of pins in the order of MMU units.
+<br>For example, here is a setup for 2x Box Turtle each with it's own "hub" aka gate_sensor and "turtle neck" aka sync-feedback sensors:
 ```yml
 [mmu_sensors]
 pre_gate_switch_pin_0: ^mmu:MMU_PRE_GATE_0
@@ -81,7 +86,7 @@ sync_feedback_compression_pin: ^mmu:MMU_COMPRESSION_SENSOR, ^mmu2:MMU_COMPRESSIO
 extruder_switch_pin: ^EXTRUDER_SENSOR
 toolhead_switch_pin: ^TOOLHEAD_SENSOR
 ```
-Note that if you MMU setup had a `gate_sensor` after the final filament combiner and not one per-MMU then simple specify a scalar value and not a list
+Note that if your MMU setup had a `gate_sensor` AFTER the final filament combiner and not one per-MMU then simple specify a scalar value and not a list and it will be assumed to be shared.
 
 > [!NOTE]  
 > Per unit sensor are named with a `unit_X_` prefix, so the gate sensor for unit 1 would be `unit_1_mmu_gate`<br>
@@ -99,7 +104,7 @@ LED setup is explained on the [LED Support](#Led-Support) page but essentially y
               neopixel:bt_2d
 ```
 
-### MMU Status
+### 6. Check MMU Status
 
 Once you have correctly setup as above you should see the bootup and `MMU_STATUS` refect the different units like so:
 ```
