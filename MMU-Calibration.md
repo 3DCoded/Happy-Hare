@@ -213,10 +213,11 @@ The last calibration before use! Here you can calibrate the length of your bowde
 
 There are different ways to do this depending on your configuration and sensor options:
 
-1. If `extruder_homing_endstop: extruder` or `mmu_gear_touch` or `filament_compression`, then you have a homing endstop and you can simply specify a `BOWDEN_LENGTH` that is GREATER than your estimated length to give plenty of room to find the homing stop (technically, Happy Hare defaults to 2000mm so you can probably omit this parameter completely).
+1. If `extruder_homing_endstop: extruder` (or `mmu_gear_touch` or `filament_compression`), then you have a homing endstop and you can simply specify a `BOWDEN_LENGTH` that is GREATER than your estimated length to give plenty of room to find the homing stop (technically, Happy Hare defaults to 2000mm so you can probably omit this parameter completely).
 
-  > MMU_CALIBRATE_BOWDEN
+  > MMU_CALIBRATE_BOWDEN<br>
   > MMU_CALIBRATE_BOWDEN BOWDEN_LENGTH=1500
+<br>**This is the method for most newer (type-B) MMU designs**
 
 2. If `extruder_homing_endstop: collision` (and you are relying on an encoder), then during Bowden calibration `BOWDEN_LENGTH` needs to be supplied and MUST be slightly shorter than the actual length. A good rule of thumb is to manually measure the distance from exit from the selector to the entrance to your extruder. Subtract 40-50mm from that distance. I measured approximately 690mm on my system, so will supply 650mm as the starting value. For example:
 
@@ -246,12 +247,14 @@ There are different ways to do this depending on your configuration and sensor o
     Recommended calibration reference is 680.2mm. Clog detection length: 16.8mm
     Bowden calibration and clog detection length have been saved
 ```
+<br>**This is the method for non modified ERCF design**
 
 3. Finally, if you run into problems or don't have an encoder or homing sensor or have problems with collision detection at the extruder you can run manually. To do this, select gate 0, push filament through manually all the way to the extruder gears. This run with the `MANUAL=1` option. This will measure the distance in reverse to the gate homing position:
 
-  > MMU_CALIBRATE_BOWDEN BOWDEN_LENGTH=650 MANUAL=1
+  > MMU_CALIBRATE_BOWDEN BOWDEN_LENGTH=1000 MANUAL=1
 
-This will reverse homes to the gate and use Klipper's measurement of stepper movement. **This is the method for MMU designs like Tradrack that don't have encoder but do have `mmu_gate` sensor.**
+This will reverse homes to the gate and uses Klipper's measurement of stepper movement.
+<br>**This is the method for MMU designs like Tradrack that don't have encoder but do have `mmu_gate` sensor**
 
 > [!NOTE]  
 > (i) This calibration assumes that the selector has been calibrated first.<br>
