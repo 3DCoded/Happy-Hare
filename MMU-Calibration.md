@@ -209,7 +209,9 @@ If this step worked then you should be able to unload the residual filament with
 ### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Step 5. Calibrate bowden length
 Applicable to MMU's with fast bowden move: **Most designs except Angry Beaver**
 
-The last calibration before use! Here you can calibrate the length of your bowden from MMU gate to extruder entrance. This is important because it allows the MMU to move the filament at a fast pace over this distance because getting to the more complicated part of the load sequence. To speed up this process you need to give the calibration routine a hint of how far way the extruder is (but not exceeding the distance).  A good rule of thumb is to manually measure the distance from exit from the selector to the entrance to your extruder. Subtract 40-50mm from that distance. I measured approximately 690mm on my system, so will supply 650mm as the starting value. In you have an encoder you can run the automatic method:
+The last calibration before use! Here you can calibrate the length of your bowden from MMU gate to extruder entrance. This is important because it allows the MMU to move the filament at a fast pace over this distance because getting to the more complicated part of the load sequence. To speed up this process and depending on what sensors you have fitted for extruder homing, you may need to give the calibration routine a hint of how far way the extruder is.
+
+If `extruder_homing_endstop: collision`, then during Bowden calibration `BOWDEN_LENGTH` needs to be supplied and MUST be slightly shorter than the actual length. A good rule of thumb is to manually measure the distance from exit from the selector to the entrance to your extruder. Subtract 40-50mm from that distance. I measured approximately 690mm on my system, so will supply 650mm as the starting value. For example:
 
   > MMU_CALIBRATE_BOWDEN BOWDEN_LENGTH=650
 
@@ -238,7 +240,11 @@ The last calibration before use! Here you can calibrate the length of your bowde
     Bowden calibration and clog detection length have been saved
 ```
 
-If you don't have an encoder or have problems with collision detection at the extruder you can run manually.  To do this, select gate 0, push filament through manually all the way to the extruder gears. This run with the `MANUAL=1` option:
+If `extruder_homing_endstop: extruder` or `mmu_gear_touch` or `filament_compression`, then you have a homing endstop and you can simply specify a `BOWDEN_LENGTH` that is GREATER than your estimated length to give plenty of room to find the homing stop (technically, Happy Hare defaults to 2000mm so you can probably omit this parameter completely).
+
+  > MMU_CALIBRATE_BOWDEN BOWDEN_LENGTH=650
+
+Finally, if you run into problems or don't have an encoder or homing sensor or have problems with collision detection at the extruder you can run manually. To do this, select gate 0, push filament through manually all the way to the extruder gears. This run with the `MANUAL=1` option. This will measure the distance in reverse to the gate homing position:
 
   > MMU_CALIBRATE_BOWDEN BOWDEN_LENGTH=650 MANUAL=1
 
