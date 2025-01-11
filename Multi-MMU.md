@@ -10,12 +10,12 @@ This page explains more complex setup of multiple MMU's and the setup of "touch"
 
 Since v3.0.2 Happy Hare is able to support multiple MMU's multiplexed together to form a single unit. The most common situation is the combining of multiple type-B MMU's like Box Turtle or Night Owl together. So long as the units are fundamentally similar in operation (techinically share the same `mmu_parmeters.cfg`) they can be combined.  I.e. you cannot combine an ERCF with a BoxTurtle (at lest not yet - that support is planned in the future).
 
-To combine MMU's you would connect the bowden output from each to a combiner/splitter which merges them together before the toolhead. You then need to make them look like a logical larger MMU by adjusting configuration as described here.
+To combine MMU's you would connect the bowden output from each to a combiner/splitter thus merging them together before the toolhead. You then need to make them look like a logical larger MMU by adjusting configuration as described here.
 
 > [!NOTE]  
 > The Happy Hare installer can only be used to setup the first MMU. You will need to augment `mmu_hardware.cfg` manually with the configuration for additional units
 
-### Adjust `num_gates`
+### 1. Adjust `num_gates`
 
 Normally `num_gates` is an integer representing the number of gates/lanes on your MMU. To support multiple units you simply specify a comma separated list with the number of gates in each unit. For example, if you have two Box Turtle with 4 gates each, you would specify:
 ```yml
@@ -24,14 +24,14 @@ num_gates: 4,4
 ```
 Happy Hare will see this as a 8-gate MMU but will know it is broken into two units.
 
-### Variable Bowden Lenghts
+### 2. Variable Bowden Lenghts
 
 Since you are connecting different MMU's together the bowden length of each will be different. Therefore it is necessary to tell Happy Hare that each bowden length can be different by (uncommenting and) setting:
 ```yml
 variable_bowden_lengths: 1             # 1 = If MMU design has different bowden lengths per gate, 0 = bowden length is the same
 ```
 
-### Define extra gear steppers
+### 3. Define extra gear steppers
 
 Extend the definiton of gear steppers for additional units in the same way you did for the first unit. Make sure the gate/lane numbering is contiguous.
 
@@ -48,7 +48,7 @@ enable_pin: !mmu2:MMU_GEAR_ENABLE_4
 > [!IMPORTANT]  
 > It is unlikely that you have spare pins on your existing MMU thus you will also need to configure the additional mcu and create aliases (`mmu2` is used in this example) or specify the additional pins directly in the config file. Aliases are recommended so you might want to add another section to `mmu.cfg` with new pins
 
-### `[mmu_sensors]`
+### 4. Update `[mmu_sensors]`
 
 A default Happy Hare setup will define a single pin for each sensor. However in a multi-mmu setup it is possible for some sensors to be "per-unit". These include: `gate_switch_pin`, `sync_feedback_tension_pin` and `sync_feedback_compression_pin`. For these sensors you can specify a list of pins in the order of MMU units. For example, here is a setup for 2x Box Turtle each with it's own "hub" aka gate_sensor and "turtle neck" aka sync-feedback sensors:
 ```yml
@@ -87,7 +87,7 @@ Note that if you MMU setup had a `gate_sensor` after the final filament combiner
 > Per unit sensor are named with a `unit_X_` prefix, so the gate sensor for unit 1 would be `unit_1_mmu_gate`<br>
 > All defined sensors can be seen in Mainsail/Fluidd UI and can be dynamically enabled/diabled. If disabled, Happy Hare will treat them as non-existent and modify behavior to work as if they were never present. This can be useful during a print to temporarily disable a troublesome sensor.
 
-### LED configuration
+### 5. Configure LEDs
 
 LED setup is explained on the [LED Support](#Led-Support) page but essentially you have complete freedom to define a set of LEDs. Happy Hare will form "virtual chains" that are used for effects but doesn't care if they are bits of other chains, individual LEDs or care about order. In a multi-MMU setup you simply define as a single set. E.g. The following creates a virtual chain of 8 gates for "exit" LEDs using a neopixel strip for the first MMU in reverse other and then using individual LEDs on the second unit.
 ```yml
