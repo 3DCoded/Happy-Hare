@@ -29,6 +29,7 @@
 
 - [Hardware Configuration](Hardware-Configuration)
   - [Endstops, Movement and Homing](Movement-and-Homing)
+- [Multiple MMUs](Multi-MMU)
 - [Happy Hare Parameters](Happy-Hare-Parameters)
 - [Macro Configuration](Macro-Configuration)
 
