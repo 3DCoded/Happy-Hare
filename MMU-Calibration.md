@@ -231,18 +231,12 @@ There are different ways to do this depending on your configuration and sensor o
     Tool T0 enabled
     Heating extruder to minimum temp (200.0)
     Finding extruder gear position (try #1 of 3)...
-    Run Current: 0.21A Hold Current: 0.09A
-    Run Current: 0.49A Hold Current: 0.09A
     Pass #1: Filament homed to extruder, encoder measured 683.5mm, filament sprung back 3.2mm
     - Bowden calibration based on this pass is 683.5
     Finding extruder gear position (try #2 of 3)...
-    Run Current: 0.21A Hold Current: 0.09A
-    Run Current: 0.49A Hold Current: 0.09A
     Pass #2: Filament homed to extruder, encoder measured 682.7mm, filament sprung back 3.2mm
     - Bowden calibration based on this pass is 682.7
     Finding extruder gear position (try #3 of 3)...
-    Run Current: 0.21A Hold Current: 0.09A
-    Run Current: 0.49A Hold Current: 0.09A
     Pass #3: Filament homed to extruder, encoder measured 683.9mm, filament sprung back 3.2mm
     - Bowden calibration based on this pass is 683.4
     Recommended calibration reference is 680.2mm. Clog detection length: 16.8mm
