@@ -1,9 +1,5 @@
 #### Page Sections:
 - [Multiple MMUs](#---multiple-mmus)
-#  - [Off](#mode-off)
-#  - [Readonly](#mode-readonly)
-#  - [Push (local gate map)](#mode-push)
-#  - [Pull (remote gate map)](#mode-pull)
 - [Setting up "touch" on multiple gear steppers](#---touch-homing-on-multiple-gear-steppers)
 
 This page explains more complex setup of multiple MMU's and the setup of "touch" homing operation for multiple gear steppers
