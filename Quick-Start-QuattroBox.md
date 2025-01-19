@@ -44,7 +44,7 @@ This will open the interactive installer. You will be presented by several optio
 
 This is the type of MMU you are setting up. In this case, it is a QuattroBox. Find it in the list, and type the number located next to it.
 
-<p align="left"><img src="Installation/quattrobox_questions.png"></p>
+<p align="left"><img src="Quick-Start-QuattroBox/quattrobox_questions.png"></p>
 
 
 ### 2. Number of Gates
@@ -54,32 +54,32 @@ The installer will then ask for the number of gates you have. This corresponds t
 > [!NOTE]
 > In the screenshot below, four lanes are present, so the number `4` is entered.
 
-<p align="left"><img src="Installation/quattrobox_gates.png"></p>
+<p align="left"><img src="Quick-Start-QuattroBox/quattrobox_gates.png"></p>
 
 ### 3. Control Board
 
 Next, the installer will ask which controller you are using. If your controller is in the list, type the number next to its name in the list, and press enter. The typical board used with Quattrobox is the MMB board. If not, press the number next to `Not in list / Unknown`. 
 
-<p align="left"><img src="Installation/quattrobox_mcu.png"></p>
+<p align="left"><img src="Quick-Start-QuattroBox/quattrobox_mcu.png"></p>
 
 
 ### 4. LEDs
 
 Choose whether or not you want LEDs enabled for your Quattrobox.
 
-<p align="left"><img src="Installation/quattrobox_led.png"></p>
+<p align="left"><img src="Quick-Start-QuattroBox/quattrobox_led.png"></p>
 
 ### 5. EndlessSpool
 
 Choose whether or not you want Endless Spool to be enabled. This let Happy Hare automatically load another spool if your current spool runs out.
 
-<p align="left"><img src="Installation/quattrobox_endless.png"></p>
+<p align="left"><img src="Quick-Start-QuattroBox/quattrobox_endless.png"></p>
 
 ### 6. `printer.cfg`
 
 This is usually set to `y` on new Happy Hare installations, and `n` on existing ones.
 
-<p align="left"><img src="Installation/quattrobox_include.png"></p>
+<p align="left"><img src="Quick-Start-QuattroBox/quattrobox_include.png"></p>
 
 
 ---
