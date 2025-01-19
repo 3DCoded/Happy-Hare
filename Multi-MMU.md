@@ -4,6 +4,9 @@
 
 This page explains more complex setup of multiple MMU's and the setup of "touch" homing operation for multiple gear steppers
 
+> [!IMPORTANT]  
+> Multi-MMU ability only supports type-B MMU's and not type-A with a LinearSelector. E.g. you cannot operation two ERCF's as one. This limitation will be lifted in a future release.
+
 <br>
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Multiple MMUs

@@ -411,13 +411,29 @@ T8   285  204   89  192  320  320   -    -    -
     - New startup calibration state message that reports any lapses of calibration
 - Incorporated many PR's. Sorry, I lost count, but thanks to all of you who submitted, not matter how big or small
 
-
 ### v3.0.1
 **Production Release for v3**
 - Support for 3DChameleon added thanks to user @u3dreal !!
 - Fixed some bugs introduced during the code refactor
 - Dare I say **fixed the majority of Timer Too Close (TTC) errors**.  Really... results are very promising.
 
+### v3.0.1
+**Support for Multiple MMU**
+- It is now possible to combine mutliple MMUs on the same printer and operate them as one. Currently this only works with type-B designs that have a separate stepper per gate/lane but will be extended to support any number and combinations in a future release.
+  - Updated visualization for status
+  - New Muli-MMU [wiki page](https://github.com/moggieuk/Happy-Hare/wiki/Multi-MMU)
+- Updated LED support
+  - New configuration that allows for complete flexibility of multiple chains, individual leds, partial chains, etc
+  - New separate `logo` LED control (adds to `entry`, `exit` and `status`)
+- Beta support for awesome new [QuattroBox MMU](https://github.com/Batalhoti/QuattroBox/tree/main)
+- Beta support for the tiny [PicoMMU](https://www.printables.com/model/1083174-mmu-multi-material-upgrade) with servo selector
+- Fixed bug in `MMU_SOAKTEST_LOAD_SEQUENCE` where it may not home when unloading
+- Minor fix for encoder reading accuracy on ERCF
+- Integrated PRs
+
+<!--
+- Beta support for [MMX - Multi Material eXtruder](#)
+-->
 
 <br>
 
