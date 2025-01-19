@@ -58,6 +58,7 @@ An addon used to control a DC motor based eSpooler that is active when the MMU i
 **Printer:** _Any_
 
 ### Github
+n/a
 
 ### Config
 1. Add `[include mmu/addons/dc_espooler.cfg]` to your `printer.cfg`
@@ -78,10 +79,12 @@ If the MMU is equipped with a per-gate eject button (like QuattroBox) this addon
 **Printer:** _Any_
 
 ### Github
+n/a
 
 ### Config
 1. Add `[include mmu/addons/mmu_eject_buttons.cfg]` to your `printer.cfg`
-1. Ensure the eject button pins are defined. Add `EJECT_BUTTON_x` aliases to `mmu.cfg` or define pins directly in `mmu_eject_buttons_hw.cfg`
+1. Ensure the eject button pins are defined:
+  1. Add `EJECT_BUTTON_x` aliases to `mmu.cfg` or define pins directly in `mmu_eject_buttons_hw.cfg`
 
 <hr>
 
