@@ -13,7 +13,7 @@ An addon used to control filament cutting at the MMU rather than the toolhead
 <img src="Addon-Feature-Setup/erec_logo.png" width=60%>
 
 ### Compatibility
-**MMU:** ERCFv2<br>
+**MMU:** ERCFv2 (but many variants exist and this will work with any servo controlled MMU filament cutter)<br>
 **Printer:** _Any_
 
 ### Github
