@@ -417,7 +417,7 @@ T8   285  204   89  192  320  320   -    -    -
 - Fixed some bugs introduced during the code refactor
 - Dare I say **fixed the majority of Timer Too Close (TTC) errors**.  Really... results are very promising.
 
-### v3.0.1
+### v3.0.2
 **Support for Multiple MMU**
 - It is now possible to combine mutliple MMUs on the same printer and operate them as one. Currently this only works with type-B designs that have a separate stepper per gate/lane but will be extended to support any number and combinations in a future release.
   - Updated visualization for status
@@ -425,11 +425,14 @@ T8   285  204   89  192  320  320   -    -    -
 - Updated LED support
   - New configuration that allows for complete flexibility of multiple chains, individual leds, partial chains, etc
   - New separate `logo` LED control (adds to `entry`, `exit` and `status`)
+- New `gear_unload_speed` and `gear_unload_accel` in `mmu_parameters.cfg` to allow for tuning different from load speed - this allows squeezing the best performance out of your MMU but also allows for imposing limits on rewinder speed, etc
+- New `has_filament_buffer` option in `mmu_parameters.cfg` (default to 1). This can be set to `0` if no filament buffer is installed (e.g. on designs with DC rewinder systems or users of Filamentalist). This option controls the use and visability in `MMU_STATUS` display.
 - Beta support for awesome new [QuattroBox MMU](https://github.com/Batalhoti/QuattroBox/tree/main)
 - Beta support for the tiny [PicoMMU](https://www.printables.com/model/1083174-mmu-multi-material-upgrade) with servo selector
 - Fixed bug in `MMU_SOAKTEST_LOAD_SEQUENCE` where it may not home when unloading
+- Ensure extruder syncing is disabled if MMU is disabled with `MMU ENABLE=0` (note it is often better to enable bypass and have a bowden feed that is outside of the MMU if not already integrated like ERCF)
 - Minor fix for encoder reading accuracy on ERCF
-- Integrated PRs
+- Integrated several PRs (refer to Github for details)
 
 <!--
 - Beta support for [MMX - Multi Material eXtruder](#)
