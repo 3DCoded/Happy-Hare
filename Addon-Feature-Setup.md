@@ -1,6 +1,8 @@
 #### Page Sections:
 - [EREC](#---erec-filament-cutter)
 - [Blobifer](#---blobifier)
+- [Blobifer](#---blobifier)
+- [Blobifer](#---blobifier)
 
 This directory contains possible addons for your MMU setup that have support shipped with Happy Hare
 
@@ -41,7 +43,39 @@ https://github.com/Dendrowen/Blobifier
 1. Set `variable_user_post_load_extension : "BLOBIFIER"` in `mmu_macro_vars.cfg`
 1. Optionally set `variable_user_post_form_tip_extension : "BLOBIFIER_PARK"` in `mmu_macro_vars.cfg` to park the nozzle on the tray during a swap. Note that it is always recommended that you at least z-hop on toolchange so that the toolhead is immediately lifted off the print. Read [Toolchange Movement](Toolchange-Movement) for more details.
 
-<br>
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) DC eSpooler
+
+An addon used to control a DC motor based eSpooler that is active when the MMU is unloaded
+
+### Compatibility
+**MMU:** _Any_<br>
+**Printer:** _Any_
+
+### Github
+
+### Config
+1. Add `[include mmu/addons/dc_espooler.cfg]` to your `printer.cfg`
+1. Set `espooler_start_macro: MMU_ESPOOLER_START` in `mmu_parameters.cfg` to start eSpooler movement
+1. Set `espooler_stopt_macro: MMU_ESPOOLER_STOP` in `mmu_parameters.cfg` to stop eSspooler movement
+1. Update the `mmu/addon/dc_espooler_hw.cfg` for your configuration.
+
+<hr>
+
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Eject Buttons
+
+If the MMU is equipped with a per-gate eject button (like QuattroBox) this addon is used for control
+
+### Compatibility
+**MMU:** _Any_ (if buttons fitted)<br>
+**Printer:** _Any_
+
+### Github
+
+### Config
+1. Add `[include mmu/addons/mmu_eject_buttons.cfg]` to your `printer.cfg`
+1. Ensure the eject button pins are defined. Add `EJECT_BUTTON_x` aliases to `mmu.cfg` or define pins directly in `mmu_eject_buttons_hw.cfg`
+
+<hr>
 
 > [!IMPORTANT] 
 > For all add-on extensions, ensure that you always use the "cfg" files from Happy Hare and not those sourced elsewhere so you have the most recent changes and fixes.
