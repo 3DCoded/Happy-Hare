@@ -9,6 +9,7 @@ Finally Mainsail/Fluidd integration has arrived!
 The Mainsail integration includes a new "MMU" panel. The integration into the existing "Extruder" panel documented later still works but this panel is decidated to monitoring and operating the MMU outside of just selecting a tool
 
 <p align="center"><a href="https://github.com/moggieuk/Happy-Hare/wiki/Mainsail-Fluidd-Integration/mainsail_annotated.png"><img src="Mainsail-Fluidd-Integration/mainsail_annotated.png" alt='annotated main panel' width='100%'></a></p>
+Click for larger image...
 
 <br>
 
