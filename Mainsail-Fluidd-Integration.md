@@ -1,15 +1,16 @@
-Mainsail (and soon Fluidd) support has arrived!
+<p align="center"><img src="Mainsail-Fluidd-Integration/mainsail_main_panel.png" alt='main panel' width='50%'></p>
+
+Finally Mainsail/Fluidd integration has arrived!
 
 <br>
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Main Panel
 
-<p align="center"><img src="Mainsail-Fluidd-Integration/mainsail_main_panel.png" alt='main panel' width='75%'></p>
+The Mainsail integration includes a new "MMU" panel. The integration into the existing "Extruder" panel documented later still works but this panel is decidated to monitoring and operating the MMU outside of just selecting a tool
+
+<p align="center"><a href="https://github.com/moggieuk/Happy-Hare/wiki/Mainsail-Fluidd-Integration/mainsail_annotated.png"><img src="Mainsail-Fluidd-Integration/mainsail_annotated.png" alt='annotated main panel' width='100%'></a></p>
 
 <br>
-
-Documentation to come..
-
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Extruder/Filament Color
 
