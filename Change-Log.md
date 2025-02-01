@@ -434,6 +434,14 @@ T8   285  204   89  192  320  320   -    -    -
 - Minor fix for encoder reading accuracy on ERCF
 - Integrated several PRs (refer to Github for details)
 
+### v3.1.0
+**Mainsail!!**
+- Production release of v3.0.2 beta (support for multiple running MMUs)
+- Compatibility with New mainsail beta UI!  (Fluidd under development)
+  - Allows for blobifer animation, and toolhead and MMU tip cutting visualization
+- Support for the fantastic new [QuattroBox](https://github.com/Batalhoti/QuattroBox)
+- Support for the PicoMMU
+
 <!--
 - Beta support for [MMX - Multi Material eXtruder](#)
 -->
