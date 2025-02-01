@@ -4,7 +4,7 @@ Mainsail (and soon Fluidd) support has arrived!
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Main Panel
 
-<center><img src="Mainsail-Fluidd-Integration/mainsail_main_panel.png" alt='main panel' width='75%'></center>
+<img align="center" src="Mainsail-Fluidd-Integration/mainsail_main_panel.png" alt='main panel' width='75%'>
 
 <p>
 
