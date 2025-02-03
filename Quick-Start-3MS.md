@@ -173,5 +173,5 @@ For **EXISTING** setups (using more than one control board):
 1. Add the contents of the online `mmu.cfg` to your local `mmu.cfg`
 2. Add the contents of the online `mmu_hardware.cfg` to your local `mmu_hardware.cfg`'s gear section.
 
-<p>
-You can continue with configuration and calibrations [here](https://3dcoded.github.io/3MS/instructions/).
+> [!NOTE]  
+> You can continue with configuration and calibrations [here](https://3dcoded.github.io/3MS/instructions/)
