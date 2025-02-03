@@ -99,7 +99,9 @@ This is usually set to `y` on new Happy Hare installations, and `n` on existing 
 
 ---
 
-🎉 Happy Hare is successfully installed! If you selected one of the default control boards, you don't need to follow the rest of this guide. If you selected `Not in list / Unknown`, read on.
+🎉 Happy Hare is successfully installed! If you selected one of the default control boards, you don't need to follow the rest of this guide. You can continue with configuration and calibrations [here](https://3dcoded.github.io/3MS/instructions/).
+<p>
+If you selected `Not in list / Unknown`, read on.
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Configuration
 
@@ -170,3 +172,6 @@ For **EXISTING** setups (using more than one control board):
 
 1. Add the contents of the online `mmu.cfg` to your local `mmu.cfg`
 2. Add the contents of the online `mmu_hardware.cfg` to your local `mmu_hardware.cfg`'s gear section.
+
+<p>
+You can continue with configuration and calibrations [here](https://3dcoded.github.io/3MS/instructions/).

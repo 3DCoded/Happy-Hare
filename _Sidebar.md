@@ -16,6 +16,7 @@
 - [Quick-Start Guides](#)
   - [3MS](Quick-Start-3MS)
   - [Box Turtle](Quick-Start-BoxTurtle)
+  - [QuattroBox](Quick-Start-QuattroBox)
 - [Happy Hare Install](Installation)
   - [Cloning Happy Hare Repo](Installation#---cloning-happy-hare-repo)
   - [Running Installer](Installation#---running-installer)
