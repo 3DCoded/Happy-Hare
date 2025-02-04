@@ -38,7 +38,7 @@ Happy Hare exposes 'printer' variables that can be used in your own macros.
     printer.mmu.tool_speed_multipliers : {list} current M220 extrusion multipliers (float), one per tool
     printer.mmu.action : {string} Idle | Loading | Unloading | Forming Tip | Heating | Loading Ext | Exiting Ext | Checking | Homing | Selecting
     printer.mmu.has_bypass : {bool} True if available else False
-    printer.mmu.synced_drive : {bool} True if gear stepper is currently synced to extruder
+    printer.mmu.sync_drive : {bool} True if gear stepper is currently synced to extruder
     printer.mmu.sync_feedback_state : {string} State of sync feedback sensor (compressed | expanded | neutral | disabled)
     printer.mmu.print_job_state : {string} current job state seen by MMU (initialized | standby | started | printing | pause_locked | paused | complete | cancelled | error)
     printer.mmu.clog_detection : {int} 0 (off) | 1 (manual) | 2 (auto)
