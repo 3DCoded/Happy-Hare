@@ -439,7 +439,7 @@ The following variables are configurable based on your needs, but rarely need me
 
 `bypass_autoload` only applied if you have an extruder (entry) sensor installed, this allow the autoload feature to be explicitly enabled/disabled. This works only on the bypass "gate" and will automatically load the extruder when a filament is offered up to the extruder (similar to the way Prusa printers work).
 
-`print_start_detection` allows Happy Hare to automatically detect start and end of print and call `_MMU_START_PRINT` and `_MMU_END_PRINT`. Disable (0) if you want to include in your own macros.
+`print_start_detection` allows Happy Hare to automatically detect start and end of print and call `MMU_PRINT_START` and `MMU_PRINT_END`. Disable (0) if you want to include in your own macros.
 
 `show_error_dialog` allows Happy Hare to use the (relatively new) capability to show popup windows in Mainsail and KlipperScreen. 1 = show pop-up dialog in addition to console message, 0 = show error in console.
 
