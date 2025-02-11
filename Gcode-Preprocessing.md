@@ -1,6 +1,7 @@
 #### Page Sections:
 - [Supported Placeholders](#---supported-placeholders)
   - [!referenced_tools!](#placeholder-referenced_tools)
+  - [!total_toolchanges!](#placeholder-total_toolchanges)
   - [!filament_names!](#placeholder-filament_names)
   - [!materials!](#placeholder-materials)
   - [!colors!](#placeholder-colors)
@@ -17,20 +18,20 @@ This support is added to Moonraker configuration during installation but can be 
 [mmu_server]
 enable_file_preprocessor: True
 ```
-The functionality is similar to the "placeholder" substitution that many slicers do.  For example if you use `{total_toolchanges}` in PrusaSlicer, it will substitute this placeholder with the actual number of tool changes.  When used in conjunction with a call to your `START_PRINT` macro you can pass parameters to use at print time. E.g. by defining your "start" G-Code as:
+The functionality is similar to the "placeholder" substitution that many slicers do.  For example if you use `{first_layer_bed_temperature}` in PrusaSlicer, it will substitute this placeholder with the actual bed temperature for the first layer.  When used in conjunction with a call to your `START_PRINT` macro you can pass parameters to use at print time. E.g. by defining your "start" G-Code as:
 
 ```
-START_PRINT TOOL_CHANGES={total_toolchanges} ....
+START_PRINT INITIAL_BED_TEMP={first_layer_bed_temperature} ....
 ```
 
-Your `START_PRINT` macro thus gets the number of tool changes passed as an integer parameter.
+Your `START_PRINT` macro thus gets the initial bed temperatures passed as an integer parameter.
 
 <br>
 
-The Happy Hare pre-processor implements similar functionality but runs when the file is uploaded to Moonraker. To distinguish from Slicer added tokens, this pre-processor delimits placeholders with `!` marks. Note that this does not duplicate all the Slicer placeholders but provides an extensible mechanism to implement anything missing in the slicer. At this time a single placeholder `!referenced_tools!` is implemented but this might grow over time.
+The Happy Hare pre-processor implements similar functionality but runs when the file is uploaded to Moonraker. To distinguish from Slicer added tokens, this pre-processor delimits placeholders with `!` marks. Note that this does not duplicate all the Slicer placeholders but provides an extensible mechanism to implement anything missing in the slicer.
 
 > [!NOTE]  
-> The `{referenced_tools}` placeholder has been submitted as a PR for PrusaSlicer but it has not yet been incorporated, so you can use `!referenced_tools!` instead!
+> The `{referenced_tools}` placeholder has been submitted as a PR for PrusaSlicer (over a year ago!) but it has not yet been incorporated, so you can use `!referenced_tools!` instead!
 
 <br>
 
@@ -79,6 +80,9 @@ gcode:
 > * `MMU_CHECK_GATE TOOLS=` with empty string will be ignored by Happy Hare.<br>
 > * Any tool that was loaded prior to calling `MMU_CHECK_GATE` will be automatically restored at the end of the checking procedure.<br>
 > * In the gcode snippet above we also pass in the slicer placeholder {initial_tool} because single color prints have no tool changes and thus `REFERENCED_TOOLS` (which counts `Tx` commands) will be empty. This code will ensure that `REFERENCED_TOOLS` will always contain the initial tool.
+
+### Placeholder: `!total_toolchanges!`
+This placeholder is substituted with a count of the number of toolchanges in a print (excluding the initial tool). Whilst some slicers support `{total_toolchanges}` as a placeholder using `!total_toolchanges!` will always work. If passed in to Happy Hare during print start as recommended, a countdown of changes will be maintained.
 
 ### Placeholder: `!filament_names!`
 This placeholder is substituted with a comma separated list of filament names assigned to each extruder in the slicer. This is just informational and is persisted in the `slicer_tool_map` by the default Happy Hare startup macros.
