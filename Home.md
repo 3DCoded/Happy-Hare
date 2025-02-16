@@ -48,14 +48,24 @@ Alternatively you can use the [Github Issue](https://github.com/moggieuk/Happy-H
 The Wiki is organized to be as organic in nature as possible. The goal is to help you go step by step from having the MMU hardware built to a fully functioning setup. Since Happy Hare is intended to work for multiple MMUs, please consult the respective resources for hardware sourcing, building, and printed parts requirements.  
 
 Supported MMU types:
+Type A (Linear\_Selector):
 * ERCF v1.1, v2.0
 * Tradrack v1.0
+
+Type B (Virtual\_Selector, Individual drive steppers):
 * Box Turtle v1.0
 * Night Owl v1.0
 * Angry Beaver v1.0
 * 3MS v1.0
-* Generic type-A (with selector) and type-B (with individual drive steppers) - basic setup files only
-More are in development
+* Quattro Box
+
+Type A (Rotary\_Selector):
+* 3D Chameleon (with Rotary\_Selector)
+
+Type A (Servo\_Selector):
+* PicoMMU (with Servo\_Selector)
+
+* Generic/Custom
 
 ### General overview of the configuration and setup process:
 
