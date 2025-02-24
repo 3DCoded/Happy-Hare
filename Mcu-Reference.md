@@ -1,12 +1,12 @@
 #### Page Sections:
 - [Popular MCUs](#popular-mcus)
   - [BigTreeTech BTT MMB CAN v1](#bigtreetech-btt-mmb-can-v1)
+  - [BigTreeTech BTT MMB CAN v2.0](#bigtreetech-btt-mmb-can-v20)
   - [Fysetc ERB v2](#fysetc-erb-v2)
   - [Mellow CAN v1](#mellow-can-v1)
   - [Mellow CAN v2](#mellow-can-v2)
   - [ERCF Easy Brd v1.1](#ercf-easy-brd-v11)
 - [Flashing Firmware](#flashing-firmware)
-<!--   - [BigTreeTech BTT MMB CAN v2.0](#bigtreetech-btt-mmb-can-v20) -->
 
 <br>
 
@@ -27,19 +27,18 @@ Probably the best guide available is Esoterical's site:
 <hr>
 <br>
 
-<!--
 ### BigTreeTech BTT MMB CAN v2.0
-<p align="center"><img src="Mcu-Reference/MMB_CAN_v1.0_Pinout.jpg" alt="MMB_CAN_v1.0_Pinout"></p>
+<p align="center"><img src="Mcu-Reference/MMB_CAN_v2.0_Pinout.png" alt="MMB_CAN_v2.0_Pinout"></p>
 
 <details>
   <summary>Click for details on Firmware flashing</summary>
   
-**TODO**
+Probably the best guide available is Esoterical's site:
+**[Firmware Guide](https://canbus.esoterical.online/toolhead_flashing/common_hardware/BigTreeTech%20MMB%20CAN%20V2.0/README.html)**
 
 </details>
 
 <br>
--->
 
 ### Fysetc ERB v2
 <p align="center"><img src="Mcu-Reference/ERB_V2_Pinout_White.png" alt="ERB_v2_Pinout_White"></p>
