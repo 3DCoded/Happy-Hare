@@ -28,6 +28,7 @@ The default is slicer, but possible values are:
 - `slicer`   - Color from slicer tool map (what the slicer expects)
 - `allgates` - Color from all the tools in the gate map after running through the TTG map
 - `gatemap`  - As per gatemap but hide empty tools
+- `off`      - Turns off support
 
 <br>
 
@@ -69,19 +70,3 @@ Notice that `T0` is now red because gate 7 contains red filament.
 >
 > Now you can think of the Mainsail Extruder UI as another set of LED's! Remember though that these are "Tools" and are subject to the tool-to-gate (TTG) map unlike the gate LEDs.
 
-
-<br>
-
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Gate Assignment Visualization
-
-_comming soon when I energy to write more_
-
-### allgates
-```yml
-t_macro_color: allgates
-```
-
-### gatemap
-```yml
-t_macro_color: gatemap
-```
