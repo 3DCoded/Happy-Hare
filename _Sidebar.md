@@ -60,6 +60,7 @@
 - [Handling Errors](Handling-Errors)
   - [Recovering MMU State](Handling-Errors#---state-recovery)
 - [KlipperScreen](KlipperScreen)
+- [Mainsail/Fluidd Integration](Mainsail-Fluidd-Integration) :new:
 
 </details>
 
@@ -88,7 +89,6 @@
 - [LED Support](Led-Support)
 - [Spoolman Support](Spoolman-Support) :new:
 - [Third Party Addon Features](Addon-Feature-Setup)
-- [Mainsail/Fluidd Integration](Mainsail-Fluidd-Integration) :new:
 
 </details>
 
