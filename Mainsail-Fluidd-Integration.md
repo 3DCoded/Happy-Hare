@@ -1,14 +1,43 @@
 <p align="center"><img src="Mainsail-Fluidd-Integration/mainsail_main_panel.png" alt='main panel' width='50%'></p>
 
-Finally Mainsail/Fluidd integration has arrived!
+Mainsail/Fluidd integration has arrived! (well, March 3rd 2025 - Mainsail PR is in queue, Fluidd port in active development)
 
 <br>
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Main Panel
 
-The Mainsail integration includes a new "MMU" panel. The integration into the existing "Extruder" panel documented later still works but this panel is decidated to monitoring and operating the MMU outside of just selecting a tool
+The Mainsail integration includes a new "MMU" panel. The integration into the existing "Extruder" panel documented later still works for tool selection but this panel is decidated to monitoring and operating the MMU outside of just selecting a tool at the physical gate level
 
-<p align="center"><a href="https://github.com/moggieuk/Happy-Hare/wiki/Mainsail-Fluidd-Integration/mainsail_annotated.png"><img src="Mainsail-Fluidd-Integration/mainsail_annotated.png" alt='annotated main panel' width='100%'></a>
+<p align="center"><a href="https://github.com/moggieuk/Happy-Hare/wiki/Mainsail-Fluidd-Integration/mainsail_annotated_panel.png"><img src="Mainsail-Fluidd-Integration/mainsail_annotated_panel.png" alt='annotated main panel' width='100%'></a>
+Click for larger image...
+</p>
+
+<br>
+
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Tool to Gate mapping
+
+When you start a print that has multiple colors with a single extruder you have the opportunity to map the tools the slicer expects to the physical gates/lanes on the MMU.  You can also map all tools at any time to adjust the tool-to-gate mapping.
+
+<p align="center"><a href="https://github.com/moggieuk/Happy-Hare/wiki/Mainsail-Fluidd-Integration/mainsail_annotated_ttg_editor.png"><img src="Mainsail-Fluidd-Integration/mainsail_annotated_ttg_editor.png" alt='annotated ttg editor' width='100%'></a>
+Click for larger image...
+</p>
+
+<br>
+
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Gate map editor
+
+This dialong is used to edit the attributes on the filament loaded on your MMU. You can either specify the individual attributes or link the filament to spoolman and have Happy Hare pull attributes from that.
+
+<p align="center"><a href="https://github.com/moggieuk/Happy-Hare/wiki/Mainsail-Fluidd-Integration/mainsail_annotated_gate_editor.png"><img src="Mainsail-Fluidd-Integration/mainsail_annotated_gate_editor.png" alt='annotated gate editor' width='100%'></a>
+Click for larger image...
+</p>
+
+<br>
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Maintenance and State Recovery
+
+If an error occurs with the MMU and the state cannot be automatically recovered you are fix with the "Recover" screen or you can perform some setup and operations specific to you particular MMU with the "Maintenance" screen.
+
+<p align="center"><a href="https://github.com/moggieuk/Happy-Hare/wiki/Mainsail-Fluidd-Integration/mainsail_annotated_maintenance.png"><img src="Mainsail-Fluidd-Integration/mainsail_annotated_maintenance.png" alt='annotated mmu maintenance' width='100%'></a>
 Click for larger image...
 </p>
 
