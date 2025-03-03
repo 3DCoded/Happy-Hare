@@ -1,3 +1,12 @@
+#### Page Sections:
+- [Main Panel](#---main-panel)
+- [Tool to Gate mapping](#---tool-to-gate-mapping)
+- [Gate Map Editor](#---gate-map-editor)
+- [Maintenance and State Recovery](#---maintenance-and-state-recovery)
+- [Extruder/Filament Color](#---extruder-filament-color)
+
+<br>
+
 <p align="center"><img src="Mainsail-Fluidd-Integration/mainsail_mmu_panel.png" alt='main panel' width='65%'></p>
 
 Mainsail/Fluidd integration has arrived! (well, March 3rd 2025 - Mainsail PR is in queue, Fluidd port in active development)
