@@ -1,9 +1,9 @@
 #### Page Sections:
-- [Main Panel](#---main-panel)
-- [Tool to Gate mapping](#---tool-to-gate-mapping)
-- [Gate Map Editor](#---gate-map-editor)
-- [Maintenance and State Recovery](#---maintenance-and-state-recovery)
-- [Extruder/Filament Color](#---extruder-filament-color)
+- [Main Mainsail/Fluidd Panel](#---main-panel)
+ - [Tool to Gate mapping](#---tool-to-gate-mapping)
+ - [Gate Map Editor](#---gate-map-editor)
+ - [Maintenance and State Recovery](#---maintenance-and-state-recovery)
+- [Extruder/Filament Color](#---extruderfilament-color)
 
 <br>
 
