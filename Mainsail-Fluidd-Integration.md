@@ -1,4 +1,4 @@
-<p align="center"><img src="Mainsail-Fluidd-Integration/mainsail_mmu_panel.png" alt='main panel' width='60%'></p>
+<p align="center"><img src="Mainsail-Fluidd-Integration/mainsail_mmu_panel.png" alt='main panel' width='65%'></p>
 
 Mainsail/Fluidd integration has arrived! (well, March 3rd 2025 - Mainsail PR is in queue, Fluidd port in active development)
 
