@@ -1,4 +1,4 @@
-<p align="center"><img src="Mainsail-Fluidd-Integration/mainsail_main_panel.png" alt='main panel' width='50%'></p>
+<p align="center"><img src="Mainsail-Fluidd-Integration/mainsail_main_panel.png" alt='main panel' width='60%'></p>
 
 Mainsail/Fluidd integration has arrived! (well, March 3rd 2025 - Mainsail PR is in queue, Fluidd port in active development)
 
@@ -24,7 +24,7 @@ Click for larger image...
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Gate map editor
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Gate Map editor
 
 This dialong is used to edit the attributes on the filament loaded on your MMU. You can either specify the individual attributes or link the filament to spoolman and have Happy Hare pull attributes from that.
 
@@ -33,6 +33,7 @@ Click for larger image...
 </p>
 
 <br>
+
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Maintenance and State Recovery
 
 If an error occurs with the MMU and the state cannot be automatically recovered you are fix with the "Recover" screen or you can perform some setup and operations specific to you particular MMU with the "Maintenance" screen.
