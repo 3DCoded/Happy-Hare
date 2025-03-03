@@ -26,7 +26,7 @@ Click for larger image...
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Gate Map editor
 
-This dialong is used to edit the attributes on the filament loaded on your MMU. You can either specify the individual attributes or link the filament to spoolman and have Happy Hare pull attributes from that.
+This screen is used to edit the attributes on the filament loaded on your MMU. You can either specify the individual attributes or link the filament to spoolman and have Happy Hare pull attributes from the database.
 
 <p align="center"><a href="https://github.com/moggieuk/Happy-Hare/wiki/Mainsail-Fluidd-Integration/mainsail_annotated_gate_editor.png"><img src="Mainsail-Fluidd-Integration/mainsail_annotated_gate_editor.png" alt='annotated gate editor' width='100%'></a>
 Click for larger image...
