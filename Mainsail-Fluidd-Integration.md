@@ -10,6 +10,7 @@
 <p align="center"><img src="Mainsail-Fluidd-Integration/mainsail_mmu_panel.png" alt='main panel' width='65%'></p>
 
 Mainsail/Fluidd integration has arrived! (well, March 3rd 2025 - Mainsail PR is in queue, Fluidd port in active development)
+<p>Until the PR is merged you can access my mainsail fork here: <a href="https://github.com/moggieuk/mainsail-happy-hare-edition">https://github.com/moggieuk/mainsail-happy-hare-edition</a>
 
 <br>
 
