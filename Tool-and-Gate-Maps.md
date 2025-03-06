@@ -213,14 +213,14 @@ The lower paragraph of the status is the gate centric view showing the mapping b
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Automatic Tool to Gate (TTG) Mapping
 
-Automatic TTG mapping is a feature that can be enabled in the `mmu_macro_vars.cfg` file. When enabled, the [MMU_START_SETUP](Slicer-Setup#1-mmu_start_setup) macro will automatically map tools to gates based on a strategy that you define. The strategy can be one of the following:
+Automatic TTG mapping is a feature that can be enabled in the `mmu_macro_vars.cfg` file. When enabled, the [MMU_START_SETUP](Slicer-Setup#1-mmu_start_setup) macro will automatically map tools to gates based on a strategy that you define. Modify variable `variable_automap_strategy` in the `[gcode_macro _MMU_SOFTWARE_VARS]` section. The strategy can be one of the following:
 - `none` No automapping with occur (the default)
 - `filament_name` The tool will be mapped one or more gates based on the filament name.
 - `material` The tool will be mapped to one or more gates based on the filament material type. This can be useful if you have multiple spools of the same color but different material and don't care which one is used.
 - `color` The tool will be mapped to one or more gates based on the filament color. In this case HH will try to exactly match the desired color on a gate that matches its material.
 <!-- COOPER : For each of the modes described above, if multiple gates match then an endless spool will be created. -->
 - `closest_color` The tool will be mapped to the gate with the closest color match. This can be useful if you have a lot of spools of the same material and you want HH to select the closest color match without having you to remap the tools manually. When using this strategy the automapping feature will display a color match status in the console.
-- `spool_id` [FUTURE] The tool will be exactly mapped based on the spool_id [_when slicers pass spool id_]
+- _`spool_id` [FUTURE] The tool will be exactly mapped based on the spool_id [_when slicers pass spool id_]_
 
 When your slicer and MMU are fully configured, the 4-color print illustration above (in the TTG mapping section) can have the gate association and EndlessSpool groups set automatically using the strategy of "color" or "closest_color".  Pretty cool, right?!
 
