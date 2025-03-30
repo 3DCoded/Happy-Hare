@@ -23,7 +23,7 @@ There are a few recurring problems with simple solutions and we've tried our bes
 ### Discord
 Also you should join the [dedicated Happy Hare discord](https://discord.gg/aABQUjkZPk) where there are dedicated channels for each MMU type as well as some of the main extensions.
 
-ERCF users can speak up on the [Voron ERCF Discord channel](https://discord.com/channels/460117602945990666/909743915475816458). There is a lot going on there, so be patient and persistent. Don't give up and someone will certainly help you.  Similarly Tradrack users can use the [TrackRack General Discord](https://discord.com/channels/641407187004030997/1073213131964293180).
+ERCF users can speak up on the [Voron ERCF Discord channel](https://discord.com/channels/460117602945990666/909743915475816458). There is a lot going on there, so be patient and persistent. Don't give up and someone will certainly help you.  Similarly Tradrack users can use the [TradRack General Discord](https://discord.com/channels/641407187004030997/1073213131964293180).
 
 When you ask for help you should be prepared to provide the following information:
 - `klippy.log`
