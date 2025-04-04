@@ -94,7 +94,7 @@ The upgrade process should have added the following section to your `mmu_paramet
 # controlled by the 'espooler_speed_exponent' setting according to this formula and allows for non-linear characteristics
 # the DC motor (0.5 is a good starting value).
 # 
-#     espooler_pwm = {stepper_speed} / {max_stepper_speed}) ^ {speed_exponent}
+#     espooler_pwm = (stepper_speed / espooler_max_stepper_speed) ^ espooler_speed_exponent
 #
 # Regardless of h/w configuration you can enable/disable actions with the 'espooler_operations' list. E.g. remove 'play' to
 # turn off operation while printing. Options are:
@@ -126,7 +126,7 @@ And remember actual eSpooler pwm speed values are between 0.0 (off) and 1.0 (ful
 
 The formula looks like this:<br>
 ```yml
-    ({stepper_speed} / {espooler_max_stepper_speed}) ^ {espooler_speed_exponent}
+    (stepper_speed / espooler_max_stepper_speed) ^ espooler_speed_exponent
 ```
 With `stepper_speed_exponent` of 1 would have a linear ratio:<br>
 If I am running with a step speed of 50mm/s, the eSpooler would run at full speed (1.0)<br>
@@ -139,6 +139,8 @@ If I am running with a step speed of 50mm/s, the eSpooler would run at full spee
 Calculated via (50/50)^0.2<br>
 If I am running with a step speed of 25mm/s, the eSpooler would run at half speed (0.87)<br>
 Calculated via (25/50)^0.2<br>
+
+Note that the PWM signal range is scaled by the h/w configuration `scale` if set (see klipper doc).
 
 #### `espooler_min_stepper_speed`
 This defines the stepper speed at which the espooler will start. It is generally most useful with digital controlled DC motors when you want to set a threshold below which the espooler doesn't run
