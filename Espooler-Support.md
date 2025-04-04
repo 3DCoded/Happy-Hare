@@ -1,7 +1,7 @@
 #### Page Sections:
 - [Hardware Config](#---hardware-config)
 - [Software Config](#---software-config)
-- [MMU_ESPOOLER Command](#---mmu-espooler-command)
+- [MMU_ESPOOLER Command](#---mmu_espooler-command)
 - [Espooler UI](#---espooler-ui)
 
 Happy Hare now can optionally drive a DC "espooler" for each gate. Typically this will be a DC20 (e.g. in the Box Turtle design). The primary value of this is to respool the filament when it unloads, however it can also be used to assist movement when loading or even relieve friction when printing.
@@ -143,7 +143,7 @@ Calculated via (25/50)^0.2<br>
 #### `espooler_min_stepper_speed`
 This defines the stepper speed at which the espooler will start. It is generally most useful with digital controlled DC motors when you want to set a threshold below which the espooler doesn't run
 
-### `espooler_printer_power`
+#### `espooler_printer_power`
 This is a % of the maximum power (max pwm signal) that is applied to the espooler motor while printing. This should not be large enough to sping the spool but rather acts as "releasing the braking effort" so there is less strain pulling from the spool while printing. It is recommended that you exclude "print" from `espooler_operations` initially until you determine that it is causing too much of a braking effect.
 
 <br>
@@ -182,11 +182,11 @@ The Mainsail and Fluidd support will render the operation of the espooler motor 
 <table>
   <tr>
     <td>
-      <img src="Espooler-Support/rewind.png" alt='Respooling' width='20%'>
+      <img src="Espooler-Support/rewind.png" alt='Respooling' width='40%'><br>
       Rewinding (respooling)
     </td>
     <td>
-      <img src="Espooler-Support/assist.png" alt='Assist' width='20%'>
+      <img src="Espooler-Support/assist.png" alt='Assist' width='40%'><br>
       Assisting
     </td>
   </tr>
