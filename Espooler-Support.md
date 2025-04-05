@@ -94,13 +94,13 @@ The upgrade process should have added the following section to your `mmu_paramet
 # controlled by the 'espooler_speed_exponent' setting according to this formula and allows for non-linear characteristics
 # the DC motor (0.5 is a good starting value).
 # 
-#     espooler_pwm = (stepper_speed / espooler_max_stepper_speed) ^ espooler_speed_exponent
+#     espooler_pwm = (stepper_speed / espooler_max_stepper_speed) ^ {espooler_speed_exponent}
 #
 # Regardless of h/w configuration you can enable/disable actions with the 'espooler_operations' list. E.g. remove 'play' to
 # turn off operation while printing. Options are:
 #
 #    rewind - when filament is being unloaded under MMU control (aka respool)
-#    assist - when filament is being loaded under MMU control
+#    assist - when filament is being loaded under MMU control (% of "rewind" speed but with minimum of "print" power)
 #    print  - while printing. Generally set 'espooler_printing_power' to a low percentage just to allow motor to be turned freely
 #
 # If using a digitally controlled espooler motor (not PWM) then you should turn off the "print" mode and set
@@ -110,6 +110,7 @@ espooler_min_distance: 30                       # Individual stepper movements l
 espooler_max_stepper_speed: 300                 # Gear stepper speed at which espooler will be at maximum power
 espooler_min_stepper_speed: 0                   # Gear stepper speed at which espooler will become inactive (useful for non PWM control)
 espooler_speed_exponent: 0.5                    # Controls non-linear espooler power relative to stepper speed (see notes)
+espooler_assist_reduced_speed: 50               # Control the % of the rewind speed that is applied to assisting load (want rewind to be faster)
 espooler_printing_power: 10                     # If >0, fixes the % of PWM power while printing.
 espooler_operations: rewind, assist, print      # List of operational modes (allows disabling even if h/w is configured)
 ```
@@ -148,11 +149,16 @@ This defines the stepper speed at which the espooler will start. It is generally
 #### `espooler_printer_power`
 This is a % of the maximum power (max pwm signal) that is applied to the espooler motor while printing. This should not be large enough to sping the spool but rather acts as "releasing the braking effort" so there is less strain pulling from the spool while printing. It is recommended that you exclude "print" from `espooler_operations` initially until you determine that it is causing too much of a braking effect.
 
+#### `espooler_assist_reduced_speed`
+This is a percentage of the calculated "rewind" speed and is because, whilst you want the espooler to over-rewind to keep the filament tight you DON'T want it to over unwind when loading. Thus a 50% setting will run the loading "assist" at 50% of the unloading "rewind" speed. Note that this speed will never drop before the "in-print" power.
+
 <br>
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) MMU_ESPOOLER Command
 
-The `MMU_ESPOOLER` command is idea for testing but may have uses elsewhere where you want direct control of the motors. Examples:
+The `MMU_ESPOOLER` command is idea for testing but may have uses elsewhere where you want direct control of the motors.
+
+Examples:
 ```yml
 MMU_ESPOOLER GATE=0 OPERATION="rewind" POWER=50
 ```
