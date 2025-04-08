@@ -40,12 +40,12 @@ List of the operations that should result in toolhead parking when not printing,
 `variable_enabled_park_disabled`
 There is really no reason to disable Happy Hare once installed, because you can use the bypass to avoid MMU control howwever if you are using the recommended "client_macros", then when Happy Hare is disabled (MMU ENABLE=0) you can stil configure parking on pause or cancel operations. (Note that these are the only two options that can occur)
 
-For each operation (well, 5 because toolchange, load & unload are all grouped as type of "toolchange") the parking move is defined with 5 parameters: the x,y coordinates you wish to park at; the z-hop; the optional ramp of z-hop move; and the retraction length.
+For each operation (well, 5 because toolchange, load & unload are all grouped as type of "toolchange") the parking move is defined with 5 parameters: the x,y coordinates you wish to park at; the z-hop; the optional ramp of z-hop move; and the retraction length. Parking positions can be negative if your printer can handle it.
 E.g.
 ```
 variable_park_pause: 50, 50, 5, 10, 2
 ```
-Defines a parking position (50,50) with a z-hop of 5mm above the print for pause operations. The z-hop will include a rapid 10mm horizontal movement as it lifts to help break any stringing. The extruder will retract 2mm. To only z-hop define the x,y as -1,-1.  Thus the parking move that does nothing would be `-1,-1,0,0,0`.
+Defines a parking position (50,50) with a z-hop of 5mm above the print for pause operations. The z-hop will include a rapid 10mm horizontal movement as it lifts to help break any stringing. The extruder will retract 2mm. To only z-hop define the x,y as -999,-999.  Thus the parking move that does nothing would be `-999,-999,0,0,0`.
 
 One of the features of Happy Hare's parking moves is that they define a "toolhead movement plane" above the print (even when sequentially printing!). This plane is generally the current z-height plus the z-hop, but the absolute minimum height for movement can be set with:
 ```
@@ -61,7 +61,7 @@ variable_park_lift_speed: 15          ; Z-only travel speed in mm/s
 So bringing this together if you want a 20mm z-hop only parking movement with 5mm of retraction when cancelling a print, you would minimally define:
 ```
 variable_enable_park_printing: `cancel`
-variable_park_cancel: -1, -1, 20, 0, 5
+variable_park_cancel: -999, -999, 20, 0, 5
 ```
 > [!IMPORTANT] 
 > You almost certainly want to define a parking position for the `pause` operation as this is called when the mmu encounters an error. You can place your toolhead in a convenient location away from your print while you fix the problem. Note that the parking movement of any MMU operation (e.g. MMU_UNLOAD, MMU_LOAD, Tx) invoked directly when in a paused state will act in the same way as they do out of the print and subject to the same "standalone" configuration.
@@ -80,11 +80,11 @@ Possible context/operations:
 
 Parking movement for toolchange is usually a little more nuanced so there are additional options. Firstly, you often want to differentiate beween a regular toolchange and a runout: if you have the slicer performing the tip forming then you often won't have a parking move on "toolchange" but you will likely need one on "runout" because you don't want the whole toolchange to occur touching the print. In addition as you build a more sophisticated toolchange procedure employing tip cutting, custom purging, nozzle parking and cleaning you may want additional parking moves during the process rather than just at the beginning and end. To accomplish this you can specify additional parking moves at these points in the process:
 ```yml
-variable_pre_unload_position    : -1, -1, 0     ; x,y,z-hop position before unloading starts
-variable_post_form_tip_position : -1, -1, 0     ; x,y,z-hop position after form/cut tip on unload
-variable_pre_load_position      : -1, -1, 0     ; x,y,z-hop position before loading starts
+variable_pre_unload_position    : -999, -999, 0     ; x,y,z-hop position before unloading starts
+variable_post_form_tip_position : -999, -999, 0     ; x,y,z-hop position after form/cut tip on unload
+variable_pre_load_position      : -999, -999, 0     ; x,y,z-hop position before loading starts
 ```
-Each defines the x,y coordinates desired and optionally z-hop (note: z-hop is not compounded, the largest z-hop will be used to adjust movement plane). The default `-1,-1,0` does nothing.
+Each defines the x,y coordinates desired and optionally z-hop (note: z-hop is not compounded, the largest z-hop will be used to adjust movement plane). The default `-999,-999,0` does nothing.
 
 > [!NOTE] 
 > It is also possible to call the parking logic directly from your macros in this form:

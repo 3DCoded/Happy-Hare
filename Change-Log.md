@@ -435,13 +435,47 @@ T8   285  204   89  192  320  320   -    -    -
 - Integrated several PRs (refer to Github for details)
 
 ### v3.1.0
-**Mainsail!!**
+**Mainsail beta!!**
 - Production release of v3.0.2 beta (support for multiple running MMUs)
 - Compatibility with New mainsail beta UI!  (Fluidd under development)
   - Allows for blobifer animation, and toolhead and MMU tip cutting visualization
 - Support for the fantastic new [QuattroBox](https://github.com/Batalhoti/QuattroBox)
 - Support for the PicoMMU
 
+### v3.2.0 (currently in beta on 'beta32' branch)
+**Mainsail & Fluidd Support!!**
+**Full native eSpooler**
+- Both Mainsail and Fluidd now support a rich UI to Happy Hare. This is in addition to the existing KlipperScreen UI. See the Mainsail/Fluidd channel in the Happy Hare forum for more details
+<ADD SMALL IMAGE>
+- New, fully native, eSpooler option.  Support respool, ASSIST, and intelligent "in-print assist" with both PWM and digital signals
+  - New `MMU_ESPOOLER` command for easy control/testing of espooler. See [Command Reference](Command-Reference)
+  - Allows for in-print assist triggering on demand based on extruder movement or tension trigger!
+- Improved "automatic homing" option on startup
+- Formal purging macro similar to form tip macro with separate extruder current control.
+  - This is now the preferred place to add blobifer purge macro since current control and extruder syncing control is possible
+  - New reference "bucket" purge macro that intelligently purges only the filament necessary (knows the previously loaded color)
+- Separate timing statistic options for both tip forming and purging
+- Filament colors will now retain the alpha channel (useful for translucent filaments and great in the UI)
+- Optimization of servo selector movement for the PicoMMU
+- Much improved `MMU_GATE_MAP` readability:
+```
+MMU_GATE_MAP
+Gates / Filaments:
+0: Empty;   Id: 1   --> PLA - Silk | 210°C | #8CDFAC | Matte Green
+1: Spool;   Id: 2   --> PTEG | 220°C | #DCDA3472 | eMarble
+2: Spool;   Id: n/a;    PLA | 200°C | blue | No brand cheap filament
+3: Buffer;  Id: 4   --> ASA | 239°C | #95DC34 | Prusament Lime Green
+4: Buffer;  Id: 8   --> ABS | 235°C | #2F30BE | Blue Sparkle
+5: Unknown; Id: 6   --> ABS | 240°C | #7C6555 | eSun ABS
+6: Spool;   Id: 10  --> Unknown | 240°C | #080808 | Jet Black
+7: Spool;   Id: n/a;    TPU | 240°C | grey | eight [Speed:50%]
+8: Spool;   Id: 9   --> ABS | 235°C | #2F30BE | Blue Sparkle
+```
+- Allow negative parking movements. Previously a '-1' value was treated as a "don't move". To allow for negative movement this magic number has been change to '-999' in the parking macros
+- Fixed (nasty) bug in v3.1 where the print would not always pause on mmu error.
+- Fixed "random" delay some folks were seeing typically on print startup
+- Fixed corner cases when gate map was not updated (filament attributes) from UI's when using spoolman.
+- Fixed bug in parking logic that sometimes caused it not to park on print completion or error
 <!--
 - Beta support for [MMX - Multi Material eXtruder](#)
 -->

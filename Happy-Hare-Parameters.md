@@ -399,36 +399,57 @@ toolhead_move_error_tolerance: 60
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Tip Forming
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Tip Forming and Purging
 
 Here you set the name of the macro to call to perform the "tip forming". Happy Hare supplies both a traditional tip shaping macro (based on what Prusa/Super slicer did) as well as a tip cutting macro designed for toolhead based cutters like ERF (Filametrix).  More details on slicer setup can be found [here](Toolchange-Movement#---role-of-the-slicer) and in the setup of the individual macros.
 
-``` yml
+```yml
 # Tip forming -------------------------------------------------------------------------------------------------------------
 #
-# Tip forming responsibity is typically split between slicer (in-print) and standalone macro (not in-print). Whilst there is
-# an option to choose for every toolchange, setting 'force_form_tip_standalone: 1' will always do the standalone sequence.
-# Frankly it is usually recommended to disable tip forming in your slicer and to do exclusively in Happy Hare so tuning only
-# has to be done in one place.
+# Tip forming responsibility can be split between slicer (in-print) and standalone macro (not in-print) or forced to always
+# be done by Happy Hare's standalone macro. Since you always need the option to form tips without the slicer so it is
+# generally easier to completely turn off the slicer, force "standalone" tip forming and tune only in Happy Hare.
 #
-# When Happy Hare is asked to form a tip it will run the referenced macro. Two are reference examples are provided:
+# When Happy Hare is asked to form a tip it will run the referenced macro. Two are reference examples are provided but
+# you can implement your own:
 #   _MMU_FORM_TIP .. default tip forming similar to popular slicers like Superslicer and Prusaslicer
-#   _MMU_CUT_TIP  .. for Filametrix (ERCFv2) style toolhead filament cutting system
+#   _MMU_CUT_TIP  .. for Filametrix (ERCFv2) or similar style toolhead filament cutting system
 #
-# Often it is useful to increase the current for the (generally) rapid movement to ensure high torque and no skipped steps
+# Often it is useful to increase the extruder current for the rapid movement to ensure high torque and no skipped steps
 #
-# If opting for slicer tip forming you must configure where the slicer leaves the filament in the extruder since there
-# is no way to determine this. This can be ignored if all tip forming is performed by Happy Hare
+# If opting for slicer tip forming you MUST configure where the slicer leaves the filament in the extruder since
+# there is no way to determine this. This can be ignored if all tip forming is performed by Happy Hare
 #
-force_form_tip_standalone: 0             # 0 = Default smart behavior, 1 = Always do standalone tip forming (TURN SLICER OFF!)
-form_tip_macro: _MMU_FORM_TIP            # Name of macro to call to perform the tip forming (or cutting) operation
-extruder_form_tip_current: 100           # % of extruder current (100%-150%) to use when forming tip (100 to disable)
-slicer_tip_park_pos: 0                   # This specifies the position of filament in extruder after slicer tip forming move
+force_form_tip_standalone: 1            # 0 = Slicer in print else standalone, 1 = Always standalone tip forming (TURN SLICER OFF!)
+form_tip_macro: _MMU_FORM_TIP           # Name of macro to call to perform the tip forming (or cutting) operation
+extruder_form_tip_current: 100          # % of extruder current (100%-150%) to use when forming tip (100 to disable)
+slicer_tip_park_pos: 0                  # This specifies the position of filament in extruder after slicer completes tip forming
 ```
 
 > [!NOTE]  
 > Setting `force_form_tip_standalone: 1` will cause Happy Hare to always run the supplied tip shaping macro.  If you set this then make sure you configure your slicer to not adding tip shaping logic of its own else tips will attempt to be created twice and knowledge of the filament position in the extruder may become inaccurate (see [Tip Forming and Purging](Tip-Forming-and-Purging)).
 Tip-Forming-and-Purging
+
+
+```yml
+# Purging -------------------------------------------------------------------------------------------------------------
+#
+# After a toolchange it is necessary to purge the old filament. Similar to tip forming this can be done by the slicer and/or
+# by Happy Hare using an extension like Blobifer. If a purge_macro is defined it will be called when not printing or whenever
+# the slicer isn't going to purge (like initial tool load). You can force it to always be called in a print by setting
+# force_purge_standalone, but remember to turn off the slicer wipetower
+#
+# The default is for no (empty) macro so purging will not be done out of a print and thus wipetower. Two options are shipped with
+# Happy Hare but you can also build your own custom one:
+#   _MMU_PURGE .. default purging that just dumps the desired amount of filament (setup correct parking before enabling this!)
+#   BLOBIFER   .. for excellent Blobifer addon (https://github.com/Dendrowen/Blobifier)
+#
+# Often it is useful to increase the extruder current for the often rapid puring movement to ensure high torque and no skipped steps
+#
+force_purge_standalone: 0               # 0 = Slicer wipetower in print else standalone, 1 = Always standalone purging (TURN WIPETOWER OFF!)
+purge_macro: _MMU_PURGE                 # Name of macro to call to perform the standalone purging operation. E.g. BLOBIFIER, _MMU_PURGE
+extruder_purge_current: 100             # % of extruder current (100%-150%) to use when purging (100 to disable)
+```
 
 <br>
 
@@ -673,7 +694,7 @@ Typically these will be set dynamically over time and automatically saved to 'mm
 This group of settings collectively form the default gate map which can be updated with the `MMU_GATE_MAP` command or similar commands that determine gate status. They must all be the same length at the number of gates (0 .. n). Note that these are the defaults and will be overriden by saved values in mmu\_vars.cfg
 
 1. `gate_material` - Similarly this specifies the material type present in the gate. If not specified or commented out the name will be empty `MMU_GATE_MAP` is used to adjust and persist during use
-2. `gate_color` - Similarly this specifies the color of the filament in each gate. If not specified or commented out the color will be default Color can be w3c color name or RRGGBB (no leading #) `MMU_GATE_MAP` is used to adjust and persist during use
+2. `gate_color` - Similarly this specifies the color of the filament in each gate. If not specified or commented out the color will be default Color can be w3c color name or RRGGBB or RRGGBBAA (no leading #) `MMU_GATE_MAP` is used to adjust and persist during use
 3. `gate_spool_id` - If spoolman is active, you can here define the gate to spoolId mapping. This would typically be kept up-to-date with the `MMU_GATE_MAP GATE=... SPOOLID=...` command and refreshed with `MMU_GATE_MAP REFRESH=1`
 4. `gate_status` - Whether gate has filament available (2=available from buffer, 1=available from spool, 0=empty). If not specified or commented out the system default of all gates in an unknown state will be assumed `MMU_GATE_MAP` is used to adjust and persist during use
 5. `tool_to_gate_map` - The default mapping for tool to gate.  If not specified out the default mapping will be "Tx = Gate #x".  `MMU_RESET_TTG_MAP` will revert current map to these default values. `MMU_REMAP_TTG` will modify and persist during use.
@@ -688,8 +709,9 @@ For completeness and primarily for historical reasons rather than usefulness, th
 # ADVANCED: See documentation for use of these ---------------------------------------------------------------------------
 #
 # Gate:                0       1       2       3       4       5       6       7       8
+#gate_name:            name_A, name_B, name_C, name_D, name_E, name_F, name_G, name_H, name_I
 #gate_material:        PLA,    ABS,    ABS,    ABS+,   PLA,    PLA,    PETG,   ABS,    ABS
-#gate_color:           red,    black,  yellow, green,  blue,   indigo, ffffff, back,   black
+#gate_color:           red,    black,  yellow, green,  blue,   indigo, ffffff, back,   000000e0
 #gate_spool_id:        3,      2,      1,      4,      5,      6,      7,      8,      9
 #gate_status:          1,      0,      1,      2,      2,     -1,     -1,      0,      1
 #endless_spool_groups: 0,      1,      2,      1,      0,      0,      3,      4,      1

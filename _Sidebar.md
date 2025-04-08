@@ -87,7 +87,8 @@
 
 - [Gcode Preprocessing](Gcode-Preprocessing)
 - [LED Support](Led-Support)
-- [Spoolman Support](Spoolman-Support) :new:
+- [Spoolman Support](Spoolman-Support)
+- [Espooler Rewind/Assist](Espooler-Support) :new:
 - [Third Party Addon Features](Addon-Feature-Setup)
 
 </details>

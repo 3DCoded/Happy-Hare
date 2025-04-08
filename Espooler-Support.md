@@ -88,7 +88,7 @@ The upgrade process should have added the following section to your `mmu_paramet
 # ███████╗███████║██║     ╚██████╔╝╚██████╔╝███████╗███████╗██║  ██║
 # ╚══════╝╚══════╝╚═╝      ╚═════╝  ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝
 #                                                                  
-# If your MMU has a dc motor (ofter N20) controlled respooler/assist then how it operates can be controlled with these
+# If your MMU has a dc motor (often N20) controlled respooler/assist then how it operates can be controlled with these
 # settings. Typically the espooler will be controlled with PWM signal. This will be at the maximum at speeds equal or
 # above 'espooler.max_stepper_speed'. The PWM signal will scale downwards towards 0 for slower speeds. The falloff being
 # controlled by the 'espooler_speed_exponent' setting according to this formula and allows for non-linear characteristics
@@ -101,7 +101,8 @@ The upgrade process should have added the following section to your `mmu_paramet
 #
 #    rewind - when filament is being unloaded under MMU control (aka respool)
 #    assist - when filament is being loaded under MMU control (% of "rewind" speed but with minimum of "print" power)
-#    print  - while printing. Generally set 'espooler_printing_power' to a low percentage just to allow motor to be turned freely
+#    print  - while printing. Generally set 'espooler_printing_power' to a low percentage just to allow motor to be turned
+#             freely or set to 0 to enable/allow "burst" assist movements
 #
 # If using a digitally controlled espooler motor (not PWM) then you should turn off the "print" mode and set
 # 'espooler_min_stepper_speed' to prevent "over movement"
@@ -111,8 +112,14 @@ espooler_max_stepper_speed: 300                 # Gear stepper speed at which es
 espooler_min_stepper_speed: 0                   # Gear stepper speed at which espooler will become inactive (useful for non PWM control)
 espooler_speed_exponent: 0.5                    # Controls non-linear espooler power relative to stepper speed (see notes)
 espooler_assist_reduced_speed: 50               # Control the % of the rewind speed that is applied to assisting load (want rewind to be faster)
-espooler_printing_power: 10                     # If >0, fixes the % of PWM power while printing.
+espooler_printing_power: 0                      # If >0, fixes the % of PWM power while printing. 0=allows burst movement
 espooler_operations: rewind, assist, print      # List of operational modes (allows disabling even if h/w is configured)
+#
+# The following burst configuration is used only if 'print' operation is enabled and 'espooler_printing_power: 0'
+#
+espooler_assist_extruder_move_length: 100       # Distance (mm) extruder needs to move between each assist burst
+espooler_assist_burst_power: 100                # The % power of the burst move
+espooler_assist_burst_duration: 3.0             # The duration of the burst move is seconds
 ```
 
 The supplied defaults are generally a good starting point. Note that unsed options are ignored so it is advised to leave them in place (upgrade will likely reinstall them anyway). For example, if you don't have "assist" motors configured in the hardware, the `espooler_operations` "assist" and "print" will be ignored -- this option is useful if you wanted to turn off the functionality even if the hardware is configured.
@@ -146,11 +153,17 @@ Note that the PWM signal range is scaled by the h/w configuration `scale` if set
 #### `espooler_min_stepper_speed`
 This defines the stepper speed at which the espooler will start. It is generally most useful with digital controlled DC motors when you want to set a threshold below which the espooler doesn't run
 
+#### `espooler_assist_reduced_speed`
+This is a percentage of the calculated "rewind" speed and is because, whilst you want the espooler to over-rewind to keep the filament tight you DON'T want it to over unwind when loading. Thus a 50% setting will run the loading "assist" at 50% of the unloading "rewind" speed. Note that this speed will never drop before the "in-print" power.
+
 #### `espooler_printer_power`
 This is a % of the maximum power (max pwm signal) that is applied to the espooler motor while printing. This should not be large enough to sping the spool but rather acts as "releasing the braking effort" so there is less strain pulling from the spool while printing. It is recommended that you exclude "print" from `espooler_operations` initially until you determine that it is causing too much of a braking effect.
 
-#### `espooler_assist_reduced_speed`
-This is a percentage of the calculated "rewind" speed and is because, whilst you want the espooler to over-rewind to keep the filament tight you DON'T want it to over unwind when loading. Thus a 50% setting will run the loading "assist" at 50% of the unloading "rewind" speed. Note that this speed will never drop before the "in-print" power.
+#### Intelligent "in-print burst" operation
+If you set  set the `espooler_printer_power: 0` then the burst-mode kicks into play. This by waiting for a trigger to advance the espooler. This can be by watching the extruder movement and so every `espooler_assist_extruder_move_length` of movement it will run the espooler at `espooler_assist_burst_power` % power for `espooler_assist_burst_duration` seconds.
+
+### Sensor based "burst" operation
+Infomation comming soon...
 
 <br>
 
@@ -181,6 +194,19 @@ Without options this will give a status of all espooler motors
 
 > [!TIP]  
 > - `MMU_ESPOOLER ALLOFF=1` will quickly turn off ALL espoolers
+
+### Burst operation
+
+Typically burst operation is automatic but you can test/experiment with the `MMU_ESPOOLER` command. The gate, power an duration will default to the current gate, configured power and duration, if not specified:
+
+```yml
+MMU_ESPOOLER [GATE=xx] OPERATION="burst" [POWER=xx] [DURATION=xx]
+```
+Note that if the espooler is not in a "print" mode no extruder events will occur. So to completely test standalone you will need to first put one of the espoolers into "in-print" mode, then the burst can be sent.
+```yml
+MMU_ESPOOLER GATE=0 OPERATION=print POWER=0
+MMU_ESPOOLER OPERATION=burst
+```
 
 <br>
 

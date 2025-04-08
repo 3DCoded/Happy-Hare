@@ -6,10 +6,11 @@ Happy Hare exposes 'printer' variables that can be used in your own macros.
     printer.mmu.num_gates : {int} number of gates configured
     printer.mmu.is_homed : {bool} True if MMU has been homed
     printer.mmu.print_state': (string} Print state (printing | pause_locked | paused | complete | cancelled | error | ready | standby | initialized)
-    printer.mmu.unit : {int} Current selected unit 0..n | -1 for unknown
-    printer.mmu.tool : {int} Current selected tool 0..n | -1 for unknown | -2 for bypass
-    printer.mmu.gate : {int} Current selected tool 0..n | -1 for unknown
+    printer.mmu.unit : {int} current selected unit 0..n | -1 for unknown
+    printer.mmu.tool : {int} current selected tool 0..n | -1 for unknown | -2 for bypass
+    printer.mmu.gate : {int} current selected tool 0..n | -1 for unknown
     printer.mmu.active_filament : {dict} of active filament attributes (from gate_map, e.g. active_filament.material, active_filament.color)
+    printer.mmu.num_toolchanges : {int} count of toolchanges performed so far in the print
     printer.mmu.last_tool : {int} 0..n | -1 for unknown | -2 for bypass (during a tool change after unload)
     printer.mmu.next_tool : {int} 0..n | -1 for unknown | -2 for bypass (during a tool change)
     printer.mmu.toolchange_purge_volume : {float} suggested purge volume for current toolchange (mm^3)
@@ -19,6 +20,7 @@ Happy Hare exposes 'printer' variables that can be used in your own macros.
     printer.mmu.filament_position : {float} location in mm of filament
     printer.mmu.filament_pos : {int} state machine - exact location of filament
     printer.mmu.filament_direction : {int} 1 (load) | -1 (unload)
+    printer.mmu.pending_spool_id: {int} spoolman spool id that will automatically be assigned to next filament inserted | -1 not active
     printer.mmu.ttg_map : {list} defined gate for each tool
     printer.mmu.endless_spool_groups : {list} membership group (int) for each tool
     printer.mmu.gate_status : {list} per gate: 0 empty | 1 available | 2 available from buffer |  -1 unknown
@@ -28,7 +30,7 @@ Happy Hare exposes 'printer' variables that can be used in your own macros.
     printer.mmu.gate_temperature : {list} of filament temperatures, one per gate
     printer.mmu.gate_color_rgb : {list} of color rbg values from 0.0 - 1.0 in truples (red, green blue), one per gate
     printer.mmu.gate_spool_id : {list} of IDs for Spoolman, one per gate
-    printer.mmu.slicer_tool_map : {dict} of slicer defined tool attributes (in form slicer_tool_map.tools.x.[color|material|temp|in_use])
+    printer.mmu.slicer_tool_map : {dict} of slicer defined tool attributes (see details below)
     printer.mmu.slicer_color_rgb : {list} of color rbg values from 0.0 - 1.0 in truples (red, green blue), one per gate
     printer.mmu.tool_extrusion_multipliers : {list} current M221 extrusion multipliers (float), one per tool
     printer.mmu.tool_speed_multipliers : {list} current M220 extrusion multipliers (float), one per tool
@@ -46,11 +48,24 @@ Happy Hare exposes 'printer' variables that can be used in your own macros.
     printer.mmu.espooler_active : {string} (rewind | assist | "") If espooler is rewinding or assisting spool
     printer.mmu.sensors : {dict} Key is sensor name and value is (True | False | None) where None indicates sensor exists but currently disabled
 
+slicer_tool_map dictionary:
+  .tools.<tool_num>
+    .name : {string} name of filament
+    .color : {string} color of filment in "RRGGBB" or "RRGGBBAA" form (no leading #)
+    .material : {string} name of material type
+    .temp : {int} filament print temperature
+    .in_use : {bool} where tool is actually referenced in this print (in referenced_tools)
+  .referenced_tools : {list} of tool numbers used in this print
+  .initial_tool : {int} number of initial tool used in this print
+  .purge_volumes : {list} of NxN purge volumes
+  .total_toolchanges : {int} number of toolchanges in this print
+  .skip_automap : {bool} True if automap feature should be skipped for this print (one-shot use)
+
 Added if current active MMU unit has LinearSelector:
     printer.mmu.servo : {string} Up | Down | Move | Unknown
 
 Added by if current active MMU unit has RotarySelector, ServoSelecter:
-    printer.mmu.servo : {string} Gripped | Released
+    printer.mmu.grip : {string} Gripped | Released
 
 Added by if current active MMU unit has encoder:
     printer.mmu.encoder : {dict} See mmu_encoder below for details
