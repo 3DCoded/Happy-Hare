@@ -160,10 +160,12 @@ This is a percentage of the calculated "rewind" speed and is because, whilst you
 This is a % of the maximum power (max pwm signal) that is applied to the espooler motor while printing. This should not be large enough to sping the spool but rather acts as "releasing the braking effort" so there is less strain pulling from the spool while printing. It is recommended that you exclude "print" from `espooler_operations` initially until you determine that it is causing too much of a braking effect.
 
 #### Intelligent "in-print burst" operation
-If you set  set the `espooler_printer_power: 0` then the burst-mode kicks into play. This by waiting for a trigger to advance the espooler. This can be by watching the extruder movement and so every `espooler_assist_extruder_move_length` of movement it will run the espooler at `espooler_assist_burst_power` % power for `espooler_assist_burst_duration` seconds.
+If you set  set the `espooler_printer_power: 0` then the burst-mode kicks into play. This waits for a trigger to advance the espooler. This trigger can be set to watch the extruder movement so every `espooler_assist_extruder_move_length` of movement it will run the espooler at `espooler_assist_burst_power` % power for `espooler_assist_burst_duration` seconds.
 
 ### Sensor based "burst" operation
-Infomation comming soon...
+As a more reliable alternative to extruder movement triggering the espooler assist, Happy Hare can accept a sensor input. This is by far the best method and overcomes variability by introducing closed loop feedback: when the sensor detects tension on the filament it "bursts" the espooler into action thus relieving tension and providing intelligent assist. If the filament is not under tension the espooler will be inactive. This both prolongs the life of the espooler DC motor but also means that problematic unspooling is eliminated. Mods to popular MMU's/AFC's like Box Turtle are in the works...
+
+Setup infomation comming soon...
 
 <br>
 
@@ -197,12 +199,12 @@ Without options this will give a status of all espooler motors
 
 ### Burst operation
 
-Typically burst operation is automatic but you can test/experiment with the `MMU_ESPOOLER` command. The gate, power an duration will default to the current gate, configured power and duration, if not specified:
+Typically burst operation is automatic based on configuration but you can test/experiment directly with the `MMU_ESPOOLER` command. The gate, power an duration will default to the current gate, configured power and duration, if not specified:
 
 ```yml
-MMU_ESPOOLER [GATE=xx] OPERATION="burst" [POWER=xx] [DURATION=xx]
+MMU_ESPOOLER OPERATION="burst" [GATE=xx] [POWER=xx] [DURATION=xx]
 ```
-Note that if the espooler is not in a "print" mode no extruder events will occur. So to completely test standalone you will need to first put one of the espoolers into "in-print" mode, then the burst can be sent.
+Note that if the espooler for the given gate is not in a "print" mode the burst request will be ignored. So to completely test standalone you will need to first put one of the espoolers into "in-print" mode, then the burst can be sent.
 ```yml
 MMU_ESPOOLER GATE=0 OPERATION=print POWER=0
 MMU_ESPOOLER OPERATION=burst
