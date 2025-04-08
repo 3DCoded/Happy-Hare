@@ -159,10 +159,12 @@ This is a percentage of the calculated "rewind" speed and is because, whilst you
 #### `espooler_printer_power`
 This is a % of the maximum power (max pwm signal) that is applied to the espooler motor while printing. This should not be large enough to sping the spool but rather acts as "releasing the braking effort" so there is less strain pulling from the spool while printing. It is recommended that you exclude "print" from `espooler_operations` initially until you determine that it is causing too much of a braking effect.
 
-#### Intelligent "in-print burst" operation
+### Intelligent "in-print" assist operation
+
+#### Extruder movement "burst" operation
 If you set  set the `espooler_printer_power: 0` then the burst-mode kicks into play. This waits for a trigger to advance the espooler. This trigger can be set to watch the extruder movement so every `espooler_assist_extruder_move_length` of movement it will run the espooler at `espooler_assist_burst_power` % power for `espooler_assist_burst_duration` seconds.
 
-### Sensor based "burst" operation
+#### Sensor based "burst" operation
 As a more reliable alternative to extruder movement triggering the espooler assist, Happy Hare can accept a sensor input. This is by far the best method and overcomes variability by introducing closed loop feedback: when the sensor detects tension on the filament it "bursts" the espooler into action thus relieving tension and providing intelligent assist. If the filament is not under tension the espooler will be inactive. This both prolongs the life of the espooler DC motor but also means that problematic unspooling is eliminated. Mods to popular MMU's/AFC's like Box Turtle are in the works...
 
 Setup infomation comming soon...
