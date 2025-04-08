@@ -225,17 +225,17 @@ The Mainsail and Fluidd support will render the operation of the espooler motor 
       Rewinding (respooling)
     </td>
     <td>
-      <img src="Espooler-Support/assist.png" alt='Assist' width='40%'><br>
-      Assisting
+      <img src="Espooler-Support/assist.png" alt='Assisting' width='40%'><br>
+      Assisting (load and in-print)
     </td>
   </tr>
 </table>
 
-Don't forget you can get a quick summary with this command without options:
+Don't forget you can get a quick summary with this command without options (remember that klipper can't run under the current command is complete):
 ```yml
 MMU_ESPOOLER
 0 : off     (0%)
-1 : rewind  (50%)
+1 : print   (10%)
 2 : off     (0%)
 3 : off     (0%)
 ```
