@@ -1,6 +1,7 @@
 #### Page Sections:
 - [Hardware Config](#---hardware-config)
 - [Software Config](#---software-config)
+  - [Intelligent in-print Assist](#intelligent-in-print-assist-operation)
 - [MMU_ESPOOLER Command](#---mmu_espooler-command)
 - [Espooler UI](#---espooler-ui)
 
