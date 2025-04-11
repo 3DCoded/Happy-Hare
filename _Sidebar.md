@@ -45,6 +45,7 @@
   - [Encoder](MMU-Calibration#---step-4-calibrate-your-encoder-if-fitted)
   - [Bowden Length](MMU-Calibration#---step-5-calibrate-bowden-length)
   - [Gates](MMU-Calibration#---step-6-calibrating-individual-gates)
+  - [Toolhead Calibration](Blobbing-and-Stringing#---calibrating-toolhead)
 - [Calibration Commands](Command-Reference#---calibration)
 
 </details>
