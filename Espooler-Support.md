@@ -193,10 +193,10 @@ These control the "Intelli-Assist" options for in-print operation discussed late
 1. Ensure you have pins defined for `respool_motor_pin_*` and `enable_motor_pin_*` if you mcu board requires it.
 2. Ensure that these parameters are correctly defined and tuned:
 ```yml
-espooler_min_distance
-espooler_max_stepper_speed
-espooler_min_stepper_speed
-espooler_speed_exponent
+espooler_min_distance:
+espooler_max_stepper_speed:
+espooler_min_stepper_speed:
+espooler_speed_exponent:
 ```
 3. Then make sure that `rewind` appears in the list of operations:
 ```yml
@@ -212,7 +212,7 @@ MMU_ESPOOLER GATE=0 OPERATION=off
 1. Ensure you have pins defined for `assist_motor_pin_*` and `enable_motor_pin_*` if you mcu board requires it.
 2. Ensure that parameters specified for "respool" above are correctly defined and tuned (even if not using respool) then add the percentage of  the defined rewind speed to use for forward motion:
 ```yml
-espooler_assist_reduced_speed
+espooler_assist_reduced_speed:
 ```
 3. Then make sure that `assist` appears in the list of operations:
 ```yml
