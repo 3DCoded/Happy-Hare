@@ -1,7 +1,13 @@
 #### Page Sections:
 - [Hardware Config](#---hardware-config)
 - [Software Config](#---software-config)
-  - [Intelligent in-print Assist](#intelligent-in-print-assist-operation)
+- [Option Setup](#---option-setup)
+  - [Rewind/Respool](#rewind-respool-setup)
+  - [Forward Load Assist](#forward-load-assist-setup)
+  - [In-Print Assist](#basic-in-print-assist-operation)
+  - [Intelligent in-print Assist](#intelli-assist-trigger-based-assist-operation)
+    - [Extruder Movement Trigger](#option-1-extruder-movement-burst-operation)
+    - [Sensor Trigger](#option-2-sensor-based-burst-operation)
 - [MMU_ESPOOLER Command](#---mmu_espooler-command)
 - [Espooler UI](#---espooler-ui)
 
@@ -247,8 +253,10 @@ This option setups up a watchdog on extruder movement so that every `espooler_as
 espooler_printing_power: 0
 ```
 3. Define the % of motor power (equates to a PWM from 0 to 1) and duration in seconds for the motor burst. E.g:
+```yml
 espooler_assist_burst_power; 80
 espooler_assist_burst_duration: 0.5
+```
 4. Test with:
 ```
 MMU_ESPOOLER GATE=0 OPERATION=print POWER=0
