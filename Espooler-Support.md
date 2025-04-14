@@ -162,7 +162,7 @@ The formula looks like this:<br>
     If I am running with a step speed of 25mm/s, the eSpooler would run at half speed (0.5)
       Calculated as (25/50)^1
 
-  With `stepper_speed_exponent` of 0.2 would have a non-linear ratio:
+  With 'stepper_speed_exponent' of 0.2 would have a non-linear ratio:
     If I am running with a step speed of 50mm/s, the eSpooler would run at full speed (1.0)
       Calculated as (50/50)^0.2
     If I am running with a step speed of 25mm/s, the eSpooler would run at half speed (0.87)
@@ -203,10 +203,8 @@ espooler_speed_exponent
 espooler_operations: rewind
 ```
 4. Test with:
-```yml
-MMU_ESPOOLER GATE=0 OPERATION=rewind
-MMU_ESPOOLER GATE=0 OPERATION=off
-```
+> MMU_ESPOOLER GATE=0 OPERATION=rewind
+> MMU_ESPOOLER GATE=0 OPERATION=off
 
 ### ![#f03c15](resources/f03c15.png) Forward (Load Assist) Setup
 1. Ensure you have pins defined for `assist_motor_pin_*` and `enable_motor_pin_*` if you mcu board requires it.
@@ -277,7 +275,7 @@ espooler_printing_power: 0
 ```
 4. Define the % of motor power (equates to a PWM from 0 to 1) and duration in seconds for the motor burst. E.g:
 ```yml
-espooler_assist_burst_power; 80
+espooler_assist_burst_power: 80
 espooler_assist_burst_duration: 0.5
 ```
 5. Ensure that the burst trigger option is enabled and you set the maximum number of back-to-back bursts that are allowed (this is to prevent a stuck trigger sensor from ruining your print):
