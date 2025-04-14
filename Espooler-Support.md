@@ -1,6 +1,6 @@
 #### Page Sections:
 - [Hardware Config](#---hardware-config)
-- [Software Config](#---software-config)
+- [Parameter Config](#---parameter-config)
 - [Option Setup](#---option-setup)
   - [Rewind/Respool](#-rewind-respool-setup)
   - [Forward Load Assist](#-forward-load-assist-setup)
@@ -94,7 +94,7 @@ Define your pins here. Typically you will either be using just the "_RWD" pins t
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Software Config
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Parameter Config
 
 The upgrade process should have added the following section to your `mmu_parameters.cfg`
 ```yml
@@ -155,19 +155,19 @@ And remember actual eSpooler pwm speed values are between 0.0 (off) and 1.0 (ful
 The formula looks like this:<br>
 ```yml
     (stepper_speed / espooler_max_stepper_speed) ^ espooler_speed_exponent
+
+  With `stepper_speed_exponent` of 1 would have a linear ratio:
+    If I am running with a step speed of 50mm/s, the eSpooler would run at full speed (1.0)
+      Calculated as (50/50)^1
+    If I am running with a step speed of 25mm/s, the eSpooler would run at half speed (0.5)
+      Calculated as (25/50)^1
+
+    With `stepper_speed_exponent` of 0.2 would have a non-linear ratio:
+    If I am running with a step speed of 50mm/s, the eSpooler would run at full speed (1.0)
+      Calculated as (50/50)^0.2
+    If I am running with a step speed of 25mm/s, the eSpooler would run at half speed (0.87)
+      Calculated as (25/50)^0.2
 ```
-With `stepper_speed_exponent` of 1 would have a linear ratio:<br>
-If I am running with a step speed of 50mm/s, the eSpooler would run at full speed (1.0)<br>
-Calculated via (50/50)^1<br>
-If I am running with a step speed of 25mm/s, the eSpooler would run at half speed (0.5)<br>
-Calculated via (25/50)^1<br>
-
-With `stepper_speed_exponent` of 0.2 would have a non-linear ratio:<br>
-If I am running with a step speed of 50mm/s, the eSpooler would run at full speed (1.0)<br>
-Calculated via (50/50)^0.2<br>
-If I am running with a step speed of 25mm/s, the eSpooler would run at half speed (0.87)<br>
-Calculated via (25/50)^0.2<br>
-
 Note that the PWM signal range is scaled by the h/w configuration `scale` if set (see klipper doc).
 
 #### `espooler_min_stepper_speed`
