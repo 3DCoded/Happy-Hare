@@ -250,16 +250,14 @@ espooler_printing_power: 0
 ```
 3. Define the % of motor power (equates to a PWM from 0 to 1) and duration in seconds for the motor burst. E.g:
 ```yml
-espooler_assist_burst_power; 80
+espooler_assist_burst_power: 80
 espooler_assist_burst_duration: 0.5
 ```
 4. Test with:
-```yml
-MMU_ESPOOLER GATE=0 OPERATION=print POWER=0
-MMU_ESPOOLER OPERATION=burst
-MMU_ESPOOLER OPERATION=burst
-MMU_ESPOOLER ALLOFF=1
-```
+> MMU_ESPOOLER GATE=0 OPERATION=print POWER=0<br>
+> MMU_ESPOOLER OPERATION=burst<br>
+> MMU_ESPOOLER OPERATION=burst<br>
+> MMU_ESPOOLER ALLOFF=1
 You should see the jump to burst operation and then falling back to 0% but in burst mode.
 
 #### ![#c5f015](resources/c5f015.png) Option 2: Sensor based "burst" operation
