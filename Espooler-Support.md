@@ -156,13 +156,13 @@ The formula looks like this:<br>
 ```yml
     (stepper_speed / espooler_max_stepper_speed) ^ espooler_speed_exponent
 
-  With `stepper_speed_exponent` of 1 would have a linear ratio:
+  With 'stepper_speed_exponent' of 1 would have a linear ratio:
     If I am running with a step speed of 50mm/s, the eSpooler would run at full speed (1.0)
       Calculated as (50/50)^1
     If I am running with a step speed of 25mm/s, the eSpooler would run at half speed (0.5)
       Calculated as (25/50)^1
 
-    With `stepper_speed_exponent` of 0.2 would have a non-linear ratio:
+  With `stepper_speed_exponent` of 0.2 would have a non-linear ratio:
     If I am running with a step speed of 50mm/s, the eSpooler would run at full speed (1.0)
       Calculated as (50/50)^0.2
     If I am running with a step speed of 25mm/s, the eSpooler would run at half speed (0.87)
