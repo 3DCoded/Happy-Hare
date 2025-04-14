@@ -203,8 +203,10 @@ espooler_speed_exponent
 espooler_operations: rewind
 ```
 4. Test with:
-> MMU_ESPOOLER GATE=0 OPERATION=rewind<br>
-> MMU_ESPOOLER GATE=0 OPERATION=off
+```yml
+MMU_ESPOOLER GATE=0 OPERATION=rewind
+MMU_ESPOOLER GATE=0 OPERATION=off
+```
 
 ### ![#f03c15](resources/f03c15.png) Forward (Load Assist) Setup
 1. Ensure you have pins defined for `assist_motor_pin_*` and `enable_motor_pin_*` if you mcu board requires it.
@@ -217,8 +219,10 @@ espooler_assist_reduced_speed
 espooler_operations: assist
 ```
 4. Test with:
-> MMU_ESPOOLER GATE=0 OPERATION=assist<br>
-> MMU_ESPOOLER GATE=0 OPERATION=off
+```yml
+MMU_ESPOOLER GATE=0 OPERATION=assist
+MMU_ESPOOLER GATE=0 OPERATION=off
+```
 
 ### ![#f03c15](resources/f03c15.png) Basic In-print Assist Operation
 1. Ensure you have pins defined for `assist_motor_pin_*` and `enable_motor_pin_*` if you mcu board requires it.
@@ -254,10 +258,12 @@ espooler_assist_burst_power: 80
 espooler_assist_burst_duration: 0.5
 ```
 4. Test with:
-> MMU_ESPOOLER GATE=0 OPERATION=print POWER=0<br>
-> MMU_ESPOOLER OPERATION=burst<br>
-> MMU_ESPOOLER OPERATION=burst<br>
-> MMU_ESPOOLER ALLOFF=1
+```yml
+MMU_ESPOOLER GATE=0 OPERATION=print POWER=0
+MMU_ESPOOLER OPERATION=burst
+MMU_ESPOOLER OPERATION=burst
+MMU_ESPOOLER ALLOFF=1
+```
 You should see the jump to burst operation and then falling back to 0% but in burst mode.
 
 #### ![#c5f015](resources/c5f015.png) Option 2: Sensor based "burst" operation
