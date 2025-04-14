@@ -25,7 +25,7 @@ Add this section to you `mmu_hardware.cfg` file. The commented lines can be left
 # ███████╗███████║██║     ╚██████╔╝╚██████╔╝███████╗███████╗██║  ██║
 # ╚══════╝╚══════╝╚═╝      ╚═════╝  ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝
 #
-# An espooler controls DC motors (typically NC-20) that are able to rewind a filament spool and optionally provide
+# An espooler controls DC motors (typically N20) that are able to rewind a filament spool and optionally provide
 # forward assist to overcome spooler rotation friction. This should define pins for each of the gates on your mmu
 # starting with '_0'. 
 # An empty pin can be deleted, commented or simply left blank. If you mcu has a separate "enable" pin
@@ -41,18 +41,22 @@ scale: 1                                        # Scales the PWM output range
 respool_motor_pin_0: mmu:MMU_ESPOOLER_RWD_0     # PWM (or digital) pin for rewind/respool movement
 assist_motor_pin_0: mmu:MMU_ESPOOLER_FWD_0      # PWM (or digital) pin for forward motor movement
 enable_motor_pin_0: mmu:MMU_ESPOOLER_EN_0       # Digital output for Afc mcu
+assist_trigger_pin_0: mmu:MMU_ESPOOLER_TRIG_0   # Trigger pin for sensing need to assist during print
 
 respool_motor_pin_1: mmu:MMU_ESPOOLER_RWD_1
 assist_motor_pin_1: mmu:MMU_ESPOOLER_FWD_1
 enable_motor_pin_1: mmu:MMU_ESPOOLER_EN_1
+assist_trigger_pin_1: mmu:MMU_ESPOOLER_TRIG_1
 
 respool_motor_pin_2: mmu:MMU_ESPOOLER_RWD_2
 assist_motor_pin_2: mmu:MMU_ESPOOLER_FWD_2
 enable_motor_pin_2: mmu:MMU_ESPOOLER_EN_2
+assist_trigger_pin_2: mmu:MMU_ESPOOLER_TRIG_2
 
 respool_motor_pin_3: mmu:MMU_ESPOOLER_RWD_3
 assist_motor_pin_3: mmu:MMU_ESPOOLER_FWD_3
 enable_motor_pin_3: mmu:MMU_ESPOOLER_EN_3
+assist_trigger_pin_3: mmu:MMU_ESPOOLER_TRIG_3
 ```
 
 ### `mmu.cfg` (pin alias file):
@@ -61,15 +65,22 @@ Define your pins here. Typically you will either be using just the "_RWD" pins t
     MMU_ESPOOLER_RWD_0=,
     MMU_ESPOOLER_FWD_0=,
     MMU_ESPOOLER_EN_0=,
+    MMU_ESPOOLER_TRIG_0=,
+
     MMU_ESPOOLER_RWD_1=,
     MMU_ESPOOLER_FWD_1=,
     MMU_ESPOOLER_EN_1=,
+    MMU_ESPOOLER_TRIG_1=,
+
     MMU_ESPOOLER_RWD_2=,
     MMU_ESPOOLER_FWD_2=,
     MMU_ESPOOLER_EN_2=,
+    MMU_ESPOOLER_TRIG_2=,
+
     MMU_ESPOOLER_RWD_3=,
     MMU_ESPOOLER_FWD_3=,
     MMU_ESPOOLER_EN_3=,
+    MMU_ESPOOLER_TRIG_3=,
 ```
 
 > [!NOTE]  
@@ -120,10 +131,12 @@ espooler_operations: rewind, assist, print      # List of operational modes (all
 #
 espooler_assist_extruder_move_length: 100       # Distance (mm) extruder needs to move between each assist burst
 espooler_assist_burst_power: 100                # The % power of the burst move
-espooler_assist_burst_duration: 3.0             # The duration of the burst move is seconds
+espooler_assist_burst_duration: 0.4             # The duration of the burst move is seconds
+espooler_assist_burst_trigger: 0                # If trigger assist switch is fitted 0=disable, 1=enable
+espooler_assist_burst_trigger_max: 3            # If trigger assist switch is fitted this limits the max number of back-to-back advances
 ```
 
-The supplied defaults are generally a good starting point. Note that unsed options are ignored so it is advised to leave them in place (upgrade will likely reinstall them anyway). For example, if you don't have "assist" motors configured in the hardware, the `espooler_operations` "assist" and "print" will be ignored -- this option is useful if you wanted to turn off the functionality even if the hardware is configured.
+The supplied defaults are generally a good starting point. Note that unsed options are ignored so it is advised to leave them in place (upgrade will likely reinstall them anyway). For example, if you don't have "assist" motors configured in the hardware, the `espooler_operations` "assist" and "print" will be ignored -- this option is most useful if you wanted to turn OFF the functionality even if the hardware is configured.
 
 Most of the settings are self explanatory but a couple of worth further explanation:
 
@@ -160,15 +173,118 @@ This is a percentage of the calculated "rewind" speed and is because, whilst you
 #### `espooler_printer_power`
 This is a % of the maximum power (max pwm signal) that is applied to the espooler motor while printing. This should not be large enough to sping the spool but rather acts as "releasing the braking effort" so there is less strain pulling from the spool while printing. It is recommended that you exclude "print" from `espooler_operations` initially until you determine that it is causing too much of a braking effect.
 
-### Intelligent "in-print" assist operation
+#### `espooler_assist_extruder_move_length` and `espooler_assist_burst_*`
+These control the "Intelli-Assist" options for in-print operation discussed later
 
-#### Extruder movement "burst" operation
-If you set  set the `espooler_printer_power: 0` then the burst-mode kicks into play. This waits for a trigger to advance the espooler. This trigger can be set to watch the extruder movement so every `espooler_assist_extruder_move_length` of movement it will run the espooler at `espooler_assist_burst_power` % power for `espooler_assist_burst_duration` seconds.
+> [!NOTE]  
+> - As with most Happy Hare `mmu_parameters` you can change these settings at any time without re-starting klipper with the `MMU_TEST_CONFIG var=value` command. Remember that parameters changed this way are only valid until the next restart.
 
-#### Sensor based "burst" operation
+<br>
+
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Option Setup
+
+### Rewind (Respool) Setup
+1. Ensure you have pins defined for `respool_motor_pin_*` and `enable_motor_pin_*` if you mcu board requires it.
+2. Ensure that these parameters are correctly defined and tuned:
+```yml
+espooler_min_distance
+espooler_max_stepper_speed
+espooler_min_stepper_speed
+espooler_speed_exponent
+```
+3. Then make sure that `rewind` appears in the list of operations:
+```yml
+espooler_operations: rewind
+```
+4. Test with:
+```
+MMU_ESPOOLER GATE=0 OPERATION=rewind
+MMU_ESPOOLER GATE=0 OPERATION=off
+```
+
+### Forward (Load Assist) Setup
+1. Ensure you have pins defined for `assist_motor_pin_*` and `enable_motor_pin_*` if you mcu board requires it.
+2. Ensure that parameters specified for "respool" above are correctly defined and tuned (even if not using respool) then add the percentage of  the defined rewind speed to use for forward motion:
+```yml
+espooler_assist_reduced_speed
+```
+3. Then make sure that `assist` appears in the list of operations:
+```yml
+espooler_operations: assist
+```
+4. Test with:
+```
+MMU_ESPOOLER GATE=0 OPERATION=assist
+MMU_ESPOOLER GATE=0 OPERATION=off
+```
+
+### Basic In-print Assist Operation
+1. Ensure you have pins defined for `assist_motor_pin_*` and `enable_motor_pin_*` if you mcu board requires it.
+2. Ensure that parameters specified for "respool" above are correctly defined and tuned (even if not using respool) then add the percentage of  the defined rewind speed to use for in-print motion.  This should typically be a very small amount so that it "lifts the brakes" off the DC motor but not enough to allow it to turn uncontrollably:
+```yml
+espooler_printing_power: 5
+```
+3. Then make sure that `print` appears in the list of operations:
+```yml
+espooler_operations: print
+```
+4. Test with:
+```
+MMU_ESPOOLER GATE=0 OPERATION=print
+MMU_ESPOOLER GATE=0 OPERATION=off
+```
+
+### Intelli-Assist (Trigger based Assist) Operation
+
+If you set the `espooler_printing_power: 0` then the burst-mode kicks into play. This waits for a trigger before advancing the espooler in a burst operation.
+
+#### Option 1: Extruder movement "burst" operation
+This option setups up a watchdog on extruder movement so that every `espooler_assist_extruder_move_length` of extruder movement it will run the espooler at `espooler_assist_burst_power` % power for `espooler_assist_burst_duration` seconds.
+
+1. Ensure all the setup for basic in-print assist
+2. Set espooler_printing_power to 0 to enable burst mode:
+```yml
+espooler_printing_power: 0
+```
+3. Define the % of motor power (equates to a PWM from 0 to 1) and duration in seconds for the motor burst. E.g:
+espooler_assist_burst_power; 80
+espooler_assist_burst_duration: 0.5
+4. Test with:
+```
+MMU_ESPOOLER GATE=0 OPERATION=print POWER=0
+MMU_ESPOOLER OPERATION=burst
+MMU_ESPOOLER OPERATION=burst
+MMU_ESPOOLER ALLOFF=1
+```
+You should see the jump to burst operation and then falling back to 0% but in burst mode.
+
+#### Option 2: Sensor based "burst" operation
 As a more reliable alternative to extruder movement triggering the espooler assist, Happy Hare can accept a sensor input. This is by far the best method and overcomes variability by introducing closed loop feedback: when the sensor detects tension on the filament it "bursts" the espooler into action thus relieving tension and providing intelligent assist. If the filament is not under tension the espooler will be inactive. This both prolongs the life of the espooler DC motor but also means that problematic unspooling is eliminated. Mods to popular MMU's/AFC's like Box Turtle are in the works...
 
-Setup infomation comming soon...
+1. Ensure all the setup for basic in-print assist
+2. Ensure you have pins defined for `assist_trigger_pin_*`. These would be standard input pins setup as you would for a microswitch sensor.
+3. Set espooler_printing_power to 0 to enable burst mode:
+```yml
+espooler_printing_power: 0
+```
+4. Define the % of motor power (equates to a PWM from 0 to 1) and duration in seconds for the motor burst. E.g:
+```yml
+espooler_assist_burst_power; 80
+espooler_assist_burst_duration: 0.5
+```
+5. Ensure that the burst trigger option is enabled and you set the maximum number of back-to-back bursts that are allowed (this is to prevent a stuck trigger sensor from ruining your print):
+```yml
+espooler_assist_burst_trigger: 1
+espooler_assist_burst_trigger_max: 3 
+```
+6. Test with:
+```
+MMU_ESPOOLER GATE=0 OPERATION=print POWER=0
+MMU_ESPOOLER OPERATION=burst
+MMU_ESPOOLER OPERATION=burst
+MMU_ESPOOLER ALLOFF=1
+```
+You should see the jump to burst operation and then falling back to 0% but in burst trigger mode.
 
 <br>
 
@@ -235,7 +351,7 @@ Don't forget you can get a quick summary with this command without options (reme
 ```yml
 MMU_ESPOOLER
 0 : off     (0%)
-1 : print   (10%)
+1 : print   (0%) [assist for 0.8s at 80% power on trigger, max 3 bursts]
 2 : off     (0%)
 3 : off     (0%)
 ```
