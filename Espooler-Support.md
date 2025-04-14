@@ -189,7 +189,7 @@ These control the "Intelli-Assist" options for in-print operation discussed late
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Option Setup
 
-### Rewind (Respool) Setup
+### ![#f03c15](resources/f03c15.png) Rewind (Respool) Setup
 1. Ensure you have pins defined for `respool_motor_pin_*` and `enable_motor_pin_*` if you mcu board requires it.
 2. Ensure that these parameters are correctly defined and tuned:
 ```yml
@@ -203,12 +203,12 @@ espooler_speed_exponent
 espooler_operations: rewind
 ```
 4. Test with:
-```
+```yml
 MMU_ESPOOLER GATE=0 OPERATION=rewind
 MMU_ESPOOLER GATE=0 OPERATION=off
 ```
 
-### Forward (Load Assist) Setup
+### ![#f03c15](resources/f03c15.png) Forward (Load Assist) Setup
 1. Ensure you have pins defined for `assist_motor_pin_*` and `enable_motor_pin_*` if you mcu board requires it.
 2. Ensure that parameters specified for "respool" above are correctly defined and tuned (even if not using respool) then add the percentage of  the defined rewind speed to use for forward motion:
 ```yml
@@ -219,12 +219,12 @@ espooler_assist_reduced_speed
 espooler_operations: assist
 ```
 4. Test with:
-```
+```yml
 MMU_ESPOOLER GATE=0 OPERATION=assist
 MMU_ESPOOLER GATE=0 OPERATION=off
 ```
 
-### Basic In-print Assist Operation
+### ![#f03c15](resources/f03c15.png) Basic In-print Assist Operation
 1. Ensure you have pins defined for `assist_motor_pin_*` and `enable_motor_pin_*` if you mcu board requires it.
 2. Ensure that parameters specified for "respool" above are correctly defined and tuned (even if not using respool) then add the percentage of  the defined rewind speed to use for in-print motion.  This should typically be a very small amount so that it "lifts the brakes" off the DC motor but not enough to allow it to turn uncontrollably:
 ```yml
@@ -235,16 +235,16 @@ espooler_printing_power: 5
 espooler_operations: print
 ```
 4. Test with:
-```
+```yml
 MMU_ESPOOLER GATE=0 OPERATION=print
 MMU_ESPOOLER GATE=0 OPERATION=off
 ```
 
-### Intelli-Assist (Trigger based Assist) Operation
+### ![#f03c15](resources/f03c15.png) Intelli-Assist (Trigger based Assist) Operation
 
 If you set the `espooler_printing_power: 0` then the burst-mode kicks into play. This waits for a trigger before advancing the espooler in a burst operation.
 
-#### Option 1: Extruder movement "burst" operation
+#### ![#c5f015](resources/c5f015.png) Option 1: Extruder movement "burst" operation
 This option setups up a watchdog on extruder movement so that every `espooler_assist_extruder_move_length` of extruder movement it will run the espooler at `espooler_assist_burst_power` % power for `espooler_assist_burst_duration` seconds.
 
 1. Ensure all the setup for basic in-print assist
@@ -258,7 +258,7 @@ espooler_assist_burst_power; 80
 espooler_assist_burst_duration: 0.5
 ```
 4. Test with:
-```
+```yml
 MMU_ESPOOLER GATE=0 OPERATION=print POWER=0
 MMU_ESPOOLER OPERATION=burst
 MMU_ESPOOLER OPERATION=burst
@@ -266,7 +266,7 @@ MMU_ESPOOLER ALLOFF=1
 ```
 You should see the jump to burst operation and then falling back to 0% but in burst mode.
 
-#### Option 2: Sensor based "burst" operation
+#### ![#c5f015](resources/c5f015.png) Option 2: Sensor based "burst" operation
 As a more reliable alternative to extruder movement triggering the espooler assist, Happy Hare can accept a sensor input. This is by far the best method and overcomes variability by introducing closed loop feedback: when the sensor detects tension on the filament it "bursts" the espooler into action thus relieving tension and providing intelligent assist. If the filament is not under tension the espooler will be inactive. This both prolongs the life of the espooler DC motor but also means that problematic unspooling is eliminated. Mods to popular MMU's/AFC's like Box Turtle are in the works...
 
 1. Ensure all the setup for basic in-print assist
@@ -286,7 +286,7 @@ espooler_assist_burst_trigger: 1
 espooler_assist_burst_trigger_max: 3 
 ```
 6. Test with:
-```
+```yml
 MMU_ESPOOLER GATE=0 OPERATION=print POWER=0
 MMU_ESPOOLER OPERATION=burst
 MMU_ESPOOLER OPERATION=burst
