@@ -203,7 +203,7 @@ espooler_speed_exponent
 espooler_operations: rewind
 ```
 4. Test with:
-> MMU_ESPOOLER GATE=0 OPERATION=rewind
+> MMU_ESPOOLER GATE=0 OPERATION=rewind<br>
 > MMU_ESPOOLER GATE=0 OPERATION=off
 
 ### ![#f03c15](resources/f03c15.png) Forward (Load Assist) Setup
@@ -217,10 +217,8 @@ espooler_assist_reduced_speed
 espooler_operations: assist
 ```
 4. Test with:
-```yml
-MMU_ESPOOLER GATE=0 OPERATION=assist
-MMU_ESPOOLER GATE=0 OPERATION=off
-```
+> MMU_ESPOOLER GATE=0 OPERATION=assist<br>
+> MMU_ESPOOLER GATE=0 OPERATION=off
 
 ### ![#f03c15](resources/f03c15.png) Basic In-print Assist Operation
 1. Ensure you have pins defined for `assist_motor_pin_*` and `enable_motor_pin_*` if you mcu board requires it.
