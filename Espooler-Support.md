@@ -245,7 +245,7 @@ MMU_ESPOOLER GATE=0 OPERATION=off
 
 If you set the `espooler_printing_power: 0` then the burst-mode kicks into play. This waits for a trigger before advancing the espooler in a burst operation.
 
-#### ![rgb](resources/rgb.png) Option 1: Extruder movement "burst" operation
+#### ![r](resources/r.png) Option 1: Extruder movement "burst" operation
 This option setups up a watchdog on extruder movement so that every `espooler_assist_extruder_move_length` of extruder movement it will run the espooler at `espooler_assist_burst_power` % power for `espooler_assist_burst_duration` seconds.
 
 1. Ensure all the setup for basic in-print assist
@@ -267,7 +267,7 @@ MMU_ESPOOLER ALLOFF=1
 ```
 You should see the jump to burst operation and then falling back to 0% but in burst mode.
 
-#### ![rgb](resources/rgb.png) Option 2: Sensor based "burst" operation
+#### ![r](resources/r.png) Option 2: Sensor based "burst" operation
 As a more reliable alternative to extruder movement triggering the espooler assist, Happy Hare can accept a sensor input. This is by far the best method and overcomes variability by introducing closed loop feedback: when the sensor detects tension on the filament it "bursts" the espooler into action thus relieving tension and providing intelligent assist. If the filament is not under tension the espooler will be inactive. This both prolongs the life of the espooler DC motor but also means that problematic unspooling is eliminated. Mods to popular MMU's/AFC's like Box Turtle are in the works...
 
 1. Ensure all the setup for basic in-print assist
