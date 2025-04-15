@@ -238,7 +238,7 @@ espooler_operations: print
 ```
 4. Test with:
 ```yml
-MMU_ESPOOLER GATE=0 OPERATION=print
+MMU_ESPOOLER GATE=0 OPERATION=print             # set to in-print assist mode
 MMU_ESPOOLER GATE=0 OPERATION=off
 ```
 
@@ -254,15 +254,15 @@ This option setups up a watchdog on extruder movement so that every `espooler_as
 ```yml
 espooler_printing_power: 0
 ```
-3. Define the % of motor power (equates to a PWM from 0 to 1) and duration in seconds for the motor burst. E.g:
+3. Define the % of motor power (equates to PWM from 0 to 1) and duration in seconds for the motor burst. E.g:
 ```yml
 espooler_assist_burst_power: 80
 espooler_assist_burst_duration: 0.5
 ```
 4. Test with:
 ```yml
-MMU_ESPOOLER GATE=0 OPERATION=print POWER=0
-MMU_ESPOOLER OPERATION=burst
+MMU_ESPOOLER GATE=0 OPERATION=print POWER=0     # set to intelli-assist mode
+MMU_ESPOOLER OPERATION=burst                    # trigger a burst
 ```
 You should see the jump to burst operation and then falling back to 0% but in burst mode.
 
@@ -287,10 +287,9 @@ espooler_assist_burst_trigger_max: 3
 ```
 6. Test with:
 ```yml
-MMU_ESPOOLER GATE=0 OPERATION=print POWER=0
-MMU_ESPOOLER OPERATION=burst
-MMU_ESPOOLER OPERATION=burst
-MMU_ESPOOLER ALLOFF=1
+MMU_ESPOOLER GATE=0 OPERATION=print POWER=0     # set to intelli-assist mode
+MMU_ESPOOLER OPERATION=burst                    # trigger a burst
+MMU_ESPOOLER ALLOFF=1                           # reset intelli-assist mode
 ```
 You should see the jump to burst operation and then falling back to 0% but in burst trigger mode.
 
