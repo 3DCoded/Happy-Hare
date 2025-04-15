@@ -262,8 +262,6 @@ espooler_assist_burst_duration: 0.5
 ```yml
 MMU_ESPOOLER GATE=0 OPERATION=print POWER=0
 MMU_ESPOOLER OPERATION=burst
-MMU_ESPOOLER OPERATION=burst
-MMU_ESPOOLER ALLOFF=1
 ```
 You should see the jump to burst operation and then falling back to 0% but in burst mode.
 
