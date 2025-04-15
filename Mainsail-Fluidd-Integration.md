@@ -9,9 +9,7 @@
 
 <p align="center"><img src="Mainsail-Fluidd-Integration/mainsail_mmu_panel.png" alt='main panel' width='65%'></p>
 
-Mainsail/Fluidd integration has arrived! Mainsail PR is in queue, Fluidd PR already integrated.
-
-<p>Until the PR is merged or to get the very latest enhancements you can access my Mainsail fork here: <a href="https://github.com/moggieuk/mainsail-happy-hare-edition">https://github.com/moggieuk/mainsail-happy-hare-edition</a> and Fluidd fork here: <a href="https://github.com/moggieuk/fluid-happy-hare-edition">https://github.com/moggieuk/fluidd-happy-hare-edition</a>
+Mainsail/Fluidd integration has arrived! Mainsail PR is in queue, Fluidd PR already integrated. You can always get the very latest enhancements via my Mainsail fork here: <a href="https://github.com/moggieuk/mainsail-happy-hare-edition">mainsail-happy-hare-edition</a> and Fluidd fork here: <a href="https://github.com/moggieuk/fluidd-happy-hare-edition">fluidd-happy-hare-edition</a>
 
 <br>
 
