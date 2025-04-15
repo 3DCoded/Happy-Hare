@@ -326,21 +326,19 @@ MMU_ESPOOLER GATE=2 OPERATION="print"
 MMU_ESPOOLER
 ```
 
+### Burst operation
+
+Typically burst operation is automatic based on configuration but you can test/experiment directly with the `MMU_ESPOOLER` command. The gate, power an duration will default to the current gate, configured power and duration, if not specified. Note that if the espooler for the given gate is not in a "print" mode the burst request will be ignored. So to completely test standalone you will need to first put one of the espoolers into "in-print" mode, then the burst can be sent.
+
+```yml
+MMU_ESPOOLER GATE=0 OPERATION=print POWER=0
+MMU_ESPOOLER OPERATION=burst                        # configured power/duration
+MMU_ESPOOLER OPERATION=burst POWER=50 DURATION=0.8  # custom power/duration
+```
+
 > [!TIP]  
 > - `MMU_ESPOOLER ALLOFF=1` will quickly turn off ALL espoolers
 
-### Burst operation
-
-Typically burst operation is automatic based on configuration but you can test/experiment directly with the `MMU_ESPOOLER` command. The gate, power an duration will default to the current gate, configured power and duration, if not specified:
-
-```yml
-MMU_ESPOOLER OPERATION="burst" [GATE=xx] [POWER=xx] [DURATION=xx]
-```
-Note that if the espooler for the given gate is not in a "print" mode the burst request will be ignored. So to completely test standalone you will need to first put one of the espoolers into "in-print" mode, then the burst can be sent.
-```yml
-MMU_ESPOOLER GATE=0 OPERATION=print POWER=0
-MMU_ESPOOLER OPERATION=burst
-```
 
 <br>
 
