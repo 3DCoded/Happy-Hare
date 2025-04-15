@@ -15,6 +15,8 @@ Mainsail/Fluidd integration has arrived! Mainsail PR is in queue, Fluidd PR alre
 
 <p align="center"><img src="Mainsail-Fluidd-Integration/candy.png" alt='candy' width='50%'><img src="Mainsail-Fluidd-Integration/thumbs_up.png" alt='thumbs_up' width='10%'></p>
 
+<br>
+
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Main Panel
 
 The Mainsail integration includes a new "MMU" panel. The integration into the existing "Extruder" panel documented later still works for tool selection but this panel is decidated to monitoring and operating the MMU outside of just selecting a tool at the physical gate level
