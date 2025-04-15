@@ -13,7 +13,7 @@ Mainsail/Fluidd integration has arrived! Mainsail PR is in queue, Fluidd PR alre
 
 <br>
 
-<p align="center"><img src="Mainsail-Fluidd-Integration/candy.png" alt='candy' width='50%'><img src="Mainsail-Fluidd-Integration/thumbs_up.png" alt='candy' width='20%'></p>
+<p align="center"><img src="Mainsail-Fluidd-Integration/candy.png" alt='candy' width='50%'><img src="Mainsail-Fluidd-Integration/thumbs_up.png" alt='thumbs_up' width='10%'></p>
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Main Panel
 
