@@ -154,7 +154,7 @@ For the following examples, let's assume `espooler_max_stepper_speed = 50`<br>
 And remember actual eSpooler pwm speed values are between 0.0 (off) and 1.0 (full speed) inclusive
 
 The formula looks like this:<br>
-```yml
+```
     (stepper_speed / espooler_max_stepper_speed) ^ espooler_speed_exponent
 
   So with 'stepper_speed_exponent' of 1 you would have a linear ratio:
