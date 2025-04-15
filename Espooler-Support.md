@@ -15,8 +15,6 @@ Happy Hare now can optionally drive a DC "espooler" for each gate. Typically thi
 
 <br>
 
-![#f03c15](resources/f03c15.png)![#c5f015](resources/c5f015.png)![#1589F0](resources/1589F0.png)
-
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Hardware Config
 If you need to control an espooler, you will need to ensure that `mmu_hardware.cfg` and `mmu.cfg` are setup up correctly. On a fresh installation this should be added automatically but you can add manually if missing:
 
@@ -192,7 +190,7 @@ These control the "Intelli-Assist" options for in-print operation discussed in d
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Option Setup
 
-### ![#f03c15](resources/f03c15.png) Rewind (Respool) Setup
+### ![rgb](resources/rgb.png) Rewind (Respool) Setup
 1. Ensure you have pins defined for `respool_motor_pin_*` and `enable_motor_pin_*` if you mcu board requires it.
 2. Ensure that these parameters are correctly defined and tuned:
 ```yml
