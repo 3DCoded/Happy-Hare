@@ -301,26 +301,25 @@ You should see the jump to burst operation and then falling back to 0% but in bu
 
 The `MMU_ESPOOLER` command is idea for testing but may have uses elsewhere where you want direct control of the motors.
 
-Examples:
+### Syntax
 ```yml
-MMU_ESPOOLER GATE=0 OPERATION="rewind" POWER=50
+MMU_ESPOOLER [OPERATION=rewind|assist|print|burst|off] [GATE=x] [POWER=x] [DURATION=x] [ALLOFF=1]
 ```
+
+### Examples
+```yml
 This turns on the espooler in the rewind (retract) direction at 50% power/speed for gate 0.
+MMU_ESPOOLER GATE=0 OPERATION="rewind" POWER=50
 
-```yml
-MMU_ESPOOLER GATE=0 OPERATION="off"
-```
 This will turn off the epooler for gate 0
+MMU_ESPOOLER GATE=0 OPERATION="off"
 
-```yml
-MMU_ESPOOLER GATE=2 OPERATION="print"
-```
 This will energise the gate 2 espooler ready for printing at the default configured power level.. perhaps useful when purging out of a print
+MMU_ESPOOLER GATE=2 OPERATION="print"
 
-```yml
+Without options this will give a status of all espooler motors
 MMU_ESPOOLER
 ```
-Without options this will give a status of all espooler motors
 
 > [!TIP]  
 > - `MMU_ESPOOLER ALLOFF=1` will quickly turn off ALL espoolers
