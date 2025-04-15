@@ -18,7 +18,6 @@ Happy Hare now can optionally drive a DC "espooler" for each gate. Typically thi
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Hardware Config
 If you need to control an espooler, you will need to ensure that `mmu_hardware.cfg` and `mmu.cfg` are setup up correctly. On a fresh installation this should be added automatically but you can add manually if missing:
 
-
 ### `mmu_hardware.cfg`
 Add this section to you `mmu_hardware.cfg` file. The commented lines can be left commented and are there to remind you of some advanced configuration options. Note that the choice of pwm/digital motor control, hardware/software pwm, scaling, etc are applied to all gates because the assumption is that configuration will be consistent. It is recommended that you leave the pin aliases and define the actual pins in the pins alias file `mmu.cfg`
 
@@ -96,7 +95,9 @@ Define your pins here. Typically you will either be using just the "_RWD" pins t
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Parameter Config
 
-The upgrade process should have added the following section to your `mmu_parameters.cfg`
+### `mmu_parameters.cfg`
+The upgrade process should have added the following section to your `mmu_parameters.cfg` but if not you can add by hand:
+
 ```yml
 # ESpooler control -----------------------------------------------------------------------------------------------------
 # ███████╗███████╗██████╗  ██████╗  ██████╗ ██╗     ███████╗██████╗ 
@@ -156,31 +157,31 @@ The formula looks like this:<br>
 ```yml
     (stepper_speed / espooler_max_stepper_speed) ^ espooler_speed_exponent
 
-  With 'stepper_speed_exponent' of 1 would have a linear ratio:
-    If I am running with a step speed of 50mm/s, the eSpooler would run at full speed (1.0)
+  So with 'stepper_speed_exponent' of 1 you would have a linear ratio:
+    With a stepper speed of 50mm/s, the eSpooler would run at full speed (1.0 PWM)
       Calculated as (50/50)^1
-    If I am running with a step speed of 25mm/s, the eSpooler would run at half speed (0.5)
+    With a stepper speed of 25mm/s, the eSpooler would run at half speed (0.5 PWM)
       Calculated as (25/50)^1
 
-  With 'stepper_speed_exponent' of 0.2 would have a non-linear ratio:
-    If I am running with a step speed of 50mm/s, the eSpooler would run at full speed (1.0)
+  But with 'stepper_speed_exponent' of 0.2 would have a non-linear ratio:
+    With stepper speed of 50mm/s, the eSpooler would still run at full speed (1.0 PWM)
       Calculated as (50/50)^0.2
-    If I am running with a step speed of 25mm/s, the eSpooler would run at half speed (0.87)
+    With a stepper speed of 25mm/s, the eSpooler would run at a greater than half speed (0.87 PWM)
       Calculated as (25/50)^0.2
 ```
 Note that the PWM signal range is scaled by the h/w configuration `scale` if set (see klipper doc).
 
 #### `espooler_min_stepper_speed`
-This defines the stepper speed at which the espooler will start. It is generally most useful with digital controlled DC motors when you want to set a threshold below which the espooler doesn't run
+This defines the stepper speed at which the espooler will start. It is generally most useful with digital controlled DC motors when you want to set a threshold below which the espooler doesn't run.
 
 #### `espooler_assist_reduced_speed`
-This is a percentage of the calculated "rewind" speed and is because, whilst you want the espooler to over-rewind to keep the filament tight you DON'T want it to over unwind when loading. Thus a 50% setting will run the loading "assist" at 50% of the unloading "rewind" speed. Note that this speed will never drop before the "in-print" power.
+This is a percentage of the calculated "rewind" speed and is because, whilst you want the espooler to over-rewind to keep the filament tight you DON'T want it to over-unwind when loading. Thus a 50% setting will run the loading "assist" at 50% of the "rewind" speed. Note that this speed will never drop below the "in-print" power.
 
 #### `espooler_printer_power`
-This is a % of the maximum power (max pwm signal) that is applied to the espooler motor while printing. This should not be large enough to sping the spool but rather acts as "releasing the braking effort" so there is less strain pulling from the spool while printing. It is recommended that you exclude "print" from `espooler_operations` initially until you determine that it is causing too much of a braking effect.
+This is a % of the maximum power (max pwm signal) that is applied to the espooler motor while printing. This should not be large enough to sping the spool but rather acts as "releasing the braking effort" so there is less strain pulling from the spool while printing. It is recommended that you exclude "print" from `espooler_operations` initially until you determine that it is causing too much of a braking effect. You might also want to look at one of the intelligent "burst" modes.
 
 #### `espooler_assist_extruder_move_length` and `espooler_assist_burst_*`
-These control the "Intelli-Assist" options for in-print operation discussed later
+These control the "Intelli-Assist" options for in-print operation discussed in detail later.
 
 > [!NOTE]  
 > - As with most Happy Hare `mmu_parameters` you can change these settings at any time without re-starting klipper with the `MMU_TEST_CONFIG var=value` command. Remember that parameters changed this way are only valid until the next restart.
