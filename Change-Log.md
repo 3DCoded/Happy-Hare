@@ -460,14 +460,31 @@ Read more on the wiki: https://github.com/moggieuk/Happy-Hare/wiki/Mainsail-Flui
 Read more on the wiki: https://github.com/moggieuk/Happy-Hare/wiki/Espooler-Support
 
 - **Formal purging macro hook similar to form tip macro** for use in an out of a print
+```yml
+force_purge_standalone: 0               # 0 = Slicer wipetower in print else standalone, 1 = Always standalone purging (TURN WIPETOWER OFF!)
+purge_macro: _MMU_PURGE                 # Name of macro to call to perform the standalone purging operation. E.g. BLOBIFIER, _MMU_PURGE
+extruder_purge_current: 100             # % of extruder current (100%-150%) to use when purging (100 to disable)
+```
   - Separate extruder current control so you never loose steps
   - Now the preferred place to add BLOBIFER purge macro since current control and extruder syncing control is possible
   - New **reference "bucket" purge macro** that intelligently purges only the filament necessary (knows the previously loaded color)
-  - Separate **timing statistic options for both tip forming and purging**
+  - Separate **timing statistic options for both tip forming and purging**.  You can see it with `MMU_STATS DETAIL=1` or you can add new columns to the stats report in `mmu_parameters.cfg`:
+```yml
+# Comma separated list of desired columns
+# Options: pre_unload, form_tip, unload, post_unload, pre_load, load, purge, post_load, total
+console_stat_columns: unload, load, post_load, total
+```
 
 **Other new features:**
 - Install support for new MMX MMU *(more MMUs coming next month!)*
-- Option to increase X/Y stepper current when filament cutting
+- Option to increase X/Y stepper current when filament cutting. See this section in `mmu_macro_vars.cfg`:
+```yml
+# Change to X and Y stepper current during the cut operation. Technically any stepper
+# current can be modified by adding the stepper name to the list. Be careful not to
+# overload your steppers but generally up to 150% is safe
+variable_cut_axis_steppers      : 'stepper_x, stepper_y'
+variable_cut_stepper_current    : 100
+```
 - Improved "automatic homing" option on startup
 - Filament colors will now retain the alpha channel (useful for translucent filaments and great in the UI)
 - Optimization of servo selector movement for the PicoMMU
@@ -492,6 +509,8 @@ Gates / Filaments:
 - Fixed bug in parking logic that sometimes caused it not to park on print completion or error
 - Fixed bug where un-retract was not run on loading the initial tool
 - Fix to ensure parameters can be specified to you custom macro extensions instead of just the macro name
+
+<hr>
 
 <br>
 
