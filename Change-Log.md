@@ -460,11 +460,6 @@ Read more on the wiki: https://github.com/moggieuk/Happy-Hare/wiki/Mainsail-Flui
 Read more on the wiki: https://github.com/moggieuk/Happy-Hare/wiki/Espooler-Support
 
 - **Formal purging macro hook similar to form tip macro** for use in an out of a print
-```yml
-force_purge_standalone: 0               # 0 = Slicer wipetower in print else standalone, 1 = Always standalone purging (TURN WIPETOWER OFF!)
-purge_macro: _MMU_PURGE                 # Name of macro to call to perform the standalone purging operation. E.g. BLOBIFIER, _MMU_PURGE
-extruder_purge_current: 100             # % of extruder current (100%-150%) to use when purging (100 to disable)
-```
   - Separate extruder current control so you never loose steps
   - Now the preferred place to add BLOBIFER purge macro since current control and extruder syncing control is possible
   - New **reference "bucket" purge macro** that intelligently purges only the filament necessary (knows the previously loaded color)
@@ -473,6 +468,12 @@ extruder_purge_current: 100             # % of extruder current (100%-150%) to u
 # Comma separated list of desired columns
 # Options: pre_unload, form_tip, unload, post_unload, pre_load, load, purge, post_load, total
 console_stat_columns: unload, load, post_load, total
+```
+New purge configuration and reference "bucket" purge macro:
+```yml
+force_purge_standalone: 0               # 0 = Slicer wipetower in print else standalone, 1 = Always standalone purging (TURN WIPETOWER OFF!)
+purge_macro: _MMU_PURGE                 # Name of macro to call to perform the standalone purging operation. E.g. BLOBIFIER, _MMU_PURGE
+extruder_purge_current: 100             # % of extruder current (100%-150%) to use when purging (100 to disable)
 ```
 
 **Other new features:**
