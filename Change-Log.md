@@ -493,13 +493,13 @@ New version available that builds on 3 years of experience with a ton of new fea
   - Tool to gate/lane **mapping on print start**
   - State **recovery** panel
 **Fluidd has already been pulled :muscle:  and Mainsail is set to be very soon :blush:  ** (both are available via forks in my repo until then)
-Read more on the wiki: https://github.com/moggieuk/Happy-Hare/wiki/Mainsail-Fluidd-Integration
+Read more on the wiki: [Mailsail Fluidd Integration](Mainsail-Fluidd-Integration)
 
 - **Full DC  eSpooler** support with rewind, load-assist **and in-print "intelli-assist"** :metal:  with multiple burst options
   - New MMU_ESPOOLER command for easy control/testing of eSpooler. See [Command Reference](Command-Reference)
-  - **Intelli-Assist** will advance the spool to relieve strain with 3 triggering options **including proper close-loop feedback system** (mods for Box Turtle underway).
+  - **Intelli-Assist** will advance the spool to relieve strain with 3 triggering options **including proper close-loop feedback system** (mods for Box Turtle underway). This is a very important option to control a DC motor where movement is porportional to load and not deterministic as is the case with stepper control
   - Simple streamlined setup
-Read more about [Espooler Support](Espooler-Support)
+  - Read more about [Espooler Support](Espooler-Support)
 
 - **Formal purging macro hook similar to form tip macro** for use in an out of a print
   - Separate extruder current control so you never loose steps
@@ -531,7 +531,7 @@ variable_cut_stepper_current    : 100
 - Improved "automatic homing" option on startup
 - Filament colors will now retain the alpha channel (useful for translucent filaments and great in the UI)
 - Optimization of servo selector movement for the PicoMMU
-- Much improved MMU_GATE_MAP readability:
+- Much improved `MMU_GATE_MAP` readability:
 ```
 MMU_GATE_MAP
 Gates / Filaments:
