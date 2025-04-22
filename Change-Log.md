@@ -457,7 +457,7 @@ Read more on the wiki: https://github.com/moggieuk/Happy-Hare/wiki/Mainsail-Flui
   - New MMU_ESPOOLER command for easy control/testing of eSpooler. See [Command Reference](Command-Reference)
   - **Intelli-Assist** will advance the spool to relieve strain with 3 triggering options **including proper close-loop feedback system** (mods for Box Turtle underway).
   - Simple streamlined setup
-Read more on the wiki: https://github.com/moggieuk/Happy-Hare/wiki/Espooler-Support
+Read more about [Espooler Support](Espooler-Support)
 
 - **Formal purging macro hook similar to form tip macro** for use in an out of a print
   - Separate extruder current control so you never loose steps
