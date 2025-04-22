@@ -13,7 +13,8 @@
 
 Happy Hare now can optionally drive a DC "espooler" for each gate. Typically this will be a DC20 (e.g. in the Box Turtle design). The primary value of this is to respool the filament when it unloads, however it can also be used to assist movement when loading or even relieve friction when printing.
 
-      <img src="Espooler-Support/espooler.png" alt='Espooler' width='40%'>
+<img src="Espooler-Support/espooler.png" alt='Espooler' width='40%'>
+
 <br>
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Hardware Config
