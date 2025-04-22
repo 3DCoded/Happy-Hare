@@ -10,6 +10,8 @@
 - The latest KlipperScreen-Happy_Hare edition requires HHv2 (for my sanity)
 - Much better doc and LOTS of new features to discover
 
+<hr>
+
 ### v2.1.0
 - Speed and extrusion overrides (M220/M221) support .. records overrides across tool changes (MMU_TOOL_OVERRIDES command to see/reset)
 - SpoolMan support (new options to MMU_GATE_MAP for SpoolD.. see  doc)
@@ -24,6 +26,8 @@
 - Config now also automatically adjusts references to "extruder"  when referring to stepper (e.g. in rare [controller_fan], [homing_heaters] and [angle])
 - Lots of little things/bug fixes but I lost track 🫣
 
+<hr>
+
 ### v2.2.0
 - Replacement of manual steppers with new MMU toolhead - faster homing and movements in general, new optional `gate` and `extruder` sensors, optional encoder, intial support for Tradrack and other customized designs.
 - Ever wanted to use Happy Hare on a non-ERCF MMU?
@@ -33,6 +37,8 @@
 - Want fast (no wait) homing?
 - DON'T WANT TO RECONFIGURE YOUR EXISTING EXTRUDER? 👍
 - Want the latest and greatest features?
+
+<hr>
 
 ### v2.3.0
 **NOTE: Requires Klipper 0.12.0 or greater**
@@ -49,6 +55,8 @@ New Features:
 - Version tracking and better feedback on what to do
 - Enhancements to existing commands. E.g try: 'MMU_STATUS SHOWCONFIG=1'
 
+<hr>
+
 ### v2.3.1
 - Better Spoolman integration: will now pull material and colors from spoolman in addition to activating the spool
 - Allow the LED effects to be configure anywhere on a chain (as well as gate 0->N or N->0 ordering)
@@ -57,6 +65,8 @@ New Features:
  - b) endless_spool_final_eject distance specification for push beyond park position in an attempt to prevent filament from being accidentally re-loaded
  - c) Cleanup of the display on klipper console and log messages
  - d) Will ensure that the gate_status is at least "unknown" when MMU_REMAP_TTG is run, so attempt will always be made to load from the gate
+
+<hr>
 
 ### v2.4.0
 - Updated LED support with lots more "multi-segment" flexibility
@@ -77,6 +87,8 @@ New Features:
 - Cleanup and separation of config files based on function
 - Lots of new/updated doc
 
+<hr>
+
 ### v2.4.1
 - Fixes / update to the way toolhead movement occurs through the "sequence macros" like `_MMU_PRE_UNLOAD` and `_MMU_POST_LOAD` etc. 
   - Also if enabled these will now work while not actively printing (that was an oversight)
@@ -85,6 +97,8 @@ New Features:
 - LED update
   - Better error feedback on LED misconfiguration
   - Fix for led index when order of reversed.
+
+<hr>
 
 ### v2.4.2 (Klipperscreen-Happy Hare edition will also need to be updated)
 - New placeholder preprocessing for colors and filament temps pulled from you slicer ( !colors! and !temperatures! ). See [here](Gcode-Preprocessing)
@@ -102,9 +116,13 @@ New Features:
 - New encoder calibration routine that allows calibration that "remembers" gate homing point and compensates for space between gate sensor and encoder if both are fitted
 - Other bug fixes report in github "Issues"
 
+<hr>
+
 ### v2.4.3
 - Bug fixes reported via github "Issues"
 - Added capability to install to auto-check github to ensure the latest version and to switch branches with `-b <branch name>` option
+
+<hr>
 
 ### v2.5.0 (Recommend Klipperscreen-Happy Hare edition should be updated to get dialog popup fixes)
 This release centralizes macro configuration and extends will a lot more pre-packaged options
@@ -173,6 +191,8 @@ Gate Statistics:
 #0: 😎, #1: 😎, #2: —, #3: —, #4: —, #5: —, #6: 😎, #7: —, #8: —
 ```
 
+<hr>
+
 ### v2.5.1
 The release provides more flexibilty in tool change movement, introduces consumption counters, optimizes statistics output
 - New (moonraker) pre-processing option to lookahead for next print location to allow for option to move to the NEXT print position on completion of tool change. Requires addition to `[mmu_server]` section of `moonraker.conf`:
@@ -197,8 +217,12 @@ The release provides more flexibilty in tool change movement, introduces consump
 - Add all slicer tools to the "slicer_tool_map" (unused tools only visible with DETAIL=1 flag).
 - Set color on Tx macros so color can be seen in Mainsail / Fluidd UI's. Requires refresh of Mainsail screen because it doesn't update dynamically :-(
 
+<hr>
+
 ### v2.5.2
 - Doc converted to Wiki and removed from distribution. Old doc links will be invalid
+
+<hr>
 
 ### v2.6.0
 **Main focus on this release is the reduction of blobing, stringing and tuning** for beautiful prints Read [here](https://github.com/moggieuk/Happy-Hare/wiki/Blobbing-and-Stringing). Most issues are because of incorrect toolhead parameters and the former lack of a retract setting when the toolhead is moving.  Both of those are now solved with automated toolhead calibration (including tip cutting variables) and an new z-hop ramp setting:
@@ -225,6 +249,8 @@ The release provides more flexibilty in tool change movement, introduces consump
 - `MMU_CHECK_GATE` now defaults to current gate when invoked with no arguments. `ALL=1` flag to force checking all gates.
 - New Wiki content and enhancements to existing pages
 - Bug fixes: one condition that could result in klipper "stepcompress" error
+
+<hr>
 
 ### v2.7.0
 **Main focus: tighter integration with spoolman**
@@ -255,9 +281,13 @@ The release provides more flexibilty in tool change movement, introduces consump
 - Wiki page on [macro customization](Macro-Customization) has been improved.
 - Bloblifier macro update that adds "safe decend logic" to ensure toolhead doesn't hit parts of the print.
 
+<hr>
+
 ### v2.7.0 (patches)
 - Lots of work to avoid TTC errors. Specifically working around what appears to be a klipper bug when lots of homing moves are used. I know this has solved the problem for the 4 users I was working closely with.
 - Improved error reporting for connection problems with SpoolMan.
+
+<hr>
 
 ### v2.7.1
 **Completely revised parking and movement for toolchange operations:**
@@ -302,6 +332,8 @@ variable_pre_load_position      : -1, -1, 0
 - Start of a new wiki page for KlipperScreen-Happy-Hare edition: [Klipperscreen](KlipperScreen)
 - Wiki pages updated: [Slicer Setup](Slicer-Setup), [Command Reference](Command-Reference), [Happy Hare Parameters](Happy-Hare-Parameters), [Blobbing and Stringing](Blobbing-and-Stringing) and more..
 
+<hr>
+
 ### v2.7.2
 **Addressed design oversight in toolhead calibration settings when cutting tips**
 - Fixes issue where `toolhead_ooze_reduction` parameter was used for two purposes that cancelled each other out and thus prevented use for fine tuning load distance.
@@ -316,6 +348,8 @@ variable_pre_load_position      : -1, -1, 0
   - Improved logger
 - Allow extruder (entry) sensor to be used to autoload extruder when using the bypass. Controlled with new `bypass_autoload` parameter in `mmu_parameters.cfg`
 - New rainbow effect on startup on entry LEDs
+
+<hr>
 
 ### v2.7.3
 ** Blobifier v1.5 update. Pretty cool update by @dendrowen incorporating @igiannakas idea of pulsing purging!**
@@ -411,11 +445,15 @@ T8   285  204   89  192  320  320   -    -    -
     - New startup calibration state message that reports any lapses of calibration
 - Incorporated many PR's. Sorry, I lost count, but thanks to all of you who submitted, not matter how big or small
 
+<hr>
+
 ### v3.0.1
 **Production Release for v3**
 - Support for 3DChameleon added thanks to user @u3dreal !!
 - Fixed some bugs introduced during the code refactor
 - Dare I say **fixed the majority of Timer Too Close (TTC) errors**.  Really... results are very promising.
+
+<hr>
 
 ### v3.0.2
 **Support for Multiple MMU**
@@ -434,6 +472,8 @@ T8   285  204   89  192  320  320   -    -    -
 - Minor fix for encoder reading accuracy on ERCF
 - Integrated several PRs (refer to Github for details)
 
+<hr>
+
 ### v3.1.0
 **Mainsail beta!!**
 - Production release of v3.0.2 beta (support for multiple running MMUs)
@@ -441,6 +481,8 @@ T8   285  204   89  192  320  320   -    -    -
   - Allows for blobifer animation, and toolhead and MMU tip cutting visualization
 - Support for the fantastic new [QuattroBox](https://github.com/Batalhoti/QuattroBox)
 - Support for the PicoMMU
+
+<hr>
 
 ### v3.2.0
 New version available that builds on 3 years of experience with a ton of new features supporting: **Box Turtle, QuattroBox, ERCF, Tradrack, 3MS, PicoMMU, Night Owl, Angry Beaver, MMX, 3D Chameleon**, and more...
