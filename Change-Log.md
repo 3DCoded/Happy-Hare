@@ -487,6 +487,8 @@ T8   285  204   89  192  320  320   -    -    -
 ### v3.2.0
 New version available that builds on 3 years of experience with a ton of new features supporting: **Box Turtle, QuattroBox, ERCF, Tradrack, 3MS, PicoMMU, Night Owl, Angry Beaver, MMX, 3D Chameleon**, and more...
 
+<p align="center"><img src="Mainsail-Fluidd-Integration/mainsail_mmu_panel.png" alt='main panel' width='45%'></p>
+
 - **Full Mainsail & Fluidd UI Support**
   - Fully interactive main panel with accurate **filament position rendering and animations for tip forming, purging and cutting!** Intuitive visual feedback makes interacting with your MMU/AFC easier
   - Filament editor panels with optional link to Spoolman
