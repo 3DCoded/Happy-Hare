@@ -119,17 +119,8 @@ Finally, you'll install Happy Hare using a bash script which contains all the co
 
 You'll be asked a series of questions pertaining to your hardware and options.
 
-### 1.  MMU Type
-Choose from the list. The options will from here out based on what you choose:   
-
-* ERCF v1.1
-    - "stock" ERCF v1.1 (Threaded rods, support blocks between every 3rd gate, etc.) 
-* ERCF V2.0
-    - This includes the "ThumperBlocs" mod. However, you'll need the "Thicker" ThumperBlocks.
-* Tradrack v1.0  
-* Other  
-    - Custom setup
-    - Just basic files you can edit yourself later.  
+### 1.  MMU /AFC Type
+Choose from the list.
 
 <p align="left"><img src="Installation/installer_questions.png"></p>
 
