@@ -442,22 +442,36 @@ T8   285  204   89  192  320  320   -    -    -
 - Support for the fantastic new [QuattroBox](https://github.com/Batalhoti/QuattroBox)
 - Support for the PicoMMU
 
-### v3.2.0 (currently in beta on 'beta32' branch)
-**Mainsail & Fluidd Support!!**
-**Full native eSpooler**
-- Both Mainsail and Fluidd now support a rich UI to Happy Hare. This is in addition to the existing KlipperScreen UI. See the Mainsail/Fluidd channel in the Happy Hare forum for more details
-<ADD SMALL IMAGE>
-- New, fully native, eSpooler option.  Support respool, ASSIST, and intelligent "in-print assist" with both PWM and digital signals
-  - New `MMU_ESPOOLER` command for easy control/testing of espooler. See [Command Reference](Command-Reference)
-  - Allows for in-print assist triggering on demand based on extruder movement or tension trigger!
+### v3.2.0
+New version available that builds on 3 years of experience with a ton of new features supporting: **Box Turtle, QuattroBox, ERCF, Tradrack, 3MS, PicoMMU, Night Owl, Angry Beaver, MMX, 3D Chameleon**, and more...
+
+- **Full Mainsail & Fluidd UI Support**
+  - Fully interactive main panel with accurate **filament position rendering and animations for tip forming, purging and cutting!** Intuitive visual feedback makes interacting with your MMU/AFC easier
+  - Filament editor panels with optional link to Spoolman
+  - Tool to gate/lane **mapping on print start**
+  - State **recovery** panel
+**Fluidd has already been pulled :muscle:  and Mainsail is set to be very soon :blush:  ** (both are available via forks in my repo until then)
+Read more on the wiki: https://github.com/moggieuk/Happy-Hare/wiki/Mainsail-Fluidd-Integration
+
+- **Full DC  eSpooler** support with rewind, load-assist **and in-print "intelli-assist"** :metal:  with multiple burst options
+  - New MMU_ESPOOLER command for easy control/testing of eSpooler. See [Command Reference](Command-Reference)
+  - **Intelli-Assist** will advance the spool to relieve strain with 3 triggering options **including proper close-loop feedback system** (mods for Box Turtle underway).
+  - Simple streamlined setup
+Read more on the wiki: https://github.com/moggieuk/Happy-Hare/wiki/Espooler-Support
+
+- **Formal purging macro hook similar to form tip macro** for use in an out of a print
+  - Separate extruder current control so you never loose steps
+  - Now the preferred place to add BLOBIFER purge macro since current control and extruder syncing control is possible
+  - New **reference "bucket" purge macro** that intelligently purges only the filament necessary (knows the previously loaded color)
+  - Separate **timing statistic options for both tip forming and purging**
+
+**Other new features:**
+- Install support for new MMX MMU *(more MMUs coming next month!)*
+- Option to increase X/Y stepper current when filament cutting
 - Improved "automatic homing" option on startup
-- Formal purging macro similar to form tip macro with separate extruder current control.
-  - This is now the preferred place to add blobifer purge macro since current control and extruder syncing control is possible
-  - New reference "bucket" purge macro that intelligently purges only the filament necessary (knows the previously loaded color)
-- Separate timing statistic options for both tip forming and purging
 - Filament colors will now retain the alpha channel (useful for translucent filaments and great in the UI)
 - Optimization of servo selector movement for the PicoMMU
-- Much improved `MMU_GATE_MAP` readability:
+- Much improved MMU_GATE_MAP readability:
 ```
 MMU_GATE_MAP
 Gates / Filaments:
@@ -474,11 +488,10 @@ Gates / Filaments:
 - Allow negative parking movements. Previously a '-1' value was treated as a "don't move". To allow for negative movement this magic number has been change to '-999' in the parking macros
 - Fixed (nasty) bug in v3.1 where the print would not always pause on mmu error.
 - Fixed "random" delay some folks were seeing typically on print startup
-- Fixed corner cases when gate map was not updated (filament attributes) from UI's when using spoolman.
+- Fixed corner cases when gate map was not updated (filament attributes) from UI's when using Spoolman.
 - Fixed bug in parking logic that sometimes caused it not to park on print completion or error
-<!--
-- Beta support for [MMX - Multi Material eXtruder](#)
--->
+- Fixed bug where un-retract was not run on loading the initial tool
+- Fix to ensure parameters can be specified to you custom macro extensions instead of just the macro name
 
 <br>
 
