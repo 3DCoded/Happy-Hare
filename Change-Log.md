@@ -492,7 +492,7 @@ New version available that builds on 3 years of experience with a ton of new fea
 - **Full Mainsail & Fluidd UI Support**
   - Fully interactive main panel with accurate **filament position rendering and animations for tip forming, purging and cutting!** Intuitive visual feedback makes interacting with your MMU/AFC easier
   - Filament editor panels with optional link to Spoolman
-  - Tool to gate/lane **mapping on print start**
+  - Tool to gate/lane **mapping on print start**!
   - State **recovery** panel
 **Fluidd has already been pulled :muscle:  and Mainsail is set to be very soon :blush:  ** (both are available via forks in my repo until then)
 Read more on the wiki: [Mailsail Fluidd Integration](Mainsail-Fluidd-Integration)
