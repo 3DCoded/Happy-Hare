@@ -186,7 +186,7 @@ This is a % of the maximum power (max pwm signal) that is applied to the espoole
 #### `espooler_assist_extruder_move_length` and `espooler_assist_burst_*`
 These control the "Intelli-Assist" options for in-print operation discussed in detail later.
 
-> [!NOTE]  
+> [!TIP]  
 > - As with most Happy Hare `mmu_parameters` you can change these settings at any time without re-starting klipper with the `MMU_TEST_CONFIG var=value` command. Remember that parameters changed this way are only valid until the next restart.
 
 <br>
