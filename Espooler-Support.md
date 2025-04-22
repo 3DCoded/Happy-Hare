@@ -348,11 +348,11 @@ The Mainsail and Fluidd support will render the operation of the espooler motor 
 <table>
   <tr>
     <td>
-      <img src="Espooler-Support/rewind.png" alt='Respooling' width='40%'><br>
+      <img src="Espooler-Support/rewind2.png" alt='Respooling' width='40%'><br>
       Rewinding (respooling)
     </td>
     <td>
-      <img src="Espooler-Support/assist.png" alt='Assisting' width='40%'><br>
+      <img src="Espooler-Support/assist2.png" alt='Assisting' width='40%'><br>
       Assisting (load and in-print)
     </td>
   </tr>
