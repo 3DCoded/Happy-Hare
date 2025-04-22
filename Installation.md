@@ -120,7 +120,7 @@ Finally, you'll install Happy Hare using a bash script which contains all the co
 You'll be asked a series of questions pertaining to your hardware and options.
 
 ### 1.  MMU /AFC Type
-Choose from the list.
+Choose from the list (it grows every month!)
 
 <p align="left"><img src="Installation/installer_questions.png"></p>
 
