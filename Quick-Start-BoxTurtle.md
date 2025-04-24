@@ -124,15 +124,32 @@ Review the generated `mmu/base/mmu_hardware.cfg` to ensure things like:
 
 ### 9. `mmu_parameters.cfg`
 
-...
+There is lots to cover here but the default *should* be sufficent to get you started. If not, follow the comments in the file or review the wiki for details on the various features.
 
-### 10. `dc_espooler_hw.cfg`
+### 10. ESpooler
 
-Review `mmu/addons/dc_espooler_hw.cfg`. 
+Review `mmu/base/mmu_hardware.cfg`, `[mmu_espooler mmu_espooler]` section
 
-* Each lane should be configured with a `rwd` pin. Depending on your hardware you may need to turn off `pwm` and `scale`.
+<br>
+
+Review `mmu/base/mmu_parameters.cfg`, `# ESpooler control ----` section
+
+* Each lane should be configured with a `rwd` pin for each gate/lane.
+* If your mcu permits you can configure a `fwd` pin for each gate/lane.
 * You can also configure an `en` pin if needed (AFC Lite boards use the enable pin).
+Depending on your hardware you may need to turn off `pwm` and `scale`.
 
+A full detailed guide for setup and use can be found in the wiki[Espooler Support](Espooler-Support) section
+
+### 11. Mainsail / Fluidd / KlipperScreen
+
+Make life easy on yourself and setup your favorite UI:
+* [Mainsail / Fluidd](Mainsail-Fluidd-Integration)
+* [KlipperScreen](KlipperScreen)
+
+### 12. Enjoy
+
+Remember there is a lot of details in the wiki (but you might have to dig). Also don't forget to join the dedicated Happy Hare forum: https://discord.gg/98TYYUf6f2
 
 ---
 
