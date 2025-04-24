@@ -25,6 +25,10 @@ The Mainsail integration includes a new "MMU" panel. The integration into the ex
 Click for larger image...
 </p>
 
+Generally the approach in the UI is that you select the gate/lane you want to operate on, then perform the action. With type-B MMU's that have separate gear stepper for each gate/lane some operations are possible even if another gate is loaded. In these situations when you select another gate a drop down menu will appear with possible operations. This allows, for example, to eject filament from the non-active gate.
+
+<p align="center"><a href="https://github.com/moggieuk/Happy-Hare/wiki/Mainsail-Fluidd-Integration/non-selected-gate.png"><img src="Mainsail-Fluidd-Integration/non-selected-gate.png" alt='alternate gate operations' width='40%'></a>
+
 <br>
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Tool to Gate mapping
