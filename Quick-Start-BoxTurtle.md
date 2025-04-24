@@ -1,5 +1,7 @@
 # BoxTurtle Quickstart
 
+<p align="center"><img src="resources/tortoise-hare.png" alt='tortoise-hare' width='20%'></p>
+
 **Page Sections:**
 
 - [Cloning Happy Hare Repo](#---cloning-happy-hare-repo)
