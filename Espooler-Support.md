@@ -358,7 +358,7 @@ The Mainsail and Fluidd support will render the operation of the espooler motor 
   </tr>
 </table>
 
-Don't forget you can get a quick summary with this command without options (remember that klipper can't run under the current command is complete):
+Don't forget you can get a quick summary with this command without options (remember that klipper can't run until the current command is complete):
 ```yml
 MMU_ESPOOLER
 0 : off     (0%)
