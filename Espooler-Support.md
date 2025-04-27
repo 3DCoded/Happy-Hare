@@ -67,7 +67,7 @@ assist_trigger_pin_3: mmu:MMU_ESPOOLER_TRIG_3
 ```
 
 ### `mmu.cfg` (pin alias file):
-Define your pins here. Typically you will either be using just the "_RWD" pins to implement respooling or both "_RWD" and "_FWD" if you have the ability to drive in a forward (extrude) direction. Optionally some MCUs require the setup of an enable pin (e.g. Afc Lite board)
+Define your pins here. Typically you will either be using just the `_RWD` pins to implement respooling or both `_RWD` and `_FWD` if you have the ability to drive in a forward (extrude) direction. Optionally some MCUs require the setup of an enable pin (e.g. Afc Lite board). The `_TRIG` pins are for an optional tension based feedback sensor See [Sensor Trigger](#-option-2-sensor-based-burst-operation).
 ```yml
     MMU_ESPOOLER_RWD_0=,
     MMU_ESPOOLER_FWD_0=,
