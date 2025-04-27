@@ -315,6 +315,7 @@ Consult this illustration of a typical toolhead or table of popular configuratio
 | `variable_blade_pos`<br>(in mmu\_macro\_vars.cfg) | 60.01 | | | 37.5 |
 | `variable_retract_length`<br>(in mmu\_macro\_vars.cfg) | 31.5 | | | |
 | `variable_pushback_length`<br>(in mmu\_macro\_vars.cfg) | 29.00 | | | |
+| from discord user | | | | @moggieuk |  
 
 **G2E** dimensions for each hotend:
 
