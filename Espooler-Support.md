@@ -348,7 +348,7 @@ The Mainsail and Fluidd support will render the operation of the espooler motor 
 <table>
   <tr>
     <td>
-      <img src="Espooler-Support/assist2.png" alt='Assisting' width='88%'><br>
+      <img src="Espooler-Support/assist2.png" alt='Assisting' width='80%'><br>
       Assisting gate/lane 0 (load and in-print)
     </td>
     <td>
