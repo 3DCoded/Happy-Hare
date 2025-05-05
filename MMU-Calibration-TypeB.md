@@ -1,17 +1,23 @@
 #### Page Sections:
+This guide is for [type-B](Conceptual-MMU) MMU's/AFC's like:
+- QuattroBox
+- Box Turtle
+- Night Owl
+- Angry Beaver
+- 3MS
+- etc
+
 - [Calibration Steps](MMU-Calibration#---calibration-steps)
-  - [1. Selector Offsets](MMU-Calibration#---step-1-calibrate-selector-offsets)
-  - [2. Servo](MMU-Calibration#---step-2-calibrate-your-servo)
-  - [3. Gear Stepper](MMU-Calibration#---step-3-calibrate-your-gear-stepper)
-  - [4. Encoder](MMU-Calibration#---step-4-calibrate-your-encoder-if-fitted)
-  - [5. Bowden Length](MMU-Calibration#---step-5-calibrate-bowden-length)
-  - [6. Gates](MMU-Calibration#---step-6-calibrating-individual-gates)
+  - [1. Gear Steppers](MMU-Calibration#---step-3-calibrate-your-gear-stepper)
+  - [2. Encoder](MMU-Calibration#---step-4-calibrate-your-encoder-if-fitted)
+  - [3. Bowden Length](MMU-Calibration#---step-5-calibrate-bowden-length)
+  - [4. Gates/Lanes](MMU-Calibration#---step-6-calibrating-individual-gates)
 - [Calibration Storage](MMU-Calibration#---calibration-storage)
 - [Calibration Commands](Command-Reference#---calibration)
 
 This discussion assumes that you have setup and debugged your hardware configuration. A detailed discusion can be found under [Hardware Configuration](Hardware-Configuration).
 
-Before using your MMU you will need to calibrate it to adjust for differences in components used on your particular build. Be careful to calibrate in the recommended order because some settings build and depend on earlier ones. Happy Hare now has automated calibration for some of the traditionally longer steps and does not require any Klipper restarts so the process is quick and painless.
+Before using your MMU you will need to calibrate it to adjust for differences in components used on your particular build. Be careful to calibrate in the recommended order because some settings build and depend on earlier ones. Happy Hare now automated calibration for some of the traditionally longer steps and does not require any Klipper restarts so the process is quick and painless.
 
 <br>
 
@@ -53,93 +59,6 @@ graph TD;
 
 > [!TIP] 
 > All of the calibration commands can be run in a "check/test" mode. Simply add `SAVE=0` to the command and the calibration will be run but the results will not be saved. This is very useful to practice or to verify calibration
-
-<br>
-
-### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Step 1. Calibrate selector offsets
-Only application to MMU's with linear selector: **E.g ERCF, Tradrack**
-
-#### A) Fully automatic calibration
-Let's start by getting the selector cailbrated in this easy step (it is important to do this early because the bowden and gate calibration need to be able to select gates).  This sets up the position all of all the gates as well as the bypass position if fitted.  Firstly ensure MMU motors are off by running `MMU_MOTORS_OFF` and remove filament from gate #0 -- you may need to run `MMU_SERVO POS=up` to release the filament.  Then re-insert and remove filament through selector to ensure that gate #0 is correctly alined with selector. Be careful and move the selector side to side whilst moving the filament inside the gate. Try to assess where the filament is centered in the gate and leave the selector in that position. Then run:
-
-  > MMU_CALIBRATE_SELECTOR
-
-Sit back and relax. The selector will move to find the extremes of movement and then use information about the geometry of the particular MMU and version/options you are using to generate and save the selector offsets automatically!
-
-> [!NOTE]  
-> (i) ERCF v1.1 users need to pay particular attention to letter suffixes after the version number in `mmu_parameters.cfg`<br>
-> (ii) ERCF v1.1 users that are using a bypass block modification also need to specify the position of that block with `BYPASS_BLOCK=` (see command reference) to indicate which bearing block contains the bypass.
-
-<br>
-
-#### B) Extrapolate first and last gates
-Although the above automated method above will attempt to calibrate when the selector has no deterministic hard stop at limit at travel (Tradrack) it can result in drift unless all the gates/lanes are perfectly tight together. To address this a better method that can be used with Tradrack or any MMU design with equally spaced gates (e.g. ERCF v2) is as follows:
-```yml
-MMU_MOTORS_OFF
-  # Use a piece of filament to align gate 0; remove filament
-MMU_CALIBRATE_SELECTOR GATE=0
-MMU_MOTORS_OFF
-  # Use a pieve of filament to align the last gate; remove filament
-MMU_CALIBRATE_SELECTOR GATE=n
-  # (where n is the last gate number, remember we are 0 based)
-```
-This will automatically set the offset of all intermediate gates distributing any build variance
-
-<br>
-
-#### C) Individual gate calibration
-Although it should not be necessary other than for the bypass gate, there is an option update a single position if you would like to tune or run into problems. See the command reference for more detailed information on options, but basically you turn MMU motors off, line up the desired gate with the selector and run:
-
-  > MMU_CALIBRATE_SELECTOR SINGLE=1 GATE=...
-
-Strictly speaking `SINGLE=1` is only required if calibrating just your final gate to avoid automatic extrapolation.
-
-#### D) Individual bypass gate calibration
-Similar to the above if your MMU has a bypass gate you can calibrate it's position by aligning the selector and running:
-
-  > MMU_CALIBRATE_SELECTOR BYPASS=1
-
-**Validation:** At the end of this step you should be able to select any tool/gate on your MMU. For instance, try running `MMU_HOME TOOL=3` to re-home and select tool/gate #3.
-
-<br>
-
-### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Step 2. Calibrate your servo
-Only applicable to MMU's with linear selector: **E.g ERCF, Tradrack**
-
-Happy Hare sets up theoretically good servo postions during installation, however they really should be calibrated. Most MMU's require precise servo movement. To do that you need to run through this process similar to this to update and record the angle for the three symbolic positions. Be sure to consult you MMU documentation.
-
-```yml
-MMU_SERVO POS=up
-  # Assume the position isn't quite right
-MMU_SERVO
-Current servo angle: 125, Positions: {'down': 110, 'up': 125, 'move': 110}
-  # Without arguments you can view the current angles
-MMU_SERVO ANGLE=128
-  # Tweak until you are happy with position
-MMU_SERVO POS=up SAVE=1
-  # Save the current angle (128) for the "up" position
-```
-
-Repeat for the three positions:
-* up   = tool is selected and filament is allowed to freely move through gate
-* down = to grip filament
-* move = ready the servo for selector move (optional - defaults to up)
-
-> [!NOTE]  
-> Refer to you specific MMU doc for information to determine exactly what servo positions are required.<br>
-> If you are unsure that your MMU requires a "move" position, set it the same as "up"<br>
-> If you are unable to attain the servo angle required you might need to "change spline" or edit the servo configuration in `mmu_hardware.cfg`<br>
-> 
-> **Example servo positions on ERCF MMU design**<br>
-> Ignore this if not on an ERCF, but this might be helpful to many users. Make sure the 3 position of your servo arm so the arm does not hit the tophats when the selector is moving. See picture below to find out where the position should be for the 3 positions.
-> - Servo Up. (trap released / print without sync)
-> <p align="center"><img src="MMU-Calibration/servo_up.jpeg" width="250" alt="Servo Up"></p>
->
-> - Servo Move. (trap locked / selector movement)
-> <p align="center"><img src="MMU-Calibration/servo_move.jpeg" width="250" alt="Servo Move"></p>
->
-> - Servo Down. (trap released for Load/unload or print with sync mode)
-> <p align="center"><img src="MMU-Calibration/servo_down.jpeg" width="250" alt="Servo Down"></p>
 
 <br>
 
