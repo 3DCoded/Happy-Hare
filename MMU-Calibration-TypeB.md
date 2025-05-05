@@ -1,14 +1,14 @@
 #### Page Sections:
-This guide is for [type-B](Conceptual-MMU) MMU's/AFC's including:
+This guide is for [Type-B](Conceptual-MMU) MMU's/AFC's including:
 <br>
 &bull; **QuattroBox**<br>
-**Box Turtle**<br>
-**Night Owl**<br>
-**Angry Beaver**<br>
-**3MS**<br>
+&bull; **Box Turtle**<br>
+&bull; **Night Owl**<br>
+&bull; **Angry Beaver**<br>
+&bull; **3MS**<br>
 
 - [Calibration Steps](MMU-Calibration#---calibration-steps)
-  - [1. Gear Steppers](MMU-Calibration#---step-3-calibrate-your-gear-stepper)
+  - [1. Gear Stepper 0](MMU-Calibration#---step-3-calibrate-your-gear-stepper)
   - [2. Encoder](MMU-Calibration#---step-4-calibrate-your-encoder-if-fitted)
   - [3. Bowden Length](MMU-Calibration#---step-5-calibrate-bowden-length)
   - [4. Gates/Lanes](MMU-Calibration#---step-6-calibrating-individual-gates)
@@ -28,30 +28,15 @@ Before using your MMU you will need to calibrate it to adjust for differences in
 
 ```mermaid
 graph TD;
-    Hardware_Working --> MMU_SERVO["2.MMU_SERVO<br/><span style='font-size:10px'>(if fitted)</span>"]
-    Hardware_Working --> MMU_CALIBRATE_SELECTOR["1.MMU_CALIBRATE_SELECTOR<br/><span style='font-size:10px'>(if MMU has a selector)</span>"]
-    MMU_CALIBRATE_SELECTOR --> MMU_CALIBRATE_BOWDEN
-    MMU_SERVO --> MMU_CALIBRATE_GEAR["3.MMU_CALIBRATE_GEAR<br/><span style='font-size:10px'>(can use on every gate to set rotation_distance)</span>"]
+    Hardware_Working --> MMU_CALIBRATE_GEAR
     MMU_CALIBRATE_GEAR --> MMU_CALIBRATE_ENCODER["4.MMU_CALIBRATE_ENCODER<br/><span style='font-size:10px'>(if MMU has an encoder)</span>"]
     MMU_CALIBRATE_ENCODER --> MMU_CALIBRATE_BOWDEN["5.MMU_CALIBRATE_BOWDEN<br/><span style='font-size:10px'>(can use to set length on every gate)</span>"]
     MMU_CALIBRATE_BOWDEN --> MMU_CALIBRATE_GATES["6.MMU_CALIBRATE_GATES<br/><span style='font-size:10px'>(available if MMU has an encoder)</span>"]
 
     style Hardware_Working stroke-width:0px
-    style MMU_SERVO stroke-dasharray: 5 5, stroke:#c5f015, stroke-width:2px
-    style MMU_CALIBRATE_SELECTOR stroke-dasharray: 5 5, stroke:#c5f015, stroke-width:2px
     style MMU_CALIBRATE_ENCODER stroke-dasharray: 5 5, stroke:#1589f0, stroke-width:2px
     style MMU_CALIBRATE_GATES stroke-dasharray: 5 5, stroke:#1589f0, stroke-width:2px
 ```
-<!--
-```mermaid
-graph TD;
-    LINEAR_SELECTOR["If MMU has Selector"]
-    ENCODER["If MMU has Encoder"]
-
-    style LINEAR_SELECTOR stroke-dasharray: 5 5, stroke:#c5f015, stroke-width:2px
-    style ENCODER stroke-dasharray: 5 5, stroke:#1589f0, stroke-width:2px
-```
--->
 - MMU designs with disimilar `rotation_distance` on each gate require separate measured calibration of each with `MMU_CALIBRATE_GEAR` or, if an encoder is fitted, with `MMU_CALIBRATE_GATES` to automate the process. This is important even if the drive gears look similar. Tradrack is an example of a design that doesn't require this.
 - Most MMU designs will share the same bowden length (and only one need be calibrated), however if the design can have different lenghts each must be calibrated separately.
 
