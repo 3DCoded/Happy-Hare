@@ -53,29 +53,30 @@ Applicable to all MMU's: **Very important to get right!**
 #### Purpose
 In this step you are simply ensuring that when the gear stepper is told to drive 100mm of filament it really does move 100mm.  It is akin to what you did when you set up your extruder rotational distance although in this case no Klipper restart is necessary! We single out gate 0 to make it the reference gate. Although it is necessary for each gate to be calibrated some MMU designs will allow Happy Hare to automatically calibrate the rest over time so gate 0 is singled out as a step the user must undertake. If this step is not complete you will see this message:
 
-> Use MMU_CALIBRATE_GEAR (with gate 0 selected) to calibrate gear rotation_distance on gate: 0
-
-                            msg += "\nUse MMU_CALIBRATE_GEAR (with gate selected) or MMU_CALIBRATE_GATES GATE=xx"
-                            msg += " to calibrate gear rotation_distance on gates: %s" % ",".join(map(str, uncalibrated))
-                        else:
-                            msg += "\nUse MMU_CALIBRATE_GEAR (with gate selected)"
-                            msg += " to calibrate gear rotation_distance on gates: %s" % ",".join(map(str, uncalibrated))
+  > Use MMU_CALIBRATE_GEAR (with gate 0 selected) to calibrate gear rotation_distance on gate: 0
 
 #### Result
 After calibration the calibrated rotation distance will be persisted to `mmu_vars.cfg` in a line similar to (length of array will match the number of gates you have):
 
-> mmu_gear_rotation_distances: 22.56783, 22.56783, 22.56783, 22.56783
+  > mmu_gear_rotation_distances: 22.56783, 22.56783, 22.56783, 22.56783
 
 
-Select gate #0 (you can use `MMU_SELECT GATE=0` if you have finished the selector calibration above) and put some filament through the gate so that it pokes out just past the selector exit.  Run the following to ensure the filament is gripped if your MMU needs to actuate a servo to grip filament:
+#### Procedure
+Select gate #0:
 
-  > MMU_SERVO POS=down
+  > MMU_SELECT GATE=0
 
-Next remove the bowden tube and cut the filament flush with the ECAS connector at the output of the MMU (e.g the encoder on the ERCF design). Run this command to attemp to move 100mm of filament:
+Now you need to get some filament to a point you want to use for measurement. This will be the point at which the filament emerges from the MMU. If the design has an embedded combiner/splitter (like Box Turtle) then it will be the exit of the MMU (likely Turtle Neck). If the design has separate bowden tubes then it will be that specific exit.
+
+Load the gate and use this command repeatedly to advance the filament so it is visible:
+
+  > MMU_TEST_MOVE MOVE=50
+
+Next remove the bowden tube and cut the filament flush with the ECAS connector at the output of the MMU (as determined above). Then run this command to attempt to move exactly 100mm of filament:
 
   > MMU_TEST_MOVE MOVE=100
 
-Get out your ruler and very carefully measure the length of the emited filament.  Hold your ruler up to the bowden and gently pull the filament straight to get an accurate measurement. Next run this specifying your actual measured value (102.5 used in this example):
+Get out your ruler and very carefully measure the length of the emited filament.  Hold your ruler up to the ECAS and gently pull the filament straight to get an accurate measurement. Next run this specifying your actual measured value (102.5 used in this example):
 
   > MMU_CALIBRATE_GEAR MEASURED=102.5
 
@@ -89,14 +90,14 @@ Get out your ruler and very carefully measure the length of the emited filament.
 
 **Validation:** If you want to test, snip the filament again flush with the ECAS connector and run `MMU_TEST_MOVE`.  Exactly 100mm should be moved this time.
 
-Repeat for all other gates if your MMU has variable gears (not necessary on Tradrack). However if you have an encoder you can shortcut and use `MMU_CALIBRATE_GATES` discussed later.
+Although it is not strictly necesssary to do this now, you can repeat for all other gates if your MMU has variable gears (which will almost certainly be the case). This optimizes the accuracy of other gates rather than relying on the calibration of gate 0.  If you have an encoder you can shortcut and use `MMU_CALIBRATE_GATES` discussed later or one of the advanced auto-calibration options. That said, if you have the time, why not optimize all gates now...
 
 <br>
 
-### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Step 4. Calibrate your encoder
-Applicable if fitted: **All ERCF, Tradrack Binky Mod, etc**
+### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Step 2. Calibrate your encoder
+APPLICABLE ONLY IF AN ENCODER IS FITTED
 
-If your MMU includes an encoder (like the ERCF design) the next step is to calibrate so it measures distance accurately. Re-fit the bowden to the selector/encoder (you can insert the short length of filament to tube as you fit to save time). Alternatively, just make sure you have some filament at gate #0 before starting. Now run:
+If your MMU includes an encoder the next step is to calibrate so it measures distance accurately. Re-fit the bowden to the selector/encoder (you can insert the short length of filament to tube as you fit to save time). Alternatively, just make sure you have some filament at gate #0 before starting. Now run:
 
   > MMU_CALIBRATE_ENCODER
 
@@ -180,6 +181,13 @@ This will reverse homes to the gate and uses Klipper's measurement of stepper mo
 
 ### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Step 6. Calibrating individual gates
 Applicable to MMU's with varible per-gate rottion distance & encoder: **ERCF, Tradrack with Binky**
+
+                            msg += "\nUse MMU_CALIBRATE_GEAR (with gate selected) or MMU_CALIBRATE_GATES GATE=xx"
+                            msg += " to calibrate gear rotation_distance on gates: %s" % ",".join(map(str, uncalibrated))
+                        else:
+                            msg += "\nUse MMU_CALIBRATE_GEAR (with gate selected)"
+                            msg += " to calibrate gear rotation_distance on gates: %s" % ",".join(map(str, uncalibrated))
+
 
 This step allows for calibrating slight differences between gates and saves you from having to use `MMU_CALIBRATE_GEAR` on every gate.  It isn't required (or useful) for designs that cannot have variation like the Tradrack MMU but is useful for designs like ERCF that can have variation of feed between gates.  Even with ERCF this is optional because if not run, the gates will tune themselves as they are used automatically!  That said it be beneficial to get this out of the way with a test piece of filament but doing it also: (i) removes the need to set the `autotune_rotation_distance` in `mmu_parameters.cfg`, (ii) is necessary if there is substantial variation between gates -- e.g. if BMG gears for different gates are sourced from different vendors.
 
