@@ -8,7 +8,7 @@ This guide is for [Type-B](Conceptual-MMU) MMU's/AFC's including:
 &bull; **3MS**<br>
 
 - [Calibration Steps](MMU-Calibration#---calibration-steps)
-  - [1. Gear Stepper 0](MMU-Calibration#---step-3-calibrate-your-gear-stepper)
+  - [1. Gear 0 Stepper](MMU-Calibration#---step-3-calibrate-your-gear-stepper)
   - [2. Encoder](MMU-Calibration#---step-4-calibrate-your-encoder-if-fitted)
   - [3. Bowden Length](MMU-Calibration#---step-5-calibrate-bowden-length)
   - [4. Gates/Lanes](MMU-Calibration#---step-6-calibrating-individual-gates)
@@ -24,21 +24,21 @@ Before using your MMU you will need to calibrate it to adjust for differences in
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Calibration Steps
 
 > [!IMPORTANT]  
-> When calibrating the first time you must perform in the prescribed order.  Once complete you can re-calibrate particular steps but remember that some calibration changes will cascade.  E.g. after calibrating the gear, you must recalibrate the encoder, the bowden and possibly all the gates.  Generally you can re-calibrate the selector (step 1) and the gates (step 5) at any time, but the gear, encoder and bowden must always be done in that order!
+> When calibrating the first time you must perform in the prescribed order.  Once complete you can re-calibrate particular steps but remember that some calibration changes will cascade.  E.g. after calibrating the gear, you must recalibrate the encoder (if fitted), and the bowden.
 
 ```mermaid
 graph TD;
-    Hardware_Working --> MMU_CALIBRATE_GEAR
-    MMU_CALIBRATE_GEAR --> MMU_CALIBRATE_ENCODER["4.MMU_CALIBRATE_ENCODER<br/><span style='font-size:10px'>(if MMU has an encoder)</span>"]
-    MMU_CALIBRATE_ENCODER --> MMU_CALIBRATE_BOWDEN["5.MMU_CALIBRATE_BOWDEN<br/><span style='font-size:10px'>(can use to set length on every gate)</span>"]
-    MMU_CALIBRATE_BOWDEN --> MMU_CALIBRATE_GATES["6.MMU_CALIBRATE_GATES<br/><span style='font-size:10px'>(available if MMU has an encoder)</span>"]
+    Hardware_Working --> 1.MMU_CALIBRATE_GEAR
+    MMU_CALIBRATE_GEAR --> MMU_CALIBRATE_ENCODER["2.MMU_CALIBRATE_ENCODER<br/><span style='font-size:10px'>(if MMU has an encoder)</span>"]
+    MMU_CALIBRATE_ENCODER --> MMU_CALIBRATE_BOWDEN["3.MMU_CALIBRATE_BOWDEN<br/><span style='font-size:10px'>(can use to set length on every gate)</span>"]
+    MMU_CALIBRATE_BOWDEN --> MMU_CALIBRATE_GATES["4.MMU_CALIBRATE_GATES<br/><span style='font-size:10px'>(available if MMU has an encoder)</span>"]
 
     style Hardware_Working stroke-width:0px
     style MMU_CALIBRATE_ENCODER stroke-dasharray: 5 5, stroke:#1589f0, stroke-width:2px
     style MMU_CALIBRATE_GATES stroke-dasharray: 5 5, stroke:#1589f0, stroke-width:2px
 ```
-- MMU designs with disimilar `rotation_distance` on each gate require separate measured calibration of each with `MMU_CALIBRATE_GEAR` or, if an encoder is fitted, with `MMU_CALIBRATE_GATES` to automate the process. This is important even if the drive gears look similar. Tradrack is an example of a design that doesn't require this.
-- Most MMU designs will share the same bowden length (and only one need be calibrated), however if the design can have different lenghts each must be calibrated separately.
+- MMU designs with disimilar `rotation_distance` on each gate require separate measured calibration of each with `MMU_CALIBRATE_GEAR` or, if an encoder is fitted, with `MMU_CALIBRATE_GATES` to automate the process. This is important even if the drive gears look similar.
+- Most MMU designs will share the same bowden length (and only one need be calibrated), however if the design can have different lengths each must be calibrated separately.
 
 <br>
 
@@ -47,10 +47,27 @@ graph TD;
 
 <br>
 
-### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Step 3. Calibrate your gear stepper
+### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Step 1. Calibrate rotation distance of gear 0 stepper
 Applicable to all MMU's: **Very important to get right!**
 
-In this step you are simply ensuring that when the gear stepper is told to move 100mm of filament it really does move 100mm.  It is akin to what you did when you set up your extruder rotational distance although in this case no Klipper restart is necessary!  Select gate #0 (you can use `MMU_SELECT GATE=0` if you have finished the selector calibration above) and put some filament through the gate so that it pokes out just past the selector exit.  Run the following to ensure the filament is gripped if your MMU needs to actuate a servo to grip filament:
+#### Purpose
+In this step you are simply ensuring that when the gear stepper is told to drive 100mm of filament it really does move 100mm.  It is akin to what you did when you set up your extruder rotational distance although in this case no Klipper restart is necessary! We single out gate 0 to make it the reference gate. Although it is necessary for each gate to be calibrated some MMU designs will allow Happy Hare to automatically calibrate the rest over time so gate 0 is singled out as a step the user must undertake. If this step is not complete you will see this message:
+
+> Use MMU_CALIBRATE_GEAR (with gate 0 selected) to calibrate gear rotation_distance on gate: 0
+
+                            msg += "\nUse MMU_CALIBRATE_GEAR (with gate selected) or MMU_CALIBRATE_GATES GATE=xx"
+                            msg += " to calibrate gear rotation_distance on gates: %s" % ",".join(map(str, uncalibrated))
+                        else:
+                            msg += "\nUse MMU_CALIBRATE_GEAR (with gate selected)"
+                            msg += " to calibrate gear rotation_distance on gates: %s" % ",".join(map(str, uncalibrated))
+
+#### Result
+After calibration the calibrated rotation distance will be persisted to `mmu_vars.cfg` in a line similar to (length of array will match the number of gates you have):
+
+> mmu_gear_rotation_distances: 22.56783, 22.56783, 22.56783, 22.56783
+
+
+Select gate #0 (you can use `MMU_SELECT GATE=0` if you have finished the selector calibration above) and put some filament through the gate so that it pokes out just past the selector exit.  Run the following to ensure the filament is gripped if your MMU needs to actuate a servo to grip filament:
 
   > MMU_SERVO POS=down
 
