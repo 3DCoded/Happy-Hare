@@ -7,7 +7,7 @@ Each type have similar but different calibration steps hence the separate guides
 > [!NOTE]  
 > In all cases it is necessary to [calibrate the toolhead](Blobbing-and-Stringing#---calibrating-toolhead) dimensions. This not only provides highly accurate loading and unloading but also allows for automatic calculations of purge volumes, etc. If you have a `toolhead` sensor this is very automated! Alternatively the guide will aid in manual calibration or you can [review documentation](Happy-Hare-Parameters#---toolhead-loading--unloading) for user submitted values.
 
-## Type-A
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Type-A
 
 Examples of Type-A include:
 <br>
@@ -23,7 +23,7 @@ View [calibration steps](MMU-Calibration-TypeA) for type-A
 
 <br>
 
-## Type-B
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Type-B
 
 Examples of Type-B include:
 <br>
@@ -37,6 +37,6 @@ View [calibration steps](MMU-Calibration-TypeB) for type-B
 
 <br>
 
-## Type-C
+## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Type-C
 
 For calibration steps for type-C use a blend of the above
