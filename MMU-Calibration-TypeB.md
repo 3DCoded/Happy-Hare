@@ -30,7 +30,7 @@ Note that some MMUs require slight variations to these basic steps - always refe
 
 ```mermaid
 graph TD;
-    Hardware_Working --> MMU_CALIBRATE_GEAR["1.MMU_CALIBRATE_GEAR<br/><span style='font-size:10px'>(to accurately set rotation distance))</span>"]
+    Hardware_Working[A] --> MMU_CALIBRATE_GEAR["1.MMU_CALIBRATE_GEAR<br/><span style='font-size:10px'>(to accurately set rotation distance))</span>"]
     MMU_CALIBRATE_GEAR --> MMU_CALIBRATE_ENCODER["2.MMU_CALIBRATE_ENCODER<br/><span style='font-size:10px'>(if MMU has an encoder)</span>"]
     MMU_CALIBRATE_ENCODER --> MMU_CALIBRATE_BOWDEN["3.MMU_CALIBRATE_BOWDEN<br/><span style='font-size:10px'>(can use to set length on every gate)</span>"]
     MMU_CALIBRATE_BOWDEN --> MMU_CALIBRATE_GATES["4.MMU_CALIBRATE_GATES<br/><span style='font-size:10px'>(available if MMU has an encoder)</span>"]
@@ -38,6 +38,7 @@ graph TD;
     style Hardware_Working stroke-width:0px
     style MMU_CALIBRATE_ENCODER stroke-dasharray: 5 5, stroke:#1589f0, stroke-width:2px
     style MMU_CALIBRATE_GATES stroke-dasharray: 5 5, stroke:#1589f0, stroke-width:2px
+    click A "Hardware-Configuration"
 ```
 - Most type-B MMU designs will have disimilar `rotation_distance` on each gate and really require separate measured calibration of each with `MMU_CALIBRATE_GEAR` (or if an encoder is fitted, automatied with `MMU_CALIBRATE_GATES`). This is important even if the drive gears look similar because minor differences are amplified over the movement distances managed by the MMU.
 - Most MMU designs will share the same bowden length (and thus only one needs to be calibrated), however if the design can have different lengths each must be calibrated separately.
