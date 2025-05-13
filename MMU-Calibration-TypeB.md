@@ -9,7 +9,7 @@ This guide is for [Type-B](Conceptual-MMU) MMU's/AFC's including:
 
 - [Calibration Steps](MMU-Calibration#---calibration-steps)
   - [1. Gear 0 Stepper](MMU-Calibration#---step-3-calibrate-your-gear-stepper)
-  - [2. Encoder](MMU-Calibration#---step-4-calibrate-your-encoder-if-fitted)
+  - [2. Encoder (option)](MMU-Calibration#---step-4-calibrate-your-encoder-if-fitted-option)
   - [3. Bowden Length](MMU-Calibration#---step-5-calibrate-bowden-length)
   - [4. Gates/Lanes](MMU-Calibration#---step-6-calibrating-individual-gates)
 - [Calibration Storage](MMU-Calibration#---calibration-storage)
@@ -100,7 +100,7 @@ Although it is not strictly necesssary to do this now, you can repeat for all ot
 
 <br>
 
-### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Step 2. Calibrate your encoder
+### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Step 2. Calibrate your encoder (Option)
 APPLICABLE ONLY IF AN ENCODER IS FITTED
 
 #### Purpose
