@@ -30,7 +30,7 @@ Note that some MMUs require slight variations to these basic steps - always refe
 
 ```mermaid
 graph TD;
-    Hardware_Working --> MMU_CALIBRATE_GEAR["1.MMU_CALIBRATE_GEAR<br/><span style='font-size:10px'>(to accurately set rotation distance))</span>]
+    Hardware_Working --> MMU_CALIBRATE_GEAR["1.MMU_CALIBRATE_GEAR<br/><span style='font-size:10px'>(to accurately set rotation distance))</span>"]
     MMU_CALIBRATE_GEAR --> MMU_CALIBRATE_ENCODER["2.MMU_CALIBRATE_ENCODER<br/><span style='font-size:10px'>(if MMU has an encoder)</span>"]
     MMU_CALIBRATE_ENCODER --> MMU_CALIBRATE_BOWDEN["3.MMU_CALIBRATE_BOWDEN<br/><span style='font-size:10px'>(can use to set length on every gate)</span>"]
     MMU_CALIBRATE_BOWDEN --> MMU_CALIBRATE_GATES["4.MMU_CALIBRATE_GATES<br/><span style='font-size:10px'>(available if MMU has an encoder)</span>"]
