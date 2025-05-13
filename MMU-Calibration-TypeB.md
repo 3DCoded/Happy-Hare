@@ -1,5 +1,5 @@
 #### Page Sections:
-This guide is for [Type-B](Conceptual-MMU) MMU's/AFC's including:
+This guide is for [Type-B](Conceptual-MMU#---type-b) MMU/AFC's including:
 <br>
 &bull; **QuattroBox**<br>
 &bull; **Box Turtle**<br>
@@ -8,10 +8,10 @@ This guide is for [Type-B](Conceptual-MMU) MMU's/AFC's including:
 &bull; **3MS**<br>
 
 - [Calibration Steps](#---calibration-steps)
-  - [1. Gear 0 Stepper](#---step-3-calibrate-your-gear-stepper)
-  - [2. Encoder (option)](#---step-4-calibrate-your-encoder-if-fitted-option)
-  - [3. Bowden Length](#---step-5-calibrate-bowden-length)
-  - [4. Gates/Lanes](#---step-6-calibrating-individual-gates)
+  - [1. Gear 0 Stepper](#---step-1-calibrate-your-gear-stepper)
+  - [2. Encoder (option)](#---step-2-calibrate-your-encoder-if-fitted-option)
+  - [3. Bowden Length](#---step-3-calibrate-bowden-length)
+  - [4. Gates/Lanes](#---step-4-calibrating-individual-gates)
 - [Calibration Storage](#---calibration-storage)
 - [Calibration Commands](Command-Reference#---calibration)
 
