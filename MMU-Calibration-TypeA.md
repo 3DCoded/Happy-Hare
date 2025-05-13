@@ -1,13 +1,13 @@
 #### Page Sections:
 This guide is for [Type-A](Conceptual-MMU#---type-a) MMU/AFC's including:
 <br>
-&bull; **ERCF**<br>
-&bull; **Tradrack**<br>
-&bull; **3MS**<br>
-&bull; **PicoMMU**<br>
-&bull; **MMX**<br>
-&bull; **3DChameleon**<br>
-&bull; **VVD**<br>
+&bull; ERCF<br>
+&bull; Tradrack<br>
+&bull; 3MS<br>
+&bull; PicoMMU<br>
+&bull; MMX<br>
+&bull; 3DChameleon<br>
+&bull; VVD<br>
 
 - [Calibration Steps](MMU-Calibration#---calibration-steps)
   - [1. Selector Offsets](MMU-Calibration#---step-1-calibrate-selector-offsets)

@@ -11,13 +11,13 @@ Each type have similar but different calibration steps hence the separate guides
 
 Examples of Type-A include:
 <br>
-&bull; **ERCF**<br>
-&bull; **Tradrack**<br>
-&bull; **3MS**<br>
-&bull; **PicoMMU**<br>
-&bull; **MMX**<br>
-&bull; **3DChameleon**<br>
-&bull; **VVD**<br>
+&bull; ERCF<br>
+&bull; Tradrack<br>
+&bull; 3MS<br>
+&bull; PicoMMU<br>
+&bull; MMX<br>
+&bull; 3DChameleon<br>
+&bull; VVD<br>
 
 View [calibration steps](MMU-Calibration-TypeA) for type-A
 
@@ -27,11 +27,11 @@ View [calibration steps](MMU-Calibration-TypeA) for type-A
 
 Examples of Type-B include:
 <br>
-&bull; **QuattroBox**<br>
-&bull; **Box Turtle**<br>
-&bull; **Night Owl**<br>
-&bull; **Angry Beaver**<br>
-&bull; **3MS**<br>
+&bull; QuattroBox<br>
+&bull; Box Turtle<br>
+&bull; Night Owl<br>
+&bull; Angry Beaver<br>
+&bull; 3MS<br>
 
 View [calibration steps](MMU-Calibration-TypeB) for type-B
 

@@ -1,11 +1,11 @@
 #### Page Sections:
 This guide is for [Type-B](Conceptual-MMU#---type-b) MMU/AFC's including:
 <br>
-&bull; **QuattroBox**<br>
-&bull; **Box Turtle**<br>
-&bull; **Night Owl**<br>
-&bull; **Angry Beaver**<br>
-&bull; **3MS**<br>
+&bull; QuattroBox<br>
+&bull; Box Turtle<br>
+&bull; Night Owl<br>
+&bull; Angry Beaver<br>
+&bull; 3MS<br>
 
 - [Calibration Steps](#---calibration-steps)
   - [1. Gear 0 Stepper](#---step-1-calibrate-rotation-distance-of-gear-0-stepper)
