@@ -8,12 +8,12 @@ This guide is for [Type-B](Conceptual-MMU#---type-b) MMU/AFC's including:
 &bull; **3MS**<br>
 
 - [Calibration Steps](#---calibration-steps)
-  - [1. Gear 0 Stepper](#---step-1-calibrate-your-gear-stepper)
-  - [2. Encoder (option)](#---step-2-calibrate-your-encoder-if-fitted-option)
+  - [1. Gear 0 Stepper](#---step-1-calibrate-rotation-distance-of-gear-0-stepper)
+  - [2. Encoder (option)](#---step-2-calibrate-your-encoder-option)
   - [3. Bowden Length](#---step-3-calibrate-bowden-length)
   - [4. Gates/Lanes](#---step-4-calibrating-individual-gates)
 - [Calibration Storage](#---calibration-storage)
-- [Calibration Commands](Command-Reference#---calibration)
+- [Calibration Commands Reference](Command-Reference#---calibration)
 
 This discussion assumes that you have setup and debugged your hardware configuration. A detailed discusion can be found under [Hardware Configuration](Hardware-Configuration).
 
@@ -52,20 +52,20 @@ graph TD;
 ### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Step 1. Calibrate rotation distance of gear 0 stepper
 Applicable to all MMU's: **Very important to get right!**
 
-#### Purpose
+#### PURPOSE
 In this step you are simply ensuring that when the gear stepper is told to drive 100mm of filament it really does move 100mm.  It is akin to what you did when you set up your extruder rotational distance although in this case no Klipper restart is necessary! We single out gate 0 to make it the reference gate. Although it is necessary for each gate to be calibrated some MMU designs will allow Happy Hare to automatically calibrate the rest over time so gate 0 is singled out as a minimal step the user must undertake. If this step is not complete you will see this message:
 
   > Use MMU_CALIBRATE_GEAR (with gate 0 selected) to calibrate gear rotation_distance on gate: 0
 
 Until this step is completed Happy Hare will use the default `rotation_distance` defined in `mmu_hardwared.cfg` as a fallback.
 
-#### Result
+#### RESULT
 After calibration the calibrated rotation distance will be persisted to `mmu_vars.cfg` in a line similar to (length of array will match the number of gates you have and the recorded rotation distance will be for the selected gate):
 
   > mmu_gear_rotation_distances: [22.56783, -1, -1, -1]
 
 
-#### Procedure
+#### PROCEDURE
 Select gate #0:
 
   > MMU_SELECT GATE=0
@@ -103,15 +103,15 @@ Although it is not strictly necesssary to do this now, you can repeat for all ot
 ### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Step 2. Calibrate your encoder (Option)
 APPLICABLE ONLY IF AN ENCODER IS FITTED
 
-#### Purpose
+#### PURPOSE
 If your MMU includes an Encoder the next step is to calibrate so it measures distance accurately. This will set the "encoder resolution" for the encoder gear. I.e. What filament movement (distance in mm) does each signal pulse from the encoder represent.
 
-#### Result
+#### RESULT
 After this step the calibrated encoder resolution will be persisted to `mmu_vars.cfg` in a line similar to:
 
   > mmu_encoder_resolution: 1.085049
 
-#### Procedure
+#### PROCEDURE
 Re-fit the bowden to your MMU, re-select gate 0, if not selected, and make sure you have some filament loaded in gate #0 before starting. Use this command to advance filament into view at the start of the bowden (this is simply to ensure the filament is fully through the encoder):
 
   > MMU_TEST_MOVE MOVE=50
@@ -149,16 +149,16 @@ If this step worked then you can unload the residual filament with `MMU_UNLOAD`.
 ### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Step 3. Calibrate bowden length
 Applicable to MMU's with fast bowden move: **Most designs except Angry Beaver** where filaments combine at the toolhead
 
-#### Purpose
+#### PURPOSE
 The last calibration before use! Here you can calibrate the length of your bowden from MMU gate to extruder entrance. This is important because it allows the MMU to move the filament at a fast pace over this distance because getting to the more complicated part of the load sequence. To speed up this process and depending on what sensors you have fitted for extruder homing, you may need to give the calibration routine a hint of how far way the extruder is.
 
-#### Result
+#### RESULT
 After this step the calibrated bowden length will be persisted to `mmu_vars.cfg` in a line similar to this with one entry per gate (designs with different bowden lengths will only set the selected gate bowden distance):
 
   > mmu_calibration_bowden_lengths = [681.4, 681.4, 681.4, 681.4]
 
 
-#### Procedure
+#### PROCEDURE
 There are different ways to do this depending on your MMU configuration and sensor options:
 
 1. If `extruder_homing_endstop: extruder`, `mmu_gear_touch` or `filament_compression`, then you have a homing endstop and you can simply specify a `BOWDEN_LENGTH` that is GREATER than your estimated length to give plenty of room to find the homing stop (technically, Happy Hare defaults to 2000mm so you can probably omit this parameter completely).
@@ -210,19 +210,19 @@ This will reverse homes to the gate and uses Klipper's measurement of stepper mo
 ### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Step 4. Calibrating individual gates
 Applicable to **MMU's with encoder** to automate the setting of rotation distance for gates other than the reference gate 0
 
-#### Purpose
+#### PURPOSE
 This step allows for calibrating slight `rotation distance` differences between gates and saves you from having to use `MMU_CALIBRATE_GEAR` on every gate. If encoder is fitted, this is still optional because if not run, the gates will tune themselves as they are used automatically (see `autotune_rotation_distance` in `mmu_parameters`)!  That said it can be beneficial to get this out of the way with a test piece of filament because doing it also: (i) removes the need to set the `autotune_rotation_distance` in `mmu_parameters.cfg`, (ii) is necessary if there is substantial variation between gates -- e.g. if BMG gears for different gates are sourced from different vendors and wildly different.
 
 If this method is possible and you have not calibrated all gates in Step 1, you will see a calibration warning message similar to:
 
   > Use MMU_CALIBRATE_GEAR (with gate selected) or MMU_CALIBRATE_GATES GATE=xx
 
-#### Result
+#### RESULT
 After calibration the calibrated rotation distance will be persisted to `mmu_vars.cfg` for remaining gate in a line similar to (length of array will match the number of gates you have and the recorded rotation distance for the calibrated gates):
 
   > mmu_gear_rotation_distances: [22.567835, 22.941324, 22.943590, 22.600300]
 
-#### Procedure
+#### PROCEDURE
 Simply make sure filament is available at the gate you want to calibrate -- you can hold a (500mm) loose piece of filament and run:
 
 > MMU_CALIBRATE_GATES GATE=1
