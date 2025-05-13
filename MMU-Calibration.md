@@ -1,8 +1,10 @@
 #### Page Sections:
 
-MMU/AFC's are divided into three basic classes (type [A](Conceptual-MMU#---type-a),[B](Conceptual-MMU#---type-b) & [C](Conceptual-MMU#---type-c)) as described [here](Conceptual-MMU).
+MMU/AFC's are divided into three basic classes (type [A](Conceptual-MMU#---type-a), [B](Conceptual-MMU#---type-b) & [C](Conceptual-MMU#---type-c)) as described [here](Conceptual-MMU).
 
-Examples of [Type-A](Conceptual-MMU#---type-a) include:
+## Type-A
+
+Examples of Type-A include:
 <br>
 &bull; **ERCF**<br>
 &bull; **Tradrack**<br>
@@ -14,7 +16,11 @@ Examples of [Type-A](Conceptual-MMU#---type-a) include:
 
 View [calibration steps](MMU-Calibration-TypeA) for type-A
 
-Examples of [Type-B](Conceptual-MMU#---type-b) include:
+<br>
+
+## Type-B
+
+Examples of Type-B include:
 <br>
 &bull; **QuattroBox**<br>
 &bull; **Box Turtle**<br>
@@ -25,4 +31,5 @@ Examples of [Type-B](Conceptual-MMU#---type-b) include:
 View [calibration steps](MMU-Calibration-TypeB) for type-B
 
 <br>
+
 For calibration steps for type-C use a blend of the above
