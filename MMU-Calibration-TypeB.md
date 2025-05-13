@@ -7,12 +7,12 @@ This guide is for [Type-B](Conceptual-MMU) MMU's/AFC's including:
 &bull; **Angry Beaver**<br>
 &bull; **3MS**<br>
 
-- [Calibration Steps](MMU-Calibration#---calibration-steps)
-  - [1. Gear 0 Stepper](MMU-Calibration#---step-3-calibrate-your-gear-stepper)
-  - [2. Encoder (option)](MMU-Calibration#---step-4-calibrate-your-encoder-if-fitted-option)
-  - [3. Bowden Length](MMU-Calibration#---step-5-calibrate-bowden-length)
-  - [4. Gates/Lanes](MMU-Calibration#---step-6-calibrating-individual-gates)
-- [Calibration Storage](MMU-Calibration#---calibration-storage)
+- [Calibration Steps](#---calibration-steps)
+  - [1. Gear 0 Stepper](#---step-3-calibrate-your-gear-stepper)
+  - [2. Encoder (option)](#---step-4-calibrate-your-encoder-if-fitted-option)
+  - [3. Bowden Length](#---step-5-calibrate-bowden-length)
+  - [4. Gates/Lanes](#---step-6-calibrating-individual-gates)
+- [Calibration Storage](#---calibration-storage)
 - [Calibration Commands](Command-Reference#---calibration)
 
 This discussion assumes that you have setup and debugged your hardware configuration. A detailed discusion can be found under [Hardware Configuration](Hardware-Configuration).
