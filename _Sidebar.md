@@ -38,7 +38,7 @@
 
 <details open><summary><b>&nbsp;4. Calibration</b></summary>
 
-- [Intro](MMU-Calibration)
+- [MMU Types](MMU-Calibration)
 - [Type-A](MMU-Calibration-TypeA)
 - [Type-B](MMU-Calibration-TypeB)
 - [Toolhead Calibration](Blobbing-and-Stringing#---calibrating-toolhead)
