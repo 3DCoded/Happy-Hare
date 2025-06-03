@@ -17,7 +17,7 @@ Happy Hare MMU commands: (use MMU_HELP SLICER=1 CALLBACKS=1 TESTING=1 STEPS=1 fo
     MMU_EJECT : Alias for MMU_UNLOAD if filament is loaded but will fully eject filament from MMU (release from gear) if in unloaded state
     MMU_ENCODER : Display encoder position and stats or enable/disable runout detection logic in encoder
     MMU_ENDLESS_SPOOL : Diplay or Manage EndlessSpool functionality and groups
-    MMU_SPOOLER : Direct control of espooler or display of current status
+    MMU_ESPOOLER : Direct control of espooler or display of current status
     MMU_GATE_MAP : Display or define the type and color of filaments on each gate
     MMU_HELP : Display the complete set of MMU commands and function
     MMU_HOME : Home the MMU selector
