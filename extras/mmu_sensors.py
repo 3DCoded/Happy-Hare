@@ -115,6 +115,7 @@ class MmuRunoutHelper:
 
     def _process_state_change(self, eventtime, is_filament_present):
         # Determine "printing" status
+        self.gcode.respond_info(f'Filament {is_filament_present}')
         now = self.reactor.monotonic()
         print_stats = self.printer.lookup_object("print_stats", None)
         if print_stats is not None:
