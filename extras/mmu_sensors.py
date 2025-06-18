@@ -125,7 +125,7 @@ class MmuRunoutHelper:
         if is_filament_present and self.insert_gcode: # Insert detected
             if not is_printing or (is_printing and self.insert_remove_in_print):
                 self.min_event_systime = self.reactor.NEVER
-                #logging.info("MMU: filament sensor %s: insert event detected, Eventtime %.2f" % (self.name, eventtime))
+                #logging.info("MMU: fil ament sensor %s: insert event detected, Eventtime %.2f" % (self.name, eventtime))
                 self.reactor.register_callback(lambda reh: self._insert_event_handler(eventtime))
 
         else: # Remove or Runout detected
@@ -237,6 +237,10 @@ class MmuSensors:
                 insert_gcode = ("%s SENSOR=%s%s" % (self.INSERT_GCODE, name, (" GATE=%d" % gate) if gate is not None else "")) if insert else None
                 remove_gcode = ("%s SENSOR=%s%s" % (self.REMOVE_GCODE, name, (" GATE=%d" % gate) if gate is not None else "")) if remove else None
                 runout_gcode = ("%s SENSOR=%s%s" % (self.RUNOUT_GCODE, name, (" GATE=%d" % gate) if gate is not None else "")) if runout else None
+
+                logging.info(f'Fsensor {name_prefix}')
+                logging.info(f'Runout {runout_gcode}')
+
                 ro_helper = MmuRunoutHelper(self.printer, sensor, event_delay, insert_gcode, remove_gcode, runout_gcode, insert_remove_in_print, button_handler, switch_pin)
                 fs.runout_helper = ro_helper
                 fs.get_status = ro_helper.get_status
