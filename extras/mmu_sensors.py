@@ -102,6 +102,9 @@ class MmuRunoutHelper:
             eventtime = args[0]
             is_filament_present = args[1]
 
+        self.gcode.respond_info(f'State {is_filament_present}')
+        self.gcode.respond_info(f'{self.sensor_enabled}')
+
         # Button handlers are used for sync feedback state switches
         if self.button_handler and not self.button_handler_suspended:
             self.button_handler(eventtime, is_filament_present, self)
