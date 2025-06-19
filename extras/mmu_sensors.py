@@ -102,8 +102,8 @@ class MmuRunoutHelper:
             eventtime = args[0]
             is_filament_present = args[1]
 
-        self.gcode.respond_info(f'State {is_filament_present}')
-        self.gcode.respond_info(f'{self.sensor_enabled}')
+        self.gcode.respond_info(f'State {is_filament_present} {"enabled" if self.sensor_enabled else "disabled"}')
+        self.gcode.respond_info(f'E{eventtime:.2f} M{self.min_event_systime:.2f}')
 
         # Button handlers are used for sync feedback state switches
         if self.button_handler and not self.button_handler_suspended:
@@ -118,8 +118,7 @@ class MmuRunoutHelper:
 
     def _process_state_change(self, eventtime, is_filament_present):
         # Determine "printing" status
-        self.gcode.respond_info(f'{self.name} {is_filament_present}')
-        self.gcode.respond_info(f'{self.runout_suspended}')
+        self.gcode.respond_info(f'State change {self.name} {is_filament_present} {"suspended" if self.runout_suspended else "active"}')
         now = self.reactor.monotonic()
         print_stats = self.printer.lookup_object("print_stats", None)
         if print_stats is not None:
