@@ -578,11 +578,10 @@ autotune_rotation_distance: 0
 skip_cal_encoder: 0
 autotune_encoder: 0
 ```
-Related is new `bowden_homing_max: 2000` setting that aids calibration to limit the absolute max bowden move.
+  - Related is new `bowden_homing_max: 2000` setting that aids calibration to limit the absolute max bowden move.
 
 - **New optimizations with sync-feedback "buffer" sensors**
-  - Two new `mmu_parameters` are used to optimize movement inside of the buffer:
-```yml
+  - Two new `mmu_parameters` are used to optimize movement inside of the buffer:```yml
 sync_feedback_buffer_range: 8           # Travel in "buffer" between compression/tension
 sync_feedback_buffer_maxrange: 12	# Total max travel
 ```
