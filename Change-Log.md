@@ -557,6 +557,50 @@ Gates / Filaments:
 
 <hr>
 
+### v3.3.0 (`v330_beta` branch) ****BETA****
+This is likely the last of the v3 release (v4 with vastly improved installation and modular hardware definition comming soon!)
+
+<p align="center"><img src="Mainsail-Fluidd-Integration/mainsail_filament_gripped.png" alt='filament gripped' width='30%'></p>
+
+- **New Fluidd UI Features**
+- (Note that Mainsail will follow as soon as initial full PR is pulled)
+- Sync-feedback tension/compression "buffer" is now only shown when filament is at the toolhead. This avoids confusing "under tension" display for some spring loaded buffers.
+- A small icon is now shown when filament is gripped on type-A MMU's where it is possible to ungrip filament even if loaded. Grip control is still managed with `MMU_GRIP`, `MMU_RELEASE` or `MMU_SERVO` commands.
+
+- **New Auto-calibration and auto-tuning options**
+- This means that many of the new MMU's (like BoxTurtle, KMS, QuattroBox, ...) can now be configured to work without non-essential calibration and have Happy Hare "learn" from the telemetry as MMU is used.
+- Full set of options that are most useful on new setup's. Full details on options and required sensors is in the upgraded `mmu_parameters.cfg` file:
+```yml
+autocal_bowden_length: 1
+autotune_bowden_length: 1
+skip_cal_rotation_distance: 0
+autotune_rotation_distance: 0
+skip_cal_encoder: 0
+autotune_encoder: 0
+```
+Related is new `bowden_homing_max: 2000` setting that aids calibration to limit the absolute max bowden move.
+
+- **New optimizations with sync-feedback "buffer" sensors**
+- Two new `mmu_parameters` are used to optimize movement inside of the buffer:
+```yml
+sync_feedback_buffer_range: 8           # Travel in "buffer" between compression/tension
+sync_feedback_buffer_maxrange: 12	# Total max travel
+```
+- New filament tension balancing logic after load. If you have a sync-feedback "buffer" then filament tension can be balanced immediately after loading.
+```
+toolhead_post_load_tension_adjust: 1 
+```
+
+- **MMU syncing and filament grip logic**
+- Hopefully no-one will see this other than for sync/grip state to be more consistent now.
+- 3DChamelon, MMX and PicoMMU users can now choose between the default `filament_always_gripped: 0` (mmu_hardware.cfg) logic or set this to `filament_always_gripped: 1` if you prefer for Happy Hare not to ever release filament.
+
+- **New MMU support for KMS!**
+- More details on this soon as it launches internationally, but it is a cool type-B design with integral encoder, espooler and heated filament enclosure!
+- This deisgn has it's own PCB's and so installation is simple with pre-configured templates
+
+<hr>
+
 <br>
 
 _This project continues to take considerable effort and time not to mention the cost of building many MMU prototypes. Please consider helping to support me by donating to my [PayPal link](https://www.paypal.com/paypalme/moggieuk) in the github :pray:_
