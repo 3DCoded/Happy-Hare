@@ -570,6 +570,7 @@ This is likely the last of the v3 release (v4 with vastly improved installation 
 - **New Auto-calibration and auto-tuning options**
   - This means that many of the new MMU's (like BoxTurtle, KMS, QuattroBox, ...) can now be configured to work without non-essential calibration and have Happy Hare "learn" from the telemetry as MMU is used.
   - Full set of options that are most useful on new setup's. Full details on options and required sensors is in the upgraded `mmu_parameters.cfg` file:
+  - (Related is new `bowden_homing_max: 2000` setting that aids calibration to limit the absolute max bowden move)
 ```yml
 autocal_bowden_length: 1
 autotune_bowden_length: 1
@@ -578,14 +579,15 @@ autotune_rotation_distance: 0
 skip_cal_encoder: 0
 autotune_encoder: 0
 ```
-  - Related is new `bowden_homing_max: 2000` setting that aids calibration to limit the absolute max bowden move.
 
 - **New optimizations with sync-feedback "buffer" sensors**
-  - Two new `mmu_parameters` are used to optimize movement inside of the buffer:```yml
+  - Two new `mmu_parameters` are used to optimize movement inside of the buffer:
+  - New filament tension balancing logic after load. If you have a sync-feedback "buffer" then filament tension can be balanced immediately after loading.
+```yml
 sync_feedback_buffer_range: 8           # Travel in "buffer" between compression/tension
 sync_feedback_buffer_maxrange: 12	# Total max travel
 ```
-  - New filament tension balancing logic after load. If you have a sync-feedback "buffer" then filament tension can be balanced immediately after loading.
+and
 ```
 toolhead_post_load_tension_adjust: 1 
 ```
