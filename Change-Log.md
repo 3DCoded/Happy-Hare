@@ -600,6 +600,9 @@ toolhead_post_load_tension_adjust: 1
   - More details on this soon as it launches internationally, but it is a cool type-B design with integral encoder, espooler and heated filament enclosure!
   - This deisgn has it's own PCB's and so installation is simple with pre-configured templates
 
+- **Bug Fixes and PRs, including:**
+  - Prevent error when color certain colored messages
+
 <hr>
 
 <br>
