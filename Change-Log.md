@@ -557,7 +557,7 @@ Gates / Filaments:
 
 <hr>
 
-### v3.3.0 (`v330_beta` branch) ****BETA****
+### v3.3.0
 This is likely the last of the v3 release (v4 with vastly improved installation and modular hardware definition comming soon!)
 
 <p align="center"><img src="Mainsail-Fluidd-Integration/mainsail_filament_gripped.png" alt='filament gripped' width='30%'></p>
@@ -588,13 +588,13 @@ sync_feedback_buffer_range: 8           # Travel in "buffer" between compression
 sync_feedback_buffer_maxrange: 12	# Total max travel
 ```
 and
-```
+```yml
 toolhead_post_load_tension_adjust: 1 
 ```
 
 - **MMU syncing and filament grip logic**
   - Hopefully no-one will see this other than for sync/grip state to be more consistent now.
-  - 3DChamelon, MMX and PicoMMU users can now choose between the default `filament_always_gripped: 0` (mmu_hardware.cfg) logic or set this to `filament_always_gripped: 1` if you prefer for Happy Hare not to ever release filament.
+  - 3DChamelon, MMX and PicoMMU users can now choose between the default `filament_always_gripped: 0` (mmu_hardware.cfg) logic or set this to `filament_always_gripped: 1` if you prefer for Happy Hare not to never release filament.
 
 - **New MMU support for KMS!**
   - More details on this soon as it launches internationally, but it is a cool type-B design with integral encoder, espooler and heated filament enclosure!
