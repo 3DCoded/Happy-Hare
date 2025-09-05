@@ -47,7 +47,7 @@ Multiple gates can be specified for bulk updates. A very useful command is this,
 > [!IMPORTANT]  
 > There is no enforcement of material names but it is recommended use all capital short names like PLA, ABS+, TPU95, PETG. The color string can be one of the [w3c standard color names](https://www.w3schools.com/tags/ref_colornames.asp) or a RRGGBB red/green/blue hex value. Because of a Klipper limitation don't add `#` to the color specification.
 
-One potentially interesting built-in functionality is the exposing of filament color and RGB values suitable for directly driving LEDs.  The `gate_color_rgb` printer value will convert any color format (string name or hex spec) into truples like this: `(0.5, 0.0, 0.0)`.  You can use this to drive LED's with the Klipper led control in your macros similar to this because "bling" is important!
+Although Happy Hare already does this for MMU LED's, One potentially interesting built-in functionality is the exposing of filament color and RGB values suitable for directly driving LEDs.  The `gate_color_rgb` printer value will convert any color format (string name or hex spec) into truples like this: `(0.5, 0.0, 0.0)`.  You can use this to drive LED's with the Klipper led control in your macros similar to this because "bling" is important!
 
 Here is an example snippet of a macro controlling LED's for reference:
 ```
@@ -57,8 +57,17 @@ Here is an example snippet of a macro controlling LED's for reference:
 ```
 
 > [!NOTE]  
-> KlipperScreen Happy Hare edition has a nice editor with color picker for easy updating<br>
+> KlipperScreen Happy Hare edition, Mainsail and Fluidd all have nice editors with color picker for easy updating<br>
 > [Spoolman](Spoolman-Support) integration can also be used to automatically update colors
+>
+> If Spoolman is enabled then the gate map will display slightly differently showing the spoolman origin of data:
+> ```
+> Gates / Filaments:
+> 0: Empty;   Id: n/a;    TPU | 200°C | #DC6834 | Orange Pie - An extra very very long filament name
+> 1: Spool;   Id: 2   --> PTEG | 220°C | #DCDA3472 | eMarble
+> 2: Empty;   Id: 1   --> PLA - Silk | 210°C | #8CDFAC | Matte Green
+> 3: Empty;   Id: 4   --> ASA | 239°C | #95DC34 | Prusament Lime Green
+> ```
 
 > [!TIP]  
 > The initial gate map (and therefore the default after a reset `MMU_GATE_MAP RESET=1`) can also be specified in the `mmu_parameters.cfg` file by updating the follow list parameters, ensuring each is the same length as the number of gates. E.g.<br>
