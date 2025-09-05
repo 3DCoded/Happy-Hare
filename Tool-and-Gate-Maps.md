@@ -157,10 +157,10 @@ To view the current detailed mapping you can use either `MMU_STATUS DETAIL=1` or
 
 The TTG map is controlled with the `MMU_REMAP_TTG` command although the graphical user interface with [KlipperScreen - Happy Hare Edition](https://github.com/moggieuk/KlipperScreen-Happy-Hare-Edition) makes this trivial (as well as editing EndlessSpool groups):
 
-<p align="center">
-<img src="Tool-and-Gate-Maps/klipperscreen_mmu_toolmap.png" width="50%">
-<img src="Tool-and-Gate-Maps/mainsail_edit_ttg_map.png" width="50%">
-</p>
+<p align="center"><img src="Tool-and-Gate-Maps/klipperscreen_mmu_toolmap.png" width="50%"></p>
+
+Similarly with Mainsail or Fluidd:
+<p align="center"><img src="Tool-and-Gate-Maps/mainsail_edit_ttg_map.png" width="60%"></p>
 
 For console example, to remap T0 to Gate #8, issue:
 
