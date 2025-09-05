@@ -63,7 +63,7 @@ Here is an example snippet of a macro controlling LED's for reference:
 > If Spoolman is enabled then the gate map will display slightly differently showing the spoolman origin of data:
 > ```
 > Gates / Filaments:
-> 0: Empty;   Id: n/a;    TPU | 200°C | #DC6834 | Orange Pie - An extra very very long filament name
+> 0: Empty;   Id: n/a     TPU | 200°C | orange | Orange Pie
 > 1: Spool;   Id: 2   --> PTEG | 220°C | #DCDA3472 | eMarble
 > 2: Empty;   Id: 1   --> PLA - Silk | 210°C | #8CDFAC | Matte Green
 > 3: Empty;   Id: 4   --> ASA | 239°C | #95DC34 | Prusament Lime Green
