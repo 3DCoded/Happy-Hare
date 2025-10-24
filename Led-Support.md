@@ -9,7 +9,7 @@ Happy Hare now can drive LEDs (NeoPixel/WS2812) on your MMU to provide both func
 The setup for LED's is contained at the bottom of the `mmu_hardware.cfg` file. If you would like you use LED animation you must also install the [LED Effects for Klipper](https://github.com/julianschill/klipper-led_effect). If this module is not installed, more static LED changes can be employed.
 
 > [!IMPORTANT]  
-> This page has been updated for the v3.4.0 and later releases. Earlier versions were a little different - read the text in the `mmu_hardware.cfg` file for more details
+> This page has been updated for the v3.4.0 and later releases. Earlier versions were a little different - read the text in the `mmu_hardware.cfg`
 
 <br>
 
@@ -101,7 +101,7 @@ Some examples of how to set these values can be seen in this illustration (ERCFv
 <br>
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Controlling LED Effects
-Happy Hare LED effects are controlled by Happy Hare but you have a large amount of configuration options. The [mmu_leds ...] section above continues:
+Happy Hare LED effects are controlled by Happy Hare but you have a large amount of configuration options. The `[mmu_leds ..]` section above continues:
 ```yml
 # Default effects for LED segments when not providing action status
 #    off              - LED's off
@@ -153,7 +153,7 @@ effect_gate_empty_sel:     mmu_ready_orange2,       (0.1, 0.04, 0)
 > [!NOTE]  
 > If you are wondering where all these effects are defined, look in `mmu_leds.cfg`.  They are all defined with a special `[mmu_led_effect]` section that is able to duplicate effect setup across each gate and the desired chains. Read the notes in `mmu_leds.cfg` for more details.
 
-To change the default effect for a segment edit the appropriate line. These effects can be any of the built-in functional defaults, any named effect you define, or even an RGB color specification in the form `red,green,blue` e.g. `0.5,0,0.5` would be 50% intensity red and blue with no green. In each case a static alternative (r,g,b) color is specified and will be used if you turn off animation for any led chain:
+To change the default effect for a segment edit the appropriate line. These effects can be any of the built-in functional defaults, any named effect you define, or even an RGB color specification in the form `red,green,blue` e.g. `0.5,0,0.5` would be 50% intensity red and blue with no green. In each case a static alternative (r,g,b) color is specified and will be used if you turn off animation for the given mmu unit.
 
 Happy Hare also has a command to control LEDs:
 
@@ -185,11 +185,11 @@ Default logo effect: '(1.0, 1.0, 1.0)'
 
 You can change the effect at runtime, e.g. `MMU_LED ENTRY_EFFECT=gate_status` or `MMU_LED ENABLE=0` to turn off and disable the LED operation.  Please note that similarly to `MMU_TEST_CONFIG` changes made like this don't persist on a restart. Update the default values in `mmu_hardware.cfg` to make changes persistent.
 
-The colors displayed by the `slicer_color` option is set with the command `MMU_SLICER_TOOL_MAP GATE=.. COLOR=..` as is the case in the recommended `MMU_START_SETUP` macro. The color can be a w3c color name or `RRGGBB` value.
+The colors displayed by the `slicer_color` option is set with the command `MMU_SLICER_TOOL_MAP GATE=.. COLOR=..` as is done in the recommended `MMU_START_SETUP` macro. These colors thus only exist during a print or until the next print overwrite them. If you are modifying the slicer tool map yourself note that the color can be a w3c color name or `RRGGBB` value.
 
-The Mainsail/Fluidd UI's and Happy Hare version of Klipperscreen has buttons to quickly "toggle" between `gate_status` and `filament_color` for the default gate effect...
+The Mainsail/Fluidd UI's and Happy Hare version of Klipperscreen have buttons to quickly "toggle" between `gate_status` and `filament_color` for the default gate effect...
 
-If you want to reduce load on your system but still support LEDs then you can opt to turn off the animations by setting `animation: False` or using `MMU_LED ANIMATION=0`.
+If you want to reduce load on your system (arguably because it realy is  minor) but still want to support LEDs then you can opt to turn off the animations by setting `animation: False` or using `MMU_LED ANIMATION=0`.
 
 <br>
 
@@ -213,10 +213,10 @@ The default effects, which are both functional as well as adding a little color,
   | "standby"        | OFF                                             | OFF                                    | OFF        |
   |||||
   | **Actions States:** ||||
-  | "Loading"<br>(whole sequence)   |                                  | Current gate: `Slow Pulsing White`     | `Slow Pulsing Blue`  |
-  | "Loading"<br>(toolhead)   |                                        |                                        | `Fast Pulsing Blue`  |
-  | "Unloading"<br>(whole sequence) |                                  | Current gate: `Slow Pulsing White`     | `Slow Pulsing Blue`  |
-  | "Unloading"<br>(toolhead)   |                                      |                                        | `Fast Pulsing Blue`  |
+  | "Loading"<br>(whole sequence)   |                                  | Current gate: `Slow Pulsing White`     | `Slow Pulsing Blue`<br>(slow forward animation) |
+  | "Loading"<br>(toolhead)   |                                        |                                        | `Fast Pulsing Blue`<br>(fast forward animation)  |
+  | "Unloading"<br>(whole sequence) |                                  | Current gate: `Slow Pulsing White`     | `Slow Pulsing Blue`<br>(slow reverse animation) |
+  | "Unloading"<br>(toolhead)   |                                      |                                        | `Fast Pulsing Blue`<br>(fast reverse animation) |
   | "Heating"        | _default_                                       | Current gate: `Pulsing Red`            | `Pulsing Red`        |
   | "Selecting"      | _default_                                       | `Fast Pulsing White`                   | OFF                  |
   | "Checking"       | _default_                                       | _default_                              | `Fast Pulsing White` |
