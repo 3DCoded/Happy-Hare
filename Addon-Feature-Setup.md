@@ -42,8 +42,8 @@ https://github.com/Dendrowen/Blobifier
 ### Config
 1. Add `[include mmu/addons/blobifier.cfg]` to your `printer.cfg`
 1. Edit `blobifier.cfg` and `blobifier_hw.cfg` to work with your setup
-1. Set `variable_user_post_load_extension : "BLOBIFIER"` in `mmu_macro_vars.cfg`
-1. Optionally set `variable_user_post_form_tip_extension : "BLOBIFIER_PARK"` in `mmu_macro_vars.cfg` to park the nozzle on the tray during a swap. Note that it is always recommended that you at least z-hop on toolchange so that the toolhead is immediately lifted off the print. Read [Toolchange Movement](Toolchange-Movement) for more details.
+1. Set `purge_macro: "BLOBIFIER"` in `mmu_parameters.cfg`
+1. Optionally set `variable_user_post_form_tip_extension : "BLOBIFIER_PARK"` in `mmu_macro_vars.cfg` to park the nozzle on the tray during a swap. Note that it is always recommended that you at least z-hop on toolchange so that the toolhead is immediately lifted off the print. Read [Toolchange Movement](Toolchange-Movement) for more details.  NOTE: this method has been superceeded and understanding the "parking" configuration in `mmu_macro_vars.cfg` is the better method.
 
 <hr>
 
