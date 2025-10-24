@@ -23,7 +23,7 @@ LED strips can be formed but soldering together individual neopixels or using pr
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Hardware Config
 If you have run the Happy Hare installer it should have added a section to the end of your `mmu_hardware.cfg` that starts like this:
-```
+```yml
 # LED SUPPORT (OPTIONAL) -----------------------------------------------------------------------------------------------
 # ██╗     ███████╗██████╗ ███████╗
 # ██║     ██╔════╝██╔══██╗██╔════╝
@@ -89,6 +89,9 @@ status_leds: neopixel:mmu_leds (5)
 logo_leds:   neopixel:mmu_leds (6)
 frame_rate: 24
 ```
+> [!IMPORTANT]  
+> One thing that is important for `entry` and `exit` led chains is that their length must be the same as the number of gates or a multiple of that. BTT ViViD design has 7 leds for each of the 4 gates, so there are 28 leds in the sequence. If you do have multiple leds per gate, Happy Hare will leverage that to create "mini" effects on each individual gate. E.g. can indicate loading and unloading animation!
+
 Some examples of how to set these values can be seen in this illustration (ERCFv2 MMU example):
 <p align=center><img src="Led-Support/led_configuration.png" alt='LED Configuration' width='100%'></p> <!-- TODO: Update pic -->
 
@@ -98,7 +101,7 @@ Some examples of how to set these values can be seen in this illustration (ERCFv
 <br>
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Controlling LED Effects
-Happy Hare LED effects are controlled by Happy Hare but you have a large amount of control. The [mmu_leds ...] section above continues:
+Happy Hare LED effects are controlled by Happy Hare but you have a large amount of configuration options. The [mmu_leds ...] section above continues:
 ```yml
 # Default effects for LED segments when not providing action status
 #    off              - LED's off
@@ -119,7 +122,7 @@ white_light: (1, 1, 1)                  # RGB color for static white light
 black_light: (.01, 0, .02)              # RGB color used to represent "black" (filament)
 empty_light: (0, 0, 0)                  # RGB color used to represent empty gate
 ```
-This is where the default function you want for each set of leds can be specified. For example `gate_status` is probably the most useful indicator for leds next to each gate but you have a choice. Static colors can also be sepcified and are most useful for the "logo" leds. You will also see the default (r,g,b) colors used to indicate white and black color -- e.g. black is represented as a very faint purple.
+This is where the default function you want for each set of leds can be specified. For example `gate_status` is probably the most useful indicator for leds next to exit of each gate but you have a choice. Static colors can also be sepcified and are most useful for the "logo" leds. You will also see the default (r,g,b) colors used to indicate white and black color -- e.g. black is represented as a very faint purple (think black-light).
 
 Finally, the effects that are applied during each stage of MMU operation follow. In each case a static alternative (r,g,b) color is configured and will be used if you turn off animation for any led chain:
 ```yml
@@ -148,7 +151,7 @@ effect_gate_empty_sel:     mmu_ready_orange2,       (0.1, 0.04, 0)
 ```
 
 > [!NOTE]  
-> If you are wondering where all these effects are defined, look in `mmu_leds.cfg`.  They are all defined with a special `[mmu_led_effect]` section that is able to duplicate effect setup accross each gate and the desired chains. Read the notes in `mmu_leds.cfg` for more details.
+> If you are wondering where all these effects are defined, look in `mmu_leds.cfg`.  They are all defined with a special `[mmu_led_effect]` section that is able to duplicate effect setup across each gate and the desired chains. Read the notes in `mmu_leds.cfg` for more details.
 
 To change the default effect for a segment edit the appropriate line. These effects can be any of the built-in functional defaults, any named effect you define, or even an RGB color specification in the form `red,green,blue` e.g. `0.5,0,0.5` would be 50% intensity red and blue with no green. In each case a static alternative (r,g,b) color is specified and will be used if you turn off animation for any led chain:
 
@@ -184,9 +187,9 @@ You can change the effect at runtime, e.g. `MMU_LED ENTRY_EFFECT=gate_status` or
 
 The colors displayed by the `slicer_color` option is set with the command `MMU_SLICER_TOOL_MAP GATE=.. COLOR=..` as is the case in the recommended `MMU_START_SETUP` macro. The color can be a w3c color name or `RRGGBB` value.
 
-> [!TIP]
-> The Mainsail/Fluidd UI's and Happy Hare version of Klipperscreen has buttons to quickly "toggle" between `gate_status` and `filament_color` for the default gate effect...<br>
-> If you want to reduce load on your system but still support LEDs then you can opt to turn off the animations by setting `animation: False` or using `MMU_LED ANIMATION=0`.
+The Mainsail/Fluidd UI's and Happy Hare version of Klipperscreen has buttons to quickly "toggle" between `gate_status` and `filament_color` for the default gate effect...
+
+If you want to reduce load on your system but still support LEDs then you can opt to turn off the animations by setting `animation: False` or using `MMU_LED ANIMATION=0`.
 
 <br>
 
