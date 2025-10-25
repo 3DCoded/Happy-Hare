@@ -99,81 +99,15 @@ This is usually set to `y` on new Happy Hare installations, and `n` on existing 
 
 ---
 
-🎉 Happy Hare is successfully installed! If you selected one of the default control boards, you don't need to follow the rest of this guide. You can continue with configuration and calibrations [here](https://3dcoded.github.io/3MS/instructions/).
+🎉 Happy Hare is successfully installed! If you selected one of the default control boards, you don't need to follow the rest of this guide. You can continue with configuration and calibrations [here](https://3ms.3dcoded.xyz/instructions/).
 <p>
 If you selected `Not in list / Unknown`, read on.
 
 ## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Configuration
 
-If you aren't using one of the default Happy Hare provided control boards, you will have to select a 3MS-specific configuration for your control board.
+If you aren't using one of the default Happy Hare provided control boards, you will have to create a 3MS-specific configuration for your control board.
 
-### Controller Configuration
-
-First, open the folder located in the 3MS repository [here](https://github.com/3DCoded/3MS/tree/main/happy-hare/configurations). This folder contains several other folders, each with a consistent naming scheme. The naming scheme is as follows:
-
-1. **MCU name:**
-    - **`MMU`**: external mainboard
-    - **`MAIN`**: your printer's existing mainboard
-2. **Tool numbers:** The first number should be `0` for a new setup, or be one higher than your previous controller's last tool number if adding to an existing 3MS.
-3. **Mainboard name:** Specifies the controller model, e.g. `btt_skr_pico`.
-
-Here are a few examples of this naming scheme:
-
-`MMU_0_3_btt_skr_pico`: External SKR Pico controlling four tools numbered `0` to `3`.
-
-`MMU_0_6_gtm32_103_v1`: External GTM32 103 V1 controlling seven tools numbered `0` to `6`.
-
-`MAIN_0_3_btt_octopus`: Internal BTT Octopus controlling four tools numbered `0` to `3`.
-
-> [!NOTE]
-> If you can't find a configuration for your control board on the 3MS repository, you can [open an issue](https://github.com/3DCoded/3MS/issues/new/choose) to get a configuration created for your control board.
-
-### Installing Configuration
-
-Once you find your controller's configuration, open its folder. Inside there are two files:
-
-- `mmu.cfg`
-- `mmu_hardware.cfg`
-
-If this is a **NEW** setup:
-
-1. Copy the online `mmu.cfg`
-2. Delete everything in your local `mmu.cfg` except your `mcu` configuration
-3. Paste below the `mcu` configuration
-4. Copy the online `mmu_hardware.cfg`
-5. Replace your gear section in your local `mmu_hardware.cfg`. 
-
-    The `GEAR` section starts with:
-
-    ```
-    # FILAMENT DRIVE GEAR STEPPER(S)  --------------------------------------------------------------------------------------
-    #  ██████╗ ███████╗ █████╗ ██████╗ 
-    # ██╔════╝ ██╔════╝██╔══██╗██╔══██╗
-    # ██║  ███╗█████╗  ███████║██████╔╝
-    # ██║   ██║██╔══╝  ██╔══██║██╔══██╗
-    # ╚██████╔╝███████╗██║  ██║██║  ██║
-    #  ╚═════╝ ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝
-    ```
-
-    and ends right **before**:
-    ```
-    # SERVOS ---------------------------------------------------------------------------------------------------------------
-    # ███████╗███████╗██████╗ ██╗   ██╗ ██████╗ ███████╗
-    # ██╔════╝██╔════╝██╔══██╗██║   ██║██╔═══██╗██╔════╝
-    # ███████╗█████╗  ██████╔╝██║   ██║██║   ██║███████╗
-    # ╚════██║██╔══╝  ██╔══██╗╚██╗ ██╔╝██║   ██║╚════██║
-    # ███████║███████╗██║  ██║ ╚████╔╝ ╚██████╔╝███████║
-    # ╚══════╝╚══════╝╚═╝  ╚═╝  ╚═══╝   ╚═════╝ ╚══════╝
-    ```
-
----
-
-For **EXISTING** setups (using more than one control board):
-
-1. Add the contents of the online `mmu.cfg` to your local `mmu.cfg`
-2. Add the contents of the online `mmu_hardware.cfg` to your local `mmu_hardware.cfg`'s gear section.
-
-<br>
+Instructions have been moved to the [3MS Configuration Generator](https://link.3dcoded.xyz/configgenerator/)
 
 > [!NOTE]  
-> You can continue with configuration and calibrations [here](https://3dcoded.github.io/3MS/instructions/)
+> You can continue with configuration and calibrations [here](https://3ms.3dcoded.xyz/instructions/)
