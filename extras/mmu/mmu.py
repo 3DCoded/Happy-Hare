@@ -5488,14 +5488,8 @@ class Mmu:
                     if self.log_enabled(self.LOG_STEPPER):
                         self.log_stepper("%s MOVE: dist=%.1f, speed=%.1f, accel=%.1f, wait=%s" % (motor.upper(), dist, speed, accel, wait))
                     pos[1] += dist
-                    pos1 = pos[1]
                     with self.wrap_accel(accel):
-                        if motor in ["gear"] and not wait:
-                            self.gcode.respond_info(f'Asynchronous move to {pos1:.2f}mm at {speed:.2f}mm/s')
-                            self.mmu_toolhead.amove(pos, speed)
-                        else:
-                            self.gcode.respond_info(f'Synchronous move to {pos1:.2f}mm at {speed:.2f}mm/s')
-                            self.mmu_toolhead.move(pos, speed)
+                        self.mmu_toolhead.move(pos, speed)
 
             # Extruder is driving, gear rail is following
             elif motor in ["synced"]:
@@ -5508,9 +5502,9 @@ class Mmu:
                     ext_pos[3] += dist
                     self.toolhead.move(ext_pos, speed)
 
+            self.mmu_toolhead.flush_step_generation() # TTC mitigation (TODO still required?)
+            self.toolhead.flush_step_generation()     # TTC mitigation (TODO still required?)
             if wait:
-                self.mmu_toolhead.flush_step_generation() # TTC mitigation (TODO still required?)
-                self.toolhead.flush_step_generation()     # TTC mitigation (TODO still required?)
                 self.movequeues_wait()
 
         encoder_end = self.get_encoder_distance(dwell=encoder_dwell)
