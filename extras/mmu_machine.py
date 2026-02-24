@@ -27,6 +27,7 @@ import logging, importlib, math, os, time, re
 import stepper, chelper, toolhead
 from kinematics.extruder import PrinterExtruder, DummyExtruder, ExtruderStepper
 from .homing import Homing, HomingMove
+from .force_move import calc_move_time
 
 from . import mmu_leds
 
@@ -512,16 +513,21 @@ class MmuToolHead(toolhead.ToolHead, object):
                 self.motion_queuing.setup_lookahead_flush_callback(self._check_flush_lookahead)
 
             self.trapq = self.motion_queuing.allocate_trapq()
+            self.atrapq = self.motion_queuing.allocate_trapq()
             self.trapq_append = self.motion_queuing.lookup_trapq_append()
         else:
             # Setup iterative solver
             ffi_main, ffi_lib = chelper.get_ffi()
             self.trapq = ffi_main.gc(ffi_lib.trapq_alloc(), ffi_lib.trapq_free)
+            self.atrapq = ffi_main.gc(ffi_lib.trapq_alloc(), ffi_lib.trapq_free)
             self.trapq_append = ffi_lib.trapq_append
             self.trapq_finalize_moves = ffi_lib.trapq_finalize_moves
             # Motion flushing
             self.step_generators = []
             self.flush_trapqs = [self.trapq]
+        
+        self.ptrapq = None
+        self.pkin = None
 
         # Create kinematics class
         gcode = self.printer.lookup_object('gcode')
@@ -545,6 +551,8 @@ class MmuToolHead(toolhead.ToolHead, object):
             msg = "Error loading MMU kinematics"
             logging.exception("MMU: %s" % msg)
             raise config.error(msg)
+        
+        self.akin = ffi_main.gc(ffi_lib.cartesian_stepper_alloc(b'x'), ffi_lib.free)
 
         self.mmu_machine = self.printer.lookup_object("mmu_machine")
         self.mmu_extruder_stepper = None
@@ -908,6 +916,44 @@ class MmuToolHead(toolhead.ToolHead, object):
             self.printer.send_event("mmu:synced")
 
         return prev_sync_mode
+    
+    # Async Gear Movement
+    def _sync_time_async(self):
+        print_time = self.printer_toolhead.get_last_move_time()
+        self.print_time = max(self.print_time, print_time)
+        
+    def amove(self, pos, speed):
+        self.gcode.respond_info(f'Pre-sync-time-async: {self.print_time:.2f}')
+        self._sync_time_async() # Sync to printer_toolhead time
+        self.gcode.respond_info(f'Post-sync-time-async: {self.print_time:.2f}')
+        
+        cp = self.commanded_pos[1]
+        dist = pos[1] - cp
+        accel = self.kin.move_accel
+        axis_r, accel_t, cruise_t, cruise_v = calc_move_time(dist, speed, accel)
+        
+        for stepper in self.selected_gear_steppers:
+            self.ptrapq = stepper.set_trapq(self.atrapq)
+            self.pkin = stepper.set_kinematics(self.akin)
+        
+        self.mmu.log_trace(f'mmu_toolhead amove: print_time={self.print_time:.2f}, dist={dist:.2f}, speed={speed:.2f}, accel={accel:.2f}, axis_r={axis_r:.2f}, accel_t={accel_t:.2f}, cruise_t={cruise_t:.2f}, cruise_v={cruise_v:.2f}')
+        
+        self.trapq_append(self.atrapq, self.print_time,
+                          accel_t, cruise_t, accel_t,
+                          0., cp, 0.,
+                          0., axis_r, 0.,
+                          0., cruise_v, accel)
+        
+        
+        self.commanded_pos[1] = cp + dist
+        
+        return self.print_time, accel_t + cruise_t + accel_t
+        
+        # if self.motion_queuing:
+            # self.motion_queuing.note_mcu_movequeue_activity(self.print_time)
+            # self.print_time += accel_t + cruise_t + accel_t
+        # TODO: old Klipper support
+        # TODO: callback to restore trapqs
 
     def is_selector_homed(self):
         return self.kin.get_status(self.reactor.monotonic())["selector_homed"]
