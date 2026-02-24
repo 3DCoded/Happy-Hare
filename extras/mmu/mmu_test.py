@@ -1,6 +1,6 @@
 # Happy Hare MMU Software
 #
-# Copyright (C) 2022-2025  moggieuk#6538 (discord)
+# Copyright (C) 2022-2026  moggieuk#6538 (discord)
 #                          moggieuk@hotmail.com
 #
 # Goal: Define internal test operations to aid development. Note these tests are "raw"
@@ -83,7 +83,6 @@ class MmuTest:
         if gcmd.get_int('HELP', 0, minval=0, maxval=1):
             self.mmu.log_info("SYNC_STATE=['compression'|'tension'|'both'|neutral] : Set the sync state")
             self.mmu.log_info("SYNC_EVENT=[-1.0 ... 1.0] : Generate sync feedback event")
-            self.mmu.log_info("ESPOOLER_ADVANCE_EVENT=1 GATE|DURATION_VALUE : Generate espooler advance event")
             self.mmu.log_info("DUMP_UNICODE=1 : Display special characters used in display")
             self.mmu.log_info("RUN_SEQUENCE=1 : Run through the set of sequence macros tracking time")
             self.mmu.log_info("GET_POS=1 : Fetch the current filament position state")
@@ -330,16 +329,6 @@ class MmuTest:
                 have_run_test = True
                 self.mmu.log_info("Sending 'mmu:sync_feedback %.2f' event" % feedback)
                 self.mmu.printer.send_event("mmu:sync_feedback", self.mmu.toolhead.get_last_move_time(), feedback)
-
-
-            espooler_advance = gcmd.get_float('ESPOOLER_ADVANCE_EVENT', 0, minval=0, maxval=1)
-            if espooler_advance:
-                have_run_test = True
-                gate = gcmd.get_int('GATE', 0, minval=-2, maxval=self.mmu.num_gates)
-                duration = gcmd.get_float('DURATION', 1., above=0.)
-                value = gcmd.get_float('VALUE', .5, above=0., maxval=1.)
-                self.mmu.log_info("Sending 'mmu:espooler_advance event(gate=%d, pwm_value=%.2f, duration=%.2fs)" % (gate, value, duration))
-                self.mmu.printer.send_event("mmu:espooler_advance", gate, value, duration)
 
 
             if gcmd.get_int('DUMP_UNICODE', 0, minval=0, maxval=1):
@@ -844,11 +833,11 @@ class MmuTest:
                 loop = gcmd.get_int('LOOP', 0, minval=0, maxval=1)
 
                 if not loop:
-                    sensors = self.mmu.sensor_manager._get_sensors_before(pos, gate, loading=loading)
+                    sensors = self.mmu.sensor_manager.get_sensors_before(pos, gate, loading=loading)
                     self.mmu.log_always("check_all_sensors_before(%s,%s)=%s" % (pos, gate, self.mmu.sensor_manager.check_all_sensors_before(pos, gate, loading=loading)))
                     self.mmu.log_always("sensors before=%s" % sensors)
 
-                    sensors = self.mmu.sensor_manager._get_sensors_after(pos, gate, loading=loading)
+                    sensors = self.mmu.sensor_manager.get_sensors_after(pos, gate, loading=loading)
                     self.mmu.log_always("check_all_sensors_after(%s,%s)=%s" % (pos, gate, self.mmu.sensor_manager.check_all_sensors_after(pos, gate, loading=loading)))
                     self.mmu.log_always("sensors after=%s" % sensors)
                 else:

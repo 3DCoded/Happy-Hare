@@ -10,7 +10,7 @@
 #   - extruder endstops and extruder only homing
 #   - switchable drive steppers on rails
 #
-# Copyright (C) 2022-2025  moggieuk#6538 (discord)
+# Copyright (C) 2022-2026  moggieuk#6538 (discord)
 #                          moggieuk@hotmail.com
 #
 # Based on code by Kevin O'Connor <kevin@koconnor.net>
@@ -63,6 +63,7 @@ VENDOR_MMX            = "MMX"
 VENDOR_VVD            = "VVD"
 VENDOR_KMS            = "KMS"
 VENDOR_EMU            = "EMU"
+VENDOR_EMU            = "EMU"
 VENDOR_OTHER          = "Other"
 
 UNIT_ALT_DISPLAY_NAMES = {
@@ -80,6 +81,7 @@ class MmuMachine:
 
     def __init__(self, config):
         # Essential information for validation and setup
+        self.config = config
         self.printer = config.get_printer()
         self.gate_counts = list(config.getintlist('num_gates', []))
         self.num_units = len(self.gate_counts)
@@ -145,6 +147,7 @@ class MmuMachine:
             variable_bowden_lengths = 0
             require_bowden_move = 1
             filament_always_gripped = 0
+            can_crossload = 0
             has_bypass = 1
 
         elif self.mmu_vendor == VENDOR_TRADRACK:
@@ -153,6 +156,7 @@ class MmuMachine:
             variable_bowden_lengths = 0
             require_bowden_move = 1
             filament_always_gripped = 0
+            can_crossload = 0
             has_bypass = 1
 
         elif self.mmu_vendor == VENDOR_PRUSA:
@@ -164,6 +168,7 @@ class MmuMachine:
             variable_bowden_lengths = 0
             require_bowden_move = 0
             filament_always_gripped = 1
+            can_crossload = 1
             has_bypass = 0
 
         elif self.mmu_vendor == VENDOR_BOX_TURTLE:
@@ -172,6 +177,7 @@ class MmuMachine:
             variable_bowden_lengths = 0
             require_bowden_move = 1
             filament_always_gripped = 1
+            can_crossload = 1
             has_bypass = 0
 
         elif self.mmu_vendor == VENDOR_NIGHT_OWL:
@@ -180,6 +186,7 @@ class MmuMachine:
             variable_bowden_lengths = 0
             require_bowden_move = 1
             filament_always_gripped = 1
+            can_crossload = 1
             has_bypass = 0
 
         elif self.mmu_vendor == VENDOR_3MS:
@@ -188,6 +195,7 @@ class MmuMachine:
             variable_bowden_lengths = 0
             require_bowden_move = 0
             filament_always_gripped = 1
+            can_crossload = 1
             has_bypass = 0
 
         elif self.mmu_vendor == VENDOR_3D_CHAMELEON:
@@ -214,6 +222,7 @@ class MmuMachine:
             variable_bowden_lengths = 0
             require_bowden_move = 1
             filament_always_gripped = 1
+            can_crossload = 1
             has_bypass = 0
 
         elif self.mmu_vendor == VENDOR_MMX:
@@ -240,6 +249,7 @@ class MmuMachine:
             variable_bowden_lengths = 0
             require_bowden_move = 1
             filament_always_gripped = 1
+            can_crossload = 1
             has_bypass = 0
 
         elif self.mmu_vendor == VENDOR_EMU:
@@ -248,6 +258,7 @@ class MmuMachine:
             variable_bowden_lengths = 1
             require_bowden_move = 1
             filament_always_gripped = 1
+            can_crossload = 1
             has_bypass = 1
 
         # Still allow MMU design attributes to be altered or set for custom MMU
@@ -261,7 +272,31 @@ class MmuMachine:
 
         # Other attributes
         self.display_name = config.get('display_name', UNIT_ALT_DISPLAY_NAMES.get(self.mmu_vendor, self.mmu_vendor))
-        self.environment_sensor = config.get('environment_sensor', "")
+
+        self.environment_sensor = config.get('environment_sensor', '')
+        self.filament_heater = config.get('filament_heater', '')
+
+        # Special handling for EMU MMU's that can have a heater and environment sensor per gate
+        self.environment_sensors = list(config.getlist('environment_sensors', []))
+        if len(self.environment_sensors) not in [0, self.num_gates]:
+            raise config.error("'environment_sensors' must be empty or a comma separated list of 'num_gate' elements")
+        self.filament_heaters = list(config.getlist('filament_heaters', []))
+        if len(self.filament_heaters) not in [0, self.num_gates]:
+            raise config.error("'filament_heaters' must be empty, a single value or a comma separated list of 'num_gate' elements")
+        self.max_concurrent_heaters = config.getint('max_concurrent_heaters', self.num_gates)
+
+        # Check mutually exclusive environment options
+        if (self.environment_sensor or self.filament_heater) and (self.environment_sensors or self.filament_heaters):
+            raise config.error("Can't configure single multiple MMU heaters/environment sensors")
+
+        # Check all heater and environment sensor objects are valid
+        for obj_name in self.filament_heaters + [self.filament_heater] + self.environment_sensors + [self.environment_sensor]:
+            if obj_name:
+                try:
+                    # If we can't load heater/sensor then it is misconfigured
+                    obj = self.printer.load_object(config, obj_name)
+                except Exception as e:
+                    raise config.error("Object '%s' could not be loaded as a valid heater or environment sensor in [mmu_machine]\nError: %s" % (obj_name, str(e)))
 
         # By default HH uses a modified homing extruder. Because this might have unknown consequences on certain
         # set-ups it can be disabled. If disabled, homing moves will still work, but the delay in mcu to mcu comms
@@ -331,9 +366,17 @@ class MmuMachine:
             unit_info['variable_bowden_lengths'] = self.variable_bowden_lengths
             unit_info['require_bowden_move'] = self.require_bowden_move
             unit_info['filament_always_gripped'] = self.filament_always_gripped
+            unit_info['can_crossload'] = self.can_crossload
             unit_info['has_bypass'] = self.has_bypass
             unit_info['multi_gear'] = self.multigear
-            unit_info['environment_sensor'] = self.environment_sensor
+            if self.environment_sensor or self.filament_heater:
+                # Single heater/sensor
+                unit_info['environment_sensor'] = self.environment_sensor
+                unit_info['filament_heater'] = self.filament_heater
+            elif self.environment_sensors or self.filament_heaters:
+                # Per-gate heater/sensors
+                unit_info['environment_sensors'] = self.environment_sensors[gate_count:gate_count + unit]
+                unit_info['filament_heaters'] = self.filament_heaters[gate_count:gate_count + unit]
             gate_count += unit
             self.unit_status["unit_%d" % i] = unit_info
             self.unit_status['num_units'] = len(self.gate_counts)

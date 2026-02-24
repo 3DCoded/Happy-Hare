@@ -23,7 +23,7 @@
 #   Creates buttons handlers (with filament_switch_sensor for visibility and control) and publishes events based on state change
 #   Named `sync_feedback_compression` & `sync_feedback_tension`
 #
-# Copyright (C) 2022-2025  moggieuk#6538 (discord)
+# Copyright (C) 2022-2026  moggieuk#6538 (discord)
 #                          moggieuk@hotmail.com
 #
 # RunoutHelper based on:
@@ -79,12 +79,15 @@ class MmuRunoutHelper:
 
         # Replace previous runout_helper mux commands with ours
         prev = self.gcode.mux_commands.get("QUERY_FILAMENT_SENSOR")
-        _, prev_values = prev
-        prev_values[self.name] = self.cmd_QUERY_FILAMENT_SENSOR
+        if prev:
+            _, prev_values = prev
+            prev_values[self.name] = self.cmd_QUERY_FILAMENT_SENSOR
 
         prev = self.gcode.mux_commands.get("SET_FILAMENT_SENSOR")
-        _, prev_values = prev
-        prev_values[self.name] = self.cmd_SET_FILAMENT_SENSOR
+        if prev:
+            _, prev_values = prev
+            prev_values[self.name] = self.cmd_SET_FILAMENT_SENSOR
+
 
 
     def _handle_ready(self):
@@ -477,7 +480,7 @@ class MmuHallEndstop:
         # Setup Hardware (Multi-Use)
         ppins = self.printer.lookup_object('pins')
 
-        _kalico = hasattr(self.adc, "setup_minmax")
+        _kalico = hasattr(self.adc, "setup_minmax") # Kalico and older klipper
         # ADC 1
         if self.pin1_name:
             ppins.allow_multi_use_pin(self.pin1_name)
