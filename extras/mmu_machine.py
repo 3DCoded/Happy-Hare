@@ -644,10 +644,19 @@ class MmuToolHead(toolhead.ToolHead, object):
         # (Not needed in practice)
         # if prev_sync_mode != self.sync_mode:
         #     self._resync_no_lock(prev_sync_mode)
+    
+    def _set_stepper_enable(self, toolhead, stepper, on):
+        stepper_enable = self.printer.lookup_object('stepper_enable')
+        se = stepper_enable.lookup_enable(stepper.get_name())
+        if on:
+            se.motor_enable(toolhead.get_last_move_time())
+        else:
+            se.motor_disable(toolhead.get_last_move_time())
 
     # Register stepper step generator with desired toolhead and add toolhead's trapq
     def _register(self, toolhead, stepper, trapq=None):
         trapq = trapq or toolhead.get_trapq()
+        self._set_stepper_enable(toolhead, stepper, True)
         stepper.set_trapq(trapq) # Restore movement
         if not self.motion_queuing:
             # klipper 0.13.0 <= 195 we also register step generators from mmu_toolhead
@@ -659,6 +668,7 @@ class MmuToolHead(toolhead.ToolHead, object):
 
     # Unregister stepper step generator with desired toolhead and remove from trapq
     def _unregister(self, toolhead, stepper):
+        self._set_stepper_enable(toolhead, stepper, False)
         stepper.set_trapq(None) # Cripple movement
         if not self.motion_queuing:
             # klipper 0.13.0 <= 195 we also unregister step generators from mmu_toolhead
