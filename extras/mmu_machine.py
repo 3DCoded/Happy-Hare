@@ -646,6 +646,8 @@ class MmuToolHead(toolhead.ToolHead, object):
         #     self._resync_no_lock(prev_sync_mode)
     
     def _set_stepper_enable(self, toolhead, stepper, on):
+        if 'extruder' in stepper.get_name():
+            return # Do not mess with printer extruder enable
         stepper_enable = self.printer.lookup_object('stepper_enable')
         se = stepper_enable.lookup_enable(stepper.get_name())
         if on:
