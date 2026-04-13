@@ -688,8 +688,10 @@
                   
 
 <h1 id="happy-hare-wiki">Happy Hare Wiki</h1>
-<p align="center"><img src="assets/happy_hare_logo.jpg" alt='Happy Hare' width='30%'></p>
-
+<figure>
+<p><img alt="Happy Hare" src="assets/happy_hare_logo.jpg" width="50%" /></p>
+<figcaption></figcaption>
+</figure>
 <p><strong>Page Sections:</strong></p>
 <ul>
 <li><a href="#how-to-get-help">How to get help</a></li>
@@ -700,7 +702,6 @@
 </ul>
 <h2 id="documentation-and-walkthrough-mmu-setup"><img src="assets/wiki.svg" width="8%" align="center">Documentation and walkthrough MMU setup</h2>
 <p>This wiki serves to provide a logical set of instructions and FAQs to help you delve into the wonderful world of MMU (Multi Material Unit) printing controlled by the extensive software suite Happy Hare.  Note that the term "MMU" is fairly common and understood in the community but the Amored rutle folks would call it an AFC (Automated Filament Changer). I prefer MMU and although it is also the name of the Prusa product, it is used generically in this wiki to cover all types of changer.</p>
-<p><br></p>
 <h2 id="how-to-get-help"><img alt="#f03c15" src="assets/f03c15.png" /> <img alt="#c5f015" src="assets/c5f015.png" /> <img alt="#1589F0" src="assets/1589F0.png" /> How to get help</h2>
 <h3 id="look-at-the-troubleshooting-page-first">Look at the troubleshooting page first</h3>
 <p>There are a few recurring problems with simple solutions and we've tried our best to compile them here:<br />
@@ -722,7 +723,6 @@
 <p>The easiest way to get logs is to download them through Mainsail. Click the "Machine" tab, then in the dropdown at the top, select "logs". Then look for the chosen log file and RIGHT click and select download.</p>
 </div>
 <p>Alternatively you can use the <a href="https://github.com/moggieuk/Happy-Hare/issues">Github Issue</a> system although I only tend to look at that on a weekly cadence.</p>
-<p><br></p>
 <h2 id="organization"><img alt="#f03c15" src="assets/f03c15.png" /> <img alt="#c5f015" src="assets/c5f015.png" /> <img alt="#1589F0" src="assets/1589F0.png" /> Organization</h2>
 <p>The Wiki is organized to be as organic in nature as possible. The goal is to help you go step by step from having the MMU hardware built to a fully functioning setup. Since Happy Hare is intended to work for multiple MMUs, please consult the respective resources for hardware sourcing, building, and printed parts requirements.  </p>
 <p>Supported MMU types:</p>
@@ -796,7 +796,6 @@ flowchart LR
 
 <p><img alt="" src="assets/homediagram.svg" /></p>
 <p>On the right of the page is an index of pages for each step in the process. Navigate to them for a breakout description of the step and instructions to accomplish each step.</p>
-<p><br></p>
 <h2 id="common-terms-and-abbreviations"><img alt="#f03c15" src="assets/f03c15.png" /> <img alt="#c5f015" src="assets/c5f015.png" /> <img alt="#1589F0" src="assets/1589F0.png" /> Common Terms and Abbreviations</h2>
 <p>This is just a list of some common terms that are thrown around the 3D printing community and by Linux geeks. Now, you'll kinda know what they're talking about!</p>
 <ul>
@@ -808,12 +807,10 @@ flowchart LR
 <li>bash: <a href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)">Bash</a> is a Linux shell which handles user inputs and translates them from one confusing language (Linux commands) to another far more confusing language (computer machine code). If you want to see which shell you're using, just type <code>echo $0</code> at the prompt, and it will likely return <code>bash</code>.</li>
 <li>bash script: A file containing a bunch of "scripted" commands, which the shell executes in order.</li>
 </ul>
-<p><br></p>
 <h2 id="happy-hare-general-operation"><img alt="#f03c15" src="assets/f03c15.png" /> <img alt="#c5f015" src="assets/c5f015.png" /> <img alt="#1589F0" src="assets/1589F0.png" /> Happy Hare General Operation</h2>
 <p>First, let's take a moment to understand what Happy Hare is and gain a basic understanding of how it works.  </p>
 <p>Happy Hare software is modular in nature and works as a "<a href="https://en.wikipedia.org/wiki/Finite-state_machine">State Machine</a>" in that it manages the state of the MMU and the transitions between states. This means that most parameters can be changed during runtime, or if you will, while in operation.  </p>
 <p>If you're not a software and automation expert, you can think of Happy Hare as a browser plugin and Klipper as the browser. Just like Chrome, Edge, et. al. functionality can be expanded with plugins, Happy Hare expands the functionality of Klipper. In the same way that an ad blocker doesn't change how the browser works internally, but filters out annoyances buy <strong>changing the state</strong> of the data the browser uses, Happy Hare works with Klipper to change the state of the ERCF hardware. That's the basic idea of how Happy Hare works.  </p>
-<p><br></p>
 <h2 id="setup-and-installation-pages"><img alt="#f03c15" src="assets/f03c15.png" /> <img alt="#c5f015" src="assets/c5f015.png" /> <img alt="#1589F0" src="assets/1589F0.png" /> Setup and Installation Pages</h2>
 <p>These are links to the setup and installation pages. They're broken out into individual pages because this one would be longer than a linear algebra lecture otherwise. So, grab a cup of coffee and work your way down the list.</p>
 <h3 id="software-installation">Software installation</h3>

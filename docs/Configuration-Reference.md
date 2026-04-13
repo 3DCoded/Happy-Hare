@@ -9,7 +9,7 @@ icon: material/code-json
 - [mmu_parameters.cfg](Configuring-mmu_parameters.cfg)
 - [mmu_macro_vars.cfg](Configuring-mmu_macro_vars.cfg)
 
-<br>
+
 
 ## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Location of Configuration Files
 

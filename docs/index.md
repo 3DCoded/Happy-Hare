@@ -3,7 +3,10 @@ icon: fontawesome/solid/house
 ---
 
 # Happy Hare Wiki
-<p align="center"><img src="assets/happy_hare_logo.jpg" alt='Happy Hare' width='30%'></p>
+
+![Happy Hare](assets/happy_hare_logo.jpg){ width="50%" }
+/// caption
+///
 
 **Page Sections:**
 
@@ -17,7 +20,7 @@ icon: fontawesome/solid/house
 
 This wiki serves to provide a logical set of instructions and FAQs to help you delve into the wonderful world of MMU (Multi Material Unit) printing controlled by the extensive software suite Happy Hare.  Note that the term "MMU" is fairly common and understood in the community but the Amored rutle folks would call it an AFC (Automated Filament Changer). I prefer MMU and although it is also the name of the Prusa product, it is used generically in this wiki to cover all types of changer.
 
-<br>
+
 
 ## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) How to get help
 
@@ -45,8 +48,6 @@ Also, **be respectful**. The team works diligently to advance the hardware and s
     The easiest way to get logs is to download them through Mainsail. Click the "Machine" tab, then in the dropdown at the top, select "logs". Then look for the chosen log file and RIGHT click and select download.
 
 Alternatively you can use the [Github Issue](https://github.com/moggieuk/Happy-Hare/issues) system although I only tend to look at that on a weekly cadence.
-
-<br>
 
 ## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Organization
 
@@ -112,7 +113,7 @@ flowchart LR
 
 On the right of the page is an index of pages for each step in the process. Navigate to them for a breakout description of the step and instructions to accomplish each step.
 
-<br>
+
 
 ## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Common Terms and Abbreviations
 
@@ -126,7 +127,7 @@ This is just a list of some common terms that are thrown around the 3D printing 
 - bash: [Bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell)) is a Linux shell which handles user inputs and translates them from one confusing language (Linux commands) to another far more confusing language (computer machine code). If you want to see which shell you're using, just type `echo $0` at the prompt, and it will likely return `bash`.
 - bash script: A file containing a bunch of "scripted" commands, which the shell executes in order.
 
-<br>
+
 
 ## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Happy Hare General Operation
 
@@ -136,7 +137,7 @@ Happy Hare software is modular in nature and works as a "[State Machine](https:/
 
 If you're not a software and automation expert, you can think of Happy Hare as a browser plugin and Klipper as the browser. Just like Chrome, Edge, et. al. functionality can be expanded with plugins, Happy Hare expands the functionality of Klipper. In the same way that an ad blocker doesn't change how the browser works internally, but filters out annoyances buy __changing the state__ of the data the browser uses, Happy Hare works with Klipper to change the state of the ERCF hardware. That's the basic idea of how Happy Hare works.  
 
-<br>
+
 
 ## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Setup and Installation Pages
 

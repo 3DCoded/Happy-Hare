@@ -37,7 +37,7 @@ ssh pi@192.168.0.256
 ```  
 (You'll need to change the ip address.)  
 
-<p align="left"><img src="assets/Installation/powershell.png" width="80%"></p>
+![](assets/Installation/powershell.png)
 
 From there, you're going to clone Happy Hare software to your rpi:  
 
@@ -48,7 +48,10 @@ git clone https://github.com/moggieuk/Happy-Hare.git
 
 (it's ok to click the copy icon and right click in the ssh terminal to paste or just type it out if you want.)  
 Let that finish. It should only take a few seconds, and you'll now have your very own copy of Happy Hare stored on your rpi!
-<p align="center"><img src="assets/Installation/oh_yes.gif" width="110"></p>
+
+![](assets/Installation/oh_yes.gif){ width=110 }
+/// caption
+///
 
 Now, you're going to change to the Happy Hare directory using the `cd` command (`cd` is Linux Geek for "change directory"):  
 
@@ -57,7 +60,7 @@ cd Happy-Hare
 ```
 
 Here is a picture of the previous steps successfully performed:
-<p align="left"><img src="assets/Installation/console_cloning.png"></p>
+![](assets/Installation/console_cloning.png)
 
 
  
@@ -128,66 +131,68 @@ You'll be asked a series of questions pertaining to your hardware and options.
 ### 1.  MMU /AFC Type
 Choose from the list (it grows every month!)
 
-<p align="left"><img src="assets/Installation/installer_questions.png"></p>
+![](assets/Installation/installer_questions.png)
 
 For this example, we're just going to run through a ERCF V2.O install, as that is the most popular option at the time of this writing.  
 
 ### 2. Number of Gates
 Happy Hare installer then asks for the number of gates.  
 
-<p align="left"><img src="assets/Installation/questions_gates.png"></p>
+![](assets/Installation/questions_gates.png)
 
 Enter the correct number of gates for your ERCF.  
 
 #### 3. Control Board
 Select the type of control board you have installed.  
 
-<p align="left"><img src="assets/Installation/questions_mcu.png"></p>
+![](assets/Installation/questions_mcu.png)
 
 #### 4. Control Board Address
 Happy Hare will then attempt to figure out where your control board is. So far, this doesn't work for CANBUS boards.  
 
-<p align="left"><img src="assets/Installation/questions_mcu_address.png"></p>
+![](assets/Installation/questions_mcu_address.png)
 
 #### 5. Selector Touch Operation
 Decide whether or not to enable Selector Touch operation. This can help with recovery of an error, but is also a bit difficult to get set up properly. It's better to say "no" and get it working after you're more familiar with the ERCF and Happy Hare.  
 
-<p align="left"><img src="assets/Installation/questions_touch.png"></p>
+![](assets/Installation/questions_touch.png)
 
 #### 6. LED Options
 If you have neopixels installed on your ERCF, enable them here.  
 
-<p align="left"><img src="assets/Installation/questions_led.png"></p>
+![](assets/Installation/questions_led.png)
 
 #### 7. Servo Options
 Select your servo option from the list.
 
-<p align="left"><img src="assets/Installation/questions_servo.png"></p>
+![](assets/Installation/questions_servo.png)
 
 #### 8. Clog detection
 If you have a reliable encoder, it's probably best to enable clog detection and set it to automatic. This acts like a smart filament sensor and will pause the print if something goes bad with the filament feed.  
 
-<p align="left"><img src="assets/Installation/questions_clog.png"></p>
+![](assets/Installation/questions_clog.png)
 
 #### 9. EndlessSpool
 Happy Hare has the capability to map multiple gates to one tool. This allows for "endless spool" operation. When one spool runs out, if you have the same material and color mapped to another gate, it will automatically switch to the other gate and resume printing. If you have an encoder and gate switches, this option is recommended for long prints.
 
-<p align="left"><img src="assets/Installation/questions_endless.png"></p>
+![](assets/Installation/questions_endless.png)
 
 #### 10. Final step
 The last step asks to add the `[include mmu*]` lines to your printer.cfg. **On initial setup it is recommended to select yes.** In the image below, it was set to "no" because Happy Hare is already installed and wasn't needed.  
 
-<p align="left"><img src="assets/Installation/questions_include.png"></p>
+![](assets/Installation/questions_include.png)
 
 From here, Happy Hare will install itself with the options you've selected. You should have a nice little report that Happy Hare is ready:  
 
-<p align="left"><img src="assets/Installation/happy_hare_ready.png"></p>
+![](assets/Installation/happy_hare_ready.png)
 
 Once this has been run sucessfully you will have outline configuration files installed. Happy Hare creates a hierachy of files in the klipper config directory. To review the layout and purpose of each of these files read [Configuration Reference](Configuration-Reference)
 
-Now, you have Happy Hare installed on your rpi. Feels good, doesn't it?  
-<p align="center"><img src="assets/Installation/happy_cat.gif"></p>
+Now, you have Happy Hare installed on your rpi. Feels good, doesn't it? 
 
+![](assets/Installation/happy_cat.gif)
+/// caption
+///
 
 
 ## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Pause/Resume/Cancel_Print Macros
@@ -214,7 +219,9 @@ Happy Hare will always return the toolhead to the correct position, but if you l
 
 Happy Hare is always being improved. You can update in the same way as you update Klipper through the update-manager facility in Moonraker when update is indicated. If you know an update is pending and it is not yet shown in update-manager (it can take 24h) you can force a refresh by clicking on the circular arrow.
 
-<p align="center"><img src="assets/Installation/update_manager.png" width="600"></p>
+![](assets/Installation/update_manager.png){ width="600" }
+/// caption
+///
 
 Sometimes an update includes a major change and simply upgrading through update manager is not sufficent. When this occurs you should see an error message directing you to the [Upgrade Notice](Upgrade-Notice) page (read that now because it explains major/minor/point release conventions). You will then need to run the `install.sh` script as below.
 
