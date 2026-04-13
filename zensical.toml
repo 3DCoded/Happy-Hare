@@ -1,7 +1,7 @@
 [project]
 site_name = "Happy Hare"
 site_url = "https://example.com"
-site_description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+site_description = "Documentation for Happy Hare: the universal Klipper MMU driver"
 nav = [
   {"Home" = "index.md"},
   "Installation.md",

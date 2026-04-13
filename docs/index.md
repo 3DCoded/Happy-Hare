@@ -2,7 +2,7 @@
 icon: fontawesome/solid/house
 ---
 
-# Happy Hare Wiki
+# Happy Hare Documentation
 
 ![Happy Hare](assets/happy_hare_logo.jpg){ width="50%" }
 /// caption
