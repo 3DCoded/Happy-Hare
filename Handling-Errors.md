@@ -2,7 +2,7 @@ We all hope that printing is straightforward, and everything works to plan. Unfo
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Causes of Errors
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Causes of Errors
 
 Happy Hare will pause the print whenever a condition occurs that it can't automatically handle. These include unavoidable conditions as well as unexpected issues E.g.
 
@@ -17,7 +17,7 @@ Although error conditions are inevitable, that isn't to say mostely reliable ope
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) What to do when MMU pauses
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) What to do when MMU pauses
 
 When the print pauses Happy Hare a few things happen:
 
@@ -55,11 +55,11 @@ The best way to describe the workflow is as follows:
 
 > [!NOTE]  
 > You can mimick a pause behavior for testing with this command:<br>
-> > MMU\_PAUSE FORCE\_IN\_PRINT=1
+> > MMU_PAUSE FORCE_IN_PRINT=1
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) State Recovery
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) State Recovery
 
 Happy Hare is a state machine (see [Macro Based Sequences](Custom-Load-Unload-Sequences#---_mmu_load_sequence--_mmu_unload_sequence) for all the gory details). That means it keeps track of the state of the MMU. It uses knowledge of this state to determine how to handle a particular situation. For example, if you ask it to unload filament... Is the filament in the toolhead, is it in the bowden, or is there no filament present? If uses this information to make the correct decisions on what to do next. Occasionally, through print error or manual intervention the state may become stale and it is necessary to re-sync with Happy Hare.
 
@@ -77,25 +77,25 @@ You can decide if recovery is necessary by using the [MMU_STATUS](Understanding-
 
 If you need to recover there is a simple command that will do this automatically the majority of the time:
 
-> MMU\_RECOVER
+> MMU_RECOVER
 
 Here the tool or gate selection will not be changed, only the filament position reset
 
 By default this causes Happy Hare to run some tests (like reading sensors and wiggling the filament) to try to assertain the correct state, for example, to confirm the position of the filament. But you can also force it by specifying additional options. Here are some examples:
 
-> MMU\_RECOVER TOOL=0
+> MMU_RECOVER TOOL=0
 
 Tell MMU that T0 is selected but automatically look at filament location
 
-> MMU\_RECOVER TOOL=5 LOADED=1
+> MMU_RECOVER TOOL=5 LOADED=1
 
 Tell Happy Hare that T5 is loaded and ready to print
 
-> MMU\_RECOVER TOOL=1 GATE=2 LOADED=0
+> MMU_RECOVER TOOL=1 GATE=2 LOADED=0
 
 Tell Happy Hare that T1 is being serviced by gate #2 and the filament is Unloaded
 
-> MMU\_RECOVER TOOL=1 GATE=1 LOADED=1
+> MMU_RECOVER TOOL=1 GATE=1 LOADED=1
 
 Tell Happy Hare that T1 is being serviced by gate #2 and the filament is Unloaded
 
@@ -109,7 +109,7 @@ One other operation that may be useful during recovery is updating the Gate map 
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Resuming a print
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Resuming a print
 
 Once you have addressed the issue, optionally correctly MMU state you are ready to resume printing:
 

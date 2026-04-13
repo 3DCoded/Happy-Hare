@@ -26,7 +26,7 @@ Just a note that macro configuration is discussed in [Configuring mmu_macro_vars
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) MMU Vendor, Type and Size
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) MMU Vendor, Type and Size
 
 `happy_hare_version` just helps the developers keep track of which version you're using and provides some error checking.  
 
@@ -51,7 +51,7 @@ The following is a basic description of the main types of MMU supported by Happy
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Hardware limits
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Hardware limits
 
  This section defines the physical limits of your MMU. These settings are respected regardless of individual speed settings configured later on in the config file.
 
@@ -65,7 +65,7 @@ The following is a basic description of the main types of MMU supported by Happy
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Selector Servo
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Selector Servo
 
 This sets the angle of the servo in three named positions.
  - up   = tool is selected, and filament is allowed to freely move through gate.
@@ -92,7 +92,7 @@ For Happy Hare V2.4 and on, these positions are only for initial setup. They are
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Logging
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Logging
 
 This controls how much information Happy Hare saves in the logs. Most likely, if you ask for help, one of the team will ask for a log file. Here, you can control what goes into the console log (`log_level)` and log file (`log_file_level`).
 `log_level` and `log_file_level` can be set to one of the following.
@@ -119,7 +119,7 @@ Generally, you can keep console logging to a minimal while still sending debug o
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Speeds and Accelaration
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Speeds and Accelaration
 
 Here is where you'll define the MMU movement speeds, accelerations, and distances. Similar to adjusting the speeds and acceleration in your printer, these will dramatically affect the way your MMU performs.
 
@@ -179,7 +179,7 @@ Selector touch (stallguard) allows touch movement which can detect a blocked fil
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Gate Loading and Unloading
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Gate Loading and Unloading
 
 These settings control loading and unloading filament at the gate. The primary options are an end stop switch at the gate (TradRack) or an encoder (ERCF).  You can have a gate sensor for loading and parking and still use the encoder for other move verification.  
 The `encoder` method, due to the nature of its operation will overshoot a little. This is not a problem in practice because the overshoot will simply be compensated for in the subsequent fast bowden move.
@@ -202,7 +202,7 @@ The `encoder` method, due to the nature of its operation will overshoot a little
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Bowden Loading and Unloading
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Bowden Loading and Unloading
 
 In addition to different bowden loading speeds for buffer and non-buffered filament, detecting missed steps caused by "jerking" on a heavy spool is possible. If bowden correction is enabled the driver with "believe" the encoder reading and make correction moves bringing the filament within the `bowden_allowable_load_delta` of the end bowden position. This does require a reliable encoder and is not recommended for very high speed loading, >350mm/s.
 
@@ -216,7 +216,7 @@ In addition to different bowden loading speeds for buffer and non-buffered filam
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Extruder Homing
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Extruder Homing
 
 Happy Hare needs a reference "homing point" close to the extruder to accurately complete loading the toolhead. This homing operation takes place after the fast bowden load and should leave the filament just shy of the homing point. If using a toolhead sensor, initial extruder homing is unnecessary (but can be forced) because homing occurs inside the extruder for optimum accuracy.
 
@@ -238,7 +238,7 @@ Note: `extruder_homing_endstop` will be ignored if a toolhead sensor is availabl
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Toolhead Loading and Unloading
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Toolhead Loading and Unloading
 
 It is possible to define highly customized loading and unloading sequences, however, unless you have a specialized setup it is probably easier to opt for the built-in toolhead loading and unloading sequence which already offers a high degree of customization. If you need even more control then edit the `_MMU_LOAD_SEQUENCE` and `_MMU_UNLOAD_SEQUENCE` macros in `mmu_sequence.cfg` - but be careful!
 
@@ -282,7 +282,7 @@ Measure by inserting the filament until the entry sensor triggers. Make your fir
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Tip Forming and Cutting
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Tip Forming and Cutting
 
  Tip forming or tip cutting responsibility is *typically* split between the slicer while printing and a standalone macro while not printing. However, it gets to be quite a chore keeping track of two different tuning setups for what basically amounts to the same thing. Therefore, it's recommended to set `force_form_tip_standalone: 1`.
 This will always do the standalone sequence, even during a print.  It saves from tuning in two separate locations and trying to keep both sets of parameters current with each other. So, unless you're a 12th level ERCF Wizard (why are you here then?), you'll be far better off just letting Happy Hare handle the tip forming or cutting routines. You'll also want to remove all tip forming settings in your slicer as shown here.
@@ -305,7 +305,7 @@ Additional notes:
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Gear/Extruder Synchronization
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Gear/Extruder Synchronization
 
 he following variables control extruder and gear stepper synchronization. If your MMU is equipped with TMC drivers, the current of the gear and extruder motors can be controlled to optimize performance. This can be useful to control gear stepper temperature when printing with synchronized motor It's usually not necessary to use full current for the gear stepper during printing. Happy Hare lets you reduce the current when printing but keep it at 100% during loading and unloading moves. The benefit is that you can use the gear stepper to "assist" the extruder to overcome long distances from the spool to the MMU. Another benefit, is that you can increase your gear stepper current more than normal during loading and unloading moves to make it faster and more reliable.  Since loading and unloading don't take a lot of time, the gear stepper won't build up a lot of heat if you run it at (for example) 125% of rated current during a load or unload move. Then, when printing, Happy Hare backs the current down and the gear stepper stays nice and cool. Best of both worlds huh? **If you do exceed your stepper's rated current for loading and unloading, keep a close eye on the stepper temperature during the first several load and unload cycles.** Once they get too hot, the lose most of their power and never get it back. So, be careful with that. 
 
@@ -325,7 +325,7 @@ Optionally, a "compression and expansion" sensor can be used. These are placed i
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Filament Management Options
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Filament Management Options
 
 This section deals with the various filament handling and management options.
 - Clog detection is available when encoder is fitted and it can detect when filament is not moving and pause the print.
@@ -359,7 +359,7 @@ This section deals with the various filament handling and management options.
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Statistics Formatting (Cosmetic)
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Statistics Formatting (Cosmetic)
 
 These parameters determine how data is shown in the console. This table shows a lot of data, and probably more than you'd want to see. Below you can enable/disable options to your needs.
 <p align=center><img src="Configuring-mmu_parameters/mmu_statistics.png"></p>
@@ -391,7 +391,7 @@ This output only formats when using Python 3.
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Blob and Stringing Control
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Blob and Stringing Control
 
 `z_hop_height_toolchange` tells Happy Hare how high to move the extruder for a tool change. This is **only during printing** and does not affect stand alone tool changes.
 
@@ -399,9 +399,9 @@ This output only formats when using Python 3.
 
 `z_hop_speed` the speed of z hop moves initiated by Happy Hare.
 
-`z_hop_ramp` if the toolhead is configured to z\_hop above then this is the horizonal distance that will be travelled during the hop. The direction is automatic and the move can can help break strings. Note that you should increase `z_hop_speed` to your travel speed if using this option.
+`z_hop_ramp` if the toolhead is configured to z_hop above then this is the horizonal distance that will be travelled during the hop. The direction is automatic and the move can can help break strings. Note that you should increase `z_hop_speed` to your travel speed if using this option.
 
-`toolchange_retract` immediately before the z\_hop and immediately after the reciprical restoration of z-height this amount of retraction or un-retraction will be applied. When loading the extruder, the filament will be loaded just short of the nozzle so this distance can be employed to prevent blobs by immediately depressuring the nozzle when pausing or repressuring at the point of resuming print.
+`toolchange_retract` immediately before the z_hop and immediately after the reciprical restoration of z-height this amount of retraction or un-retraction will be applied. When loading the extruder, the filament will be loaded just short of the nozzle so this distance can be employed to prevent blobs by immediately depressuring the nozzle when pausing or repressuring at the point of resuming print.
 
 `toolchange_retract_speed` to speed of the retract movement in mm/s. Usually you want this as fast as your extruder can handle. The default is 20mm/s.
 
@@ -409,7 +409,7 @@ This output only formats when using Python 3.
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Miscellaneous
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Miscellaneous
 
 The following variables are configurable based on your needs, but rarely need messing with.
 `extruder` the toolhead extruder which corelates with the MMU. This will be the name given in Klipper's `printer.cfg` "Extruder" section. Typically, it's just called `extruder`.
@@ -451,7 +451,7 @@ The following variables are configurable based on your needs, but rarely need me
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Macro Naming
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Macro Naming
 
 > [!WARNING]  
 > Only set these if you are comfortable with writing your own klipper macros
@@ -482,7 +482,7 @@ The following variables are configurable based on your needs, but rarely need me
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Statically defined "reset" defaults
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Statically defined "reset" defaults
 
 > [!WARNING]  
 > Advanced Parameters<br>
@@ -512,7 +512,7 @@ tool_to_gate_map:     0,      1,      2,      3,      4,      5,      6,      7,
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) "Other" MMU CAD Dimensions
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) "Other" MMU CAD Dimensions
 
 Normally all these settings are set internally based on your choice of 'mmu_vendor' and 'mmu_version', but they can be overridden by uncommenting and defining here. If you have selected a vendor of "Other" you must set these else you will get arbitary ERCFv1.1 defaults.
 

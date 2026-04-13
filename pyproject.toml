@@ -1,0 +1,9 @@
+[project]
+name = "happy-hare-wiki"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "zensical>=0.0.32",
+]

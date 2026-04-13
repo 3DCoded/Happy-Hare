@@ -6,7 +6,7 @@ Happy Hare provides built in functionality for filament loading and unloading cu
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) _MMU_LOAD_SEQUENCE & _MMU_UNLOAD_SEQUENCE
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) _MMU_LOAD_SEQUENCE & _MMU_UNLOAD_SEQUENCE
 **Defined in `mmu_sequence.cfg`**
 
 > [!WARNING]  
@@ -155,7 +155,7 @@ gcode:
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Internal "step" Macro Reference
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Internal "step" Macro Reference
 
 The following are internal pre-defined macros that can be called from within you own `_MMU_LOAD_SEQUENCE` and `MMU_UNLOAD_SEQUENCE` callbacks. You can use these to the extent they provide the functionaly you need to reduce the complexity of your own macros.
 

@@ -1,4 +1,4 @@
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) MMU_STATUS
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) MMU_STATUS
 
 The `MMU_STATUS` command can give you a host of information about the state of your MMU or aid your in understanding on how it is currently configured, how it will operate and thus aid to debugging most problems.
 

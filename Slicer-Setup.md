@@ -17,7 +17,7 @@ Make sure the `Expert Options` of your slicer are enabled and go to the Printer 
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Start G-Code
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Start G-Code
 
 Enter the following (using your own print start macro call) into your "custom start g-code" box:
 
@@ -106,7 +106,7 @@ Optionally you can put the parts of your original print start macro that you sep
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) End G-Code
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) End G-Code
 
 Ensure this is added in your slicer's "custom end g-code" box:
 
@@ -125,7 +125,7 @@ This is where your existing print end macro would be placed
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) After Layer Change G-Code
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) After Layer Change G-Code
 
 The reason for this is to support sequential printing and explained [here](Toolchange-Movement#---z-hop-moves)
 
@@ -140,7 +140,7 @@ SET_PRINT_STATS_INFO CURRENT_LAYER={layer_num} ; For pause at layer functionalit
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Tool Change G-Code
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Tool Change G-Code
 
 This is likely to be the slicer default, but it is worth checking that the custom tool change g-code is set to this:
 
@@ -152,7 +152,7 @@ T[next_extruder]
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Customing MMU Start/End Macros
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Customing MMU Start/End Macros
 
 The recommended macro described here can be customized in `mmu_macro_vars.cfg`. Look for the `_MMU_SOFTWARE_VARS` section (corresponding to `mmu_software.cfg` where the macros are defined) 
 
@@ -178,7 +178,7 @@ variable_dump_stats                         : True      ; True/False, Whether to
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) MMU Error Dialog
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) MMU Error Dialog
 
 When Happy Hare detects an error, even during print start it will pause the print allowing you to fix and then resume. If the option `show_error_dialog: 1` is set in `mmu_parameters.cfg` a pop-up dialog will be displayed on Mailsail/Fluidd/KlipperScreen providing you options through the UI. If it is occurs during these startup macros there will also be an option to abort the print. The abort option will disappear during the print. To disable the popup, set `show_error_dialog: 0`
 
@@ -189,7 +189,7 @@ When Happy Hare detects an error, even during print start it will pause the prin
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Slicer Tip Forming
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Slicer Tip Forming
 
 The most important part of MMU printing is understanding how to configure your slicer for "single extruder multi material".  Because each slicer is different this is beyond the scope this documentation.  That said, the common slicers: Prusaslicer, Superslicer and Orcaslicer all have similar interfaces and there are a couple of settings you need to be aware of in deciding between what is performed by Happy Hare (the MMU "firmware") and the slicer.
 

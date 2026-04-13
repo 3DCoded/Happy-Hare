@@ -2,13 +2,13 @@
 - [Methods of Customization](#---methods_of_customization)
   - [Macro Extension](#1-extension-of-existing-functionality)
   - [Macro Replacement](#2-replacing-default-callback-macros)
-- [MMU\_ACTION\_CHANGED](#---_mmu_action_changed)
-- [MMU\_PRINT\_STATE\_CHANGED](#---_mmu_action_changed)
-- [MMU\_EVENT](#---_mmu_action_changed)
+- [MMU_ACTION_CHANGED](#---_mmu_action_changed)
+- [MMU_PRINT_STATE_CHANGED](#---_mmu_action_changed)
+- [MMU_EVENT](#---_mmu_action_changed)
 - [Unloading & Loading Sequence Macros](#---unloading--loading-sequence-macros)
 - [Tip Forming](#)
-  - [\_MMU\_FORM\_TIP](#---_mmu_form_tip)
-  - [\_MMU\_CUT\_TIP](#---_mmu_cut_tip)
+  - [_MMU_FORM_TIP](#---_mmu_form_tip)
+  - [_MMU_CUT_TIP](#---_mmu_cut_tip)
 
 <br>
 
@@ -20,14 +20,14 @@ Since you will most likely want extend the default behavior these macros are des
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Methods of customization
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Methods of customization
 
 ### 1. Extension of existing functionality
 Generally you will be able to add functionality simply by definng the appropriate `variable_user_XXX_extension` variables in `mmu_macro_vars.cfg`. For example, if you want to do something custom when the MMU print state changes, you would define:
 ```yml
 variable_user_print_state_changed_extension : 'MY_MACRO'
 ```
-Then "MY\_MACRO" will be called when the print state changes. The "MY\_MACRO" will be passed exactly the same parameters as the original callback macro `_MMU_PRINT_STATE_CHANGED` and will be called after the default handling. In this way, although `mmu_state.cfg` (where `_MMU_PRINT_STATE_CHANGED) is read-only, you have extended the original functionality with a macro you control.
+Then "MY_MACRO" will be called when the print state changes. The "MY_MACRO" will be passed exactly the same parameters as the original callback macro `_MMU_PRINT_STATE_CHANGED` and will be called after the default handling. In this way, although `mmu_state.cfg` (where `_MMU_PRINT_STATE_CHANGED) is read-only, you have extended the original functionality with a macro you control.
 
 > [!NOTE]  
 > Because the settings in `mmu_macro_vars.cfg` are yours, they will be retained on upgrade. This allow the default logic to be upgraded without effecting your custom additions. This is therefore the recommended method of adding functionality.
@@ -55,7 +55,7 @@ If the extension cability is insufficent you can completely replace the default 
 ```yml
 form_tip_macro: MY_FORM_TIP
 ```
-Then you would implement a macro MY\_FORM\_TIP to do your own tip forming.
+Then you would implement a macro MY_FORM_TIP to do your own tip forming.
 
 This methodology works for many macros called by Happy Hare, including:
 ```
@@ -82,7 +82,7 @@ load_sequence_macro: _MMU_LOAD_SEQUENCE
 
 Here are all the callout macros together with details of where to find them:
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) \_MMU\_ACTION\_CHANGED
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) _MMU_ACTION_CHANGED
 **Defined in `mmu_state.cfg`**
 
 Most of the time Happy Hare will be in the `Idle` state but it starts to perform a new action this macro is called.  The action string is passed as a `ACTION` parameter to the macro but can also be read with the printer variable `printer.mmu.action`. The previous action is passed in as `OLD_ACTION`.
@@ -128,7 +128,7 @@ gcode:
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) \_MMU\_PRINT\_STATE\_CHANGED
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) _MMU_PRINT_STATE_CHANGED
 **Defined in `mmu_state.cfg`**
 
 Happy Hare implements a state machine tracking the prgoress of a print. It is difference from the klipper `print_stats` because it is specific to MMU state during a print. Full details can be found [here](Print-Job-State-Machine#---job-state-transitions).  Every time a state changes this macro will be called. Then new state will be passed with the `STATE` parameter and the previous state as `OLD_STATE`. The state can also be read with the printer variable `printer.mmu.print_state`.
@@ -174,7 +174,7 @@ gcode:
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) \_MMU\_EVENT
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) _MMU_EVENT
 **Defined in `mmu_state.cfg`**
 
 The extract from the cfg file illustrates current events and parameters. The `EVENT` parameter will always be defined with one of the available event strings. Optionally additional parameters by be supplied. For example:
@@ -222,7 +222,7 @@ gcode:
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Unloading / Loading "Sequence" Macros
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Unloading / Loading "Sequence" Macros
 **Defined in `mmu_sequence.cfg`**
 
 This set of macros are called during filament loading or unloading. They can be used for the insertion of logic specific to your printer setup. The ordering of these macros is as follows (if any are not defined they are skipped):
@@ -259,12 +259,12 @@ This is quite advanced and you will need to understand the Happy Hare state mach
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Tip Forming
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Tip Forming
 Tip forming is necessary to ensure the end of the filament will pass through the MMU and extruder on subsequent loads. There are two primary methods: tip-shaping and tip-cutting. They are mutually exclusive and you choose one based on your seting and point to the macro by changing `form_tip_macro` in `mmu_parameters.cfg`
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) \_MMU\_FORM\_TIP
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) _MMU_FORM_TIP
 **Defined in `form_tip.cfg`** (variables in `mmu_macro_vars.cfg`)
 
 This is probably the most important aspect of getting a reliable MMU after basic calibration is complete. There is plenty written about tip forming and lots of advice in the forums.  What is important to understand here is that this macro mimicks the tip forming logic from SuperSlicer (almost identical to PrusaSlicer). Read SuperSlicer documentation for hints. That said, here are a few things you should know:
@@ -274,7 +274,7 @@ This is probably the most important aspect of getting a reliable MMU after basic
   - Setting the `variable_standalone: 1` in the `T0` macro</li>
 * When tuning if is useful to pull the bowden from your extruder, load filament with the `MMU_LOAD EXTRUDER_ONLY=1` command, then call `MMU_FORM_TIP` command (and not the macro directly) or better still `MMU_UNLOAD EXTRUDER_ONLY=1`</li>
   - The benefit of calling as desribed is the additional TMC current control and pressure advance restoration will occur so it exactly mimicks what will occur when called automatically later</li>
-  - If calling `MMU_FORM_TIP` you will want to set `variable_final_eject: 1` so that the filament is fully ejected for inspection (MMU\_EJECT will automatically do this and therefore is recommended)
+  - If calling `MMU_FORM_TIP` you will want to set `variable_final_eject: 1` so that the filament is fully ejected for inspection (MMU_EJECT will automatically do this and therefore is recommended)
   - Calling with `MMU_UNLOAD EXTRUDER_ONLY=1` will also report on the final parking position of the filament</li>
 * Before you start tweaking, make sure the settings accurately represent the geometry of your extruder. The defaults are for my Voron Clockwork 2 extruder with Voron Revo hotend with 0.4mm tip</li>
 * Lastely there is a setting called `parking_distance` which, if set, will determine the final resting place measured from the nozzle. This should be a postive number!</li>
@@ -356,7 +356,7 @@ variable_parking_distance       : 0             ; Position mm to park the filame
 variable_extruder_eject_speed   : 25            ; Speed mm/s used for parking_distance (and final_eject when testing)
 ```
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) \_MMU\_CUT\_TIP
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) _MMU_CUT_TIP
 **Defined in `cut_tip.cfg`** (variables in `mmu_macro_vars.cfg`)
 
 To elminate the need to spend time tuning the tip forming procedure (you never wanted to understand fluid dynamics, right?!) you can opt to cut filament at the toolhead. The filametrix cutter bundled with ERCFv2 is an example of this. Note that Happy Hare can only have one tip creation macro defined. You can switch from the default tip forming to this tip cutting macro by setting `form_tip_macro: _MMU_CUT_TIP` in `mmu_parameters.cfg` to point to this macro instead.

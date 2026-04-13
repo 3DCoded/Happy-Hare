@@ -9,7 +9,7 @@ This page explains more complex setup of multiple MMU's and the setup of "touch"
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Multiple MMUs
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Multiple MMUs
 
 Since v3.0.2 Happy Hare is able to support multiple MMU's multiplexed together to form a single unit. The most common situation is the combining of multiple type-B MMU's like Box Turtle or Night Owl together. So long as the units are fundamentally similar in operation (techinically share the same `mmu_parmeters.cfg`) they can be combined.  I.e. you cannot combine an ERCF with a BoxTurtle (at lest not yet - that support is planned in the future).
 
@@ -138,7 +138,7 @@ Selct: ------------|\*/|   -----------------   --------- T0
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) "touch" homing on multiple gear steppers
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) "touch" homing on multiple gear steppers
 
 Happy Hare has a experimental gear "touch" homing for detection of hitting the extruder. It is possible to configure this on a type-B MMU with multiple gear steppers by extending each additional stepper motor with the necessary `DIAG` pin and `extra_endstop` setup. This is best illustrated with a TMC2209 example where the first stepper (gate 0) is configured as per the doc. Each subsequent gear stepper would require addition attributes to define the stallguard endstop with the gate number as part of the endstop name:
 

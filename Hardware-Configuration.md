@@ -6,11 +6,11 @@
 - [Other Sensors](Hardware-Configuration#step-5-check-other-sensors-if-fitted)
 - [Servo](Hardware-Configuration#step-6-check-servo)
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Hardware configuration (mmu\_hardware.cfg explained)
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Hardware configuration (mmu_hardware.cfg explained)
 
 This will vary slightly depending on your particular brand of MMU but the steps are essentially the same with some being dependent on hardware configuration.
 
-The Klipper configuration files for Happy Hare are modular and where to find them is discussed in the [Configuration Reference](Configuration-Reference). Also be sure to consult the [Configuring mmu\_hardware.cfg](Configuring-mmu_hardware.cfg) page for details about each and every parameter.
+The Klipper configuration files for Happy Hare are modular and where to find them is discussed in the [Configuration Reference](Configuration-Reference). Also be sure to consult the [Configuring mmu_hardware.cfg](Configuring-mmu_hardware.cfg) page for details about each and every parameter.
 
 <br>
 
@@ -21,7 +21,7 @@ The `mmu.cfg` file is part of the hardware configuration but defines aliases for
 
 <br>
 
-### b) Hardware Configuration (mmu\_hardware.cfg):
+### b) Hardware Configuration (mmu_hardware.cfg):
 This can be daunting but the interactive installer will make the process easier for common mcu's designed for a MMU (e.g. ERCF EASY-BRD, Burrows ERB, etc) and perform most of the setup for you. A few tweaks remain and include the setting of endstop options, optional extruder "touch" homing as the usual pin invert checking, etc.
 
 Endstop setup and options can be found in [Movement and Homing](Movement-and-Homing).
@@ -60,7 +60,7 @@ sync_feedback_compression_pin:
 
 <br>
 
-### c) Variables file (mmu\_vars.cfg):
+### c) Variables file (mmu_vars.cfg):
 This is the file where Happy Hare stores all calibration settings and state. It is pointed to by this section at the top of `mmu_macro_vars.cfg`:
 
 ```

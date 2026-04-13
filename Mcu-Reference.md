@@ -10,7 +10,7 @@
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Popular MCUs
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Popular MCUs
 The folling a collection of reference material showing pinouts, pin numbering and firmware programming notes for the most popular MCU's used for MMU Designs
 
 ### BigTreeTech BTT MMB CAN v1
@@ -101,7 +101,7 @@ Read the [Flashing Firmware Notes](#---flashing-firmware)
 <hr>
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Flashing Firmware
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Flashing Firmware
 
 When using any MCU with Klipper, it is important to first flash Klipper firmware. Follow these steps to flash your MCU with Klipper firmware:
 

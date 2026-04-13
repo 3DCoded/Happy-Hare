@@ -32,7 +32,7 @@ And finally, set key tip cutting macro variables (`mmu/base/mmu_macros_vars.cfg`
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Correct Meaning of Key Dimensions
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Correct Meaning of Key Dimensions
 
 Firstly it is important to understand that while sensors like a toolhead sensor can help with extruder loading and unloading, the process relies on precise movement distances. These "dimensions" often interact with each other so it is also important that they are set correctly and match the meaning Happy Hare is expecting. Doing so will give deterministic toolchanges rather than a "these settings seem to work" scenario.
 
@@ -75,7 +75,7 @@ Note that the cut piece of filament remaining and the residual filament are auto
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Calibrating Toolhead
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Calibrating Toolhead
 
 Ok, now you know what the correct meaning of the dimensions are the next question is how to discover them for your setup. For everything other than `toolhead_residual_filament` it is possible to use accurate CAD models to measure them (remember to use the internal shoulder in the nozzle). This can be a challenge if using a CHT nozzle as shown below.
 
@@ -101,7 +101,7 @@ If you have removed the Bowden tube, reattach it to the toolhead, and prepare th
 
 Then run:
 
-> MMU\_CALIBRATE\_TOOLHEAD CLEAN=1
+> MMU_CALIBRATE_TOOLHEAD CLEAN=1
 (optionally add `SAVE=0`)
 
 This will perform a number of probing moves with a cold extruder and report back the empty toolhead parameters. For example:
@@ -181,7 +181,7 @@ Now that the nozzle is “dirty” and simulating the left over material after a
 
 To do this, run the below command, with no arguments.
 
-> MMU\_CALIBRATE\_TOOLHEAD
+> MMU_CALIBRATE_TOOLHEAD
 ```
 ...blah blah blah...
 -----------------------------------
@@ -233,7 +233,7 @@ To calibrate the above:
 > [!TIP]  
 > TIME SAVER: Rather than loading, cutting and cooling you can simply (with the extruder unloaded) press and HOLD the cutter blade in the closed postion. STAY in this position until the calibration is complete. Note that the measurement will be shorter by one blade thickness, so add 0.5mm to the reported distance.
 
-> MMU\_CALIBRATE\_TOOLHEAD CUT=1
+> MMU_CALIBRATE_TOOLHEAD CUT=1
 ```
 ...blah blah blah...
 -----------------------------------
@@ -265,7 +265,7 @@ Referencing earlier illustrations, the blade position `variable_blade_pos` can t
 
 <br>
 
-### Summary of MMU\_CALIBRATE\_TOOLHEAD options
+### Summary of MMU_CALIBRATE_TOOLHEAD options
 
   | Order | Option | Description |
   | ----- |------ | ----------- |
@@ -279,7 +279,7 @@ With the toolhead now properly configured you should experience better basic loa
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Final blob tuning - `toolhead_ooze_reduction`
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Final blob tuning - `toolhead_ooze_reduction`
 
 Incorrect toolhead dimensions contribute most to blobbing problems, but even when perfect, blobbing can still occur when the toolhead is loaded. The reason might be air pockets or similar in the extruder or a slight variation in the `toolhead_residual_filament`. Therefore once the toolhead is properly calibrated (with likely fixed values), there is one tuning parameter left. 
 
@@ -289,7 +289,7 @@ The best way to tune this is while actually printing (it can be altered dynamica
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Tool change retraction
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Tool change retraction
 
 Just like when printing, it is usually necessary to relax the pressure in the extruder prior to a travel move to prevent the slow oozing that would otherwise occur. 
 
@@ -304,7 +304,7 @@ The retraction and un-retraction speed is set with the related `variable_retract
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Z-Hop and Ramping
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Z-Hop and Ramping
 
 When a toolchange occurs, it is preferable to move the toolhead away from the print so the hot nozzle isn't left on the print causing marks. 
 
@@ -322,7 +322,7 @@ For full details on how to setup parking and thus define z-hop and retraction mo
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Summary of Tuning Steps
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Summary of Tuning Steps
 
 Proceed in this order:<br>
 1. MMU_CALIBRATE_TOOLHEAD settings are defined in `mmu_parameters.cfg`
@@ -348,7 +348,7 @@ stateDiagram-v2
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Cleaning Extruder with a "Cold-Pull"
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Cleaning Extruder with a "Cold-Pull"
 
 The cold pull method to clean your extruder is one of the most useful things to be in your bag of printer maintenance tricks! 
 
@@ -367,7 +367,7 @@ For this guide, we are using it to empty the nozzle and prepare it for accurate 
 8. At this point, pull the filament quite firmly and evenly out of the extruder in a vertical direction
 9. Inspect the tip to see if it has been successful
 
-### Using MMU\_COLD\_PULL macro
+### Using MMU_COLD_PULL macro
 To help with the process Happy Hare includes a special macro that will guide you through the process and can also run it for you in a fully automated manner. To run it:
 
 1. Move the toolhead to a convenient location, often the front middle of your build plate and at least 20mm above
@@ -377,7 +377,7 @@ To help with the process Happy Hare includes a special macro that will guide you
 5. Be ready to pull at the right time! You will be given a little warning but it is important to pull at the correct temperature when the filament is still slightly pliable. 
 6. Pull directly upwards with a consistent firm pull. The extruder stepper will also spin to aid the pull. If you want to do the pull manually, unlatch the extruder and pull. Note: some extruders (like the Galileo 2) have enough grip and torque to do this without assistance, although the manual approach allows you to "feel" the correct pull speed.
 
-> MMU\_COLD\_PULL MATERIAL=pla
+> MMU_COLD_PULL MATERIAL=pla
 ```yml
 Cold Pull with pull_temp=120°C, hot_temp=250°C, min_extrude_temp=160°C, cold_temp=45°C
 Heating extruder to 250°C

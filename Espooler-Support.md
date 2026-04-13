@@ -17,7 +17,7 @@ Happy Hare can optionally drive a DC "espooler" for each gate. Typically this wi
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Hardware Config
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Hardware Config
 If you need to control an espooler, you will need to ensure that `mmu_hardware.cfg` and `mmu.cfg` are setup up correctly. On a fresh installation this should be added automatically but you can add manually if missing:
 
 ### `mmu_hardware.cfg`
@@ -95,7 +95,7 @@ Define your pins here. Typically you will either be using just the `_RWD` pins t
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Parameter Config
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Parameter Config
 
 ### `mmu_parameters.cfg`
 The upgrade process should have added the following section to your `mmu_parameters.cfg` but if not you can add by hand:
@@ -191,9 +191,9 @@ These control the "Intelli-Assist" options for in-print operation discussed in d
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Option Setup
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Option Setup
 
-### ![rgb](resources/rgb.png) Rewind (Respool) Setup
+### ![rgb](assets/rgb.png) Rewind (Respool) Setup
 1. Ensure you have pins defined for `respool_motor_pin_*` and `enable_motor_pin_*` if you mcu board requires it.
 2. Ensure that these parameters are correctly defined and tuned:
 ```yml
@@ -212,7 +212,7 @@ MMU_ESPOOLER GATE=0 OPERATION=rewind
 MMU_ESPOOLER GATE=0 OPERATION=off
 ```
 
-### ![rgb](resources/rgb.png) Forward (Load Assist) Setup
+### ![rgb](assets/rgb.png) Forward (Load Assist) Setup
 1. Ensure you have pins defined for `assist_motor_pin_*` and `enable_motor_pin_*` if you mcu board requires it.
 2. Ensure that parameters specified for "respool" above are correctly defined and tuned (even if not using respool) then add the percentage of  the defined rewind speed to use for forward motion:
 ```yml
@@ -228,7 +228,7 @@ MMU_ESPOOLER GATE=0 OPERATION=assist
 MMU_ESPOOLER GATE=0 OPERATION=off
 ```
 
-### ![rgb](resources/rgb.png) Basic In-print Assist Operation
+### ![rgb](assets/rgb.png) Basic In-print Assist Operation
 1. Ensure you have pins defined for `assist_motor_pin_*` and `enable_motor_pin_*` if you mcu board requires it.
 2. Ensure that parameters specified for "respool" above are correctly defined and tuned (even if not using respool) then add the percentage of  the defined rewind speed to use for in-print motion.  This should typically be a very small amount so that it "lifts the brakes" off the DC motor but not enough to allow it to turn uncontrollably:
 ```yml
@@ -244,11 +244,11 @@ MMU_ESPOOLER GATE=0 OPERATION=print             # set to in-print assist mode
 MMU_ESPOOLER GATE=0 OPERATION=off
 ```
 
-### ![rgb](resources/rgb.png) Intelli-Assist (Trigger based Assist) Operation
+### ![rgb](assets/rgb.png) Intelli-Assist (Trigger based Assist) Operation
 
 If you set the `espooler_printing_power: 0` then the burst-mode kicks into play. This waits for a trigger before advancing the espooler in a burst operation.
 
-#### ![r](resources/r.png) Option 1: Extruder movement "burst" operation
+#### ![r](assets/r.png) Option 1: Extruder movement "burst" operation
 This option setups up a watchdog on extruder movement so that every `espooler_assist_extruder_move_length` of extruder movement it will run the espooler at `espooler_assist_burst_power` % power for `espooler_assist_burst_duration` seconds.
 
 1. Ensure all the setup for basic in-print assist
@@ -268,7 +268,7 @@ MMU_ESPOOLER OPERATION=burst                    # trigger a burst
 ```
 You should see the jump to burst operation and then falling back to 0% but in burst mode.
 
-#### ![r](resources/r.png) Option 2: Sensor based "burst" operation
+#### ![r](assets/r.png) Option 2: Sensor based "burst" operation
 As a more reliable alternative to extruder movement triggering the espooler assist, Happy Hare can accept a sensor input. This is by far the best method and overcomes variability by introducing closed loop feedback: when the sensor detects tension on the filament it "bursts" the espooler into action thus relieving tension and providing intelligent assist. If the filament is not under tension the espooler will be inactive. This both prolongs the life of the espooler DC motor but also means that problematic unspooling is eliminated. Mods to popular MMU's/AFC's like Box Turtle are in the works...
 
 1. Ensure all the setup for basic in-print assist
@@ -297,7 +297,7 @@ You should see the jump to burst operation and then falling back to 0% but in bu
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) MMU_ESPOOLER Command
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) MMU_ESPOOLER Command
 
 The `MMU_ESPOOLER` command is idea for testing but may have uses elsewhere where you want direct control of the motors.
 
@@ -342,7 +342,7 @@ MMU_ESPOOLER OPERATION=burst POWER=50 DURATION=0.8  # custom power/duration
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Espooler UI
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Espooler UI
 
 The Mainsail and Fluidd support will render the operation of the espooler motor in their UIs with an arrow on the spool.
 <table>

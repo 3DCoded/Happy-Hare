@@ -1,6 +1,6 @@
 Got problems? Here are some "carrots of wisdom" and common solutions.  
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Install Issues
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Install Issues
 
 ### <img src="Troubleshooting-and-Common-Issues/carrot.png" alt="" width="24"> Upgrading to v3.0 from v2.6 or earlier
 If you get this error:
@@ -50,7 +50,7 @@ cd ~/Happy-Hare
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Klipper Issues
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Klipper Issues
 
 ### <img src="Troubleshooting-and-Common-Issues/carrot.png" alt="" width="24"> Timer too close
 This error typically occurs when the host sends a message to the MCU, scheduling an event at a time that is in the past. Reasons High system load of the host High disk activity of the host Swapping due to low free memory Disk errors / dying SD card Unstable voltage Other hardware hogging the USB bus or other system resources Running in a Virtual Machine USB, UART or CANBUS wiring faults leading to extremely delayed messages ElectroMagnetic Interference (EMI) affecting proper signal. Remember that the host (rPi) only needs to experience a tiny period of high load so watching an average load meter doesn't tell the whole story. Also, as we drive additional functionality on our printers we are naturally getting closer to this annoying error condition. That said it can be avoided with these tips:
@@ -75,12 +75,12 @@ Other ideas:
 - Replace SD card with one with fast read/write (especially write)
 - Upgrade rPi
 
-One additional observation that has been made is if you are running KlipperScreen on the same rpi as your printer.  Whilst there shouldn't be any issues this, certain conditions or timeouts can lead KlipperScreen to swamp `/var/log/syslog` with repeated messages such as "[job\_status.py:update\_file\_metadata()] - Cannot find file metadata. Listening for updated metadata".  This places severe load on writing to the SD card and can lead to TTC errors. A [PR](https://github.com/Arksine/moonraker/pull/862) has been created to update Moonraker, but until then you can enable "object processing" in `moonraker.conf` which will give it more time to perform the pre-processing and thus not generate the KlipperScreen "metadata" error:
+One additional observation that has been made is if you are running KlipperScreen on the same rpi as your printer.  Whilst there shouldn't be any issues this, certain conditions or timeouts can lead KlipperScreen to swamp `/var/log/syslog` with repeated messages such as "[job_status.py:update_file_metadata()] - Cannot find file metadata. Listening for updated metadata".  This places severe load on writing to the SD card and can lead to TTC errors. A [PR](https://github.com/Arksine/moonraker/pull/862) has been created to update Moonraker, but until then you can enable "object processing" in `moonraker.conf` which will give it more time to perform the pre-processing and thus not generate the KlipperScreen "metadata" error:
 ```yml
 [file_manager]
 enable_object_processing: True
 ```
-**UPDATE: PR for Moonraker was incorporated.** This increases the pre-processing default timeout and also allows you to increase it without having to enable object\_processing:
+**UPDATE: PR for Moonraker was incorporated.** This increases the pre-processing default timeout and also allows you to increase it without having to enable object_processing:
 ```yml
 [file_manager]
 default_metadata_parser_timeout: 30
@@ -102,7 +102,7 @@ Happy Hare v2.7.0 now includes logic to keep the position within bounds after ho
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Slicer Errors
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Slicer Errors
 
 ### <img src="Troubleshooting-and-Common-Issues/carrot.png" alt="" width="24"> Purge Volume Error
 `Incorrect number of values for PURGE_VOLUMES. Expect 1, 8, 16, or 64, got XXX`
@@ -119,7 +119,7 @@ Add in a placeholder filament so the number of tools and filaments matches the n
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) BTT MMB Issues
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) BTT MMB Issues
 
 ### <img src="Troubleshooting-and-Common-Issues/carrot.png" alt="" width="24"> No rule to make target 'flash'
 This is because the Linux operating system on the Raspberry Pi doesn't know how to flash the firmware. When you do the `make` command, it compiles the firmware from a bunch of options that you entered in `make menuconfig` into machine readable code. `make flash` is used to send that compiled firmware to the MMB. Somewhere along the way, the `make` command doesn't get the right instructions for pushing the file to the board.
@@ -130,7 +130,7 @@ The MMB is notorious for being difficult to flash. It doesn't seem to like runni
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Issues During Printing
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Issues During Printing
 
 ### <img src="Troubleshooting-and-Common-Issues/carrot.png" alt="" width="24"> Happy Hare pauses the print for a clog when there is no clog
 This typically happens when the extruder looses steps. When a stepper on the X or Y looses steps, it's loud, obnoxious, and frightens the neighbors. When an extruder looses steps, you'll probably not even notice due to the other noise the machine makes. So, look for reasons the extruder may be overloading.

@@ -17,7 +17,7 @@ Mainsail/Fluidd integration has arrived! Mainsail PR is in queue, Fluidd PR alre
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Main Panel
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Main Panel
 
 The Mainsail integration includes a new "MMU" panel. The integration into the existing "Extruder" panel documented later still works for tool selection but this panel is decidated to monitoring and operating the MMU outside of just selecting a tool at the physical gate level
 
@@ -33,7 +33,7 @@ Generally the approach in the UI is that you select the gate/lane you want to op
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Tool to Gate mapping
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Tool to Gate mapping
 
 When you start a print that has multiple colors with a single extruder you have the opportunity to map the tools the slicer expects to the physical gates/lanes on the MMU.  You can also map all tools at any time to adjust the tool-to-gate mapping.
 
@@ -43,7 +43,7 @@ Click for larger image...
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Gate Map editor
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Gate Map editor
 
 This screen is used to edit the attributes on the filament loaded on your MMU. You can either specify the individual attributes or link the filament to spoolman and have Happy Hare pull attributes from the database.
 
@@ -53,7 +53,7 @@ Click for larger image...
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Maintenance and State Recovery
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Maintenance and State Recovery
 
 If an error occurs with the MMU and the state cannot be automatically recovered you are fix with the "Recover" screen or you can perform some setup and operations specific to you particular MMU with the "Maintenance" screen.
 
@@ -63,7 +63,7 @@ Click for larger image...
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Extruder/Filament Color
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Extruder/Filament Color
 
 Mainsail and (I believe Fluidd) have added support to display additional attributes about each extruder. These are exploited by Happy Hare to give you even more visual feedback
 

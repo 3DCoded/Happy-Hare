@@ -4,7 +4,7 @@ If you have a custom setup, enter your pins here. Don't add pin modifiers such a
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) MCU Device Location
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) MCU Device Location
 
 This is where you're going to place your device location. If you have a usb connected MMU control board like the EZBRD, you'll enter something like:  
 

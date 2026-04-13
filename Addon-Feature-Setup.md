@@ -8,7 +8,7 @@ This directory contains possible addons for your MMU setup that have support shi
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) EREC Filament Cutter
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) EREC Filament Cutter
 An addon used to control filament cutting at the MMU rather than the toolhead
 <img src="Addon-Feature-Setup/erec_logo.png" width=60%>
 
@@ -28,7 +28,7 @@ https://github.com/kevinakasam/ERCF_Filament_Cutter
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Blobifier
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Blobifier
 An addon used to create purge blobs instead of using a wipe tower
 <img src="Addon-Feature-Setup/blobifier.png" width=60%>
 
@@ -49,7 +49,7 @@ https://github.com/Dendrowen/Blobifier
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) DC eSpooler
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) DC eSpooler
 
 An addon used to control a DC motor based eSpooler that is active when the MMU is unloaded
 
@@ -70,7 +70,7 @@ n/a
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Eject Buttons
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Eject Buttons
 
 If the MMU is equipped with a per-gate eject button (like QuattroBox) this addon is used for control
 

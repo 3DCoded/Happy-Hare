@@ -1,6 +1,6 @@
 Whilst this section isn't strictly essential it provides supplimental context to hardware setup and particular on endstop options in the filament path.
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Endstops and MMU Movement and Homing
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Endstops and MMU Movement and Homing
 Happy Hare implements the MMU control as a "second toolhead" known as the MMU toolhead. The X-axis represents the selector movement and the Y-axis the filament movement until Klipper takes over the control of the extruder as normal. It offers some sophisticated stepper synching and homing options which add additional parameters to the regular klipper stepper definition.
 
 ### Multiple Endstops on MMU Steppers
@@ -43,7 +43,7 @@ The MMU gear stepper(s) defined by Happy Hare not only enables multiple endstops
 
 Happy have provides two test moves commands `MMU_TEST_MOVE`, `MMU_TEST_HOMING_MOVE` (and two similar commands designed for embedded gcode use). For example:
 
-> MMU\_TEST\_MOVE MOVE=100 SPEED=10 MOTOR="gear+extruder"
+> MMU_TEST_MOVE MOVE=100 SPEED=10 MOTOR="gear+extruder"
 
 This will advance both the MMU gear and extruder steppers in sync but +100mm at 10mm/s. If only only `gear` was specified the move would only involve the gear stepper and  obviously not be synchronized. Several `MOTOR` combinations can be sepcified with this move and are summerised here:
 <ul>
@@ -57,7 +57,7 @@ This will advance both the MMU gear and extruder steppers in sync but +100mm at 
 ### Homing moves
 Similarly it is possible to specify a homing move:
 
-> MMU\_TEST\_HOMING\_MOVE MOVE=100 SPEED=10 MOTOR="gear+extruder" ENDSTOP=mmu\_ext\_touch STOP\_ON\_ENDSTOP=1
+> MMU_TEST_HOMING_MOVE MOVE=100 SPEED=10 MOTOR="gear+extruder" ENDSTOP=mmu_ext_touch STOP_ON_ENDSTOP=1
 
 This would home the filament using synchronized motors to the nozzle using stallguard! Cool hey?!?
 
@@ -71,7 +71,7 @@ For quick reference here are the two test MMU move commands:
   | Command | Description | Parameters |
   | ------- | ----------- | ---------- |
   | `MMU_TEST_MOVE` | Simple test move the MMU gear stepper | `MOVE=..[100]` Length of gear move in mm <br>`SPEED=..` (defaults to speed defined to type of motor/homing combination) Stepper move speed <br>`ACCEL=..` (defaults to min accel defined on steppers employed in move) Motor acceleration <br>`MOTOR=[gear\|extruder\|gear+extruder\|synced\|both]` (default: gear) The motor or motor combination to employ. gear+extruder commands the gear stepper and links extruder to movement, extruder+gear commands the extruder stepper and links gear to movement |
-  | `MMU_TEST_HOMING_MOVE` | Testing homing move of filament using multiple stepper combinations specifying endstop and driection of homing move | `MOVE=..[100]` Length of gear move in mm <br>`SPEED=..` (defaults to speed defined to type of motor/homing combination) Stepper move speed <br>`ACCEL=..` Motor accelaration (defaults to min accel defined on steppers employed in homing move) <br>`MOTOR=[gear\|extruder\|gear+extruder\|synced\|both]` (default: gear) The motor or motor combination to employ. gear+extruder commands the gear stepper and links extruder to movement, extruder+gear commands the extruder stepper and links gear to movement. This is important for homing because the endstop must be on the commanded stepper <br>`ENDSTOP=..` Symbolic name of endstop to home to as defined in mmu\_hardware.cfg. Must be defined on the primary stepper <br>`STOP_ON_ENDSTOP=[1\|-1]` (default 1) The direction of homing move. 1 is in the normal direction with endstop firing, -1 is in the reverse direction waiting for endstop to release. Note that virtual (touch) endstops can only be homed in a forward direction |
+  | `MMU_TEST_HOMING_MOVE` | Testing homing move of filament using multiple stepper combinations specifying endstop and driection of homing move | `MOVE=..[100]` Length of gear move in mm <br>`SPEED=..` (defaults to speed defined to type of motor/homing combination) Stepper move speed <br>`ACCEL=..` Motor accelaration (defaults to min accel defined on steppers employed in homing move) <br>`MOTOR=[gear\|extruder\|gear+extruder\|synced\|both]` (default: gear) The motor or motor combination to employ. gear+extruder commands the gear stepper and links extruder to movement, extruder+gear commands the extruder stepper and links gear to movement. This is important for homing because the endstop must be on the commanded stepper <br>`ENDSTOP=..` Symbolic name of endstop to home to as defined in mmu_hardware.cfg. Must be defined on the primary stepper <br>`STOP_ON_ENDSTOP=[1\|-1]` (default 1) The direction of homing move. 1 is in the normal direction with endstop firing, -1 is in the reverse direction waiting for endstop to release. Note that virtual (touch) endstops can only be homed in a forward direction |
 
 ### What's the point?
 Hopefully you can see some of the coordinated movements that are possible that are highly useful for an MMU setup.  For example, I'm current loading filament with an incredibly fast bowden load using the gear stepper followed by a synchronized homing move of the extruder and gear, homing to the nozzle using `mmu_ext_touch` (stallguard) endstop. It requires zero knowledge of extruder dimensions and no physical switches! It also has lots of uses for custom setups with filmament cutters or other purging mechanisms.

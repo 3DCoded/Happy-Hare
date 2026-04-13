@@ -10,7 +10,7 @@ KlipperScreen - Happy Hare Edition is maintained as a [seperate project on githu
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Main Panel
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Main Panel
 
 <p align="center"><img src="KlipperScreen/mmu_main.png" width="80%"></p>
 
@@ -57,7 +57,7 @@ Oh, the textual representation mirrors that you see in the Klipper console, but 
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) State Management & Recovery
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) State Management & Recovery
 
 This screen is accessed by the top right "Manage..." button when not in print (you shouldn't be doing anything here while printing anyway). It is designed to help you manage you MMU after an error as occured and the MMU has paused. Most/all of the functions you might need are available and the exact panel contents depends on the capabilities/type of MMU. Conceptually it is working in the physical space with the concept of Gate (and not Tool). That distinction is important. Most functions are obvious, but the `Load Extruder` and `Unload Extruder` may be new to you. These do exactly as there names suggest operating only on the extruder.
 
@@ -85,7 +85,7 @@ One note: If you move the selector on the Manage panel you will change the gate 
 <br>
 
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Filament Editor
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Filament Editor
 
 <p align="center"><img src="KlipperScreen/mmu_filament_editor1.png" width="80%"></p>
 
@@ -101,7 +101,7 @@ Also note that you can update MMU of a filament availability to save running an 
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) TTG (Tool-to-gate) Map and EndlessSpool Editor
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) TTG (Tool-to-gate) Map and EndlessSpool Editor
 
 <p align="center"><img src="KlipperScreen/mmu_toolmap.png" width="80%"></p>
 
@@ -112,7 +112,7 @@ In the example panel shown, tool T0 is selected and maps to Gate #0 and is a mem
 <br>
 
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Spoolman "filaments" panel
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Spoolman "filaments" panel
 
 Rather than use the "Filaments" panel, if using Spoolman, you might find this useful (note however that the SpoolID be be edited in the Filaments panel or by Happy Hare with the `MMU_GATE_MAP` command.
 
@@ -120,7 +120,7 @@ Rather than use the "Filaments" panel, if using Spoolman, you might find this us
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) MMU Options
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) MMU Options
 
 The MMU functionality can be customized with a few settings in the KlipperScreen configuration menu.
 

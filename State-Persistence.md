@@ -1,11 +1,11 @@
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) State Persistence
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) State Persistence
 
 Essentially the state of everything from the EndlessSpool groups to the filament position and gate selection can be persisted across restarts (selector homing is not even necessary)! The implication of using this big time saver is that you must be aware that if you modify your MMU whilst it is off-line you may need to correct the state prior to printing by using `MMU_RECOVER` command or perhaps homing the selector with `MMU_HOME`. Note that Happy Hare will automatically recover if it detects that state doesn't match that reported by sensors (one reason why optional sensors like extruder entry are useful). In addition, if you have a Type-A MMU with selector you can opt to automatically home on startup by setting `home_on_startup: 1` in `mmu_parameters.cfg`.
 
 Here is an example startup state:
 
 ```
-2:18 AM (\_/)
+2:18 AM (_/)
         ( *,*)
         (")_(") MMU Ready
 2:18 AM Gates: |#0 |#1 |#2 |#3 |#4 |#5 |#6 |#7 |#8 |

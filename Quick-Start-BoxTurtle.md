@@ -1,6 +1,6 @@
 # BoxTurtle Quickstart
 
-<p align="center"><img src="resources/tortoise-hare.png" alt='tortoise-hare' width='20%'></p>
+<p align="center"><img src="assets/tortoise-hare.png" alt='tortoise-hare' width='20%'></p>
 
 **Page Sections:**
 
@@ -9,7 +9,7 @@
 
 This quickstart guide explains how to install Happy Hare firmware for use with the [BoxTurtle](https://github.com/ArmoredTurtle/BoxTurtle) modular multimaterial system. 
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Terminology
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Terminology
 
 The terminology for BoxTurtle and HappyHare differ a bit. Terms map as follows:
 
@@ -23,7 +23,7 @@ The terminology for BoxTurtle and HappyHare differ a bit. Terms map as follows:
 | Tool start sensor | Extruder sensor |
 | Tool end sensor   | Toolhead sensor |
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Cloning Happy Hare Repo
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Cloning Happy Hare Repo
 
 First, download the Happy Hare repository onto your Raspberry Pi using the `git` tool. Log into your Raspberry Pi via SSH (PuTTy on Windows):
 
@@ -43,7 +43,7 @@ git clone https://github.com/moggieuk/Happy-Hare.git
 
 Happy Hare is now downloaded onto your Raspberry Pi. The next step is installing it.
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Running Installer
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Running Installer
 
 To install Happy Hare firmware, run the following commands on your Raspberry Pi through SSH:
 

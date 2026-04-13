@@ -10,7 +10,7 @@ There are two parts to an MMU toolchange that are critical to get set up correct
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Tuning Filament Tips
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Tuning Filament Tips
 
 <img align="right" src="Tip-Forming-and-Purging/good_tips.png" width="150" alt="Good Tips">
 The shape of filament tips is of crucial importance for a reliable system. The filament tips need to look like tiny spears, free of any blobs or long hairs. Here are some proper tips that won’t cause any issue:
@@ -65,7 +65,7 @@ It might take 40-50 attempts until you start to home in on the optimum values fo
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Purge Volumes
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Purge Volumes
 
 In the slicer there are 3 different options when it comes to defining the purging volumes for multi-filament prints:
 - Manual definition
@@ -161,7 +161,7 @@ Just don't forget to persist the final result in `mmu_parameters.cfg` when the p
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) No Wipe Tower Option
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) No Wipe Tower Option
 
 The wipe tower is a great solution for handling the purge necessary when changing tools (Prusa Slicer also has an experiemental "purge to infil" to minimize waste) but it has the downside of taking up a large portion of the build plate. To avoid this an add-on purging system can be used during the toolchange allowing the wipe tower to be disabled! A great example of such a system is [Blobifier](Addon-Feature-Setup#---blobifier) by Sjon Huisman. In fact the additional macro to drive Blobifier is supplied in the Happy Hare "config/mmu/addons/" directory. It can be added to Happy Hare with a single line addition in `mmu_macros_vars.cfg`.
 
@@ -196,7 +196,7 @@ T8   140  140  140  140  140  140  140  140   -
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Tip Cutting
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Tip Cutting
 
 Tuning a tip forming macro is time consuming and very frustrating, mainly because filament type and temperature have a configurable effect meaning its hard to find the sweet spot. You can, however, do away with tip forming altogether and cut the end of the filament instead.
 

@@ -7,7 +7,7 @@
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Console and Logging
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Console and Logging
 
 Happy Hare controls the MMU mainly through Klipper command extensions but a few are implemented as macros. You can manage these commands buy typing then directly into a console like Mainsail or Fluidd or you can create macro buttons for easier operation. For the easiest control take a look at the [KlippeScreen Happy Hare Edition](#---klipperscreen-happy-hare) - it really does make operation a pleasure.
 
@@ -27,9 +27,9 @@ The `mmu.log` logfile will be placed in the same directory as other Klipper log 
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) KlipperScreen Happy Hare
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) KlipperScreen Happy Hare
 
-<p align="center"><img src="resources/mmu_main_printing.png" width="500" alt="KlipperScreen"></p>
+<p align="center"><img src="assets/mmu_main_printing.png" width="500" alt="KlipperScreen"></p>
 
 Even if not a KlipperScreen user yet you might be interested in my fork of KlipperScreen [Github link](https://github.com/moggieuk/KlipperScreen-Happy-Hare-Edition) simply to control your MMU. It makes using your MMU the way it should be. Dare I say as easy at Bambu Labs ;-) I run mine with a standalone Raspberry Pi attached to my buffer array and can control multiple MMU's with it.
 
@@ -37,18 +37,18 @@ Be sure to follow the install directions carefully. The most up-to-date document
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Useful Pre-Print Operations
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Useful Pre-Print Operations
 
 There are a couple of commands (`MMU_PRELOAD` and `MMU_CHECK_GATE`) that are useful to ensure MMU readiness prior to printing.
 
-### MMU\_PRELOAD
+### MMU_PRELOAD
 
 The `MMU_PRELOAD` is an aid to loading filament into the MMU.  The command works a bit like the Prusa's functionality and spins gear with servo depressed until filament is fed in.  It then parks the filament at the perfect postion in the gate. This is the recommended way to load filament into your MMU and ensures that filament is not under/over inserted potentially preventing pickup or blocking the gate.
 
 > [!TIP]
 > If you have pre-gate sensors installed they will automatically run this command when triggered outside of a print. This really helps with loading up your MMU. Note that if new filament is inserted while in a print it's presence will be noted but it will not be loaded.
 
-### MMU\_CHECK\_GATE
+### MMU_CHECK_GATE
 
 Similarly the `MMU_CHECK_GATE` command will check the current gate (no options) or run through all the gates (`ALL=1`) or the one specified (`GATE=`) and checks that filament is available, correctly parks and updates the [Gate Map](Tool-and-Gate-Maps#---gate-map) including the "gate status" so the MMU knows which gates have filament available.
 
@@ -57,7 +57,7 @@ Similarly the `MMU_CHECK_GATE` command will check the current gate (no options) 
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Filament Loading and Unloading sequences
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Filament Loading and Unloading sequences
 
 Happy Hare provides built-in loading and unloading sequences that have many options controlled by settings in `mmu_parameters.cfg`. These are grouped into "modular phases" that control each step of the process and vary slightly based on the capabilities of your particular MMU. Normally this provides sufficient flexibility of control. However, for advanced situations, you are able to elect to control the sequences via gcode macros. This capability is discussed later in the [gcode guide](/doc/macro_customization.md).
 
@@ -173,7 +173,7 @@ Filament movement speeds and accelaration for all operations are detailed in the
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Debugging Problems
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Debugging Problems
 
 There is a lot that can go wrong with an MMU and initial setup can be frustrating. It is really important to tackle one problem at a time. Never move on and think the problem will go away - that is very unlikely. You have all the tools you need to diagnose issues:
 

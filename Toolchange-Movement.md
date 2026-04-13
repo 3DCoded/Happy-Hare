@@ -9,7 +9,7 @@
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Overview of toolhead parking movement
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Overview of toolhead parking movement
 
 Happy Hare controls all of the setup, customization and control of your MMU. It allows your to change tools outside of a print as well as controlling the toolchange and movement inside of a print when the `Tx` toolchange command is issued. It also uses the same parking and movement to control what happens when the MMU encounters and error or (optionally) when pausing or canceling a print whether an MMU print or not.
 
@@ -76,7 +76,7 @@ Possible context/operations:
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Toolhead movement during toolchange
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Toolhead movement during toolchange
 
 Parking movement for toolchange is usually a little more nuanced so there are additional options. Firstly, you often want to differentiate beween a regular toolchange and a runout: if you have the slicer performing the tip forming then you often won't have a parking move on "toolchange" but you will likely need one on "runout" because you don't want the whole toolchange to occur touching the print. In addition as you build a more sophisticated toolchange procedure employing tip cutting, custom purging, nozzle parking and cleaning you may want additional parking moves during the process rather than just at the beginning and end. To accomplish this you can specify additional parking moves at these points in the process:
 ```yml
@@ -98,7 +98,7 @@ Here are some common setups with an explanation of the basic configuration for e
 
 <br>
 
-### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Tip Forming Options
+### ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Tip Forming Options
 
 #### Example 1: Complete slicer control with parking and purging on the wipetower
 - Pro: Minimizes movement
@@ -116,7 +116,7 @@ Here Happy Hare is forming tips so we define a simple z-hop parking while that o
 
 <br>
 
-### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Tip Cutting Options
+### ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Tip Cutting Options
 
 Firstly, although the default way to form tips is through calculated filament movement, there is an easier way -- just cut it off! There are supported ways to do this at the MMU (through piggybacking on the `_MMU_POST_UNLOAD` callback) the more typical way is with a filament cutter at the toolhead.  This it usually some form of blade that is operated via a dedicated servo mechanism or simply the movement of the toolhead itself and pressing against a pin (optionally itself activated by a servo).
 
@@ -134,7 +134,7 @@ Here we opt not to park on toolchange, instead allowing the CUT_TIP macro to mov
 Here were define the initial toolchange park to z-hop 1mm and move to the cutter pin, after cutting the `post_form_tip_position` parks at the purge bucket for the remainder of the toolchange. Presumably the `variable_user_post_load_extension` would be used to purge and wipe nozzle.
 <img src="Toolchange-Movement/parking_example_4.png" width="900" alt="Example 4">
 
-#### Example 5: Cutting tip and custom park and custom purging with no wipe tower <img src="resources/cool.png" width="40">
+#### Example 5: Cutting tip and custom park and custom purging with no wipe tower <img src="assets/cool.png" width="40">
 - Pro: You get your full buildplate to work with because wipe tower is disabled, don't have to tune tip forming, blobifer purging optimizes speed and waste, custom park location can prevent ooze during toolchange, can do sequential printing
 - Con: More complex to set up
 - Neutral: This is perhaps the coolest option!
@@ -144,7 +144,7 @@ Here the movement has even more steps. There are a few ways to achieve this so t
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Return To Print Movement
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Return To Print Movement
 
 How the toolhead returns to the print has three options contolled by the `variable_restore_xy_pos` variable in `mmu_macro_vars.cfg`:
 
@@ -177,7 +177,7 @@ You can see this is a variation on "last" but will prevent print marking. Of cou
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Z-Hop Moves
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Z-Hop Moves
 
 It's worth noting and to aid debugging that there are three possible origins for z-hop moves during a toolchange:
 - The first is input by the slicer which often have a "z-hop on toolchange option". With the settings described above that should be disabled though.

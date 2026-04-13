@@ -6,7 +6,7 @@
   - [Designated Waste Gate](#EndlessSpool-Designated-Waste-Gate-Option)
 - [Flowrate Monitoring](#---Flowrate-Monitoring)
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Runout Detection
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Runout Detection
 
 Filament runout detection will be enabled if you have suitable sensors configured. These sensors include the `mmu_gate` sensor, all `pre_gate` sensors and the encoder. When this occurs the print will pause and allow you to replace filament before proceding. If EndlessSpool is enabled this filament replacement can be automatic. In addition if the MMU is enabled with an encoder it is able to detect clogs.
 
@@ -29,11 +29,11 @@ The runout sensors are included in the list displayed by the `MMU_SENSORS` comma
 ```
 
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Optional Encoder
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Optional Encoder
 
 This is a device that measures the movement of filament and can be used for detecting and loading/unloading filament at the gate; validating that slippage is not occurring; runout and clog detection; flow rate verification and more. The following is an output of the `MMU_ENCODER` command to control and view the encoder:
 
-> MMU\_ENCODER
+> MMU_ENCODER
 
 ```yml
     Encoder position: 743.5mm
@@ -45,7 +45,7 @@ This is a device that measures the movement of filament and can be used for dete
 
 Normally the encoder is automatically enabled when needed and disabled when not printing. It can be explicitly disabled with:
 
-> MMU\_ENCODER ENABLE=0
+> MMU_ENCODER ENABLE=0
 
 <ul>
   <li>The encoder, when calibrated, measures the movement of filament through it.  It should closely follow movement of the gear or extruder steppers but can drift over time.</li>
@@ -58,7 +58,7 @@ Normally the encoder is automatically enabled when needed and disabled when not 
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Clog Detection
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Clog Detection
 
 This is a useful feature that may save a print if the extruder clogs because it will promptly pause the print given you the chance to unblock and resume printing.
 
@@ -75,19 +75,19 @@ These default values makes the autotune logic try to maintain 5mm of "headroom" 
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) EndlessSpool
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) EndlessSpool
 
 As mentioned earlier, EndlessSpool will, if configured, spring into action when a filament runs out. It effectively allows a sequence of filament spools to be used under the same tool number. This means that if a particular color runs out during a print, another spool of the same color can take over. When a runout occurs it will map the current tool to the next gate in the defined sequence (see below) and continue printing. To see the current EndlessSpool groups simply run this command with no parameters:
 
-> MMU\_ENDLESS\_SPOOL
+> MMU_ENDLESS_SPOOL
 
 To enable or disable the functionality use:
 
-> MMU\_ENDLESS\_SPOOL ENABLE=0|1
+> MMU_ENDLESS_SPOOL ENABLE=0|1
 
 To set / change grouping you must specify a list which is the same length as the number of gates you have on your MMU where each postion indicates the group membership for that gate. For example:
 
-> MMU\_ENDLESS\_SPOOL GROUPS=1,2,3,1,2,3,1,2,3
+> MMU_ENDLESS_SPOOL GROUPS=1,2,3,1,2,3,1,2,3
 
 ```
     T0 -> Gate #0(B) ES_Group_1: 0*> 3?> 6?
@@ -112,11 +112,11 @@ To set / change grouping you must specify a list which is the same length as the
     Gate #8(B) -> T8, Material: ABS, Color: black, Status: Buffered
 ```
 
-Here three groups are defined. ES\_Group\_1 consisting of gates 0, 3 and 6; ES\_Group\_2 consisting of gates 1, 4 and 7; ES\_Group\_3 consisting of gates 2, 5 and 8. The first paragraph indicates how each tool would cycle through gates and the second paragraph is a remining of what filament is loaded into each gate.
+Here three groups are defined. ES_Group_1 consisting of gates 0, 3 and 6; ES_Group_2 consisting of gates 1, 4 and 7; ES_Group_3 consisting of gates 2, 5 and 8. The first paragraph indicates how each tool would cycle through gates and the second paragraph is a remining of what filament is loaded into each gate.
 
 Since EndlessSpool is not something that triggers very often you can use the following to simulate the action and familiarize yourself with its action and validate it is correctly setup prior to needing it:
 
-> MMU\_TEST\_RUNOUT
+> MMU_TEST_RUNOUT
 
 This will emulate a filament runout and force the MMU to interpret it as a true runout and not a possible clog. The MMU will then run the following sequence:
 
@@ -132,7 +132,7 @@ The default supplied sequence macros work well and provide lots of configuration
 
 If you ever get confused you can reset the EndlessSpool groups to the default "one gate per tool" by running:
 
-> MMU\_ENDLESS\_SPOOL RESET=1
+> MMU_ENDLESS_SPOOL RESET=1
 
 > [!TIP]  
 > Similar to Tool-to-Gate mapping, EndlessSpool is best visualized and modified using KlipperScreen Happy Hare edition.
@@ -147,6 +147,6 @@ When EndlessSpool activates, the remains of the filament is feed back into the r
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Flowrate Monitoring
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Flowrate Monitoring
 
 This experimental feature uses the measured filament movement of the encoder to assess the % flowrate being achieved. If you print too fast or with a hotend that is too cold you will get a decreased % flowrate and under extrusion problems. The encoder driver with Happy Hare updates a printer variable called `printer['mmu_encoder mmu_encoder'].flow_rate` with the % measured flowrate. Whilst it is impossible for this value to be instantaneously accurate, if it tracks below about 94% it is likely you have some under extrusion problems and should slow down your print. Note this is best monitored in the [KlipperScreen-HappyHare edition](https://github.com/moggieuk/KlipperScreen-Happy-Hare-Edition) application.

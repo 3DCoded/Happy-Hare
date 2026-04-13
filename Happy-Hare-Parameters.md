@@ -1,15 +1,15 @@
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Configuration Guide (mmu\_parameters.cfg)
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Configuration Guide (mmu_parameters.cfg)
 
 This is a sequential walkthrough of the main configuration files for Happy Hare. You should have tertiary understanding and awareness of all the settings but some are essential.  Those are labeled with "IMPORTANT" and you must setup for your MMU setup.
 
-The Klipper configuration files for Happy Hare are modular and where to find them is discussed in the [Configuration Reference](Configuration-Reference). Also be sure to consult the [Configuring mmu\_parameters.cfg](Configuring-mmu_parameters.cfg) page for details about each and every parameter.
+The Klipper configuration files for Happy Hare are modular and where to find them is discussed in the [Configuration Reference](Configuration-Reference). Also be sure to consult the [Configuring mmu_parameters.cfg](Configuring-mmu_parameters.cfg) page for details about each and every parameter.
 
 > [!TIP]  
 > It's worth noting, and a VERY useful feature, that all the essential configuration and tuning parameters (in `mmu_parameters.cfg`) can be modified at runtime without restarting Klipper. Use the `MMU_TEST_CONFIG` command to do this. Running without any parameters will display the current values. **This even allows changes to configuration during a print!**
 
 Running without any parameters will display the current values broken up into `SPEEDS`, `TMC & MOTOR SYNC CONTROL`, `LOADING/UNLOADING`, `TIP FORMING`, `OTHER` and `CALIBRATION` sections:
 
-> MMU\_TEST\_CONFIG
+> MMU_TEST_CONFIG
 ```
 SPEEDS:
 gear_from_buffer_speed = 160.0
@@ -43,14 +43,14 @@ _(only partial output displayed)_
 
 Any of the displayed config settings can be modified. For example, to update the distance from extruder entrance (homing postion) to nozzle.
 
-> MMU\_TEST\_CONFIG toolhead\_extruder\_to\_nozzle=45
+> MMU_TEST_CONFIG toolhead_extruder_to_nozzle=45
 
 > [!IMPORTANT]  
 > When you make a change with `MMU_TEST_CONFIG` it will not be persisted and is only effective until the next restart. Therefore, once you find your tuned settings be sure to update `mmu_parameters.cfg`
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) MMU Vendor, Type & Size
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) MMU Vendor, Type & Size
 
 The first section specifies the type of MMU and is used by Happy Hare to adjust (primarily CAD) options. It is documented [here](Configuring-mmu_parameters.cfg#---mmu-vendor-type-and-size) and [here](Configuring-mmu_parameters.cfg#---other-mmu-cad-dimensions).
 
@@ -84,7 +84,7 @@ mmu_num_gates: 9 			# Number of selector gates
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Hardware limits
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Hardware limits
 
 This section is where you define the hardware limitations of your build. These can be consisted the never to be exceeded settings but one important one if you are using `selector touch` operation is `selector_max_accel`. Since stallguard doesn't behave well at slow speed it is important that the accelation isn't set too low - below 600 causes problems, over 1000 ensures reliable operation. Generally these defaults work with the majority of setups.
 
@@ -101,7 +101,7 @@ selector_max_accel: 1200                # Never to be exceeded selector accelara
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Selector Servo
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Selector Servo
 
 The servo configuration allows for up to three positions but some designs (e.g. Tradrack, ERCF v1.1) only require `up`/`down`.  If `move` is not used then comment it out or set it to the same value as `up`.  The servo duraction is the length of PWM burst.  Most digital servos only require a short 0.2 second or so but slower analog servos may require longer (0.4 - 0.5s).  Be very careful if you use the `servo_active_down` option because it will can strain your electronics.
 
@@ -129,7 +129,7 @@ servo_buzz_gear_on_down: 1              # Whether to "buzz" the gear stepper on 
 > [!TIP]  
 > As of HHv2.4 the servo calibration can be performed without updating these values and klipper restarts.  The procedure is documented in the [calibration](MMU-Calibration) doc, but briefly `MMU_SERVO SAVE=1 POS=[up|down|move]` can be used to persist position after setting correct angle with `MMU_SERVO ANGLE=..`
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Logging
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Logging
 
 Logging controls control the verbosity level of logging to console and separate `mmu.log` file as well and fun visual filament position and various status messages - it really is unessessary to have verbose logging to the console so defaults are recommended.
 
@@ -152,7 +152,7 @@ log_startup_status: 1			# Whether to log tool to gate status on startup, 1 = sum
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Speeds and Accelaration
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Speeds and Accelaration
 
 All Happy Hare speeds can be configured in this section.  Most are self-explanatory and are separated into gear stepper speeds, speeds inside of the extruder (either just extruder motor or when synced with gear stepper) and selector movement. If your 'gear' filament drive stepper whines without moving it is likely that the speed or accelaration are too high.  Similarly what out that the extruder stepper can handle the load and unload speeds. If it skips steps the loading/unload process can fail. The skipping of steps can usually be heard with you ear close to the toolhead.
 
@@ -201,7 +201,7 @@ Note: Selector touch operation is discussed elsewhere and has a separate speed s
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Gate Loading & Unloading
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Gate Loading & Unloading
 
 This section controls the module that controls filament loading and unload at the gate when an encoder is present. The `gate_unload_buffer` represents how close to the gate the filament ends up after fast bowden move. You want it close (for speed) but not too close that it can overshoot.  `gate_parking_distance` is how fast away from the gate exit the filament should be parked when unloaded.  It rarely needs to be changed from the default.
 
@@ -229,7 +229,7 @@ gate_autoload: 1                        # If pre-gate sensor fitted this control
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Bowden Loading & Unloading
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Bowden Loading & Unloading
 
 For more information on the bowden correct move, read about the loading sequence [here](Basic-Operation#---filament-loading-and-unloading-sequences).  The `bowden_num_moves` allows a long move to be broken into separate moves.  Only increase this if Klipper throws errors with very long moves - setting it higher than `1` will long down the loading process.
 
@@ -256,7 +256,7 @@ bowden_pre_unload_error_tolerance: 50
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Extruder Homing
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Extruder Homing
 
 This section controls the optional extruder homing step. With a toolhead sensor fitted this step is not necessary and will be ignored unless you set `extruder_force_homing: 1`. Without toolhead sensor you really need to home although there is an option not to. The `extruder_homing_endstop` is either a real endstop name (the virtual `mmu_gear_touch` or the pre entry `extruder` sensor), or the string `collision` which causes Happy Hare to "feel" for the extruder entrance using the encoder, or `none` to skip homing.  Whatever homing method is chosen the maximum distance travelled before an error is declared is defined by `extruder_homing_max`. Very long bowden may want to increase this value to add error tolerance caused by slippage on earlier bowden move. When the `collision` method is employed the current of the gear stepper can be reduced to the specified %. This makes detection more sensitive and helps to prevent filament grinding.
 
@@ -293,7 +293,7 @@ extruder_force_homing: 0
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Toolhead Loading & Unloading
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Toolhead Loading & Unloading
 
 > [!IMPORTANT]  
 > This section controls the module responsible for loading filament into and unloading from the extruder/toolhead and thus is probably one of the most important sections to get right. These settings ineract with each other so you should not guess, instead refer to the picture before and make sure you set accordingly.
@@ -310,22 +310,22 @@ Consult this illustration of a typical toolhead or table of popular configuratio
 
 | Dimension | Rapido/R2 | Dragon SF | Dragon HF | Revo |
 | --------- | ------ | --------- | --------- | ---- |
-| `toolhead_extruder_to_nozzle`<br>(in mmu\_parameters.cfg) | 84.82 | | | 72 | 
-| `toolhead_sensor_to_nozzle`<br>(in mmu\_parameters.cfg) | 74.84 | | | 62 | 
-| `variable_blade_pos`<br>(in mmu\_macro\_vars.cfg) | 60.01 | | | 37.5 |
-| `variable_retract_length`<br>(in mmu\_macro\_vars.cfg) | 31.5 | | | |
-| `variable_pushback_length`<br>(in mmu\_macro\_vars.cfg) | 29.00 | | | |
+| `toolhead_extruder_to_nozzle`<br>(in mmu_parameters.cfg) | 84.82 | | | 72 | 
+| `toolhead_sensor_to_nozzle`<br>(in mmu_parameters.cfg) | 74.84 | | | 62 | 
+| `variable_blade_pos`<br>(in mmu_macro_vars.cfg) | 60.01 | | | 37.5 |
+| `variable_retract_length`<br>(in mmu_macro_vars.cfg) | 31.5 | | | |
+| `variable_pushback_length`<br>(in mmu_macro_vars.cfg) | 29.00 | | | |
 | from discord user | | | | @moggieuk |  
 
 **G2E** dimensions for each hotend:
 
 | Dimension | Rapido/R2 | Dragon SF | Dragon HF | Revo |
 | --------- | ------ | --------- | --------- | ---- |
-| `toolhead_extruder_to_nozzle`<br>(in mmu\_parameters.cfg) | 99.38 | | 99.5 | 99.18<sup>1</sup> |
-| `toolhead_sensor_to_nozzle`<br>(in mmu\_parameters.cfg) | 79.78 | | 79 | 79.58<sup>1</sup> |
-| `variable_blade_pos`<br>(in mmu\_macro\_vars.cfg) | 61.22 | | 59.25 | 61.03<sup>1</sup> |
-| `variable_retract_length`<br>(in mmu\_macro\_vars.cfg) | 32.22 | | 36 | 32.03<sup>2</sup> |
-| `variable_pushback_length`<br>(in mmu\_macro\_vars.cfg) | 31.22 | | 20 | 31.03<sup>2</sup> |  
+| `toolhead_extruder_to_nozzle`<br>(in mmu_parameters.cfg) | 99.38 | | 99.5 | 99.18<sup>1</sup> |
+| `toolhead_sensor_to_nozzle`<br>(in mmu_parameters.cfg) | 79.78 | | 79 | 79.58<sup>1</sup> |
+| `variable_blade_pos`<br>(in mmu_macro_vars.cfg) | 61.22 | | 59.25 | 61.03<sup>1</sup> |
+| `variable_retract_length`<br>(in mmu_macro_vars.cfg) | 32.22 | | 36 | 32.03<sup>2</sup> |
+| `variable_pushback_length`<br>(in mmu_macro_vars.cfg) | 31.22 | | 20 | 31.03<sup>2</sup> |  
 | from discord user | | | @yogibear2244 | |  
 
 *<sup>1</sup> Taken directly from CAD - <ins>NOT</ins> tested.*  
@@ -401,7 +401,7 @@ toolhead_move_error_tolerance: 60
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Tip Forming and Purging
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Tip Forming and Purging
 
 Here you set the name of the macro to call to perform the "tip forming". Happy Hare supplies both a traditional tip shaping macro (based on what Prusa/Super slicer did) as well as a tip cutting macro designed for toolhead based cutters like ERF (Filametrix).  More details on slicer setup can be found [here](Toolchange-Movement#---role-of-the-slicer) and in the setup of the individual macros.
 
@@ -455,7 +455,7 @@ extruder_purge_current: 100             # % of extruder current (100%-150%) to u
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Gear/Extruder Synchronization
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Gear/Extruder Synchronization
 
 Happy Hare has the ability to synchronize various motors during printing operation and this section controls those options. Make sure you have [understood the caution](Synchronized-Gear-Extruder) needed when `sync_to_extruder: 1` is enabled.
 
@@ -483,7 +483,7 @@ sync_multipler_low: 0.95                # Minimum factor to apply
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Filament Management Options
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Filament Management Options
 
 ```yml
 # Filament Management Options ----------------------------------------------------------------------------------------
@@ -546,7 +546,7 @@ Clog detection and EndlessSpool feature is well documented [here](Clog-Runout-En
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Statistic Reporting
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Statistic Reporting
 
 If you want the tool change statistics can be reported on every toolchange or just at the end of a print. Separate statistics exist for all time (until reset) as well as the last print. There and many formatting options.
 
@@ -588,7 +588,7 @@ console_always_output_full: 1   # 1 = Show full table, 0 = Only show totals out 
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Miscellaneous
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Miscellaneous
 
 This section contains an eclectic set of remaining options. Ask on discord if any aren't clear, however a couple warrant further explantion:<br>
 `default_extruder_temp` - This is the default temperature for performing swaps and tip forming when outside of a print. It's also a fallback in the event that your printer tries to print with an unsafe temperature after a pause. When printing, the slicer will be responsible for setting the temperature. You may want to set this to a middleground temperature that works "well enough" with the full range of filaments you regularly print.<br>
@@ -645,7 +645,7 @@ homing_extruder: 1              # CAUTION: Normally this should be 1. 0 will dis
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Macro Naming
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Macro Naming
 
 This section contains a list of overrides for macros that Happy Hare calls internally. You can replace these with macros of your own names and is preferred to editing the shipped defaults. The reason is that the defaults may be overwritten on updates to Happy Hare. You can also use the Klipper convention of `rename_existing` but be sure to include in your own `.cfg` file.
 
@@ -673,7 +673,7 @@ load_sequence_macro: _MMU_LOAD_SEQUENCE         # VERY ADVANCED: Optionally call
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Statically defined "reset" defaults
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Statically defined "reset" defaults
 
 This final section is commented out because it is not generally needed. It retains abilities that existed in earlier versions of Happy Hare which may still be useful in some specific cases.  Normally when reset Happy Hare will default to empty or simple values for these settings. However, you can define the default here so that after a MMU reset has been performed they will be the starting values perhaps saving some additional configuration. E.g. if you always have specific filament spools loaded on a particular gate (I always have ABS black on gate #8 for example) you can define that here by setting the starting `gate_material` and `gate_color` arrays. Read [Tool and Gate](Tool-and-Gate-Maps) for more details.
 
@@ -688,23 +688,23 @@ Happy Hare has advanced features like:
 4. The filament color in each gate
 5. Grouping gates (spools) into Endless Spool groups
 
-Typically these will be set dynamically over time and automatically saved to 'mmu\_vars.cfg'.  When you power up your MMU these values are loaded. However, if you explicity reset your MMU state through one of the many reset commands, these values will be restored to a default. The system default values are typically empty or in the case of TTG map, 1:1 mapping of Tx to Gate #x, or no Endless Spool groups.  However you have the option to define starting values here.
+Typically these will be set dynamically over time and automatically saved to 'mmu_vars.cfg'.  When you power up your MMU these values are loaded. However, if you explicity reset your MMU state through one of the many reset commands, these values will be restored to a default. The system default values are typically empty or in the case of TTG map, 1:1 mapping of Tx to Gate #x, or no Endless Spool groups.  However you have the option to define starting values here.
 
 > [!IMPORTANT]  
 > The arrays of values must be the same length as the number of gates on your MMU otherwise they will be rejected.
 
-This group of settings collectively form the default gate map which can be updated with the `MMU_GATE_MAP` command or similar commands that determine gate status. They must all be the same length at the number of gates (0 .. n). Note that these are the defaults and will be overriden by saved values in mmu\_vars.cfg
+This group of settings collectively form the default gate map which can be updated with the `MMU_GATE_MAP` command or similar commands that determine gate status. They must all be the same length at the number of gates (0 .. n). Note that these are the defaults and will be overriden by saved values in mmu_vars.cfg
 
 1. `gate_material` - Similarly this specifies the material type present in the gate. If not specified or commented out the name will be empty `MMU_GATE_MAP` is used to adjust and persist during use
 2. `gate_color` - Similarly this specifies the color of the filament in each gate. If not specified or commented out the color will be default Color can be w3c color name or RRGGBB or RRGGBBAA (no leading #) `MMU_GATE_MAP` is used to adjust and persist during use
 3. `gate_spool_id` - If spoolman is active, you can here define the gate to spoolId mapping. This would typically be kept up-to-date with the `MMU_GATE_MAP GATE=... SPOOLID=...` command and refreshed with `MMU_GATE_MAP REFRESH=1`
 4. `gate_status` - Whether gate has filament available (2=available from buffer, 1=available from spool, 0=empty). If not specified or commented out the system default of all gates in an unknown state will be assumed `MMU_GATE_MAP` is used to adjust and persist during use
 5. `tool_to_gate_map` - The default mapping for tool to gate.  If not specified out the default mapping will be "Tx = Gate #x".  `MMU_RESET_TTG_MAP` will revert current map to these default values. `MMU_REMAP_TTG` will modify and persist during use.
-6. `endless_spool_groups` - If endless spool is turned on, this will define the default EndlessSpool groups mapping with one entry for each gate in your MMU.  When filament runs out on a gate, it will switch to the next gate with the same group number for example, if set to `1, 2, 3, 1, 2, 3, 1, 2, 3` on a 9 cart MMU, and a runout occurs on gate #0 (in group 1) the MMU will switch to using gate #3 and then gate #6 automatically remapping the tool as it goes. Note that this will be overriden by a saved value in mmu\_vars.cfg, if modified with `MMU_ENDLESS_SPOOL_GROUPS` command
+6. `endless_spool_groups` - If endless spool is turned on, this will define the default EndlessSpool groups mapping with one entry for each gate in your MMU.  When filament runs out on a gate, it will switch to the next gate with the same group number for example, if set to `1, 2, 3, 1, 2, 3, 1, 2, 3` on a 9 cart MMU, and a runout occurs on gate #0 (in group 1) the MMU will switch to using gate #3 and then gate #6 automatically remapping the tool as it goes. Note that this will be overriden by a saved value in mmu_vars.cfg, if modified with `MMU_ENDLESS_SPOOL_GROUPS` command
 
-For completeness and primarily for historical reasons rather than usefulness, the default position of each gate on the selector and the optional bypass position can be specified. These would only ever be used if 'mmu\_vars.cfg' was deleted
-> #selector\_offsets: 3.2, 24.2, 45.2, 71.3, 92.3, 113.3, 141.6, 162.6, 183.6<br>
-> #selector\_bypass: 123.4   # Set to your measured bypass position, 0 to disable
+For completeness and primarily for historical reasons rather than usefulness, the default position of each gate on the selector and the optional bypass position can be specified. These would only ever be used if 'mmu_vars.cfg' was deleted
+> #selector_offsets: 3.2, 24.2, 45.2, 71.3, 92.3, 113.3, 141.6, 162.6, 183.6<br>
+> #selector_bypass: 123.4   # Set to your measured bypass position, 0 to disable
 <br>
 
 ```yml
@@ -724,7 +724,7 @@ For completeness and primarily for historical reasons rather than usefulness, th
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) "Other" MMU CAD Dimensions
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) "Other" MMU CAD Dimensions
 
 When `mmu_vendor` and `mmu_version` are set, Happy Hare will use the correct CAD dimensions to aid setup.  Typically this is used for calibration and to apply sensible limits. If you are not using one of those standard MMUs or have heavily customized your setup you can set or override settings by uncommenting the appropriate line and setting a suitable value.
 

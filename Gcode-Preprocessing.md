@@ -35,7 +35,7 @@ The Happy Hare pre-processor implements similar functionality but runs when the 
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Supported Placeholders
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Supported Placeholders
 
 ### Placeholder: `!referenced_tools!`
 This placeholder is substituted with a comma separated list of tools used in a print.  If there are no toolchanges (non MMU print) it will be an empty string. E.g. `0,2,5,6` means that T0, T2, T5 and T6 are used in the print.
@@ -134,7 +134,7 @@ This placeholder is substituted with a comma separated list of NxN purge volumes
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Next Toolhead Position
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Next Toolhead Position
 Happy Hare responds to the normal `Tx` toolhead selection commands but, in order to support advanced toolhead positioning after a toolchange, it can replace these references to a form:
 ```
 MMU_CHANGE_TOOL TOOL=2 NEXT_POS="26.456,156.4363" ; T2

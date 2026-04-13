@@ -8,7 +8,7 @@ Happy Hare maintains a set of "maps" (exposed by printer variables) that are use
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Gate Map
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Gate Map
 **Management Command: `MMU_GATE_MAP`**<br>
 
 **Printer Variables:** `printer.mmu.gate_status`, `printer.mmu.gate_material`, `printer.mmu.gate_color`, `printer.mmu.gate_color_rgb`, `printer.mmu.gate_spool_id`, `printer.mmu.gate_filament_name` and `printer.mmu.gate_temperature`
@@ -86,7 +86,7 @@ Here is an example snippet of a macro controlling LED's for reference:
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Slicer Tool Map
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Slicer Tool Map
 **Management Command: `MMU_SLICER_TOOL_MAP`**
 
 **Printer Variables:** `printer.mmu.slicer_tool_map`
@@ -131,7 +131,7 @@ Although typical setup in the print start macro, you can manually manipulate thi
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Tool to Gate (TTG) Mapping
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Tool to Gate (TTG) Mapping
 **Management Command: `MMU_TTG_MAP`**<br>
 
 **Printer Variables:** `printer.mmu.ttg_map`, `printer.mmu.endless_spool_groups`
@@ -223,7 +223,7 @@ The lower paragraph of the status is the gate centric view showing the mapping b
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Automatic Tool to Gate (TTG) Mapping
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Automatic Tool to Gate (TTG) Mapping
 
 Automatic TTG mapping is a feature that can be enabled in the `mmu_macro_vars.cfg` file. When enabled, the [MMU_START_SETUP](Slicer-Setup#1-mmu_start_setup) macro will automatically map tools to gates based on a strategy that you define. Modify variable `variable_automap_strategy` in the `[gcode_macro _MMU_SOFTWARE_VARS]` section. The strategy can be one of the following:
 - `none` No automapping with occur (the default)

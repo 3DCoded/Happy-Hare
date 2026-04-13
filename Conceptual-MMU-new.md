@@ -13,7 +13,7 @@ So what is an MMU and what features distinguish it's type and how does Happy Har
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) MMU Naming Conventions
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) MMU Naming Conventions
 
 #### MMU
 Referring to "Multi-Material Unit", the term first coined by Prusa Research, this is used to refer collectively to the entire extension to a 3D printer for the purpose of changing filaments on a single extruder system. Other terms are also in use including `AFC` Automatic Filament Changer, `AMS` Automatic Material System or even `VVD` (BTT Versatility, Vibrance, Delivered). Well, maybe that last one won't stick as a generic name!
@@ -49,7 +49,7 @@ Used interchangeably this term refers to a device on type-B MMU's that multiplex
 
 Basic MMU types supported by Happy Hare:
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Type-A
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Type-A
 
 <img src="Conceptual-MMU/typeA_mmu.png" width="800" alt="Type A MMU">
 
@@ -70,7 +70,7 @@ CONS: Requires higher degree of tuning/troubleshooting
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Type-B
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Type-B
 
 <img src="Conceptual-MMU/typeB_mmu.png" width="800" alt="Type B MMU">
 
@@ -87,7 +87,7 @@ CONS: More costly build and generally limited to 4 gates per unit, harder bypass
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Type-C
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Type-C
 
 <img src="Conceptual-MMU/typeC_mmu.png" width="800" alt="Type C MMU">
 
@@ -99,7 +99,7 @@ CONS: More costly build
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Supported Sensors
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Supported Sensors
 
   | Sensor | Description |
   | ------ | ----------- |
@@ -120,7 +120,7 @@ Complete set of default Happy Hare endstops and filament sensors:<br>
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Ideal Design?
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Ideal Design?
 
 I've often been asked what would be the ultimate MMU design... Actually I've never been asked but I'm going to share with you anyway! :-)
 

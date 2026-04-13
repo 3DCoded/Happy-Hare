@@ -1,6 +1,6 @@
 Happy Hare allows for syncing gear motor with the extruder stepper during printing. This added functionality enhances the filament pulling torque, potentially alleviating friction-related problems. **It is crucial, however, to maintain precise rotational distances for both the primary extruder stepper and the gear stepper** A mismatch in filament transfer speeds between these components could lead to undue stress, filament grinding or printing artifacts. See the sync feedback control that can be used to mitigate this potential issue.
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Synchronized Gear and Extruder
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Synchronized Gear and Extruder
 
 Synchronization during printing is controlled by `sync_to_extruder` in `mmu_parameters.cfg`. If set to 1, after a toolchange, the MMU servo will stay engaged and the gear motor will sync with the extruder for extrusion and retraction moves. It can also separately be turned on for tip forming operations performed by Happy Hare's standalone tip forming macro:
 
@@ -37,7 +37,7 @@ Note you can still control the gear stepper motor with the `MMU_TEST_MOVE` or `M
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Sync Feedback Sensor Options
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Sync Feedback Sensor Options
 
 When performing long periods of synchronized printing without a tool change to reset things, the effective synchronization of the two steppers will tend to drift. Even with perfect calibration the friction caused by the long filament path through the buffer system, the tugging of the filament on a heavy spool can cause slippage in the grip of either the extruder or more likely the gear / filament drive stepper. This mismatch can ultimately lead to artifacts in the print caused by the extruder missing steps or achieving a sub optimum extrusion ratio (btw did you know that with an encoder fitted you can monitor and see the under extrusion!). Although this is rarely an issue on a well tuned setup it can be accommodated for in Happy Hare by way of a sensor and feedback system that works against the accumulation of tension or compression in the filament path.
 

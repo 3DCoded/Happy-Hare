@@ -1,26 +1,26 @@
 #### Page Sections:
-- [save\_variables](#---save_variables)
-- [\_MMU\_SOFTWARE\_VARS](#---_mmu_software_vars)
-- [\_MMU\_STATE\_VARS](#---_mmu_state_vars)
-- [\_MMU\_LED\_VARS](#---_mmu-led_vars)
-- [\_MMU\_SEQUENCE\_VARS](#---_mmu_sequence_vars)
-- [\_MMU\_CUT\_TIP\_VARS](#---_mmu_cut_tip_vars)
-- [\_MMU\_FORM\_TIP\_VARS](#---_mmu_form_tip_vars)
-- [\_MMU\_CLIENT\_VARS](#---_mmu_client_vars)
+- [save_variables](#---save_variables)
+- [_MMU_SOFTWARE_VARS](#---_mmu_software_vars)
+- [_MMU_STATE_VARS](#---_mmu_state_vars)
+- [_MMU_LED_VARS](#---_mmu-led_vars)
+- [_MMU_SEQUENCE_VARS](#---_mmu_sequence_vars)
+- [_MMU_CUT_TIP_VARS](#---_mmu_cut_tip_vars)
+- [_MMU_FORM_TIP_VARS](#---_mmu_form_tip_vars)
+- [_MMU_CLIENT_VARS](#---_mmu_client_vars)
 - [Time Saving Tip](#time-saving-tip)
 
 This is where you'll likely spend most of your time tuning the MMU. The bulk of what the MMU does is controlled here. So, grab a cup of coffee, get ready, and let's dive in!
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) save\_variables
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) save_variables
 
 `filename: /home/pi/printer_data/config/mmu/mmu_vars.cfg`
 This is where Happy Hare saves all the variables and status information (remember, it's a state machine) for the operation of the MMU. You'll likely keep the default unless you have a super modified klipper install, in which case you probably have that all figured out anyway.
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) \_MMU\_SOFTWARE\_VARS
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) _MMU_SOFTWARE_VARS
 
 This section controls the behavior of the start up and finalization of a print through Happy Hare. In the [Slicer Setup](Slicer-Setup) page, the operation and setup of the proper macro calls are explained in great detail. Since setting up the slicer is outside the scope of this document, be sure to read up there and get a good understanding of things before you edit this section.
 
@@ -47,7 +47,7 @@ For more detailed info [Statistics and Consumption Counters](Statistics-and-Cons
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) \_MMU\_STATE\_VARS
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) _MMU_STATE_VARS
 
 This section allows you to extend the functionality of Happy Hare with custom commands made after an action is performed, the state of the MMU has changed, or the gate map has changed. A good explaination of what all this means can be found on the [Macro Customization](Macro-Customization) page.
 
@@ -67,7 +67,7 @@ As an example, if you have the [Klipper LED Effect module](https://github.com/ju
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) \_MMU\_LED\_VARS
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) _MMU_LED_VARS
 
 This section controls the MMU LEDs. This does not affect any of the printer LEDs controlled by the Klipper LED Effect module](https://github.com/julianschill/klipper-led_effect)
 
@@ -93,7 +93,7 @@ This section controls the MMU LEDs. This does not affect any of the printer LEDs
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) \_MMU\_SEQUENCE\_VARS
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) _MMU_SEQUENCE_VARS
 
 These control the movement of the toolhead during a tool change. For a detailed explanation refer to [Toolhead Movement](Toolhead-Movement) page.
 
@@ -141,7 +141,7 @@ These control the movement of the toolhead during a tool change. For a detailed 
 
 `variable_user_park_move_macro_macro` runs this command instead of the default straight line "G1 X Y (to `variable_park_*` postion)" move. This is useful if you need to add some special logic like operating a servo to lower a silicon pad or moving is a "L" pattern. This macro will be supplied the expected final x,y coordinates and configured speed like this: `YOUR_MOVE_MACRO X=<x_coord> Y=<y_coord> F=<speed>`
 
-`variable_retract` immediately before the z\_hop and immediately after the reciprical restoration of z-height this amount of retraction or un-retraction will be applied. When loading the extruder, the filament will be loaded just short of the nozzle so this distance can be employed to prevent blobs by immediately depressuring the nozzle when pausing or repressuring at the point of resuming print.
+`variable_retract` immediately before the z_hop and immediately after the reciprical restoration of z-height this amount of retraction or un-retraction will be applied. When loading the extruder, the filament will be loaded just short of the nozzle so this distance can be employed to prevent blobs by immediately depressuring the nozzle when pausing or repressuring at the point of resuming print.
 
 `variable_retract_speed` to speed of the retract movement in mm/s. Usually you want this as fast as your extruder can handle. The default is 25mm/s.
 
@@ -165,7 +165,7 @@ The following are similar to `_MMU_STATE_VARS` and allow user customization/exte
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) \_MMU\_CUT\_TIP\_VARS
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) _MMU_CUT_TIP_VARS
 
 These are all the variables which control the tip cutting procedure. There's quite a few, but most of them are pretty self-explanatory.
 
@@ -225,7 +225,7 @@ Here's the basic algorithm for filament cutting:
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) \_MMU\_FORM\_TIP\_VARS
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) _MMU_FORM_TIP_VARS
 
 These are all the parameters which control Happy Hare's implementation of tip forming. Most of these are similar to the parameters which most slicers use for tip forming. Indeed, it is up to you to determine whether to use Happy Hare or the slicer for tip forming. However, Happy Hare is set up to be convenient and more centralized than using slicer settings.  
 
@@ -286,7 +286,7 @@ RapidoHF: 22
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) \_MMU\_CLIENT\_VARS
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) _MMU_CLIENT_VARS
 
 These are variables used in general print and MMU moves.  
 

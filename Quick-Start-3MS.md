@@ -8,7 +8,7 @@
 
 This quickstart guide explains how to install Happy Hare firmware for use with the [3MS](https://github.com/3DCoded/3MS) modular multimaterial system. 
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Cloning Happy Hare Repo
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Cloning Happy Hare Repo
 
 First, download the Happy Hare repository onto your Raspberry Pi using the `git` tool. Log into your Raspberry Pi via SSH (PuTTy on Windows):
 
@@ -34,7 +34,7 @@ git clone https://github.com/moggieuk/Happy-Hare.git
 
 Happy Hare is now downloaded onto your Raspberry Pi. The next step is installing it.
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Running Installer
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Running Installer
 
 To install Happy Hare firmware, run the following commands on your Raspberry Pi through SSH:
 
@@ -103,7 +103,7 @@ This is usually set to `y` on new Happy Hare installations, and `n` on existing 
 <p>
 If you selected `Not in list / Unknown`, read on.
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Configuration
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Configuration
 
 If you aren't using one of the default Happy Hare provided control boards, you will have to create a 3MS-specific configuration for your control board.
 

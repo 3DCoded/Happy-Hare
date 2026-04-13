@@ -13,7 +13,7 @@ The setup for LED's is contained at the bottom of the `mmu_hardware.cfg` file. I
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Wiring
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Wiring
 
 <p align=center><img src="Led-Support/led_connection.jpg" alt='LED Connection' width='80%'></p>
 
@@ -21,7 +21,7 @@ LED strips can be formed but soldering together individual neopixels or using pr
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Hardware Config
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Hardware Config
 If you have run the Happy Hare installer it should have added a section to the end of your `mmu_hardware.cfg` that starts like this:
 ```yml
 # LED SUPPORT (OPTIONAL) -----------------------------------------------------------------------------------------------
@@ -100,7 +100,7 @@ Some examples of how to set these values can be seen in this illustration (ERCFv
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Controlling LED Effects
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Controlling LED Effects
 Happy Hare LED effects are controlled by Happy Hare but you have a large amount of configuration options. The `[mmu_leds ..]` section above continues:
 ```yml
 # Default effects for LED segments when not providing action status
@@ -193,7 +193,7 @@ If you want to reduce load on your system (arguably because it realy is  minor) 
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Summary of Default Effects
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Summary of Default Effects
 The default effects, which are both functional as well as adding a little color, are summerized here. The logo LED is typically a static RGB color::
 
   | State            | Filament Entry LEDs<br>(typically gate loading) | Filament Exit LEDs<br>(to bowden tube) | Status LED |

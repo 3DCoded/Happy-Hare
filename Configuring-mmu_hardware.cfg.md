@@ -10,7 +10,7 @@ This is where all the user adjustable hardware based parameters are stored. Thin
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Gear Stepper Setup
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Gear Stepper Setup
 
 The first item you'll see in `mmu_hardware.cfg` is the gear stepper configuration section. The gear stepper is the motor that drives the filament through the MMU. There are various mechanisms which accomplish this based on the MMU type. However, they all have a motor that provides the force to move the filament. This section is where you set that up. It's very similar to the rest of Klipper motor and driver setup. [Klipper's documentaton](https://www.klipper3d.org/TMC_Drivers.html) has a pretty good explanation of how the driver settings work.
 The defaults are fairly good for most setups. We'll go ahead and walk through the settings anyway:  
@@ -43,7 +43,7 @@ That's all for the gear stepper. If you've setup any stepper motors in Klipper, 
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Selector Stepper Setup
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Selector Stepper Setup
 
 The next section deals with setting up the selector motor. This is very similar to the gear motor setup, so I will only hit the points which differ:  
 
@@ -61,7 +61,7 @@ That's all for the selector setup. Let's move on to the servo:
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Servo Setup  
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Servo Setup  
 
 There are two supported servos, the TowerPro MG90S and the Savox SH-0255MG. If you select one or the other during `./install.sh -i` the defaults will be set up well for you. If you have a custom servo selection, you'll want to consult the documentation for that servo.  
 
@@ -80,7 +80,7 @@ That's about it for servo hardware config, so let's get to the encoder.
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Encoder Setup
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Encoder Setup
 
 If your MMU has an encoder, this is where you set it up. The encoder is used to keep track of the filament position. It can detect filament clogs and runouts, and is used to synch the gear motor, as well as in calibrating gate rotation distance. If you chose the encoder during `./install.sh -i` the defaults should all be in place for your encoder.
 
@@ -98,7 +98,7 @@ That's it for the encoder. The defaults are usually pretty good for this section
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Filament Sensor Setup
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Filament Sensor Setup
 
 Happy Hare can utilize a plethora of sensors to determine where the filament is in the filament path.  
 
@@ -117,7 +117,7 @@ That's all for sensors. LED setup is next.
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) LED or Neopixel Setup
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) LED or Neopixel Setup
 
 This section allows you to configure neopixel chains in the MMU.
 

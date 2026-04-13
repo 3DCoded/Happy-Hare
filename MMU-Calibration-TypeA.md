@@ -27,7 +27,7 @@ Note that some MMUs require slight variations to these basic steps - always refe
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Calibration Steps
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Calibration Steps
 
 > [!IMPORTANT]  
 > When calibrating the first time you must perform in the prescribed order.  Once complete you can re-calibrate particular steps but remember that some calibration changes will cascade.  E.g. after calibrating the gear, you must recalibrate the encoder, the bowden and possibly all the gates.  Generally you can re-calibrate the selector (step 1) and the gates (step 5) at any time, but the gear, encoder and bowden must always be done in that order!
@@ -68,7 +68,7 @@ graph TD;
 
 <br>
 
-### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Step 1. Calibrate selector offsets
+### ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Step 1. Calibrate selector offsets
 Only application to MMU's with linear selector: **E.g ERCF, Tradrack**
 
 #### A) Fully automatic calibration
@@ -115,7 +115,7 @@ Similar to the above if your MMU has a bypass gate you can calibrate it's positi
 
 <br>
 
-### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Step 2. Calibrate your servo
+### ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Step 2. Calibrate your servo
 Only applicable to MMU's with linear selector: **E.g ERCF, Tradrack**
 
 Happy Hare sets up theoretically good servo postions during installation, however they really should be calibrated. Most MMU's require precise servo movement. To do that you need to run through this process similar to this to update and record the angle for the three symbolic positions. Be sure to consult you MMU documentation.
@@ -155,7 +155,7 @@ Repeat for the three positions:
 
 <br>
 
-### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Step 3. Calibrate your gear stepper
+### ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Step 3. Calibrate your gear stepper
 Applicable to all MMU's: **Very important to get right!**
 
 In this step you are simply ensuring that when the gear stepper is told to move 100mm of filament it really does move 100mm.  It is akin to what you did when you set up your extruder rotational distance although in this case no Klipper restart is necessary!  Select gate #0 (you can use `MMU_SELECT GATE=0` if you have finished the selector calibration above) and put some filament through the gate so that it pokes out just past the selector exit.  Run the following to ensure the filament is gripped if your MMU needs to actuate a servo to grip filament:
@@ -184,7 +184,7 @@ Repeat for all other gates if your MMU has variable gears (not necessary on Trad
 
 <br>
 
-### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Step 4. Calibrate your encoder
+### ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Step 4. Calibrate your encoder
 Applicable if fitted: **All ERCF, Tradrack Binky Mod, etc**
 
 If your MMU includes an encoder (like the ERCF design) the next step is to calibrate so it measures distance accurately. Re-fit the bowden to the selector/encoder (you can insert the short length of filament to tube as you fit to save time). Alternatively, just make sure you have some filament at gate #0 before starting. Now run:
@@ -218,7 +218,7 @@ If this step worked then you should be able to unload the residual filament with
 
 <br>
 
-### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Step 5. Calibrate bowden length
+### ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Step 5. Calibrate bowden length
 Applicable to MMU's with fast bowden move: **Most designs except Angry Beaver**
 
 The last calibration before use! Here you can calibrate the length of your bowden from MMU gate to extruder entrance. This is important because it allows the MMU to move the filament at a fast pace over this distance because getting to the more complicated part of the load sequence. To speed up this process and depending on what sensors you have fitted for extruder homing, you may need to give the calibration routine a hint of how far way the extruder is.
@@ -269,7 +269,7 @@ This will reverse homes to the gate and uses Klipper's measurement of stepper mo
 
 <br>
 
-### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Step 6. Calibrating individual gates
+### ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Step 6. Calibrating individual gates
 Applicable to MMU's with varible per-gate rottion distance & encoder: **ERCF, Tradrack with Binky**
 
 This step allows for calibrating slight differences between gates and saves you from having to use `MMU_CALIBRATE_GEAR` on every gate.  It isn't required (or useful) for designs that cannot have variation like the Tradrack MMU but is useful for designs like ERCF that can have variation of feed between gates.  Even with ERCF this is optional because if not run, the gates will tune themselves as they are used automatically!  That said it be beneficial to get this out of the way with a test piece of filament but doing it also: (i) removes the need to set the `autotune_rotation_distance` in `mmu_parameters.cfg`, (ii) is necessary if there is substantial variation between gates -- e.g. if BMG gears for different gates are sourced from different vendors.
@@ -302,7 +302,7 @@ You will see an output similar to:
 
 <br>
 
-### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Calibration Storage
+### ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Calibration Storage
 All calibrated results are stored in the configured `[save_variables]` file. By default and most usually this will be the `mmu_vars.cfg`. Here is a list of those variables and the command that sets them:
 
   | Variable | Command | Notes |

@@ -13,7 +13,7 @@ So what is an MMU and what features distinguish it's type and how does Happy Har
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) MMU Naming Conventions
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) MMU Naming Conventions
 
 #### MMU
 Referring to "Multi-Material Unit", the term first coined by Prusa Research, this is used to refer collectively to the entire extension to a 3D printer for the purpose of changing filaments on a single extruder system. Other terms are also in use including `AFC` Automatic Filament Changer, `AMS` Automatic Material System or even `VVD` (BTT Versatility, Vibrance, Delivered). Well, maybe that last one won't stick as a generic name!
@@ -49,7 +49,7 @@ Used interchangeably this term refers to a device on type-B MMU's that multiplex
 
 Basic MMU types supported by Happy Hare:
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Type-A
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Type-A
 
 This is the most common type of MMU used today. The advantage is that it allows for a large number of gates (available filaments) at a low cost because it leverages only two steppers and a servo to complete the selection process. Examples of this design include Voron ERCF and Annex Tradrack.
 
@@ -70,7 +70,7 @@ Extruder parking sensor options include: `toolhead` sensor and/or `extruder` sen
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Type-B
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Type-B
 
 This type has been popularized by Bambu Labs and their AMS system although new open-source alternatives like Box Turtle, 3MS, Angry Beaver are very similar. Each gate has a dedicated stepper for loading and unloading and it leverages a filament "combiner/splitted" rather than a selector in the Type-A design.  The advantage is in efficiency. The disadvantage is that it is generally limited to a small number of gates.
 
@@ -90,7 +90,7 @@ Despite the lack of cost effectiveness, multiple type-B MMU's can be combined by
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Type-C
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Type-C
 
 The type is more theoretical at this point - I'm not aware of any designs that take this approach.  It would eliminate the gate limitations of a filament "combiner" to allow for large gate arrays and thus simplify the controlling logic. It still suffers from the need for a large number of stepper motors and control electronics.
 
@@ -102,7 +102,7 @@ The type is more theoretical at this point - I'm not aware of any designs that t
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Supported Sensors
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Supported Sensors
 
   | Sensor | Description |
   | ------ | ----------- |
@@ -123,7 +123,7 @@ Complete set of default Happy Hare endstops and filament sensors:<br>
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Ideal Design?
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Ideal Design?
 
 I've often been asked what would be the ultimate MMU design... Actually I've never been asked but I'm going to share with you anyway! :-)
 

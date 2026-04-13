@@ -23,7 +23,7 @@ Note that some MMUs require slight variations to these basic steps - always refe
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Calibration Steps
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Calibration Steps
 
 > [!IMPORTANT]  
 > When calibrating the first time you must perform in the prescribed order.  Once complete you can re-calibrate particular steps but remember that some calibration changes will cascade.  E.g. after calibrating the gear, you must recalibrate the encoder (if fitted), and the bowden.
@@ -49,7 +49,7 @@ graph TD;
 
 <br>
 
-### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Step 1. Calibrate rotation distance of gear 0 stepper
+### ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Step 1. Calibrate rotation distance of gear 0 stepper
 Applicable to all MMU's: **Very important to get right!**
 
 #### PURPOSE
@@ -100,7 +100,7 @@ Although it is not strictly necesssary to do this now, you can repeat for all ot
 
 <br>
 
-### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Step 2. Calibrate your encoder (Option)
+### ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Step 2. Calibrate your encoder (Option)
 APPLICABLE ONLY IF AN ENCODER IS FITTED
 
 #### PURPOSE
@@ -146,7 +146,7 @@ If this step worked then you can unload the residual filament with `MMU_UNLOAD`.
 
 <br>
 
-### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Step 3. Calibrate bowden length
+### ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Step 3. Calibrate bowden length
 Applicable to MMU's with fast bowden move: **Most designs except Angry Beaver** where filaments combine at the toolhead
 
 #### PURPOSE
@@ -207,7 +207,7 @@ This will reverse homes to the gate and uses Klipper's measurement of stepper mo
 
 <br>
 
-### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Step 4. Calibrating individual gates
+### ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Step 4. Calibrating individual gates
 Applicable to **MMU's with encoder** to automate the setting of rotation distance for gates other than the reference gate 0
 
 #### PURPOSE
@@ -251,7 +251,7 @@ You will see an output similar to:
 
 <br>
 
-### ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Calibration Storage
+### ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Calibration Storage
 All calibrated results are stored in the configured `[save_variables]` file. By default and most usually this will be the `mmu_vars.cfg`. Here is a list of possible modified variables and the command that sets them:
 
   | Variable | Command | Notes |

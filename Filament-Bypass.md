@@ -6,7 +6,7 @@ Note that using the MMU bypass also allows for runout/clog detection which may n
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Configuring Filament Bypass
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Configuring Filament Bypass
 
 For the ERCFv1.1 (with bypass block) or ERCFv2 the bypass position would have been set during the selector calibration. However it can be done at any time with the method described in the [Selector Calibration](MMU-Calibration#---step-1-calibrate-selector-offsets) guide. Specifically, carefully  align the selector with the bypass using a fragment of filament, remove the fragment, then run:
 
@@ -16,7 +16,7 @@ The position of the bypass will be measures and stored in `mmu_vars.cfg` as `mmu
 
 <br>
 
-## ![#f03c15](resources/f03c15.png) ![#c5f015](resources/c5f015.png) ![#1589F0](resources/1589F0.png) Using Filament Bypass
+## ![#f03c15](assets/f03c15.png) ![#c5f015](assets/c5f015.png) ![#1589F0](assets/1589F0.png) Using Filament Bypass
 
 Once configured you can select the bypass position one of these commands:
 
