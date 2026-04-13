@@ -1,3 +1,6 @@
 # vscode related
 .vscode
 .history
+uv.lock
+site/*
+*.DS_Store
