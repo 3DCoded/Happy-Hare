@@ -18,7 +18,7 @@ icon: fontawesome/solid/house
 
 ## <img src="assets/wiki.svg" width="8%" align="center">Documentation and walkthrough MMU setup
 
-This wiki serves to provide a logical set of instructions and FAQs to help you delve into the wonderful world of MMU (Multi Material Unit) printing controlled by the extensive software suite Happy Hare.  Note that the term "MMU" is fairly common and understood in the community but the Amored rutle folks would call it an AFC (Automated Filament Changer). I prefer MMU and although it is also the name of the Prusa product, it is used generically in this wiki to cover all types of changer.
+This wiki serves to provide a logical set of instructions and FAQs to help you delve into the wonderful world of MMU (Multi Material Unit) printing controlled by the extensive software suite Happy Hare.  Note that the term "MMU" is fairly common and understood in the community but the Armored Turtle folks would call it an AFC (Automated Filament Changer). I prefer MMU and although it is also the name of the Prusa product, it is used generically in this wiki to cover all types of changer.
 
 
 
